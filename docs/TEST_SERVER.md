@@ -14,7 +14,7 @@ WordPress. Не менять окружение, Plesk, настройки др�
 - MariaDB 10.6.23, отдельная база и пользователь `prihod`.
 - SSH: предоставленный профиль Bitvise, пользователь `prihod`, не root.
 
-Установлены по прямому разрешению владельца: Core 1.0.0-rc.2, тема «Приход» 0.3.0,
+Установлены по прямому разрешению владельца: Core 1.0.0-rc.3, тема «Приход» 0.3.1,
 orthocal 1.3.78, Orthodox Donations 1.0.2 и Telegram/WhatsApp/Facebook подключения
 0.1.1. Пароли и профиль SSH не входят в репозиторий. Пароль администратора изменён
 владельцем; первоначальный установочный файл пароля устарел и для входа не используется.
@@ -29,13 +29,14 @@ orthocal 1.3.78, Orthodox Donations 1.0.2 и Telegram/WhatsApp/Facebook подк
 Меню: дашборд, информация, обращения, наши плагины, настройки, мастер. Формы настроек
 зарегистрированы с прежними capabilities и доступны кнопками из своих разделов.
 Четыре виджета консоли проверяются отдельно от собственно дашборда плагина.
-Материалы, приходской профиль и службы не заполнены придуманными данными.
-
-По отдельному прямому разрешению обновлена тема 0.3.0 и создано 13 демо-страниц
-**черновиками**: примерные редактируемые тексты, стандартные блоки и действующие
-формы установленных плагинов. Главная и меню не назначались, публикация не включалась.
-Панель: «Приход → Настройки → Оформление прихода», семь разделов, пять схем.
-theme-options.png, theme-demo-pages.png и theme-options-mobile.png — снимки проверки.
+По прямому запросу владельца опубликованы и наполнены 13 демо-страниц по материалам
+georg-kloster.ru; главная ID 7, тематическая навигация, шесть публикаций, восемь
+изображений, профиль/духовенство и пять датированных служб. Подробнее — MONASTERY_DEMO.md.
+Панель темы: «Приход → Настройки → Оформление прихода», семь разделов, пять схем.
+Верхнее меню «Прихода» ведёт к «Обзору прихода» со всех его внутренних экранов;
+форма расписания сгруппирована, описание/переносы раскрываются отдельно.
+На полной странице календаря отсутствует дублирующий календарь боковой колонки.
+Снимки всех страниц, схем и мобильной проверки сохранены в docs/test-server/.
 
 Проверки: официальные контрольные суммы Core после корректной распаковки системным
 tar; 24 таблицы MariaDB OK; HTTPS главной и входа 200; вход с новым паролем; реальный
@@ -51,8 +52,8 @@ tar; 24 таблицы MariaDB OK; HTTPS главной и входа 200; вх�
 ```bash
 cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
 export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
-php -d memory_limit=512M /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.2.zip wp-content/prihod-packages/prihod-telegram-0.1.1.zip wp-content/prihod-packages/prihod-whatsapp-0.1.1.zip wp-content/prihod-packages/prihod-social-0.1.1.zip wp-content/prihod-packages/georg-kloster-orthodox-donate-1.0.2.zip --force --activate && \
-php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.0.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.3.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.1.zip --force --activate && \
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php
 ```
 

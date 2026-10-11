@@ -1,7 +1,7 @@
 <?php
 $root = dirname( __DIR__ );
 $failed = false;
-foreach ( array( 'prihod', 'prihod-theme', 'extensions', 'tests' ) as $directory ) {
+foreach ( array( 'prihod', 'prihod-theme', 'extensions', 'tests', 'scripts' ) as $directory ) {
     $files = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $root . '/' . $directory ) );
     foreach ( $files as $file ) {
         if ( $file->isFile() && 'php' === $file->getExtension() ) {

@@ -49,3 +49,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .prihod-article .gkod-form{--gkod-blue:var(--wp--preset--color--forest);--gkod-navy:var(--wp--preset--color--ink);--gkod-gold:var(--wp--preset--color--gold);--gkod-line:var(--prihod-line);--gkod-muted:var(--prihod-muted);background:var(--wp--preset--color--white);border-radius:var(--prihod-radius)}
 
 .prihod-sticky-header .wp-site-blocks>header{position:sticky;top:0;z-index:30}.admin-bar.prihod-sticky-header .wp-site-blocks>header{top:32px}@media(max-width:782px){.admin-bar.prihod-sticky-header .wp-site-blocks>header{top:46px}}
+
+/* Keep variable-length content inside cards and the hero in normal flow. */
+.prihod-feature-grid .prihod-feature h2{font-size:1.3rem;line-height:1.25;overflow-wrap:anywhere}.prihod-feature{min-width:0}.prihod-scheme-classic .prihod-hero-grid{padding-bottom:0;gap:28px}.prihod-scheme-classic .prihod-hero-service{position:relative;bottom:auto;margin-bottom:-36px}.prihod-wide .wp-block-post-featured-image img{aspect-ratio:16/10;object-fit:cover}.prihod-wide .wp-block-post-template h2{font-size:1.5rem}.prihod-article .wp-block-image img{height:auto;max-width:100%;border-radius:var(--prihod-radius)}
+@media(max-width:600px){.prihod-scheme-classic .prihod-hero-service{grid-template-columns:1fr;margin-bottom:0;padding:20px}.prihod-feature-grid .prihod-feature h2{font-size:1.1rem}.prihod-feature{padding:16px}.prihod-scheme-classic .prihod-hero-grid{padding-bottom:24px}.prihod-scheme-classic .prihod-feature-grid{padding-top:24px}}
+
+.prihod-scheme-hospitality .prihod-feature-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.prihod-wide .wp-block-post-template>li{margin-block-start:0}
+@media(max-width:900px){.prihod-scheme-hospitality .prihod-feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.prihod-scheme-hospitality .prihod-feature-grid{grid-template-columns:1fr}}

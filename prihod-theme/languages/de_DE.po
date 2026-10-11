@@ -1452,3 +1452,45 @@ msgstr "Hier können Sie Gebetsanliegen einreichen. Konfigurieren Sie vor der Ve
 
 msgid "Поддержите жизнь и добрые дела прихода. Перед публикацией укажите назначение пожертвований и настройте способы оплаты."
 msgstr "Unterstützen Sie das Gemeindeleben und gute Werke. Geben Sie vor der Veröffentlichung den Spendenzweck an und richten Sie die Zahlungsarten ein."
+
+msgid "Обзор прихода"
+msgstr "Gemeindeübersicht"
+
+msgid "Разделы прихода"
+msgstr "Gemeindebereiche"
+
+msgid "Описание богослужения"
+msgstr "Beschreibung des Gottesdienstes"
+
+msgid "Когда и где состоится богослужение"
+msgstr "Wann und wo findet der Gottesdienst statt"
+
+msgid "Укажите дату, время и место. Для регулярной службы выберите дни недели."
+msgstr "Geben Sie Datum, Uhrzeit und Ort an. Wählen Sie für regelmäßige Gottesdienste die Wochentage."
+
+msgid "Сначала добавьте место служения"
+msgstr "Fügen Sie zuerst einen Gottesdienstort hinzu"
+
+msgid "Повторение"
+msgstr "Wiederholung"
+
+msgid "Часовой пояс и особенности времени"
+msgstr "Zeitzone und Zeitbesonderheiten"
+
+msgid "Добро пожаловать в нашу обитель!"
+msgstr "Willkommen in unserem Kloster!"
+
+msgid "О монастыре"
+msgstr "Über das Kloster"
+
+msgid "Помочь обители"
+msgstr "Das Kloster unterstützen"
+
+msgid "Подробнее об обители"
+msgstr "Mehr über das Kloster"
+
+msgid "Новости обители"
+msgstr "Klosternachrichten"
+
+msgid "Жизнь обители в фотографиях"
+msgstr "Klosterleben in Bildern"

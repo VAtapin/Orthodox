@@ -23,7 +23,7 @@ Standalone тема проверяет отдельно создание дем�
 
 ```powershell
 python scripts/package.py
-npx.cmd --yes @wp-playground/cli@latest run-blueprint --mount-dir ./prihod /wordpress/wp-content/plugins/prihod --mount-dir ./prihod-theme /wordpress/wp-content/themes/prihod-theme --mount-dir ./build/packages/prihod-telegram /wordpress/wp-content/plugins/prihod-telegram --mount-dir ./build/packages/prihod-whatsapp /wordpress/wp-content/plugins/prihod-whatsapp --mount-dir ./build/packages/prihod-social /wordpress/wp-content/plugins/prihod-social --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/blueprint.json
+npx.cmd --yes @wp-playground/cli@latest run-blueprint --mount-dir ./prihod /wordpress/wp-content/plugins/prihod --mount-dir ./prihod-theme /wordpress/wp-content/themes/prihod-theme --mount-dir ./build/packages/prihod-telegram /wordpress/wp-content/plugins/prihod-telegram --mount-dir ./build/packages/prihod-whatsapp /wordpress/wp-content/plugins/prihod-whatsapp --mount-dir ./build/packages/prihod-social /wordpress/wp-content/plugins/prihod-social --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --mount-dir ./scripts /wordpress/wp-content/prihod-demo-source --blueprint tests/blueprint.json
 ```
 
 На Linux использовать `npx` вместо `npx.cmd`. Версии задаются в `preferredVersions`
@@ -88,3 +88,10 @@ WordPress. Материалы не создаёт/не удаляет; пров�
 изменения исходников не изменяли проверяемую версию. В продуктовые ZIP и Git
 исходники соседнего плагина не входят. Дашборд проверяет права виджетов и настоящую
 маршрутизацию скрытых форм внутри тематических разделов.
+
+admin-navigation-smoke.php проверяет общий возврат к обзору, раздел службы и сгруппированную форму.
+monastery-demo-smoke.php запускает отдельный одноразовый сценарий: 13 страниц,
+6 публикаций, 8 изображений, повтор без дубликатов и сохранение ручной правки.
+Маленькие изображения — только локальные fixtures; на сайте импортированы настоящие
+файлы владельца через медиатеку WordPress. Импортер нельзя запускать без запроса
+владельца; scripts/monastery-content.json не входит в универсальные ZIP.

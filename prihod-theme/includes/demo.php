@@ -29,7 +29,7 @@ function prihod_theme_demo_templates( array $pages = array() ): array {
     );
     foreach ( $pages as $key => &$page ) {
         if ( isset( $texts[$key] ) ) { $page['content'] = '<!-- wp:paragraph --><p>' . esc_html( $texts[$key] ) . '</p><!-- /wp:paragraph -->' . $page['content']; }
-        $page['template'] = in_array( $key, array( 'requests', 'prayer-notes', 'donations' ), true ) ? 'focused' : ( in_array( $key, array( 'news', 'sermons' ), true ) ? 'catalog' : ( 'photos' === $key ? 'wide' : 'default' ) );
+        $page['template'] = in_array( $key, array( 'requests', 'prayer-notes', 'donations' ), true ) ? 'focused' : ( in_array( $key, array( 'news', 'sermons' ), true ) ? 'catalog' : ( in_array( $key, array( 'photos', 'calendar', 'schedule' ), true ) ? 'wide' : 'default' ) );
     }
     unset( $page ); return $pages;
 }

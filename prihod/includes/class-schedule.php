@@ -10,6 +10,7 @@ final class Schedule {
             add_meta_box( 'prihod-service', __( 'Расписание службы', 'prihod' ), array( Schedule_Admin::class, 'render' ), 'prihod_service' );
         } );
         add_action( 'save_post_prihod_service', array( Schedule_Admin::class, 'save' ) );
+        add_action( 'admin_enqueue_scripts', array( Schedule_Admin::class, 'assets' ) );
     }
     public static function register(): void {
         $caps = array_map( fn() => 'manage_prihod_schedule', Capabilities::directory() );

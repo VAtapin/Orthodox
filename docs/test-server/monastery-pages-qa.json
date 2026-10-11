@@ -1,0 +1,110 @@
+[
+  {
+    "brokenImages": 0,
+    "forms": 0,
+    "overflow": false,
+    "placeholder": false,
+    "sidebar": 1,
+    "title": "О монастыре",
+    "url": "https://prihod.georg-kloster.ru/?page_id=8"
+  },
+  {
+    "brokenImages": 0,
+    "forms": 0,
+    "overflow": false,
+    "placeholder": false,
+    "sidebar": 1,
+    "title": "Духовенство",
+    "url": "https://prihod.georg-kloster.ru/?page_id=9"
+  },
+  {
+    "brokenImages": 0,
+    "forms": 1,
+    "overflow": false,
+    "placeholder": false,
+    "sidebar": 0,
+    "title": "Расписание богослужений",
+    "url": "https://prihod.georg-kloster.ru/?page_id=10"
+  },
+  {
+    "brokenImages": 0,
+    "forms": 1,
+    "overflow": false,
+    "placeholder": false,
+    "sidebar": 1,
+    "title": "Вопрос священнику",
+    "url": "https://prihod.georg-kloster.ru/?page_id=11"
+  },
+  {
+    "brokenImages": 0,
+    "forms": 0,
+    "overflow": false,
+    "placeholder": false,
+    "sidebar": 1,
+    "title": "Паломнику",
+    "url": "https://prihod.georg-kloster.ru/?page_id=12"
+  },
+  {
+    "brokenImages": 0,
+    "forms": 0,
+    "overflow": false,
+    "placeholder": false,
+    "sidebar": 0,
+    "title": "Новости обители",
+    "url": "https://prihod.georg-kloster.ru/?page_id=13"
+  },
+  {
+    "brokenImages": 0,
+    "forms": 0,
+    "overflow": false,
+    "placeholder": false,
+    "sidebar": 0,
+    "title": "Проповеди и беседы",
+    "url": "https://prihod.georg-kloster.ru/?page_id=14"
+  },
+  {
+    "brokenImages": 0,
+    "forms": 0,
+    "overflow": false,
+    "placeholder": false,
+    "sidebar": 1,
+    "title": "Контакты и дорога",
+    "url": "https://prihod.georg-kloster.ru/?page_id=15"
+  },
+  {
+    "brokenImages": 0,
+    "forms": 0,
+    "overflow": false,
+    "placeholder": false,
+    "sidebar": 0,
+    "title": "Православный календарь",
+    "url": "https://prihod.georg-kloster.ru/?page_id=16"
+  },
+  {
+    "brokenImages": 0,
+    "forms": 1,
+    "overflow": false,
+    "placeholder": false,
+    "sidebar": 1,
+    "title": "Подать записку",
+    "url": "https://prihod.georg-kloster.ru/?page_id=17"
+  },
+  {
+    "brokenImages": 0,
+    "forms": 1,
+    "overflow": false,
+    "placeholder": false,
+    "sidebar": 1,
+    "title": "Помочь монастырю",
+    "url": "https://prihod.georg-kloster.ru/?page_id=18"
+  },
+  {
+    "brokenImages": 0,
+    "forms": 0,
+    "overflow": false,
+    "placeholder": false,
+    "sidebar": 0,
+    "title": "Жизнь обители в фотографиях",
+    "url": "https://prihod.georg-kloster.ru/?page_id=19"
+  }
+]

@@ -1452,3 +1452,45 @@ msgstr "Tutaj można złożyć intencję modlitewną. Przed publikacją skonfigu
 
 msgid "Поддержите жизнь и добрые дела прихода. Перед публикацией укажите назначение пожертвований и настройте способы оплаты."
 msgstr "Wesprzyj życie i dobre dzieła parafii. Przed publikacją określ cel darowizn i skonfiguruj metody płatności."
+
+msgid "Обзор прихода"
+msgstr "Przegląd parafii"
+
+msgid "Разделы прихода"
+msgstr "Działy parafii"
+
+msgid "Описание богослужения"
+msgstr "Opis nabożeństwa"
+
+msgid "Когда и где состоится богослужение"
+msgstr "Kiedy i gdzie odbędzie się nabożeństwo"
+
+msgid "Укажите дату, время и место. Для регулярной службы выберите дни недели."
+msgstr "Podaj datę, godzinę i miejsce. Dla regularnego nabożeństwa wybierz dni tygodnia."
+
+msgid "Сначала добавьте место служения"
+msgstr "Najpierw dodaj miejsce nabożeństwa"
+
+msgid "Повторение"
+msgstr "Powtarzanie"
+
+msgid "Часовой пояс и особенности времени"
+msgstr "Strefa czasowa i szczegóły czasu"
+
+msgid "Добро пожаловать в нашу обитель!"
+msgstr "Witamy w naszym klasztorze!"
+
+msgid "О монастыре"
+msgstr "O klasztorze"
+
+msgid "Помочь обители"
+msgstr "Wesprzeć klasztor"
+
+msgid "Подробнее об обители"
+msgstr "Więcej o klasztorze"
+
+msgid "Новости обители"
+msgstr "Aktualności klasztoru"
+
+msgid "Жизнь обители в фотографиях"
+msgstr "Życie klasztoru na zdjęciach"

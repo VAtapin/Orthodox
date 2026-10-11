@@ -3,6 +3,12 @@ namespace Prihod;
 defined( 'ABSPATH' ) || exit;
 
 final class Schedule_Admin {
+    public static function assets(): void {
+        if ( 'prihod_service' !== ( get_current_screen()->post_type ?? '' ) ) { return; }
+        wp_enqueue_style( 'prihod-schedule-admin', plugins_url( 'assets/schedule-admin.css', PRIHOD_FILE ), array(), PRIHOD_VERSION );
+        wp_enqueue_script( 'prihod-schedule-admin', plugins_url( 'assets/schedule-admin.js', PRIHOD_FILE ), array(), PRIHOD_VERSION, true );
+        wp_localize_script( 'prihod-schedule-admin', 'prihodScheduleUI', array( 'description' => __( 'Описание богослужения', 'prihod' ) ) );
+    }
     public static function input( string $name, string $value, string $type = 'text' ): string {
         return '<input type="' . esc_attr( $type ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '">';
     }
@@ -17,40 +23,40 @@ final class Schedule_Admin {
         $data = get_post_meta( $post->ID, '_prihod_service', true );
         $rule = array_merge( Schedule::defaults(), is_array( $data ) ? $data : array() );
         wp_nonce_field( 'prihod_service_' . $post->ID, 'prihod_service_nonce' );
-        echo '<p><label>' . esc_html__( 'Тип службы', 'prihod' ) . ' <select name="prihod_service[kind]">';
+        echo '<div class="prihod-service-editor"><div class="prihod-service-intro"><h2>' . esc_html__( 'Когда и где состоится богослужение', 'prihod' ) . '</h2><p>' . esc_html__( 'Укажите дату, время и место. Для регулярной службы выберите дни недели.', 'prihod' ) . '</p></div><fieldset class="prihod-service-section"><legend>' . esc_html__( 'Основные сведения', 'prihod' ) . '</legend><div class="prihod-service-grid"><label class="prihod-service-field">' . esc_html__( 'Тип службы', 'prihod' ) . '<select name="prihod_service[kind]">';
         foreach ( array( 'single' => __( 'Разовая', 'prihod' ), 'regular' => __( 'Регулярная', 'prihod' ), 'holiday' => __( 'Праздничная', 'prihod' ) ) as $key => $label ) {
             echo '<option value="' . esc_attr( $key ) . '"' . selected( $rule['kind'], $key, false ) . '>' . esc_html( $label ) . '</option>';
         }
-        echo '</select></label></p>';
-        foreach ( array( 'date' => __( 'Дата / начало повторений', 'prihod' ), 'until' => __( 'Последняя дата повторений (необязательно)', 'prihod' ), 'time' => __( 'Начало', 'prihod' ), 'end' => __( 'Окончание (необязательно)', 'prihod' ), 'timezone' => __( 'Часовой пояс (пусто — пояс места или прихода)', 'prihod' ) ) as $key => $label ) {
-            $type = in_array( $key, array( 'date', 'until' ), true ) ? 'date' : ( in_array( $key, array( 'time', 'end' ), true ) ? 'time' : 'text' );
-            echo '<p><label>' . esc_html( $label ) . ' ' . self::input( 'prihod_service[' . $key . ']', $rule[ $key ], $type ) . '</label></p>';
+        echo '</select></label>';
+        foreach ( array( 'date' => __( 'Дата / начало повторений', 'prihod' ), 'time' => __( 'Начало', 'prihod' ), 'end' => __( 'Окончание (необязательно)', 'prihod' ) ) as $key => $label ) {
+            echo '<label class="prihod-service-field">' . esc_html( $label ) . self::input( 'prihod_service[' . $key . ']', $rule[ $key ], 'date' === $key ? 'date' : 'time' ) . '</label>';
         }
-        echo '<p><label>' . esc_html__( 'Место служения', 'prihod' ) . ' ' . self::locations( 'prihod_service[location_id]', (int) $rule['location_id'] ) . '</label></p><fieldset><legend>' . esc_html__( 'Дни повторения регулярной службы', 'prihod' ) . '</legend>';
+        echo '<label class="prihod-service-field prihod-service-wide">' . esc_html__( 'Место служения', 'prihod' ) . self::locations( 'prihod_service[location_id]', (int) $rule['location_id'] ) . '</label></div>';
+        if ( ! get_posts( array( 'post_type' => 'prihod_location', 'post_status' => array( 'publish', 'draft', 'private' ), 'numberposts' => 1, 'fields' => 'ids' ) ) && current_user_can( 'manage_prihod' ) ) { echo '<p class="prihod-service-help"><a href="' . esc_url( admin_url( 'post-new.php?post_type=prihod_location' ) ) . '">' . esc_html__( 'Сначала добавьте место служения', 'prihod' ) . '</a></p>'; }
+        echo '</fieldset><fieldset class="prihod-service-section" data-prihod-repeat><legend>' . esc_html__( 'Повторение', 'prihod' ) . '</legend><div class="prihod-weekday-choices">';
         $days = array( __( 'Пн', 'prihod' ), __( 'Вт', 'prihod' ), __( 'Ср', 'prihod' ), __( 'Чт', 'prihod' ), __( 'Пт', 'prihod' ), __( 'Сб', 'prihod' ), __( 'Вс', 'prihod' ) );
         foreach ( $days as $index => $label ) {
-            echo '<label style="margin-right:1em"><input type="checkbox" name="prihod_service[weekdays][]" value="' . esc_attr( $index + 1 ) . '"' . checked( in_array( $index + 1, $rule['weekdays'], true ), true, false ) . '> ' . esc_html( $label ) . '</label>';
+            echo '<label><input type="checkbox" name="prihod_service[weekdays][]" value="' . esc_attr( $index + 1 ) . '"' . checked( in_array( $index + 1, $rule['weekdays'], true ), true, false ) . '> ' . esc_html( $label ) . '</label>';
         }
-        echo '</fieldset><p>' . esc_html__( 'Окончание раньше или равное началу означает следующий день. При весеннем переводе часов несуществующее время регулярной службы пропускается; осенью используется первое вхождение времени.', 'prihod' ) . '</p><h3>' . esc_html__( 'Отмены и переносы отдельных дат', 'prihod' ) . '</h3><div id="prihod-exceptions">';
+        echo '</div><label class="prihod-service-field">' . esc_html__( 'Последняя дата повторений (необязательно)', 'prihod' ) . self::input( 'prihod_service[until]', $rule['until'], 'date' ) . '</label></fieldset><details class="prihod-service-section"><summary>' . esc_html__( 'Часовой пояс и особенности времени', 'prihod' ) . '</summary><label class="prihod-service-field">' . esc_html__( 'Часовой пояс (пусто — пояс места или прихода)', 'prihod' ) . self::input( 'prihod_service[timezone]', $rule['timezone'] ) . '</label><p class="prihod-service-help">' . esc_html__( 'Окончание раньше или равное началу означает следующий день. При весеннем переводе часов несуществующее время регулярной службы пропускается; осенью используется первое вхождение времени.', 'prihod' ) . '</p></details><details class="prihod-service-section"' . ( $rule['exceptions'] ? ' open' : '' ) . '><summary>' . esc_html__( 'Отмены и переносы отдельных дат', 'prihod' ) . '</summary><div id="prihod-exceptions">';
         $index = 0;
         foreach ( $rule['exceptions'] as $date => $change ) { echo self::row( $index++, $date, $change, $rule ); }
-        echo self::row( $index++, '', array(), $rule ) . '</div>';
+        echo '</div>';
         echo '<template id="prihod-exception-template">' . self::row( '__INDEX__', '', array(), $rule ) . '</template>';
-        echo '<button type="button" class="button" id="prihod-add-exception" data-index="' . esc_attr( $index ) . '">' . esc_html__( 'Добавить исключение', 'prihod' ) . '</button>';
-        wp_enqueue_script( 'prihod-schedule-admin', plugins_url( 'assets/schedule-admin.js', PRIHOD_FILE ), array(), PRIHOD_VERSION, true );
+        echo '<button type="button" class="button" id="prihod-add-exception" data-index="' . esc_attr( $index ) . '">' . esc_html__( 'Добавить исключение', 'prihod' ) . '</button></details></div>';
     }
     private static function row( $index, string $date, array $change, array $rule ): string {
         $prefix = 'prihod_exceptions[' . $index . ']';
-        $html = '<fieldset style="border:1px solid #ccc;padding:1em;margin:1em 0"><legend>' . esc_html__( 'Исключение', 'prihod' ) . '</legend><p><label>' . esc_html__( 'Исходная дата', 'prihod' ) . ' ' . self::input( $prefix . '[original]', $date, 'date' ) . '</label> <label>' . esc_html__( 'Действие', 'prihod' ) . ' <select name="' . esc_attr( $prefix . '[action]' ) . '">';
+        $html = '<fieldset class="prihod-exception-row"><legend>' . esc_html__( 'Исключение', 'prihod' ) . '</legend><div class="prihod-service-grid"><label class="prihod-service-field">' . esc_html__( 'Исходная дата', 'prihod' ) . self::input( $prefix . '[original]', $date, 'date' ) . '</label><label class="prihod-service-field">' . esc_html__( 'Действие', 'prihod' ) . '<select name="' . esc_attr( $prefix . '[action]' ) . '">';
         foreach ( array( 'cancel' => __( 'Отмена', 'prihod' ), 'replace' => __( 'Перенос / изменение времени', 'prihod' ) ) as $key => $label ) {
             $html .= '<option value="' . esc_attr( $key ) . '"' . selected( $change['action'] ?? 'cancel', $key, false ) . '>' . esc_html( $label ) . '</option>';
         }
-        $html .= '</select></label></p>';
+        $html .= '</select></label></div><div class="prihod-service-grid" data-prihod-replacement>';
         foreach ( array( 'date' => __( 'Новая дата', 'prihod' ), 'time' => __( 'Новое начало', 'prihod' ), 'end' => __( 'Новое окончание', 'prihod' ) ) as $key => $label ) {
-            $html .= '<p><label>' . esc_html( $label ) . ' ' . self::input( $prefix . '[' . $key . ']', $change[ $key ] ?? ( 'date' === $key ? $date : $rule[ $key ] ), 'date' === $key ? 'date' : 'time' ) . '</label></p>';
+            $html .= '<label class="prihod-service-field">' . esc_html( $label ) . self::input( $prefix . '[' . $key . ']', $change[ $key ] ?? ( 'date' === $key ? $date : $rule[ $key ] ), 'date' === $key ? 'date' : 'time' ) . '</label>';
         }
-        $html .= '<p><label>' . esc_html__( 'Место после переноса', 'prihod' ) . ' ' . self::locations( $prefix . '[location_id]', (int) ( $change['location_id'] ?? $rule['location_id'] ) ) . '</label></p>';
-        return $html . '<label><input type="checkbox" name="' . esc_attr( $prefix . '[remove]' ) . '" value="1"> ' . esc_html__( 'Удалить исключение', 'prihod' ) . '</label></fieldset>';
+        $html .= '<label class="prihod-service-field">' . esc_html__( 'Место после переноса', 'prihod' ) . self::locations( $prefix . '[location_id]', (int) ( $change['location_id'] ?? $rule['location_id'] ) ) . '</label></div>';
+        return $html . '<label class="prihod-exception-remove"><input type="checkbox" name="' . esc_attr( $prefix . '[remove]' ) . '" value="1"> ' . esc_html__( 'Удалить исключение', 'prihod' ) . '</label></fieldset>';
     }
     public static function save( int $id ): void {
         if ( ! Modules::enabled( 'schedule' ) || ! current_user_can( 'manage_prihod_schedule' ) || ! current_user_can( 'edit_post', $id ) || wp_is_post_autosave( $id ) || wp_is_post_revision( $id ) || ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) ) { return; }

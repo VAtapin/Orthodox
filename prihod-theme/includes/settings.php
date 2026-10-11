@@ -66,7 +66,7 @@ function prihod_theme_settings_page(): void {
         $json = json_decode( file_get_contents( get_template_directory() . ( 'classic' === $id ? '/theme.json' : '/styles/' . $id . '.json' ) ), true );
         echo '<label class="prihod-scheme-card"><input type="radio" name="prihod_theme_options[scheme]" value="' . esc_attr( $id ) . '"' . checked( $current, $id, false ) . '><span class="prihod-scheme-preview" aria-hidden="true">';
         foreach ( array_slice( $json['settings']['color']['palette'], 0, 5 ) as $color ) { echo '<i style="background:' . esc_attr( $color['color'] ) . '"></i>'; }
-        echo '</span><strong>' . esc_html( $title ) . '</strong></label>';
+        echo '</span><strong>' . esc_html( $title ) . '</strong><a href="' . esc_url( add_query_arg( 'prihod_preview', $id, home_url( '/' ) ) ) . '" target="_blank" rel="noopener">' . esc_html__( 'Посмотреть сайт', 'prihod-theme' ) . '</a></label>';
     }
     echo '</div><p><a class="button" href="' . esc_url( admin_url( 'site-editor.php' ) ) . '">' . esc_html__( 'Открыть редактор сайта', 'prihod-theme' ) . '</a></p></section><section id="prihod-option-layout" class="prihod-option-section"><h2>' . esc_html( $sections['layout'] ) . '</h2>';
     foreach ( array( 'width' => array( __( 'Ширина сайта, px', 'prihod-theme' ), 960, 1440 ), 'font_size' => array( __( 'Размер основного текста, px', 'prihod-theme' ), 14, 20 ) ) as $key => $field ) { echo '<p><label>' . esc_html( $field[0] ) . '<br><input type="number" min="' . $field[1] . '" max="' . $field[2] . '" name="prihod_theme_options[' . esc_attr( $key ) . ']" value="' . esc_attr( $options[$key] ) . '"></label></p>'; }

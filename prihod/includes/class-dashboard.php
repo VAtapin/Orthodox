@@ -85,7 +85,7 @@ final class Dashboard {
         }
     }
     public static function overview(): void {
-        echo '<div class="wrap prihod-dashboard"><h1>' . esc_html__( 'Приход — обзор', 'prihod' ) . '</h1><div class="prihod-dash-grid">';
+        echo '<div class="wrap prihod-dashboard"><h1>' . esc_html__( 'Обзор прихода', 'prihod' ) . '</h1><div class="prihod-dash-grid">';
         foreach ( array( 'manage_prihod' => array( __( 'Информация', 'prihod' ), 'profile_card' ), 'manage_prihod_schedule' => array( __( 'Ближайшие службы', 'prihod' ), 'services_card' ), 'view_prihod_requests' => array( __( 'Обращения', 'prihod' ), 'requests_card' ), 'manage_prihod_settings' => array( __( 'Наши плагины', 'prihod' ), 'integrations_card' ) ) as $capability => $card ) {
             if ( current_user_can( $capability ) ) { echo '<section class="prihod-dash-card"><h2>' . esc_html( $card[0] ) . '</h2>'; call_user_func( array( self::class, $card[1] ) ); echo '</section>'; }
         }

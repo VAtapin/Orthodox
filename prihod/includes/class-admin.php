@@ -24,7 +24,7 @@ final class Admin {
         // Settings-only staff still need the parent menu to reach their pages.
         $parent_capability = self::menu_capability();
         add_menu_page( __( 'Приход', 'prihod' ), __( 'Приход', 'prihod' ), $parent_capability, 'prihod', array( $this, 'overview' ), 'dashicons-admin-home', 26 );
-        add_submenu_page( 'prihod', __( 'Дашборд', 'prihod' ), __( 'Дашборд', 'prihod' ), $parent_capability, 'prihod', array( $this, 'overview' ), 0 );
+        add_submenu_page( 'prihod', __( 'Обзор прихода', 'prihod' ), __( 'Обзор прихода', 'prihod' ), $parent_capability, 'prihod', array( $this, 'overview' ), 0 );
         add_submenu_page( 'prihod', __( 'Сведения о приходе', 'prihod' ), __( 'Сведения о приходе', 'prihod' ), 'manage_prihod', 'prihod-profile', array( $this, 'profile' ) );
         add_submenu_page( 'prihod', __( 'Подключения', 'prihod' ), __( 'Подключения', 'prihod' ), 'manage_prihod_settings', 'prihod-integrations', array( $this, 'integrations' ) );
         add_submenu_page( 'prihod', __( 'Настройки', 'prihod' ), __( 'Настройки', 'prihod' ), 'manage_prihod_settings', 'prihod-settings', array( $this, 'configuration' ) );

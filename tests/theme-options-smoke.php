@@ -9,6 +9,14 @@ foreach ( array_keys( prihod_theme_schemes() ) as $scheme ) {
     prihod_assert( $scheme === $settings['custom']['prihod']['scheme'] && '1280px' === $settings['layout']['wideSize'], 'Saved scheme and width reach native theme.json: ' . $scheme );
 }
 update_option( 'prihod_theme_options', $previous_options ); WP_Theme_JSON_Resolver::clean_cached_data();
+foreach ( array_keys( prihod_theme_schemes() ) as $scheme ) {
+    $_GET['prihod_preview'] = $scheme;
+    WP_Theme_JSON_Resolver::clean_cached_data();
+    prihod_assert( $scheme === WP_Theme_JSON_Resolver::get_merged_data()->get_settings()['custom']['prihod']['scheme'] && $previous_options === get_option( 'prihod_theme_options' ), 'Owner can preview scheme without changing saved options: ' . $scheme );
+}
+wp_set_current_user( 0 );
+prihod_assert( '' === prihod_theme_preview_scheme(), 'Public visitors cannot alter theme previews.' );
+wp_set_current_user( 1 ); unset( $_GET['prihod_preview'] ); WP_Theme_JSON_Resolver::clean_cached_data();
 ob_start(); prihod_theme_settings_page(); $panel = ob_get_clean();
 prihod_assert( 5 === substr_count( $panel, 'name="prihod_theme_options[scheme]"' ) && str_contains( $panel, 'prihod-option-demo' ) && str_contains( $panel, 'name="_wpnonce"' ), 'Theme panel provides five choices, grouped controls and protected demo action.' );
 $profile_before = Prihod\Profile::get(); $modules_before = get_option( 'prihod_modules' ); $front_before = get_option( 'page_on_front' );

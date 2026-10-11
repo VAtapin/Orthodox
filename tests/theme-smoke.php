@@ -28,6 +28,17 @@ foreach ( array( 'de_DE' => 'Willkommen in unserer Gemeinde!', 'pl_PL' => 'Witam
     unload_textdomain( 'prihod' );
 }
 prihod_assert( str_contains( prihod_theme_home(), 'prihod-home-hero' ), 'Home renderer uses actual theme markup.' );
+add_shortcode( 'orthocal_today', fn() => 'calendar-sidebar-marker' );
+add_shortcode( 'orthocal_calendar', fn() => '' );
+$saved_post = $GLOBALS['post'] ?? null;
+$calendar_fixture = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'draft', 'post_title' => 'Calendar fixture', 'post_content' => '[orthocal_calendar]' ) );
+$GLOBALS['post'] = get_post( $calendar_fixture );
+prihod_assert( ! str_contains( prihod_theme_sidebar(), 'calendar-sidebar-marker' ), 'Full calendar page omits duplicate sidebar calendar.' );
+wp_update_post( array( 'ID' => $calendar_fixture, 'post_content' => 'Ordinary page' ) );
+$GLOBALS['post'] = get_post( $calendar_fixture );
+prihod_assert( str_contains( prihod_theme_sidebar(), 'calendar-sidebar-marker' ), 'Other pages retain calendar sidebar.' );
+$GLOBALS['post'] = $saved_post; remove_shortcode( 'orthocal_today' ); remove_shortcode( 'orthocal_calendar' );
+wp_delete_post( $calendar_fixture, true );
 add_shortcode( 'kloster_form', fn() => '' );
 wp_register_script( 'georg-kloster-orthodox-donate', '/test-provider.js' );
 do_action( 'wp_enqueue_scripts' );
