@@ -141,7 +141,7 @@ final class Site_Plan {
         $collect( parse_blocks( $content ) );
         foreach ( $pages as $post ) { if ( ! in_array( $post->ID, $ids, true ) ) { $content .= '<!-- wp:navigation-link ' . wp_json_encode( array( 'label' => $post->post_title, 'type' => 'page', 'id' => $post->ID, 'url' => get_permalink( $post->ID ), 'kind' => 'post-type' ) ) . ' /-->'; } }
         if ( $existing && $content === $existing->post_content ) { return; }
-        $id = $existing ? wp_update_post( array( 'ID' => $existing->ID, 'post_content' => $content ), true ) : wp_insert_post( array( 'post_type' => 'wp_navigation', 'post_status' => 'publish', 'post_title' => __( 'Навигация прихода', 'prihod' ), 'post_content' => $content ), true );
+        $id = $existing ? wp_update_post( wp_slash( array( 'ID' => $existing->ID, 'post_content' => $content ) ), true ) : wp_insert_post( wp_slash( array( 'post_type' => 'wp_navigation', 'post_status' => 'publish', 'post_title' => __( 'Навигация прихода', 'prihod' ), 'post_content' => $content ) ), true );
         if ( is_wp_error( $id ) ) { throw new \RuntimeException( __( 'Не удалось создать навигацию.', 'prihod' ) ); }
         $resources['_navigation'] = array( 'id' => $id, 'owned' => true );
         // No theme template is rewritten: user selects this navigation in Site Editor.

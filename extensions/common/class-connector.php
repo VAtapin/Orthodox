@@ -14,7 +14,7 @@ final class Connector {
     }
     private function __construct( string $id, string $title, string $file ) {
         $this->id = $id; $this->title = $title; $this->file = $file;
-        add_action( 'admin_menu', array( $this, 'menu' ) );
+        add_action( 'admin_menu', array( $this, 'menu' ), 20 );
         add_action( 'admin_post_prihod_connect_' . $id, array( $this, 'save' ) );
         add_action( 'admin_post_prihod_retry_' . $id, array( $this, 'retry' ) );
         add_action( 'prihod_' . $id . '_worker', array( $this, 'worker' ) );
@@ -42,9 +42,13 @@ final class Connector {
     }
     public function __get( string $key ) { return in_array( $key, array( 'id', 'title' ), true ) ? $this->$key : null; }
     public function settings(): array { $saved = get_option( 'prihod_connect_' . $this->id, array() ); return array_merge( array( 'enabled' => false, 'token' => '', 'target' => '', 'api_version' => '', 'recipient' => '', 'template' => '', 'language' => 'ru', 'recipient_consent' => false, 'notify_requests' => false, 'notify_schedule' => false ), is_array( $saved ) ? $saved : array() ); }
-    public function settings_url(): string { return admin_url( 'options-general.php?page=prihod-connect-' . $this->id ); }
+    public function settings_url(): string { return admin_url( 'admin.php?page=prihod-connect-' . $this->id ); }
     private function authorize(): void { if ( ! current_user_can( 'manage_options' ) && ! current_user_can( 'manage_prihod_settings' ) ) { wp_die( esc_html__( 'Недостаточно прав.', 'prihod-connect' ), '', array( 'response' => 403 ) ); } }
-    public function menu(): void { add_options_page( $this->title, $this->title, current_user_can( 'manage_options' ) ? 'manage_options' : 'manage_prihod_settings', 'prihod-connect-' . $this->id, array( $this, 'render' ) ); }
+    public function menu(): void {
+        $capability = current_user_can( 'manage_options' ) ? 'manage_options' : 'manage_prihod_settings';
+        if ( class_exists( '\Prihod\Plugin' ) ) { add_submenu_page( 'prihod', $this->title, $this->title, $capability, 'prihod-connect-' . $this->id, array( $this, 'render' ) ); }
+        else { add_menu_page( $this->title, $this->title, $capability, 'prihod-connect-' . $this->id, array( $this, 'render' ), 'dashicons-share' ); }
+    }
     public function health(): array {
         $ready = $this->valid( $this->settings() );
         $last = get_option( 'prihod_connect_last_' . $this->id, array() );

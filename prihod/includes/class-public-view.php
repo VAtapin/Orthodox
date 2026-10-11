@@ -9,6 +9,7 @@ final class Public_View {
     public static function register(): void {
         wp_register_script( 'prihod-blocks', plugins_url( 'assets/blocks.js', PRIHOD_FILE ), array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-server-side-render', 'wp-i18n' ), PRIHOD_VERSION, true );
         wp_register_style( 'prihod-public', plugins_url( 'assets/public.css', PRIHOD_FILE ), array(), PRIHOD_VERSION );
+        wp_set_script_translations( 'prihod-blocks', 'prihod', dirname( PRIHOD_FILE ) . '/languages' );
         add_action( 'wp_enqueue_scripts', function () { wp_enqueue_style( 'prihod-public' ); } );
         $blocks = self::blocks();
         wp_localize_script( 'prihod-blocks', 'prihodBlocks', $blocks );
@@ -45,15 +46,19 @@ final class Public_View {
             if ( ! Modules::enabled( 'schedule' ) ) { return ''; }
             $location = absint( $attributes['location'] ?? 0 );
             if ( 'schedule' === $key ) {
-                $view = 'month' === ( $attributes['view'] ?? 'week' ) ? 'month' : 'week';
+                $requested_view = isset( $_GET['prihod_view'] ) && is_string( $_GET['prihod_view'] ) ? sanitize_key( $_GET['prihod_view'] ) : ( $attributes['view'] ?? 'week' );
+                $view = in_array( $requested_view, array( 'week', 'month', 'list' ), true ) ? $requested_view : 'week';
                 $now = new \DateTimeImmutable( 'now', new \DateTimeZone( $profile['timezone'] ) );
                 $date = isset( $_GET['prihod_date'] ) && is_string( $_GET['prihod_date'] ) ? sanitize_text_field( wp_unslash( $_GET['prihod_date'] ) ) : $now->format( 'Y-m-d' );
                 if ( ! Occurrences::date( $date ) ) { $date = $now->format( 'Y-m-d' ); }
                 $anchor = new \DateTimeImmutable( $date, $now->getTimezone() );
                 $from = 'month' === $view ? $anchor->modify( 'first day of this month' ) : $anchor->modify( '-' . ( (int) $anchor->format( 'N' ) - 1 ) . ' days' );
                 $to = $from->modify( 'month' === $view ? '+1 month' : '+7 days' );
+                $html .= '<nav class="prihod-period-nav" aria-label="' . esc_attr__( 'Период расписания', 'prihod' ) . '"><a href="' . esc_url( add_query_arg( array( 'prihod_date' => $from->modify( 'month' === $view ? '-1 month' : '-7 days' )->format( 'Y-m-d' ), 'prihod_view' => $view ) ) ) . '">' . esc_html__( 'Предыдущий период', 'prihod' ) . '</a> · <a href="' . esc_url( add_query_arg( array( 'prihod_date' => $now->format( 'Y-m-d' ), 'prihod_view' => $view ) ) ) . '">' . esc_html__( 'Сегодня', 'prihod' ) . '</a> · <a href="' . esc_url( add_query_arg( array( 'prihod_date' => $to->format( 'Y-m-d' ), 'prihod_view' => $view ) ) ) . '">' . esc_html__( 'Следующий период', 'prihod' ) . '</a></nav>';
                 if ( ! $location && isset( $_GET['prihod_place'] ) && is_scalar( $_GET['prihod_place'] ) ) { $location = absint( $_GET['prihod_place'] ); }
-                $html .= '<form method="get" class="prihod-controls"><label>' . esc_html__( 'Дата', 'prihod' ) . ' <input type="date" name="prihod_date" value="' . esc_attr( $date ) . '"></label> ';
+                $html .= '<nav class="prihod-view-switch" aria-label="' . esc_attr__( 'Вид расписания', 'prihod' ) . '">';
+                foreach ( array( 'week' => __( 'Неделя', 'prihod' ), 'month' => __( 'Месяц', 'prihod' ), 'list' => __( 'Список', 'prihod' ) ) as $mode => $label ) { $html .= '<a href="' . esc_url( add_query_arg( 'prihod_view', $mode ) ) . '"' . ( $mode === $view ? ' aria-current="true"' : '' ) . '>' . esc_html( $label ) . '</a>'; }
+                $html .= '</nav><form method="get" class="prihod-controls"><input type="hidden" name="prihod_view" value="' . esc_attr( $view ) . '"><label>' . esc_html__( 'Дата', 'prihod' ) . ' <input type="date" name="prihod_date" value="' . esc_attr( $date ) . '"></label> ';
                 // Preserve WordPress plain-permalink routing without copying arbitrary input.
                 foreach ( array( 'page_id', 'p' ) as $query_key ) { if ( isset( $_GET[ $query_key ] ) && is_scalar( $_GET[ $query_key ] ) ) { $html .= '<input type="hidden" name="' . esc_attr( $query_key ) . '" value="' . esc_attr( absint( $_GET[ $query_key ] ) ) . '">'; } }
                 if ( ! absint( $attributes['location'] ?? 0 ) ) {
@@ -66,15 +71,55 @@ final class Public_View {
                 $events = Schedule::query( $from, $to, $location );
             } else { $events = Schedule::next( $location, 'next-service' === $key ? 1 : absint( $attributes['limit'] ?? 5 ) ); }
             if ( ! $events ) { $html .= '<p>' . esc_html__( 'Богослужения на выбранный период не указаны.', 'prihod' ) . '</p>'; }
-            foreach ( $events as $event ) {
-                $html .= '<article class="prihod-event' . ( $event['cancelled'] ? ' is-cancelled' : '' ) . '"><h3>' . esc_html( $event['title'] ) . '</h3><p><time datetime="' . esc_attr( $event['start']->format( DATE_ATOM ) ) . '">' . esc_html( $event['start']->format( 'd.m.Y H:i' ) ) . '</time>';
-                if ( $event['end'] ) { $html .= ' — ' . esc_html( $event['end']->format( 'd.m.Y H:i' ) ); }
-                $html .= ' (' . esc_html( $event['start']->getTimezone()->getName() ) . ')</p><p>' . esc_html( get_the_title( $event['location_id'] ) ) . '</p>';
-                if ( $event['cancelled'] ) { $html .= '<strong>' . esc_html__( 'Отменено', 'prihod' ) . '</strong>'; }
-                if ( $event['moved'] ) { $html .= '<p>' . esc_html__( 'Изменение службы за', 'prihod' ) . ' ' . esc_html( $event['original_date'] ) . '</p>'; }
-                $html .= wpautop( wp_kses_post( $event['description'] ) ) . '</article>';
-            }
+            if ( 'schedule' === $key && 'month' === $view ) { $html .= self::month( $events, $from, $to ); }
+            elseif ( 'schedule' === $key && 'week' === $view ) { $html .= self::week( $events, $from, $to ); }
+            else { foreach ( $events as $event ) { $html .= self::event_html( $event ); } }
         }
         return '<section class="prihod-block prihod-' . esc_attr( $key ) . '">' . $html . '</section>';
     }
+    private static function event_html( array $event ): string {
+        $html = '';
+        $html .= '<article class="prihod-event' . ( $event['cancelled'] ? ' is-cancelled' : ( $event['moved'] ? ' is-moved' : '' ) ) . '"><h3>' . esc_html( $event['title'] ) . '</h3><p><time datetime="' . esc_attr( $event['start']->format( DATE_ATOM ) ) . '">' . esc_html( $event['start']->format( 'd.m.Y H:i' ) ) . '</time>';
+        if ( $event['end'] ) { $html .= ' — ' . esc_html( $event['end']->format( 'd.m.Y H:i' ) ); }
+        $html .= ' (' . esc_html( $event['start']->getTimezone()->getName() ) . ')</p><p>' . esc_html( get_the_title( $event['location_id'] ) ) . '</p>';
+        if ( $event['cancelled'] ) { $html .= '<strong>' . esc_html__( 'Отменено', 'prihod' ) . '</strong>'; }
+        if ( $event['moved'] ) { $html .= '<p>' . esc_html__( 'Изменение службы за', 'prihod' ) . ' ' . esc_html( $event['original_date'] ) . '</p>'; }
+        $html .= wpautop( wp_kses_post( $event['description'] ) ) . '</article>';
+        return $html;
+    }
+    private static function month( array $events, \DateTimeImmutable $from, \DateTimeImmutable $to ): string {
+        $by_day = array();
+        foreach ( $events as $event ) { $by_day[ $event['start']->setTimezone( $from->getTimezone() )->format( 'Y-m-d' ) ][] = $event; }
+        $months = array( __( 'Январь', 'prihod' ), __( 'Февраль', 'prihod' ), __( 'Март', 'prihod' ), __( 'Апрель', 'prihod' ), __( 'Май', 'prihod' ), __( 'Июнь', 'prihod' ), __( 'Июль', 'prihod' ), __( 'Август', 'prihod' ), __( 'Сентябрь', 'prihod' ), __( 'Октябрь', 'prihod' ), __( 'Ноябрь', 'prihod' ), __( 'Декабрь', 'prihod' ) );
+        $html = '<table class="prihod-month"><caption>' . esc_html( $months[ (int) $from->format( 'n' ) - 1 ] . ' ' . $from->format( 'Y' ) ) . '</caption><thead><tr>';
+        foreach ( self::weekdays() as $label ) { $html .= '<th scope="col">' . esc_html( $label ) . '</th>'; }
+        $html .= '</tr></thead><tbody><tr>'; $offset = (int) $from->format( 'N' ) - 1;
+        for ( $blank = 0; $blank < $offset; $blank++ ) { $html .= '<td></td>'; }
+        $today = ( new \DateTimeImmutable( 'now', $from->getTimezone() ) )->format( 'Y-m-d' );
+        for ( $date = $from; $date < $to; $date = $date->modify( '+1 day' ) ) {
+            $key = $date->format( 'Y-m-d' ); $html .= '<td' . ( $key === $today ? ' class="is-today"' : '' ) . '><time datetime="' . esc_attr( $key ) . '">' . esc_html( $date->format( 'j' ) ) . '</time>';
+            foreach ( $by_day[ $key ] ?? array() as $event ) { $html .= self::event_html( $event ); }
+            $html .= '</td>'; ++$offset;
+            if ( 0 === $offset % 7 && $date->modify( '+1 day' ) < $to ) { $html .= '</tr><tr>'; }
+        }
+        while ( 0 !== $offset % 7 ) { $html .= '<td></td>'; ++$offset; }
+        return $html . '</tr></tbody></table>';
+    }
+    private static function week( array $events, \DateTimeImmutable $from, \DateTimeImmutable $to ): string {
+        $by_day = array();
+        foreach ( $events as $event ) { $by_day[ $event['start']->setTimezone( $from->getTimezone() )->format( 'Y-m-d' ) ][] = $event; }
+        $html = '<div class="prihod-week">';
+        for ( $date = $from; $date < $to; $date = $date->modify( '+1 day' ) ) {
+            $items = $by_day[ $date->format( 'Y-m-d' ) ] ?? array();
+            if ( ! $items ) { continue; }
+            $html .= '<div class="prihod-week-day"><h4><time datetime="' . esc_attr( $date->format( 'Y-m-d' ) ) . '">' . esc_html( self::weekdays()[ (int) $date->format( 'N' ) - 1 ] ) . '<strong>' . esc_html( $date->format( 'j' ) ) . '</strong></time></h4><div>';
+            foreach ( $items as $event ) { $html .= self::event_html( $event ); }
+            $html .= '</div></div>';
+        }
+        return $html . '</div>';
+    }
+    private static function weekdays(): array {
+        return array( __( 'Пн', 'prihod' ), __( 'Вт', 'prihod' ), __( 'Ср', 'prihod' ), __( 'Чт', 'prihod' ), __( 'Пт', 'prihod' ), __( 'Сб', 'prihod' ), __( 'Вс', 'prihod' ) );
+    }
+
 }

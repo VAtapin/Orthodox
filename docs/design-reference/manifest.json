@@ -1,0 +1,77 @@
+[
+  {
+    "file": "01-home.png",
+    "source": "5 схем главной/1.png",
+    "sha256": "86ebb7e44c5ea87f80d2f8819f848195f921a0192238536763fde0e090e8a568"
+  },
+  {
+    "file": "02-home.png",
+    "source": "5 схем главной/2.png",
+    "sha256": "bce3e12b2ff888673458a0ac704b811d38c96547f5e3f91b5c34101aa71abfe9"
+  },
+  {
+    "file": "03-home.png",
+    "source": "5 схем главной/3.png",
+    "sha256": "108fa957478e3e7502d0bb906934312bed6ff37e12ea6388e9dbc1d7119c8cfb"
+  },
+  {
+    "file": "04-home.png",
+    "source": "5 схем главной/4.png",
+    "sha256": "ee9ec2a7a3c626e80005946ee336ee584568f4efff5dcbff1d8156932f79c960"
+  },
+  {
+    "file": "05-home.png",
+    "source": "5 схем главной/Default.png",
+    "sha256": "8ecb0b0226aba731b4a4e5e0b21b92cd4be2db4e3dbe7cacd920321b791e40db"
+  },
+  {
+    "file": "06-inner.png",
+    "source": "Внутренни страницы/Das Gemeindeleben des heiligen Georg.png",
+    "sha256": "db6f3ddb67ee7dd8170fbbe03a222601a038230296be78841d486017a71f72d0"
+  },
+  {
+    "file": "07-inner.png",
+    "source": "Внутренни страницы/Elegantes Mockup einer orthodoxen Gemeindehomepage-1.png",
+    "sha256": "18842472ca90e599e72d0c70c8409731d7b2f1dfaa4bf563a623e114dd47a7f3"
+  },
+  {
+    "file": "08-inner.png",
+    "source": "Внутренни страницы/Gottesdienstplan der St.-Georgs-Kirche.png",
+    "sha256": "ebc557304632211676a6080ddbbd835bf4b0a99c72471151d54f4978bc06a98b"
+  },
+  {
+    "file": "09-inner.png",
+    "source": "Внутренни страницы/Neue Sonntagsschule einer orthodoxen Gemeinde.png",
+    "sha256": "81ce42e625417dea1799749e8c6e8bbcae6bb73f44bc94a3a5c9acde83039e86"
+  },
+  {
+    "file": "10-inner.png",
+    "source": "Внутренни страницы/Orthodoxe Kirchen-Webseiten im Stilguide-1.png",
+    "sha256": "7684b211e87605fa59e2d6a9839fe8cadf8b5640fa87a0f690c45b043b955d4a"
+  },
+  {
+    "file": "11-inner.png",
+    "source": "Внутренни страницы/Orthodoxe Kirchenwebsite im UI_UX-Showcase.png",
+    "sha256": "20fb0a94ff7a8b641c6d46928a4844f02bdc0531c5f67da95e3869685eb4d005"
+  },
+  {
+    "file": "12-inner.png",
+    "source": "Внутренни страницы/Orthodoxer Website-Ablauf für Gebetsnotizen.png",
+    "sha256": "71f73e800e4cefe1a6ac13e172948e2e68835af66cebc1c4eb5b4b8166ac3bf9"
+  },
+  {
+    "file": "13-inner.png",
+    "source": "Внутренни страницы/Russische orthodoxe Spenden- und Gebetsseite.png",
+    "sha256": "93e5890b795d276427464a80d7164cd879f7318ac267bc0a7644a251b93a345c"
+  },
+  {
+    "file": "14-inner.png",
+    "source": "Внутренни страницы/Vier Website-Layouts für eine Kirche-2.png",
+    "sha256": "abd0b7946f11825c11d84aaffb6384fa869a112552b53146114d38bb69447c48"
+  },
+  {
+    "file": "15-wizard.png",
+    "source": "мастер установки.png",
+    "sha256": "d02b8911b0a8d7eb131e9e6fb6ee2f5fb95c66efaa99be3aeb6b888b1a37fd9d"
+  }
+]

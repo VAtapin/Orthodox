@@ -1,0 +1,1319 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: de_DE\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\n"
+
+msgid "Приход"
+msgstr "Gemeinde"
+
+msgid "Главная"
+msgstr "Startseite"
+
+msgid "О приходе"
+msgstr "Über die Gemeinde"
+
+msgid "Новости"
+msgstr "Nachrichten"
+
+msgid "Новости прихода"
+msgstr "Gemeindenachrichten"
+
+msgid "Контакты"
+msgstr "Kontakt"
+
+msgid "Вопрос священнику"
+msgstr "Frage an den Priester"
+
+msgid "Расписание"
+msgstr "Gottesdienste"
+
+msgid "Расписание богослужений"
+msgstr "Gottesdienstplan"
+
+msgid "Ближайшее богослужение"
+msgstr "Nächster Gottesdienst"
+
+msgid "Ближайшие службы"
+msgstr "Nächste Gottesdienste"
+
+msgid "Богослужения и особые события"
+msgstr "Gottesdienste und besondere Termine"
+
+msgid "Боковая колонка"
+msgstr "Seitenleiste"
+
+msgid "Вера. Люди. Добрые дела."
+msgstr "Glaube. Menschen. Gute Werke."
+
+msgid "Главная прихода"
+msgstr "Gemeindestartseite"
+
+msgid "Добро пожаловать в наш приход!"
+msgstr "Willkommen in unserer Gemeinde!"
+
+msgid "Есть вопросы?"
+msgstr "Haben Sie Fragen?"
+
+msgid "Жизнь прихода в фотографиях"
+msgstr "Gemeindeleben in Bildern"
+
+msgid "Заголовок страницы"
+msgstr "Seitentitel"
+
+msgid "Задайте свой вопрос"
+msgstr "Stellen Sie Ihre Frage"
+
+msgid "История и жизнь общины"
+msgstr "Geschichte und Gemeindeleben"
+
+msgid "Как нас найти"
+msgstr "So finden Sie uns"
+
+msgid "Контакты и духовенство"
+msgstr "Kontakt und Geistliche"
+
+msgid "Наверх"
+msgstr "Nach oben"
+
+msgid "Наша община"
+msgstr "Unsere Gemeinde"
+
+msgid "Неделя богослужений"
+msgstr "Gottesdienste der Woche"
+
+msgid "Недостаточно прав."
+msgstr "Keine ausreichende Berechtigung."
+
+msgid "Открыть карту"
+msgstr "Karte öffnen"
+
+msgid "Оформление прихода"
+msgstr "Gemeindedesign"
+
+msgid "Подвал прихода"
+msgstr "Gemeindefußzeile"
+
+msgid "Поддержите добрые дела"
+msgstr "Unterstützen Sie gute Werke"
+
+msgid "Подробнее о приходе"
+msgstr "Mehr über die Gemeinde"
+
+msgid "Политика конфиденциальности"
+msgstr "Datenschutzerklärung"
+
+msgid "Помочь приходу"
+msgstr "Gemeinde unterstützen"
+
+msgid "Православный календарь"
+msgstr "Orthodoxer Kalender"
+
+msgid "Публикаций пока нет."
+msgstr "Noch keine Beiträge vorhanden."
+
+msgid "Пять схем в редакторе сайта → Стили"
+msgstr "Fünf Designs im Website-Editor → Stile"
+
+msgid "Разделы сайта"
+msgstr "Website-Bereiche"
+
+msgid "Связаться с нами"
+msgstr "Kontakt aufnehmen"
+
+msgid "События и объявления"
+msgstr "Termine und Mitteilungen"
+
+msgid "Читать дальше"
+msgstr "Weiterlesen"
+
+msgid "Шапка прихода"
+msgstr "Gemeindekopfzeile"
+
+msgid "Язык"
+msgstr "Sprache"
+
+msgid "Языковые версии страниц"
+msgstr "Sprachversionen der Seiten"
+
+msgid "Главное фото: ID изображения"
+msgstr "Hauptfoto: Bild-ID"
+
+msgid "Фото прихода: ID изображения"
+msgstr "Gemeindefoto: Bild-ID"
+
+msgid "Галерея: ID изображений через запятую"
+msgstr "Galerie: Bild-IDs durch Komma getrennt"
+
+msgid "Ссылка на карту (HTTPS)"
+msgstr "Kartenlink (HTTPS)"
+
+msgid "Выберите собственные фотографии из медиатеки. Без фото отображается спокойный фон. Скриншоты макетов не используются как контент."
+msgstr "Wählen Sie eigene Fotos aus der Mediathek. Ohne Foto erscheint ein ruhiger Hintergrund. Entwurfsscreenshots werden nicht als Inhalt verwendet."
+
+msgid "Укажите адреса существующих версий сайта. Переводы материалов создаются отдельно; тема не переводит тексты автоматически."
+msgstr "Geben Sie Adressen vorhandener Sprachversionen an. Inhalte werden separat übersetzt; das Theme übersetzt Texte nicht automatisch."
+
+msgid "Мастер настройки"
+msgstr "Einrichtungsassistent"
+
+msgid "Мастер настройки «Прихода»"
+msgstr "Gemeinde-Einrichtungsassistent"
+
+msgid "Добро пожаловать"
+msgstr "Willkommen"
+
+msgid "Добро пожаловать!"
+msgstr "Willkommen!"
+
+msgid "О вашем приходе"
+msgstr "Ihre Gemeinde"
+
+msgid "Возможности"
+msgstr "Funktionen"
+
+msgid "Страницы сайта"
+msgstr "Website-Seiten"
+
+msgid "Подтверждение"
+msgstr "Bestätigung"
+
+msgid "Готово"
+msgstr "Fertig"
+
+msgid "Этапы настройки"
+msgstr "Einrichtungsschritte"
+
+msgid "Шаг %1$d из %2$d"
+msgstr "Schritt %1$d von %2$d"
+
+msgid "Выберите тип вашей организации"
+msgstr "Wählen Sie die Organisationsart"
+
+msgid "Тип организации"
+msgstr "Organisationsart"
+
+msgid "Храм"
+msgstr "Kirche"
+
+msgid "Монастырь"
+msgstr "Kloster"
+
+msgid "Часовня"
+msgstr "Kapelle"
+
+msgid "Места служения"
+msgstr "Gottesdienstorte"
+
+msgid "Основные сведения"
+msgstr "Grundangaben"
+
+msgid "Языки и часовой пояс"
+msgstr "Sprachen und Zeitzone"
+
+msgid "Духовенство"
+msgstr "Geistliche"
+
+msgid "Обращения"
+msgstr "Anfragen"
+
+msgid "Публикации"
+msgstr "Beiträge"
+
+msgid "Дополнительные плагины"
+msgstr "Zusätzliche Plugins"
+
+msgid "Оформление"
+msgstr "Design"
+
+msgid "Страницы"
+msgstr "Seiten"
+
+msgid "План изменений"
+msgstr "Änderungsplan"
+
+msgid "Результат и публикация"
+msgstr "Ergebnis und Veröffentlichung"
+
+msgid "Начать настройку «Прихода»"
+msgstr "Gemeinde einrichten"
+
+msgid "Скрыть приглашение"
+msgstr "Einladung ausblenden"
+
+msgid "Этот мастер поможет подготовить сайт вашего прихода."
+msgstr "Dieser Assistent hilft Ihnen, Ihre Gemeindewebsite vorzubereiten."
+
+msgid "Пошаговая настройка"
+msgstr "Schrittweise Einrichtung"
+
+msgid "Ответьте на несколько вопросов"
+msgstr "Beantworten Sie einige Fragen"
+
+msgid "Подготовка страниц"
+msgstr "Seiten vorbereiten"
+
+msgid "Страницы создаются черновиками после подтверждения"
+msgstr "Seiten werden nach Bestätigung als Entwürfe erstellt"
+
+msgid "Только то, что нужно"
+msgstr "Nur das Benötigte"
+
+msgid "Вы выбираете нужные возможности"
+msgstr "Sie wählen die benötigten Funktionen"
+
+msgid "Можно настроить позже"
+msgstr "Später einrichten"
+
+msgid "Вернитесь к любому шагу, сохранив ресурсы"
+msgstr "Kehren Sie zu jedem Schritt zurück; Ressourcen bleiben erhalten"
+
+msgid "Начать настройку"
+msgstr "Einrichtung starten"
+
+msgid "Настроить позже"
+msgstr "Später einrichten"
+
+msgid "Сайт прихода"
+msgstr "Gemeindewebsite"
+
+msgid "Место встречи, молитвы и добрых дел."
+msgstr "Ein Ort für Begegnung, Gebet und gute Werke."
+
+msgid "Одно место"
+msgstr "Ein Ort"
+
+msgid "Несколько мест"
+msgstr "Mehrere Orte"
+
+msgid "Название / имя"
+msgstr "Bezeichnung / Name"
+
+msgid "Сан / должность"
+msgstr "Weihegrad / Aufgabe"
+
+msgid "Полное название"
+msgstr "Vollständiger Name"
+
+msgid "Краткое название"
+msgstr "Kurzname"
+
+msgid "Описание"
+msgstr "Beschreibung"
+
+msgid "Адрес"
+msgstr "Adresse"
+
+msgid "Телефон"
+msgstr "Telefon"
+
+msgid "Сайт"
+msgstr "Website"
+
+msgid "Часовой пояс"
+msgstr "Zeitzone"
+
+msgid "Основной язык"
+msgstr "Hauptsprache"
+
+msgid "Включить функцию"
+msgstr "Funktion aktivieren"
+
+msgid "Первая разовая служба (необязательно)"
+msgstr "Erster einmaliger Gottesdienst (optional)"
+
+msgid "Название службы"
+msgstr "Gottesdienstbezeichnung"
+
+msgid "Дата"
+msgstr "Datum"
+
+msgid "Время"
+msgstr "Uhrzeit"
+
+msgid "Место"
+msgstr "Ort"
+
+msgid "Все места"
+msgstr "Alle Orte"
+
+msgid "Ответственный не назначен"
+msgstr "Keine zuständige Person zugewiesen"
+
+msgid "Подготовить рубрики новостей, объявлений и проповедей"
+msgstr "Kategorien für Nachrichten, Mitteilungen und Predigten vorbereiten"
+
+msgid "Классическая золотая"
+msgstr "Klassisch in Gold"
+
+msgid "Светлая гостеприимная"
+msgstr "Hell und einladend"
+
+msgid "Строгая современная"
+msgstr "Klar und modern"
+
+msgid "Традиционная"
+msgstr "Traditionell"
+
+msgid "Современная синяя"
+msgstr "Modern in Blau"
+
+msgid "Схема выбирается в редакторе сайта: Внешний вид → Редактор → Стили."
+msgstr "Das Design wählen Sie im Website-Editor: Design → Editor → Stile."
+
+msgid "Предварительный просмотр темы"
+msgstr "Theme-Vorschau"
+
+msgid "Отдельно активировать тему «Приход»"
+msgstr "Gemeinde-Theme separat aktivieren"
+
+msgid "Создать черновик"
+msgstr "Entwurf erstellen"
+
+msgid "новый черновик"
+msgstr "neuer Entwurf"
+
+msgid "использовать без изменения содержимого"
+msgstr "Inhalt unverändert verwenden"
+
+msgid "черновик первой службы"
+msgstr "Entwurf des ersten Gottesdienstes"
+
+msgid "подготовить сведения (имеющиеся ресурсы мастера сохранятся)"
+msgstr "Angaben vorbereiten (vorhandene Ressourcen bleiben erhalten)"
+
+msgid "Подтверждаю этот план"
+msgstr "Ich bestätige diesen Plan"
+
+msgid "Применить план"
+msgstr "Plan anwenden"
+
+msgid "Черновики подготовлены"
+msgstr "Entwürfe vorbereitet"
+
+msgid "Просмотрите страницы и отдельно подтвердите публикацию."
+msgstr "Prüfen Sie die Seiten und bestätigen Sie die Veröffentlichung separat."
+
+msgid "Открыть сайт"
+msgstr "Website öffnen"
+
+msgid "Предварительный просмотр"
+msgstr "Vorschau"
+
+msgid "Редактор"
+msgstr "Editor"
+
+msgid "Назначить выбранную «Главную» главной страницей сайта"
+msgstr "Gewählte Startseite als Website-Startseite festlegen"
+
+msgid "Не менять меню"
+msgstr "Menü beibehalten"
+
+msgid "Создать отдельную блоковую навигацию для выбора в редакторе сайта"
+msgstr "Separate Blocknavigation für den Website-Editor erstellen"
+
+msgid "Подтверждаю публикацию и выбранные изменения главной/навигации"
+msgstr "Ich bestätige Veröffentlichung und Änderungen an Startseite/Navigation"
+
+msgid "Опубликовать выбранное"
+msgstr "Auswahl veröffentlichen"
+
+msgid "Сохранить и продолжить"
+msgstr "Speichern und weiter"
+
+msgid "Назад"
+msgstr "Zurück"
+
+msgid "Начать интервью заново (сохранить ресурсы)"
+msgstr "Fragen neu beginnen (Ressourcen behalten)"
+
+msgid "Тема:"
+msgstr "Theme:"
+
+msgid "Страниц и навигаций:"
+msgstr "Seiten und Navigationen:"
+
+msgid "Существующие записи сохраняются. Новые сведения будут созданы только после подтверждения плана, сначала черновиками."
+msgstr "Vorhandene Einträge bleiben erhalten. Neue Angaben werden erst nach Planbestätigung als Entwürfe erstellt."
+
+msgid "Дополнительные записи и связи можно добавить позже в разделах мест служения и духовенства."
+msgstr "Weitere Einträge und Zuordnungen können später bei Gottesdienstorten und Geistlichen ergänzt werden."
+
+msgid "После применения плана подробные настройки доступны в соответствующем разделе «Прихода»."
+msgstr "Nach Anwendung des Plans finden Sie die Einstellungen im entsprechenden Gemeindebereich."
+
+msgid "Если место не выбрано, используется первое новое место из интервью."
+msgstr "Ohne Ortsauswahl wird der erste neue Ort aus den Antworten verwendet."
+
+msgid "Дополнительные компоненты устанавливаются вручную и отдельно. Автоматических установок нет."
+msgstr "Zusätzliche Komponenten werden manuell und separat installiert. Keine automatische Installation."
+
+msgid "Текущая тема сохраняется. Тема «Приход» необязательна; загрузите её ZIP вручную через «Внешний вид → Темы». Активация — отдельное действие."
+msgstr "Das aktuelle Theme bleibt erhalten. Das Gemeinde-Theme ist optional; laden Sie sein ZIP manuell unter Design → Themes hoch. Aktivierung ist ein separater Schritt."
+
+msgid "Будут сохранены введённые сведения и переключатели модулей. Главная, меню, тема, существующие страницы и внешние сервисы не изменяются на этом шаге."
+msgstr "Angaben und Modulschalter werden gespeichert. Startseite, Menü, Theme, vorhandene Seiten und externe Dienste bleiben in diesem Schritt unverändert."
+
+msgid "Будут подготовлены рубрики новостей, объявлений и проповедей."
+msgstr "Kategorien für Nachrichten, Mitteilungen und Predigten werden vorbereitet."
+
+msgid "Выбор позиции меню заменит её текущую привязку новым меню «Прихода». Существующее меню и его пункты сохранятся."
+msgstr "Die Menüposition wird dem neuen Gemeindemenü zugeordnet. Das vorhandene Menü und seine Einträge bleiben erhalten."
+
+msgid "Сведения о приходе"
+msgstr "Gemeindeangaben"
+
+msgid "Контакты прихода"
+msgstr "Gemeindekontakt"
+
+msgid "Богослужения на выбранный период не указаны."
+msgstr "Für diesen Zeitraum sind keine Gottesdienste eingetragen."
+
+msgid "Имя"
+msgstr "Name"
+
+msgid "Email"
+msgstr "E-Mail"
+
+msgid "Тема"
+msgstr "Betreff"
+
+msgid "Текст обращения"
+msgstr "Ihre Nachricht"
+
+msgid "Оставьте поле пустым"
+msgstr "Feld leer lassen"
+
+msgid "Согласен на обработку данных для ответа на обращение."
+msgstr "Ich stimme der Datenverarbeitung zur Beantwortung meiner Anfrage zu."
+
+msgid "Отправить обращение"
+msgstr "Nachricht senden"
+
+msgid "Обращение принято. Ответ придёт по email."
+msgstr "Ihre Anfrage wurde angenommen. Die Antwort erhalten Sie per E-Mail."
+
+msgid "Обращение не отправлено. Проверьте поля или повторите позже."
+msgstr "Anfrage nicht gesendet. Prüfen Sie die Angaben oder versuchen Sie es später erneut."
+
+msgid "Показать"
+msgstr "Anzeigen"
+
+msgid "Печать"
+msgstr "Drucken"
+
+msgid "Отменено"
+msgstr "Abgesagt"
+
+msgid "Изменение службы за"
+msgstr "Änderung für den Gottesdienst vom"
+
+msgid "Вид расписания"
+msgstr "Planansicht"
+
+msgid "Неделя"
+msgstr "Woche"
+
+msgid "Месяц"
+msgstr "Monat"
+
+msgid "Список"
+msgstr "Liste"
+
+msgid "Первый раз в храме"
+msgstr "Zum ersten Mal in der Kirche"
+
+msgid "Добавьте сведения о посещении вашего храма: часы работы, дорогу и контакты ответственного."
+msgstr "Ergänzen Sie Besuchsinformationen: Öffnungszeiten, Anreise und Kontaktperson."
+
+msgid "Новость прихода"
+msgstr "Gemeindenachricht"
+
+msgid "Объявление"
+msgstr "Mitteilung"
+
+msgid "Объявления"
+msgstr "Mitteilungen"
+
+msgid "Проповедь"
+msgstr "Predigt"
+
+msgid "Проповеди"
+msgstr "Predigten"
+
+msgid "Добавьте текст публикации."
+msgstr "Beitragstext hinzufügen."
+
+msgid "Навигация прихода"
+msgstr "Gemeindenavigation"
+
+msgid "Состояние мастера сохранено."
+msgstr "Assistentenstatus gespeichert."
+
+msgid "Сохранение мастера уже выполняется."
+msgstr "Der Assistent wird bereits gespeichert."
+
+msgid "Эта вкладка устарела. Откройте мастер заново."
+msgstr "Diese Registerkarte ist veraltet. Öffnen Sie den Assistenten erneut."
+
+msgid "Сначала подтвердите план."
+msgstr "Bestätigen Sie zuerst den Plan."
+
+msgid "Подтвердите публикацию."
+msgstr "Bestätigen Sie die Veröffentlichung."
+
+msgid "Требуется подтверждение."
+msgstr "Bestätigung erforderlich."
+
+msgid "Некорректные сведения о службе."
+msgstr "Ungültige Gottesdienstangaben."
+
+msgid "Книжный"
+msgstr "Serifenschrift"
+
+msgid "Простой"
+msgstr "Sans-Serif"
+
+msgid "Малый"
+msgstr "Klein"
+
+msgid "Основной"
+msgstr "Standard"
+
+msgid "Большой"
+msgstr "Groß"
+
+msgid "Заголовок"
+msgstr "Überschrift"
+
+msgid "Шапка"
+msgstr "Kopfzeile"
+
+msgid "Подвал"
+msgstr "Fußzeile"
+
+msgid "Фон"
+msgstr "Hintergrund"
+
+msgid "Текст"
+msgstr "Text"
+
+msgid "Акцент"
+msgstr "Akzent"
+
+msgid "Золото"
+msgstr "Gold"
+
+msgid "Карточки"
+msgstr "Karten"
+
+msgid "Вторичный текст"
+msgstr "Sekundärtext"
+
+msgid "Границы"
+msgstr "Rahmen"
+
+msgid "Широкая страница"
+msgstr "Breite Seite"
+
+msgid "Форма и подтверждение"
+msgstr "Formular und Bestätigung"
+
+msgid "Каталог материалов"
+msgstr "Beitragsübersicht"
+
+msgid "Выберите главную страницу для публикации."
+msgstr "Wählen Sie die zu veröffentlichende Startseite."
+
+msgid "Выберите именованный часовой пояс, например Europe/Berlin."
+msgstr "Wählen Sie eine benannte Zeitzone, etwa Europe/Berlin."
+
+msgid "Выберите тип организации."
+msgstr "Wählen Sie die Organisationsart."
+
+msgid "Выбранная страница больше не доступна. Проверьте план."
+msgstr "Die gewählte Seite ist nicht mehr verfügbar. Prüfen Sie den Plan."
+
+msgid "Дождитесь завершения удаления данных."
+msgstr "Warten Sie, bis die Datenlöschung abgeschlossen ist."
+
+msgid "Другой запуск мастера уже выполняется."
+msgstr "Ein anderer Assistentenlauf ist bereits aktiv."
+
+msgid "Не удалось опубликовать страницу."
+msgstr "Seite konnte nicht veröffentlicht werden."
+
+msgid "Не удалось подготовить рубрики."
+msgstr "Kategorien konnten nicht vorbereitet werden."
+
+msgid "Не удалось создать меню."
+msgstr "Menü konnte nicht erstellt werden."
+
+msgid "Не удалось создать навигацию."
+msgstr "Navigation konnte nicht erstellt werden."
+
+msgid "Не удалось создать пункт меню."
+msgstr "Menüeintrag konnte nicht erstellt werden."
+
+msgid "Не удалось создать службу."
+msgstr "Gottesdienst konnte nicht erstellt werden."
+
+msgid "Не удалось создать страницу. Сохранённые ресурсы доступны при повторном запуске."
+msgstr "Seite konnte nicht erstellt werden. Gespeicherte Ressourcen sind beim erneuten Start verfügbar."
+
+msgid "Не удалось сохранить сведения. Повторите настройку."
+msgstr "Angaben konnten nicht gespeichert werden. Wiederholen Sie die Einrichtung."
+
+msgid "Неверный ресурс навигации."
+msgstr "Ungültige Navigationsressource."
+
+msgid "Недостаточно прав для настройки сайта."
+msgstr "Keine Berechtigung zur Website-Einrichtung."
+
+msgid "Недостаточно прав для публикации ресурса."
+msgstr "Keine Berechtigung zur Veröffentlichung der Ressource."
+
+msgid "Недостаточно прав для создания службы."
+msgstr "Keine Berechtigung zur Erstellung eines Gottesdienstes."
+
+msgid "Недостаточно прав изменения оформления."
+msgstr "Keine Berechtigung zur Designänderung."
+
+msgid "Недостаточно прав публикации."
+msgstr "Keine Veröffentlichungsberechtigung."
+
+msgid "Некорректная страница публикации."
+msgstr "Ungültige Veröffentlichungsseite."
+
+msgid "Некорректное значение поля."
+msgstr "Ungültiger Feldwert."
+
+msgid "Некорректные сведения о приходе."
+msgstr "Ungültige Gemeindeangaben."
+
+msgid "Ответственный больше не имеет необходимых прав."
+msgstr "Die zuständige Person hat nicht mehr die erforderlichen Rechte."
+
+msgid "Позиция меню недоступна."
+msgstr "Menüposition nicht verfügbar."
+
+msgid "Проверьте email."
+msgstr "Prüfen Sie die E-Mail-Adresse."
+
+msgid "Ресурс удалён."
+msgstr "Ressource wurde gelöscht."
+
+msgid "Сайт изменился после просмотра плана. Сформируйте план заново."
+msgstr "Die Website hat sich seit der Planansicht geändert. Erstellen Sie den Plan erneut."
+
+msgid "Страница изменена вручную или создана не мастером. Опубликуйте её отдельно в редакторе."
+msgstr "Die Seite wurde manuell geändert oder nicht vom Assistenten erstellt. Veröffentlichen Sie sie separat im Editor."
+
+msgid "Укажите адрес сайта с http или https."
+msgstr "Geben Sie eine Website-Adresse mit http oder https an."
+
+msgid "Укажите код языка, например ru_RU."
+msgstr "Geben Sie einen Sprachcode an, z. B. de_DE."
+
+msgid "Ближайшая служба найдена"
+msgstr "Nächster Gottesdienst gefunden"
+
+msgid "Ближайшая служба пока не указана."
+msgstr "Nächster Gottesdienst noch nicht eingetragen."
+
+msgid "Богослужение"
+msgstr "Gottesdienst"
+
+msgid "В очереди"
+msgstr "In der Warteschlange"
+
+msgid "В работе"
+msgstr "In Bearbeitung"
+
+msgid "Внутренняя заметка"
+msgstr "Interne Notiz"
+
+msgid "Внутренняя заметка (не отправлять посетителю)"
+msgstr "Interne Notiz (nicht an Besucher senden)"
+
+msgid "Вс"
+msgstr "So"
+
+msgid "Вт"
+msgstr "Di"
+
+msgid "Пн"
+msgstr "Mo"
+
+msgid "Пт"
+msgstr "Fr"
+
+msgid "Сб"
+msgstr "Sa"
+
+msgid "Ср"
+msgstr "Mi"
+
+msgid "Чт"
+msgstr "Do"
+
+msgid "Все статусы"
+msgstr "Alle Status"
+
+msgid "Выберите место"
+msgstr "Ort auswählen"
+
+msgid "Выберите сотрудника"
+msgstr "Mitarbeiter auswählen"
+
+msgid "Выбрать"
+msgstr "Auswählen"
+
+msgid "Да"
+msgstr "Ja"
+
+msgid "Нет"
+msgstr "Nein"
+
+msgid "Дата / начало повторений"
+msgstr "Datum / Beginn der Wiederholung"
+
+msgid "Действие"
+msgstr "Aktion"
+
+msgid "Дни повторения регулярной службы"
+msgstr "Wochentage regelmäßiger Gottesdienste"
+
+msgid "Добавить"
+msgstr "Hinzufügen"
+
+msgid "Добавить богослужение"
+msgstr "Gottesdienst hinzufügen"
+
+msgid "Добавить исключение"
+msgstr "Ausnahme hinzufügen"
+
+msgid "Закрыто"
+msgstr "Geschlossen"
+
+msgid "Записки"
+msgstr "Gebetsanliegen"
+
+msgid "Заполнить сведения о приходе"
+msgstr "Gemeindeangaben ausfüllen"
+
+msgid "Запустить необратимое удаление"
+msgstr "Unwiderrufliche Löschung starten"
+
+msgid "Изменения сохранены."
+msgstr "Änderungen gespeichert."
+
+msgid "Исключение"
+msgstr "Ausnahme"
+
+msgid "Исходная дата"
+msgstr "Ursprüngliches Datum"
+
+msgid "Места служения (можно выбрать несколько)"
+msgstr "Gottesdienstorte (Mehrfachauswahl möglich)"
+
+msgid "Место после переноса"
+msgstr "Ort nach Verschiebung"
+
+msgid "Место служения"
+msgstr "Gottesdienstort"
+
+msgid "Название прихода ещё не заполнено."
+msgstr "Gemeindename noch nicht ausgefüllt."
+
+msgid "Название прихода заполнено"
+msgstr "Gemeindename ausgefüllt"
+
+msgid "Назначение ответственных"
+msgstr "Zuständige zuweisen"
+
+msgid "Назначить права можно в разделе «Права сотрудников»."
+msgstr "Rechte können unter Mitarbeiterrechte zugewiesen werden."
+
+msgid "Настроить подключение"
+msgstr "Verbindung einrichten"
+
+msgid "Настройки"
+msgstr "Einstellungen"
+
+msgid "Настройки, мастер и подключения"
+msgstr "Einstellungen, Assistent und Verbindungen"
+
+msgid "Начало"
+msgstr "Beginn"
+
+msgid "Не назначен"
+msgstr "Nicht zugewiesen"
+
+msgid "Не отправлено"
+msgstr "Nicht gesendet"
+
+msgid "Недоступно"
+msgstr "Nicht verfügbar"
+
+msgid "Новая дата"
+msgstr "Neues Datum"
+
+msgid "Новое"
+msgstr "Neu"
+
+msgid "Новое начало"
+msgstr "Neuer Beginn"
+
+msgid "Новое окончание"
+msgstr "Neues Ende"
+
+msgid "Обзор"
+msgstr "Übersicht"
+
+msgid "Обращение"
+msgstr "Anfrage"
+
+msgid "Обращения «Прихода»"
+msgstr "Gemeindeanfragen"
+
+msgid "Обращения включены"
+msgstr "Anfragen aktiviert"
+
+msgid "Обращения к священнику"
+msgstr "Anfragen an den Priester"
+
+msgid "Ожидает ответа"
+msgstr "Wartet auf Antwort"
+
+msgid "Окончание (необязательно)"
+msgstr "Ende (optional)"
+
+msgid "Ответ или заметка"
+msgstr "Antwort oder Notiz"
+
+msgid "Ответ на обращение:"
+msgstr "Antwort auf Anfrage:"
+
+msgid "Ответ по email"
+msgstr "Antwort per E-Mail"
+
+msgid "Ответственный"
+msgstr "Zuständige Person"
+
+msgid "Ответы и статусы обращений"
+msgstr "Antworten und Anfragestatus"
+
+msgid "Отвечено"
+msgstr "Beantwortet"
+
+msgid "Отмена"
+msgstr "Absage"
+
+msgid "Отмены и переносы отдельных дат"
+msgstr "Absagen und Verschiebungen einzelner Termine"
+
+msgid "Ошибка отправки"
+msgstr "Sendefehler"
+
+msgid "Перенос / изменение времени"
+msgstr "Verschiebung / Zeitänderung"
+
+msgid "Переписка / заметка"
+msgstr "Korrespondenz / Notiz"
+
+msgid "Повторить этот ответ после исправления почты"
+msgstr "Antwort nach Behebung des E-Mail-Problems erneut senden"
+
+msgid "Подключения"
+msgstr "Verbindungen"
+
+msgid "Подтвердите удаление."
+msgstr "Bestätigen Sie die Löschung."
+
+msgid "Подтверждаю полное удаление обращения и переписки"
+msgstr "Ich bestätige die vollständige Löschung der Anfrage und Korrespondenz"
+
+msgid "Пожертвования"
+msgstr "Spenden"
+
+msgid "Политика конфиденциальности задана"
+msgstr "Datenschutzerklärung hinterlegt"
+
+msgid "Полное удаление данных «Прихода»"
+msgstr "Vollständige Löschung der Gemeindedaten"
+
+msgid "Последняя дата повторений (необязательно)"
+msgstr "Letztes Wiederholungsdatum (optional)"
+
+msgid "Почтовая система приняла письмо"
+msgstr "Mail-System hat die Nachricht angenommen"
+
+msgid "Права доступа"
+msgstr "Zugriffsrechte"
+
+msgid "Права сотрудников"
+msgstr "Mitarbeiterrechte"
+
+msgid "Праздничная"
+msgstr "Festgottesdienst"
+
+msgid "Предыдущее расписание сохранено."
+msgstr "Bisheriger Plan bleibt gespeichert."
+
+msgid "Приход — обзор"
+msgstr "Gemeinde — Übersicht"
+
+msgid "Приём обращений отключён."
+msgstr "Anfragen sind deaktiviert."
+
+msgid "Проверка сайта"
+msgstr "Website-Prüfung"
+
+msgid "Проверка сроков хранения запланирована"
+msgstr "Aufbewahrungsprüfung geplant"
+
+msgid "Просмотр обращений"
+msgstr "Anfragen anzeigen"
+
+msgid "Разовая"
+msgstr "Einmalig"
+
+msgid "Расписание включено"
+msgstr "Gottesdienstplan aktiviert"
+
+msgid "Расписание службы"
+msgstr "Gottesdienstzeiten"
+
+msgid "Регулярная"
+msgstr "Regelmäßig"
+
+msgid "Редактировать"
+msgstr "Bearbeiten"
+
+msgid "Сведения"
+msgstr "Angaben"
+
+msgid "Сведения о приходе, места и духовенство"
+msgstr "Gemeindeangaben, Orte und Geistliche"
+
+msgid "Священнослужитель"
+msgstr "Geistlicher"
+
+msgid "Сохранить / поставить ответ в очередь"
+msgstr "Speichern / Antwort einreihen"
+
+msgid "Статус"
+msgstr "Status"
+
+msgid "Тип службы"
+msgstr "Gottesdienstart"
+
+msgid "Требуется настройка"
+msgstr "Einrichtung erforderlich"
+
+msgid "Удаление данных"
+msgstr "Daten löschen"
+
+msgid "Удаление не подтверждено."
+msgstr "Löschung nicht bestätigt."
+
+msgid "Удаление обращений"
+msgstr "Anfragen löschen"
+
+msgid "Удаление уже запущено."
+msgstr "Löschung bereits gestartet."
+
+msgid "Удалить"
+msgstr "Löschen"
+
+msgid "Удалить исключение"
+msgstr "Ausnahme löschen"
+
+msgid "Удалять закрытые обращения через дней после последнего изменения (30–3650)"
+msgstr "Geschlossene Anfragen nach Tagen seit der letzten Änderung löschen (30–3650)"
+
+msgid "Управление расписанием"
+msgstr "Planverwaltung"
+
+msgid "Хранение данных"
+msgstr "Datenaufbewahrung"
+
+msgid "Часовой пояс (пусто — использовать часовой пояс прихода)"
+msgstr "Zeitzone (leer: Gemeindezeitzone)"
+
+msgid "Часовой пояс (пусто — пояс места или прихода)"
+msgstr "Zeitzone (leer: Orts- oder Gemeindezeitzone)"
+
+msgid "Записи не найдены."
+msgstr "Keine Einträge gefunden."
+
+msgid "Записки активны. Формы и платёжные подключения настраиваются в самом плагине."
+msgstr "Gebetsanliegen sind aktiv. Formulare und Zahlungsanbindungen werden im Originalplugin eingerichtet."
+
+msgid "Календарь активен. Доступность его сервера проверяется самим календарём."
+msgstr "Kalender aktiv. Die Serververfügbarkeit prüft der Kalender selbst."
+
+msgid "Календарь активен; настройте его подключение."
+msgstr "Kalender aktiv; richten Sie die Verbindung ein."
+
+msgid "Установите «Записки» вручную. Версия 1.2.15 требует WordPress 7.1 и PHP 8.4."
+msgstr "Installieren Sie Gebetsanliegen manuell. Version 1.2.15 benötigt WordPress 7.1 und PHP 8.4."
+
+msgid "Установите и активируйте существующий календарный плагин вручную."
+msgstr "Installieren und aktivieren Sie das vorhandene Kalenderplugin manuell."
+
+msgid "Не удалось проверить подключение."
+msgstr "Verbindung konnte nicht geprüft werden."
+
+msgid "Обращение не найдено."
+msgstr "Anfrage nicht gefunden."
+
+msgid "Обращение не сохранено. Попробуйте позже."
+msgstr "Anfrage nicht gespeichert. Versuchen Sie es später erneut."
+
+msgid "Ответ не сохранён."
+msgstr "Antwort nicht gespeichert."
+
+msgid "Ответ недоступен для повторной отправки."
+msgstr "Antwort kann nicht erneut gesendet werden."
+
+msgid "Ответственный не имеет необходимых прав."
+msgstr "Zuständige Person hat nicht die erforderlichen Rechte."
+
+msgid "Некорректный ответ."
+msgstr "Ungültige Antwort."
+
+msgid "Некорректный статус."
+msgstr "Ungültiger Status."
+
+msgid "Введите ответ допустимой длины."
+msgstr "Geben Sie eine Antwort mit zulässiger Länge ein."
+
+msgid "Недостаточно прав для ответа."
+msgstr "Keine Berechtigung zum Antworten."
+
+msgid "Недостаточно прав полного удаления."
+msgstr "Keine Berechtigung zur vollständigen Löschung."
+
+msgid "Не удалось запланировать удаление."
+msgstr "Löschung konnte nicht geplant werden."
+
+msgid "Не удалось применить все изменения. Проверьте права и поля."
+msgstr "Nicht alle Änderungen konnten angewendet werden. Prüfen Sie Rechte und Felder."
+
+msgid "Нельзя изменить права этого пользователя."
+msgstr "Rechte dieses Benutzers können nicht geändert werden."
+
+msgid "Заполните все поля и укажите корректный email."
+msgstr "Füllen Sie alle Felder aus und geben Sie eine gültige E-Mail-Adresse an."
+
+msgid "Проверьте обязательные поля и длину текста."
+msgstr "Prüfen Sie Pflichtfelder und Textlänge."
+
+msgid "Поле не может состоять только из разметки."
+msgstr "Das Feld darf nicht nur Markup enthalten."
+
+msgid "Выберите дни повторения."
+msgstr "Wählen Sie Wiederholungstage."
+
+msgid "Выберите отмену или перенос."
+msgstr "Wählen Sie Absage oder Verschiebung."
+
+msgid "Выберите существующее место служения."
+msgstr "Wählen Sie einen vorhandenen Gottesdienstort."
+
+msgid "Исключение должно относиться к существующей дате службы."
+msgstr "Die Ausnahme muss zu einem bestehenden Gottesdiensttermin gehören."
+
+msgid "Исходная дата исключения повторяется."
+msgstr "Ursprüngliches Ausnahmedatum ist doppelt."
+
+msgid "Некорректная дата или несуществующее местное время переноса."
+msgstr "Ungültiges Datum oder nicht existierende lokale Verschiebungszeit."
+
+msgid "Некорректная исходная дата."
+msgstr "Ungültiges ursprüngliches Datum."
+
+msgid "Некорректное исключение."
+msgstr "Ungültige Ausnahme."
+
+msgid "Некорректные исключения."
+msgstr "Ungültige Ausnahmen."
+
+msgid "Некорректные поля расписания."
+msgstr "Ungültige Planfelder."
+
+msgid "Некорректный день недели."
+msgstr "Ungültiger Wochentag."
+
+msgid "Некорректный часовой пояс переноса."
+msgstr "Ungültige Zeitzone der Verschiebung."
+
+msgid "Слишком много исключений."
+msgstr "Zu viele Ausnahmen."
+
+msgid "Проверьте повторение и исключения."
+msgstr "Prüfen Sie Wiederholung und Ausnahmen."
+
+msgid "Проверьте тип, даты и время службы."
+msgstr "Prüfen Sie Art, Datum und Uhrzeit des Gottesdienstes."
+
+msgid "Укажите именованный часовой пояс."
+msgstr "Geben Sie eine benannte Zeitzone an."
+
+msgid "Это местное время не существует из-за перевода часов."
+msgstr "Diese Ortszeit existiert wegen der Zeitumstellung nicht."
+
+msgid "Время окончания не существует из-за перевода часов."
+msgstr "Die Endzeit existiert wegen der Zeitumstellung nicht."
+
+msgid "Для подтверждения введите УДАЛИТЬ"
+msgstr "Zur Bestätigung УДАЛИТЬ eingeben"
+
+msgid "Активация не создаёт страницы и не изменяет главную, меню или тему сайта."
+msgstr "Die Aktivierung erstellt keine Seiten und ändert weder Startseite, Menü noch Theme."
+
+msgid "Деактивация и обычное удаление плагина сохраняют данные. Закрытые обращения очищаются по заданному сроку хранения."
+msgstr "Deaktivierung und normale Deinstallation behalten Daten. Geschlossene Anfragen werden nach der Aufbewahrungsfrist gelöscht."
+
+msgid "Доставка email не проверена. Для очереди ответов требуется работающий WP-Cron или серверный cron. Принятие письма транспортом не гарантирует доставку адресату."
+msgstr "E-Mail-Zustellung nicht geprüft. Die Antwortwarteschlange benötigt WP-Cron oder Server-Cron. Annahme durch den Transport garantiert keine Zustellung."
+
+msgid "Доступны сведения о приходе, места служения, духовенство и расписание."
+msgstr "Gemeindeangaben, Gottesdienstorte, Geistliche und Plan sind verfügbar."
+
+msgid "Изменяются только права «Прихода» выбранного сотрудника. Собственные права здесь не редактируются. Для ответа нужны права просмотра и ответа; для удаления — просмотра и удаления."
+msgstr "Nur Gemeinderechte der gewählten Person werden geändert. Eigene Rechte sind hier nicht bearbeitbar. Antworten benötigen Anzeige- und Antwortrechte; Löschen benötigt Anzeige- und Löschrechte."
+
+msgid "Некоторые сведения некорректны. Для этих полей сохранены предыдущие значения. Проверьте email, сайт, часовой пояс и места служения."
+msgstr "Einige Angaben sind ungültig. Bisherige Werte dieser Felder bleiben erhalten. Prüfen Sie E-Mail, Website, Zeitzone und Gottesdienstorte."
+
+msgid "Окончание раньше или равное началу означает следующий день. При весеннем переводе часов несуществующее время регулярной службы пропускается; осенью используется первое вхождение времени."
+msgstr "Ein Ende vor oder gleich dem Beginn liegt am Folgetag. Bei der Frühjahrsumstellung entfällt ein nicht existierender Termin; im Herbst wird das erste Zeitvorkommen verwendet."
+
+msgid "Права выдаются администратору при установке. Другим сотрудникам их можно назначить средствами управления ролями WordPress. Обычный редактор автоматически их не получает."
+msgstr "Bei Installation erhält der Administrator Rechte. Anderen Mitarbeitern können Rechte über WordPress zugewiesen werden. Redakteure erhalten sie nicht automatisch."
+
+msgid "Расширения пока не подключены. Календарь и «Записки» будут интегрированы после проверки их фактического кода."
+msgstr "Noch keine Erweiterungen verbunden. Kalender und Gebetsanliegen werden nach Prüfung ihres Quellcodes integriert."
+
+msgid "Также удалить созданные мастером страницы (включая отредактированные), навигацию и меню. Использованные существующие страницы сохранятся."
+msgstr "Auch vom Assistenten erstellte Seiten (einschließlich bearbeiteter), Navigation und Menü löschen. Wiederverwendete bestehende Seiten bleiben erhalten."
+
+msgid "Удаление выполняется фоновыми пакетами через WP-Cron. Новые обращения и расписание временно отключены."
+msgstr "Die Löschung erfolgt im Hintergrund über WP-Cron. Neue Anfragen und Plan sind vorübergehend deaktiviert."
+
+msgid "Удаляются профиль, места, духовенство, расписание, обращения и переписка. Сначала сохраните резервную копию сайта. Обычное удаление плагина этих данных не удаляет."
+msgstr "Profil, Orte, Geistliche, Plan, Anfragen und Korrespondenz werden gelöscht. Erstellen Sie zuerst ein Backup. Normale Deinstallation löscht diese Daten nicht."
+
+msgid "Язык и часовой пояс относятся к приходу; настройки самого WordPress не изменяются. Основной язык задаётся кодом, например ru_RU."
+msgstr "Sprache und Zeitzone gelten für die Gemeinde; WordPress-Einstellungen bleiben unverändert. Die Hauptsprache wird als Code angegeben, z. B. de_DE."
+
+msgid "Главное фото"
+msgstr "Hauptfoto"
+
+msgid "Фото прихода"
+msgstr "Gemeindefoto"
+
+msgid "Фотогалерея"
+msgstr "Fotogalerie"
+
+msgid "Выбрать фотографии"
+msgstr "Fotos auswählen"
+
+msgid "Убрать"
+msgstr "Entfernen"
+
+msgid "Период расписания"
+msgstr "Planzeitraum"
+
+msgid "Предыдущий период"
+msgstr "Vorheriger Zeitraum"
+
+msgid "Следующий период"
+msgstr "Nächster Zeitraum"
+
+msgid "Сегодня"
+msgstr "Heute"
+
+msgid "Период"
+msgstr "Zeitraum"
+
+msgid "ID места (0 — все)"
+msgstr "Orts-ID (0 — alle)"
+
+msgid "Количество"
+msgstr "Anzahl"
+
+msgid "Январь"
+msgstr "Januar"
+
+msgid "Февраль"
+msgstr "Februar"
+
+msgid "Март"
+msgstr "März"
+
+msgid "Апрель"
+msgstr "April"
+
+msgid "Май"
+msgstr "Mai"
+
+msgid "Июнь"
+msgstr "Juni"
+
+msgid "Июль"
+msgstr "Juli"
+
+msgid "Август"
+msgstr "August"
+
+msgid "Сентябрь"
+msgstr "September"
+
+msgid "Октябрь"
+msgstr "Oktober"
+
+msgid "Ноябрь"
+msgstr "November"
+
+msgid "Декабрь"
+msgstr "Dezember"
+
+msgid "Тип записки"
+msgstr "Art des Gebetsanliegens"
+
+msgid "Имена"
+msgstr "Namen"
+
+msgid "Сумма"
+msgstr "Betrag"
+
+msgid "Пожертвование"
+msgstr "Spende"
+
+msgid "Этапы заполнения"
+msgstr "Formularschritte"
+
+msgid "Продолжить"
+msgstr "Weiter"
+
+msgid "Выберите требу перед продолжением."
+msgstr "Wählen Sie einen Gottesdienst, bevor Sie fortfahren."
+
+msgid "Проверьте перед отправкой"
+msgstr "Vor dem Absenden prüfen"
+
+msgid "Пошаговые формы записок и пожертвований"
+msgstr "Schrittweise Gebetsanliegen- und Spendenformulare"
+
+msgid "Дашборд"
+msgstr "Dashboard"
+
+msgid "Информация"
+msgstr "Informationen"
+
+msgid "Наши плагины"
+msgstr "Unsere Plugins"
+
+msgid "Настройки модулей"
+msgstr "Moduleinstellungen"

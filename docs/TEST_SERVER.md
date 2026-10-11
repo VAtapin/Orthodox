@@ -1,50 +1,66 @@
-# Тестовая площадка
+# WordPress для проверки экосистемы
 
-Владелец разрешил установку WordPress 11.10.2026. Разрешение касается WordPress;
-установка остальных компонентов требует отдельного прямого разрешения.
+prihod.georg-kloster.ru — отдельный WordPress на общем **боевом** Plesk-сервере
+владельца с другими рабочими сайтами. Разрешены только действия внутри данного
+WordPress. Не менять окружение, Plesk, настройки других сайтов; не добавлять блокировки.
 
 - Сайт: https://prihod.georg-kloster.ru/.
-- Вход: https://prihod.georg-kloster.ru/wp-admin/.
-- SSH: предоставленный владельцем профиль Bitvise, пользователь `prihod`.
-- Каталог WordPress: `/var/www/vhosts/prihod.georg-kloster.ru/httpdocs`.
-- PHP: `/opt/plesk/php/8.5/bin/php`, фактически 8.5.11.
+- Дашборд: https://prihod.georg-kloster.ru/wp-admin/admin.php?page=prihod.
+- Мастер: https://prihod.georg-kloster.ru/wp-admin/admin.php?page=prihod-wizard.
 - WordPress: 7.1.3, русский интерфейс, Europe/Berlin.
-- Существующий WP-CLI Plesk: `/usr/local/bin/wp`, 2.12.0; запускать через PHP 8.5.
-- MariaDB: 10.6.23; база `prihod`, отдельный предоставленный пользователь.
-- Индексация поисковиками отключена (`blog_public=0`); это рекомендация роботам,
-  а не ограничение доступа. Сайт доступен публично.
+- Каталог: `/var/www/vhosts/prihod.georg-kloster.ru/httpdocs`.
+- Существующий PHP: `/opt/plesk/php/8.5/bin/php`, фактически 8.5.11.
+- Имеющийся WP-CLI Plesk: `/usr/local/bin/wp`, 2.12.0.
+- MariaDB 10.6.23, отдельная база и пользователь `prihod`.
+- SSH: предоставленный профиль Bitvise, пользователь `prihod`, не root.
 
-Пароли и профиль SSH не входят в репозиторий. Случайный пароль первого
-администратора сохранён только на сервере вне webroot в закрытом файле
-`/var/www/vhosts/prihod.georg-kloster.ru/wordpress-admin-access.txt` (600).
-Логин: `prihod-owner`. Владелец может прочитать файл в своём SSH-сеансе:
+Установлены по прямому разрешению владельца: Core 1.0.0-rc.2, тема «Приход» 0.2.1,
+orthocal 1.3.78, Orthodox Donations 1.0.2 и Telegram/WhatsApp/Facebook подключения
+0.1.1. Пароли и профиль SSH не входят в репозиторий. Пароль администратора изменён
+владельцем; первоначальный установочный файл пароля устарел и для входа не используется.
+
+Блокировка HTTP/email, ранее добавленная внутри WordPress, снята по требованию
+владельца. Нет активного MU-плагина защиты и нет рекомендации запрещать индексацию
+(blog_public=1). Серверные PHP/Plesk настройки не изменялись. Календарь получает
+реальные данные публичного API Bible Desktop, что подтверждено в браузере.
+Реальные оплаты, рассылки и публикации агентом не выполнялись.
+
+Дашборд и раздел «Наши плагины» показывают настоящие версии и состояния компонентов.
+Меню: дашборд, информация, обращения, наши плагины, настройки, мастер. Формы настроек
+зарегистрированы с прежними capabilities и доступны кнопками из своих разделов.
+Четыре виджета консоли проверяются отдельно от собственно дашборда плагина.
+Материалы, приходской профиль и службы не заполнены придуманными данными.
+
+Проверки: официальные контрольные суммы Core после корректной распаковки системным
+tar; 24 таблицы MariaDB OK; HTTPS главной и входа 200; вход с новым паролем; реальный
+календарь; мастер, дашборд и тематические настройки в браузере.
+`tests/server-check.php` проходит 33 проверки на PHP 8.5.11: компоненты, настоящие
+формы, блоки, схемы, шаблоны, переводы, отсутствие блокировок и дашборд.
+Снимки — docs/test-server/. Проверка оплаты/доставки не проведена.
+
+Пакеты обновления находятся **внутри WordPress** в `wp-content/prihod-packages`;
+проверка — `wp-content/prihod-server-check.php`. Git checkout в webroot отсутствует.
+Повторное применение уже подготовленной текущей сборки (обычное обновление WordPress):
 
 ```bash
-cat /var/www/vhosts/prihod.georg-kloster.ru/wordpress-admin-access.txt
+cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
+export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
+php -d memory_limit=512M /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.2.zip wp-content/prihod-packages/prihod-telegram-0.1.1.zip wp-content/prihod-packages/prihod-whatsapp-0.1.1.zip wp-content/prihod-packages/prihod-social-0.1.1.zip wp-content/prihod-packages/georg-kloster-orthodox-donate-1.0.2.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.2.1.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php
 ```
 
-`wp-config.php` также имеет права 600. Установочное письмо не отправлялось.
-Исходная страница Plesk и повреждённые артефакты первоначального распаковщика
-сохранены в `wordpress-install-backup` вне webroot (каталог 700).
-Из-за усечения длинных имён файлов распаковщиком WP-CLI использован уже
-имеющийся системный `tar`; повторная проверка официальных контрольных сумм прошла.
-Лимит памяти 512M задан только процессам установки, настройки PHP сервера не менялись.
+Команда обновляет только уже разрешённые компоненты WordPress из локальных ZIP.
+Node/Composer, серверные настройки и отдельные ручные миграции для «Прихода» не нужны.
+`--force` относится к обновлению файлов WordPress, не к Git. Новый ZIP нужно сначала
+загрузить внутри WordPress; эта команда применяет перечисленные версии текущей сборки.
 
-Проверены: пустая база перед установкой, официальные контрольные суммы Core,
-`core is-installed`, `db check` (12 таблиц OK), HTTPS главной и входа (200),
-отображение главной в браузере. Скриншот: [установленный WordPress](test-server/wordpress-installed.jpg).
-
-На сервере активна стандартная тема Twenty Twenty-Five. Только штатные Akismet и
-Hello Dolly из официального дистрибутива, оба неактивны. «Приход», его тема,
-подключения, календарь и «Записки» на сервер не устанавливались.
-Проверка всей экосистемы на MariaDB/PHP 8.5 ещё не выполнена.
-
-Репозиторий Git в webroot не создавался. Обновлять площадку командой `git pull`
-сейчас нельзя. Для повторной проверки владельцем (без установки и обновления):
+Повторная проверка без обновления:
 
 ```bash
 cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
 export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
 php -d memory_limit=512M /usr/local/bin/wp core verify-checksums --locale=ru_RU && \
-php /usr/local/bin/wp db check
+php /usr/local/bin/wp db check && \
+php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php
 ```

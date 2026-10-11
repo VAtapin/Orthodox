@@ -11,6 +11,13 @@ prihod_assert( 2 === count( Prihod\Schedule::query( new DateTimeImmutable( '2026
 prihod_assert( WP_Block_Type_Registry::get_instance()->is_registered( 'prihod/schedule' ), 'Dynamic schedule Gutenberg block is registered.' );
 $_GET['prihod_date'] = '2026-10-11';
 prihod_assert( str_contains( do_shortcode( '[prihod_schedule view="month"]' ), 'Sunday liturgy' ), 'Schedule shortcode renders actual services.' );
+prihod_assert( str_contains( do_shortcode( '[prihod_schedule view="month"]' ), 'class="prihod-month"' ), 'Month view renders a real calendar grid.' );
+$_GET['prihod_view'] = 'week';
+prihod_assert( ! str_contains( do_shortcode( '[prihod_schedule view="month"]' ), 'class="prihod-month"' ), 'Public view switch changes month to week.' );
+prihod_assert( str_contains( do_shortcode( '[prihod_schedule]' ), 'class="prihod-week"' ), 'Week view groups services by actual day.' );
+$_GET['prihod_view'] = 'list';
+prihod_assert( ! str_contains( do_shortcode( '[prihod_schedule]' ), 'class="prihod-week"' ), 'List view provides a separate chronological layout.' );
+unset( $_GET['prihod_view'] );
 unset( $_GET['prihod_date'] );
 update_option( 'prihod_modules', array( 'schedule' => false ) );
 prihod_assert( '' === Prihod\Public_View::render( 'schedule' ) && get_post_meta( $service, '_prihod_service', true ), 'Disabling schedule hides output and retains data.' );

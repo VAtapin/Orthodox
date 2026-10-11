@@ -19,6 +19,7 @@ final class Plugin {
         add_action( 'save_post_prihod_location', array( Directory::class, 'save' ) );
         add_action( 'save_post_prihod_clergy', array( Directory::class, 'save' ) );
         ( new Admin( $this->integrations ) )->hooks();
+        Dashboard::hooks();
         Schedule::hooks();
         Requests::hooks();
         Wizard::hooks();

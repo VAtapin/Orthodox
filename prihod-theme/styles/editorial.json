@@ -1,0 +1,52 @@
+{
+  "version": 2,
+  "title": "Строгая современная",
+  "settings": {
+    "custom": {
+      "prihod": {
+        "scheme": "editorial",
+        "radius": "0px",
+        "shadow": "0 8px 28px #1b25300d"
+      }
+    },
+    "color": {
+      "palette": [
+        {
+          "slug": "paper",
+          "name": "Фон",
+          "color": "#f6f5f1"
+        },
+        {
+          "slug": "ink",
+          "name": "Текст",
+          "color": "#282a27"
+        },
+        {
+          "slug": "forest",
+          "name": "Акцент",
+          "color": "#984e32"
+        },
+        {
+          "slug": "gold",
+          "name": "Золото",
+          "color": "#727650"
+        },
+        {
+          "slug": "white",
+          "name": "Карточки",
+          "color": "#eeece5"
+        },
+        {
+          "slug": "muted",
+          "name": "Вторичный текст",
+          "color": "#687080"
+        },
+        {
+          "slug": "line",
+          "name": "Границы",
+          "color": "#dcdcd4"
+        }
+      ]
+    }
+  }
+}

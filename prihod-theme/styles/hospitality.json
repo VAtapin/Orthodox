@@ -1,0 +1,52 @@
+{
+  "version": 2,
+  "title": "Светлая гостеприимная",
+  "settings": {
+    "custom": {
+      "prihod": {
+        "scheme": "hospitality",
+        "radius": "16px",
+        "shadow": "0 8px 28px #1b25300d"
+      }
+    },
+    "color": {
+      "palette": [
+        {
+          "slug": "paper",
+          "name": "Фон",
+          "color": "#fdfcf9"
+        },
+        {
+          "slug": "ink",
+          "name": "Текст",
+          "color": "#262c3c"
+        },
+        {
+          "slug": "forest",
+          "name": "Акцент",
+          "color": "#b38b44"
+        },
+        {
+          "slug": "gold",
+          "name": "Золото",
+          "color": "#b38b44"
+        },
+        {
+          "slug": "white",
+          "name": "Карточки",
+          "color": "#ffffff"
+        },
+        {
+          "slug": "muted",
+          "name": "Вторичный текст",
+          "color": "#687080"
+        },
+        {
+          "slug": "line",
+          "name": "Границы",
+          "color": "#dcdcd4"
+        }
+      ]
+    }
+  }
+}

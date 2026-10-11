@@ -3,6 +3,10 @@
 ## Локальные
 
 `php tests/lint.php` и `php tests/run.php` — синтаксис и изолированные unit-тесты.
+`python tests/translation-check.py` проверяет покрытие немецких, польских и
+украинских UI-строк и сохранность placeholders; переводы собираются командой
+`python scripts/compile-translations.py`. Синтаксис frontend проверяется через
+`node --check` для prihod/assets/blocks.js и prihod-theme/assets/{editor,media,forms}.js.
 Подстановки функций WordPress находятся только в tests/bootstrap.php и не входят
 в устанавливаемый плагин. `composer check` вызывает те же проверки, если Composer
 доступен в окружении; зависимостей нет.
@@ -53,3 +57,29 @@ wp: latest / php: 8.4 и добавить к команде:
 Сценарий блокирует все HTTP/email на участке существующих плагинов, выводит формы,
 но не отправляет их. На WordPress 6.5 «Записки» 1.2.15 не активируются:
 их минимум WordPress 7.1 и PHP 8.4. Соседние проекты не входят в CI и ZIP «Прихода».
+После переименования соседнего проекта владелец разрешил актуальный каталог
+D:/Projekte/Kloster-PAY/georg-kloster-orthodox-donate (версия 1.0.0).
+Для текущей совместной проверки заменить mount старых «Записок» на этот каталог
+и /wordpress/wp-content/plugins/georg-kloster-orthodox-donate. Проверка поддерживает
+обе точки входа. Публичный API календаря не требует ключа.
+
+Для браузерной QA существует tests/ui-blueprint.json и одноразовый ui-fixture.php.
+В команде Playground заменить run-blueprint на server, Blueprint на ui-blueprint.json,
+добавить --port=9400 и указанные mounts исходных плагинов. Это тестовая база с
+искусственными материалами, не переносить fixture в существующий сайт.
+ui-preview.php блокирует HTTP/email и позволяет сравнивать ?ui_scheme=classic,
+hospitality,editorial,tradition,blue и ?ui_locale=ru_RU,de_DE,pl_PL,uk.
+Проверять переходы формы без её отправки; это не тест оплаты. Завершить сервер
+после проверки. Снимки находятся в docs/design-reference/verification.
+
+tests/server-check.php — отдельная неразрушающая проверка установленного WordPress
+на prihod.georg-kloster.ru. Запускается имеющимся WP-CLI через PHP 8.5 внутри
+WordPress. Материалы не создаёт/не удаляет; проверяет отсутствие блокировки HTTP/email,
+реальные шорткоды, тему и доступ к мастеру. Команды — docs/TEST_SERVER.md.
+
+Актуальная совместная проверка использует выпущенный ZIP Orthodox Donations 1.0.2
+из output соседнего проекта. Его содержимое распаковано в build/fixtures и подключено
+как /wordpress/wp-content/plugins/georg-kloster-orthodox-donate, чтобы параллельные
+изменения исходников не изменяли проверяемую версию. В продуктовые ZIP и Git
+исходники соседнего плагина не входят. Дашборд проверяет права виджетов и настоящую
+маршрутизацию скрытых форм внутри тематических разделов.

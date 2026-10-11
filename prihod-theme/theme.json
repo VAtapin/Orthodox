@@ -3,30 +3,190 @@
   "version": 2,
   "settings": {
     "appearanceTools": true,
-    "layout": {"contentSize": "760px", "wideSize": "1200px"},
-    "color": {"palette": [
-      {"slug":"paper","name":"Бумага","color":"#f7f4ec"},
-      {"slug":"ink","name":"Текст","color":"#252b2a"},
-      {"slug":"forest","name":"Зелёный","color":"#183c36"},
-      {"slug":"gold","name":"Золото","color":"#a98545"},
-      {"slug":"white","name":"Белый","color":"#ffffff"}
-    ]},
+    "layout": {
+      "contentSize": "760px",
+      "wideSize": "1200px"
+    },
+    "color": {
+      "palette": [
+        {
+          "slug": "paper",
+          "name": "Фон",
+          "color": "#faf9f6"
+        },
+        {
+          "slug": "ink",
+          "name": "Текст",
+          "color": "#192133"
+        },
+        {
+          "slug": "forest",
+          "name": "Акцент",
+          "color": "#a46d25"
+        },
+        {
+          "slug": "gold",
+          "name": "Золото",
+          "color": "#b9863d"
+        },
+        {
+          "slug": "white",
+          "name": "Карточки",
+          "color": "#ffffff"
+        },
+        {
+          "slug": "muted",
+          "name": "Вторичный текст",
+          "color": "#687080"
+        },
+        {
+          "slug": "line",
+          "name": "Границы",
+          "color": "#e5dfd5"
+        }
+      ]
+    },
     "typography": {
       "fluid": true,
-      "fontFamilies": [{"slug":"serif","name":"Книжный","fontFamily":"Georgia, 'Times New Roman', serif"},{"slug":"sans","name":"Простой","fontFamily":"system-ui, -apple-system, 'Segoe UI', sans-serif"}],
-      "fontSizes": [{"slug":"small","name":"Малый","size":"0.9rem"},{"slug":"medium","name":"Основной","size":"1.1rem"},{"slug":"large","name":"Большой","size":"1.6rem"},{"slug":"x-large","name":"Заголовок","size":"2.8rem"}]
+      "fontFamilies": [
+        {
+          "slug": "serif",
+          "name": "Книжный",
+          "fontFamily": "Georgia, 'Times New Roman', serif"
+        },
+        {
+          "slug": "sans",
+          "name": "Простой",
+          "fontFamily": "system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      ],
+      "fontSizes": [
+        {
+          "slug": "small",
+          "name": "Малый",
+          "size": "0.9rem"
+        },
+        {
+          "slug": "medium",
+          "name": "Основной",
+          "size": "1.1rem"
+        },
+        {
+          "slug": "large",
+          "name": "Большой",
+          "size": "1.6rem"
+        },
+        {
+          "slug": "x-large",
+          "name": "Заголовок",
+          "size": "2.8rem"
+        }
+      ]
     },
-    "spacing": {"units":["px","rem","%","vw"],"blockGap":true}
-  },
-  "styles": {
-    "color":{"background":"var:preset|color|paper","text":"var:preset|color|ink"},
-    "typography":{"fontFamily":"var:preset|font-family|sans","fontSize":"var:preset|font-size|medium","lineHeight":"1.7"},
-    "spacing":{"padding":{"left":"clamp(1rem, 4vw, 3rem)","right":"clamp(1rem, 4vw, 3rem)"},"blockGap":"1.5rem"},
-    "elements":{
-      "heading":{"typography":{"fontFamily":"var:preset|font-family|serif","fontWeight":"400","lineHeight":"1.2"}},
-      "link":{"color":{"text":"var:preset|color|forest"},":hover":{"typography":{"textDecoration":"underline"}}},
-      "button":{"color":{"background":"var:preset|color|forest","text":"var:preset|color|white"},"border":{"radius":"0.35rem"},"spacing":{"padding":{"top":"0.75rem","bottom":"0.75rem","left":"1.2rem","right":"1.2rem"}}}
+    "spacing": {
+      "units": [
+        "px",
+        "rem",
+        "%",
+        "vw"
+      ],
+      "blockGap": true
+    },
+    "custom": {
+      "prihod": {
+        "scheme": "classic",
+        "radius": "6px",
+        "shadow": "0 8px 28px #1b25300d"
+      }
     }
   },
-  "templateParts":[{"name":"header","title":"Шапка","area":"header"},{"name":"footer","title":"Подвал","area":"footer"}]
+  "styles": {
+    "color": {
+      "background": "var:preset|color|paper",
+      "text": "var:preset|color|ink"
+    },
+    "typography": {
+      "fontFamily": "var:preset|font-family|sans",
+      "fontSize": "1rem",
+      "lineHeight": "1.65"
+    },
+    "spacing": {
+      "padding": {
+        "left": "0",
+        "right": "0"
+      },
+      "blockGap": "1.5rem"
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|serif",
+          "fontWeight": "400",
+          "lineHeight": "1.2"
+        }
+      },
+      "link": {
+        "color": {
+          "text": "var:preset|color|forest"
+        },
+        ":hover": {
+          "typography": {
+            "textDecoration": "underline"
+          }
+        }
+      },
+      "button": {
+        "color": {
+          "background": "var:preset|color|forest",
+          "text": "var:preset|color|white"
+        },
+        "border": {
+          "radius": "0.35rem"
+        },
+        "spacing": {
+          "padding": {
+            "top": "0.75rem",
+            "bottom": "0.75rem",
+            "left": "1.2rem",
+            "right": "1.2rem"
+          }
+        }
+      }
+    }
+  },
+  "templateParts": [
+    {
+      "name": "header",
+      "title": "Шапка",
+      "area": "header"
+    },
+    {
+      "name": "footer",
+      "title": "Подвал",
+      "area": "footer"
+    }
+  ],
+  "customTemplates": [
+    {
+      "name": "wide",
+      "title": "Широкая страница",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "focused",
+      "title": "Форма и подтверждение",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "catalog",
+      "title": "Каталог материалов",
+      "postTypes": [
+        "page"
+      ]
+    }
+  ]
 }

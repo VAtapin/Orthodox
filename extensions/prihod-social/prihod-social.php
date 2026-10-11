@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Приход: Публикации
  * Description: Публикация записей WordPress на странице Facebook через Graph API. Может работать без «Прихода».
- * Version: 0.1.0
+ * Version: 0.1.1
  * Requires at least: 6.5
  * Requires PHP: 8.0
  * License: GPL-2.0-or-later

@@ -1,4 +1,10 @@
 <?php
+$_GET['page'] = 'prihod-wizard';
+do_action( 'admin_enqueue_scripts', 'test_page_prihod-wizard' );
+prihod_assert( wp_style_is( 'prihod-wizard', 'enqueued' ), 'Wizard stylesheet loads independently of translated menu hook names.' );
+unset( $_GET['page'] );
+ob_start(); Prihod\Wizard::render(); $welcome = ob_get_clean();
+prihod_assert( str_contains( $welcome, 'prihod-wizard-welcome' ) && str_contains( $welcome, 'value="start"' ), 'New wizard begins with a real welcome action and six-stage progress.' );
 $existing = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Existing contact', 'post_content' => 'Hand edited content' ) );
 $answers = array( 'profile' => Prihod\Profile::get(), 'modules' => array( 'schedule' => true, 'requests' => true ), 'publications' => true,
     'pages' => array( 'home' => 1, 'contacts' => 1, 'schedule' => 1 ), 'reuse' => array( 'contacts' => $existing ),
@@ -23,6 +29,9 @@ catch ( RuntimeException $error ) { prihod_assert( 'draft' === get_post_status( 
 Prihod\Site_Plan::publish( array( 'home', 'contacts', '_locations_0', '_clergy_0' ), true, '', true );
 prihod_assert( 'publish' === get_post_status( $home_id ) && (int) get_option( 'page_on_front' ) === $home_id, 'Separate publication can explicitly assign the front page.' );
 prihod_assert( ! empty( get_option( 'prihod_resources' )['_navigation']['id'] ), 'Block navigation is created separately without rewriting theme templates.' );
+$navigation_post = get_post( get_option( 'prihod_resources' )['_navigation']['id'] );
+$navigation_blocks = parse_blocks( $navigation_post->post_content );
+prihod_assert( get_the_title( $home_id ) === $navigation_blocks[0]['attrs']['label'], 'Block navigation preserves Unicode labels through WordPress slash handling.' );
 register_nav_menu( 'prihod-test', 'Test menu' );
 Prihod\Site_Plan::publish( array( 'home', 'contacts' ), false, 'prihod-test', true );
 $menu_id = get_option( 'prihod_resources' )['_menu']['id'];

@@ -24,7 +24,7 @@ final class Admin {
         // Settings-only staff still need the parent menu to reach their pages.
         $parent_capability = self::menu_capability();
         add_menu_page( __( 'Приход', 'prihod' ), __( 'Приход', 'prihod' ), $parent_capability, 'prihod', array( $this, 'overview' ), 'dashicons-admin-home', 26 );
-        add_submenu_page( 'prihod', __( 'Обзор', 'prihod' ), __( 'Обзор', 'prihod' ), $parent_capability, 'prihod', array( $this, 'overview' ) );
+        add_submenu_page( 'prihod', __( 'Дашборд', 'prihod' ), __( 'Дашборд', 'prihod' ), $parent_capability, 'prihod', array( $this, 'overview' ), 0 );
         add_submenu_page( 'prihod', __( 'Сведения о приходе', 'prihod' ), __( 'Сведения о приходе', 'prihod' ), 'manage_prihod', 'prihod-profile', array( $this, 'profile' ) );
         add_submenu_page( 'prihod', __( 'Подключения', 'prihod' ), __( 'Подключения', 'prihod' ), 'manage_prihod_settings', 'prihod-integrations', array( $this, 'integrations' ) );
         add_submenu_page( 'prihod', __( 'Настройки', 'prihod' ), __( 'Настройки', 'prihod' ), 'manage_prihod_settings', 'prihod-settings', array( $this, 'configuration' ) );
@@ -51,18 +51,7 @@ final class Admin {
 
     public function overview(): void {
         $this->require_capability( self::menu_capability() );
-        echo '<div class="wrap"><h1>' . esc_html__( 'Приход — обзор', 'prihod' ) . '</h1>';
-        if ( current_user_can( 'manage_prihod' ) ) {
-            $profile = Profile::get();
-            echo '<p>' . esc_html( $profile['name'] ?: __( 'Название прихода ещё не заполнено.', 'prihod' ) ) . '</p>';
-            echo '<p><a class="button button-primary" href="' . esc_url( admin_url( 'admin.php?page=prihod-profile' ) ) . '">' . esc_html__( 'Заполнить сведения о приходе', 'prihod' ) . '</a></p>';
-        }
-        echo '<p>' . esc_html__( 'Доступны сведения о приходе, места служения, духовенство и расписание.', 'prihod' ) . '</p>';
-        if ( current_user_can( 'manage_prihod_schedule' ) ) {
-            $next = Schedule::next();
-            echo '<p>' . esc_html( $next ? $next[0]['title'] . ' — ' . $next[0]['start']->format( 'd.m.Y H:i T' ) : __( 'Ближайшая служба пока не указана.', 'prihod' ) ) . '</p>';
-        }
-        echo '<p>' . esc_html__( 'Активация не создаёт страницы и не изменяет главную, меню или тему сайта.', 'prihod' ) . '</p></div>';
+        Dashboard::overview();
     }
 
     public function profile(): void {

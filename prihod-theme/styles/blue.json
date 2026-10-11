@@ -1,0 +1,52 @@
+{
+  "version": 2,
+  "title": "Современная синяя",
+  "settings": {
+    "custom": {
+      "prihod": {
+        "scheme": "blue",
+        "radius": "12px",
+        "shadow": "0 8px 28px #1b25300d"
+      }
+    },
+    "color": {
+      "palette": [
+        {
+          "slug": "paper",
+          "name": "Фон",
+          "color": "#f9fbfd"
+        },
+        {
+          "slug": "ink",
+          "name": "Текст",
+          "color": "#16324c"
+        },
+        {
+          "slug": "forest",
+          "name": "Акцент",
+          "color": "#396fa3"
+        },
+        {
+          "slug": "gold",
+          "name": "Золото",
+          "color": "#396fa3"
+        },
+        {
+          "slug": "white",
+          "name": "Карточки",
+          "color": "#ffffff"
+        },
+        {
+          "slug": "muted",
+          "name": "Вторичный текст",
+          "color": "#687080"
+        },
+        {
+          "slug": "line",
+          "name": "Границы",
+          "color": "#dcdcd4"
+        }
+      ]
+    }
+  }
+}

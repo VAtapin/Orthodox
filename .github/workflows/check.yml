@@ -29,6 +29,8 @@ jobs:
         with:
           python-version: '3.12'
       - run: python scripts/package.py
+      - run: python tests/translation-check.py
+      - run: node --check prihod/assets/blocks.js && node --check prihod-theme/assets/editor.js && node --check prihod-theme/assets/media.js && node --check prihod-theme/assets/forms.js
       - name: Set test versions
         env:
           TEST_WP: ${{ matrix.wp }}

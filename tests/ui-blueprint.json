@@ -1,0 +1,7 @@
+{
+  "preferredVersions": {"wp": "latest", "php": "8.4"},
+  "steps": [
+    {"step": "runPHP", "code": "<?php require '/wordpress/wp-content/plugins/prihod-tests/ui-fixture.php';"},
+    {"step": "login", "username": "admin", "password": "password"}
+  ]
+}
