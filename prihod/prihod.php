@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Приход
  * Description: Сведения о приходе, места служения и духовенство. Основа системы управления приходским сайтом.
- * Version: 0.3.0
+ * Version: 0.4.0
  * Requires at least: 6.5
  * Requires PHP: 8.0
  * License: GPL-2.0-or-later
@@ -12,7 +12,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'PRIHOD_VERSION', '0.3.0' );
+define( 'PRIHOD_VERSION', '0.4.0' );
 define( 'PRIHOD_FILE', __FILE__ );
 
 require_once __DIR__ . '/includes/class-capabilities.php';
@@ -32,6 +32,11 @@ require_once __DIR__ . '/includes/class-requests.php';
 require_once __DIR__ . '/includes/class-request-form.php';
 require_once __DIR__ . '/includes/class-request-admin.php';
 require_once __DIR__ . '/includes/class-request-privacy.php';
+require_once __DIR__ . '/includes/class-site-plan.php';
+require_once __DIR__ . '/includes/class-wizard.php';
+require_once __DIR__ . '/includes/class-diagnostics.php';
+require_once __DIR__ . '/includes/class-access.php';
+require_once __DIR__ . '/includes/class-maintenance.php';
 
 register_activation_hook( __FILE__, array( 'Prihod\\Capabilities', 'install' ) );
 add_action( 'plugins_loaded', array( 'Prihod\\Plugin', 'boot' ) );

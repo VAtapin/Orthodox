@@ -70,10 +70,15 @@ prihod_assert( str_contains( $html, 'prihod_profile[name]' ) && str_contains( $h
 
 require __DIR__ . '/schedule-smoke.php';
 require __DIR__ . '/requests-smoke.php';
+require __DIR__ . '/wizard-smoke.php';
 deactivate_plugins( 'prihod/prihod.php' );
 prihod_assert( get_post( $location ) && 'Parish' === get_option( 'prihod_profile' )['name'], 'Deactivation retains parish records.' );
 uninstall_plugin( 'prihod/prihod.php' );
 prihod_assert( get_post( $clergy ) && get_post_meta( $clergy, '_prihod_details', true )['location_ids'] === array( $location ), 'Ordinary uninstall retains data.' );
+Prihod\Maintenance::start( false );
+prihod_assert( ! Prihod\Modules::enabled( 'requests' ), 'Confirmed purge pauses incoming requests.' );
+Prihod\Maintenance::step();
+prihod_assert( ! get_post( $location ) && ! get_post( $clergy ) && get_post( $existing ), 'Explicit background purge removes parish data but preserves reused site pages.' );
 echo "WORDPRESS_SMOKE_OK: {$assertions} assertions; WordPress " . get_bloginfo( 'version' ) . '; PHP ' . PHP_VERSION . "\n";
 file_put_contents( __DIR__ . '/.wordpress-result.json', wp_json_encode( array(
     'status' => 'WORDPRESS_SMOKE_OK', 'assertions' => $assertions,

@@ -4,6 +4,7 @@ defined( 'ABSPATH' ) || exit;
 
 final class Modules {
     public static function enabled( string $id ): bool {
+        if ( get_option( 'prihod_purge_job' ) ) { return false; }
         $settings = get_option( 'prihod_modules', array() );
         return ! isset( $settings[ $id ] ) || (bool) $settings[ $id ];
     }

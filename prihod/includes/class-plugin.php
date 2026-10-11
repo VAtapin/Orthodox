@@ -21,6 +21,10 @@ final class Plugin {
         ( new Admin( $this->integrations ) )->hooks();
         Schedule::hooks();
         Requests::hooks();
+        Wizard::hooks();
+        Diagnostics::hooks();
+        Access::hooks();
+        Maintenance::hooks();
         add_action( 'init', array( Public_View::class, 'register' ) );
         add_action( 'init', function () {
             do_action( 'prihod_register_integrations', $this->integrations );

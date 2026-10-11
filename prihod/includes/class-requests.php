@@ -50,6 +50,8 @@ final class Requests {
         update_post_meta( $id, '_prihod_sender', array( 'name' => $data['name'], 'email' => $data['email'] ) );
         update_post_meta( $id, '_prihod_email', $data['email'] );
         update_post_meta( $id, '_prihod_request_status', 'new' );
+        $responsible = (int) get_option( 'prihod_default_responsible', 0 );
+        if ( $responsible && user_can( $responsible, 'view_prihod_requests' ) && user_can( $responsible, 'reply_prihod_requests' ) ) { update_post_meta( $id, '_prihod_assigned', $responsible ); }
         update_post_meta( $id, '_prihod_consent_at', gmdate( DATE_ATOM ) );
         do_action( 'prihod_request_created', $id );
         return $id;
@@ -72,6 +74,7 @@ final class Requests {
         return $message;
     }
     public static function deliver( int $id, int $message_id ): void {
+        if ( get_option( 'prihod_purge_job' ) ) { return; }
         $post = get_post( $id ); $message = get_post( $message_id );
         if ( ! $post || 'prihod_request' !== $post->post_type || ! $message || (int) $message->post_parent !== $id || 'prihod_message' !== $message->post_type || get_post_meta( $message_id, '_prihod_internal', true ) || 'sent' === get_post_meta( $message_id, '_prihod_delivery', true ) ) { return; }
         $lock = 'prihod_mail_lock_' . $message_id;
