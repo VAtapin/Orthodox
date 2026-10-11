@@ -4,6 +4,7 @@
     {
       "step": "runPHP",
       "code": "<?php ini_set('display_errors', '1'); error_reporting(E_ALL); try { require '/wordpress/wp-content/plugins/prihod-tests/wordpress-smoke.php'; } catch (Throwable $error) { echo get_class($error) . ': ' . $error->getMessage() . '\\n' . $error->getTraceAsString(); throw $error; }"
-    }
+    },
+    { "step": "runPHP", "code": "<?php ini_set('display_errors', '1'); try { require '/wordpress/wp-content/plugins/prihod-tests/theme-alone.php'; } catch (Throwable $error) { echo $error->getMessage(); throw $error; }" }
   ]
 }

@@ -13,7 +13,7 @@
 Запуск из корня репозитория (Node.js 22 для инструмента проверки, не для плагина):
 
 ```powershell
-npx.cmd --yes @wp-playground/cli@latest run-blueprint --mount-dir ./prihod /wordpress/wp-content/plugins/prihod --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/blueprint.json
+npx.cmd --yes @wp-playground/cli@latest run-blueprint --mount-dir ./prihod /wordpress/wp-content/plugins/prihod --mount-dir ./prihod-theme /wordpress/wp-content/themes/prihod-theme --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/blueprint.json
 ```
 
 На Linux использовать `npx` вместо `npx.cmd`. Версии задаются в `preferredVersions`
@@ -30,5 +30,8 @@ CLI может не отображать успешный PHP stdout. Отчёт
 создание и сохранение записей, связи, отказ редактору и допуск сотруднику с
 назначенным capability, отображение формы, сохранность при деактивации/uninstall.
 Проверки SQLite не заменяют будущую проверку MySQL/MariaDB в Plesk и браузерную QA.
+
+Проверяются также безопасный мастер и тема. Второй PHP request проверяет standalone
+render темы при неактивном Core; результат — `tests/.theme-result.json`.
 
 Источник инструмента: https://developer.wordpress.org/playground/developers/local-development/wp-playground-cli/.

@@ -8,3 +8,4 @@
 .DS_Store
 Thumbs.db
 /tests/.wordpress-result.json
+/tests/.theme-result.json

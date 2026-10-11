@@ -57,7 +57,13 @@ final class Wizard {
         elseif ( 9 === $step ) {
             echo '<p>' . esc_html__( 'Дополнительные компоненты устанавливаются вручную и отдельно. Автоматических установок нет.', 'prihod' ) . '</p>';
             foreach ( Plugin::boot()->integrations()->all() as $integration ) { $report = Plugin::boot()->integrations()->report( $integration ); echo '<p>' . esc_html( $report['name'] . ': ' . $report['message'] ) . '</p>'; }
-        } elseif ( 10 === $step ) { echo '<p>' . esc_html__( 'Текущая тема сохраняется. Установка, предварительный просмотр и активация темы выполняются отдельно в разделе «Внешний вид».', 'prihod' ) . '</p>'; }
+        } elseif ( 10 === $step ) {
+            echo '<p>' . esc_html__( 'Текущая тема сохраняется. Тема «Приход» необязательна; загрузите её ZIP вручную через «Внешний вид → Темы». Активация — отдельное действие.', 'prihod' ) . '</p>';
+            $theme = wp_get_theme( 'prihod-theme' );
+            if ( $theme->exists() && current_user_can( 'switch_themes' ) ) {
+                echo '<p><a href="' . esc_url( add_query_arg( 'wp_theme_preview', 'prihod-theme', admin_url( 'site-editor.php' ) ) ) . '" target="_blank" rel="noopener">' . esc_html__( 'Предварительный просмотр темы', 'prihod' ) . '</a> · <a href="' . esc_url( wp_nonce_url( admin_url( 'themes.php?action=activate&stylesheet=prihod-theme' ), 'switch-theme_prihod-theme' ) ) . '">' . esc_html__( 'Отдельно активировать тему «Приход»', 'prihod' ) . '</a></p>';
+            }
+        }
         elseif ( 11 === $step ) {
             $resources = get_option( 'prihod_resources', array() );
             foreach ( Site_Plan::pages() as $key => $template ) {

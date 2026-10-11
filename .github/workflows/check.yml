@@ -30,4 +30,4 @@ jobs:
           TEST_WP: ${{ matrix.wp }}
           TEST_PHP: ${{ matrix.php }}
         run: node -e "const fs=require('fs'); const b=JSON.parse(fs.readFileSync('tests/blueprint.json')); b.preferredVersions={wp:process.env.TEST_WP,php:process.env.TEST_PHP}; fs.writeFileSync(process.env.RUNNER_TEMP+'/prihod-blueprint.json',JSON.stringify(b));"
-      - run: npx --yes @wp-playground/cli@latest run-blueprint --mount-dir ./prihod /wordpress/wp-content/plugins/prihod --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint "$RUNNER_TEMP/prihod-blueprint.json"
+      - run: npx --yes @wp-playground/cli@latest run-blueprint --mount-dir ./prihod /wordpress/wp-content/plugins/prihod --mount-dir ./prihod-theme /wordpress/wp-content/themes/prihod-theme --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint "$RUNNER_TEMP/prihod-blueprint.json"

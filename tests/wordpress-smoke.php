@@ -71,6 +71,7 @@ prihod_assert( str_contains( $html, 'prihod_profile[name]' ) && str_contains( $h
 require __DIR__ . '/schedule-smoke.php';
 require __DIR__ . '/requests-smoke.php';
 require __DIR__ . '/wizard-smoke.php';
+require __DIR__ . '/theme-smoke.php';
 deactivate_plugins( 'prihod/prihod.php' );
 prihod_assert( get_post( $location ) && 'Parish' === get_option( 'prihod_profile' )['name'], 'Deactivation retains parish records.' );
 uninstall_plugin( 'prihod/prihod.php' );
