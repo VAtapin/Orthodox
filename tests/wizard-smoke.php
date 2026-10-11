@@ -23,6 +23,11 @@ catch ( RuntimeException $error ) { prihod_assert( 'draft' === get_post_status( 
 Prihod\Site_Plan::publish( array( 'home', 'contacts', '_locations_0', '_clergy_0' ), true, '', true );
 prihod_assert( 'publish' === get_post_status( $home_id ) && (int) get_option( 'page_on_front' ) === $home_id, 'Separate publication can explicitly assign the front page.' );
 prihod_assert( ! empty( get_option( 'prihod_resources' )['_navigation']['id'] ), 'Block navigation is created separately without rewriting theme templates.' );
+register_nav_menu( 'prihod-test', 'Test menu' );
+Prihod\Site_Plan::publish( array( 'home', 'contacts' ), false, 'prihod-test', true );
+$menu_id = get_option( 'prihod_resources' )['_menu']['id'];
+Prihod\Site_Plan::publish( array( 'home', 'contacts' ), false, 'prihod-test', true );
+prihod_assert( 2 === count( wp_get_nav_menu_items( $menu_id ) ), 'Repeated menu publication does not duplicate links.' );
 wp_set_current_user( $editor_id );
 try { Prihod\Site_Plan::apply( $plan ); prihod_assert( false, 'Editor cannot apply parish plan.' ); }
 catch ( RuntimeException $error ) { prihod_assert( true, 'Plan apply requires parish and page capabilities.' ); }

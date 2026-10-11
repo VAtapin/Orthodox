@@ -112,6 +112,7 @@ final class Admin {
         foreach ( $this->integrations->all() as $integration ) {
             $report = $this->integrations->report( $integration );
             echo '<h2>' . esc_html( $report['name'] ) . '</h2><p>' . esc_html( $labels[ $report['status'] ] ) . '</p><p>' . esc_html( $report['message'] ) . '</p>';
+            if ( ! empty( $report['settings_url'] ) ) { echo '<p><a href="' . esc_url( $report['settings_url'] ) . '">' . esc_html__( 'Настроить подключение', 'prihod' ) . '</a></p>'; }
         }
         echo '</div>';
     }
@@ -134,6 +135,6 @@ final class Admin {
         foreach ( Capabilities::all() as $capability ) {
             echo '<li><code>' . esc_html( $capability ) . '</code></li>';
         }
-        echo '</ul><p>' . esc_html__( 'Интерфейс назначения прав в самом плагине пока отсутствует.', 'prihod' ) . '</p></div>';
+        echo '</ul><p>' . esc_html__( 'Назначить права можно в разделе «Права сотрудников».', 'prihod' ) . '</p></div>';
     }
 }

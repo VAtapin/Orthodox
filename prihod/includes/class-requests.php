@@ -12,6 +12,12 @@ final class Requests {
         add_filter( 'wp_privacy_personal_data_erasers', array( Request_Privacy::class, 'erasers' ) );
         if ( ! wp_next_scheduled( 'prihod_requests_retention' ) ) { wp_schedule_event( time() + 3600, 'daily', 'prihod_requests_retention' ); }
         if ( ! Modules::enabled( 'requests' ) ) { return; }
+        add_action( 'template_redirect', function () {
+            $post = get_post();
+            if ( $post && ( has_block( 'prihod/requests', $post ) || str_contains( $post->post_content, '[prihod_requests' ) ) ) {
+                if ( ! defined( 'DONOTCACHEPAGE' ) ) { define( 'DONOTCACHEPAGE', true ); } nocache_headers();
+            }
+        } );
         add_action( 'admin_menu', array( Request_Admin::class, 'menu' ) );
         add_action( 'admin_post_prihod_request_submit', array( Request_Form::class, 'submit' ) );
         add_action( 'admin_post_nopriv_prihod_request_submit', array( Request_Form::class, 'submit' ) );
@@ -91,8 +97,18 @@ final class Requests {
             } elseif ( $attempt < 3 ) { wp_schedule_single_event( time() + 300 * $attempt, 'prihod_request_mail', array( $id, $message_id ) ); }
         } finally { Lock::release( $lock, $token ); }
     }
+    public static function retry( int $id, int $message_id ): void {
+        self::assert_request( $id );
+        if ( ! current_user_can( 'view_prihod_requests' ) || ! current_user_can( 'reply_prihod_requests' ) ) { throw new \RuntimeException( __( 'Недостаточно прав.', 'prihod' ) ); }
+        $message = get_post( $message_id );
+        if ( ! $message || 'prihod_message' !== $message->post_type || (int) $message->post_parent !== $id || get_post_meta( $message_id, '_prihod_internal', true ) || 'failed' !== get_post_meta( $message_id, '_prihod_delivery', true ) ) { throw new \InvalidArgumentException( __( 'Ответ недоступен для повторной отправки.', 'prihod' ) ); }
+        wp_clear_scheduled_hook( 'prihod_request_mail', array( $id, $message_id ) ); update_post_meta( $message_id, '_prihod_attempts', 0 );
+        $queued = wp_schedule_single_event( time() + 1, 'prihod_request_mail', array( $id, $message_id ), true );
+        update_post_meta( $message_id, '_prihod_delivery', is_wp_error( $queued ) || ! $queued ? 'failed' : 'pending' );
+    }
     public static function delete( int $id ): void {
         self::assert_request( $id );
+        do_action( 'prihod_request_deleted', $id );
         foreach ( self::messages( $id ) as $message ) { wp_clear_scheduled_hook( 'prihod_request_mail', array( $id, $message->ID ) ); wp_delete_post( $message->ID, true ); }
         wp_delete_post( $id, true );
     }

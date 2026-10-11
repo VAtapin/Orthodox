@@ -29,3 +29,5 @@ foreach ( array( array( 'location_id' => 2 ), array( 'date' => '2026-02-30' ), a
 $GLOBALS['options']['prihod_modules'] = Modules::sanitize( array( 'requests' => 1 ) );
 check( ! Modules::enabled( 'schedule' ) && Modules::enabled( 'requests' ), 'Module toggles are independent.' );
 unset( $GLOBALS['options']['prihod_modules'] );
+try { Schedule::validate( array_merge( $validated, array( 'date' => '2026-03-29', 'time' => '01:30', 'end' => '02:30', 'timezone' => 'Europe/Berlin' ) ) ); check( false, 'Nonexistent end must fail.' ); }
+catch ( InvalidArgumentException $error ) { check( true, 'One-off interval rejects nonexistent end.' ); }

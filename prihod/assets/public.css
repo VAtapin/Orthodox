@@ -4,7 +4,7 @@
 .prihod-block input, .prihod-block select, .prihod-block textarea {max-width: 100%; font: inherit;}
 .prihod-block .is-cancelled h3 {text-decoration: line-through;}
 @media print {
-    .prihod-controls, header, footer, nav, aside, #wpadminbar {display: none !important;}
+    .prihod-printing .prihod-controls, .prihod-printing header, .prihod-printing footer, .prihod-printing nav, .prihod-printing aside, .prihod-printing #wpadminbar {display: none !important;}
     .prihod-event {break-inside: avoid;}
     .prihod-block {color: black; background: white;}
 }

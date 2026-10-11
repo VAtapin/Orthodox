@@ -134,10 +134,14 @@ final class Site_Plan {
         update_option( 'prihod_resources', $resources, false );
     }
     private static function navigation( array $pages, array &$resources ): void {
-        if ( ! empty( $resources['_navigation']['id'] ) && get_post( $resources['_navigation']['id'] ) ) { return; }
-        $content = '';
-        foreach ( $pages as $post ) { $content .= '<!-- wp:navigation-link ' . wp_json_encode( array( 'label' => $post->post_title, 'type' => 'page', 'id' => $post->ID, 'url' => get_permalink( $post->ID ), 'kind' => 'post-type' ) ) . ' /-->'; }
-        $id = wp_insert_post( array( 'post_type' => 'wp_navigation', 'post_status' => 'publish', 'post_title' => __( 'Навигация прихода', 'prihod' ), 'post_content' => $content ), true );
+        $existing = ! empty( $resources['_navigation']['id'] ) ? get_post( $resources['_navigation']['id'] ) : null;
+        if ( $existing && 'wp_navigation' !== $existing->post_type ) { throw new \RuntimeException( __( 'Неверный ресурс навигации.', 'prihod' ) ); }
+        $content = $existing ? $existing->post_content : ''; $ids = array();
+        $collect = function ( array $blocks ) use ( &$collect, &$ids ) { foreach ( $blocks as $block ) { if ( ! empty( $block['attrs']['id'] ) ) { $ids[] = (int) $block['attrs']['id']; } if ( ! empty( $block['innerBlocks'] ) ) { $collect( $block['innerBlocks'] ); } } };
+        $collect( parse_blocks( $content ) );
+        foreach ( $pages as $post ) { if ( ! in_array( $post->ID, $ids, true ) ) { $content .= '<!-- wp:navigation-link ' . wp_json_encode( array( 'label' => $post->post_title, 'type' => 'page', 'id' => $post->ID, 'url' => get_permalink( $post->ID ), 'kind' => 'post-type' ) ) . ' /-->'; } }
+        if ( $existing && $content === $existing->post_content ) { return; }
+        $id = $existing ? wp_update_post( array( 'ID' => $existing->ID, 'post_content' => $content ), true ) : wp_insert_post( array( 'post_type' => 'wp_navigation', 'post_status' => 'publish', 'post_title' => __( 'Навигация прихода', 'prihod' ), 'post_content' => $content ), true );
         if ( is_wp_error( $id ) ) { throw new \RuntimeException( __( 'Не удалось создать навигацию.', 'prihod' ) ); }
         $resources['_navigation'] = array( 'id' => $id, 'owned' => true );
         // No theme template is rewritten: user selects this navigation in Site Editor.
@@ -147,9 +151,11 @@ final class Site_Plan {
         if ( ! $id || ! wp_get_nav_menu_object( $id ) ) {
             $id = wp_create_nav_menu( __( 'Приход', 'prihod' ) . ' ' . wp_generate_password( 6, false, false ) );
             if ( is_wp_error( $id ) ) { throw new \RuntimeException( __( 'Не удалось создать меню.', 'prihod' ) ); }
-            foreach ( $pages as $post ) { $item = wp_update_nav_menu_item( $id, 0, array( 'menu-item-object-id' => $post->ID, 'menu-item-object' => 'page', 'menu-item-type' => 'post_type', 'menu-item-status' => 'publish' ) ); if ( is_wp_error( $item ) ) { throw new \RuntimeException( __( 'Не удалось создать пункт меню.', 'prihod' ) ); } }
             $resources['_menu'] = array( 'id' => $id, 'owned' => true );
+            update_option( 'prihod_resources', $resources, false );
         }
+        $ids = array_map( fn( $item ) => (int) $item->object_id, wp_get_nav_menu_items( $id ) ?: array() );
+        foreach ( $pages as $post ) { if ( ! in_array( $post->ID, $ids, true ) ) { $item = wp_update_nav_menu_item( $id, 0, array( 'menu-item-object-id' => $post->ID, 'menu-item-object' => 'page', 'menu-item-type' => 'post_type', 'menu-item-status' => 'publish' ) ); if ( is_wp_error( $item ) ) { throw new \RuntimeException( __( 'Не удалось создать пункт меню.', 'prihod' ) ); } } }
         $locations = get_nav_menu_locations(); $locations[ $location ] = (int) $id; set_theme_mod( 'nav_menu_locations', $locations );
     }
     private static function authorize(): void {

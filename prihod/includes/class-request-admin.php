@@ -21,6 +21,9 @@ final class Request_Admin {
                 $internal = get_post_meta( $message->ID, '_prihod_internal', true );
                 echo '<article><h3>' . esc_html( $internal ? __( 'Внутренняя заметка', 'prihod' ) : __( 'Ответ по email', 'prihod' ) ) . '</h3><p>' . esc_html( $message->post_date ) . '</p><p>' . nl2br( esc_html( $message->post_content ) ) . '</p>';
                 if ( ! $internal ) { echo '<p>' . esc_html( self::delivery_label( get_post_meta( $message->ID, '_prihod_delivery', true ) ) ) . '</p>'; }
+                if ( ! $internal && 'failed' === get_post_meta( $message->ID, '_prihod_delivery', true ) && current_user_can( 'reply_prihod_requests' ) ) {
+                    echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="prihod_request_update"><input type="hidden" name="request_id" value="' . esc_attr( $id ) . '"><input type="hidden" name="retry_message" value="' . esc_attr( $message->ID ) . '">'; wp_nonce_field( 'prihod_request_update_' . $id ); echo '<button class="button">' . esc_html__( 'Повторить этот ответ после исправления почты', 'prihod' ) . '</button></form>';
+                }
                 echo '</article>';
             }
             if ( current_user_can( 'reply_prihod_requests' ) || current_user_can( 'assign_prihod_requests' ) || current_user_can( 'delete_prihod_requests' ) ) {
@@ -71,6 +74,7 @@ final class Request_Admin {
                 if ( '1' !== ( $_POST['confirm_delete'] ?? '' ) ) { throw new \InvalidArgumentException( __( 'Подтвердите удаление.', 'prihod' ) ); }
                 Requests::delete( $id ); $id = 0;
             } else {
+                if ( isset( $_POST['retry_message'] ) ) { self::authorize( 'reply_prihod_requests' ); Requests::retry( $id, is_scalar( $_POST['retry_message'] ) ? absint( $_POST['retry_message'] ) : 0 ); }
                 if ( isset( $_POST['assigned'] ) ) {
                     self::authorize( 'assign_prihod_requests' );
                     $assigned = is_scalar( $_POST['assigned'] ) ? absint( $_POST['assigned'] ) : -1;

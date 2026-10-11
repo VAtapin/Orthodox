@@ -9,3 +9,4 @@
 Thumbs.db
 /tests/.wordpress-result.json
 /tests/.theme-result.json
+/tests/.connectors-result.json

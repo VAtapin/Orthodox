@@ -14,7 +14,7 @@ final class Access {
         echo '<button class="button">' . esc_html__( 'Выбрать', 'prihod' ) . '</button></form>';
         if ( $id && get_userdata( $id ) && $id !== get_current_user_id() && current_user_can( 'edit_user', $id ) ) {
             echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="prihod_access"><input type="hidden" name="user_id" value="' . esc_attr( $id ) . '">'; wp_nonce_field( 'prihod_access_' . $id );
-            foreach ( Capabilities::all() as $cap ) { echo '<p><label><input type="checkbox" name="caps[' . esc_attr( $cap ) . ']" value="1"' . checked( user_can( $id, $cap ), true, false ) . '> ' . esc_html( $cap ) . '</label></p>'; }
+            foreach ( Capabilities::labels() as $cap => $label ) { echo '<p><label><input type="checkbox" name="caps[' . esc_attr( $cap ) . ']" value="1"' . checked( user_can( $id, $cap ), true, false ) . '> ' . esc_html( $label ) . '</label></p>'; }
             submit_button(); echo '</form>';
         }
         echo '<p>' . esc_html__( 'Изменяются только права «Прихода» выбранного сотрудника. Собственные права здесь не редактируются. Для ответа нужны права просмотра и ответа; для удаления — просмотра и удаления.', 'prihod' ) . '</p></div>';

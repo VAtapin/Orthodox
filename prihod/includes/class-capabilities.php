@@ -17,6 +17,11 @@ final class Capabilities {
             'manage_prihod_settings',
         );
     }
+    public static function labels(): array {
+        return array( 'manage_prihod' => __( 'Сведения о приходе, места и духовенство', 'prihod' ), 'manage_prihod_schedule' => __( 'Управление расписанием', 'prihod' ),
+            'view_prihod_requests' => __( 'Просмотр обращений', 'prihod' ), 'reply_prihod_requests' => __( 'Ответы и статусы обращений', 'prihod' ),
+            'assign_prihod_requests' => __( 'Назначение ответственных', 'prihod' ), 'delete_prihod_requests' => __( 'Удаление обращений', 'prihod' ), 'manage_prihod_settings' => __( 'Настройки, мастер и подключения', 'prihod' ) );
+    }
 
     public static function install(): void {
         // Initial grants only. Authorization elsewhere always checks capabilities.

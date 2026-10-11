@@ -34,7 +34,7 @@ final class Integration_Registry {
                 || ! in_array( $health['status'], array( 'ready', 'needs_setup', 'unavailable' ), true ) ) {
                 throw new \UnexpectedValueException( 'Invalid integration report.' );
             }
-            return array( 'name' => $description['name'], 'status' => $health['status'], 'message' => $health['message'] );
+            return array( 'name' => $description['name'], 'status' => $health['status'], 'message' => $health['message'], 'settings_url' => is_string( $description['settings_url'] ?? null ) ? wp_validate_redirect( $description['settings_url'], '' ) : '' );
         } catch ( \Throwable $error ) {
             // Do not expose credentials or external responses from exception messages.
             return array(

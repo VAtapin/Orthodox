@@ -9,6 +9,7 @@ final class Public_View {
     public static function register(): void {
         wp_register_script( 'prihod-blocks', plugins_url( 'assets/blocks.js', PRIHOD_FILE ), array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-server-side-render', 'wp-i18n' ), PRIHOD_VERSION, true );
         wp_register_style( 'prihod-public', plugins_url( 'assets/public.css', PRIHOD_FILE ), array(), PRIHOD_VERSION );
+        add_action( 'wp_enqueue_scripts', function () { wp_enqueue_style( 'prihod-public' ); } );
         $blocks = self::blocks();
         wp_localize_script( 'prihod-blocks', 'prihodBlocks', $blocks );
         foreach ( $blocks as $key => $title ) {

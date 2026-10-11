@@ -13,7 +13,8 @@
 Запуск из корня репозитория (Node.js 22 для инструмента проверки, не для плагина):
 
 ```powershell
-npx.cmd --yes @wp-playground/cli@latest run-blueprint --mount-dir ./prihod /wordpress/wp-content/plugins/prihod --mount-dir ./prihod-theme /wordpress/wp-content/themes/prihod-theme --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/blueprint.json
+python scripts/package.py
+npx.cmd --yes @wp-playground/cli@latest run-blueprint --mount-dir ./prihod /wordpress/wp-content/plugins/prihod --mount-dir ./prihod-theme /wordpress/wp-content/themes/prihod-theme --mount-dir ./build/packages/prihod-telegram /wordpress/wp-content/plugins/prihod-telegram --mount-dir ./build/packages/prihod-whatsapp /wordpress/wp-content/plugins/prihod-whatsapp --mount-dir ./build/packages/prihod-social /wordpress/wp-content/plugins/prihod-social --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/blueprint.json
 ```
 
 На Linux использовать `npx` вместо `npx.cmd`. Версии задаются в `preferredVersions`
@@ -35,3 +36,14 @@ CLI может не отображать успешный PHP stdout. Отчёт
 render темы при неактивном Core; результат — `tests/.theme-result.json`.
 
 Источник инструмента: https://developer.wordpress.org/playground/developers/local-development/wp-playground-cli/.
+
+Команда включает три независимо собранных подключения.
+Проверяется также их standalone работа; отчёт .connectors-result.json.
+HTTP перехватывается, реальные сообщения/публикации не отправляются.
+
+Условия веток тестирования существующих плагинов проверяют фактическое присутствие
+их файлов и поддерживаемую версию платформы. Без дополнительных mounts эти ветки
+не выполняются. Это не означает успешной проверки совместимости с живыми плагинами.
+Подключение их каталогов требует отдельного разрешения владельца после отклонения
+автоматической проверкой безопасности. На WordPress 6.5 «Записки» 1.2.15 не активируются:
+их минимум WordPress 7.1 и PHP 8.4.

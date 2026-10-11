@@ -59,19 +59,27 @@ final class Schedule {
             $replacement = array( 'action' => 'replace', 'date' => $change['date'] ?? $original, 'time' => $change['time'] ?? $rule['time'], 'end' => $change['end'] ?? $rule['end'], 'timezone' => $change['timezone'] ?? $rule['timezone'] );
             foreach ( array( 'date', 'time', 'end', 'timezone' ) as $key ) { if ( ! is_string( $replacement[ $key ] ) ) { throw new \InvalidArgumentException( __( 'Некорректное исключение.', 'prihod' ) ); } }
             $replacement['location_id'] = self::location( $change['location_id'] ?? $rule['location_id'] );
+            if ( $replacement['timezone'] && ! in_array( $replacement['timezone'], timezone_identifiers_list(), true ) ) { throw new \InvalidArgumentException( __( 'Некорректный часовой пояс переноса.', 'prihod' ) ); }
             $replacement['timezone'] = self::timezone( $replacement['location_id'], $replacement['timezone'] );
             if ( ! Occurrences::date( $replacement['date'] ) || ! Occurrences::time( $replacement['time'] ) || ( $replacement['end'] && ! Occurrences::time( $replacement['end'] ) )
                 || ! Occurrences::instant( $replacement['date'], $replacement['time'], $replacement['timezone'] ) ) {
                 throw new \InvalidArgumentException( __( 'Некорректная дата или несуществующее местное время переноса.', 'prihod' ) );
             }
             $exceptions[ $original ] = $replacement;
+            self::check_interval( $replacement['date'], $replacement['time'], $replacement['end'], $replacement['timezone'] );
         }
         $rule['exceptions'] = $exceptions;
         $zone = self::timezone( $rule['location_id'], $rule['timezone'] );
         if ( 'regular' !== $rule['kind'] && ! Occurrences::instant( $rule['date'], $rule['time'], $zone ) ) {
             throw new \InvalidArgumentException( __( 'Это местное время не существует из-за перевода часов.', 'prihod' ) );
         }
+        if ( 'regular' !== $rule['kind'] ) { self::check_interval( $rule['date'], $rule['time'], $rule['end'], $zone ); }
         return $rule;
+    }
+    private static function check_interval( string $date, string $time, string $end, string $zone ): void {
+        if ( ! $end ) { return; }
+        $end_date = $end <= $time ? ( new \DateTimeImmutable( $date ) )->modify( '+1 day' )->format( 'Y-m-d' ) : $date;
+        if ( ! Occurrences::instant( $end_date, $end, $zone ) ) { throw new \InvalidArgumentException( __( 'Время окончания не существует из-за перевода часов.', 'prihod' ) ); }
     }
     private static function location( $id ): int {
         if ( ! is_scalar( $id ) || ! ctype_digit( (string) $id ) || (int) $id < 1 || 'prihod_location' !== get_post_type( (int) $id ) || in_array( get_post_status( (int) $id ), array( 'trash', 'auto-draft' ), true ) ) {

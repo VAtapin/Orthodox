@@ -30,6 +30,8 @@ add_filter( 'pre_wp_mail', $mail_failure );
 Prihod\Requests::deliver( $request, $failed );
 remove_filter( 'pre_wp_mail', $mail_failure );
 prihod_assert( 'failed' === get_post_meta( $failed, '_prihod_delivery', true ), 'Mail failure is visible in message history.' );
+Prihod\Requests::retry( $request, $failed );
+prihod_assert( 'pending' === get_post_meta( $failed, '_prihod_delivery', true ), 'Staff can explicitly retry an existing failed answer without creating a second message.' );
 $export = Prihod\Request_Privacy::export( 'visitor@example.org' );
 prihod_assert( 1 === count( $export['data'] ) && $export['done'], 'Privacy exporter includes the request and history.' );
 prihod_assert( str_contains( Prihod\Request_Form::render(), 'name="consent"' ), 'Public form requires consent and uses registered handler.' );
