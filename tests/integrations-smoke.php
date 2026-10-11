@@ -50,11 +50,19 @@ prihod_assert( count( $notice_jobs ) === 1 && ! str_contains( wp_json_encode( ge
 Prihod\Requests::delete( $private_request );
 prihod_assert( ! get_option( 'prihod_job_telegram_' . $notice_jobs[0] ), 'Privacy erasure removes queued external notification metadata.' );
 foreach ( $configs as $provider => $config ) { $config['enabled'] = false; update_option( 'prihod_connect_' . $provider, $config, false ); }
+$deny_external = fn() => new WP_Error( 'prihod_test_offline', 'External requests are disabled in this test.' );
+$deny_mail = fn() => false;
+add_filter( 'pre_http_request', $deny_external, PHP_INT_MAX );
+add_filter( 'pre_wp_mail', $deny_mail, PHP_INT_MAX );
+try {
 if ( file_exists( WP_PLUGIN_DIR . '/orthocal/orthocal.php' ) ) {
     $activation = activate_plugin( 'orthocal/orthocal.php' );
     prihod_assert( ! is_wp_error( $activation ), 'Actual calendar source activates.' );
     Orthocal_Plugin::register();
     prihod_assert( shortcode_exists( 'orthocal_calendar' ) && isset( Prihod\Site_Plan::pages()['calendar'] ), 'Calendar adapter uses actual registered blocks and shortcodes.' );
+    $calendar_page = Prihod\Site_Plan::pages()['calendar'];
+    prihod_assert( WP_Block_Type_Registry::get_instance()->is_registered( 'orthocal/calendar' ) && '' !== do_blocks( $calendar_page['content'] ), 'Wizard calendar page renders the actual calendar block without external traffic.' );
+    prihod_assert( 'needs_setup' === ( new Prihod\Existing_Integration( 'calendar' ) )->health()['status'], 'Calendar without credentials accurately reports setup required.' );
     deactivate_plugins( 'orthocal/orthocal.php' );
 }
 if ( version_compare( get_bloginfo( 'version' ), '7.1', '>=' ) && version_compare( PHP_VERSION, '8.4', '>=' ) && file_exists( WP_PLUGIN_DIR . '/kloster-prayer/kloster-prayer.php' ) ) {
@@ -62,5 +70,15 @@ if ( version_compare( get_bloginfo( 'version' ), '7.1', '>=' ) && version_compar
     prihod_assert( ! is_wp_error( $activation ), 'Actual Prayer Notes source activates on its supported platform.' );
     KlosterPrayer\Public_Form::init();
     prihod_assert( shortcode_exists( 'kloster_donation' ) && isset( Prihod\Site_Plan::pages()['prayer-notes'], Prihod\Site_Plan::pages()['donations'] ), 'Notes adapter reuses existing forms and standalone donations.' );
+    $notes_pages = Prihod\Site_Plan::pages();
+    $prayer_html = do_shortcode( do_blocks( $notes_pages['prayer-notes']['content'] ) );
+    $donation_html = do_shortcode( do_blocks( $notes_pages['donations']['content'] ) );
+    prihod_assert( str_contains( $prayer_html, '<form' ), 'Actual prayer form renders; output length: ' . strlen( $prayer_html ) );
+    prihod_assert( str_contains( $donation_html, '<form' ), 'Actual donation form renders; output length: ' . strlen( $donation_html ) );
+    prihod_assert( 'ready' === ( new Prihod\Existing_Integration( 'prayer-notes' ) )->health()['status'], 'Notes adapter reports the actual active form integration.' );
     deactivate_plugins( 'kloster-prayer/kloster-prayer.php' );
+}
+} finally {
+    remove_filter( 'pre_http_request', $deny_external, PHP_INT_MAX );
+    remove_filter( 'pre_wp_mail', $deny_mail, PHP_INT_MAX );
 }
