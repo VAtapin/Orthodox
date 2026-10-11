@@ -17,6 +17,7 @@ final class Admin {
         add_action( 'admin_notices', array( Schedule_Admin::class, 'notice' ) );
         add_filter( 'option_page_capability_prihod_profile', function () { return 'manage_prihod'; } );
         add_filter( 'option_page_capability_prihod_modules', function () { return 'manage_prihod_settings'; } );
+        add_filter( 'option_page_capability_prihod_privacy', function () { return 'manage_prihod_settings'; } );
     }
 
     public function menu(): void {
@@ -41,6 +42,7 @@ final class Admin {
 
     public function settings(): void {
         register_setting( 'prihod_modules', 'prihod_modules', array( 'type' => 'array', 'sanitize_callback' => array( Modules::class, 'sanitize' ), 'show_in_rest' => false ) );
+        register_setting( 'prihod_privacy', 'prihod_retention_days', array( 'type' => 'integer', 'sanitize_callback' => fn( $days ) => is_scalar( $days ) ? max( 30, min( 3650, (int) $days ) ) : 365, 'show_in_rest' => false ) );
         register_setting( 'prihod_profile', Profile::OPTION, array(
             'type' => 'array', 'sanitize_callback' => array( Profile::class, 'sanitize' ),
             'default' => Profile::defaults(), 'show_in_rest' => false,
@@ -120,14 +122,18 @@ final class Admin {
         settings_errors( 'prihod_modules' );
         echo '<form action="' . esc_url( admin_url( 'options.php' ) ) . '" method="post">';
         settings_fields( 'prihod_modules' );
-        echo '<input type="hidden" name="prihod_modules[requests]" value="' . esc_attr( Modules::enabled( 'requests' ) ? '1' : '0' ) . '"><label><input type="checkbox" name="prihod_modules[schedule]" value="1"' . checked( Modules::enabled( 'schedule' ), true, false ) . '> ' . esc_html__( 'Расписание включено', 'prihod' ) . '</label>';
+        foreach ( array( 'schedule' => __( 'Расписание включено', 'prihod' ), 'requests' => __( 'Обращения включены', 'prihod' ) ) as $module => $label ) { echo '<p><label><input type="checkbox" name="prihod_modules[' . esc_attr( $module ) . ']" value="1"' . checked( Modules::enabled( $module ), true, false ) . '> ' . esc_html( $label ) . '</label></p>'; }
         submit_button();
         echo '</form>';
-        echo '<p>' . esc_html__( 'Деактивация и обычное удаление плагина сохраняют сведения о приходе, места служения и духовенство. Автоматическое удаление данных отсутствует.', 'prihod' ) . '</p>';
+        echo '<form action="' . esc_url( admin_url( 'options.php' ) ) . '" method="post">';
+        settings_fields( 'prihod_privacy' );
+        echo '<p><label>' . esc_html__( 'Удалять закрытые обращения через дней после последнего изменения (30–3650)', 'prihod' ) . ' <input type="number" min="30" max="3650" name="prihod_retention_days" value="' . esc_attr( get_option( 'prihod_retention_days', 365 ) ) . '"></label></p>';
+        submit_button(); echo '</form>';
+        echo '<p>' . esc_html__( 'Деактивация и обычное удаление плагина сохраняют данные. Закрытые обращения очищаются по заданному сроку хранения.', 'prihod' ) . '</p>';
         echo '<h2>' . esc_html__( 'Права доступа', 'prihod' ) . '</h2><p>' . esc_html__( 'Права выдаются администратору при установке. Другим сотрудникам их можно назначить средствами управления ролями WordPress. Обычный редактор автоматически их не получает.', 'prihod' ) . '</p><ul>';
         foreach ( Capabilities::all() as $capability ) {
             echo '<li><code>' . esc_html( $capability ) . '</code></li>';
         }
-        echo '</ul><p>' . esc_html__( 'Права расписания и обращений зарезервированы для следующих этапов. Интерфейс назначения прав в самом плагине пока отсутствует.', 'prihod' ) . '</p></div>';
+        echo '</ul><p>' . esc_html__( 'Интерфейс назначения прав в самом плагине пока отсутствует.', 'prihod' ) . '</p></div>';
     }
 }

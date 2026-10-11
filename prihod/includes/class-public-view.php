@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) || exit;
 
 final class Public_View {
     public static function blocks(): array {
-        return array( 'profile' => __( 'Сведения о приходе', 'prihod' ), 'contacts' => __( 'Контакты прихода', 'prihod' ), 'clergy' => __( 'Духовенство', 'prihod' ), 'schedule' => __( 'Расписание богослужений', 'prihod' ), 'next-service' => __( 'Ближайшее богослужение', 'prihod' ), 'next-services' => __( 'Ближайшие службы', 'prihod' ) );
+        return array( 'profile' => __( 'Сведения о приходе', 'prihod' ), 'contacts' => __( 'Контакты прихода', 'prihod' ), 'clergy' => __( 'Духовенство', 'prihod' ), 'schedule' => __( 'Расписание богослужений', 'prihod' ), 'next-service' => __( 'Ближайшее богослужение', 'prihod' ), 'next-services' => __( 'Ближайшие службы', 'prihod' ), 'requests' => __( 'Вопрос священнику', 'prihod' ) );
     }
     public static function register(): void {
         wp_register_script( 'prihod-blocks', plugins_url( 'assets/blocks.js', PRIHOD_FILE ), array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-server-side-render', 'wp-i18n' ), PRIHOD_VERSION, true );
@@ -22,6 +22,7 @@ final class Public_View {
     }
     public static function render( string $key, array $attributes = array() ): string {
         wp_enqueue_style( 'prihod-public' );
+        if ( 'requests' === $key ) { return Request_Form::render(); }
         $profile = Profile::get();
         $html = '';
         if ( 'profile' === $key ) {

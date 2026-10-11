@@ -20,6 +20,7 @@ final class Plugin {
         add_action( 'save_post_prihod_clergy', array( Directory::class, 'save' ) );
         ( new Admin( $this->integrations ) )->hooks();
         Schedule::hooks();
+        Requests::hooks();
         add_action( 'init', array( Public_View::class, 'register' ) );
         add_action( 'init', function () {
             do_action( 'prihod_register_integrations', $this->integrations );

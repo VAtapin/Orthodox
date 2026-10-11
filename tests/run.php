@@ -127,4 +127,10 @@ foreach ( array( 'profile', 'configuration', 'integrations', 'overview' ) as $pa
     }
 }
 require __DIR__ . '/schedule-unit.php';
+$request_input = array( 'name' => 'Visitor', 'email' => 'visitor@example.org', 'subject' => 'Question', 'body' => '<b>Text</b>' );
+check( 'Text' === Prihod\Requests::validate( $request_input )['body'], 'Request payload strips markup.' );
+foreach ( array( array( 'email' => 'invalid' ), array( 'name' => array() ), array( 'body' => str_repeat( 'a', 10001 ) ), array( 'subject' => '<b></b>' ) ) as $change ) {
+    try { Prihod\Requests::validate( array_merge( $request_input, $change ) ); check( false, 'Invalid request should throw.' ); }
+    catch ( InvalidArgumentException $error ) { check( true, 'Invalid request rejected.' ); }
+}
 echo "Passed {$count} assertions (isolated unit tests).\n";
