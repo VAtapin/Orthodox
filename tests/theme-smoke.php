@@ -34,4 +34,5 @@ do_action( 'wp_enqueue_scripts' );
 prihod_assert( in_array( 'georg-kloster-orthodox-donate', wp_scripts()->registered['prihod-theme-forms']->deps, true ), 'Stepped forms preserve the current provider initialization order.' );
 remove_shortcode( 'kloster_form' );
 // Restore baseline for unrelated tests. Standalone theme verification uses a separate request.
+require __DIR__ . '/theme-options-smoke.php';
 switch_theme( $old_theme );

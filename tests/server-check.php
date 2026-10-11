@@ -21,6 +21,9 @@ $check( 4 === count( glob( get_template_directory() . '/styles/*.json' ) ), 'Fiv
 foreach ( array( 'wide', 'focused', 'catalog' ) as $name ) { $check( (bool) get_block_template( 'prihod-theme//' . $name, 'wp_template' ), 'Missing inner template: ' . $name ); }
 $previous = get_current_user_id(); wp_set_current_user( get_user_by( 'login', 'prihod-owner' )->ID );
 $check( current_user_can( 'manage_prihod_settings' ), 'Owner must have setup access.' );
+ob_start(); prihod_theme_settings_page(); $theme_panel = ob_get_clean();
+$check( 5 === substr_count( $theme_panel, 'name="prihod_theme_options[scheme]"' ) && str_contains( $theme_panel, 'prihod-option-demo' ), 'Theme management provides five schemes and demo import.' );
+$check( count( prihod_theme_demo_pages() ) >= 10, 'Demo catalog includes actual parish and provider compositions.' );
 ob_start(); Prihod\Wizard::render(); $wizard = ob_get_clean();
 $check( str_contains( $wizard, 'prihod-wizard' ), 'Setup wizard must render.' );
 ob_start(); Prihod\Dashboard::overview(); $dashboard = ob_get_clean();

@@ -1317,3 +1317,138 @@ msgstr "Nasze wtyczki"
 
 msgid "Настройки модулей"
 msgstr "Ustawienia modułów"
+
+msgid "Демо-страницы"
+msgstr "Strony demonstracyjne"
+
+msgid "Макет и шрифты"
+msgstr "Układ i czcionki"
+
+msgid "Фотографии"
+msgstr "Zdjęcia"
+
+msgid "Шапка и подвал"
+msgstr "Nagłówek i stopka"
+
+msgid "Формы"
+msgstr "Formularze"
+
+msgid "Языки"
+msgstr "Języki"
+
+msgid "Разделы настроек"
+msgstr "Sekcje ustawień"
+
+msgid "Настройки темы"
+msgstr "Ustawienia motywu"
+
+msgid "Сохранить изменения"
+msgstr "Zapisz zmiany"
+
+msgid "Посмотреть сайт"
+msgstr "Zobacz witrynę"
+
+msgid "Выберите оформление и сохраните изменения. Собственные стили из редактора сайта имеют приоритет."
+msgstr "Wybierz wygląd i zapisz zmiany. Własne style z edytora witryny mają pierwszeństwo."
+
+msgid "Журнальная"
+msgstr "Magazynowy"
+
+msgid "Открыть редактор сайта"
+msgstr "Otwórz edytor witryny"
+
+msgid "Ширина сайта, px"
+msgstr "Szerokość witryny, px"
+
+msgid "Размер основного текста, px"
+msgstr "Rozmiar tekstu podstawowego, px"
+
+msgid "Основной шрифт"
+msgstr "Czcionka podstawowa"
+
+msgid "Логотип"
+msgstr "Logo"
+
+msgid "Закрепить шапку при прокрутке"
+msgstr "Przypnij nagłówek podczas przewijania"
+
+msgid "Показывать контакты в шапке"
+msgstr "Pokaż dane kontaktowe w nagłówku"
+
+msgid "Дополнительный текст подвала"
+msgstr "Dodatkowy tekst stopki"
+
+msgid "Демо-страницы подготовлены. Откройте их в редакторе и добавьте материалы своего прихода."
+msgstr "Strony demonstracyjne są gotowe. Otwórz je w edytorze i dodaj materiały swojej parafii."
+
+msgid "Готовые редактируемые страницы с примерными текстами и блоками ваших плагинов. Повторный запуск не перезаписывает материалы и не создаёт дубликаты. По умолчанию создаются черновики."
+msgstr "Edytowalne strony z przykładowymi tekstami i blokami Twoich wtyczek. Ponowne uruchomienie nie nadpisuje materiałów ani nie tworzy duplikatów. Domyślnie tworzone są szkice."
+
+msgid "Уже есть — будет сохранена"
+msgstr "Już istnieje — zostanie zachowana"
+
+msgid "Новая страница"
+msgstr "Nowa strona"
+
+msgid "Опубликовать новые демо-страницы"
+msgstr "Opublikuj nowe strony demonstracyjne"
+
+msgid "Назначить демо-главную главной страницей сайта"
+msgstr "Ustaw demonstracyjną stronę główną jako stronę główną witryny"
+
+msgid "Добавить опубликованные демо-страницы в навигацию"
+msgstr "Dodaj opublikowane strony demonstracyjne do nawigacji"
+
+msgid "Создать демо-страницы"
+msgstr "Utwórz strony demonstracyjne"
+
+msgid "Выберите хотя бы одну страницу."
+msgstr "Wybierz co najmniej jedną stronę."
+
+msgid "Для назначения главной выберите её и включите публикацию."
+msgstr "Aby ustawić stronę główną, wybierz ją i włącz publikację."
+
+msgid "Для создания меню включите публикацию страниц."
+msgstr "Aby utworzyć menu, włącz publikację stron."
+
+msgid "Не удалось создать страницу."
+msgstr "Nie udało się utworzyć strony."
+
+msgid "Приход — место общей молитвы, взаимной помощи и встречи. Добро пожаловать! Здесь можно узнать о жизни общины и подготовиться к посещению храма."
+msgstr "Parafia jest miejscem wspólnej modlitwy, wzajemnej pomocy i spotkania. Witamy! Tutaj poznasz życie wspólnoty i przygotujesz się do wizyty w świątyni."
+
+msgid "Наша община объединяет людей вокруг богослужения и добрых дел. На этой странице расскажите об истории храма, святынях и людях, которые заботятся о приходе."
+msgstr "Nasza wspólnota łączy ludzi wokół nabożeństw i dobrych uczynków. Opowiedz tutaj o historii świątyni, jej świętościach i osobach troszczących się o parafię."
+
+msgid "Если вы впервые приходите в храм, не стесняйтесь задавать вопросы. Добавьте часы работы, советы для первого посещения и сведения о том, к кому можно обратиться за помощью."
+msgstr "Jeśli odwiedzasz świątynię po raz pierwszy, śmiało zadawaj pytania. Dodaj godziny otwarcia, wskazówki dla odwiedzających i informacje o osobach, które mogą pomóc."
+
+msgid "Познакомьте посетителей со священнослужителями: добавьте фотографии, краткие биографии и время для беседы."
+msgstr "Przedstaw duchownych odwiedzającym: dodaj zdjęcia, krótkie biografie i godziny rozmów."
+
+msgid "Здесь отображается расписание вашего прихода. Добавьте богослужения в разделе «Информация → Расписание»."
+msgstr "Tutaj wyświetlany jest harmonogram parafii. Dodaj nabożeństwa w sekcji „Informacje → Harmonogram“."
+
+msgid "Вы можете обратиться к священнику через форму ниже. Перед публикацией страницы проверьте настройки обращений и ответственного сотрудника."
+msgstr "Możesz skontaktować się z duchownym przez poniższy formularz. Przed publikacją sprawdź ustawienia zgłoszeń i odpowiedzialnego pracownika."
+
+msgid "На этой странице появляются новости общины. Добавляйте рассказы о праздниках, встречах и добрых делах в раздел «Записи»."
+msgstr "Na tej stronie pojawiają się wiadomości wspólnoty. Dodawaj relacje ze świąt, spotkań i dobrych uczynków w sekcji „Wpisy“."
+
+msgid "Здесь можно собирать проповеди, записи бесед и материалы для самостоятельного чтения."
+msgstr "Tutaj można gromadzić kazania, nagrania rozmów i materiały do samodzielnego czytania."
+
+msgid "Мы будем рады встрече. Добавьте адрес, телефон, электронную почту и описание дороги в сведениях о приходе."
+msgstr "Zapraszamy do spotkania. Dodaj adres, telefon, e-mail i wskazówki dojazdu w informacjach o parafii."
+
+msgid "Фотографии помогают увидеть жизнь общины. Выберите собственные снимки в блоке галереи: богослужения, праздники, встречи и помощь ближним."
+msgstr "Zdjęcia pokazują życie wspólnoty. Wybierz własne fotografie w bloku galerii: nabożeństwa, święta, spotkania i pomoc bliźnim."
+
+msgid "Православный календарь и чтения на день предоставляются календарным плагином."
+msgstr "Kalendarz prawosławny i czytania na dzień są udostępniane przez wtyczkę kalendarza."
+
+msgid "Здесь можно подать записку. Перед публикацией настройте требы и приём записок в плагине пожертвований."
+msgstr "Tutaj można złożyć intencję modlitewną. Przed publikacją skonfiguruj posługi i przyjmowanie intencji we wtyczce darowizn."
+
+msgid "Поддержите жизнь и добрые дела прихода. Перед публикацией укажите назначение пожертвований и настройте способы оплаты."
+msgstr "Wesprzyj życie i dobre dzieła parafii. Przed publikacją określ cel darowizn i skonfiguruj metody płatności."

@@ -73,5 +73,10 @@
     "file": "15-wizard.png",
     "source": "мастер установки.png",
     "sha256": "d02b8911b0a8d7eb131e9e6fb6ee2f5fb95c66efaa99be3aeb6b888b1a37fd9d"
+  },
+  {
+    "file": "16-theme-options-reference.png",
+    "source": "User supplied theme settings reference (Avada)",
+    "sha256": "5c55ffba4d4f0c03c38f5e9bb5b468b1ad533385e4fcc1ab7fd0e66387f1daa6"
   }
 ]

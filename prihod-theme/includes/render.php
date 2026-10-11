@@ -27,6 +27,7 @@ function prihod_theme_languages(): string {
 function prihod_theme_brand(): string {
     $profile = prihod_theme_profile();
     $logo = has_custom_logo() ? get_custom_logo() : '<a class="prihod-mark" href="' . esc_url( home_url( '/' ) ) . '" aria-label="' . esc_attr( $profile['name'] ) . '"><svg viewBox="0 0 64 76" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M32 2v14M27 7h10M32 14c-13 11-11 17 0 19 11-2 13-8 0-19ZM23 33v37h18V33M13 70V44h10M41 44h10v26M7 70h50M28 70V52h8v18M29 41h6"/></g></svg></a>';
+    if ( prihod_theme_options()['logo'] ) { $logo = '<a href="' . esc_url( home_url( '/' ) ) . '">' . wp_get_attachment_image( prihod_theme_options()['logo'], 'thumbnail', false, array( 'class' => 'custom-logo' ) ) . '</a>'; }
     return '<div class="prihod-brand">' . $logo . '<div><a class="prihod-brand-title" href="' . esc_url( home_url( '/' ) ) . '">' . esc_html( $profile['name'] ) . '</a><p>' . esc_html( get_bloginfo( 'description' ) ) . '</p></div></div>';
 }
 function prihod_theme_block( string $name, array $attributes = array() ): string {
@@ -37,6 +38,7 @@ function prihod_theme_header(): string {
     $profile = prihod_theme_profile(); $contacts = '';
     if ( $profile['phone'] ) { $contacts .= '<a href="' . esc_url( 'tel:' . preg_replace( '/[^+0-9]/', '', $profile['phone'] ) ) . '">' . esc_html( $profile['phone'] ) . '</a>'; }
     if ( $profile['email'] ) { $contacts .= '<a href="' . esc_url( 'mailto:' . $profile['email'] ) . '">' . esc_html( $profile['email'] ) . '</a>'; }
+    if ( ! prihod_theme_options()['header_contacts'] ) { $contacts = ''; }
     $navigation = array( 'overlayMenu' => 'mobile', 'layout' => array( 'type' => 'flex', 'justifyContent' => 'right' ) );
     $resources = get_option( 'prihod_resources', array() ); $id = absint( $resources['_navigation']['id'] ?? 0 );
     if ( $id && 'wp_navigation' === get_post_type( $id ) && 'publish' === get_post_status( $id ) ) { $navigation['ref'] = $id; }
@@ -44,7 +46,7 @@ function prihod_theme_header(): string {
 }
 function prihod_theme_footer(): string {
     $policy = get_privacy_policy_url();
-    return '<div class="prihod-footer"><div class="prihod-container">' . prihod_theme_brand() . '<div>' . ( $policy ? '<a href="' . esc_url( $policy ) . '">' . esc_html__( 'Политика конфиденциальности', 'prihod-theme' ) . '</a>' : '' ) . '<p>© ' . esc_html( wp_date( 'Y' ) ) . ' ' . esc_html( prihod_theme_profile()['name'] ) . '</p></div><a class="prihod-top" href="#prihod-header" aria-label="' . esc_attr__( 'Наверх', 'prihod-theme' ) . '">↑</a></div></div>';
+    return '<div class="prihod-footer"><div class="prihod-container">' . prihod_theme_brand() . '<div>' . ( $policy ? '<a href="' . esc_url( $policy ) . '">' . esc_html__( 'Политика конфиденциальности', 'prihod-theme' ) . '</a>' : '' ) . '<p>© ' . esc_html( wp_date( 'Y' ) ) . ' ' . esc_html( prihod_theme_profile()['name'] ) . '</p><p>' . nl2br( esc_html( prihod_theme_options()['footer_text'] ) ) . '</p></div><a class="prihod-top" href="#prihod-header" aria-label="' . esc_attr__( 'Наверх', 'prihod-theme' ) . '">↑</a></div></div>';
 }
 function prihod_theme_sidebar(): string {
     $html = '';
