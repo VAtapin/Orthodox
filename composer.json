@@ -1,0 +1,12 @@
+{
+  "name": "vatapin/prihod",
+  "description": "Prihod WordPress plugin",
+  "type": "project",
+  "license": "GPL-2.0-or-later",
+  "require": { "php": ">=8.0" },
+  "scripts": {
+    "test": "@php tests/run.php",
+    "lint": "@php tests/lint.php",
+    "check": ["@lint", "@test"]
+  }
+}
