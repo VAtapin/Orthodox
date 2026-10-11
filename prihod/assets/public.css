@@ -1,0 +1,10 @@
+.prihod-block {margin-block: 1.5rem; line-height: 1.6;}
+.prihod-block article {border-block-end: 1px solid currentColor; padding-block: 1rem;}
+.prihod-controls {display: flex; flex-wrap: wrap; gap: .75rem; align-items: end;}
+.prihod-block input, .prihod-block select, .prihod-block textarea {max-width: 100%; font: inherit;}
+.prihod-block .is-cancelled h3 {text-decoration: line-through;}
+@media print {
+    .prihod-controls, header, footer, nav, aside, #wpadminbar {display: none !important;}
+    .prihod-event {break-inside: avoid;}
+    .prihod-block {color: black; background: white;}
+}

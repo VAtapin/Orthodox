@@ -126,4 +126,5 @@ foreach ( array( 'profile', 'configuration', 'integrations', 'overview' ) as $pa
         check( 403 === $error->getCode(), 'Direct admin page access requires authorization.' );
     }
 }
+require __DIR__ . '/schedule-unit.php';
 echo "Passed {$count} assertions (isolated unit tests).\n";

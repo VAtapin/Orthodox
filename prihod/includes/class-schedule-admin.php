@@ -1,0 +1,85 @@
+<?php
+namespace Prihod;
+defined( 'ABSPATH' ) || exit;
+
+final class Schedule_Admin {
+    public static function input( string $name, string $value, string $type = 'text' ): string {
+        return '<input type="' . esc_attr( $type ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '">';
+    }
+    public static function locations( string $name, int $selected_id ): string {
+        $html = '<select name="' . esc_attr( $name ) . '"><option value="0">' . esc_html__( 'Выберите место', 'prihod' ) . '</option>';
+        foreach ( get_posts( array( 'post_type' => 'prihod_location', 'post_status' => array( 'publish', 'draft', 'private' ), 'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC' ) ) as $post ) {
+            $html .= '<option value="' . esc_attr( $post->ID ) . '"' . selected( $selected_id, $post->ID, false ) . '>' . esc_html( $post->post_title ) . '</option>';
+        }
+        return $html . '</select>';
+    }
+    public static function render( $post ): void {
+        $data = get_post_meta( $post->ID, '_prihod_service', true );
+        $rule = array_merge( Schedule::defaults(), is_array( $data ) ? $data : array() );
+        wp_nonce_field( 'prihod_service_' . $post->ID, 'prihod_service_nonce' );
+        echo '<p><label>' . esc_html__( 'Тип службы', 'prihod' ) . ' <select name="prihod_service[kind]">';
+        foreach ( array( 'single' => __( 'Разовая', 'prihod' ), 'regular' => __( 'Регулярная', 'prihod' ), 'holiday' => __( 'Праздничная', 'prihod' ) ) as $key => $label ) {
+            echo '<option value="' . esc_attr( $key ) . '"' . selected( $rule['kind'], $key, false ) . '>' . esc_html( $label ) . '</option>';
+        }
+        echo '</select></label></p>';
+        foreach ( array( 'date' => __( 'Дата / начало повторений', 'prihod' ), 'until' => __( 'Последняя дата повторений (необязательно)', 'prihod' ), 'time' => __( 'Начало', 'prihod' ), 'end' => __( 'Окончание (необязательно)', 'prihod' ), 'timezone' => __( 'Часовой пояс (пусто — пояс места или прихода)', 'prihod' ) ) as $key => $label ) {
+            $type = in_array( $key, array( 'date', 'until' ), true ) ? 'date' : ( in_array( $key, array( 'time', 'end' ), true ) ? 'time' : 'text' );
+            echo '<p><label>' . esc_html( $label ) . ' ' . self::input( 'prihod_service[' . $key . ']', $rule[ $key ], $type ) . '</label></p>';
+        }
+        echo '<p><label>' . esc_html__( 'Место служения', 'prihod' ) . ' ' . self::locations( 'prihod_service[location_id]', (int) $rule['location_id'] ) . '</label></p><fieldset><legend>' . esc_html__( 'Дни повторения регулярной службы', 'prihod' ) . '</legend>';
+        $days = array( __( 'Пн', 'prihod' ), __( 'Вт', 'prihod' ), __( 'Ср', 'prihod' ), __( 'Чт', 'prihod' ), __( 'Пт', 'prihod' ), __( 'Сб', 'prihod' ), __( 'Вс', 'prihod' ) );
+        foreach ( $days as $index => $label ) {
+            echo '<label style="margin-right:1em"><input type="checkbox" name="prihod_service[weekdays][]" value="' . esc_attr( $index + 1 ) . '"' . checked( in_array( $index + 1, $rule['weekdays'], true ), true, false ) . '> ' . esc_html( $label ) . '</label>';
+        }
+        echo '</fieldset><p>' . esc_html__( 'Окончание раньше или равное началу означает следующий день. При весеннем переводе часов несуществующее время регулярной службы пропускается; осенью используется первое вхождение времени.', 'prihod' ) . '</p><h3>' . esc_html__( 'Отмены и переносы отдельных дат', 'prihod' ) . '</h3><div id="prihod-exceptions">';
+        $index = 0;
+        foreach ( $rule['exceptions'] as $date => $change ) { echo self::row( $index++, $date, $change, $rule ); }
+        echo self::row( $index++, '', array(), $rule ) . '</div>';
+        echo '<template id="prihod-exception-template">' . self::row( '__INDEX__', '', array(), $rule ) . '</template>';
+        echo '<button type="button" class="button" id="prihod-add-exception" data-index="' . esc_attr( $index ) . '">' . esc_html__( 'Добавить исключение', 'prihod' ) . '</button>';
+        wp_enqueue_script( 'prihod-schedule-admin', plugins_url( 'assets/schedule-admin.js', PRIHOD_FILE ), array(), PRIHOD_VERSION, true );
+    }
+    private static function row( $index, string $date, array $change, array $rule ): string {
+        $prefix = 'prihod_exceptions[' . $index . ']';
+        $html = '<fieldset style="border:1px solid #ccc;padding:1em;margin:1em 0"><legend>' . esc_html__( 'Исключение', 'prihod' ) . '</legend><p><label>' . esc_html__( 'Исходная дата', 'prihod' ) . ' ' . self::input( $prefix . '[original]', $date, 'date' ) . '</label> <label>' . esc_html__( 'Действие', 'prihod' ) . ' <select name="' . esc_attr( $prefix . '[action]' ) . '">';
+        foreach ( array( 'cancel' => __( 'Отмена', 'prihod' ), 'replace' => __( 'Перенос / изменение времени', 'prihod' ) ) as $key => $label ) {
+            $html .= '<option value="' . esc_attr( $key ) . '"' . selected( $change['action'] ?? 'cancel', $key, false ) . '>' . esc_html( $label ) . '</option>';
+        }
+        $html .= '</select></label></p>';
+        foreach ( array( 'date' => __( 'Новая дата', 'prihod' ), 'time' => __( 'Новое начало', 'prihod' ), 'end' => __( 'Новое окончание', 'prihod' ) ) as $key => $label ) {
+            $html .= '<p><label>' . esc_html( $label ) . ' ' . self::input( $prefix . '[' . $key . ']', $change[ $key ] ?? ( 'date' === $key ? $date : $rule[ $key ] ), 'date' === $key ? 'date' : 'time' ) . '</label></p>';
+        }
+        $html .= '<p><label>' . esc_html__( 'Место после переноса', 'prihod' ) . ' ' . self::locations( $prefix . '[location_id]', (int) ( $change['location_id'] ?? $rule['location_id'] ) ) . '</label></p>';
+        return $html . '<label><input type="checkbox" name="' . esc_attr( $prefix . '[remove]' ) . '" value="1"> ' . esc_html__( 'Удалить исключение', 'prihod' ) . '</label></fieldset>';
+    }
+    public static function save( int $id ): void {
+        if ( ! Modules::enabled( 'schedule' ) || ! current_user_can( 'manage_prihod_schedule' ) || ! current_user_can( 'edit_post', $id ) || wp_is_post_autosave( $id ) || wp_is_post_revision( $id ) || ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) ) { return; }
+        $nonce = $_POST['prihod_service_nonce'] ?? '';
+        if ( ! is_string( $nonce ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $nonce ) ), 'prihod_service_' . $id ) || ! is_array( $_POST['prihod_service'] ?? null ) ) { return; }
+        try {
+            $input = wp_unslash( $_POST['prihod_service'] );
+            $input['exceptions'] = array();
+            $rows = wp_unslash( $_POST['prihod_exceptions'] ?? array() );
+            if ( ! is_array( $rows ) ) { throw new \InvalidArgumentException( __( 'Некорректные исключения.', 'prihod' ) ); }
+            foreach ( $rows as $row ) {
+                if ( ! is_array( $row ) || ! is_string( $row['original'] ?? '' ) ) { throw new \InvalidArgumentException( __( 'Некорректная исходная дата.', 'prihod' ) ); }
+                $date = $row['original'] ?? '';
+                if ( '' === $date || ! empty( $row['remove'] ) ) { continue; }
+                if ( isset( $input['exceptions'][ $date ] ) ) { throw new \InvalidArgumentException( __( 'Исходная дата исключения повторяется.', 'prihod' ) ); }
+                unset( $row['original'], $row['remove'] );
+                $input['exceptions'][ $date ] = $row;
+            }
+            update_post_meta( $id, '_prihod_service', Schedule::validate( $input ) );
+            do_action( 'prihod_schedule_changed', $id );
+        } catch ( \InvalidArgumentException $error ) {
+            set_transient( 'prihod_schedule_error_' . get_current_user_id(), $error->getMessage(), 60 );
+        }
+    }
+    public static function notice(): void {
+        $key = 'prihod_schedule_error_' . get_current_user_id();
+        if ( current_user_can( 'manage_prihod_schedule' ) && ( $message = get_transient( $key ) ) ) {
+            delete_transient( $key );
+            echo '<div class="notice notice-error"><p>' . esc_html( $message ) . ' ' . esc_html__( 'Предыдущее расписание сохранено.', 'prihod' ) . '</p></div>';
+        }
+    }
+}

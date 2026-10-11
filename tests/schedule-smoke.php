@@ -1,0 +1,20 @@
+<?php
+Prihod\Schedule::register();
+Prihod\Public_View::register();
+$service = wp_insert_post( array( 'post_type' => 'prihod_service', 'post_title' => 'Sunday liturgy', 'post_status' => 'publish' ) );
+$_POST = array( 'prihod_service_nonce' => wp_create_nonce( 'prihod_service_' . $service ), 'prihod_service' => array( 'kind' => 'regular', 'date' => '2026-01-01', 'weekdays' => array( '7' ), 'time' => '09:00', 'location_id' => (string) $location ), 'prihod_exceptions' => array( array( 'original' => '2026-10-11', 'action' => 'cancel' ), array( 'original' => '2026-10-18', 'action' => 'replace', 'date' => '2026-10-19', 'time' => '10:00', 'location_id' => (string) $location ) ) );
+Prihod\Schedule_Admin::save( $service );
+$_POST = array();
+$events = Prihod\Schedule::query( new DateTimeImmutable( '2026-10-10 UTC' ), new DateTimeImmutable( '2026-10-27 UTC' ) );
+prihod_assert( 3 === count( $events ) && $events[0]['cancelled'] && '2026-10-19' === $events[1]['start']->format( 'Y-m-d' ), 'Real storage expands recurrence and exceptions.' );
+prihod_assert( 2 === count( Prihod\Schedule::query( new DateTimeImmutable( '2026-10-10 UTC' ), new DateTimeImmutable( '2026-10-27 UTC' ), 0, false ) ), 'Cancelled occurrences do not count as upcoming.' );
+prihod_assert( WP_Block_Type_Registry::get_instance()->is_registered( 'prihod/schedule' ), 'Dynamic schedule Gutenberg block is registered.' );
+$_GET['prihod_date'] = '2026-10-11';
+prihod_assert( str_contains( do_shortcode( '[prihod_schedule view="month"]' ), 'Sunday liturgy' ), 'Schedule shortcode renders actual services.' );
+unset( $_GET['prihod_date'] );
+update_option( 'prihod_modules', array( 'schedule' => false ) );
+prihod_assert( '' === Prihod\Public_View::render( 'schedule' ) && get_post_meta( $service, '_prihod_service', true ), 'Disabling schedule hides output and retains data.' );
+update_option( 'prihod_modules', array( 'schedule' => true ) );
+wp_set_current_user( $editor_id );
+prihod_assert( ! current_user_can( 'edit_post', $service ), 'Editor cannot edit services without capability.' );
+wp_set_current_user( 1 );

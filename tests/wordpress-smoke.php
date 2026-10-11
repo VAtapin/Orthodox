@@ -68,6 +68,7 @@ $admin->profile();
 $html = ob_get_clean();
 prihod_assert( str_contains( $html, 'prihod_profile[name]' ) && str_contains( $html, '_wpnonce' ), 'Profile renders fields and nonce in WordPress.' );
 
+require __DIR__ . '/schedule-smoke.php';
 deactivate_plugins( 'prihod/prihod.php' );
 prihod_assert( get_post( $location ) && 'Parish' === get_option( 'prihod_profile' )['name'], 'Deactivation retains parish records.' );
 uninstall_plugin( 'prihod/prihod.php' );

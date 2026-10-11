@@ -27,6 +27,7 @@ function add_settings_error( $option, $code, $message ) { $GLOBALS['errors'][] =
 function get_role( $name ) { return $GLOBALS['roles'][ $name ] ?? null; }
 function get_post( $id ) { return $GLOBALS['posts'][ $id ] ?? null; }
 function get_post_type( $id ) { return get_post( $id )->post_type ?? false; }
+function get_post_status( $id ) { return get_post( $id )->post_status ?? false; }
 function get_post_meta( $id, $key, $single ) { return $GLOBALS['meta'][ $id ][ $key ] ?? ''; }
 function update_post_meta( $id, $key, $value ) { $GLOBALS['meta'][ $id ][ $key ] = $value; }
 function current_user_can( $capability, ...$args ) { return $GLOBALS['caps'][ $capability ] ?? false; }
@@ -41,6 +42,6 @@ function add_filter( $name, $callback, ...$args ) { add_action( $name, $callback
 function register_post_type( $name, $args ) { $GLOBALS['types'][ $name ] = $args; }
 function wp_die( $message, $title = '', $args = array() ) { throw new RuntimeException( 'denied', $args['response'] ?? 0 ); }
 function esc_html__( $text, $domain ) { return $text; }
-foreach ( array( 'class-capabilities', 'class-profile', 'class-directory', 'interface-integration', 'class-integration-registry', 'class-admin', 'class-plugin' ) as $name ) {
+foreach ( array( 'class-capabilities', 'class-profile', 'class-directory', 'interface-integration', 'class-integration-registry', 'class-admin', 'class-plugin', 'class-modules', 'class-occurrences', 'class-schedule', 'class-schedule-admin' ) as $name ) {
     require dirname( __DIR__ ) . '/prihod/includes/' . $name . '.php';
 }

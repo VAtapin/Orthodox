@@ -14,12 +14,14 @@ final class Admin {
         add_action( 'admin_menu', array( $this, 'menu' ) );
         add_action( 'admin_init', array( $this, 'settings' ) );
         add_action( 'admin_notices', array( Directory::class, 'notice' ) );
+        add_action( 'admin_notices', array( Schedule_Admin::class, 'notice' ) );
         add_filter( 'option_page_capability_prihod_profile', function () { return 'manage_prihod'; } );
+        add_filter( 'option_page_capability_prihod_modules', function () { return 'manage_prihod_settings'; } );
     }
 
     public function menu(): void {
         // Settings-only staff still need the parent menu to reach their pages.
-        $parent_capability = current_user_can( 'manage_prihod' ) ? 'manage_prihod' : 'manage_prihod_settings';
+        $parent_capability = self::menu_capability();
         add_menu_page( __( 'Приход', 'prihod' ), __( 'Приход', 'prihod' ), $parent_capability, 'prihod', array( $this, 'overview' ), 'dashicons-admin-home', 26 );
         add_submenu_page( 'prihod', __( 'Обзор', 'prihod' ), __( 'Обзор', 'prihod' ), $parent_capability, 'prihod', array( $this, 'overview' ) );
         add_submenu_page( 'prihod', __( 'Сведения о приходе', 'prihod' ), __( 'Сведения о приходе', 'prihod' ), 'manage_prihod', 'prihod-profile', array( $this, 'profile' ) );
@@ -32,8 +34,13 @@ final class Admin {
             wp_die( esc_html__( 'Недостаточно прав.', 'prihod' ), '', array( 'response' => 403 ) );
         }
     }
+    public static function menu_capability(): string {
+        foreach ( array( 'manage_prihod', 'manage_prihod_schedule', 'view_prihod_requests', 'manage_prihod_settings' ) as $cap ) { if ( current_user_can( $cap ) ) { return $cap; } }
+        return 'manage_prihod';
+    }
 
     public function settings(): void {
+        register_setting( 'prihod_modules', 'prihod_modules', array( 'type' => 'array', 'sanitize_callback' => array( Modules::class, 'sanitize' ), 'show_in_rest' => false ) );
         register_setting( 'prihod_profile', Profile::OPTION, array(
             'type' => 'array', 'sanitize_callback' => array( Profile::class, 'sanitize' ),
             'default' => Profile::defaults(), 'show_in_rest' => false,
@@ -41,16 +48,18 @@ final class Admin {
     }
 
     public function overview(): void {
-        if ( ! current_user_can( 'manage_prihod' ) && ! current_user_can( 'manage_prihod_settings' ) ) {
-            $this->require_capability( 'manage_prihod' );
-        }
+        $this->require_capability( self::menu_capability() );
         echo '<div class="wrap"><h1>' . esc_html__( 'Приход — обзор', 'prihod' ) . '</h1>';
         if ( current_user_can( 'manage_prihod' ) ) {
             $profile = Profile::get();
             echo '<p>' . esc_html( $profile['name'] ?: __( 'Название прихода ещё не заполнено.', 'prihod' ) ) . '</p>';
             echo '<p><a class="button button-primary" href="' . esc_url( admin_url( 'admin.php?page=prihod-profile' ) ) . '">' . esc_html__( 'Заполнить сведения о приходе', 'prihod' ) . '</a></p>';
         }
-        echo '<p>' . esc_html__( 'Доступны сведения о приходе, места служения и духовенство. Расписание, обращения, мастер и интеграции с внешними сервисами будут добавлены на следующих этапах.', 'prihod' ) . '</p>';
+        echo '<p>' . esc_html__( 'Доступны сведения о приходе, места служения, духовенство и расписание.', 'prihod' ) . '</p>';
+        if ( current_user_can( 'manage_prihod_schedule' ) ) {
+            $next = Schedule::next();
+            echo '<p>' . esc_html( $next ? $next[0]['title'] . ' — ' . $next[0]['start']->format( 'd.m.Y H:i T' ) : __( 'Ближайшая служба пока не указана.', 'prihod' ) ) . '</p>';
+        }
         echo '<p>' . esc_html__( 'Активация не создаёт страницы и не изменяет главную, меню или тему сайта.', 'prihod' ) . '</p></div>';
     }
 
@@ -108,6 +117,12 @@ final class Admin {
     public function configuration(): void {
         $this->require_capability( 'manage_prihod_settings' );
         echo '<div class="wrap"><h1>' . esc_html__( 'Настройки', 'prihod' ) . '</h1><h2>' . esc_html__( 'Хранение данных', 'prihod' ) . '</h2>';
+        settings_errors( 'prihod_modules' );
+        echo '<form action="' . esc_url( admin_url( 'options.php' ) ) . '" method="post">';
+        settings_fields( 'prihod_modules' );
+        echo '<input type="hidden" name="prihod_modules[requests]" value="' . esc_attr( Modules::enabled( 'requests' ) ? '1' : '0' ) . '"><label><input type="checkbox" name="prihod_modules[schedule]" value="1"' . checked( Modules::enabled( 'schedule' ), true, false ) . '> ' . esc_html__( 'Расписание включено', 'prihod' ) . '</label>';
+        submit_button();
+        echo '</form>';
         echo '<p>' . esc_html__( 'Деактивация и обычное удаление плагина сохраняют сведения о приходе, места служения и духовенство. Автоматическое удаление данных отсутствует.', 'prihod' ) . '</p>';
         echo '<h2>' . esc_html__( 'Права доступа', 'prihod' ) . '</h2><p>' . esc_html__( 'Права выдаются администратору при установке. Другим сотрудникам их можно назначить средствами управления ролями WordPress. Обычный редактор автоматически их не получает.', 'prihod' ) . '</p><ul>';
         foreach ( Capabilities::all() as $capability ) {
