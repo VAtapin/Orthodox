@@ -1689,3 +1689,30 @@ msgstr "Über Apps"
 
 msgid "Скопировать ссылку"
 msgstr "Link kopieren"
+
+msgid "Поминовение"
+msgstr "Gebetsanliegen"
+
+msgid "Выбранные требы"
+msgstr "Ausgewählte Gebete und Gottesdienste"
+
+msgid "Способ оплаты"
+msgstr "Zahlungsart"
+
+msgid "Ваша записка"
+msgstr "Ihr Gebetsanliegen"
+
+msgid "Ваше пожертвование"
+msgstr "Ihre Spende"
+
+msgid "Ваши контактные данные"
+msgstr "Ihre Kontaktdaten"
+
+msgid "Изменить"
+msgstr "Ändern"
+
+msgid "Периодичность"
+msgstr "Häufigkeit"
+
+msgid "Карта (Stripe)"
+msgstr "Karte (Stripe)"

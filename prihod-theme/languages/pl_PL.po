@@ -1689,3 +1689,30 @@ msgstr "Przez aplikacje"
 
 msgid "Скопировать ссылку"
 msgstr "Kopiuj link"
+
+msgid "Поминовение"
+msgstr "Intencja modlitwy"
+
+msgid "Выбранные требы"
+msgstr "Wybrane posługi"
+
+msgid "Способ оплаты"
+msgstr "Metoda płatności"
+
+msgid "Ваша записка"
+msgstr "Twoja prośba modlitewna"
+
+msgid "Ваше пожертвование"
+msgstr "Twoja darowizna"
+
+msgid "Ваши контактные данные"
+msgstr "Twoje dane kontaktowe"
+
+msgid "Изменить"
+msgstr "Zmień"
+
+msgid "Периодичность"
+msgstr "Częstotliwość"
+
+msgid "Карта (Stripe)"
+msgstr "Karta (Stripe)"

@@ -38,7 +38,7 @@ wp_trash_post( $demo['created']['photos'] );
 $after_trash = prihod_theme_import_demo( array( 'photos', 'first-visit' ) );
 prihod_assert( ! $after_trash['created'] && 'trash' === get_post_status( $demo['created']['photos'] ), 'Import does not recreate or restore a deliberately trashed demo page.' );
 
-prihod_assert( str_contains( $panel, '0.3.7' ) && ! str_contains( $panel, '<small>0.3.0' ), 'Theme panel reports the installed version.' );
+prihod_assert( str_contains( $panel, '0.3.8' ) && ! str_contains( $panel, '<small>0.3.0' ), 'Theme panel reports the installed version.' );
 $map = prihod_theme_sanitize( array( 'map_embed' => 'https://www.openstreetmap.org/export/embed.html?marker=53,13' ) );
 prihod_assert( str_contains( $map['map_embed'], '/export/embed.html' ), 'Verified OpenStreetMap embeds are accepted.' );
 foreach ( array( 'javascript:alert(1)', 'https://example.com/export/embed.html', 'https://www.openstreetmap.org.evil.test/export/embed.html', 'https://www.openstreetmap.org/user/test' ) as $url ) { prihod_assert( '' === prihod_theme_sanitize( array( 'map_embed' => $url ) )['map_embed'], 'Other iframe origins and paths are rejected.' ); }

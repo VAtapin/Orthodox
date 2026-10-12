@@ -36,16 +36,50 @@ document.addEventListener('DOMContentLoaded', function () {
         function review() {
             var panel = panels[panels.length - 1]; panel.replaceChildren();
             var heading = document.createElement('h3'); heading.textContent = prihodFormUI.check; panel.appendChild(heading);
-            var list = document.createElement('dl');
-            ['names','note','donor_name','donor_email','donation_amount'].forEach(function (name) {
+            function group(title) {
+                var section = document.createElement('div'); section.className = 'prihod-review-group';
+                var name = document.createElement('h4'); name.textContent = title; section.appendChild(name);
+                var list = document.createElement('dl'); section.appendChild(list); panel.appendChild(section); return list;
+            }
+            function row(list, label, value, index) {
+                if (!value.trim()) return;
+                var term = document.createElement('dt'), detail = document.createElement('dd'); term.textContent = label;
+                if (Number.isInteger(index)) {
+                    var edit = document.createElement('button'); edit.type = 'button'; edit.className = 'prihod-review-edit'; edit.textContent = prihodFormUI.edit;
+                    edit.setAttribute('aria-label', prihodFormUI.edit + ': ' + label);
+                    edit.addEventListener('click', function () { current = index; alert.hidden = true; show(true); }); term.appendChild(edit);
+                }
+                detail.textContent = value; list.append(term,detail);
+            }
+            function field(list, name, index) {
                 var input = form.elements[name]; if (!input || !input.value.trim()) return;
                 var label = input.closest(selector('.klp-field'))?.querySelector('label')?.textContent || name;
-                var term = document.createElement('dt'), detail = document.createElement('dd'); term.textContent = label.replace(/\*/g,'').trim(); detail.textContent = input.value; list.append(term,detail);
-            });
-            var selected = [...form.querySelectorAll(selector('.klp-service input:checked'))].map(function (input) { return input.closest(selector('.klp-service')).querySelector(selector('.klp-service__name')).textContent.trim(); });
-            if (selected.length) { var term = document.createElement('dt'), detail = document.createElement('dd'); term.textContent = prihodFormUI.type; detail.textContent = selected.join('; '); list.append(term,detail); }
-            var total = root.querySelector('output'); if (total) { var term = document.createElement('dt'), detail = document.createElement('dd'); term.textContent = prihodFormUI.total; detail.textContent = total.textContent; list.append(term,detail); }
-            panel.appendChild(list);
+                row(list, label.replace(/\*/g,'').trim(), input.value, index);
+            }
+            function choice(name) {
+                var input = form.querySelector('input[name="' + name + '"]:checked') || form.querySelector('input[type="hidden"][name="' + name + '"]');
+                if (!input) return '';
+                return input.closest('label')?.querySelector('span')?.textContent.trim() || prihodFormUI.providers[input.value] || input.value;
+            }
+            var request = group(donor ? prihodFormUI.yourDonation : prihodFormUI.yourPrayer);
+            if (!donor) {
+                row(request, prihodFormUI.intention, choice('intention'), 0);
+                var selected = [...form.querySelectorAll(selector('.klp-service input:checked'))].map(function (input) {
+                    var name = input.closest(selector('.klp-service')).querySelector(selector('.klp-service__name')).cloneNode(true);
+                    var description = name.querySelector('small'); var note = description?.textContent.trim(); if (description) description.remove();
+                    return name.textContent.trim() + (note ? ' — ' + note : '');
+                });
+                row(request, prihodFormUI.services, selected.join('; '), 0);
+                field(request, 'names', 1);
+            } else {
+                field(request, 'donation_amount', 0);
+                if (form.elements.frequency) { var frequency = form.elements.frequency; row(request, prihodFormUI.frequency, frequency.selectedOptions[0].textContent, 0); }
+            }
+            field(request, 'note', donor ? 0 : 1);
+            var total = root.querySelector('output'); if (total) row(request, prihodFormUI.total, total.textContent, donor ? 0 : 2);
+            row(request, prihodFormUI.payment, choice('provider'), contactIndex);
+            var contacts = group(prihodFormUI.yourContacts);
+            field(contacts, 'donor_name', contactIndex); field(contacts, 'donor_email', contactIndex);
         }
         function show(focus) {
             panels.forEach(function (panel,index) { panel.hidden = index !== current; });
