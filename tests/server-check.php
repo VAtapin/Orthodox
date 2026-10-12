@@ -39,7 +39,7 @@ foreach ( array( 'de_DE', 'pl_PL', 'uk' ) as $locale ) {
 }
 echo wp_json_encode( array( 'status' => 'PRIHOD_SERVER_OK', 'checks' => $checked, 'wordpress' => get_bloginfo( 'version' ), 'php' => PHP_VERSION, 'theme' => wp_get_theme()->get( 'Version' ) ), JSON_UNESCAPED_UNICODE ) . PHP_EOL;
 
-$check( '1.0.0-rc.7' === PRIHOD_VERSION && '0.3.13' === wp_get_theme()->get( 'Version' ), 'Reference-design release versions must be installed.' );
+$check( '1.0.0-rc.7' === PRIHOD_VERSION && '0.3.14' === wp_get_theme()->get( 'Version' ), 'Reference-design release versions must be installed.' );
 prihod_theme_prepare_provider_assets();
 do_shortcode( '[' . $donation_tag . ']' );
 $check( str_contains( (string) wp_scripts()->get_data( 'georg-kloster-orthodox-donate', 'data' ), 'georgKlosterOrthodoxDonate' ), 'Native donation configuration must exist before the block theme prints scripts.' );
@@ -112,3 +112,11 @@ $_GET['prihod_catalog_search'] = 'prihod-no-such-material-12345'; $catalog = app
 $check( str_contains( $catalog, 'prihod-catalog-empty' ) && ! preg_match( '/<li[^>]*class="[^"]*\bwp-block-post\b/', $catalog ), 'Empty news search must show a resettable no-results state.' );
 $GLOBALS['wp_query'] = $previous_query; $GLOBALS['post'] = $previous_post; $_GET = $previous_get;
 echo "CATALOG_CHECK_OK: {$checked} total checks.\n";
+
+$previous_query = $GLOBALS['wp_query']; $previous_post = $GLOBALS['post'] ?? null;
+$GLOBALS['wp_query'] = new WP_Query( array( 'page_id' => $resources['clergy']['id'] ) ); $GLOBALS['post'] = get_post( $resources['clergy']['id'] );
+$clergy_original = $GLOBALS['post']->post_content; $clergy = prihod_theme_clergy_content( do_blocks( $clergy_original ) );
+$check( str_contains( $clergy, 'prihod-clergy-card' ) && 1 === substr_count( $clergy, '<img' ), 'Generated clergy page must present one native biography with its own portrait.' );
+$check( get_post_field( 'post_content', $GLOBALS['post']->ID ) === $clergy_original && str_contains( $clergy, esc_url( prihod_theme_url( 'requests' ) ) ), 'Clergy rendering preserves original content and the real question target.' );
+$GLOBALS['wp_query'] = $previous_query; $GLOBALS['post'] = $previous_post;
+echo "CLERGY_DESIGN_CHECK_OK: {$checked} total checks.\n";

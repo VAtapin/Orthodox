@@ -1,0 +1,127 @@
+{
+  "render": [
+    {
+      "biographies": 1,
+      "card": {
+        "bottom": 660.109375,
+        "height": 299.59375,
+        "left": 32,
+        "right": 760,
+        "top": 360.515625,
+        "width": 728,
+        "x": 32,
+        "y": 360.515625
+      },
+      "overflow": false,
+      "photo": {
+        "bottom": 581.515625,
+        "height": 200,
+        "left": 53,
+        "right": 203,
+        "top": 381.515625,
+        "width": 150,
+        "x": 53,
+        "y": 381.515625
+      },
+      "question": "https://prihod.georg-kloster.ru/?page_id=11&prihod_preview=classic",
+      "scheme": "classic",
+      "width": 1122
+    },
+    {
+      "biographies": 1,
+      "overflow": false,
+      "photo": {
+        "bottom": 593.25,
+        "height": 200,
+        "left": 53,
+        "right": 203,
+        "top": 393.25,
+        "width": 150,
+        "x": 53,
+        "y": 393.25
+      },
+      "question": "https://prihod.georg-kloster.ru/?page_id=11&prihod_preview=hospitality",
+      "scheme": "hospitality",
+      "width": 1122
+    },
+    {
+      "biographies": 1,
+      "overflow": false,
+      "photo": {
+        "bottom": 591.953125,
+        "height": 200,
+        "left": 53,
+        "right": 203,
+        "top": 391.953125,
+        "width": 150,
+        "x": 53,
+        "y": 391.953125
+      },
+      "question": "https://prihod.georg-kloster.ru/?page_id=11&prihod_preview=editorial",
+      "scheme": "editorial",
+      "width": 1122
+    },
+    {
+      "biographies": 1,
+      "overflow": false,
+      "photo": {
+        "bottom": 621.40625,
+        "height": 200,
+        "left": 77,
+        "right": 227,
+        "top": 421.40625,
+        "width": 150,
+        "x": 77,
+        "y": 421.40625
+      },
+      "question": "https://prihod.georg-kloster.ru/?page_id=11&prihod_preview=tradition",
+      "scheme": "tradition",
+      "width": 1122
+    },
+    {
+      "biographies": 1,
+      "overflow": false,
+      "photo": {
+        "bottom": 581.515625,
+        "height": 200,
+        "left": 53,
+        "right": 203,
+        "top": 381.515625,
+        "width": 150,
+        "x": 53,
+        "y": 381.515625
+      },
+      "question": "https://prihod.georg-kloster.ru/?page_id=11&prihod_preview=blue",
+      "scheme": "blue",
+      "width": 1122
+    },
+    {
+      "biographies": 1,
+      "columns": "309px",
+      "overflow": false,
+      "photo": {
+        "bottom": 649.203125,
+        "height": 200,
+        "left": 33,
+        "right": 183,
+        "top": 449.203125,
+        "width": 150,
+        "x": 33,
+        "y": 449.203125
+      },
+      "scheme": "classic-mobile",
+      "width": 390
+    },
+    {
+      "case": "question-navigation",
+      "url": "https://prihod.georg-kloster.ru/?page_id=11&prihod_preview=classic"
+    }
+  ],
+  "tests": {
+    "current": 206,
+    "minimum": 195,
+    "design": 142,
+    "live": 56
+  },
+  "scope": "Theme presentation only; generated content and live directory not saved."
+}

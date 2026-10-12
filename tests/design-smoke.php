@@ -108,4 +108,5 @@ update_option( 'prihod_theme_options', $original_options );
 unset( $_GET['prihod_preview'] ); WP_Theme_JSON_Resolver::clean_cached_data();
 $GLOBALS['wp_query'] = $saved_query;
 require __DIR__ . '/catalog-smoke.php';
+require __DIR__ . '/clergy-design-smoke.php';
 echo "DESIGN_SMOKE_OK: {$checks} checks.\n";

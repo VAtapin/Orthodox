@@ -1,0 +1,613 @@
+{
+  "theme": "0.3.13",
+  "core": "1.0.0-rc.7",
+  "viewport": {
+    "width": 1122,
+    "height": 1402
+  },
+  "pages": [
+    {
+      "broken": [],
+      "calendar": 0,
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 0,
+      "title": "Добро пожаловать в наш приход!",
+      "url": "https://prihod.georg-kloster.ru/?page_id=7&prihod_preview=classic",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "calendar": 1,
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "О монастыре",
+      "url": "https://prihod.georg-kloster.ru/?page_id=8&prihod_preview=classic",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "calendar": 1,
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Духовенство",
+      "url": "https://prihod.georg-kloster.ru/?page_id=9&prihod_preview=classic",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "calendar": 0,
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 0,
+      "title": "Жизнь обители в фотографиях",
+      "url": "https://prihod.georg-kloster.ru/?page_id=19&prihod_preview=classic",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "calendar": 1,
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Паломнику",
+      "url": "https://prihod.georg-kloster.ru/?page_id=12&prihod_preview=classic",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "calendar": 0,
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Расписание богослужений",
+      "url": "https://prihod.georg-kloster.ru/?page_id=10&prihod_preview=classic",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "calendar": 2,
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 0,
+      "title": "Православный календарь",
+      "url": "https://prihod.georg-kloster.ru/?page_id=16&prihod_preview=classic",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "calendar": 0,
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 0,
+      "title": "Новости обители",
+      "url": "https://prihod.georg-kloster.ru/?page_id=13&prihod_preview=classic",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "calendar": 0,
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 0,
+      "title": "Проповеди и беседы",
+      "url": "https://prihod.georg-kloster.ru/?page_id=14&prihod_preview=classic",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "calendar": 1,
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Подать записку",
+      "url": "https://prihod.georg-kloster.ru/?page_id=17&prihod_preview=classic",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "calendar": 1,
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Помочь монастырю",
+      "url": "https://prihod.georg-kloster.ru/?page_id=18&prihod_preview=classic",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "calendar": 1,
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Вопрос священнику",
+      "url": "https://prihod.georg-kloster.ru/?page_id=11&prihod_preview=classic",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "calendar": 1,
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Контакты и дорога",
+      "url": "https://prihod.georg-kloster.ru/?page_id=15&prihod_preview=classic",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Добро пожаловать в наш приход!",
+      "url": "https://prihod.georg-kloster.ru/?page_id=7&prihod_preview=hospitality",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "О монастыре",
+      "url": "https://prihod.georg-kloster.ru/?page_id=8&prihod_preview=hospitality",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Духовенство",
+      "url": "https://prihod.georg-kloster.ru/?page_id=9&prihod_preview=hospitality",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 0,
+      "title": "Жизнь обители в фотографиях",
+      "url": "https://prihod.georg-kloster.ru/?page_id=19&prihod_preview=hospitality",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Паломнику",
+      "url": "https://prihod.georg-kloster.ru/?page_id=12&prihod_preview=hospitality",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Расписание богослужений",
+      "url": "https://prihod.georg-kloster.ru/?page_id=10&prihod_preview=hospitality",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 0,
+      "title": "Православный календарь",
+      "url": "https://prihod.georg-kloster.ru/?page_id=16&prihod_preview=hospitality",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 0,
+      "title": "Новости обители",
+      "url": "https://prihod.georg-kloster.ru/?page_id=13&prihod_preview=hospitality",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 0,
+      "title": "Проповеди и беседы",
+      "url": "https://prihod.georg-kloster.ru/?page_id=14&prihod_preview=hospitality",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Подать записку",
+      "url": "https://prihod.georg-kloster.ru/?page_id=17&prihod_preview=hospitality",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Помочь монастырю",
+      "url": "https://prihod.georg-kloster.ru/?page_id=18&prihod_preview=hospitality",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Вопрос священнику",
+      "url": "https://prihod.georg-kloster.ru/?page_id=11&prihod_preview=hospitality",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Контакты и дорога",
+      "url": "https://prihod.georg-kloster.ru/?page_id=15&prihod_preview=hospitality",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Здесь начинается Главное",
+      "url": "https://prihod.georg-kloster.ru/?page_id=7&prihod_preview=editorial",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "О монастыре",
+      "url": "https://prihod.georg-kloster.ru/?page_id=8&prihod_preview=editorial",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Духовенство",
+      "url": "https://prihod.georg-kloster.ru/?page_id=9&prihod_preview=editorial",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 0,
+      "title": "Жизнь обители в фотографиях",
+      "url": "https://prihod.georg-kloster.ru/?page_id=19&prihod_preview=editorial",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Паломнику",
+      "url": "https://prihod.georg-kloster.ru/?page_id=12&prihod_preview=editorial",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Расписание богослужений",
+      "url": "https://prihod.georg-kloster.ru/?page_id=10&prihod_preview=editorial",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 0,
+      "title": "Православный календарь",
+      "url": "https://prihod.georg-kloster.ru/?page_id=16&prihod_preview=editorial",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 0,
+      "title": "Новости обители",
+      "url": "https://prihod.georg-kloster.ru/?page_id=13&prihod_preview=editorial",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 0,
+      "title": "Проповеди и беседы",
+      "url": "https://prihod.georg-kloster.ru/?page_id=14&prihod_preview=editorial",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Подать записку",
+      "url": "https://prihod.georg-kloster.ru/?page_id=17&prihod_preview=editorial",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Помочь монастырю",
+      "url": "https://prihod.georg-kloster.ru/?page_id=18&prihod_preview=editorial",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Вопрос священнику",
+      "url": "https://prihod.georg-kloster.ru/?page_id=11&prihod_preview=editorial",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Контакты и дорога",
+      "url": "https://prihod.georg-kloster.ru/?page_id=15&prihod_preview=editorial",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 1,
+      "sidebar": 2,
+      "title": "«Где двое или трое собраны во имя Моё, там Я посреди них»",
+      "url": "https://prihod.georg-kloster.ru/?page_id=7&prihod_preview=tradition",
+      "width": 1122,
+      "imageClarification": {
+        "pendingHidden": 1,
+        "pendingVisible": 0
+      }
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "О монастыре",
+      "url": "https://prihod.georg-kloster.ru/?page_id=8&prihod_preview=tradition",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Духовенство",
+      "url": "https://prihod.georg-kloster.ru/?page_id=9&prihod_preview=tradition",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 0,
+      "title": "Жизнь обители в фотографиях",
+      "url": "https://prihod.georg-kloster.ru/?page_id=19&prihod_preview=tradition",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Паломнику",
+      "url": "https://prihod.georg-kloster.ru/?page_id=12&prihod_preview=tradition",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Расписание богослужений",
+      "url": "https://prihod.georg-kloster.ru/?page_id=10&prihod_preview=tradition",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 0,
+      "title": "Православный календарь",
+      "url": "https://prihod.georg-kloster.ru/?page_id=16&prihod_preview=tradition",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 0,
+      "title": "Новости обители",
+      "url": "https://prihod.georg-kloster.ru/?page_id=13&prihod_preview=tradition",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 0,
+      "title": "Проповеди и беседы",
+      "url": "https://prihod.georg-kloster.ru/?page_id=14&prihod_preview=tradition",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Подать записку",
+      "url": "https://prihod.georg-kloster.ru/?page_id=17&prihod_preview=tradition",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Помочь монастырю",
+      "url": "https://prihod.georg-kloster.ru/?page_id=18&prihod_preview=tradition",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Вопрос священнику",
+      "url": "https://prihod.georg-kloster.ru/?page_id=11&prihod_preview=tradition",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Контакты и дорога",
+      "url": "https://prihod.georg-kloster.ru/?page_id=15&prihod_preview=tradition",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 0,
+      "title": "Приход, где каждый найдёт свой путь",
+      "url": "https://prihod.georg-kloster.ru/?page_id=7&prihod_preview=blue",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "О монастыре",
+      "url": "https://prihod.georg-kloster.ru/?page_id=8&prihod_preview=blue",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Духовенство",
+      "url": "https://prihod.georg-kloster.ru/?page_id=9&prihod_preview=blue",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 0,
+      "title": "Жизнь обители в фотографиях",
+      "url": "https://prihod.georg-kloster.ru/?page_id=19&prihod_preview=blue",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Паломнику",
+      "url": "https://prihod.georg-kloster.ru/?page_id=12&prihod_preview=blue",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Расписание богослужений",
+      "url": "https://prihod.georg-kloster.ru/?page_id=10&prihod_preview=blue",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 0,
+      "title": "Православный календарь",
+      "url": "https://prihod.georg-kloster.ru/?page_id=16&prihod_preview=blue",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 0,
+      "title": "Новости обители",
+      "url": "https://prihod.georg-kloster.ru/?page_id=13&prihod_preview=blue",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 0,
+      "title": "Проповеди и беседы",
+      "url": "https://prihod.georg-kloster.ru/?page_id=14&prihod_preview=blue",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Подать записку",
+      "url": "https://prihod.georg-kloster.ru/?page_id=17&prihod_preview=blue",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Помочь монастырю",
+      "url": "https://prihod.georg-kloster.ru/?page_id=18&prihod_preview=blue",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Вопрос священнику",
+      "url": "https://prihod.georg-kloster.ru/?page_id=11&prihod_preview=blue",
+      "width": 1122
+    },
+    {
+      "broken": [],
+      "overflow": false,
+      "pending": 0,
+      "sidebar": 1,
+      "title": "Контакты и дорога",
+      "url": "https://prihod.georg-kloster.ru/?page_id=15&prihod_preview=blue",
+      "width": 1122
+    }
+  ],
+  "scope": "Read-only render audit; no numerical design similarity score."
+}

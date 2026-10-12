@@ -14,7 +14,7 @@ WordPress. Не менять окружение, Plesk, настройки др�
 - MariaDB 10.6.23, отдельная база и пользователь `prihod`.
 - SSH: предоставленный профиль Bitvise, пользователь `prihod`, не root.
 
-Установлены по прямому разрешению владельца: Core 1.0.0-rc.7, тема «Приход» 0.3.13,
+Установлены по прямому разрешению владельца: Core 1.0.0-rc.7, тема «Приход» 0.3.14,
 orthocal 1.3.78, Orthodox Donations 1.0.2 и Telegram/WhatsApp/Facebook подключения
 0.1.1. Пароли и профиль SSH не входят в репозиторий. Пароль администратора изменён
 владельцем; первоначальный установочный файл пароля устарел и для входа не используется.
@@ -53,7 +53,7 @@ tar; 24 таблицы MariaDB OK; HTTPS главной и входа 200; вх�
 cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
 export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
 php -d memory_limit=512M /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.7.zip --force --activate && \
-php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.13.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.14.zip --force --activate && \
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
 ```
 
@@ -83,7 +83,7 @@ scripts/apply-reference-design.php отдельно загружается в wp
 cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
 export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
 php -d memory_limit=512M /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.7.zip --force --activate && \
-php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.13.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.14.zip --force --activate && \
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-packages/apply-reference-design.php --user=prihod-owner && \
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
 ```
@@ -98,14 +98,14 @@ php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-ch
 и статусы опубликованных страниц не менялись. Проверка включает реальные
 даты таблицы, две карточки расписания и сегодняшнюю/выбранную дату.
 
-## Только обновление темы, 0.3.13
+## Только обновление темы, 0.3.14
 
 Пакет загружен и применён. Core rc.7 и внешние плагины не обновлялись.
 
 ```bash
 cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
 export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
-php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.13.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.14.zip --force --activate && \
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
 ```
 
@@ -144,3 +144,9 @@ Core rc.7 / тема 0.3.12 применены: собственная форм�
 54 проверки WP 7.1.3/PHP 8.5.11. При проверке не создавались публикации и не менялись
 тексты/категории или permalink settings живого сайта. Для этого блока нужна только
 команда «Только обновление темы»; Core rc.7 и внешние плагины не обновлялись.
+
+
+Тема 0.3.14 применена: компактное духовенство без точного повтора биографии.
+56 проверок WP 7.1.3/PHP 8.5.11. Исходный текст, каталог духовенства и настройки
+не сохранялись. Для повторного применения — команда «Только обновление темы».
+Core rc.7, внешние плагины и окружение общего сервера не обновлялись.
