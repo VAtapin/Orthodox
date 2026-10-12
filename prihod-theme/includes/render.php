@@ -69,6 +69,14 @@ function prihod_theme_sidebar(): string {
     return $html . prihod_theme_verse();
 }
 function prihod_theme_heading(): string {
+    if ( is_singular( 'post' ) ) {
+        $section = prihod_theme_article_section();
+        $html = '<div class="prihod-page-heading"><div class="prihod-container"><nav class="prihod-article-breadcrumb" aria-label="' . esc_attr__( 'Путь к статье', 'prihod-theme' ) . '"><a href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '">' . esc_html__( 'Главная', 'prihod-theme' ) . '</a>';
+        if ( ! empty( $section['url'] ) ) { $html .= '<span aria-hidden="true"> / </span><a href="' . esc_url( $section['url'] ) . '">' . esc_html( $section['name'] ) . '</a>'; }
+        $html .= '<span aria-hidden="true"> / </span><span aria-current="page">' . esc_html( get_the_title() ) . '</span></nav>';
+        if ( $section ) { $html .= '<p class="prihod-article-category">' . esc_html( $section['name'] ) . '</p>'; }
+        return $html . '<h1>' . esc_html( get_the_title() ) . '</h1></div></div>';
+    }
     $image = get_the_post_thumbnail_url( get_the_ID(), 'full' ) ?: wp_get_attachment_image_url( prihod_theme_resource_image( 'about' ) ?: prihod_theme_options()['about_image'] ?: prihod_theme_options()['hero_image'], 'full' );
     return '<div class="prihod-page-heading"' . ( $image ? ' style="--prihod-hero-image:url(' . esc_url( $image ) . ')"' : '' ) . '><div class="prihod-container"><a class="prihod-breadcrumb" href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '">' . esc_html__( 'Главная', 'prihod-theme' ) . '</a><h1>' . esc_html( get_the_title() ) . '</h1></div></div>';
 }

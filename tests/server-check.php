@@ -39,7 +39,7 @@ foreach ( array( 'de_DE', 'pl_PL', 'uk' ) as $locale ) {
 }
 echo wp_json_encode( array( 'status' => 'PRIHOD_SERVER_OK', 'checks' => $checked, 'wordpress' => get_bloginfo( 'version' ), 'php' => PHP_VERSION, 'theme' => wp_get_theme()->get( 'Version' ) ), JSON_UNESCAPED_UNICODE ) . PHP_EOL;
 
-$check( '1.0.0-rc.6' === PRIHOD_VERSION && '0.3.6' === wp_get_theme()->get( 'Version' ), 'Reference-design release versions must be installed.' );
+$check( '1.0.0-rc.6' === PRIHOD_VERSION && '0.3.7' === wp_get_theme()->get( 'Version' ), 'Reference-design release versions must be installed.' );
 prihod_theme_prepare_provider_assets();
 do_shortcode( '[' . $donation_tag . ']' );
 $check( str_contains( (string) wp_scripts()->get_data( 'georg-kloster-orthodox-donate', 'data' ), 'georgKlosterOrthodoxDonate' ), 'Native donation configuration must exist before the block theme prints scripts.' );
@@ -65,3 +65,16 @@ $schedule_html = Prihod\Public_View::render( 'schedule' );
 $check( str_contains( $schedule_html, 'prihod-upcoming-card' ) && str_contains( $schedule_html, 'prihod-changes-card' ), 'Schedule must have two native overview panels before its filters.' );
 $check( 1 === substr_count( $schedule_html, 'aria-current="date"' ) && preg_match_all( '/<a class="[^"]*\bis-selected-week\b/', $schedule_html ) >= 1, 'Mini calendar must distinguish today and the selected week.' );
 echo "SCHEDULE_OVERVIEW_CHECK_OK: {$checked} total checks.\n";
+$previous_query = $GLOBALS['wp_query']; $previous_post = $GLOBALS['post'] ?? null;
+$resources = get_option( 'prihod_resources', array() );
+foreach ( array( 'news', 'sermons' ) as $section_key ) {
+    $category = get_category_by_slug( 'prihod-' . $section_key );
+    $articles = $category ? get_posts( array( 'post_type' => 'post', 'post_status' => 'publish', 'numberposts' => 1, 'category' => $category->term_id ) ) : array();
+    if ( ! $articles ) { throw new RuntimeException( 'Expected published article section.' ); }
+    $GLOBALS['wp_query'] = new WP_Query( array( 'p' => $articles[0]->ID ) ); $GLOBALS['post'] = $articles[0];
+    $section = prihod_theme_article_section();
+    $article_html = do_blocks( file_get_contents( get_template_directory() . '/templates/single.html' ) );
+    $check( str_contains( $article_html, 'prihod-article-breadcrumb' ) && str_contains( $article_html, 'prihod-article-return' ) && strpos( $article_html, '</main>' ) < strpos( $article_html, 'class="prihod-related"' ) && $section['url'] === get_permalink( $resources[$section_key]['id'] ) && str_contains( prihod_theme_article_meta(), 'data-share-url="' . esc_url( get_permalink( $articles[0] ) ) . '"' ), 'Article navigation, clean sharing link and full-width related cards: ' . $section_key );
+}
+$GLOBALS['wp_query'] = $previous_query; $GLOBALS['post'] = $previous_post;
+echo "ARTICLE_LAYOUT_CHECK_OK: {$checked} total checks.\n";

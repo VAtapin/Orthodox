@@ -36,4 +36,22 @@ $home = prihod_theme_home();
 $quote_at = strpos( $home, '<blockquote' ); $description_at = strpos( $home, 'class="prihod-hero-description"' );
 $check( false !== $quote_at && false !== $description_at && $quote_at < $description_at, 'Classic hero places the verse before the real profile description.' );
 unset( $_GET['prihod_preview'] ); WP_Theme_JSON_Resolver::clean_cached_data();
+$saved_query = $GLOBALS['wp_query'];
+foreach ( $first['posts'] as $article_id ) {
+    $GLOBALS['wp_query'] = new WP_Query( array( 'p' => $article_id ) );
+    $GLOBALS['post'] = get_post( $article_id );
+    $_GET['prihod_preview'] = 'classic';
+    $section = prihod_theme_article_section();
+    $expected_key = 'prihod-sermons' === get_the_category()[0]->slug ? 'sermons' : 'news';
+    $check( $section['url'] === prihod_theme_preview_url( get_permalink( $first['pages'][$expected_key] ) ), 'Article navigation resolves its actual news or sermons section.' );
+    $meta = prihod_theme_article_meta();
+    $check( str_contains( $meta, 'data-share-url="' . esc_url( get_permalink( $article_id ) ) . '"' ) && ! str_contains( $meta, 'prihod_preview' ), 'Shared public links never contain administrative preview parameters.' );
+    $related = prihod_theme_related_posts();
+    $check( 2 === substr_count( $related, 'class="prihod-news-card"' ) && 2 === substr_count( $related, 'class="prihod-read-more"' ) && ! str_contains( $related, '<h3>' . esc_html( get_the_title() ) . '</h3>' ), 'Related cards use real same-category articles, exclude this post and expose reading links.' );
+    $rendered = do_blocks( file_get_contents( get_template_directory() . '/templates/single.html' ) );
+    $check( strpos( $rendered, '</main>' ) < strpos( $rendered, 'class="prihod-related"' ) && str_contains( $rendered, 'prihod-article-breadcrumb' ) && str_contains( $rendered, 'prihod-article-return' ), 'Related articles follow both main columns; category path and return stay inside the article.' );
+}
+unset( $_GET['prihod_preview'] );
+$GLOBALS['wp_query'] = $saved_query;
+$GLOBALS['post'] = get_post( $first['pages']['home'] );
 echo "DESIGN_SMOKE_OK: {$checks} checks.\n";

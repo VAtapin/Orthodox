@@ -14,6 +14,7 @@ function prihod_theme_icon( string $name ): string {
         'email' => '<rect x="2" y="5" width="28" height="22" rx="2"/><path d="m2 6 14 12L30 6"/>',
         'time' => '<circle cx="16" cy="16" r="13"/><path d="M16 7v10l7 4"/>',
         'search' => '<circle cx="13" cy="13" r="9"/><path d="m20 20 9 9"/>',
+        'share' => '<circle cx="7" cy="16" r="4"/><circle cx="25" cy="6" r="4"/><circle cx="25" cy="26" r="4"/><path d="m11 14 10-6m-10 10 10 6"/>',
         'cross' => '<path d="M16 2v28M6 10h20m-16 12 12 5"/>',
     );
     return '<svg class="prihod-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . ( $paths[$name] ?? $paths['about'] ) . '</svg>';

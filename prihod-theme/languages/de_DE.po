@@ -1662,3 +1662,30 @@ msgstr "Ausgewählte Woche"
 
 msgid "Богослужения"
 msgstr "Gottesdienste"
+
+msgid "Поделиться"
+msgstr "Teilen"
+
+msgid "Ссылка скопирована."
+msgstr "Link kopiert."
+
+msgid "Скопируйте выделенную ссылку."
+msgstr "Kopieren Sie den markierten Link."
+
+msgid "Ссылка на статью"
+msgstr "Link zum Artikel"
+
+msgid "Путь к статье"
+msgstr "Artikelnavigation"
+
+msgid "Дата и ссылка статьи"
+msgstr "Datum und Link des Artikels"
+
+msgid "Возврат к разделу"
+msgstr "Zurück zum Bereich"
+
+msgid "Через приложения"
+msgstr "Über Apps"
+
+msgid "Скопировать ссылку"
+msgstr "Link kopieren"
