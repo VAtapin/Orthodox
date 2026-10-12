@@ -2076,3 +2076,105 @@ msgstr "Aktuelles Theme"
 
 msgid "Материал"
 msgstr "Inhalt"
+
+msgid "Календарный плагин недоступен."
+msgstr "Das Kalender-Plugin ist nicht verfügbar."
+
+msgid "Некорректная дата."
+msgstr "Ungültiges Datum."
+
+msgid "Календарь вернул некорректные данные."
+msgstr "Der Kalender hat ungültige Daten zurückgegeben."
+
+msgid "Праздник и икона дня"
+msgstr "Fest und Tagesikone"
+
+msgid "Использовать название праздника"
+msgstr "Festnamen verwenden"
+
+msgid "Показывать икону дня из календаря"
+msgstr "Tagesikone aus dem Kalender anzeigen"
+
+msgid "Икона определяется автоматически для каждой даты службы. Время и место выбираете вы."
+msgstr "Die Ikone wird automatisch für jeden Gottesdiensttag ermittelt. Zeit und Ort wählen Sie selbst."
+
+msgid "Проверяем календарь…"
+msgstr "Kalender wird geprüft…"
+
+msgid "Календарь временно недоступен. Расписание можно заполнить вручную."
+msgstr "Der Kalender ist vorübergehend nicht verfügbar. Sie können den Gottesdienstplan manuell ausfüllen."
+
+msgid "Великих праздников на эту дату нет."
+msgstr "An diesem Datum gibt es keine großen Feste."
+
+msgid "Литургия"
+msgstr "Liturgie"
+
+msgid "Название уже заполнено. Чтобы использовать подсказку, сначала очистите его."
+msgstr "Der Titel ist bereits ausgefüllt. Leeren Sie ihn zuerst, um den Vorschlag zu verwenden."
+
+msgid "Выберите день и время недельного напоминания."
+msgstr "Wählen Sie Tag und Uhrzeit der wöchentlichen Erinnerung."
+
+msgid "Праздники на ближайшие семь дней. Откройте редактор, выберите время и место и подтвердите богослужение."
+msgstr "Feste der nächsten sieben Tage. Öffnen Sie den Editor, wählen Sie Zeit und Ort und bestätigen Sie den Gottesdienst."
+
+msgid "Приход: праздники недели"
+msgstr "Pfarrei: Feste der Woche"
+
+msgid "Недельное напоминание о праздниках"
+msgstr "Wöchentliche Erinnerung an Feste"
+
+msgid "Отправляется на email администратора WordPress. До выбора времени и включения письма не отправляются."
+msgstr "Wird an die E-Mail-Adresse des WordPress-Administrators gesendet. Ohne gewählte Uhrzeit und Aktivierung werden keine E-Mails versendet."
+
+msgid "Включить недельное напоминание"
+msgstr "Wöchentliche Erinnerung aktivieren"
+
+msgid "День отправки"
+msgstr "Versandtag"
+
+msgid "Время отправки"
+msgstr "Versandzeit"
+
+msgid "Календарь временно недоступен."
+msgstr "Der Kalender ist vorübergehend nicht verfügbar."
+
+msgid "На ближайшую неделю великих праздников нет."
+msgstr "In der kommenden Woche gibt es keine großen Feste."
+
+msgid "Напоминание передано почтовой службе WordPress."
+msgstr "Die Erinnerung wurde an den WordPress-Maildienst übergeben."
+
+msgid "Почтовая служба не подтвердила отправку."
+msgstr "Der Maildienst hat den Versand nicht bestätigt."
+
+msgid "Икона дня недоступна."
+msgstr "Die Tagesikone ist nicht verfügbar."
+
+msgid "Воскресенье"
+msgstr "Sonntag"
+
+msgid "Понедельник"
+msgstr "Montag"
+
+msgid "Вторник"
+msgstr "Dienstag"
+
+msgid "Среда"
+msgstr "Mittwoch"
+
+msgid "Четверг"
+msgstr "Donnerstag"
+
+msgid "Пятница"
+msgstr "Freitag"
+
+msgid "Суббота"
+msgstr "Samstag"
+
+msgid "Богослужений: %d"
+msgstr "Gottesdienste: %d"
+
+msgid "Богослужения на эту дату не указаны."
+msgstr "Für dieses Datum sind keine Gottesdienste eingetragen."

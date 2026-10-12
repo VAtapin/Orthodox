@@ -8,7 +8,7 @@ final class Public_View {
     }
     public static function register(): void {
         wp_register_script( 'prihod-blocks', plugins_url( 'assets/blocks.js', PRIHOD_FILE ), array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-server-side-render', 'wp-i18n' ), PRIHOD_VERSION, true );
-        wp_register_style( 'prihod-public', plugins_url( 'assets/public.css', PRIHOD_FILE ), array(), PRIHOD_VERSION );
+        wp_register_style( 'prihod-public', plugins_url( 'assets/public.css', PRIHOD_FILE ), array(), PRIHOD_VERSION . '.' . filemtime( dirname( PRIHOD_FILE ) . '/assets/public.css' ) );
         wp_set_script_translations( 'prihod-blocks', 'prihod', dirname( PRIHOD_FILE ) . '/languages' );
         add_action( 'wp_enqueue_scripts', function () { wp_enqueue_style( 'prihod-public' ); } );
         $blocks = self::blocks();
@@ -68,11 +68,11 @@ final class Public_View {
                     $html .= '</select></label> ';
                 }
                 $html .= '<button type="submit">' . esc_html__( 'Показать', 'prihod' ) . '</button> <button type="button" class="prihod-print">' . esc_html__( 'Печать', 'prihod' ) . '</button></form></div>' . $period . '<h3 class="prihod-range-title">' . esc_html( $from->format( 'd.m.Y' ) . ' — ' . $to->modify( '-1 day' )->format( 'd.m.Y' ) ) . '</h3>';
-                wp_enqueue_script( 'prihod-public', plugins_url( 'assets/public.js', PRIHOD_FILE ), array(), PRIHOD_VERSION, true );
+                wp_enqueue_script( 'prihod-public', plugins_url( 'assets/public.js', PRIHOD_FILE ), array(), PRIHOD_VERSION . '.' . filemtime( dirname( PRIHOD_FILE ) . '/assets/public.js' ), true );
                 $events = Schedule::query( $from, $to, $location );
             } else { $events = Schedule::next( $location, 'next-service' === $key ? 1 : absint( $attributes['limit'] ?? 5 ) ); }
             if ( ! $events ) { $html .= '<p>' . esc_html__( 'Богослужения на выбранный период не указаны.', 'prihod' ) . '</p>'; }
-            if ( 'schedule' === $key && 'month' === $view ) { $html .= self::month( $events, $from, $to ); }
+            if ( 'schedule' === $key && 'month' === $view ) { $html .= self::month( $events, $from, $to, $anchor->format( 'Y-m-d' ) ); }
             elseif ( 'schedule' === $key && 'week' === $view ) { $html .= '<div class="prihod-schedule-columns">' . self::week( $events, $from, $to ) . self::week_sidebar( $anchor, $location, $from ) . '</div>'; }
             else { foreach ( $events as $event ) { $html .= self::event_html( $event ); } }
             if ( 'schedule' === $key ) { $html .= '</div>'; }
@@ -82,30 +82,37 @@ final class Public_View {
     private static function event_html( array $event ): string {
         $html = '<article class="prihod-event' . ( $event['cancelled'] ? ' is-cancelled' : ( $event['moved'] ? ' is-moved' : '' ) ) . '"><div class="prihod-event-time"><time datetime="' . esc_attr( $event['start']->format( DATE_ATOM ) ) . '">' . esc_html( $event['start']->format( 'H:i' ) ) . '</time>';
         if ( $event['end'] ) { $html .= '<small>— ' . esc_html( $event['end']->format( $event['end']->format( 'Y-m-d' ) === $event['start']->format( 'Y-m-d' ) ? 'H:i' : 'd.m.Y H:i' ) ) . '</small>'; }
-        $html .= '</div><div class="prihod-event-copy"><h3>' . esc_html( $event['title'] ) . '</h3><p class="prihod-event-meta">' . esc_html( $event['start']->format( 'd.m.Y' ) . ' · ' . $event['start']->getTimezone()->getName() ) . '</p><p>' . esc_html( get_the_title( $event['location_id'] ) ) . '</p>';
+        $html .= Schedule_Calendar::icon_placeholder( $event ) . '</div><div class="prihod-event-copy"><h3>' . esc_html( $event['title'] ) . '</h3><p class="prihod-event-meta">' . esc_html( $event['start']->format( 'd.m.Y' ) . ' · ' . $event['start']->getTimezone()->getName() ) . '</p><p>' . esc_html( get_the_title( $event['location_id'] ) ) . '</p>';
         if ( $event['cancelled'] ) { $html .= '<strong>' . esc_html__( 'Отменено', 'prihod' ) . '</strong>'; }
         if ( $event['moved'] ) { $html .= '<p>' . esc_html__( 'Изменение службы за', 'prihod' ) . ' ' . esc_html( $event['original_date'] ) . '</p>'; }
         if ( trim( $event['description'] ) ) { $html .= '<details class="prihod-event-description"><summary>' . esc_html__( 'Подробнее о богослужении', 'prihod' ) . '</summary>' . wpautop( wp_kses_post( $event['description'] ) ) . '</details>'; }
         $html .= '</div></article>';
         return $html;
     }
-    private static function month( array $events, \DateTimeImmutable $from, \DateTimeImmutable $to ): string {
+    private static function month( array $events, \DateTimeImmutable $from, \DateTimeImmutable $to, string $selected = '' ): string {
         $by_day = array();
         foreach ( $events as $event ) { $by_day[ $event['start']->setTimezone( $from->getTimezone() )->format( 'Y-m-d' ) ][] = $event; }
         $months = array( __( 'Январь', 'prihod' ), __( 'Февраль', 'prihod' ), __( 'Март', 'prihod' ), __( 'Апрель', 'prihod' ), __( 'Май', 'prihod' ), __( 'Июнь', 'prihod' ), __( 'Июль', 'prihod' ), __( 'Август', 'prihod' ), __( 'Сентябрь', 'prihod' ), __( 'Октябрь', 'prihod' ), __( 'Ноябрь', 'prihod' ), __( 'Декабрь', 'prihod' ) );
         $html = '<table class="prihod-month"><caption>' . esc_html( $months[ (int) $from->format( 'n' ) - 1 ] . ' ' . $from->format( 'Y' ) ) . '</caption><thead><tr>';
         foreach ( self::weekdays() as $label ) { $html .= '<th scope="col">' . esc_html( $label ) . '</th>'; }
         $html .= '</tr></thead><tbody><tr>'; $offset = (int) $from->format( 'N' ) - 1;
+        $panels = '<div class="prihod-month-panels">'; $prefix = wp_unique_id( 'prihod-month-' );
         for ( $blank = 0; $blank < $offset; $blank++ ) { $html .= '<td></td>'; }
         $today = ( new \DateTimeImmutable( 'now', $from->getTimezone() ) )->format( 'Y-m-d' );
         for ( $date = $from; $date < $to; $date = $date->modify( '+1 day' ) ) {
-            $key = $date->format( 'Y-m-d' ); $html .= '<td' . ( $key === $today ? ' class="is-today"' : '' ) . '><time datetime="' . esc_attr( $key ) . '">' . esc_html( $date->format( 'j' ) ) . '</time>';
+            $key = $date->format( 'Y-m-d' ); $items = $by_day[$key] ?? array(); $target = $prefix . $key;
+            $count = sprintf( __( 'Богослужений: %d', 'prihod' ), count( $items ) );
+            $html .= '<td' . ( $key === $today ? ' class="is-today"' : '' ) . '><time datetime="' . esc_attr( $key ) . '">' . esc_html( $date->format( 'j' ) ) . '</time><a class="prihod-month-day-choice' . ( $items ? ' has-services' : '' ) . '" href="#' . esc_attr( $target ) . '" data-prihod-month-day="' . esc_attr( $key ) . '" aria-label="' . esc_attr( $date->format( 'd.m.Y' ) . ' · ' . $count ) . '"' . ( $key === $selected ? ' aria-current="date"' : '' ) . '>' . esc_html( $date->format( 'j' ) ) . ( $items ? '<small>' . esc_html( count( $items ) ) . '</small>' : '' ) . '</a>';
+            $panels .= '<details class="prihod-month-day-panel" id="' . esc_attr( $target ) . '"' . ( $key === $selected ? ' open' : '' ) . '><summary>' . esc_html( $date->format( 'd.m.Y' ) . ' · ' . self::weekdays()[ (int) $date->format( 'N' ) - 1 ] . ' · ' . $count ) . '</summary>';
+            foreach ( $items as $event ) { $panels .= self::event_html( $event ); }
+            if ( ! $items ) { $panels .= '<p>' . esc_html__( 'Богослужения на эту дату не указаны.', 'prihod' ) . '</p>'; }
+            $panels .= '</details>';
             foreach ( $by_day[ $key ] ?? array() as $event ) { $html .= self::event_html( $event ); }
             $html .= '</td>'; ++$offset;
             if ( 0 === $offset % 7 && $date->modify( '+1 day' ) < $to ) { $html .= '</tr><tr>'; }
         }
         while ( 0 !== $offset % 7 ) { $html .= '<td></td>'; ++$offset; }
-        return $html . '</tr></tbody></table>';
+        return $html . '</tr></tbody></table>' . $panels . '</div>';
     }
     private static function week( array $events, \DateTimeImmutable $from, \DateTimeImmutable $to ): string {
         $by_day = array();

@@ -7,7 +7,7 @@ final class Admin_Navigation {
         add_action( 'in_admin_header', array( self::class, 'render' ) );
         add_action( 'admin_enqueue_scripts', function ( $hook ) {
             if ( self::active() ) { wp_enqueue_style( 'prihod-admin-navigation', plugins_url( 'assets/admin-navigation.css', PRIHOD_FILE ), array(), PRIHOD_VERSION ); }
-            if ( self::core_screen() || 'index.php' === $hook ) { wp_enqueue_style( 'prihod-admin-ui', plugins_url( 'assets/admin-ui.css', PRIHOD_FILE ), array(), PRIHOD_VERSION ); }
+            if ( self::core_screen() || 'index.php' === $hook ) { wp_enqueue_style( 'prihod-admin-ui', plugins_url( 'assets/admin-ui.css', PRIHOD_FILE ), array(), PRIHOD_VERSION . '.' . filemtime( dirname( PRIHOD_FILE ) . '/assets/admin-ui.css' ) ); }
         } );
         add_filter( 'admin_body_class', function ( $classes ) { return self::core_screen() ? $classes . ' prihod-own-admin' : $classes; } );
         add_filter( 'parent_file', function ( $parent ) { return self::active() && self::core_screen() ? 'prihod' : $parent; }, 50 );

@@ -24,7 +24,7 @@ final class Schedule {
         ) );
     }
     public static function defaults(): array {
-        return array( 'kind' => 'single', 'date' => '', 'until' => '', 'time' => '09:00', 'end' => '', 'weekdays' => array(), 'location_id' => 0, 'timezone' => '', 'exceptions' => array() );
+        return array( 'kind' => 'single', 'date' => '', 'until' => '', 'time' => '09:00', 'end' => '', 'weekdays' => array(), 'location_id' => 0, 'timezone' => '', 'exceptions' => array(), 'day_icon' => false );
     }
     public static function timezone( int $location, string $explicit = '' ): string {
         $zone = $explicit ?: ( Directory::details( $location )['timezone'] ?? '' );
@@ -33,6 +33,8 @@ final class Schedule {
     }
     public static function validate( array $input ): array {
         $rule = array_merge( self::defaults(), array_intersect_key( $input, self::defaults() ) );
+        if ( ! in_array( $rule['day_icon'], array( true, false, 1, 0, '1', '0', '' ), true ) ) { throw new \InvalidArgumentException( __( 'Некорректные поля расписания.', 'prihod' ) ); }
+        $rule['day_icon'] = in_array( $rule['day_icon'], array( true, 1, '1' ), true );
         foreach ( array( 'kind', 'date', 'until', 'time', 'end', 'timezone' ) as $key ) {
             if ( ! is_string( $rule[ $key ] ) ) { throw new \InvalidArgumentException( __( 'Некорректные поля расписания.', 'prihod' ) ); }
         }

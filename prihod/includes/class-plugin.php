@@ -22,6 +22,8 @@ final class Plugin {
         Dashboard::hooks();
         Admin_Navigation::hooks();
         Schedule::hooks();
+        Schedule_Calendar::hooks();
+        Calendar_Reminders::hooks();
         Requests::hooks();
         Wizard::hooks();
         Diagnostics::hooks();

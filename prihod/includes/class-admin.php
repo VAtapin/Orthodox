@@ -125,6 +125,8 @@ final class Admin {
         foreach ( Capabilities::all() as $capability ) {
             echo '<li><code>' . esc_html( $capability ) . '</code></li>';
         }
-        echo '</ul><p>' . esc_html__( 'Назначить права можно в разделе «Права сотрудников».', 'prihod' ) . '</p></div>';
+        echo '</ul><p>' . esc_html__( 'Назначить права можно в разделе «Права сотрудников».', 'prihod' ) . '</p>';
+        Calendar_Reminders::render();
+        echo '</div>';
     }
 }

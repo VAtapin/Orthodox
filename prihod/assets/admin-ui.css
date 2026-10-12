@@ -34,3 +34,4 @@
 @media(max-width:600px){.prihod-own-admin .prihod-admin-navigation{flex-direction:column;align-items:stretch;gap:12px}.prihod-own-admin .prihod-nav-brand{flex:auto}.prihod-own-admin .prihod-admin-navigation nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}.prihod-own-admin .prihod-admin-navigation nav a{text-align:center;box-sizing:border-box}}
 [id^=prihod_dashboard_] .button-primary{background:#096dcc;border-color:#096dcc;border-radius:6px;color:#fff}
 [id^=prihod_dashboard_] .button{border-radius:6px}[id^=prihod_dashboard_] .prihod-event-copy p{margin:4px 0}
+[name="prihod_calendar_reminders[weekday]"]{width:220px;max-width:100%;min-height:44px}

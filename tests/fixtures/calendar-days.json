@@ -1,0 +1,295 @@
+{
+  "2026-10-14": {
+    "day": {
+      "date": "2026-10-14",
+      "events": [
+        {
+          "title": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии",
+          "category": "commemoration",
+          "typeCode": 2
+        },
+        {
+          "title": "Прп. Саввы Вишерского, Новгородского (1461)",
+          "category": "commemoration",
+          "typeCode": 5
+        },
+        {
+          "title": "Ап. от 70-ти Анании (I)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Прп. Романа Сладкопевца (VI)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Собор Молдавских святых",
+          "category": "commemoration",
+          "typeCode": 16
+        },
+        {
+          "title": "Люблинской (IX), Псково-Покровской (1581), Браиловской (1635), Касперовской (1840), Гербовецкой (1859), и Барской икон Божией Матери",
+          "category": "commemoration",
+          "typeCode": 17
+        },
+        {
+          "title": "Мч. Домнина Солунского (ок. 284-305)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прмч. Михаила, игумена Зовийского, и с ним 36-ти преподобномучеников (780-790)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Празднование в честь Хитона Господня и Столпа Животворящего (330) (Груз.)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмч. Алексия Ставровского пресвитера (1918); сщмч. Михаила Вологодского пресвитера (1920); сщмчч. Александра Агафонникова, Георгия Архангельского, Николая Кулигина пресвитеров, мч. Иоанна Артемова (1937)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Флп.2:24-30",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.5:33-39",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Лк.1:39-49,56",
+          "category": "scripture-reading",
+          "typeCode": 222
+        },
+        {
+          "title": "Евр.9:1-7",
+          "category": "scripture-reading",
+          "typeCode": 224
+        },
+        {
+          "title": "Лк.10:38-42,11:27-28",
+          "category": "scripture-reading",
+          "typeCode": 227
+        },
+        {
+          "title": "Пс.70-76; Пс.77-84; Пс.85-90",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ],
+      "icons": [
+        {
+          "title": "Празднование в честь Хитона Господня и Столпа Животворящего",
+          "imageUrl": "https://bible-desktop.com/storage/calendar-icons/56006205b5a5b5d310a1442b702bb33d2c91220683bc0975e3423683c563098a.jpg",
+          "images": [
+            {
+              "id": 6676,
+              "url": "https://bible-desktop.com/storage/calendar-icons/56006205b5a5b5d310a1442b702bb33d2c91220683bc0975e3423683c563098a.jpg",
+              "previewUrl": "https://bible-desktop.com/api/calendar/icons/2889/images/6676?preview=1",
+              "width": 798,
+              "height": 1080,
+              "sha256": "56006205b5a5b5d310a1442b702bb33d2c91220683bc0975e3423683c563098a"
+            },
+            {
+              "id": 6677,
+              "url": "https://bible-desktop.com/storage/calendar-icons/2f600131821a37effc8b419fa770067a6239cf97478f5bce232411c3cb743891.jpg",
+              "previewUrl": "https://bible-desktop.com/api/calendar/icons/2889/images/6677?preview=1",
+              "width": 521,
+              "height": 604,
+              "sha256": "2f600131821a37effc8b419fa770067a6239cf97478f5bce232411c3cb743891"
+            },
+            {
+              "id": 6678,
+              "url": "https://bible-desktop.com/storage/calendar-icons/8e33bf00014ef571f03d8b3a79bfe2cd99e8556aaf20bc11ea2840f248a81898.jpg",
+              "previewUrl": "https://bible-desktop.com/api/calendar/icons/2889/images/6678?preview=1",
+              "width": 503,
+              "height": 790,
+              "sha256": "8e33bf00014ef571f03d8b3a79bfe2cd99e8556aaf20bc11ea2840f248a81898"
+            },
+            {
+              "id": 6679,
+              "url": "https://bible-desktop.com/storage/calendar-icons/545988c1df79f7b48af42828d0f894f7eac4138608ccff55c8d3a204ee625062.jpg",
+              "previewUrl": "https://bible-desktop.com/api/calendar/icons/2889/images/6679?preview=1",
+              "width": 700,
+              "height": 588,
+              "sha256": "545988c1df79f7b48af42828d0f894f7eac4138608ccff55c8d3a204ee625062"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "2026-10-17": {
+    "day": {
+      "date": "2026-10-17",
+      "events": [
+        {
+          "title": "Обретение мощей свтт. Гурия, архиеп. Казанского, и Варсонофия, еп. Тверского (1595)",
+          "category": "commemoration",
+          "typeCode": 5
+        },
+        {
+          "title": "Сщмч. Иерофея, еп. Афинского (I)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Собор Казанских Святых",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Мчч. Гаия, Фавста, Евсевия и Херимона (III)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмч. Петра Капетолийского (III-IV)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мцц. Домнины и дщерей ее Виринеи (Вероники) и Проскудии (Просдоки) (305-306)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мчч. Давикта (Адавкта) (ок. 305-313) и дщери его Каллисфении (ок. 318)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Павла Препростого (IV)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Аммона (ок. 350)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Блгв. кн. Владимира Ярославича Новгородского, чудотворца (1052)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прпп. Елладия и Онисима Печерских (XII-XIII)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Аммона, затворника Печерского (XIII)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Св. прав. Стефана Щиляновича (1515) (Серб.)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "сщмчч. Николая Верещагина, Михаила Твердовского, Иакова Бобырева и Тихона Архангельского пресвитеров, прмч. Василия Цветкова (1937); св. Хионии Архангельской исп. (1945)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "2 Кор.1:8-11",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.5:27-32",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.109-111; Пс.118",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ],
+      "icons": []
+    }
+  },
+  "2026-10-18": {
+    "day": {
+      "date": "2026-10-18",
+      "events": [
+        {
+          "title": "Неделя 20-я по Пятидесятнице",
+          "category": "commemoration",
+          "typeCode": -20
+        },
+        {
+          "title": "Свтт. Петра, Феогноста, Алексия, Киприана, Фотия, Ионы, Геронтия, Иоасафа, Макария, Филиппа, Иова, Ермогена, Тихона, Петра, Филарета, Иннокентия и Макария, Московских и всея России чудотворцев",
+          "category": "commemoration",
+          "typeCode": 4
+        },
+        {
+          "title": "Мц. Харитины (304)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Сщмч. Дионисия, еп. Александрийского (264-265)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мц. Мамелхвы Персидской (ок. 344)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Григория Хандзойского (861) (Груз.)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прпп. Дамиана, пресвитера, целебника (1071), Иеремии (ок. 1070) и Матфея (ок. 1085) прозорливых, Печерских",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Харитины, кн. Литовской, в Новгороде подвизавшейся (1281)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Гавриила Игошкина исп. (1959)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Ин.20:19-31",
+          "category": "scripture-reading",
+          "typeCode": 202
+        },
+        {
+          "title": "Гал.1:11-19",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.7:11-16",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.9-16; Пс.17-23",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ],
+      "icons": []
+    }
+  }
+}

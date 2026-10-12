@@ -692,3 +692,37 @@ ID места (0 — все)	Orts-ID (0 — alle)	ID miejsca (0 — wszystkie)	I
 Материал	Inhalt	Materiał	Матеріал
 Предыдущее фото	Vorheriges Foto	Poprzednie zdjęcie	Попереднє фото
 Следующее фото	Nächstes Foto	Następne zdjęcie	Наступне фото
+Календарный плагин недоступен.	Das Kalender-Plugin ist nicht verfügbar.	Wtyczka kalendarza jest niedostępna.	Плагін календаря недоступний.
+Некорректная дата.	Ungültiges Datum.	Nieprawidłowa data.	Некоректна дата.
+Календарь вернул некорректные данные.	Der Kalender hat ungültige Daten zurückgegeben.	Kalendarz zwrócił nieprawidłowe dane.	Календар повернув некоректні дані.
+Праздник и икона дня	Fest und Tagesikone	Święto i ikona dnia	Свято та ікона дня
+Использовать название праздника	Festnamen verwenden	Użyj nazwy święta	Використати назву свята
+Показывать икону дня из календаря	Tagesikone aus dem Kalender anzeigen	Pokaż ikonę dnia z kalendarza	Показувати ікону дня з календаря
+Икона определяется автоматически для каждой даты службы. Время и место выбираете вы.	Die Ikone wird automatisch für jeden Gottesdiensttag ermittelt. Zeit und Ort wählen Sie selbst.	Ikona jest dobierana automatycznie dla każdej daty nabożeństwa. Godzinę i miejsce wybierasz samodzielnie.	Ікона визначається автоматично для кожної дати богослужіння. Час і місце обираєте ви.
+Проверяем календарь…	Kalender wird geprüft…	Sprawdzanie kalendarza…	Перевіряємо календар…
+Календарь временно недоступен. Расписание можно заполнить вручную.	Der Kalender ist vorübergehend nicht verfügbar. Sie können den Gottesdienstplan manuell ausfüllen.	Kalendarz jest tymczasowo niedostępny. Harmonogram można uzupełnić ręcznie.	Календар тимчасово недоступний. Розклад можна заповнити вручну.
+Великих праздников на эту дату нет.	An diesem Datum gibt es keine großen Feste.	W tym dniu nie ma wielkich świąt.	Великих свят на цю дату немає.
+Литургия	Liturgie	Liturgia	Літургія
+Название уже заполнено. Чтобы использовать подсказку, сначала очистите его.	Der Titel ist bereits ausgefüllt. Leeren Sie ihn zuerst, um den Vorschlag zu verwenden.	Tytuł jest już wypełniony. Aby użyć podpowiedzi, najpierw go wyczyść.	Назву вже заповнено. Щоб використати підказку, спочатку очистіть її.
+Выберите день и время недельного напоминания.	Wählen Sie Tag und Uhrzeit der wöchentlichen Erinnerung.	Wybierz dzień i godzinę cotygodniowego przypomnienia.	Оберіть день і час щотижневого нагадування.
+Праздники на ближайшие семь дней. Откройте редактор, выберите время и место и подтвердите богослужение.	Feste der nächsten sieben Tage. Öffnen Sie den Editor, wählen Sie Zeit und Ort und bestätigen Sie den Gottesdienst.	Święta na najbliższe siedem dni. Otwórz edytor, wybierz godzinę i miejsce oraz zatwierdź nabożeństwo.	Свята на найближчі сім днів. Відкрийте редактор, оберіть час і місце та підтвердьте богослужіння.
+Приход: праздники недели	Pfarrei: Feste der Woche	Parafia: święta tygodnia	Парафія: свята тижня
+Недельное напоминание о праздниках	Wöchentliche Erinnerung an Feste	Cotygodniowe przypomnienie o świętach	Щотижневе нагадування про свята
+Отправляется на email администратора WordPress. До выбора времени и включения письма не отправляются.	Wird an die E-Mail-Adresse des WordPress-Administrators gesendet. Ohne gewählte Uhrzeit und Aktivierung werden keine E-Mails versendet.	Wysyłane na adres e-mail administratora WordPress. Wiadomości nie są wysyłane przed wyborem godziny i włączeniem opcji.	Надсилається на email адміністратора WordPress. До вибору часу й увімкнення листи не надсилаються.
+Включить недельное напоминание	Wöchentliche Erinnerung aktivieren	Włącz cotygodniowe przypomnienie	Увімкнути щотижневе нагадування
+День отправки	Versandtag	Dzień wysyłki	День надсилання
+Время отправки	Versandzeit	Godzina wysyłki	Час надсилання
+Календарь временно недоступен.	Der Kalender ist vorübergehend nicht verfügbar.	Kalendarz jest tymczasowo niedostępny.	Календар тимчасово недоступний.
+На ближайшую неделю великих праздников нет.	In der kommenden Woche gibt es keine großen Feste.	W najbliższym tygodniu nie ma wielkich świąt.	На найближчий тиждень великих свят немає.
+Напоминание передано почтовой службе WordPress.	Die Erinnerung wurde an den WordPress-Maildienst übergeben.	Przypomnienie przekazano do usługi pocztowej WordPress.	Нагадування передано поштовій службі WordPress.
+Почтовая служба не подтвердила отправку.	Der Maildienst hat den Versand nicht bestätigt.	Usługa pocztowa nie potwierdziła wysyłki.	Поштова служба не підтвердила надсилання.
+Икона дня недоступна.	Die Tagesikone ist nicht verfügbar.	Ikona dnia jest niedostępna.	Ікона дня недоступна.
+Воскресенье	Sonntag	Niedziela	Неділя
+Понедельник	Montag	Poniedziałek	Понеділок
+Вторник	Dienstag	Wtorek	Вівторок
+Среда	Mittwoch	Środa	Середа
+Четверг	Donnerstag	Czwartek	Четвер
+Пятница	Freitag	Piątek	П’ятниця
+Суббота	Samstag	Sobota	Субота
+Богослужений: %d	Gottesdienste: %d	Nabożeństwa: %d	Богослужінь: %d
+Богослужения на эту дату не указаны.	Für dieses Datum sind keine Gottesdienste eingetragen.	Na ten dzień nie wpisano nabożeństw.	Богослужіння на цю дату не вказані.

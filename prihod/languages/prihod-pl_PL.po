@@ -2076,3 +2076,105 @@ msgstr "Obecny motyw"
 
 msgid "Материал"
 msgstr "Materiał"
+
+msgid "Календарный плагин недоступен."
+msgstr "Wtyczka kalendarza jest niedostępna."
+
+msgid "Некорректная дата."
+msgstr "Nieprawidłowa data."
+
+msgid "Календарь вернул некорректные данные."
+msgstr "Kalendarz zwrócił nieprawidłowe dane."
+
+msgid "Праздник и икона дня"
+msgstr "Święto i ikona dnia"
+
+msgid "Использовать название праздника"
+msgstr "Użyj nazwy święta"
+
+msgid "Показывать икону дня из календаря"
+msgstr "Pokaż ikonę dnia z kalendarza"
+
+msgid "Икона определяется автоматически для каждой даты службы. Время и место выбираете вы."
+msgstr "Ikona jest dobierana automatycznie dla każdej daty nabożeństwa. Godzinę i miejsce wybierasz samodzielnie."
+
+msgid "Проверяем календарь…"
+msgstr "Sprawdzanie kalendarza…"
+
+msgid "Календарь временно недоступен. Расписание можно заполнить вручную."
+msgstr "Kalendarz jest tymczasowo niedostępny. Harmonogram można uzupełnić ręcznie."
+
+msgid "Великих праздников на эту дату нет."
+msgstr "W tym dniu nie ma wielkich świąt."
+
+msgid "Литургия"
+msgstr "Liturgia"
+
+msgid "Название уже заполнено. Чтобы использовать подсказку, сначала очистите его."
+msgstr "Tytuł jest już wypełniony. Aby użyć podpowiedzi, najpierw go wyczyść."
+
+msgid "Выберите день и время недельного напоминания."
+msgstr "Wybierz dzień i godzinę cotygodniowego przypomnienia."
+
+msgid "Праздники на ближайшие семь дней. Откройте редактор, выберите время и место и подтвердите богослужение."
+msgstr "Święta na najbliższe siedem dni. Otwórz edytor, wybierz godzinę i miejsce oraz zatwierdź nabożeństwo."
+
+msgid "Приход: праздники недели"
+msgstr "Parafia: święta tygodnia"
+
+msgid "Недельное напоминание о праздниках"
+msgstr "Cotygodniowe przypomnienie o świętach"
+
+msgid "Отправляется на email администратора WordPress. До выбора времени и включения письма не отправляются."
+msgstr "Wysyłane na adres e-mail administratora WordPress. Wiadomości nie są wysyłane przed wyborem godziny i włączeniem opcji."
+
+msgid "Включить недельное напоминание"
+msgstr "Włącz cotygodniowe przypomnienie"
+
+msgid "День отправки"
+msgstr "Dzień wysyłki"
+
+msgid "Время отправки"
+msgstr "Godzina wysyłki"
+
+msgid "Календарь временно недоступен."
+msgstr "Kalendarz jest tymczasowo niedostępny."
+
+msgid "На ближайшую неделю великих праздников нет."
+msgstr "W najbliższym tygodniu nie ma wielkich świąt."
+
+msgid "Напоминание передано почтовой службе WordPress."
+msgstr "Przypomnienie przekazano do usługi pocztowej WordPress."
+
+msgid "Почтовая служба не подтвердила отправку."
+msgstr "Usługa pocztowa nie potwierdziła wysyłki."
+
+msgid "Икона дня недоступна."
+msgstr "Ikona dnia jest niedostępna."
+
+msgid "Воскресенье"
+msgstr "Niedziela"
+
+msgid "Понедельник"
+msgstr "Poniedziałek"
+
+msgid "Вторник"
+msgstr "Wtorek"
+
+msgid "Среда"
+msgstr "Środa"
+
+msgid "Четверг"
+msgstr "Czwartek"
+
+msgid "Пятница"
+msgstr "Piątek"
+
+msgid "Суббота"
+msgstr "Sobota"
+
+msgid "Богослужений: %d"
+msgstr "Nabożeństwa: %d"
+
+msgid "Богослужения на эту дату не указаны."
+msgstr "Na ten dzień nie wpisano nabożeństw."

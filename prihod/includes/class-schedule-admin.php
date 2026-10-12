@@ -56,7 +56,8 @@ final class Schedule_Admin {
         if ( 'prihod_service' !== ( get_current_screen()->post_type ?? '' ) ) { return; }
         wp_enqueue_style( 'prihod-schedule-admin', plugins_url( 'assets/schedule-admin.css', PRIHOD_FILE ), array(), PRIHOD_VERSION . '.' . filemtime( dirname( PRIHOD_FILE ) . '/assets/schedule-admin.css' ) );
         wp_enqueue_script( 'prihod-schedule-admin', plugins_url( 'assets/schedule-admin.js', PRIHOD_FILE ), array(), PRIHOD_VERSION, true );
-        wp_localize_script( 'prihod-schedule-admin', 'prihodScheduleUI', array( 'description' => __( 'Описание богослужения', 'prihod' ) ) );
+        wp_enqueue_script( 'prihod-calendar-admin', plugins_url( 'assets/calendar-admin.js', PRIHOD_FILE ), array( 'prihod-schedule-admin' ), PRIHOD_VERSION . '.' . filemtime( dirname( PRIHOD_FILE ) . '/assets/calendar-admin.js' ), true );
+        wp_localize_script( 'prihod-schedule-admin', 'prihodScheduleUI', array( 'description' => __( 'Описание богослужения', 'prihod' ), 'endpoint' => rest_url( Plugin::REST_NAMESPACE . '/calendar-day' ), 'nonce' => wp_create_nonce( 'wp_rest' ), 'loading' => __( 'Проверяем календарь…', 'prihod' ), 'unavailable' => __( 'Календарь временно недоступен. Расписание можно заполнить вручную.', 'prihod' ), 'empty' => __( 'Великих праздников на эту дату нет.', 'prihod' ), 'liturgy' => __( 'Литургия', 'prihod' ), 'titleFilled' => __( 'Название уже заполнено. Чтобы использовать подсказку, сначала очистите его.', 'prihod' ) ) );
     }
     public static function input( string $name, string $value, string $type = 'text' ): string {
         return '<input type="' . esc_attr( $type ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '">';
@@ -71,6 +72,8 @@ final class Schedule_Admin {
     public static function render( $post ): void {
         $data = get_post_meta( $post->ID, '_prihod_service', true );
         $rule = array_merge( Schedule::defaults(), is_array( $data ) ? $data : array() );
+        $suggested_date = $_GET['prihod_calendar_date'] ?? '';
+        if ( 'auto-draft' === $post->post_status && is_string( $suggested_date ) && Occurrences::date( $suggested_date ) ) { $rule['date'] = $suggested_date; $rule['time'] = ''; }
         wp_nonce_field( 'prihod_service_' . $post->ID, 'prihod_service_nonce' );
         echo '<div class="prihod-service-editor"><div class="prihod-service-intro"><h2>' . esc_html__( 'Когда и где состоится богослужение', 'prihod' ) . '</h2><p>' . esc_html__( 'Укажите дату, время и место. Для регулярной службы выберите дни недели.', 'prihod' ) . '</p></div><fieldset class="prihod-service-section"><legend>' . esc_html__( 'Основные сведения', 'prihod' ) . '</legend><div class="prihod-service-grid"><label class="prihod-service-field">' . esc_html__( 'Тип службы', 'prihod' ) . '<select name="prihod_service[kind]">';
         foreach ( array( 'single' => __( 'Разовая', 'prihod' ), 'regular' => __( 'Регулярная', 'prihod' ), 'holiday' => __( 'Праздничная', 'prihod' ) ) as $key => $label ) {
@@ -82,7 +85,9 @@ final class Schedule_Admin {
         }
         echo '<label class="prihod-service-field prihod-service-wide">' . esc_html__( 'Место служения', 'prihod' ) . self::locations( 'prihod_service[location_id]', (int) $rule['location_id'] ) . '</label></div>';
         if ( ! get_posts( array( 'post_type' => 'prihod_location', 'post_status' => array( 'publish', 'draft', 'private' ), 'numberposts' => 1, 'fields' => 'ids' ) ) && current_user_can( 'manage_prihod' ) ) { echo '<p class="prihod-service-help"><a href="' . esc_url( admin_url( 'post-new.php?post_type=prihod_location' ) ) . '">' . esc_html__( 'Сначала добавьте место служения', 'prihod' ) . '</a></p>'; }
-        echo '</fieldset><fieldset class="prihod-service-section" data-prihod-repeat><legend>' . esc_html__( 'Повторение', 'prihod' ) . '</legend><div class="prihod-weekday-choices">';
+        echo '</fieldset>';
+        Schedule_Calendar::editor( $rule );
+        echo '<fieldset class="prihod-service-section" data-prihod-repeat><legend>' . esc_html__( 'Повторение', 'prihod' ) . '</legend><div class="prihod-weekday-choices">';
         $days = array( __( 'Пн', 'prihod' ), __( 'Вт', 'prihod' ), __( 'Ср', 'prihod' ), __( 'Чт', 'prihod' ), __( 'Пт', 'prihod' ), __( 'Сб', 'prihod' ), __( 'Вс', 'prihod' ) );
         foreach ( $days as $index => $label ) {
             echo '<label><input type="checkbox" name="prihod_service[weekdays][]" value="' . esc_attr( $index + 1 ) . '"' . checked( in_array( $index + 1, $rule['weekdays'], true ), true, false ) . '> ' . esc_html( $label ) . '</label>';

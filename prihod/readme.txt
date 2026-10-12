@@ -3,7 +3,7 @@ Contributors: vatapin
 Tags: parish, church, orthodox
 Requires at least: 6.5
 Requires PHP: 8.0
-Stable tag: 1.0.0-rc.9
+Stable tag: 1.0.0-rc.10
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -44,6 +44,11 @@ Telegram, WhatsApp и Facebook доступны отдельными необя�
 Нет. Основные функции принадлежат плагину.
 
 == Changelog ==
+
+= 1.0.0-rc.10 =
+* Подсказки праздников в редакторе и автоматическая икона фактической даты службы.
+* Настраиваемое недельное напоминание администратору через WordPress Cron.
+* Календарный API и медиа используются через существующий orthocal.
 
 = 1.0.0-rc.9 =
 * Шесть настоящих этапов мастера, общий выбор возможностей и сохранение прежнего интервью.

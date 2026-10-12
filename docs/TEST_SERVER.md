@@ -244,3 +244,27 @@ PHP8.5 — подтверждённый handler именно этого WordPres
 изменения окружения не нужны. Затем фактически открыть страницу19 и проверить
 фото/перелистывание/закрытие на desktop/mobile; программный checker не заменяет
 браузерную проверку. Выполнение этой команды пока не разрешено и не заявляется.
+
+## Core rc.10 — локально готов, установка не разрешена
+
+Архив build/prihod-1.0.0-rc.10.zip и проверка build/server-check-calendar-rc10.php
+подготовлены отдельно. При прямом разрешении загрузить только их в те же
+wp-content/prihod-packages и wp-content/prihod-server-check.php. Тема не обновляется
+этой командой: проверка совместима с уже установленной0.3.17 и отдельно разрешённой
+0.3.18. На0.3.17 проверка явно оставляет просмотр фото в состоянии pending;
+она не объявляет дефект фото19 устранённым.71/75 read-only checks подготовлены,
+но ещё не исполнялись на сервере. Напоминание не включать и время не назначать.
+
+После разрешённой загрузки команда для SSH/Plesk:
+
+```bash
+cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
+export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
+php -d memory_limit=512M /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.10.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
+```
+
+Затем проверить редактор/икону/мобильный месяц иEurope/Berlin в этом WordPress.
+Реальные письма/создание служб не запускать при приёмке. Plesk, другие сайты,
+серверный cron, credentials и конфигурация PHP не меняются. Composer/Node build
+не требуются. Календарные детали — docs/CALENDAR_FEATURES.md.

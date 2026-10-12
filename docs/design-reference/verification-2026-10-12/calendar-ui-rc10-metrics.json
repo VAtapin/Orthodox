@@ -1,0 +1,312 @@
+[
+  {
+    "scheme": "classic",
+    "view": "desktop",
+    "icons": [
+      {
+        "alt": "Празднование в честь Хитона Господня и Столпа Животворящего",
+        "height": 81.1875,
+        "naturalWidth": 798
+      }
+    ],
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "editorial",
+    "view": "desktop",
+    "icons": [
+      {
+        "alt": "Празднование в честь Хитона Господня и Столпа Животворящего",
+        "height": 81.1875,
+        "naturalWidth": 798
+      }
+    ],
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "hospitality",
+    "view": "desktop",
+    "icons": [
+      {
+        "alt": "Празднование в честь Хитона Господня и Столпа Животворящего",
+        "height": 81.1875,
+        "naturalWidth": 798
+      }
+    ],
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "tradition",
+    "view": "desktop",
+    "icons": [
+      {
+        "alt": "Празднование в честь Хитона Господня и Столпа Животворящего",
+        "height": 81.1875,
+        "naturalWidth": 798
+      }
+    ],
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "blue",
+    "view": "desktop",
+    "icons": [
+      {
+        "alt": "Празднование в честь Хитона Господня и Столпа Животворящего",
+        "height": 81.1875,
+        "naturalWidth": 798
+      }
+    ],
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "classic",
+    "view": "mobile",
+    "icons": [
+      {
+        "alt": "Празднование в честь Хитона Господня и Столпа Животворящего",
+        "height": 59.546875,
+        "naturalWidth": 798
+      }
+    ],
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "editorial",
+    "view": "mobile",
+    "icons": [
+      {
+        "alt": "Празднование в честь Хитона Господня и Столпа Животворящего",
+        "height": 59.546875,
+        "naturalWidth": 798
+      }
+    ],
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "hospitality",
+    "view": "mobile",
+    "icons": [
+      {
+        "alt": "Празднование в честь Хитона Господня и Столпа Животворящего",
+        "height": 59.546875,
+        "naturalWidth": 798
+      }
+    ],
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "tradition",
+    "view": "mobile",
+    "icons": [
+      {
+        "alt": "Празднование в честь Хитона Господня и Столпа Животворящего",
+        "height": 59.546875,
+        "naturalWidth": 798
+      }
+    ],
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "blue",
+    "view": "mobile",
+    "icons": [
+      {
+        "alt": "Празднование в честь Хитона Господня и Столпа Животворящего",
+        "height": 59.546875,
+        "naturalWidth": 798
+      }
+    ],
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "classic",
+    "view": "desktop",
+    "period": "week",
+    "loaded": 798,
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "editorial",
+    "view": "desktop",
+    "period": "week",
+    "loaded": 798,
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "hospitality",
+    "view": "desktop",
+    "period": "week",
+    "loaded": 798,
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "tradition",
+    "view": "desktop",
+    "period": "week",
+    "loaded": 798,
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "blue",
+    "view": "desktop",
+    "period": "week",
+    "loaded": 798,
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "classic",
+    "view": "mobile",
+    "period": "week",
+    "loaded": 798,
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "editorial",
+    "view": "mobile",
+    "period": "week",
+    "loaded": 798,
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "hospitality",
+    "view": "mobile",
+    "period": "week",
+    "loaded": 798,
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "tradition",
+    "view": "mobile",
+    "period": "week",
+    "loaded": 798,
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "blue",
+    "view": "mobile",
+    "period": "week",
+    "loaded": 798,
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "classic",
+    "view": "mobile",
+    "period": "month",
+    "gridHeight": 278.28125,
+    "loaded": 798,
+    "overflow": false,
+    "titleWidth": 216,
+    "titleWordBreak": "normal",
+    "width": 390
+  },
+  {
+    "scheme": "editorial",
+    "view": "mobile",
+    "period": "month",
+    "gridHeight": 278.28125,
+    "loaded": 798,
+    "overflow": false,
+    "titleWidth": 216,
+    "titleWordBreak": "normal",
+    "width": 390
+  },
+  {
+    "scheme": "hospitality",
+    "view": "mobile",
+    "period": "month",
+    "gridHeight": 278.28125,
+    "loaded": 798,
+    "overflow": false,
+    "titleWidth": 216,
+    "titleWordBreak": "normal",
+    "width": 390
+  },
+  {
+    "scheme": "tradition",
+    "view": "mobile",
+    "period": "month",
+    "gridHeight": 278.28125,
+    "loaded": 798,
+    "overflow": false,
+    "titleWidth": 192,
+    "titleWordBreak": "normal",
+    "width": 390
+  },
+  {
+    "scheme": "blue",
+    "view": "mobile",
+    "period": "month",
+    "gridHeight": 278.28125,
+    "loaded": 798,
+    "overflow": false,
+    "titleWidth": 216,
+    "titleWordBreak": "normal",
+    "width": 390
+  },
+  {
+    "scheme": "classic",
+    "view": "desktop",
+    "period": "month",
+    "loaded": 798,
+    "mobilePanelsVisible": false,
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "editorial",
+    "view": "desktop",
+    "period": "month",
+    "loaded": 798,
+    "mobilePanelsVisible": false,
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "hospitality",
+    "view": "desktop",
+    "period": "month",
+    "loaded": 798,
+    "mobilePanelsVisible": false,
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "tradition",
+    "view": "desktop",
+    "period": "month",
+    "loaded": 798,
+    "mobilePanelsVisible": false,
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "blue",
+    "view": "desktop",
+    "period": "month",
+    "loaded": 798,
+    "mobilePanelsVisible": false,
+    "overflow": false,
+    "width": 1122
+  }
+]

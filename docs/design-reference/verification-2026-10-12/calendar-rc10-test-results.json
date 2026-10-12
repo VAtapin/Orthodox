@@ -1,0 +1,35 @@
+{
+  "current": {
+    "status": "WORDPRESS_SMOKE_OK",
+    "assertions": 276,
+    "wordpress": "7.1.3",
+    "php": "8.4.25",
+    "design_checks": 204
+  },
+  "minimum": {
+    "status": "WORDPRESS_SMOKE_OK",
+    "assertions": 256,
+    "wordpress": "6.5.13",
+    "php": "8.0.30",
+    "design_checks": 203
+  },
+  "ui": {
+    "states": 30,
+    "actual_widths": [
+      1122,
+      390
+    ],
+    "mobile_month_grid_height": 278.28125,
+    "mobile_title_width": [
+      192,
+      216
+    ],
+    "keyboard_days": [
+      "2026-10-17",
+      "2026-10-18"
+    ],
+    "navigation": "October -> November -> October",
+    "live": "Core rc.9/theme0.3.17; rc.10 not installed"
+  },
+  "core_zip_sha256": "4ad99b2d774f9910114a678aa96243690b99e505061e806376eba1975420077e"
+}

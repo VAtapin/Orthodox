@@ -44,7 +44,7 @@ foreach ( array( 'de_DE', 'pl_PL', 'uk' ) as $locale ) {
 }
 echo wp_json_encode( array( 'status' => 'PRIHOD_SERVER_OK', 'checks' => $checked, 'wordpress' => get_bloginfo( 'version' ), 'php' => PHP_VERSION, 'theme' => wp_get_theme()->get( 'Version' ) ), JSON_UNESCAPED_UNICODE ) . PHP_EOL;
 
-$check( '1.0.0-rc.9' === PRIHOD_VERSION && '0.3.18' === wp_get_theme()->get( 'Version' ), 'Reference-design release versions must be installed.' );
+$check( '1.0.0-rc.10' === PRIHOD_VERSION && in_array( wp_get_theme()->get( 'Version' ), array( '0.3.17', '0.3.18' ), true ), 'Authorized calendar Core and compatible installed theme must be present.' );
 prihod_theme_prepare_provider_assets();
 do_shortcode( '[' . $donation_tag . ']' );
 $check( str_contains( (string) wp_scripts()->get_data( 'georg-kloster-orthodox-donate', 'data' ), 'georgKlosterOrthodoxDonate' ), 'Native donation configuration must exist before the block theme prints scripts.' );
@@ -151,6 +151,7 @@ $check( str_contains( $overview_html, 'prihod-site-summary' ) && str_contains( $
 $check( str_contains( $overview_html, 'prihod-card-integrations_card' ) && str_contains( $overview_html, 'prihod-wizard' ) && str_contains( $overview_html, 'prihod-requests' ), 'Overview must retain native plugin, wizard and request navigation.' );
 echo "ADMIN_OVERVIEW_CHECK_OK: {$checked} total checks.\n";
 
+if ( '0.3.18' === wp_get_theme()->get( 'Version' ) ) {
 $photo_page = get_post( absint( $resources['photos']['id'] ?? 0 ) );
 $check( $photo_page instanceof WP_Post && str_contains( do_blocks( $photo_page->post_content ), 'wp-lightbox-container' ), 'Saved gallery must render the native viewer without changing its content.' );
 $photo_ids = array_filter( array_map( 'absint', explode( ',', prihod_theme_options()['gallery'] ) ), 'wp_attachment_is_image' );
@@ -159,3 +160,12 @@ $photo = prihod_theme_photo( reset( $photo_ids ), 'large', array(), '', home_url
 $check( (bool) preg_match( '/<a\b[^>]*>\s*<img\b[^>]*>\s*<\/a>\s*<button\b/s', $photo ), 'Existing image destinations and native zoom buttons must remain separate.' );
 $check( str_contains( prihod_theme_home_gallery( $photo_ids, false ), 'data-wp-interactive="core/gallery"' ), 'Dynamic homepage photographs must support the current native gallery navigation.' );
 echo "PHOTO_VIEWER_CHECK_OK: {$checked} total checks.\n";
+} else { echo "PHOTO_VIEWER_PENDING_PERMISSION: theme0.3.17 remains installed.\n"; }
+
+$check( false === Prihod\Schedule::defaults()['day_icon'], 'Existing services retain opt-out unless their owner enables the calendar icon.' );
+$check( is_callable( array( '\Orthocal_Plugin', 'request' ) ) && is_callable( array( '\Orthocal_Plugin', 'icon_items' ) ), 'Calendar features use the installed provider API and icon catalogue.' );
+ob_start(); Prihod\Schedule_Calendar::editor( Prihod\Schedule::defaults() ); $calendar_editor = ob_get_clean();
+$check( str_contains( $calendar_editor, 'prihod_service[day_icon]' ) && str_contains( $calendar_editor, 'data-prihod-use-feast' ), 'Service editor provides explicit feast acceptance and automatic icon checkbox.' );
+$reminders = Prihod\Calendar_Reminders::options();
+$check( is_bool( $reminders['enabled'] ) && ( '' === $reminders['time'] || Prihod\Occurrences::time( $reminders['time'] ) ), 'Reminder configuration is readable without enabling it or sending messages.' );
+echo "CALENDAR_FEATURES_CHECK_OK: {$checked} total checks.\n";

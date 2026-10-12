@@ -69,6 +69,6 @@ final class Occurrences {
             $end = self::instant( $end_date, $end_time, $start->getTimezone()->getName() );
             if ( ! $end || $end <= $start ) { return null; }
         }
-        return array( 'id' => $rule['id'] . ':' . $original, 'service_id' => $rule['id'], 'original_date' => $original, 'title' => $rule['title'], 'description' => $rule['description'], 'kind' => $rule['kind'], 'start' => $start, 'end' => $end, 'cancelled' => $cancelled, 'moved' => ! $cancelled && ! empty( $override ), 'location_id' => $override['location_id'] ?? $rule['location_id'] );
+        return array( 'id' => $rule['id'] . ':' . $original, 'service_id' => $rule['id'], 'original_date' => $original, 'title' => $rule['title'], 'description' => $rule['description'], 'kind' => $rule['kind'], 'start' => $start, 'end' => $end, 'cancelled' => $cancelled, 'moved' => ! $cancelled && ! empty( $override ), 'location_id' => $override['location_id'] ?? $rule['location_id'], 'day_icon' => ! empty( $rule['day_icon'] ) );
     }
 }

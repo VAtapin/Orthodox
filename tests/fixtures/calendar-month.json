@@ -1,0 +1,1904 @@
+{
+  "days": [
+    {
+      "date": "2026-10-01",
+      "events": [
+        {
+          "title": "Попразднство Воздвижения Креста Господня",
+          "category": "commemoration",
+          "typeCode": -20
+        },
+        {
+          "title": "Прп. Евмения, еп. Гортинского (VII)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Новомучеников и исповедников земли Владимирской",
+          "category": "commemoration",
+          "typeCode": 16
+        },
+        {
+          "title": "Молченской (1405), именуемой \"Целительница\" (XVIII), и Старорусской икон Божией Матери",
+          "category": "commemoration",
+          "typeCode": 17
+        },
+        {
+          "title": "Прославление прп. Евфросинии Суздальской, в миру Феодулии (1698)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Илариона Оптинского (1873)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мц. Ариадны (II)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мцц. Софии и Ирины (III)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мчч. Бидзины, Шалвы и Элизбара, князей Ксанских (1660) (Груз.)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мч. Кастора",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмчч. Алексия Кузнецова и Петра Дьяконова пресвитеров (1918); сщмчч. Амфилохия, еп. Красноярского, Иоанна Васильева, Бориса Боголепова, Михаила Скобелева, Владимира Чекалова, Вениамина Благонадеждина, Константина Твердислова пресвитеров и мч. Сергия Ведерникова (1937)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Еф.5:33-6:9",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Мф.24:13-28",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.91-100; Пс.101-104; Пс.105-108",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-02",
+      "events": [
+        {
+          "title": "Попразднство Воздвижения Креста Господня",
+          "category": "commemoration",
+          "typeCode": -20
+        },
+        {
+          "title": "Блгвв. князей Феодора Смоленского (1299) и чад его Давида (1321) и Константина, Ярославских чудотворцев",
+          "category": "commemoration",
+          "typeCode": 5
+        },
+        {
+          "title": "Мчч. Трофима, Савватия и Доримедонта (276)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Прп. Алексия Зосимовсого (1928)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мч. Зосимы пустынника (IV)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Блгв. вел. кн. Игоря Черниговского и Киевского (1147)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмч. Константина Голубева пресвитера и с ним двух мучеников (1918); сщмч. Николая Искровского пресвитера (1919); сщмч. Константина Богословского пресвитера (1937); сщмч. Нила Смирнова пресвитера, прмц. Марии Мамонтовой-Шашиной (1938); сщмч. Никандра Гривского пресвитера (1939)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Еф.6:18-24",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Мф.24:27-33,42-51",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.134-142; Пс.143-150; Пс.1-8",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-03",
+      "events": [
+        {
+          "title": "Попразднство Воздвижения Креста Господня",
+          "category": "commemoration",
+          "typeCode": -20
+        },
+        {
+          "title": "Мчч. и испп. Михаила, кн. Черниговского, и болярина его Феодора, чудотворцев (1245)",
+          "category": "commemoration",
+          "typeCode": 5
+        },
+        {
+          "title": "Вмч. Евстафия Плакиды, жены его Феопистии и чад их Агапия и Феописта (ок. 118)",
+          "category": "commemoration",
+          "typeCode": 6
+        },
+        {
+          "title": "Суббота по Воздвижении",
+          "category": "commemoration",
+          "typeCode": 8
+        },
+        {
+          "title": "Собор Брянских святых",
+          "category": "commemoration",
+          "typeCode": 16
+        },
+        {
+          "title": "Прп. и блгв. кн. Олега Брянского (ок. 1285)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмчч. Феоктиста Смельницкого и Александра Тетюева пресвитеров (1937)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "1 Кор.15:39-45",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.4:31-36",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "1 Кор.1:26-29",
+          "category": "scripture-reading",
+          "typeCode": 294
+        },
+        {
+          "title": "Ин.8:21-30",
+          "category": "scripture-reading",
+          "typeCode": 297
+        },
+        {
+          "title": "Пс.109-111; Пс.118",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-04",
+      "events": [
+        {
+          "title": "Неделя 18-я по Пятидесятнице",
+          "category": "commemoration",
+          "typeCode": -20
+        },
+        {
+          "title": "Отдание праздника Воздвижения Креста Господня",
+          "category": "commemoration",
+          "typeCode": -20
+        },
+        {
+          "title": "Обретение мощей свт. Димитрия, митр. Ростовского (1752)",
+          "category": "commemoration",
+          "typeCode": 4
+        },
+        {
+          "title": "Ап. от 70-ти Кодрата (ок. 130)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Неделя по Воздвижении",
+          "category": "commemoration",
+          "typeCode": 8
+        },
+        {
+          "title": "Сщмчч. Ипатия епископа и Андрея пресвитера (ок. 730-735)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Даниила Шужгорского (XVI)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Иосифа Заоникиевского (1612)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Свтт. Исаакия и Мелетия, епископов Кипрских",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мчч. Евсевия и Приска (IV)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмчч. Александра Федосеева, Алексия Стабникова, Константина Широкинского, Иоанна Флерова пресвитеров (1918); прмч. Маврикия Полетаева и мч. Василия Кондратьева (1937); сщмчч. Валента Никольского, Александра Белякова, Иоанна Лазарева, Андрея Бенедиктова, Петра Сахаровского, Иоанна Никольского, Василия Носова пресвитеров (1937); сщмч. Иоанна Быстрова пресвитера (1938); сщмч. Василия Крымкина пресвитера (1942)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Ин.20:1-10",
+          "category": "scripture-reading",
+          "typeCode": 202
+        },
+        {
+          "title": "2 Кор.9:6-11",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.5:1-11",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Гал.2:16-20",
+          "category": "scripture-reading",
+          "typeCode": 294
+        },
+        {
+          "title": "Мк.8:34-9:1",
+          "category": "scripture-reading",
+          "typeCode": 297
+        },
+        {
+          "title": "Пс.9-16; Пс.17-23",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-05",
+      "events": [
+        {
+          "title": "Прор. Ионы (VIII до Р.Х.)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Сщмч. Фоки, еп. Синопийского (117)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Прп. Ионы пресвитера, отца (IX) свв.Феофана, творца канонов, и Феодора Начертанных. Блж. Параскевы Дивеевской (1915)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Собор Тульских святых",
+          "category": "commemoration",
+          "typeCode": 16
+        },
+        {
+          "title": "Мч. Фоки вертоградаря (ок. 320)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прав. Петра, бывшего мытаря (VI)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Ионы Яшезерского (1589-1592)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Макария Жабынского, Белевского чудотворца (1623)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмч. Феодосия Бразского (1694) (Рум.)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмч. Вениамина, еп. Романовского (1932)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Флп.1:1-7",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.3:19-22",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.24-31; Пс.32-36; Пс.37-45",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-06",
+      "events": [
+        {
+          "title": "Зачатие честного, славного Пророка, Предтечи и Крестителя Господня Иоанна",
+          "category": "commemoration",
+          "typeCode": 5
+        },
+        {
+          "title": "Прославление свт. Иннокентия, митр. Московского (1977)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Словенской иконы Божией Матери (1635)",
+          "category": "commemoration",
+          "typeCode": 17
+        },
+        {
+          "title": "Прпп. жен Ксанфиппы и Поликсении (109)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мц. Ираиды девы (ок. 308)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мчч. Андрея, Иоанна и чад Иоанновых Петра и Антонина (IX)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмч. Иоанна Панкратовича пресвитера (1937)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Флп.1:8-14",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.3:23-4:1",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.46-54; Пс.55-63; Пс.64-69",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-07",
+      "events": [
+        {
+          "title": "Первомц. равноап. Феклы (I)",
+          "category": "commemoration",
+          "typeCode": 6
+        },
+        {
+          "title": "Мирожской иконы Божией Матери (1198)",
+          "category": "commemoration",
+          "typeCode": 17
+        },
+        {
+          "title": "Прп. Коприя (530)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Св. короля Стефана Первовенчанного, в монашестве Симона, Сербского (1228) и сына его св. короля Владислава Сербского (после 1264)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Никандра пустынножителя, Псковского чудотворца (1581)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прмч. Галактиона Вологодского (1612)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмч. Василия Воскресенского диакона (1918); сщмчч. Андрея Быстрова и Павла Березина пресвитеров, прмч. Виталия Кокорева и мчч. Василия Виноградова, Сергия Михайлова и Спиридона Савельева (1937)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Флп.1:12-20",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.4:1-15",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.70-76; Пс.77-84; Пс.85-90",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-08",
+      "events": [
+        {
+          "title": "Преставление прп. Сергия, игумена Радонежского, всея России чудотворца (1392)",
+          "category": "commemoration",
+          "typeCode": 4
+        },
+        {
+          "title": "Прп. Евфросинии Александрийской (V)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Прмч. Пафнутия египтянина и с ним 546-ти мучеников (III)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Евфросинии Суздальской, в миру Феодулии (1250)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Перенесение мощей свт. Германа, архиеп. Казанского (1592)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Досифеи затворницы, Киевской (1776)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Св. Николая Розова исп., пресвитера (1941). Обре́тение мощей сщмчч. Александра Смирнова и Феодора Лебедева пресвитеров (1985)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Флп.1:20-27",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.4:16-22",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.91-100; Пс.101-104; Пс.105-108",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-09",
+      "events": [
+        {
+          "title": "Преставление апостола и евангелиста Иоанна Богослова (начало II)",
+          "category": "commemoration",
+          "typeCode": 3
+        },
+        {
+          "title": "Свт. Тихона, патриарха Московского и всея Руси (прославление, 1989)",
+          "category": "commemoration",
+          "typeCode": 4
+        },
+        {
+          "title": "Прав. Гедеона, судии Израильского (XIV до Р.Х.)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Ефрема Перекомского, Новгородского (1492)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмчч. Афанасия Докукина, Александра Левитского и Димитрия Розанова пресвитеров, мчч. Иоанна Золотова и Николая Гусева (1937); сщмч. Владимира Вятского пресвитера (1939); св. Димитрия Крючкова исп., пресвитера (1952)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Флп.1:27-2:4",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.4:22-30",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Ин.21:15-25",
+          "category": "scripture-reading",
+          "typeCode": 232
+        },
+        {
+          "title": "1 Ин.4:12-19",
+          "category": "scripture-reading",
+          "typeCode": 234
+        },
+        {
+          "title": "Ин.19:25-27,21:24-25",
+          "category": "scripture-reading",
+          "typeCode": 237
+        },
+        {
+          "title": "Пс.134-142; Пс.143-150; Пс.1-8",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-10",
+      "events": [
+        {
+          "title": "Прп. Савватия Соловецкого чудотворца (1435)",
+          "category": "commemoration",
+          "typeCode": 5
+        },
+        {
+          "title": "Сщмч. Петра, митрополита Крутицкого (1937)",
+          "category": "commemoration",
+          "typeCode": 5
+        },
+        {
+          "title": "Мч. Каллистрата и дружины его: Гимнасия и иных (304)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Апп. от 70-ти Марка, Аристарха и Зины (I)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мц. Епихарии (III-IV)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Игнатия (963-975)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмч. Димитрия Шишокина пресвитера (1918); сщмчч. Германа, еп. Вольского, и Михаила Платонова пресвитера (1919); сщмч. Феодора Богоявленского пресвитера (1937)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "1 Кор.15:58-16:3",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.5:17-26",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.109-111; Пс.118",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-11",
+      "events": [
+        {
+          "title": "Неделя 19-я по Пятидесятнице",
+          "category": "commemoration",
+          "typeCode": -20
+        },
+        {
+          "title": "Прп. Харитона Исповедника (ок. 350)",
+          "category": "commemoration",
+          "typeCode": 4
+        },
+        {
+          "title": "Прпп. схимонаха Кирилла и схимонахини Марии, родителей прп. Сергия Радонежского (ок. 1337)",
+          "category": "commemoration",
+          "typeCode": 5
+        },
+        {
+          "title": "Собор преподобных отцев Киево-Печерских, в Ближних пещерах (прп. Антония) почивающих",
+          "category": "commemoration",
+          "typeCode": 16
+        },
+        {
+          "title": "Прор. Варуха (VI до Р.Х.)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мчч. Александра, Алфея, Зосимы, Марка пастыря, Никона, Неона, Илиодора и прочих (IV)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Блгв. кн. Вячеслава Чешского (935)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Харитона Сянжемского (1509)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Иродиона Илоезерского (1541)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мц. Анны Лыкошиной (1925); прмч. Илариона Громова, прмц. Михаилы Ивановой (1937); прмц. Татианы Чекмазовой (1942)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Ин.20:11-18",
+          "category": "scripture-reading",
+          "typeCode": 202
+        },
+        {
+          "title": "2 Кор.11:31-12:9",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.6:31-36",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.9-16; Пс.17-23",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-12",
+      "events": [
+        {
+          "title": "Прп. Кириака отшельника (556)",
+          "category": "commemoration",
+          "typeCode": 6
+        },
+        {
+          "title": "Мчч. Дады, Гаведдая и Каздои (IV)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Феофана Милостивого",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмч. Иоанна, архиеп. Рижского (1934)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Флп.2:12-16",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.4:37-44",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.24-31; Пс.32-36; Пс.37-45",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-13",
+      "events": [
+        {
+          "title": "Свт. Михаила, первого митр. Киевского (992)",
+          "category": "commemoration",
+          "typeCode": 4
+        },
+        {
+          "title": "Прп. Григория Пельшемского, Вологодского чудотворца (1442)",
+          "category": "commemoration",
+          "typeCode": 5
+        },
+        {
+          "title": "Сщмч. Григория еп., просветителя Великой Армении (ок. 335)",
+          "category": "commemoration",
+          "typeCode": 6
+        },
+        {
+          "title": "Мцц. Рипсимии, Гаиании и с ними 35-ти святых дев (начало IV)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмч. Прокопия Попова пресвитера (1918); сщмчч. Петра Соловьева, Вячеслава Занкова, Петра Пушкинского, Симеона Лилеева, Василия Гурьева, Александра Орлова пресвитеров, Серафима Василенко диакона, прмц. Александры Червяковой, мчч. Алексия Серебренникова и Матфея Соловьева, мц. Аполлинарии Тупицыной (1937)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Браковенчание не совершается накануне праздника Покрова Пресвятой Владычицы нашей Богородицы и Приснодевы Марии",
+          "category": "marriage-rule",
+          "typeCode": 20
+        },
+        {
+          "title": "Флп.2:17-23",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.5:12-16",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.46-54; Пс.55-63; Пс.64-69",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-14",
+      "events": [
+        {
+          "title": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии",
+          "category": "commemoration",
+          "typeCode": 2
+        },
+        {
+          "title": "Прп. Саввы Вишерского, Новгородского (1461)",
+          "category": "commemoration",
+          "typeCode": 5
+        },
+        {
+          "title": "Ап. от 70-ти Анании (I)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Прп. Романа Сладкопевца (VI)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Собор Молдавских святых",
+          "category": "commemoration",
+          "typeCode": 16
+        },
+        {
+          "title": "Люблинской (IX), Псково-Покровской (1581), Браиловской (1635), Касперовской (1840), Гербовецкой (1859), и Барской икон Божией Матери",
+          "category": "commemoration",
+          "typeCode": 17
+        },
+        {
+          "title": "Мч. Домнина Солунского (ок. 284-305)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прмч. Михаила, игумена Зовийского, и с ним 36-ти преподобномучеников (780-790)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Празднование в честь Хитона Господня и Столпа Животворящего (330) (Груз.)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмч. Алексия Ставровского пресвитера (1918); сщмч. Михаила Вологодского пресвитера (1920); сщмчч. Александра Агафонникова, Георгия Архангельского, Николая Кулигина пресвитеров, мч. Иоанна Артемова (1937)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Флп.2:24-30",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.5:33-39",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Лк.1:39-49,56",
+          "category": "scripture-reading",
+          "typeCode": 222
+        },
+        {
+          "title": "Евр.9:1-7",
+          "category": "scripture-reading",
+          "typeCode": 224
+        },
+        {
+          "title": "Лк.10:38-42,11:27-28",
+          "category": "scripture-reading",
+          "typeCode": 227
+        },
+        {
+          "title": "Пс.70-76; Пс.77-84; Пс.85-90",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-15",
+      "events": [
+        {
+          "title": "Сщмч. Киприана, мц. Иустины и мч. Феоктиста (304)",
+          "category": "commemoration",
+          "typeCode": 6
+        },
+        {
+          "title": "Блж. Андрея, Христа ради юродивого (936)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Прав. воина Феодора Ушакова (1817)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мчч. Давида и Константина, князей Арагветских (740) (Груз.)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Блгв. кн. Анны Кашинской (1338)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Кассиана Угличского (1504)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мц. Александры Булгаковой (1938)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Флп.3:1-8",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.6:12-19",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.91-100; Пс.101-104; Пс.105-108",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-16",
+      "events": [
+        {
+          "title": "Сщмч. Дионисия Ареопагита, еп. Афинского (96)",
+          "category": "commemoration",
+          "typeCode": 6
+        },
+        {
+          "title": "Трубчевской иконы Божией Матери (1765)",
+          "category": "commemoration",
+          "typeCode": 17
+        },
+        {
+          "title": "Сщмч. Рустика пресвитера и Елевферия диакона (96)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Иоанна Хозевита, еп. Кесарийского (VI)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Блж. Исихия Хоривита (VI)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Дионисия, затворника Печерского (XV)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Свт. Агафангела исп. митр. Ярославского (1928)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Флп.3:8-19",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.6:17-23",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.134-142; Пс.143-150; Пс.1-8",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-17",
+      "events": [
+        {
+          "title": "Обретение мощей свтт. Гурия, архиеп. Казанского, и Варсонофия, еп. Тверского (1595)",
+          "category": "commemoration",
+          "typeCode": 5
+        },
+        {
+          "title": "Сщмч. Иерофея, еп. Афинского (I)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Собор Казанских Святых",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Мчч. Гаия, Фавста, Евсевия и Херимона (III)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмч. Петра Капетолийского (III-IV)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мцц. Домнины и дщерей ее Виринеи (Вероники) и Проскудии (Просдоки) (305-306)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мчч. Давикта (Адавкта) (ок. 305-313) и дщери его Каллисфении (ок. 318)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Павла Препростого (IV)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Аммона (ок. 350)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Блгв. кн. Владимира Ярославича Новгородского, чудотворца (1052)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прпп. Елладия и Онисима Печерских (XII-XIII)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Аммона, затворника Печерского (XIII)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Св. прав. Стефана Щиляновича (1515) (Серб.)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "сщмчч. Николая Верещагина, Михаила Твердовского, Иакова Бобырева и Тихона Архангельского пресвитеров, прмч. Василия Цветкова (1937); св. Хионии Архангельской исп. (1945)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "2 Кор.1:8-11",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.5:27-32",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.109-111; Пс.118",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-18",
+      "events": [
+        {
+          "title": "Неделя 20-я по Пятидесятнице",
+          "category": "commemoration",
+          "typeCode": -20
+        },
+        {
+          "title": "Свтт. Петра, Феогноста, Алексия, Киприана, Фотия, Ионы, Геронтия, Иоасафа, Макария, Филиппа, Иова, Ермогена, Тихона, Петра, Филарета, Иннокентия и Макария, Московских и всея России чудотворцев",
+          "category": "commemoration",
+          "typeCode": 4
+        },
+        {
+          "title": "Мц. Харитины (304)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Сщмч. Дионисия, еп. Александрийского (264-265)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мц. Мамелхвы Персидской (ок. 344)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Григория Хандзойского (861) (Груз.)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прпп. Дамиана, пресвитера, целебника (1071), Иеремии (ок. 1070) и Матфея (ок. 1085) прозорливых, Печерских",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Харитины, кн. Литовской, в Новгороде подвизавшейся (1281)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Гавриила Игошкина исп. (1959)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Ин.20:19-31",
+          "category": "scripture-reading",
+          "typeCode": 202
+        },
+        {
+          "title": "Гал.1:11-19",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.7:11-16",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.9-16; Пс.17-23",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-19",
+      "events": [
+        {
+          "title": "Апостола Фомы (I)",
+          "category": "commemoration",
+          "typeCode": 4
+        },
+        {
+          "title": "Сщмч. Иоанна Рыбина пресвитера (1937)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Флп.4:10-23",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.6:24-30",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.24-31; Пс.32-36; Пс.37-45",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-20",
+      "events": [
+        {
+          "title": "Мчч. Сергия и Вакха (290-303). Свт. Ионы, еп. Ханькоуского (1925)",
+          "category": "commemoration",
+          "typeCode": 6
+        },
+        {
+          "title": "Иконы Божией Матери Псково-Печерской, именуемой \"Умиление\" (1524)",
+          "category": "commemoration",
+          "typeCode": 17
+        },
+        {
+          "title": "Мчч. Иулиана пресвитера и Кесария диакона (I)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мц. Пелагии Тарсийской (290)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мч. Полихрония пресвитера (IV)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Сергия Послушливого, Печерского (ок. XIII)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Сергия Нуромского (Вологодского) (1412)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Обретение мощей прп. Мартиниана Белоезерского (1514)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмч. Николая Казанского пресвитера (1942)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Кол.1:1-2,7-11",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.6:37-45",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.46-54; Пс.55-63; Пс.64-69",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-21",
+      "events": [
+        {
+          "title": "Прп. Пелагии (457)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Собор Вятских святых",
+          "category": "commemoration",
+          "typeCode": 16
+        },
+        {
+          "title": "Прп. Досифея Верхнеостровского, Псковского (1482)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Трифона, архим. Вятского, чудотворца (1612)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Св. Пелагии девы (303)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Таисии (IV)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмчч. Димитрия, архиеп. Можайского, и с ним Иоанна Хренова диакона, прмчч. Амвросия Астахова и Пахомия Туркевича, прмц. Татианы Бесфамильной, мч. Николая Рейна, мцц. Марии Волнухиной и Надежды Ажгеревич (1937); сщмч. Ионы, еп. Велижского, прмч. Серафима Щелокова, сщмчч. Петра Никотина, Василия Озерецковского, Павла Преображенского, Петра Озерецковского, Владимира Сперанского пресвитеров, мчч. Виктора Фролова, Иоанна Рыбина, Николая Кузьмина и мц. Елисаветы Курановой (1937); прмч. Варлаама Ефимова (конец 1930-х)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Кол.1:18-23",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.6:46-7:1",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.70-76; Пс.77-84; Пс.85-90",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-22",
+      "events": [
+        {
+          "title": "Ап. Иакова Алфеева (I)",
+          "category": "commemoration",
+          "typeCode": 4
+        },
+        {
+          "title": "Прпп. Андроника и супруги его Афанасии (V)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Корсунской иконы Божией Матери (988, XII)",
+          "category": "commemoration",
+          "typeCode": 17
+        },
+        {
+          "title": "Прав. Авраама праотца и племянника его Лота (2000 до Р.Х.)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мчч. Еввентия (Иувентина) и Максима воинов (361-363)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Св. Поплии исповедницы, диакониссы Антиохийской (IV)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Петра Галатийского (IX)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмчч. Константина Сухова и Петра Вяткина пресвитеров (1918); сщмч. Константина Аксенова пресвитера (1937)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Обретение мощей прп. Севастиана Карагандинского исп (1997)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Кол.1:24-29",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.7:17-30",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.91-100; Пс.101-104; Пс.105-108",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-23",
+      "events": [
+        {
+          "title": "Прп. Амвросия Оптинского (1891)",
+          "category": "commemoration",
+          "typeCode": 4
+        },
+        {
+          "title": "Мчч. Евлампия и Евлампии (303-311)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Собор Волынских святых",
+          "category": "commemoration",
+          "typeCode": 16
+        },
+        {
+          "title": "Свт. Иннокентия, епископа Пензенского (1819)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мч. Феотекна (ок. 284-305)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Вассиана, чудотворца (V)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Феофила исп (ок. 717-741)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Блж. Андрея, Христа ради юродивого, Тотемского (1673)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Свт. Амфилохия, еп. Владимиро-Волынского (1122)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Кол.2:1-7",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.7:31-35",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.134-142; Пс.143-150; Пс.1-8",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-24",
+      "events": [
+        {
+          "title": "Ап. Филиппа, единого от семи диаконов (I)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Прп. Феофана Исповедника, творца канонов, еп. Никейского (ок. 850)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Собор всех святых, в Оптиной пустыни просиявших, в том числе преподобных Оптинских старцев: Льва (1841), Макария (1860), Моисея (1862), Антония (1865), Илариона (1873), Амвросия (1891), Анатолия (1894), Исаакия (1894), Иосифа (1911), Варсонофия (1913), Анатолия (1922), Нектария (1928), Никона исповедника (1931), Исаакия священномученика (1938)",
+          "category": "commemoration",
+          "typeCode": 16
+        },
+        {
+          "title": "Прп. Льва Оптинского (1841)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мцц. Зинаиды и Филониллы (I)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Феофана, постника Печерского (XII)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмчч. Филарета Великанова и Александра Гривского пресвитеров (1918)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "2 Кор.3:12-18",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.6:1-10",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.109-111; Пс.118",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-25",
+      "events": [
+        {
+          "title": "Неделя 21-я по Пятидесятнице",
+          "category": "commemoration",
+          "typeCode": -20
+        },
+        {
+          "title": "Мчч. Прова, Тараха и Андроника (304)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Прп. Космы, еп. Маиумского, творца канонов (ок. 787)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Память святых отцев VII Вселенского собора",
+          "category": "commemoration",
+          "typeCode": 8
+        },
+        {
+          "title": "Иерусалимской (48), Ярославской-Смоленской (1642), Рудненской (1687), и Калужской (1748) икон Божией Матери",
+          "category": "commemoration",
+          "typeCode": 17
+        },
+        {
+          "title": "Мц. Домники (286)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Свт. Мартина Милостивого, еп. Турского (ок. 400)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Амфилохия, игумена Глушицкого (1452)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Перенесение из Мальты в Гатчину части древа Животворящего Креста Господня, Филермской иконы Божией Матери и десной руки св. Иоанна Крестителя (1799)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Св. Иоанна Летникова исп. (1930); прмч. Лаврентия Левченко (1937); сщмч. Александра Поздеевского пресвитера (1940); свт. Николая исп., митр. Алма-Атинского (1955)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Ин.21:1-14",
+          "category": "scripture-reading",
+          "typeCode": 202
+        },
+        {
+          "title": "Гал.2:16-20",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.8:5-15",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.9-16; Пс.17-23",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-26",
+      "events": [
+        {
+          "title": "Иверской иконы Божией Матери",
+          "category": "commemoration",
+          "typeCode": 4
+        },
+        {
+          "title": "Мчч. Карпа, еп. Фиатрийского, Папилы диакона, Агафодора и мц. Агафоники (251)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Седмиезерной иконы Божией Матери (XVII)",
+          "category": "commemoration",
+          "typeCode": 17
+        },
+        {
+          "title": "Мч. Флорентия (I-II)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Мч. Вениамина диакона (421-424)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Никиты исп (ок. 838)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Вениамина Печерского (XIV)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Свт. Мелетия, патриарха Александрийского (1601)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Воспоминание чуда вмц. Златы (Хрисы) в Скопье (1912)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмчч. Иннокентия Кикина и Николая Ермолова пресвитеров (1937)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Обре́тение мощей сщмч. Фаддея, архиеп. Тверского (1993)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Кол.2:13-20",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.7:36-50",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.24-31; Пс.32-36; Пс.37-45",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-27",
+      "events": [
+        {
+          "title": "Прп. Параскевы-Петки Сербской (XI)",
+          "category": "commemoration",
+          "typeCode": 5
+        },
+        {
+          "title": "Мчч. Назария, Гервасия, Протасия, Келсия (54-68)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Яхромской иконы Божией Матери (XV)",
+          "category": "commemoration",
+          "typeCode": 17
+        },
+        {
+          "title": "Сщмч. Сильвана, пресвитера Газского (IV)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Николы Святоши (Святослава), кн. Черниговского, Печерского чудотворца (1143)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмч. Михаила Лекторского пресвитера (1921); свт. Амвросия исп., еп. Каменец-Подольского (1932); сщмч. Петра Лебедева пресвитера (1937); прмч. Максимилиана Марченко (1938)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Кол.2:20-3:3",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.8:1-3",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.46-54; Пс.55-63; Пс.64-69",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-28",
+      "events": [
+        {
+          "title": "Свт. Афанасия исп., еп. Ковровского (1962)",
+          "category": "commemoration",
+          "typeCode": 4
+        },
+        {
+          "title": "Прп. Евфимия Нового, Солунского (898)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Прмч. Лукиана, пресвитера Антиохийского (312)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Иконы Божией Матери \"Спорительница хлебов\" (XIX)",
+          "category": "commemoration",
+          "typeCode": 17
+        },
+        {
+          "title": "Мчч. Сарвила и Вевеи Едесских (ок. 98-117)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Свт. Савина, еп. Катанского (760)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмч. Лукиана Печерского (1243)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Свт. Иоанна, еп. Суздальского (1373)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмч. Симеона Конюхова пресвитера (1918); сщмч. Димитрия Касаткина пресвитера (1942)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Кол.3:17-4:1",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.8:22-25",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.70-76; Пс.77-84; Пс.85-90",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-29",
+      "events": [
+        {
+          "title": "Мч. Лонгина сотника, иже при Кресте Господни (I)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Прп. Лонгина, вратаря Печерского (XIII-XIV)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Лонгина Яренгского (1544-1545)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Св. Георгия Троицкого исп., пресвитера (1931); сщмч. Евгения Елховского пресвитера (1937); сщмч. Алексия Никонова пресвитера (1938); сщмч. Иоанна Заседателева пресвитера (1942)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Кол.4:2-9",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.9:7-11",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.91-100; Пс.101-104; Пс.105-108",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-30",
+      "events": [
+        {
+          "title": "Прор. Осии (820 до Р.Х.)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Прмч. Андрея Критского (767)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Икон Божией Матери, именуемых \"Прежде Рождества и по Рождестве Дева\" (1827) и \"Избавительница\" (ок. 1889)",
+          "category": "commemoration",
+          "typeCode": 17
+        },
+        {
+          "title": "Мчч. бессребреников Космы и Дамиана, Аравийских, и братий их мчч. Леонтия, Анфима и Евтропия (287 или 303)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Перенесение мощей прав. Лазаря Четверодневного, еп. Китийского (898)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Антония Леохновского, Новгородского (1611)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмчч. Неофита Любимова и Анатолия Ивановского пресвитеров, прмчч. Иакинфа Питателева и Каллиста Опарина (1918); сщмч. Александра, архиеп. Семипалатинского (1937)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "Кол.4:10-18",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.9:12-18",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.134-142; Пс.143-150; Пс.1-8",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    },
+    {
+      "date": "2026-10-31",
+      "events": [
+        {
+          "title": "Апостола и евангелиста Луки (I)",
+          "category": "commemoration",
+          "typeCode": 4
+        },
+        {
+          "title": "Обретение мощей прп. Иосифа, игумена Волоцкого, чудотворца (2001)",
+          "category": "commemoration",
+          "typeCode": 7
+        },
+        {
+          "title": "Мч. Марина Тарсийского (IV)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Прп. Иулиана Пустынника (IV)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Преставление вмц. Златы(Хрисы) (1795) (Болг.)",
+          "category": "commemoration",
+          "typeCode": 18
+        },
+        {
+          "title": "Сщмчч. Андрея Воскресенского, Сергия Бажанова, Николая Соколова и Сергия Гусева пресвитеров, мц. Елисаветы Крымовой (1937); сщмч. Димитрия Вознесенского пресвитера (1918)",
+          "category": "commemoration",
+          "typeCode": 19
+        },
+        {
+          "title": "2 Кор.5:1-10",
+          "category": "scripture-reading",
+          "typeCode": 204
+        },
+        {
+          "title": "Лк.7:2-10",
+          "category": "scripture-reading",
+          "typeCode": 207
+        },
+        {
+          "title": "Пс.109-111; Пс.118",
+          "category": "scripture-reading",
+          "typeCode": 302
+        }
+      ]
+    }
+  ]
+}
