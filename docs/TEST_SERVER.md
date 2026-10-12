@@ -251,7 +251,7 @@ PHP8.5 — подтверждённый handler именно этого WordPres
 подготовлены отдельно. При прямом разрешении загрузить только их в те же
 wp-content/prihod-packages и wp-content/prihod-server-check.php. Тема не обновляется
 этой командой: проверка совместима с уже установленной0.3.17 и отдельно разрешённой
-0.3.18. На0.3.17 проверка явно оставляет просмотр фото в состоянии pending;
+0.3.18 или0.3.19. На0.3.17 проверка явно оставляет просмотр фото в состоянии pending;
 она не объявляет дефект фото19 устранённым.71/75 read-only checks подготовлены,
 но ещё не исполнялись на сервере. Напоминание не включать и время не назначать.
 
@@ -268,3 +268,25 @@ php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-ch
 Реальные письма/создание служб не запускать при приёмке. Plesk, другие сайты,
 серверный cron, credentials и конфигурация PHP не меняются. Composer/Node build
 не требуются. Календарные детали — docs/CALENDAR_FEATURES.md.
+
+## Тема 0.3.19 — локально готова, пока не установлена
+
+Версия включает просмотр фотографий 0.3.18 и исправление портретных полей.
+До прямого разрешения владельца ничего не загружать и не устанавливать.
+После разрешения загрузить build/prihod-theme-0.3.19.zip в
+wp-content/prihod-packages и build/server-check-theme-0319.php в
+wp-content/prihod-server-check.php только этого WordPress.
+Проверка совместима с Core rc.9 и отдельно разрешённым rc.10;
+подготовлены 72/76 read-only проверки соответственно, на сервере они ещё не запускались.
+Core и внешние плагины этой командой не обновляются.
+
+```bash
+cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
+export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.19.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
+```
+
+PHP 8.5 — подтверждённое окружение именно этого WordPress. Composer/Node build
+не нужны. После установки проверить портреты и просмотр фотографий на компьютере
+и телефоне; локальные снимки не заменяют приёмку сайта. Детали — docs/PORTRAIT_CARDS.md.

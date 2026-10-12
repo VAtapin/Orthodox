@@ -5,6 +5,11 @@ $photo = prihod_theme_photo( $photo_id, 'large', array( 'class' => 'owner-photo'
 $check( str_contains( $photo, 'wp-lightbox-container' ) && str_contains( $photo, 'lightbox-trigger' ), 'Dynamic theme photos use the native WordPress viewer.' );
 $check( str_contains( $photo, 'data-prihod-photo-group="test-gallery"' ) && str_contains( $photo, 'Owner caption' ), 'Photo group and author caption survive rendering.' );
 $check( str_contains( $photo, 'owner-photo' ) && str_contains( $photo, 'object-position:center 25%' ), 'Photo classes and author styles survive rendering.' );
+$portrait = prihod_theme_photo( $first['images']['clergy'], 'medium_large', array( 'class' => 'is-portrait' ) );
+$portrait_tags = new WP_HTML_Tag_Processor( $portrait ); $portrait_tags->next_tag( 'FIGURE' ); $portrait_style = $portrait_tags->get_attribute( 'style' );
+$portrait_tags->next_tag( 'IMG' );
+$check( str_contains( $portrait_style, '--prihod-portrait-background:url(' ) && str_contains( $portrait_style, $portrait_tags->get_attribute( 'src' ) ), 'Portrait background uses the exact real foreground photograph, never a substitute asset.' );
+$check( 1 === substr_count( $portrait, '<img' ) && ! str_contains( $photo, '--prihod-portrait-background' ), 'Portrait decoration has no second content image and leaves unmarked photographs unchanged.' );
 $linked = prihod_theme_photo( $photo_id, 'medium', array(), '', home_url( '/article/' ) );
 $check( (bool) preg_match( '/<a\b[^>]*>\s*<img\b[^>]*>\s*<\/a>\s*<button\b/s', $linked ) && ! preg_match( '/<a\b[^>]*>[^<]*<button\b/s', $linked ), 'Article links and native zoom button are siblings, never nested interactive controls.' );
 $tags = new WP_HTML_Tag_Processor( $linked ); $tags->next_tag( 'IMG' );

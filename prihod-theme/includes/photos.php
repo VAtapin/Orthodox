@@ -6,7 +6,11 @@ function prihod_theme_photo( int $id, string $size = 'large', array $attributes 
     if ( ! wp_attachment_is_image( $id ) ) { return ''; }
     $attributes['class'] = trim( ( $attributes['class'] ?? '' ) . ' wp-image-' . $id );
     $image = wp_get_attachment_image( $id, $size, false, $attributes );
-    $content = '<figure class="wp-block-image prihod-photo-item">' . $image . ( $caption ? '<figcaption>' . wp_kses_post( $caption ) . '</figcaption>' : '' ) . '</figure>';
+    $portrait = in_array( 'is-portrait', preg_split( '/\s+/', $attributes['class'] ), true );
+    $background = '';
+    if ( $portrait ) { $tags = new WP_HTML_Tag_Processor( $image ); if ( $tags->next_tag( 'IMG' ) ) { $background = $tags->get_attribute( 'src' ); } }
+    $style = $background ? ' style="' . esc_attr( '--prihod-portrait-background:url(' . wp_json_encode( esc_url_raw( $background ), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . ')' ) . '"' : '';
+    $content = '<figure class="wp-block-image prihod-photo-item' . ( $portrait ? ' is-portrait' : '' ) . '"' . $style . '>' . $image . ( $caption ? '<figcaption>' . wp_kses_post( $caption ) . '</figcaption>' : '' ) . '</figure>';
     if ( $href ) { $content = str_replace( $image, '<a href="' . esc_url( $href ) . '">' . $image . '</a>', $content ); }
     return prihod_theme_photo_html( $content, $id, $group );
 }
@@ -54,7 +58,7 @@ add_filter( 'render_block_core/post-featured-image', static function ( string $h
 }, 20, 3 );
 
 add_action( 'wp_enqueue_scripts', function () {
-    wp_enqueue_script( 'prihod-theme-photos', get_template_directory_uri() . '/assets/photos.js', array(), '0.3.18', true );
-    wp_enqueue_style( 'prihod-theme-photos', get_template_directory_uri() . '/assets/photos.css', array( 'prihod-theme-reference' ), '0.3.18' );
+    wp_enqueue_script( 'prihod-theme-photos', get_template_directory_uri() . '/assets/photos.js', array(), '0.3.19', true );
+    wp_enqueue_style( 'prihod-theme-photos', get_template_directory_uri() . '/assets/photos.css', array( 'prihod-theme-reference' ), '0.3.19.' . filemtime( get_template_directory() . '/assets/photos.css' ) );
     wp_localize_script( 'prihod-theme-photos', 'prihodPhotoLabels', array( 'previous' => __( 'Предыдущее фото', 'prihod-theme' ), 'next' => __( 'Следующее фото', 'prihod-theme' ) ) );
 } );

@@ -1,0 +1,146 @@
+[
+  {
+    "view": "desktop",
+    "scheme": "classic",
+    "kind": "feature",
+    "selector": ".prihod-feature figure:has(img.is-portrait)",
+    "alt": "Игумен Даниил (Ирбитс), наместник обители",
+    "fit": "contain",
+    "height": 80,
+    "natural": [
+      1238,
+      1239
+    ],
+    "source": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-dafc8e8ad24baf9e91ed2eef4bed1c2e.png",
+    "viewport": 1122,
+    "width": 249.75,
+    "x": 560.5,
+    "y": 542.578125
+  },
+  {
+    "view": "desktop",
+    "scheme": "editorial",
+    "kind": "feature",
+    "selector": ".prihod-feature figure:has(img.is-portrait)",
+    "alt": "Игумен Даниил (Ирбитс), наместник обители",
+    "fit": "contain",
+    "height": 85,
+    "natural": [
+      1238,
+      1239
+    ],
+    "source": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-dafc8e8ad24baf9e91ed2eef4bed1c2e.png",
+    "viewport": 1122,
+    "width": 199,
+    "x": 665,
+    "y": 577.984375
+  },
+  {
+    "view": "desktop",
+    "scheme": "classic",
+    "kind": "gallery",
+    "selector": ".prihod-photo-strip figure:has(img.is-portrait)",
+    "alt": "Игумен Даниил (Ирбитс), наместник обители",
+    "fit": "contain",
+    "height": 85,
+    "natural": [
+      1238,
+      1239
+    ],
+    "source": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-dafc8e8ad24baf9e91ed2eef4bed1c2e.png",
+    "viewport": 1122,
+    "width": 201.40625,
+    "x": 242.390625,
+    "y": 1271.34375
+  },
+  {
+    "view": "desktop",
+    "scheme": "hospitality",
+    "kind": "gallery",
+    "selector": ".prihod-photo-strip figure:has(img.is-portrait)",
+    "alt": "Игумен Даниил (Ирбитс), наместник обители",
+    "fit": "contain",
+    "height": 107,
+    "natural": [
+      1238,
+      1239
+    ],
+    "source": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-dafc8e8ad24baf9e91ed2eef4bed1c2e.png",
+    "viewport": 1122,
+    "width": 201.40625,
+    "x": 242.390625,
+    "y": 1171.828125
+  },
+  {
+    "view": "mobile",
+    "scheme": "classic",
+    "kind": "feature",
+    "selector": ".prihod-feature figure:has(img.is-portrait)",
+    "alt": "Игумен Даниил (Ирбитс), наместник обители",
+    "fit": "contain",
+    "height": 100,
+    "natural": [
+      1238,
+      1239
+    ],
+    "source": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-dafc8e8ad24baf9e91ed2eef4bed1c2e.png",
+    "viewport": 390,
+    "width": 164.5,
+    "x": 17,
+    "y": 1263.078125
+  },
+  {
+    "view": "mobile",
+    "scheme": "editorial",
+    "kind": "feature",
+    "selector": ".prihod-feature figure:has(img.is-portrait)",
+    "alt": "Игумен Даниил (Ирбитс), наместник обители",
+    "fit": "contain",
+    "height": 105,
+    "natural": [
+      1238,
+      1239
+    ],
+    "source": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-dafc8e8ad24baf9e91ed2eef4bed1c2e.png",
+    "viewport": 390,
+    "width": 166.5,
+    "x": 192.5,
+    "y": 1510.578125
+  },
+  {
+    "view": "mobile",
+    "scheme": "classic",
+    "kind": "gallery",
+    "selector": ".prihod-photo-strip figure:has(img.is-portrait)",
+    "alt": "Игумен Даниил (Ирбитс), наместник обители",
+    "fit": "contain",
+    "height": 110,
+    "natural": [
+      1238,
+      1239
+    ],
+    "source": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-dafc8e8ad24baf9e91ed2eef4bed1c2e.png",
+    "viewport": 390,
+    "width": 160,
+    "x": 184,
+    "y": 3121.109375
+  },
+  {
+    "view": "mobile",
+    "scheme": "hospitality",
+    "kind": "gallery",
+    "selector": ".prihod-photo-strip figure:has(img.is-portrait)",
+    "alt": "Игумен Даниил (Ирбитс), наместник обители",
+    "fit": "contain",
+    "height": 107,
+    "natural": [
+      1238,
+      1239
+    ],
+    "source": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-dafc8e8ad24baf9e91ed2eef4bed1c2e.png",
+    "viewport": 390,
+    "width": 160,
+    "x": 184,
+    "y": 3013.171875
+  }
+]
