@@ -1,0 +1,494 @@
+[
+  {
+    "key": "overview",
+    "size": "desktop",
+    "navigation": true,
+    "own": true,
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "information",
+    "size": "desktop",
+    "navigation": true,
+    "own": true,
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "profile",
+    "size": "desktop",
+    "navigation": true,
+    "own": true,
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "plugins",
+    "size": "desktop",
+    "navigation": true,
+    "own": true,
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "settings-hub",
+    "size": "desktop",
+    "navigation": true,
+    "own": true,
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "modules",
+    "size": "desktop",
+    "navigation": true,
+    "own": true,
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "integrations",
+    "size": "desktop",
+    "navigation": true,
+    "own": true,
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "facebook",
+    "size": "desktop",
+    "navigation": true,
+    "own": true,
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "telegram",
+    "size": "desktop",
+    "navigation": true,
+    "own": true,
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "whatsapp",
+    "size": "desktop",
+    "navigation": true,
+    "own": true,
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "check",
+    "size": "desktop",
+    "navigation": true,
+    "own": true,
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "access",
+    "size": "desktop",
+    "navigation": true,
+    "own": true,
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "data",
+    "size": "desktop",
+    "navigation": true,
+    "own": true,
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "theme",
+    "size": "desktop",
+    "navigation": true,
+    "own": true,
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "requests",
+    "size": "desktop",
+    "navigation": true,
+    "own": true,
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "locations-editor",
+    "size": "desktop",
+    "navigation": true,
+    "own": true,
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "clergy-editor",
+    "size": "desktop",
+    "navigation": true,
+    "own": true,
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "services-editor",
+    "size": "desktop",
+    "navigation": true,
+    "own": true,
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "wp-dashboard",
+    "size": "desktop",
+    "navigation": false,
+    "own": false,
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "overview",
+    "size": "mobile",
+    "navigation": true,
+    "own": true,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "information",
+    "size": "mobile",
+    "navigation": true,
+    "own": true,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "profile",
+    "size": "mobile",
+    "navigation": true,
+    "own": true,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "plugins",
+    "size": "mobile",
+    "navigation": true,
+    "own": true,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "settings-hub",
+    "size": "mobile",
+    "navigation": true,
+    "own": true,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "modules",
+    "size": "mobile",
+    "navigation": true,
+    "own": true,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "integrations",
+    "size": "mobile",
+    "navigation": true,
+    "own": true,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "facebook",
+    "size": "mobile",
+    "navigation": true,
+    "own": true,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "telegram",
+    "size": "mobile",
+    "navigation": true,
+    "own": true,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "whatsapp",
+    "size": "mobile",
+    "navigation": true,
+    "own": true,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "check",
+    "size": "mobile",
+    "navigation": true,
+    "own": true,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "access",
+    "size": "mobile",
+    "navigation": true,
+    "own": true,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "data",
+    "size": "mobile",
+    "navigation": true,
+    "own": true,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "theme",
+    "size": "mobile",
+    "navigation": true,
+    "own": true,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "requests",
+    "size": "mobile",
+    "navigation": true,
+    "own": true,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "wizard",
+    "size": "mobile",
+    "navigation": true,
+    "own": true,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "locations",
+    "size": "mobile",
+    "editor": [
+      {
+        "id": "title",
+        "left": 80,
+        "right": 343
+      }
+    ],
+    "navigation": true,
+    "own": true,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "locations-editor",
+    "size": "mobile",
+    "editor": [
+      {
+        "id": "post-body-content",
+        "left": 22,
+        "right": 363
+      },
+      {
+        "id": "title",
+        "left": 22,
+        "right": 363
+      },
+      {
+        "id": "wp-content-wrap",
+        "left": 22,
+        "right": 363
+      },
+      {
+        "id": "postbox-container-1",
+        "left": 22,
+        "right": 363
+      },
+      {
+        "id": "postbox-container-2",
+        "left": 22,
+        "right": 363
+      }
+    ],
+    "navigation": true,
+    "own": true,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "clergy",
+    "size": "mobile",
+    "editor": [
+      {
+        "id": "title",
+        "left": 80,
+        "right": 343
+      }
+    ],
+    "navigation": true,
+    "own": true,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "clergy-editor",
+    "size": "mobile",
+    "editor": [
+      {
+        "id": "post-body-content",
+        "left": 22,
+        "right": 363
+      },
+      {
+        "id": "title",
+        "left": 22,
+        "right": 363
+      },
+      {
+        "id": "wp-content-wrap",
+        "left": 22,
+        "right": 363
+      },
+      {
+        "id": "postbox-container-1",
+        "left": 22,
+        "right": 363
+      },
+      {
+        "id": "postbox-container-2",
+        "left": 22,
+        "right": 363
+      }
+    ],
+    "navigation": true,
+    "own": true,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "services",
+    "size": "mobile",
+    "editor": [
+      {
+        "id": "title",
+        "left": 80,
+        "right": 343
+      }
+    ],
+    "navigation": true,
+    "own": true,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "services-editor",
+    "size": "mobile",
+    "editor": [
+      {
+        "id": "post-body-content",
+        "left": 22,
+        "right": 363
+      },
+      {
+        "id": "title",
+        "left": 22,
+        "right": 363
+      },
+      {
+        "id": "postbox-container-1",
+        "left": 22,
+        "right": 363
+      },
+      {
+        "id": "postbox-container-2",
+        "left": 22,
+        "right": 363
+      },
+      {
+        "id": "wp-content-wrap",
+        "left": 41,
+        "right": 344
+      }
+    ],
+    "navigation": true,
+    "own": true,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "wp-dashboard",
+    "size": "mobile",
+    "editor": [
+      {
+        "id": "postbox-container-1",
+        "left": 2,
+        "right": 371
+      },
+      {
+        "id": "wp-replycontent-wrap",
+        "left": 0,
+        "right": 0
+      },
+      {
+        "id": "postbox-container-2",
+        "left": 2,
+        "right": 371
+      },
+      {
+        "id": "title",
+        "left": 23,
+        "right": 350
+      }
+    ],
+    "navigation": false,
+    "own": false,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "locations",
+    "size": "desktop",
+    "navigation": true,
+    "own": true,
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "clergy",
+    "size": "desktop",
+    "navigation": true,
+    "own": true,
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "services",
+    "size": "desktop",
+    "navigation": true,
+    "own": true,
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "wizard",
+    "size": "desktop",
+    "navigation": true,
+    "own": true,
+    "scroll": 1107,
+    "width": 1122
+  }
+]

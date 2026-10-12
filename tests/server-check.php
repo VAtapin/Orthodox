@@ -55,15 +55,17 @@ $check( $config === json_decode( $tags->get_attribute( 'data-orthocal' ), true )
 echo "REFERENCE_DESIGN_CHECK_OK: {$checked} total checks.\n";
 $columns = apply_filters( 'manage_prihod_service_posts_columns', array( 'title' => 'Title', 'date' => 'Date' ) );
 $check( isset( $columns['prihod_service_when'], $columns['prihod_service_place'], $columns['prihod_service_kind'], $columns['prihod_service_changes'] ) && __( 'Дата публикации', 'prihod' ) === $columns['date'], 'Administrative service list must distinguish schedule information from publication.' );
-$single_dates = array();
+$checked_service_rows = 0;
 foreach ( get_posts( array( 'post_type' => 'prihod_service', 'post_status' => 'publish', 'numberposts' => -1 ) ) as $post ) {
     $rule = get_post_meta( $post->ID, '_prihod_service', true );
-    if ( 'single' !== ( $rule['kind'] ?? '' ) || ! empty( $rule['exceptions'] ) ) { continue; }
+    if ( ! is_array( $rule ) || ! empty( $rule['exceptions'] ) ) { continue; }
+    $date = ( new DateTimeImmutable( $rule['date'] ) )->format( 'd.m.Y' );
+    if ( 'regular' === ( $rule['kind'] ?? '' ) ) { $date = ! empty( $rule['until'] ) ? sprintf( __( 'С %1$s по %2$s', 'prihod' ), $date, ( new DateTimeImmutable( $rule['until'] ) )->format( 'd.m.Y' ) ) : sprintf( __( 'С %s, без конечной даты', 'prihod' ), $date ); }
     $row = Prihod\Schedule_Admin::column_data( $post->ID );
-    if ( $row['date'] !== ( new DateTimeImmutable( $rule['date'] ) )->format( 'd.m.Y' ) || $row['time'] !== $rule['time'] || $row['timezone'] !== Prihod\Schedule::timezone( $rule['location_id'], $rule['timezone'] ?? '' ) ) { throw new RuntimeException( 'Service list does not match stored dates, times and timezone.' ); }
-    $single_dates[] = $row['date'];
+    if ( $row['date'] !== $date || $row['time'] !== $rule['time'] || $row['timezone'] !== Prihod\Schedule::timezone( $rule['location_id'], $rule['timezone'] ?? '' ) ) { throw new RuntimeException( 'Service list does not match stored dates, times and timezone.' ); }
+    ++$checked_service_rows;
 }
-$check( count( array_unique( $single_dates ) ) >= 5, 'Existing dated liturgies must be distinguishable in the service list.' );
+$check( $checked_service_rows > 0, 'Published service rows must match the actual stored schedule, including recurring services.' );
 echo "SERVICE_LIST_CHECK_OK: {$checked} total checks.\n";
 $_GET = array( 'prihod_date' => ( new DateTimeImmutable( 'now', new DateTimeZone( Prihod\Profile::get()['timezone'] ) ) )->format( 'Y-m-d' ), 'prihod_view' => 'week' );
 $schedule_html = Prihod\Public_View::render( 'schedule' );

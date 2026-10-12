@@ -1,0 +1,1977 @@
+[
+  {
+    "key": "home",
+    "scheme": "prihod-scheme-classic",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 768
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 768
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 768
+      },
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 250
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 434
+      },
+      {
+        "alt": "Забота о будущем обители",
+        "complete": true,
+        "width": 335
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 335
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 335
+      },
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 201
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 201
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 201
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 201
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 201
+      }
+    ],
+    "scroll": 1107,
+    "title": "Добро пожаловать в наш приход!",
+    "width": 1122
+  },
+  {
+    "key": "page-8",
+    "scheme": "prihod-scheme-classic",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 417
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 309
+      },
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 309
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 130
+      }
+    ],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-9",
+    "scheme": "prihod-scheme-classic",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 1024
+      }
+    ],
+    "scroll": 1107,
+    "title": "Духовенство",
+    "width": 1122
+  },
+  {
+    "key": "page-10",
+    "scheme": "prihod-scheme-classic",
+    "size": "desktop",
+    "forms": 1,
+    "images": [],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-11",
+    "scheme": "prihod-scheme-classic",
+    "size": "desktop",
+    "forms": 1,
+    "images": [],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-12",
+    "scheme": "prihod-scheme-classic",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 768
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 768
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 249
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 249
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      }
+    ],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-13",
+    "scheme": "prihod-scheme-classic",
+    "size": "desktop",
+    "forms": 1,
+    "images": [
+      {
+        "alt": "Забота о будущем монастыря",
+        "complete": true,
+        "width": 1122
+      },
+      {
+        "alt": "Святая Троица: праздник общей молитвы",
+        "complete": true,
+        "width": 1122
+      },
+      {
+        "alt": "Монастырская кухня: забота о гостях",
+        "complete": true,
+        "width": 1122
+      }
+    ],
+    "scroll": 1107,
+    "title": "Новости обители",
+    "width": 1122
+  },
+  {
+    "key": "page-14",
+    "scheme": "prihod-scheme-classic",
+    "size": "desktop",
+    "forms": 1,
+    "images": [
+      {
+        "alt": "Место Бога в повседневной жизни",
+        "complete": true,
+        "width": 1122
+      },
+      {
+        "alt": "Призвание учеников: услышать и последовать",
+        "complete": true,
+        "width": 1122
+      },
+      {
+        "alt": "Размышления на пороге важного рубежа",
+        "complete": true,
+        "width": 1122
+      }
+    ],
+    "scroll": 1107,
+    "title": "Проповеди и беседы",
+    "width": 1122
+  },
+  {
+    "key": "page-15",
+    "scheme": "prihod-scheme-classic",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      }
+    ],
+    "scroll": 1107,
+    "title": "Контакты и дорога",
+    "width": 1122
+  },
+  {
+    "key": "page-16",
+    "scheme": "prihod-scheme-classic",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Шестеричная служба",
+        "complete": true,
+        "width": 150
+      }
+    ],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-17",
+    "scheme": "prihod-scheme-classic",
+    "size": "desktop",
+    "forms": 1,
+    "images": [],
+    "scroll": 1107,
+    "title": "Подать записку",
+    "width": 1122
+  },
+  {
+    "key": "page-18",
+    "scheme": "prihod-scheme-classic",
+    "size": "desktop",
+    "forms": 1,
+    "images": [],
+    "scroll": 1107,
+    "title": "Помочь монастырю",
+    "width": 1122
+  },
+  {
+    "key": "page-19",
+    "scheme": "prihod-scheme-classic",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 819
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 1024
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 510
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 510
+      }
+    ],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "home",
+    "scheme": "prihod-scheme-hospitality",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 819
+      },
+      {
+        "alt": "Забота о будущем обители",
+        "complete": true,
+        "width": 768
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 768
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 75
+      },
+      {
+        "alt": "Вера и повседневный выбор",
+        "complete": true,
+        "width": 75
+      },
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 201
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 201
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 201
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 201
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 201
+      }
+    ],
+    "scroll": 1107,
+    "title": "Добро пожаловать в наш приход!",
+    "width": 1122
+  },
+  {
+    "key": "page-8",
+    "scheme": "prihod-scheme-hospitality",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 417
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 309
+      },
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 309
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 130
+      }
+    ],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-9",
+    "scheme": "prihod-scheme-hospitality",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 1024
+      }
+    ],
+    "scroll": 1107,
+    "title": "Духовенство",
+    "width": 1122
+  },
+  {
+    "key": "page-10",
+    "scheme": "prihod-scheme-hospitality",
+    "size": "desktop",
+    "forms": 1,
+    "images": [],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-11",
+    "scheme": "prihod-scheme-hospitality",
+    "size": "desktop",
+    "forms": 1,
+    "images": [],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-12",
+    "scheme": "prihod-scheme-hospitality",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 768
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 768
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 249
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 249
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      }
+    ],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-13",
+    "scheme": "prihod-scheme-hospitality",
+    "size": "desktop",
+    "forms": 1,
+    "images": [
+      {
+        "alt": "Забота о будущем монастыря",
+        "complete": true,
+        "width": 1122
+      },
+      {
+        "alt": "Святая Троица: праздник общей молитвы",
+        "complete": true,
+        "width": 1122
+      },
+      {
+        "alt": "Монастырская кухня: забота о гостях",
+        "complete": true,
+        "width": 1122
+      }
+    ],
+    "scroll": 1107,
+    "title": "Новости обители",
+    "width": 1122
+  },
+  {
+    "key": "page-14",
+    "scheme": "prihod-scheme-hospitality",
+    "size": "desktop",
+    "forms": 1,
+    "images": [
+      {
+        "alt": "Место Бога в повседневной жизни",
+        "complete": true,
+        "width": 1122
+      },
+      {
+        "alt": "Призвание учеников: услышать и последовать",
+        "complete": true,
+        "width": 1122
+      },
+      {
+        "alt": "Размышления на пороге важного рубежа",
+        "complete": true,
+        "width": 1122
+      }
+    ],
+    "scroll": 1107,
+    "title": "Проповеди и беседы",
+    "width": 1122
+  },
+  {
+    "key": "page-15",
+    "scheme": "prihod-scheme-hospitality",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      }
+    ],
+    "scroll": 1107,
+    "title": "Контакты и дорога",
+    "width": 1122
+  },
+  {
+    "key": "page-16",
+    "scheme": "prihod-scheme-hospitality",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Шестеричная служба",
+        "complete": true,
+        "width": 150
+      }
+    ],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-17",
+    "scheme": "prihod-scheme-hospitality",
+    "size": "desktop",
+    "forms": 1,
+    "images": [],
+    "scroll": 1107,
+    "title": "Подать записку",
+    "width": 1122
+  },
+  {
+    "key": "page-18",
+    "scheme": "prihod-scheme-hospitality",
+    "size": "desktop",
+    "forms": 1,
+    "images": [],
+    "scroll": 1107,
+    "title": "Помочь монастырю",
+    "width": 1122
+  },
+  {
+    "key": "page-19",
+    "scheme": "prihod-scheme-hospitality",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 819
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 1024
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 510
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 510
+      }
+    ],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "home",
+    "scheme": "prihod-scheme-editorial",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 768
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 768
+      },
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 768
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 199
+      },
+      {
+        "alt": "Забота о будущем обители",
+        "complete": true,
+        "width": 228
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 228
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 228
+      },
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 157
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 157
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 157
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 157
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 157
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 100
+      }
+    ],
+    "scroll": 1107,
+    "title": "Здесь начинается Главное",
+    "width": 1122
+  },
+  {
+    "key": "page-8",
+    "scheme": "prihod-scheme-editorial",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 417
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 309
+      },
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 309
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 130
+      }
+    ],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-9",
+    "scheme": "prihod-scheme-editorial",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 1024
+      }
+    ],
+    "scroll": 1107,
+    "title": "Духовенство",
+    "width": 1122
+  },
+  {
+    "key": "page-10",
+    "scheme": "prihod-scheme-editorial",
+    "size": "desktop",
+    "forms": 1,
+    "images": [],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-11",
+    "scheme": "prihod-scheme-editorial",
+    "size": "desktop",
+    "forms": 1,
+    "images": [],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-12",
+    "scheme": "prihod-scheme-editorial",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 768
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 768
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 249
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 249
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      }
+    ],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-13",
+    "scheme": "prihod-scheme-editorial",
+    "size": "desktop",
+    "forms": 1,
+    "images": [
+      {
+        "alt": "Забота о будущем монастыря",
+        "complete": true,
+        "width": 1122
+      },
+      {
+        "alt": "Святая Троица: праздник общей молитвы",
+        "complete": true,
+        "width": 1122
+      },
+      {
+        "alt": "Монастырская кухня: забота о гостях",
+        "complete": true,
+        "width": 1122
+      }
+    ],
+    "scroll": 1107,
+    "title": "Новости обители",
+    "width": 1122
+  },
+  {
+    "key": "page-14",
+    "scheme": "prihod-scheme-editorial",
+    "size": "desktop",
+    "forms": 1,
+    "images": [
+      {
+        "alt": "Место Бога в повседневной жизни",
+        "complete": true,
+        "width": 1122
+      },
+      {
+        "alt": "Призвание учеников: услышать и последовать",
+        "complete": true,
+        "width": 1122
+      },
+      {
+        "alt": "Размышления на пороге важного рубежа",
+        "complete": true,
+        "width": 1122
+      }
+    ],
+    "scroll": 1107,
+    "title": "Проповеди и беседы",
+    "width": 1122
+  },
+  {
+    "key": "page-15",
+    "scheme": "prihod-scheme-editorial",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      }
+    ],
+    "scroll": 1107,
+    "title": "Контакты и дорога",
+    "width": 1122
+  },
+  {
+    "key": "page-16",
+    "scheme": "prihod-scheme-editorial",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Шестеричная служба",
+        "complete": true,
+        "width": 150
+      }
+    ],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-17",
+    "scheme": "prihod-scheme-editorial",
+    "size": "desktop",
+    "forms": 1,
+    "images": [],
+    "scroll": 1107,
+    "title": "Подать записку",
+    "width": 1122
+  },
+  {
+    "key": "page-18",
+    "scheme": "prihod-scheme-editorial",
+    "size": "desktop",
+    "forms": 1,
+    "images": [],
+    "scroll": 1107,
+    "title": "Помочь монастырю",
+    "width": 1122
+  },
+  {
+    "key": "page-19",
+    "scheme": "prihod-scheme-editorial",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 819
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 1024
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 510
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 510
+      }
+    ],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "home",
+    "scheme": "prihod-scheme-tradition",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "display": "block",
+        "visible": true,
+        "width": 768
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "display": "block",
+        "visible": true,
+        "width": 768
+      },
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "display": "block",
+        "visible": true,
+        "width": 768
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "display": "block",
+        "visible": true,
+        "width": 416
+      },
+      {
+        "alt": "Забота о будущем обители",
+        "complete": true,
+        "display": "block",
+        "visible": true,
+        "width": 65
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "display": "block",
+        "visible": true,
+        "width": 64
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "display": "block",
+        "visible": true,
+        "width": 65
+      },
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "display": "block",
+        "visible": true,
+        "width": 92
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "display": "block",
+        "visible": true,
+        "width": 93
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "display": "block",
+        "visible": true,
+        "width": 93
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "display": "block",
+        "visible": true,
+        "width": 93
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": false,
+        "display": "none",
+        "visible": false,
+        "width": 0
+      }
+    ],
+    "scroll": 1107,
+    "title": "«Где двое или трое собраны во имя Моё, там Я посреди них»",
+    "width": 1122
+  },
+  {
+    "key": "page-8",
+    "scheme": "prihod-scheme-tradition",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 390
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 289
+      },
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 289
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 130
+      }
+    ],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-9",
+    "scheme": "prihod-scheme-tradition",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 1024
+      }
+    ],
+    "scroll": 1107,
+    "title": "Духовенство",
+    "width": 1122
+  },
+  {
+    "key": "page-10",
+    "scheme": "prihod-scheme-tradition",
+    "size": "desktop",
+    "forms": 1,
+    "images": [],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-11",
+    "scheme": "prihod-scheme-tradition",
+    "size": "desktop",
+    "forms": 1,
+    "images": [],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-12",
+    "scheme": "prihod-scheme-tradition",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 768
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 768
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 237
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 237
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      }
+    ],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-13",
+    "scheme": "prihod-scheme-tradition",
+    "size": "desktop",
+    "forms": 1,
+    "images": [
+      {
+        "alt": "Забота о будущем монастыря",
+        "complete": true,
+        "width": 1122
+      },
+      {
+        "alt": "Святая Троица: праздник общей молитвы",
+        "complete": true,
+        "width": 1122
+      },
+      {
+        "alt": "Монастырская кухня: забота о гостях",
+        "complete": true,
+        "width": 1122
+      }
+    ],
+    "scroll": 1107,
+    "title": "Новости обители",
+    "width": 1122
+  },
+  {
+    "key": "page-14",
+    "scheme": "prihod-scheme-tradition",
+    "size": "desktop",
+    "forms": 1,
+    "images": [
+      {
+        "alt": "Место Бога в повседневной жизни",
+        "complete": true,
+        "width": 1122
+      },
+      {
+        "alt": "Призвание учеников: услышать и последовать",
+        "complete": true,
+        "width": 1122
+      },
+      {
+        "alt": "Размышления на пороге важного рубежа",
+        "complete": true,
+        "width": 1122
+      }
+    ],
+    "scroll": 1107,
+    "title": "Проповеди и беседы",
+    "width": 1122
+  },
+  {
+    "key": "page-15",
+    "scheme": "prihod-scheme-tradition",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      }
+    ],
+    "scroll": 1107,
+    "title": "Контакты и дорога",
+    "width": 1122
+  },
+  {
+    "key": "page-16",
+    "scheme": "prihod-scheme-tradition",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Шестеричная служба",
+        "complete": true,
+        "width": 150
+      }
+    ],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-17",
+    "scheme": "prihod-scheme-tradition",
+    "size": "desktop",
+    "forms": 1,
+    "images": [],
+    "scroll": 1107,
+    "title": "Подать записку",
+    "width": 1122
+  },
+  {
+    "key": "page-18",
+    "scheme": "prihod-scheme-tradition",
+    "size": "desktop",
+    "forms": 1,
+    "images": [],
+    "scroll": 1107,
+    "title": "Помочь монастырю",
+    "width": 1122
+  },
+  {
+    "key": "page-19",
+    "scheme": "prihod-scheme-tradition",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 819
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 1024
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 486
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 486
+      }
+    ],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "home",
+    "scheme": "prihod-scheme-blue",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 819
+      },
+      {
+        "alt": "Забота о будущем обители",
+        "complete": true,
+        "width": 768
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 768
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 110
+      },
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 144
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 144
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 144
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 144
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 144
+      },
+      {
+        "alt": "Вера и повседневный выбор",
+        "complete": true,
+        "width": 144
+      },
+      {
+        "alt": "Размышление о призвании первых учеников",
+        "complete": true,
+        "width": 144
+      },
+      {
+        "alt": "Забота о будущем обители",
+        "complete": true,
+        "width": 144
+      }
+    ],
+    "scroll": 1107,
+    "title": "Приход, где каждый найдёт свой путь",
+    "width": 1122
+  },
+  {
+    "key": "page-8",
+    "scheme": "prihod-scheme-blue",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 417
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 309
+      },
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 309
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 130
+      }
+    ],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-9",
+    "scheme": "prihod-scheme-blue",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 1024
+      }
+    ],
+    "scroll": 1107,
+    "title": "Духовенство",
+    "width": 1122
+  },
+  {
+    "key": "page-10",
+    "scheme": "prihod-scheme-blue",
+    "size": "desktop",
+    "forms": 1,
+    "images": [],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-11",
+    "scheme": "prihod-scheme-blue",
+    "size": "desktop",
+    "forms": 1,
+    "images": [],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-12",
+    "scheme": "prihod-scheme-blue",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 768
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 768
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 235
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 235
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      }
+    ],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-13",
+    "scheme": "prihod-scheme-blue",
+    "size": "desktop",
+    "forms": 1,
+    "images": [
+      {
+        "alt": "Забота о будущем монастыря",
+        "complete": true,
+        "width": 1122
+      },
+      {
+        "alt": "Святая Троица: праздник общей молитвы",
+        "complete": true,
+        "width": 1122
+      },
+      {
+        "alt": "Монастырская кухня: забота о гостях",
+        "complete": true,
+        "width": 1122
+      }
+    ],
+    "scroll": 1107,
+    "title": "Новости обители",
+    "width": 1122
+  },
+  {
+    "key": "page-14",
+    "scheme": "prihod-scheme-blue",
+    "size": "desktop",
+    "forms": 1,
+    "images": [
+      {
+        "alt": "Место Бога в повседневной жизни",
+        "complete": true,
+        "width": 1122
+      },
+      {
+        "alt": "Призвание учеников: услышать и последовать",
+        "complete": true,
+        "width": 1122
+      },
+      {
+        "alt": "Размышления на пороге важного рубежа",
+        "complete": true,
+        "width": 1122
+      }
+    ],
+    "scroll": 1107,
+    "title": "Проповеди и беседы",
+    "width": 1122
+  },
+  {
+    "key": "page-15",
+    "scheme": "prihod-scheme-blue",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      }
+    ],
+    "scroll": 1107,
+    "title": "Контакты и дорога",
+    "width": 1122
+  },
+  {
+    "key": "page-16",
+    "scheme": "prihod-scheme-blue",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Шестеричная служба",
+        "complete": true,
+        "width": 150
+      }
+    ],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "page-17",
+    "scheme": "prihod-scheme-blue",
+    "size": "desktop",
+    "forms": 1,
+    "images": [],
+    "scroll": 1107,
+    "title": "Подать записку",
+    "width": 1122
+  },
+  {
+    "key": "page-18",
+    "scheme": "prihod-scheme-blue",
+    "size": "desktop",
+    "forms": 1,
+    "images": [],
+    "scroll": 1107,
+    "title": "Помочь монастырю",
+    "width": 1122
+  },
+  {
+    "key": "page-19",
+    "scheme": "prihod-scheme-blue",
+    "size": "desktop",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "width": 1024
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "width": 819
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "width": 1024
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "width": 482
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "width": 482
+      }
+    ],
+    "scroll": 1107,
+    "width": 1122
+  },
+  {
+    "key": "home",
+    "size": "mobile",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "visible": true,
+        "width": 390
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "visible": true,
+        "width": 390
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "visible": true,
+        "width": 390
+      },
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "visible": true,
+        "width": 165
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "visible": true,
+        "width": 343
+      },
+      {
+        "alt": "Забота о будущем обители",
+        "complete": true,
+        "visible": true,
+        "width": 341
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "visible": true,
+        "width": 340
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "visible": true,
+        "width": 341
+      },
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "visible": true,
+        "width": 160
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "visible": true,
+        "width": 160
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "visible": true,
+        "width": 160
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "visible": true,
+        "width": 160
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "visible": true,
+        "width": 160
+      }
+    ],
+    "scheme": "prihod-scheme-classic",
+    "scroll": 375,
+    "title": "Добро пожаловать в наш приход!",
+    "width": 390
+  },
+  {
+    "key": "page-8",
+    "size": "mobile",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "visible": true,
+        "width": 390
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "visible": true,
+        "width": 390
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "visible": true,
+        "width": 343
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "visible": true,
+        "width": 343
+      },
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "visible": true,
+        "width": 343
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "visible": true,
+        "width": 90
+      }
+    ],
+    "scheme": "prihod-scheme-classic",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "page-9",
+    "size": "mobile",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "visible": true,
+        "width": 390
+      }
+    ],
+    "scheme": "prihod-scheme-classic",
+    "scroll": 375,
+    "title": "Духовенство",
+    "width": 390
+  },
+  {
+    "key": "page-10",
+    "size": "mobile",
+    "forms": 1,
+    "images": [],
+    "scheme": "prihod-scheme-classic",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "page-11",
+    "size": "mobile",
+    "forms": 1,
+    "images": [],
+    "scheme": "prihod-scheme-classic",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "page-12",
+    "size": "mobile",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "visible": true,
+        "width": 390
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "visible": true,
+        "width": 390
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "visible": true,
+        "width": 166
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "visible": true,
+        "width": 166
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "visible": true,
+        "width": 390
+      }
+    ],
+    "scheme": "prihod-scheme-classic",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "page-13",
+    "size": "mobile",
+    "forms": 1,
+    "images": [
+      {
+        "alt": "Забота о будущем монастыря",
+        "complete": true,
+        "visible": true,
+        "width": 390
+      },
+      {
+        "alt": "Святая Троица: праздник общей молитвы",
+        "complete": true,
+        "visible": true,
+        "width": 390
+      },
+      {
+        "alt": "Монастырская кухня: забота о гостях",
+        "complete": true,
+        "visible": true,
+        "width": 390
+      }
+    ],
+    "scheme": "prihod-scheme-classic",
+    "scroll": 375,
+    "title": "Новости обители",
+    "width": 390
+  },
+  {
+    "key": "page-14",
+    "size": "mobile",
+    "forms": 1,
+    "images": [
+      {
+        "alt": "Место Бога в повседневной жизни",
+        "complete": true,
+        "visible": true,
+        "width": 390
+      },
+      {
+        "alt": "Призвание учеников: услышать и последовать",
+        "complete": true,
+        "visible": true,
+        "width": 390
+      },
+      {
+        "alt": "Размышления на пороге важного рубежа",
+        "complete": true,
+        "visible": true,
+        "width": 390
+      }
+    ],
+    "scheme": "prihod-scheme-classic",
+    "scroll": 375,
+    "title": "Проповеди и беседы",
+    "width": 390
+  },
+  {
+    "key": "page-15",
+    "size": "mobile",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "visible": true,
+        "width": 390
+      }
+    ],
+    "scheme": "prihod-scheme-classic",
+    "scroll": 375,
+    "title": "Контакты и дорога",
+    "width": 390
+  },
+  {
+    "key": "page-16",
+    "size": "mobile",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Шестеричная служба",
+        "complete": true,
+        "visible": true,
+        "width": 150
+      }
+    ],
+    "scheme": "prihod-scheme-classic",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "page-17",
+    "size": "mobile",
+    "forms": 1,
+    "images": [],
+    "scheme": "prihod-scheme-classic",
+    "scroll": 375,
+    "title": "Подать записку",
+    "width": 390
+  },
+  {
+    "key": "page-18",
+    "size": "mobile",
+    "forms": 1,
+    "images": [],
+    "scheme": "prihod-scheme-classic",
+    "scroll": 375,
+    "title": "Помочь монастырю",
+    "width": 390
+  },
+  {
+    "key": "page-19",
+    "size": "mobile",
+    "forms": 0,
+    "images": [
+      {
+        "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+        "complete": true,
+        "visible": true,
+        "width": 390
+      },
+      {
+        "alt": "Праздник Святой Троицы в монастыре — 2026",
+        "complete": true,
+        "visible": true,
+        "width": 390
+      },
+      {
+        "alt": "Игумен Даниил (Ирбитс), наместник обители",
+        "complete": true,
+        "visible": true,
+        "width": 390
+      },
+      {
+        "alt": "Дорога к храму в Гётчендорфе",
+        "complete": true,
+        "visible": true,
+        "width": 160
+      },
+      {
+        "alt": "Монастырская кухня и гостеприимство",
+        "complete": true,
+        "visible": true,
+        "width": 343
+      }
+    ],
+    "scheme": "prihod-scheme-classic",
+    "scroll": 375,
+    "width": 390
+  }
+]
