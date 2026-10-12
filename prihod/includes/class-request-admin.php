@@ -17,6 +17,7 @@ final class Request_Admin {
             try { Requests::assert_request( $id ); } catch ( \Throwable $error ) { echo '<p>' . esc_html__( 'Обращение не найдено.', 'prihod' ) . '</p></div>'; return; }
             $post = get_post( $id ); $sender = get_post_meta( $id, '_prihod_sender', true );
             echo '<h2>' . esc_html( $post->post_title ) . '</h2><p>' . esc_html( ( $sender['name'] ?? '' ) . ' — ' . ( $sender['email'] ?? '' ) ) . '</p><p>' . nl2br( esc_html( $post->post_content ) ) . '</p>';
+            do_action( 'prihod_request_telegram_controls', $id );
             foreach ( Requests::messages( $id ) as $message ) {
                 $internal = get_post_meta( $message->ID, '_prihod_internal', true );
                 echo '<article><h3>' . esc_html( $internal ? __( 'Внутренняя заметка', 'prihod' ) : __( 'Ответ по email', 'prihod' ) ) . '</h3><p>' . esc_html( $message->post_date ) . '</p><p>' . nl2br( esc_html( $message->post_content ) ) . '</p>';

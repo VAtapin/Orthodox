@@ -25,6 +25,7 @@ final class Plugin {
         Schedule_Calendar::hooks();
         Calendar_Reminders::hooks();
         Requests::hooks();
+        Telegram_Requests::hooks();
         Wizard::hooks();
         Diagnostics::hooks();
         Access::hooks();

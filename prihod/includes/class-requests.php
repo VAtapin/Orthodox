@@ -58,6 +58,7 @@ final class Requests {
         update_post_meta( $id, '_prihod_request_status', 'new' );
         $responsible = (int) get_option( 'prihod_default_responsible', 0 );
         if ( $responsible && user_can( $responsible, 'view_prihod_requests' ) && user_can( $responsible, 'reply_prihod_requests' ) ) { update_post_meta( $id, '_prihod_assigned', $responsible ); }
+        update_post_meta( $id, '_prihod_request_locale', determine_locale() );
         update_post_meta( $id, '_prihod_consent_at', gmdate( DATE_ATOM ) );
         do_action( 'prihod_request_created', $id );
         return $id;
@@ -65,11 +66,12 @@ final class Requests {
     public static function assert_request( int $id ): void {
         if ( 'prihod_request' !== get_post_type( $id ) || 'trash' === get_post_status( $id ) ) { throw new \InvalidArgumentException( __( 'Обращение не найдено.', 'prihod' ) ); }
     }
-    public static function message( int $id, string $body, bool $internal ): int {
+    public static function message( int $id, string $body, bool $internal, string $source_id = '' ): int {
         self::assert_request( $id );
         if ( ! current_user_can( 'view_prihod_requests' ) || ! current_user_can( 'reply_prihod_requests' ) ) { throw new \RuntimeException( __( 'Недостаточно прав для ответа.', 'prihod' ) ); }
-        if ( '' === trim( $body ) || strlen( $body ) > 20000 ) { throw new \InvalidArgumentException( __( 'Введите ответ допустимой длины.', 'prihod' ) ); }
-        $message = wp_insert_post( array( 'post_type' => 'prihod_message', 'post_parent' => $id, 'post_status' => 'private', 'post_content' => sanitize_textarea_field( $body ), 'post_author' => get_current_user_id() ), true );
+        if ( $source_id && ! preg_match( '/^[a-f0-9]{64}$/D', $source_id ) ) { throw new \InvalidArgumentException( __( 'Ответ не сохранён.', 'prihod' ) ); }
+        if ( '' === trim( sanitize_textarea_field( $body ) ) || strlen( $body ) > 20000 ) { throw new \InvalidArgumentException( __( 'Введите ответ допустимой длины.', 'prihod' ) ); }
+        $message = wp_insert_post( array( 'post_type' => 'prihod_message', 'post_parent' => $id, 'post_status' => 'private', 'post_content' => sanitize_textarea_field( $body ), 'post_author' => get_current_user_id(), 'meta_input' => $source_id ? array( '_prihod_reply_source' => $source_id ) : array() ), true );
         if ( is_wp_error( $message ) ) { throw new \RuntimeException( __( 'Ответ не сохранён.', 'prihod' ) ); }
         update_post_meta( $message, '_prihod_internal', $internal );
         if ( ! $internal ) {
@@ -88,7 +90,11 @@ final class Requests {
         if ( ! $token ) { return; }
         try {
             $sender = get_post_meta( $id, '_prihod_sender', true );
-            $success = is_array( $sender ) && is_email( $sender['email'] ?? '' ) && wp_mail( $sender['email'], __( 'Ответ на обращение:', 'prihod' ) . ' ' . sanitize_text_field( $post->post_title ), $message->post_content );
+            $success = false;
+            if ( is_array( $sender ) && is_email( $sender['email'] ?? '' ) ) {
+                $mail = Request_Mail::compose( $post, $message, $sender );
+                $success = wp_mail( $sender['email'], $mail['subject'], $mail['message'], $mail['headers'] );
+            }
             $attempt = (int) get_post_meta( $message_id, '_prihod_attempts', true ) + 1;
             update_post_meta( $message_id, '_prihod_attempts', $attempt );
             update_post_meta( $message_id, '_prihod_delivery', $success ? 'sent' : 'failed' );

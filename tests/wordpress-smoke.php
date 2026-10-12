@@ -75,6 +75,7 @@ require __DIR__ . '/wizard-interview-smoke.php';
 require __DIR__ . '/theme-smoke.php';
 require __DIR__ . '/integrations-smoke.php';
 require __DIR__ . '/calendar-smoke.php';
+require __DIR__ . '/telegram-requests-smoke.php';
 require __DIR__ . '/dashboard-smoke.php';
 require __DIR__ . '/admin-overview-smoke.php';
 require __DIR__ . '/admin-navigation-smoke.php';

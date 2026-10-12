@@ -4,7 +4,7 @@ foreach ( array( 'prihod-telegram', 'prihod-whatsapp', 'prihod-social' ) as $slu
     prihod_assert( ! is_wp_error( $activation ), 'Independent connector package activates.' );
 }
 $connectors = array();
-foreach ( array( 'telegram', 'whatsapp', 'facebook' ) as $provider ) { $connectors[ $provider ] = PrihodConnect\Connector::boot( $provider, $provider, '' ); }
+foreach ( array( 'telegram', 'whatsapp', 'facebook' ) as $provider ) { $connectors[ $provider ] = ( 'telegram' === $provider ? '\PrihodTelegram\Connector' : '\PrihodConnect\Connector' )::boot( $provider, $provider, '' ); }
 foreach ( $connectors as $provider => $connector ) {
     $connector->menu();
     prihod_assert( str_contains( $connector->settings_url(), 'admin.php?page=prihod-connect-' ), 'Connector settings route stays inside its plugin.' );

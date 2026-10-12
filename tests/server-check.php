@@ -173,3 +173,10 @@ echo "CALENDAR_FEATURES_CHECK_OK: {$checked} total checks.\n";
 $check( 8 === count( Prihod\Calendar_Colors::labels() ) && 'blue' === Prihod\Calendar_Colors::recommendation( array( 'Покров Пресвятой Богородицы' ) )['color'], 'Seven vestment colors plus neutral and Pokrov recommendation must be available.' );
 $check( is_readable( WP_PLUGIN_DIR . '/prihod/assets/calendar-colors.js' ) && ( ! Prihod\Schedule::next() || str_contains( prihod_theme_compact_services(), 'data-prihod-feast' ) ), 'Homepage uses real calendar feast hooks and color editor is installed.' );
 echo 'CALENDAR_COLORS_CHECK_OK: ' . $checked . ' total checks.' . PHP_EOL;
+
+$check( '1.0.0-rc.12' === get_plugin_data( WP_PLUGIN_DIR . '/prihod/prihod.php', false, false )['Version'], 'Full Telegram replies require Core rc.12.' );
+$check( '0.1.2' === get_plugin_data( WP_PLUGIN_DIR . '/prihod-telegram/prihod-telegram.php', false, false )['Version'] && Prihod\Telegram_Requests::connector(), 'Independent Telegram 0.1.2 must be installed.' );
+$check( is_readable( WP_PLUGIN_DIR . '/prihod-telegram/assets/settings.js' ), 'Telegram required-field validation must be installed.' );
+$check( is_callable( array( Prihod\Request_Mail::class, 'compose' ) ) && is_callable( array( Prihod\Telegram_Request_Settings::class, 'configure' ) ), 'HTML mail and explicit reply setup must be available.' );
+$check( is_bool( Prihod\Telegram_Requests::ready() ), 'Reply state can be inspected without connecting or sending.' );
+echo 'TELEGRAM_REPLY_CHECK_OK: ' . $checked . ' total checks.' . PHP_EOL;

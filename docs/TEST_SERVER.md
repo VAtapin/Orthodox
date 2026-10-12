@@ -318,7 +318,7 @@ Core остаётсяrc.9. Изменения ограничены темой/е
 
 Пока не установлены. Только после прямого разрешения владельца загрузить
 build/prihod-1.0.0-rc.11.zip иbuild/prihod-theme-0.3.21.zip в
-wp-content/prihod-packages этого WordPress; tests/server-check.php в
+wp-content/prihod-packages этого WordPress; build/server-check-calendar-rc11.php в
 wp-content/prihod-server-check.php. Команда ограничена этим WordPress:
 
 ```bash
@@ -339,3 +339,35 @@ SHA25657D2AA03BA0CDD13742E33E4E704299CF5DC9F7AA02757DBA1491D48FADEABD1.
 Тема0.3.21:SHA2560AF39E77688E8C40A3123E91B77727930CC60726EF33C1544C59A45C086E894C.
 Команда выше остаётся прежней. Загрузка подготовлена локально в
 build/sftp-calendar-rc11.txt; проверка заморожена вbuild/server-check-calendar-rc11.php.
+
+## Подготовлено: Core rc.12, Telegram0.1.2 и тема0.3.21
+
+Не установлены. Этот комплект включает календарный rc.11 и заменяет его предложение
+при разрешении владельца на rc.12. Тема0.3.20 уже установлена. Обновляются только
+Core, наше подключение Telegram и тема в этом WordPress. WhatsApp/Facebook,
+orthocal/пожертвования, материалы и серверные настройки не изменяются.
+Сборка `python scripts/package.py --only core telegram`; тема0.3.21 берётся из
+замороженного календарного архива, чтобы состав предыдущего предложения не менялся.
+После прямого разрешения загрузить оба новых ZIP и тему0.3.21 вwp-content/prihod-packages,
+tests/server-check.php вwp-content/prihod-server-check.php. Затем:
+
+```bash
+cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
+export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
+php -d memory_limit=512M /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.12.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-telegram-0.1.2.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.21.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
+```
+
+Установка не включает полные обращения и не регистрирует webhook. Следующий шаг
+владельца — настройки Telegram внутри «Прихода»: выбрать полный режим, личный
+Chat ID и сотрудника; сохранить и подключить приём ответов. Обращение87 можно
+передать полной отдельной кнопкой в его кабинете. Живые сообщения/письма не отправлять
+без запроса владельца. Серверная проверка только читает состояние новой функции.
+Для webhook используются [официальные методы Telegram](https://core.telegram.org/bots/api#setwebhook)
+и секрет в заголовке; чужой webhook не заменяется. Миграции/Composer/Node не нужны.
+
+Core rc.12 SHA256:EB8F72BC4F61C1C753AFC012BE9B350D72179ABDA67D80748A9CEAE60E5987D4.
+Telegram0.1.2 SHA256:E33220C00311CA639CE550C4F872B38FD69364D0B65D772005F9508BD701D1F1.
+Тема0.3.21 SHA256 указана выше. Локальные проверки — tests/README.md.

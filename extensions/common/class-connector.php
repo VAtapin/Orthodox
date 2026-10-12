@@ -8,6 +8,7 @@ final class Connector {
     private string $title;
     private string $file;
     private static array $instances = array();
+    public static function instance( string $id ): ?self { return self::$instances[$id] ?? null; }
     public static function boot( string $id, string $title, string $file ): self {
         if ( isset( self::$instances[ $id ] ) ) { return self::$instances[ $id ]; }
         return self::$instances[ $id ] = new self( $id, $title, $file );
@@ -20,7 +21,7 @@ final class Connector {
         add_action( 'prihod_' . $id . '_worker', array( $this, 'worker' ) );
         add_action( 'add_meta_boxes_post', array( $this, 'meta_box' ) );
         add_action( 'save_post_post', array( $this, 'publish_post' ), 20 );
-        add_action( 'prihod_request_created', function ( $request ) { if ( ! empty( $this->settings()['notify_requests'] ) ) { $this->queue( __( 'Новое обращение. Откройте закрытый раздел прихода.', 'prihod-connect' ), admin_url( 'admin.php?page=prihod-requests&request_id=' . absint( $request ) ), 'request', (int) $request ); } } );
+        add_action( 'prihod_request_created', function ( $request ) { if ( ! empty( $this->settings()['notify_requests'] ) && apply_filters( 'prihod_connector_request_notification', true, $this->id ) ) { $this->queue( __( 'Новое обращение. Откройте закрытый раздел прихода.', 'prihod-connect' ), admin_url( 'admin.php?page=prihod-requests&request_id=' . absint( $request ) ), 'request', (int) $request ); } } );
         add_action( 'prihod_request_deleted', function ( $request ) {
             foreach ( get_post_meta( $request, '_prihod_jobs_' . $this->id, true ) ?: array() as $id ) { delete_option( 'prihod_job_' . $this->id . '_' . $id ); wp_clear_scheduled_hook( 'prihod_' . $this->id . '_worker', array( $id ) ); }
         } );
@@ -63,6 +64,14 @@ final class Connector {
     }
     public function render(): void {
         $this->authorize(); $settings = $this->settings();
+        $error_key = 'prihod_connector_error_' . $this->id . '_' . get_current_user_id();
+        foreach ( (array) get_transient( $error_key ) as $error ) { echo '<div class="notice notice-error"><p>' . esc_html( $error ) . '</p></div>'; }
+        delete_transient( $error_key);
+        if ( 'telegram' === $this->id ) {
+            $error_codes = isset( $_GET['prihod_connect_error'] ) && is_string( $_GET['prihod_connect_error'] ) ? explode( ',', $_GET['prihod_connect_error'] ) : array();
+            foreach ( self::telegram_error_messages() as $code => $message ) { if ( in_array( $code, $error_codes, true ) ) { echo '<div class="notice notice-error"><p>' . esc_html( $message ) . '</p></div>'; } }
+            echo '<p>' . esc_html__( 'Для отправки обязательны токен бота и Chat ID получателя. Для личного чата укажите числовой Chat ID; для канала — @имя_канала. Имя самого бота сюда не подходит.', 'prihod-connect' ) . '</p>';
+        }
         echo '<div class="wrap"><h1>' . esc_html( $this->title ) . '</h1><p>' . esc_html( $this->health()['message'] ) . '</p><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="prihod_connect_' . esc_attr( $this->id ) . '">'; wp_nonce_field( 'prihod_connect_' . $this->id );
         echo '<p><label><input type="checkbox" name="enabled" value="1"' . checked( $settings['enabled'], true, false ) . '> ' . esc_html__( 'Разрешить отправки во внешний сервис', 'prihod-connect' ) . '</label></p><p><label>' . esc_html__( 'Token (пусто — сохранить прежний)', 'prihod-connect' ) . ' <input type="password" name="token" autocomplete="new-password" value=""></label> <label><input type="checkbox" name="clear_token" value="1"> ' . esc_html__( 'Удалить token', 'prihod-connect' ) . '</label></p>';
         $fields = array( 'target' => 'telegram' === $this->id ? __( 'Chat ID / @канал', 'prihod-connect' ) : ( 'whatsapp' === $this->id ? __( 'Phone number ID', 'prihod-connect' ) : __( 'Facebook Page ID', 'prihod-connect' ) ) );
@@ -71,14 +80,17 @@ final class Connector {
         foreach ( $fields as $key => $label ) { echo '<p><label>' . esc_html( $label ) . '<br><input class="regular-text" name="' . esc_attr( $key ) . '" value="' . esc_attr( $settings[ $key ] ) . '"></label></p>'; }
         if ( 'whatsapp' === $this->id ) { echo '<p><label><input type="checkbox" name="recipient_consent" value="1"' . checked( $settings['recipient_consent'], true, false ) . '> ' . esc_html__( 'Получатель согласился получать эти сообщения', 'prihod-connect' ) . '</label></p>'; }
         if ( 'facebook' !== $this->id ) {
-            foreach ( array( 'notify_requests' => __( 'Уведомлять о новых обращениях (без имени, email и текста)', 'prihod-connect' ), 'notify_schedule' => __( 'Уведомлять об изменениях опубликованного расписания', 'prihod-connect' ) ) as $key => $label ) { echo '<p><label><input type="checkbox" name="' . esc_attr( $key ) . '" value="1"' . checked( $settings[ $key ], true, false ) . '> ' . esc_html( $label ) . '</label></p>'; }
+            foreach ( array( 'notify_requests' => 'telegram' === $this->id ? __( 'Уведомлять о новых обращениях', 'prihod-connect' ) : __( 'Уведомлять о новых обращениях (без имени, email и текста)', 'prihod-connect' ), 'notify_schedule' => __( 'Уведомлять об изменениях опубликованного расписания', 'prihod-connect' ) ) as $key => $label ) { echo '<p><label><input type="checkbox" name="' . esc_attr( $key ) . '" value="1"' . checked( $settings[ $key ], true, false ) . '> ' . esc_html( $label ) . '</label></p>'; }
         }
+        do_action( 'prihod_connector_settings_fields', $this->id, $settings );
         echo '<p>' . esc_html__( 'Публикации отправляются только по отдельному выбору в редакторе записи. Для WhatsApp получатель должен согласиться на сообщения; шаблон утверждается в Meta. Отправки выполняются через WP-Cron.', 'prihod-connect' ) . '</p>'; submit_button(); echo '</form>';
+        if ( 'telegram' === $this->id ) { wp_enqueue_script( 'prihod-telegram-settings', plugins_url( 'assets/settings.js', $this->file ), array(), '0.1.2', true ); wp_localize_script( 'prihod-telegram-settings', 'prihodTelegramSettings', array( 'hasToken' => '' !== $settings['token'] ) ); }
         $last = get_option( 'prihod_connect_last_' . $this->id, array() );
         if ( 'failed' === ( $last['status'] ?? '' ) ) {
             echo '<p>' . esc_html__( 'Последняя отправка завершилась ошибкой. Код HTTP:', 'prihod-connect' ) . ' ' . esc_html( $last['http_code'] ) . '</p><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="prihod_retry_' . esc_attr( $this->id ) . '">'; wp_nonce_field( 'prihod_retry_' . $this->id );
             echo '<button class="button">' . esc_html__( 'Повторить последнюю отправку после исправления настроек', 'prihod-connect' ) . '</button></form>';
         }
+        do_action( 'prihod_connector_settings_after', $this->id );
         echo '</div>';
     }
     public function save(): void {
@@ -89,8 +101,25 @@ final class Connector {
         }
         if ( ! empty( $_POST['clear_token'] ) ) { $settings['token'] = ''; }
         foreach ( array( 'enabled', 'notify_requests', 'notify_schedule', 'recipient_consent' ) as $key ) { $settings[ $key ] = ! empty( $_POST[ $key ] ) && ( 'facebook' !== $this->id || 'enabled' === $key ); }
+        if ( 'telegram' === $this->id && $settings['enabled'] ) {
+            $errors = $this->telegram_errors( $settings );
+            if ( $errors ) { wp_safe_redirect( add_query_arg( 'prihod_connect_error', implode( ',', $errors ), $this->settings_url() ) ); exit; }
+        }
         if ( $settings['enabled'] && ! $this->valid( $settings ) ) { wp_die( esc_html__( 'Проверьте token, идентификаторы и настройки API. Подключение не сохранено.', 'prihod-connect' ) ); }
-        update_option( 'prihod_connect_' . $this->id, $settings, false ); wp_safe_redirect( $this->settings_url() ); exit;
+        $extra_errors = apply_filters( 'prihod_connector_settings_errors', array(), $this->id, $settings );
+        if ( $extra_errors ) { set_transient( 'prihod_connector_error_' . $this->id . '_' . get_current_user_id(), $extra_errors, 120 ); wp_safe_redirect( $this->settings_url() ); exit; }
+        update_option( 'prihod_connect_' . $this->id, $settings, false ); do_action( 'prihod_connector_saved', $this->id, $settings ); wp_safe_redirect( $this->settings_url() ); exit;
+    }
+    public static function telegram_error_messages(): array {
+        return array( 'token_missing' => __( 'Введите токен бота. Подключение не сохранено.', 'prihod-connect' ), 'token_invalid' => __( 'Токен бота имеет неверный формат. Скопируйте токен из BotFather. Подключение не сохранено.', 'prihod-connect' ), 'target_missing' => __( 'Укажите Chat ID получателя или @имя_канала. Подключение не сохранено.', 'prihod-connect' ), 'target_invalid' => __( 'Chat ID должен быть числом (для группы может начинаться с минуса) или @именем канала. Подключение не сохранено.', 'prihod-connect' ) );
+    }
+    public function telegram_errors( array $settings ): array {
+        $errors = array();
+        if ( empty( $settings['token'] ) ) { $errors[] = 'token_missing'; }
+        elseif ( ! is_string( $settings['token'] ) || ! preg_match( '/^[0-9]+:[A-Za-z0-9_-]{10,}$/D', $settings['token'] ) ) { $errors[] = 'token_invalid'; }
+        if ( empty( $settings['target'] ) ) { $errors[] = 'target_missing'; }
+        elseif ( ! is_string( $settings['target'] ) || ! preg_match( '/^(?:-?[0-9]+|@[A-Za-z0-9_]{5,})$/D', $settings['target'] ) ) { $errors[] = 'target_invalid'; }
+        return $errors;
     }
     public function meta_box(): void {
         if ( ! $this->valid( $this->settings() ) ) { return; }
@@ -105,13 +134,13 @@ final class Connector {
         $post = get_post( $id ); $text = $post->post_title . "\n" . wp_html_excerpt( wp_strip_all_tags( strip_shortcodes( $post->post_content ) ), 700, '…' );
         $this->queue( $text, get_permalink( $id ), 'post', $id );
     }
-    public function queue( string $text, string $url, string $kind, int $source ): string {
+    public function queue( string $text, string $url, string $kind, int $source, array $reply_context = array() ): string {
         if ( ! $this->valid( $this->settings() ) ) { return ''; }
         if ( ! in_array( $kind, array( 'post', 'request', 'schedule' ), true ) || ( 'facebook' === $this->id && 'post' !== $kind ) ) { return ''; }
-        $settings = $this->settings(); $text = wp_html_excerpt( wp_strip_all_tags( $text ), 900, '…' ); $url = esc_url_raw( $url );
-        $id = hash( 'sha256', $this->id . $kind . $source . $text . $url . $settings['target'] . $settings['recipient'] ); $key = 'prihod_job_' . $this->id . '_' . $id;
+        $settings = $this->settings(); $limit = max( 1, min( 3000, (int) apply_filters( 'prihod_connector_text_limit', 900, $this->id, $kind ) ) ); $text = wp_html_excerpt( wp_strip_all_tags( $text ), $limit, '…' ); $url = esc_url_raw( $url );
+        $id = hash( 'sha256', $this->id . $kind . $source . $text . $url . $settings['target'] . $settings['recipient'] . ( $reply_context['configuration'] ?? '' ) ); $key = 'prihod_job_' . $this->id . '_' . $id;
         $target = hash( 'sha256', $settings['target'] . '|' . $settings['recipient'] );
-        if ( add_option( $key, array( 'text' => $text, 'url' => $url, 'kind' => $kind, 'source' => $source, 'target' => $target, 'status' => 'pending', 'attempts' => 0 ), '', false ) ) {
+        if ( add_option( $key, array( 'text' => $text, 'url' => $url, 'kind' => $kind, 'source' => $source, 'target' => $target, 'status' => 'pending', 'attempts' => 0, 'reply_context' => $reply_context ), '', false ) ) {
             $scheduled = wp_schedule_single_event( time() + 1, 'prihod_' . $this->id . '_worker', array( $id ), true );
             if ( is_wp_error( $scheduled ) || ! $scheduled ) { delete_option( $key ); return ''; }
             if ( 'request' === $kind ) { $jobs = get_post_meta( $source, '_prihod_jobs_' . $this->id, true ) ?: array(); $jobs[] = $id; update_post_meta( $source, '_prihod_jobs_' . $this->id, $jobs ); }
@@ -133,6 +162,7 @@ final class Connector {
         if ( ! preg_match( '/^[a-f0-9]{64}$/D', $id ) ) { return; }
         $key = 'prihod_job_' . $this->id . '_' . $id; $job = get_option( $key );
         if ( ! is_array( $job ) || in_array( $job['status'], array( 'sent', 'cancelled' ), true ) || $job['attempts'] >= 3 || ! $this->valid( $this->settings() ) ) { return; }
+        if ( ! apply_filters( 'prihod_connector_job_allowed', true, $this->id, $job ) ) { $job['status'] = 'cancelled'; update_option( $key, $job, false ); return; }
         $settings = $this->settings(); if ( ! hash_equals( $job['target'], hash( 'sha256', $settings['target'] . '|' . $settings['recipient'] ) ) ) { $job['status'] = 'cancelled'; update_option( $key, $job, false ); return; }
         if ( ( 'request' === $job['kind'] && ( ! get_post( $job['source'] ) || get_option( 'prihod_purge_job' ) ) ) || ( 'request' !== $job['kind'] && 'publish' !== get_post_status( $job['source'] ) ) ) { $job['status'] = 'cancelled'; update_option( $key, $job, false ); return; }
         $lock = $key . '_lock'; $owner = Lock::acquire( $lock, 60 );
@@ -145,6 +175,7 @@ final class Connector {
             $accepted = $code >= 200 && $code < 300 && is_array( $body ) && ( 'telegram' === $this->id ? ! empty( $body['ok'] ) : ( 'whatsapp' === $this->id ? ! empty( $body['messages'][0]['id'] ) : ! empty( $body['id'] ) ) );
             ++$job['attempts']; $job['status'] = $accepted ? 'sent' : 'failed'; $job['http_code'] = $code;
             update_option( $key, $job, false ); update_option( 'prihod_connect_last_' . $this->id, array( 'id' => $id, 'status' => $job['status'], 'http_code' => $code, 'time' => time() ), false );
+            if ( $accepted ) { do_action( 'prihod_connector_sent', $this->id, $id, $job, $body ); }
             if ( ! $accepted && $job['attempts'] < 3 && ( 0 === $code || 429 === $code || $code >= 500 ) ) { wp_schedule_single_event( time() + 300 * $job['attempts'], 'prihod_' . $this->id . '_worker', array( $id ) ); }
         } finally { Lock::release( $lock, $owner ); }
     }

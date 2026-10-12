@@ -4,7 +4,7 @@ require_once ABSPATH . 'wp-admin/includes/admin.php';
 wp_set_current_user( 1 );
 if ( is_plugin_active( 'prihod/prihod.php' ) || class_exists( '\Prihod\Plugin' ) ) { throw new RuntimeException( 'Independent connector check requires inactive Core.' ); }
 foreach ( array( 'telegram', 'whatsapp', 'facebook' ) as $provider ) {
-    $connector = PrihodConnect\Connector::boot( $provider, $provider, '' );
+    $connector = ( 'telegram' === $provider ? '\PrihodTelegram\Connector' : '\PrihodConnect\Connector' )::boot( $provider, $provider, '' );
     if ( 'needs_setup' !== $connector->health()['status'] ) { throw new RuntimeException( 'Disabled independent connector should need setup.' ); }
     $connector->menu();
     global $menu;

@@ -2238,3 +2238,198 @@ msgstr "Dla regularnego nabożeństwa kolor świąteczny ustawia się w wyjątku
 
 msgid "Исключения отдельных дат"
 msgstr "Wyjątki dla poszczególnych dat"
+
+msgid "Chat ID / @канал"
+msgstr "Chat ID / @kanał"
+
+msgid "Facebook Page ID"
+msgstr "ID strony na Facebooku"
+
+msgid "Phone number ID"
+msgstr "ID numeru telefonu"
+
+msgid "Token (пусто — сохранить прежний)"
+msgstr "Token (puste pole zachowuje poprzedni)"
+
+msgid "Введите токен бота. Подключение не сохранено."
+msgstr "Wprowadź token bota. Połączenie nie zostało zapisane."
+
+msgid "Токен бота имеет неверный формат. Скопируйте токен из BotFather. Подключение не сохранено."
+msgstr "Token bota ma nieprawidłowy format. Skopiuj go z BotFather. Połączenie nie zostało zapisane."
+
+msgid "Укажите Chat ID получателя или @имя_канала. Подключение не сохранено."
+msgstr "Podaj Chat ID odbiorcy lub @nazwę_kanału. Połączenie nie zostało zapisane."
+
+msgid "Chat ID должен быть числом (для группы может начинаться с минуса) или @именем канала. Подключение не сохранено."
+msgstr "Chat ID musi być liczbą (dla grupy może być ujemna) lub @nazwą kanału. Połączenie nie zostało zapisane."
+
+msgid "Для отправки обязательны токен бота и Chat ID получателя. Для личного чата укажите числовой Chat ID; для канала — @имя_канала. Имя самого бота сюда не подходит."
+msgstr "Do wysyłania wymagane są token bota i Chat ID odbiorcy. Dla prywatnego czatu podaj liczbowy Chat ID, dla kanału @nazwę_kanału. Nazwa samego bota nie jest odpowiednia."
+
+msgid "Для ответа на обращения нужен числовой Chat ID вашего личного чата с ботом."
+msgstr "Do odpowiadania na zgłoszenia potrzebny jest liczbowy Chat ID Twojego prywatnego czatu z botem."
+
+msgid "Для приёма ответов Telegram нужен адрес сайта с HTTPS."
+msgstr "Do odbierania odpowiedzi z Telegrama potrzebny jest adres witryny z HTTPS."
+
+msgid "Telegram не подтвердил личный чат с этим ботом."
+msgstr "Telegram nie potwierdził prywatnego czatu z tym botem."
+
+msgid "Telegram не подтвердил подключение. Проверьте токен, Chat ID и доступность сервиса."
+msgstr "Telegram nie potwierdził połączenia. Sprawdź token, Chat ID i dostępność usługi."
+
+msgid "Telegram не подтвердил приём ответов."
+msgstr "Telegram nie potwierdził odbierania odpowiedzi."
+
+msgid "Включите отправки и уведомления о новых обращениях."
+msgstr "Włącz wysyłanie i powiadomienia o nowych zgłoszeniach."
+
+msgid "Выберите сотрудника с правами просмотра и ответа на обращения."
+msgstr "Wybierz pracownika z uprawnieniami do przeglądania zgłoszeń i odpowiadania na nie."
+
+msgid "В Telegram будут переданы имя, email, тема и полный текст обращения. Ответьте кнопкой «Ответить» на сообщение бота: сайт сохранит ответ и отправит посетителю оформленное письмо. Внутренние заметки не передаются."
+msgstr "Do Telegrama trafią imię, email, temat i pełna treść zgłoszenia. Użyj przycisku „Odpowiedz” przy wiadomości bota: witryna zapisze odpowiedź i wyśle odwiedzającemu sformatowany email. Notatki wewnętrzne nie są przekazywane."
+
+msgid "Новое обращение"
+msgstr "Nowe zgłoszenie"
+
+msgid "Обращения и ответы в Telegram"
+msgstr "Zgłoszenia i odpowiedzi w Telegramie"
+
+msgid "От имени какого сотрудника сохранять ответы"
+msgstr "W imieniu którego pracownika zapisywać odpowiedzi"
+
+msgid "Передавать полное обращение и принимать ответы в личном чате"
+msgstr "Przekazuj pełne zgłoszenie i odbieraj odpowiedzi w prywatnym czacie"
+
+msgid "Ответьте на это сообщение кнопкой «Ответить» в Telegram."
+msgstr "Odpowiedz na tę wiadomość przyciskiem „Odpowiedz” w Telegramie."
+
+msgid "Ответ сохранён. Письмо поставлено в очередь."
+msgstr "Odpowiedź zapisana. Email trafił do kolejki."
+
+msgid "Ответ сохранён, но письмо не поставлено в очередь. Проверьте обращение на сайте."
+msgstr "Odpowiedź zapisana, ale email nie trafił do kolejki. Sprawdź zgłoszenie w witrynie."
+
+msgid "Приём ответов настроен. Новые обращения поступают полностью."
+msgstr "Odbieranie odpowiedzi jest skonfigurowane. Nowe zgłoszenia trafiają w całości."
+
+msgid "Приём ответов пока не подключён; обычные уведомления сохраняют прежний режим."
+msgstr "Odbieranie odpowiedzi nie jest jeszcze podłączone; zwykłe powiadomienia zachowują dotychczasowy tryb."
+
+msgid "Приём ответов подключён. Обращения отправляются полностью."
+msgstr "Odbieranie odpowiedzi podłączone. Zgłoszenia są wysyłane w całości."
+
+msgid "Подключить / проверить приём ответов"
+msgstr "Podłącz / sprawdź odbieranie odpowiedzi"
+
+msgid "Сначала сохраните настройки, затем подключите приём ответов. Каналы и группы сохраняют обычные уведомления без персональных данных."
+msgstr "Najpierw zapisz ustawienia, następnie podłącz odbieranie odpowiedzi. Kanały i grupy zachowują zwykłe powiadomienia bez danych osobowych."
+
+msgid "Сохраните полные обращения, личный Chat ID и сотрудника с правами ответа."
+msgstr "Zapisz pełne zgłoszenia, prywatny Chat ID i pracownika z prawem do odpowiedzi."
+
+msgid "Сначала сохраните подключение."
+msgstr "Najpierw zapisz połączenie."
+
+msgid "Этот бот уже принимает сообщения в другом приложении. Его подключение не изменено."
+msgstr "Ten bot odbiera już wiadomości w innej aplikacji. Jego połączenie nie zostało zmienione."
+
+msgid "Отправить полное обращение в Telegram"
+msgstr "Wyślij pełne zgłoszenie do Telegrama"
+
+msgid "Ответ на ваше обращение"
+msgstr "Odpowiedź na Twoje zgłoszenie"
+
+msgid "Ваше обращение"
+msgstr "Twoje zgłoszenie"
+
+msgid "Перейти на сайт"
+msgstr "Przejdź do witryny"
+
+msgid "Попробуйте позже."
+msgstr "Spróbuj później."
+
+msgid "Версия Graph API из настроек приложения"
+msgstr "Wersja Graph API z ustawień aplikacji"
+
+msgid "Задача недоступна или получатель изменился. Создайте новую публикацию."
+msgstr "Zadanie jest niedostępne lub odbiorca się zmienił. Utwórz nową publikację."
+
+msgid "Заполните подключение и явно включите отправки."
+msgstr "Uzupełnij połączenie i wyraźnie włącz wysyłanie."
+
+msgid "Изменено расписание:"
+msgstr "Zmieniono harmonogram:"
+
+msgid "Настройки заполнены; успешная живая отправка ещё не подтверждена."
+msgstr "Ustawienia uzupełnione; skuteczne rzeczywiste wysłanie nie zostało jeszcze potwierdzone."
+
+msgid "Некорректное поле."
+msgstr "Nieprawidłowe pole."
+
+msgid "Новое обращение. Откройте закрытый раздел прихода."
+msgstr "Nowe zgłoszenie. Otwórz prywatny dział parafii."
+
+msgid "Одобренный шаблон с одним текстовым параметром в body"
+msgstr "Zatwierdzony szablon z jednym parametrem tekstowym w body"
+
+msgid "Отправить эту опубликованную запись в сервис"
+msgstr "Wyślij ten opublikowany wpis do usługi"
+
+msgid "Повторить последнюю отправку после исправления настроек"
+msgstr "Ponów ostatnią wysyłkę po poprawieniu ustawień"
+
+msgid "Получатель согласился получать эти сообщения"
+msgstr "Odbiorca zgodził się otrzymywać te wiadomości"
+
+msgid "Получатель: международный номер без +"
+msgstr "Odbiorca: numer międzynarodowy bez +"
+
+msgid "Последняя отправка завершилась ошибкой. Код HTTP:"
+msgstr "Ostatnia wysyłka zakończyła się błędem. Kod HTTP:"
+
+msgid "Последняя отправка принята сервисом."
+msgstr "Ostatnia wysyłka została przyjęta przez usługę."
+
+msgid "Проверьте token, идентификаторы и настройки API. Подключение не сохранено."
+msgstr "Sprawdź token, identyfikatory i ustawienia API. Połączenie nie zostało zapisane."
+
+msgid "Публикации отправляются только по отдельному выбору в редакторе записи. Для WhatsApp получатель должен согласиться на сообщения; шаблон утверждается в Meta. Отправки выполняются через WP-Cron."
+msgstr "Publikacje są wysyłane tylko po osobnym wyborze w edytorze wpisu. Dla WhatsApp odbiorca musi wyrazić zgodę; szablon zatwierdza Meta. Wysyłka odbywa się przez WP-Cron."
+
+msgid "Разрешить отправки во внешний сервис"
+msgstr "Zezwól na wysyłanie do usługi zewnętrznej"
+
+msgid "Сначала исправьте подключение."
+msgstr "Najpierw popraw połączenie."
+
+msgid "Уведомлять о новых обращениях"
+msgstr "Powiadamiaj o nowych zgłoszeniach"
+
+msgid "Уведомлять о новых обращениях (без имени, email и текста)"
+msgstr "Powiadamiaj o nowych zgłoszeniach (bez imienia, emaila i treści)"
+
+msgid "Уведомлять об изменениях опубликованного расписания"
+msgstr "Powiadamiaj o zmianach opublikowanego harmonogramu"
+
+msgid "Удалить token"
+msgstr "Usuń token"
+
+msgid "Язык шаблона"
+msgstr "Język szablonu"
+
+msgid "Приход: Telegram"
+msgstr "Prihod: Telegram"
+
+msgid "Настройки изменились во время проверки. Подключите приём ответов заново."
+msgstr "Ustawienia zmieniły się podczas sprawdzania. Podłącz odbieranie odpowiedzi ponownie."
+
+msgid "Проверка подключения поставлена в очередь. Обновите эту страницу через некоторое время."
+msgstr "Sprawdzenie połączenia trafiło do kolejki. Odśwież tę stronę za jakiś czas."
+
+msgid "Проверку не удалось поставить в очередь. Попробуйте позже."
+msgstr "Nie udało się dodać sprawdzenia do kolejki. Spróbuj później."
+
+msgid "Проверка подключения ещё в очереди. Обновите страницу позже."
+msgstr "Sprawdzenie połączenia jest jeszcze w kolejce. Odśwież stronę później."

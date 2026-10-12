@@ -2238,3 +2238,198 @@ msgstr "Bei regelmäßigen Gottesdiensten wird die Festfarbe als Ausnahme für e
 
 msgid "Исключения отдельных дат"
 msgstr "Ausnahmen für einzelne Termine"
+
+msgid "Chat ID / @канал"
+msgstr "Chat-ID / @Kanal"
+
+msgid "Facebook Page ID"
+msgstr "Facebook-Seiten-ID"
+
+msgid "Phone number ID"
+msgstr "Telefonnummer-ID"
+
+msgid "Token (пусто — сохранить прежний)"
+msgstr "Token (leer lassen, um den bisherigen zu behalten)"
+
+msgid "Введите токен бота. Подключение не сохранено."
+msgstr "Geben Sie den Bot-Token ein. Die Verbindung wurde nicht gespeichert."
+
+msgid "Токен бота имеет неверный формат. Скопируйте токен из BotFather. Подключение не сохранено."
+msgstr "Der Bot-Token hat ein ungültiges Format. Kopieren Sie ihn aus BotFather. Die Verbindung wurde nicht gespeichert."
+
+msgid "Укажите Chat ID получателя или @имя_канала. Подключение не сохранено."
+msgstr "Geben Sie die Chat-ID des Empfängers oder @Kanalname an. Die Verbindung wurde nicht gespeichert."
+
+msgid "Chat ID должен быть числом (для группы может начинаться с минуса) или @именем канала. Подключение не сохранено."
+msgstr "Die Chat-ID muss eine Zahl (bei Gruppen auch negativ) oder @Kanalname sein. Die Verbindung wurde nicht gespeichert."
+
+msgid "Для отправки обязательны токен бота и Chat ID получателя. Для личного чата укажите числовой Chat ID; для канала — @имя_канала. Имя самого бота сюда не подходит."
+msgstr "Zum Senden sind Bot-Token und Chat-ID des Empfängers erforderlich. Für einen privaten Chat geben Sie eine numerische Chat-ID an, für einen Kanal @Kanalname. Der Name des Bots ist hier nicht geeignet."
+
+msgid "Для ответа на обращения нужен числовой Chat ID вашего личного чата с ботом."
+msgstr "Für Antworten auf Anliegen ist die numerische Chat-ID Ihres privaten Chats mit dem Bot erforderlich."
+
+msgid "Для приёма ответов Telegram нужен адрес сайта с HTTPS."
+msgstr "Zum Empfang von Telegram-Antworten benötigt die Website eine HTTPS-Adresse."
+
+msgid "Telegram не подтвердил личный чат с этим ботом."
+msgstr "Telegram hat den privaten Chat mit diesem Bot nicht bestätigt."
+
+msgid "Telegram не подтвердил подключение. Проверьте токен, Chat ID и доступность сервиса."
+msgstr "Telegram hat die Verbindung nicht bestätigt. Prüfen Sie Token, Chat-ID und Erreichbarkeit des Dienstes."
+
+msgid "Telegram не подтвердил приём ответов."
+msgstr "Telegram hat den Empfang von Antworten nicht bestätigt."
+
+msgid "Включите отправки и уведомления о новых обращениях."
+msgstr "Aktivieren Sie das Senden und Benachrichtigungen über neue Anliegen."
+
+msgid "Выберите сотрудника с правами просмотра и ответа на обращения."
+msgstr "Wählen Sie einen Mitarbeiter mit Berechtigung zum Lesen und Beantworten von Anliegen."
+
+msgid "В Telegram будут переданы имя, email, тема и полный текст обращения. Ответьте кнопкой «Ответить» на сообщение бота: сайт сохранит ответ и отправит посетителю оформленное письмо. Внутренние заметки не передаются."
+msgstr "Name, E-Mail, Betreff und vollständiger Text des Anliegens werden an Telegram übermittelt. Antworten Sie mit „Antworten“ auf die Bot-Nachricht: Die Website speichert die Antwort und sendet dem Besucher eine gestaltete E-Mail. Interne Notizen werden nicht übermittelt."
+
+msgid "Новое обращение"
+msgstr "Neues Anliegen"
+
+msgid "Обращения и ответы в Telegram"
+msgstr "Anliegen und Antworten in Telegram"
+
+msgid "От имени какого сотрудника сохранять ответы"
+msgstr "Unter welchem Mitarbeiter Antworten speichern"
+
+msgid "Передавать полное обращение и принимать ответы в личном чате"
+msgstr "Vollständige Anliegen übertragen und Antworten im privaten Chat empfangen"
+
+msgid "Ответьте на это сообщение кнопкой «Ответить» в Telegram."
+msgstr "Antworten Sie auf diese Nachricht mit „Antworten“ in Telegram."
+
+msgid "Ответ сохранён. Письмо поставлено в очередь."
+msgstr "Antwort gespeichert. Die E-Mail wurde in die Warteschlange gestellt."
+
+msgid "Ответ сохранён, но письмо не поставлено в очередь. Проверьте обращение на сайте."
+msgstr "Antwort gespeichert, aber die E-Mail wurde nicht in die Warteschlange gestellt. Prüfen Sie das Anliegen auf der Website."
+
+msgid "Приём ответов настроен. Новые обращения поступают полностью."
+msgstr "Der Empfang von Antworten ist eingerichtet. Neue Anliegen werden vollständig übertragen."
+
+msgid "Приём ответов пока не подключён; обычные уведомления сохраняют прежний режим."
+msgstr "Der Empfang von Antworten ist noch nicht verbunden; normale Benachrichtigungen bleiben im bisherigen Modus."
+
+msgid "Приём ответов подключён. Обращения отправляются полностью."
+msgstr "Der Empfang von Antworten ist verbunden. Anliegen werden vollständig gesendet."
+
+msgid "Подключить / проверить приём ответов"
+msgstr "Antwortempfang verbinden / prüfen"
+
+msgid "Сначала сохраните настройки, затем подключите приём ответов. Каналы и группы сохраняют обычные уведомления без персональных данных."
+msgstr "Speichern Sie zuerst die Einstellungen und verbinden Sie dann den Antwortempfang. Kanäle und Gruppen behalten normale Benachrichtigungen ohne personenbezogene Daten."
+
+msgid "Сохраните полные обращения, личный Chat ID и сотрудника с правами ответа."
+msgstr "Speichern Sie vollständige Anliegen, private Chat-ID und einen Mitarbeiter mit Antwortberechtigung."
+
+msgid "Сначала сохраните подключение."
+msgstr "Speichern Sie zuerst die Verbindung."
+
+msgid "Этот бот уже принимает сообщения в другом приложении. Его подключение не изменено."
+msgstr "Dieser Bot empfängt bereits Nachrichten in einer anderen Anwendung. Seine Verbindung wurde nicht geändert."
+
+msgid "Отправить полное обращение в Telegram"
+msgstr "Vollständiges Anliegen an Telegram senden"
+
+msgid "Ответ на ваше обращение"
+msgstr "Antwort auf Ihr Anliegen"
+
+msgid "Ваше обращение"
+msgstr "Ihr Anliegen"
+
+msgid "Перейти на сайт"
+msgstr "Zur Website"
+
+msgid "Попробуйте позже."
+msgstr "Versuchen Sie es später erneut."
+
+msgid "Версия Graph API из настроек приложения"
+msgstr "Graph-API-Version aus den Anwendungseinstellungen"
+
+msgid "Задача недоступна или получатель изменился. Создайте новую публикацию."
+msgstr "Auftrag nicht verfügbar oder Empfänger geändert. Erstellen Sie eine neue Veröffentlichung."
+
+msgid "Заполните подключение и явно включите отправки."
+msgstr "Richten Sie die Verbindung ein und aktivieren Sie das Senden ausdrücklich."
+
+msgid "Изменено расписание:"
+msgstr "Gottesdienstplan geändert:"
+
+msgid "Настройки заполнены; успешная живая отправка ещё не подтверждена."
+msgstr "Einstellungen ausgefüllt; erfolgreiches tatsächliches Senden wurde noch nicht bestätigt."
+
+msgid "Некорректное поле."
+msgstr "Ungültiges Feld."
+
+msgid "Новое обращение. Откройте закрытый раздел прихода."
+msgstr "Neues Anliegen. Öffnen Sie den geschützten Gemeindebereich."
+
+msgid "Одобренный шаблон с одним текстовым параметром в body"
+msgstr "Genehmigte Vorlage mit einem Textparameter im Body"
+
+msgid "Отправить эту опубликованную запись в сервис"
+msgstr "Diesen veröffentlichten Beitrag an den Dienst senden"
+
+msgid "Повторить последнюю отправку после исправления настроек"
+msgstr "Letzten Versand nach Korrektur der Einstellungen wiederholen"
+
+msgid "Получатель согласился получать эти сообщения"
+msgstr "Der Empfänger hat dem Empfang dieser Nachrichten zugestimmt"
+
+msgid "Получатель: международный номер без +"
+msgstr "Empfänger: internationale Rufnummer ohne +"
+
+msgid "Последняя отправка завершилась ошибкой. Код HTTP:"
+msgstr "Der letzte Versand ist fehlgeschlagen. HTTP-Code:"
+
+msgid "Последняя отправка принята сервисом."
+msgstr "Der letzte Versand wurde vom Dienst angenommen."
+
+msgid "Проверьте token, идентификаторы и настройки API. Подключение не сохранено."
+msgstr "Prüfen Sie Token, Kennungen und API-Einstellungen. Die Verbindung wurde nicht gespeichert."
+
+msgid "Публикации отправляются только по отдельному выбору в редакторе записи. Для WhatsApp получатель должен согласиться на сообщения; шаблон утверждается в Meta. Отправки выполняются через WP-Cron."
+msgstr "Veröffentlichungen werden nur nach gesonderter Auswahl im Beitragseditor gesendet. Für WhatsApp muss der Empfänger zustimmen; Meta genehmigt die Vorlage. Der Versand erfolgt über WP-Cron."
+
+msgid "Разрешить отправки во внешний сервис"
+msgstr "Senden an externen Dienst erlauben"
+
+msgid "Сначала исправьте подключение."
+msgstr "Korrigieren Sie zuerst die Verbindung."
+
+msgid "Уведомлять о новых обращениях"
+msgstr "Über neue Anliegen benachrichtigen"
+
+msgid "Уведомлять о новых обращениях (без имени, email и текста)"
+msgstr "Über neue Anliegen benachrichtigen (ohne Name, E-Mail und Text)"
+
+msgid "Уведомлять об изменениях опубликованного расписания"
+msgstr "Über Änderungen am veröffentlichten Gottesdienstplan benachrichtigen"
+
+msgid "Удалить token"
+msgstr "Token löschen"
+
+msgid "Язык шаблона"
+msgstr "Vorlagensprache"
+
+msgid "Приход: Telegram"
+msgstr "Prihod: Telegram"
+
+msgid "Настройки изменились во время проверки. Подключите приём ответов заново."
+msgstr "Die Einstellungen wurden während der Prüfung geändert. Verbinden Sie den Antwortempfang erneut."
+
+msgid "Проверка подключения поставлена в очередь. Обновите эту страницу через некоторое время."
+msgstr "Die Verbindungsprüfung wurde in die Warteschlange gestellt. Aktualisieren Sie diese Seite nach einiger Zeit."
+
+msgid "Проверку не удалось поставить в очередь. Попробуйте позже."
+msgstr "Die Prüfung konnte nicht in die Warteschlange gestellt werden. Versuchen Sie es später erneut."
+
+msgid "Проверка подключения ещё в очереди. Обновите страницу позже."
+msgstr "Die Verbindungsprüfung ist noch in der Warteschlange. Aktualisieren Sie die Seite später."
