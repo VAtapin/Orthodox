@@ -1,0 +1,282 @@
+{
+  "desktop": [
+    {
+      "broken": 0,
+      "cards": [
+        {
+          "date": 749.265625,
+          "excerpt": 825.15625,
+          "link": "https://prihod.georg-kloster.ru/?p=44&prihod_preview=classic",
+          "read": 908.6875,
+          "title": "Забота о будущем монастыря",
+          "titleTop": 775.859375
+        },
+        {
+          "date": 749.265625,
+          "excerpt": 850.453125,
+          "link": "https://prihod.georg-kloster.ru/?p=43&prihod_preview=classic",
+          "read": 933.984375,
+          "title": "Святая Троица: праздник общей молитвы",
+          "titleTop": 775.859375
+        },
+        {
+          "date": 749.265625,
+          "excerpt": 850.453125,
+          "link": "https://prihod.georg-kloster.ru/?p=45&prihod_preview=classic",
+          "read": 933.984375,
+          "title": "Монастырская кухня: забота о гостях",
+          "titleTop": 775.859375
+        }
+      ],
+      "columns": "338.328px 338.328px 338.344px",
+      "overflow": false,
+      "scheme": "classic",
+      "sidebar": false,
+      "width": 1122
+    },
+    {
+      "broken": 0,
+      "cards": [
+        {
+          "date": 761,
+          "excerpt": 836.890625,
+          "link": "https://prihod.georg-kloster.ru/?p=44&prihod_preview=hospitality",
+          "read": 920.421875,
+          "title": "Забота о будущем монастыря",
+          "titleTop": 787.59375
+        },
+        {
+          "date": 761,
+          "excerpt": 862.1875,
+          "link": "https://prihod.georg-kloster.ru/?p=43&prihod_preview=hospitality",
+          "read": 945.71875,
+          "title": "Святая Троица: праздник общей молитвы",
+          "titleTop": 787.59375
+        },
+        {
+          "date": 761,
+          "excerpt": 862.1875,
+          "link": "https://prihod.georg-kloster.ru/?p=45&prihod_preview=hospitality",
+          "read": 945.71875,
+          "title": "Монастырская кухня: забота о гостях",
+          "titleTop": 787.59375
+        }
+      ],
+      "columns": "338.328px 338.328px 338.344px",
+      "overflow": false,
+      "scheme": "hospitality",
+      "sidebar": false,
+      "width": 1122
+    },
+    {
+      "broken": 0,
+      "cards": [
+        {
+          "date": 759.703125,
+          "excerpt": 835.59375,
+          "link": "https://prihod.georg-kloster.ru/?p=44&prihod_preview=editorial",
+          "read": 919.125,
+          "title": "Забота о будущем монастыря",
+          "titleTop": 786.296875
+        },
+        {
+          "date": 759.703125,
+          "excerpt": 860.890625,
+          "link": "https://prihod.georg-kloster.ru/?p=43&prihod_preview=editorial",
+          "read": 944.421875,
+          "title": "Святая Троица: праздник общей молитвы",
+          "titleTop": 786.296875
+        },
+        {
+          "date": 759.703125,
+          "excerpt": 860.890625,
+          "link": "https://prihod.georg-kloster.ru/?p=45&prihod_preview=editorial",
+          "read": 944.421875,
+          "title": "Монастырская кухня: забота о гостях",
+          "titleTop": 786.296875
+        }
+      ],
+      "columns": "338.328px 338.328px 338.344px",
+      "overflow": false,
+      "scheme": "editorial",
+      "sidebar": false,
+      "width": 1122
+    },
+    {
+      "broken": 0,
+      "cards": [
+        {
+          "date": 789.15625,
+          "excerpt": 890.34375,
+          "link": "https://prihod.georg-kloster.ru/?p=44&prihod_preview=tradition",
+          "read": 973.875,
+          "title": "Забота о будущем монастыря",
+          "titleTop": 815.75
+        },
+        {
+          "date": 789.15625,
+          "excerpt": 890.34375,
+          "link": "https://prihod.georg-kloster.ru/?p=43&prihod_preview=tradition",
+          "read": 973.875,
+          "title": "Святая Троица: праздник общей молитвы",
+          "titleTop": 815.75
+        },
+        {
+          "date": 789.15625,
+          "excerpt": 890.34375,
+          "link": "https://prihod.georg-kloster.ru/?p=45&prihod_preview=tradition",
+          "read": 973.875,
+          "title": "Монастырская кухня: забота о гостях",
+          "titleTop": 815.75
+        }
+      ],
+      "columns": "322.328px 322.328px 322.344px",
+      "overflow": false,
+      "scheme": "tradition",
+      "sidebar": false,
+      "width": 1122
+    },
+    {
+      "broken": 0,
+      "cards": [
+        {
+          "date": 749.265625,
+          "excerpt": 850.453125,
+          "link": "https://prihod.georg-kloster.ru/?p=44&prihod_preview=blue",
+          "read": 933.984375,
+          "title": "Забота о будущем монастыря",
+          "titleTop": 775.859375
+        },
+        {
+          "date": 749.265625,
+          "excerpt": 850.453125,
+          "link": "https://prihod.georg-kloster.ru/?p=43&prihod_preview=blue",
+          "read": 933.984375,
+          "title": "Святая Троица: праздник общей молитвы",
+          "titleTop": 775.859375
+        },
+        {
+          "date": 749.265625,
+          "excerpt": 850.453125,
+          "link": "https://prihod.georg-kloster.ru/?p=45&prihod_preview=blue",
+          "read": 933.984375,
+          "title": "Монастырская кухня: забота о гостях",
+          "titleTop": 775.859375
+        }
+      ],
+      "columns": "319.656px 319.672px 319.656px",
+      "overflow": false,
+      "scheme": "blue",
+      "sidebar": false,
+      "width": 1122
+    }
+  ],
+  "mobileBaseline": {
+    "columns": "343px",
+    "filters": [
+      "Все",
+      "Новости обители"
+    ],
+    "overflow": false,
+    "searchFont": "16px",
+    "searchWidth": 307,
+    "width": 390
+  },
+  "mobileSchemes": [
+    {
+      "cards": 3,
+      "columns": "343px",
+      "overflow": false,
+      "scheme": "hospitality",
+      "searchFont": "16px",
+      "width": 390
+    },
+    {
+      "cards": 3,
+      "columns": "343px",
+      "overflow": false,
+      "scheme": "editorial",
+      "searchFont": "16px",
+      "width": 390
+    },
+    {
+      "cards": 3,
+      "columns": "319px",
+      "overflow": false,
+      "scheme": "tradition",
+      "searchFont": "16px",
+      "width": 390
+    },
+    {
+      "cards": 3,
+      "columns": "343px",
+      "overflow": false,
+      "scheme": "blue",
+      "searchFont": "16px",
+      "width": 390
+    }
+  ],
+  "mobileCases": [
+    {
+      "overflow": false,
+      "searchFont": "16px",
+      "state": "search",
+      "titles": [
+        "Забота о будущем монастыря"
+      ],
+      "url": "https://prihod.georg-kloster.ru/?prihod_catalog_search=%D1%81%D0%BE%D0%BB%D0%BD%D0%B5%D1%87%D0%BD%D0%BE%D0%B9&page_id=13&prihod_preview=classic&prihod_catalog_category=3",
+      "width": 390
+    },
+    {
+      "cards": 0,
+      "message": "Материалы не найдены. Измените запрос или сбросьте фильтры.Сбросить фильтры",
+      "overflow": false,
+      "state": "empty",
+      "width": 390
+    }
+  ],
+  "functional": [
+    {
+      "case": "search-category",
+      "url": "https://prihod.georg-kloster.ru/?prihod_catalog_search=%D1%81%D0%BE%D0%BB%D0%BD%D0%B5%D1%87%D0%BD%D0%BE%D0%B9&page_id=13&prihod_preview=classic&prihod_catalog_category=3",
+      "titles": [
+        "Забота о будущем монастыря"
+      ]
+    },
+    {
+      "case": "reading-link",
+      "url": "https://prihod.georg-kloster.ru/?p=44&prihod_preview=classic"
+    },
+    {
+      "case": "empty",
+      "url": "https://prihod.georg-kloster.ru/?prihod_catalog_search=%D0%BD%D0%B5%D1%82-%D1%82%D0%B0%D0%BA%D0%BE%D0%B3%D0%BE-%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D0%B0-12345&page_id=13&prihod_preview=classic&prihod_catalog_category=3",
+      "notice": "Материалы не найдены. Измените запрос или сбросьте фильтры.\n\nСбросить фильтры"
+    },
+    {
+      "case": "reset",
+      "url": "https://prihod.georg-kloster.ru/?page_id=13&prihod_preview=classic",
+      "count": 3
+    },
+    {
+      "case": "sermons-search",
+      "url": "https://prihod.georg-kloster.ru/?prihod_catalog_search=%D0%BF%D0%BE%D0%B2%D1%81%D0%B5%D0%B4%D0%BD%D0%B5%D0%B2%D0%BD%D0%BE%D0%B9&page_id=14&prihod_preview=classic",
+      "titles": [
+        "Место Бога в повседневной жизни"
+      ]
+    }
+  ],
+  "tests": {
+    "current": {
+      "assertions": 206,
+      "design": 134
+    },
+    "minimum": {
+      "assertions": 195,
+      "design": 134
+    },
+    "server": {
+      "checks": 54,
+      "theme": "0.3.13"
+    }
+  }
+}

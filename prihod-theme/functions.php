@@ -9,16 +9,17 @@ require_once __DIR__ . '/includes/calendar-markup.php';
 require_once __DIR__ . '/includes/home.php';
 require_once __DIR__ . '/includes/article.php';
 require_once __DIR__ . '/includes/about.php';
+require_once __DIR__ . '/includes/catalog.php';
 add_action( 'after_setup_theme', function () {
     load_theme_textdomain( 'prihod-theme', get_template_directory() . '/languages' );
     add_theme_support( 'editor-styles' ); add_editor_style( array( 'style.css', 'assets/theme.css' ) );
 } );
-add_action( 'wp_enqueue_scripts', function () { wp_enqueue_script( 'prihod-theme-gallery', get_template_directory_uri() . '/assets/gallery.js', array(), '0.3.12', true ); wp_enqueue_style( 'prihod-theme', get_stylesheet_uri(), array(), '0.3.12' ); wp_enqueue_style( 'prihod-theme-design', get_template_directory_uri() . '/assets/theme.css', array( 'prihod-theme' ), '0.3.12' ); wp_enqueue_style( 'prihod-theme-reference', get_template_directory_uri() . '/assets/reference.css', array( 'prihod-theme-design' ), '0.3.12.' . filemtime( get_template_directory() . '/assets/reference.css' ) ); } );
+add_action( 'wp_enqueue_scripts', function () { wp_enqueue_script( 'prihod-theme-gallery', get_template_directory_uri() . '/assets/gallery.js', array(), '0.3.13', true ); wp_enqueue_style( 'prihod-theme', get_stylesheet_uri(), array(), '0.3.13' ); wp_enqueue_style( 'prihod-theme-design', get_template_directory_uri() . '/assets/theme.css', array( 'prihod-theme' ), '0.3.13' ); wp_enqueue_style( 'prihod-theme-reference', get_template_directory_uri() . '/assets/reference.css', array( 'prihod-theme-design' ), '0.3.13.' . filemtime( get_template_directory() . '/assets/reference.css' ) ); } );
 add_action( 'wp_enqueue_scripts', function () {
     if ( ( ! shortcode_exists( 'kloster_form' ) && ! shortcode_exists( 'gkod_form' ) ) || empty( prihod_theme_options()['stepped_forms'] ) ) { return; }
     $dependencies = array();
     foreach ( array( 'kloster-prayer', 'georg-kloster-orthodox-donate' ) as $handle ) { if ( wp_script_is( $handle, 'registered' ) ) { $dependencies[] = $handle; } }
-    wp_enqueue_script( 'prihod-theme-forms', get_template_directory_uri() . '/assets/forms.js', $dependencies, '0.3.12', true );
+    wp_enqueue_script( 'prihod-theme-forms', get_template_directory_uri() . '/assets/forms.js', $dependencies, '0.3.13', true );
     wp_localize_script( 'prihod-theme-forms', 'prihodFormUI', array( 'type' => __( 'Тип записки', 'prihod-theme' ), 'names' => __( 'Имена', 'prihod-theme' ), 'total' => __( 'Сумма', 'prihod-theme' ), 'amount' => __( 'Пожертвование', 'prihod-theme' ), 'contacts' => __( 'Контакты', 'prihod-theme' ), 'review' => __( 'Подтверждение', 'prihod-theme' ), 'steps' => __( 'Этапы заполнения', 'prihod-theme' ), 'back' => __( 'Назад', 'prihod-theme' ), 'next' => __( 'Продолжить', 'prihod-theme' ), 'service' => __( 'Выберите требу перед продолжением.', 'prihod-theme' ), 'check' => __( 'Проверьте перед отправкой', 'prihod-theme' ), 'intention' => __( 'Поминовение', 'prihod-theme' ), 'services' => __( 'Выбранные требы', 'prihod-theme' ), 'payment' => __( 'Способ оплаты', 'prihod-theme' ), 'yourPrayer' => __( 'Ваша записка', 'prihod-theme' ), 'yourDonation' => __( 'Ваше пожертвование', 'prihod-theme' ), 'yourContacts' => __( 'Ваши контактные данные', 'prihod-theme' ), 'edit' => __( 'Изменить', 'prihod-theme' ), 'frequency' => __( 'Периодичность', 'prihod-theme' ), 'providers' => array( 'stripe' => __( 'Карта (Stripe)', 'prihod-theme' ), 'paypal' => 'PayPal' ) ) );
 }, 20 );
 add_filter( 'body_class', function ( array $classes ) {
@@ -29,7 +30,7 @@ add_filter( 'body_class', function ( array $classes ) {
     $classes[] = 'prihod-scheme-' . sanitize_html_class( $scheme ); return $classes;
 } );
 function prihod_theme_register_blocks(): void {
-    wp_register_script( 'prihod-theme-blocks', get_template_directory_uri() . '/assets/editor.js', array( 'wp-blocks', 'wp-element', 'wp-server-side-render', 'wp-i18n' ), '0.3.12', true );
+    wp_register_script( 'prihod-theme-blocks', get_template_directory_uri() . '/assets/editor.js', array( 'wp-blocks', 'wp-element', 'wp-server-side-render', 'wp-i18n' ), '0.3.13', true );
     $blocks = array( 'header' => __( 'Шапка прихода', 'prihod-theme' ), 'footer' => __( 'Подвал прихода', 'prihod-theme' ), 'home' => __( 'Главная прихода', 'prihod-theme' ), 'article-meta' => __( 'Дата и ссылка статьи', 'prihod-theme' ), 'article-return' => __( 'Возврат к разделу', 'prihod-theme' ), 'related-posts' => __( 'Читайте также', 'prihod-theme' ), 'about-navigation' => __( 'Разделы страницы', 'prihod-theme' ), 'about-invitation' => __( 'Рады встрече с вами', 'prihod-theme' ), 'sidebar' => __( 'Боковая колонка', 'prihod-theme' ), 'focused-banner' => __( 'Полоса заголовка формы', 'prihod-theme' ), 'focused-heading' => __( 'Заголовок страницы', 'prihod-theme' ), 'page-heading' => __( 'Заголовок страницы', 'prihod-theme' ) );
     wp_localize_script( 'prihod-theme-blocks', 'prihodThemeBlocks', $blocks );
     foreach ( $blocks as $name => $title ) {
@@ -71,5 +72,5 @@ function prihod_theme_prepare_provider_assets(): void {
 add_action( 'init', 'prihod_theme_prepare_provider_assets', 50 );
 
 add_action( 'wp_enqueue_scripts', function () {
-    if ( is_singular( 'post' ) ) { wp_enqueue_script( 'prihod-theme-article', get_template_directory_uri() . '/assets/article.js', array(), '0.3.12.' . filemtime( get_template_directory() . '/assets/article.js' ), true ); }
+    if ( is_singular( 'post' ) ) { wp_enqueue_script( 'prihod-theme-article', get_template_directory_uri() . '/assets/article.js', array(), '0.3.13.' . filemtime( get_template_directory() . '/assets/article.js' ), true ); }
 } );

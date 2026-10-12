@@ -39,7 +39,7 @@ foreach ( array( 'de_DE', 'pl_PL', 'uk' ) as $locale ) {
 }
 echo wp_json_encode( array( 'status' => 'PRIHOD_SERVER_OK', 'checks' => $checked, 'wordpress' => get_bloginfo( 'version' ), 'php' => PHP_VERSION, 'theme' => wp_get_theme()->get( 'Version' ) ), JSON_UNESCAPED_UNICODE ) . PHP_EOL;
 
-$check( '1.0.0-rc.7' === PRIHOD_VERSION && '0.3.12' === wp_get_theme()->get( 'Version' ), 'Reference-design release versions must be installed.' );
+$check( '1.0.0-rc.7' === PRIHOD_VERSION && '0.3.13' === wp_get_theme()->get( 'Version' ), 'Reference-design release versions must be installed.' );
 prihod_theme_prepare_provider_assets();
 do_shortcode( '[' . $donation_tag . ']' );
 $check( str_contains( (string) wp_scripts()->get_data( 'georg-kloster-orthodox-donate', 'data' ), 'georgKlosterOrthodoxDonate' ), 'Native donation configuration must exist before the block theme prints scripts.' );
@@ -100,3 +100,15 @@ $check( str_contains( $form, '<select name="subject" required' ) && str_contains
 $check( wp_script_is( 'prihod-request-form', 'enqueued' ) && 'Own subject' === Prihod\Request_Form::submission_data( array( 'subject' => '__other', 'subject_other' => 'Own subject' ) )['subject'], 'Own-subject enhancement and existing submission normalization must be available.' );
 $GLOBALS['wp_query'] = $previous_query; $GLOBALS['post'] = $previous_post;
 echo "QUESTION_FORM_CHECK_OK: {$checked} total checks.\n";
+$previous_query = $GLOBALS['wp_query']; $previous_post = $GLOBALS['post'] ?? null; $previous_get = $_GET;
+$GLOBALS['wp_query'] = new WP_Query( array( 'page_id' => $resources['news']['id'] ) ); $GLOBALS['post'] = get_post( $resources['news']['id'] ); $_GET = array();
+$catalog = apply_filters( 'the_content', $GLOBALS['post']->post_content );
+$check( str_contains( $catalog, 'prihod-catalog-controls' ) && str_contains( $catalog, 'prihod-catalog-filters' ) && str_contains( $catalog, 'wp-block-read-more' ) && strpos( $catalog, 'wp-block-post-date' ) < strpos( $catalog, 'wp-block-post-title' ), 'Native news catalog must expose search, real categories and reference card order.' );
+$news_category = get_category_by_slug( 'prihod-news' );
+$news = get_posts( array( 'post_type' => 'post', 'post_status' => 'publish', 'numberposts' => 1, 'category' => $news_category->term_id ) )[0];
+$_GET['prihod_catalog_search'] = $news->post_title; $catalog = apply_filters( 'the_content', $GLOBALS['post']->post_content );
+$check( 1 === preg_match_all( '/<li[^>]*class="[^"]*\bwp-block-post\b/', $catalog ) && str_contains( $catalog, esc_html( $news->post_title ) ), 'Catalog search must return its actual matching published item.' );
+$_GET['prihod_catalog_search'] = 'prihod-no-such-material-12345'; $catalog = apply_filters( 'the_content', $GLOBALS['post']->post_content );
+$check( str_contains( $catalog, 'prihod-catalog-empty' ) && ! preg_match( '/<li[^>]*class="[^"]*\bwp-block-post\b/', $catalog ), 'Empty news search must show a resettable no-results state.' );
+$GLOBALS['wp_query'] = $previous_query; $GLOBALS['post'] = $previous_post; $_GET = $previous_get;
+echo "CATALOG_CHECK_OK: {$checked} total checks.\n";
