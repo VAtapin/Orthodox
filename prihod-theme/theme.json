@@ -187,6 +187,13 @@
       "postTypes": [
         "page"
       ]
+    },
+    {
+      "name": "about",
+      "title": "История и община",
+      "postTypes": [
+        "page"
+      ]
     }
   ]
 }

@@ -1494,3 +1494,132 @@ msgstr "Aktualności klasztoru"
 
 msgid "Жизнь обители в фотографиях"
 msgstr "Życie klasztoru na zdjęciach"
+
+msgid "Вера объединяет людей"
+msgstr "Wiara łączy ludzi"
+
+msgid "Все богослужения"
+msgstr "Wszystkie nabożeństwa"
+
+msgid "Все новости"
+msgstr "Wszystkie aktualności"
+
+msgid "Все праздники дня"
+msgstr "Wszystkie święta dnia"
+
+msgid "Все фото"
+msgstr "Wszystkie zdjęcia"
+
+msgid "Встраиваемая карта OpenStreetMap (HTTPS)"
+msgstr "Osadzona mapa OpenStreetMap (HTTPS)"
+
+msgid "Вы можете продолжить работу с материалами в редакторе."
+msgstr "Możesz kontynuować pracę nad materiałami w edytorze."
+
+msgid "Где двое или трое собраны во имя Моё, там Я посреди них"
+msgstr "Gdzie dwaj albo trzej są zebrani w imię moje, tam jestem pośród nich"
+
+msgid "Задать вопрос"
+msgstr "Zadaj pytanie"
+
+msgid "Здесь начинается Главное"
+msgstr "Tutaj zaczyna się to, co najważniejsze"
+
+msgid "Как добраться"
+msgstr "Jak dojechać"
+
+msgid "Мф. 18:20"
+msgstr "Mt 18,20"
+
+msgid "Найти"
+msgstr "Znajdź"
+
+msgid "Настройка завершена!"
+msgstr "Konfiguracja zakończona!"
+
+msgid "О жизни общины"
+msgstr "O życiu wspólnoty"
+
+msgid "Обитель, где каждый найдёт свой путь"
+msgstr "Monaster, w którym każdy znajdzie swoją drogę"
+
+msgid "Опубликовано: %1$d. Готовых к публикации черновиков: %2$d."
+msgstr "Opublikowano: %1$d. Szkice gotowe do publikacji: %2$d."
+
+msgid "Первый визит"
+msgstr "Pierwsza wizyta"
+
+msgid "Перед посещением"
+msgstr "Przed wizytą"
+
+msgid "Подать записку"
+msgstr "Złóż intencję modlitewną"
+
+msgid "Подробнее о богослужении"
+msgstr "Więcej o nabożeństwie"
+
+msgid "Поиск"
+msgstr "Wyszukiwanie"
+
+msgid "Посмотреть, что создано"
+msgstr "Zobacz utworzone materiały"
+
+msgid "Приход, где каждый найдёт свой путь"
+msgstr "Parafia, w której każdy znajdzie swoją drogę"
+
+msgid "Проверьте дату, время и место богослужения. Изменения и отмены отмечены в расписании."
+msgstr "Sprawdź datę, godzinę i miejsce nabożeństwa. Zmiany i odwołania są oznaczone w harmonogramie."
+
+msgid "Смотреть расписание"
+msgstr "Zobacz harmonogram"
+
+msgid "Требуют проверки в редакторе: %d."
+msgstr "Wymagają sprawdzenia w edytorze: %d."
+
+msgid "Узнать больше"
+msgstr "Dowiedz się więcej"
+
+msgid "Узнать, как помочь"
+msgstr "Dowiedz się, jak pomóc"
+
+msgid "Читать новости"
+msgstr "Czytaj aktualności"
+
+msgid "Вперёд"
+msgstr "Dalej"
+
+msgid "Перед заполнением"
+msgstr "Przed wypełnieniem"
+
+msgid "Карточка расписания"
+msgstr "Kafelek harmonogramu"
+
+msgid "Карточка новостей"
+msgstr "Kafelek aktualności"
+
+msgid "Карточка общины"
+msgstr "Kafelek wspólnoty"
+
+msgid "Карточка вопроса священнику"
+msgstr "Kafelek pytania do kapłana"
+
+msgid "Карточка помощи"
+msgstr "Kafelek pomocy"
+
+msgid "Ближайшие богослужения"
+msgstr "Najbliższe nabożeństwa"
+
+msgid "Ближайшая служба"
+msgstr "Najbliższe nabożeństwo"
+
+msgid "Читайте также"
+msgstr "Przeczytaj także"
+
+msgid "История и община"
+msgstr "Historia i wspólnota"
+
+msgid "Наш приход"
+msgstr "Nasza parafia"
+
+msgid "Наша обитель"
+msgstr "Nasz monaster"

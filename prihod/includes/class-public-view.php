@@ -54,37 +54,38 @@ final class Public_View {
                 $anchor = new \DateTimeImmutable( $date, $now->getTimezone() );
                 $from = 'month' === $view ? $anchor->modify( 'first day of this month' ) : $anchor->modify( '-' . ( (int) $anchor->format( 'N' ) - 1 ) . ' days' );
                 $to = $from->modify( 'month' === $view ? '+1 month' : '+7 days' );
-                $html .= '<nav class="prihod-period-nav" aria-label="' . esc_attr__( 'Период расписания', 'prihod' ) . '"><a href="' . esc_url( add_query_arg( array( 'prihod_date' => $from->modify( 'month' === $view ? '-1 month' : '-7 days' )->format( 'Y-m-d' ), 'prihod_view' => $view ) ) ) . '">' . esc_html__( 'Предыдущий период', 'prihod' ) . '</a> · <a href="' . esc_url( add_query_arg( array( 'prihod_date' => $now->format( 'Y-m-d' ), 'prihod_view' => $view ) ) ) . '">' . esc_html__( 'Сегодня', 'prihod' ) . '</a> · <a href="' . esc_url( add_query_arg( array( 'prihod_date' => $to->format( 'Y-m-d' ), 'prihod_view' => $view ) ) ) . '">' . esc_html__( 'Следующий период', 'prihod' ) . '</a></nav>';
+                $period = '<nav class="prihod-period-nav" aria-label="' . esc_attr__( 'Период расписания', 'prihod' ) . '"><a href="' . esc_url( add_query_arg( array( 'prihod_date' => $from->modify( 'month' === $view ? '-1 month' : '-7 days' )->format( 'Y-m-d' ), 'prihod_view' => $view ) ) ) . '">' . esc_html__( 'Предыдущий период', 'prihod' ) . '</a> · <a href="' . esc_url( add_query_arg( array( 'prihod_date' => $now->format( 'Y-m-d' ), 'prihod_view' => $view ) ) ) . '">' . esc_html__( 'Сегодня', 'prihod' ) . '</a> · <a href="' . esc_url( add_query_arg( array( 'prihod_date' => $to->format( 'Y-m-d' ), 'prihod_view' => $view ) ) ) . '">' . esc_html__( 'Следующий период', 'prihod' ) . '</a></nav>';
                 if ( ! $location && isset( $_GET['prihod_place'] ) && is_scalar( $_GET['prihod_place'] ) ) { $location = absint( $_GET['prihod_place'] ); }
-                $html .= '<nav class="prihod-view-switch" aria-label="' . esc_attr__( 'Вид расписания', 'prihod' ) . '">';
+                $html .= '<div class="prihod-schedule-toolbar"><nav class="prihod-view-switch" aria-label="' . esc_attr__( 'Вид расписания', 'prihod' ) . '">';
                 foreach ( array( 'week' => __( 'Неделя', 'prihod' ), 'month' => __( 'Месяц', 'prihod' ), 'list' => __( 'Список', 'prihod' ) ) as $mode => $label ) { $html .= '<a href="' . esc_url( add_query_arg( 'prihod_view', $mode ) ) . '"' . ( $mode === $view ? ' aria-current="true"' : '' ) . '>' . esc_html( $label ) . '</a>'; }
                 $html .= '</nav><form method="get" class="prihod-controls"><input type="hidden" name="prihod_view" value="' . esc_attr( $view ) . '"><label>' . esc_html__( 'Дата', 'prihod' ) . ' <input type="date" name="prihod_date" value="' . esc_attr( $date ) . '"></label> ';
                 // Preserve WordPress plain-permalink routing without copying arbitrary input.
                 foreach ( array( 'page_id', 'p' ) as $query_key ) { if ( isset( $_GET[ $query_key ] ) && is_scalar( $_GET[ $query_key ] ) ) { $html .= '<input type="hidden" name="' . esc_attr( $query_key ) . '" value="' . esc_attr( absint( $_GET[ $query_key ] ) ) . '">'; } }
+                if ( function_exists( 'prihod_theme_preview_scheme' ) && prihod_theme_preview_scheme() ) { $html .= '<input type="hidden" name="prihod_preview" value="' . esc_attr( prihod_theme_preview_scheme() ) . '">'; }
                 if ( ! absint( $attributes['location'] ?? 0 ) ) {
                     $html .= '<label>' . esc_html__( 'Место', 'prihod' ) . ' <select name="prihod_place"><option value="0">' . esc_html__( 'Все места', 'prihod' ) . '</option>';
                     foreach ( get_posts( array( 'post_type' => 'prihod_location', 'post_status' => 'publish', 'numberposts' => -1 ) ) as $place ) { $html .= '<option value="' . esc_attr( $place->ID ) . '"' . selected( $location, $place->ID, false ) . '>' . esc_html( $place->post_title ) . '</option>'; }
                     $html .= '</select></label> ';
                 }
-                $html .= '<button type="submit">' . esc_html__( 'Показать', 'prihod' ) . '</button> <button type="button" class="prihod-print">' . esc_html__( 'Печать', 'prihod' ) . '</button></form><h3>' . esc_html( $from->format( 'd.m.Y' ) . ' — ' . $to->modify( '-1 day' )->format( 'd.m.Y' ) ) . '</h3>';
+                $html .= '<button type="submit">' . esc_html__( 'Показать', 'prihod' ) . '</button> <button type="button" class="prihod-print">' . esc_html__( 'Печать', 'prihod' ) . '</button></form></div>' . $period . '<h3 class="prihod-range-title">' . esc_html( $from->format( 'd.m.Y' ) . ' — ' . $to->modify( '-1 day' )->format( 'd.m.Y' ) ) . '</h3>';
                 wp_enqueue_script( 'prihod-public', plugins_url( 'assets/public.js', PRIHOD_FILE ), array(), PRIHOD_VERSION, true );
                 $events = Schedule::query( $from, $to, $location );
             } else { $events = Schedule::next( $location, 'next-service' === $key ? 1 : absint( $attributes['limit'] ?? 5 ) ); }
             if ( ! $events ) { $html .= '<p>' . esc_html__( 'Богослужения на выбранный период не указаны.', 'prihod' ) . '</p>'; }
             if ( 'schedule' === $key && 'month' === $view ) { $html .= self::month( $events, $from, $to ); }
-            elseif ( 'schedule' === $key && 'week' === $view ) { $html .= self::week( $events, $from, $to ); }
+            elseif ( 'schedule' === $key && 'week' === $view ) { $html .= '<div class="prihod-schedule-columns">' . self::week( $events, $from, $to ) . self::week_sidebar( $from, $location ) . '</div>'; }
             else { foreach ( $events as $event ) { $html .= self::event_html( $event ); } }
         }
         return '<section class="prihod-block prihod-' . esc_attr( $key ) . '">' . $html . '</section>';
     }
     private static function event_html( array $event ): string {
-        $html = '';
-        $html .= '<article class="prihod-event' . ( $event['cancelled'] ? ' is-cancelled' : ( $event['moved'] ? ' is-moved' : '' ) ) . '"><h3>' . esc_html( $event['title'] ) . '</h3><p><time datetime="' . esc_attr( $event['start']->format( DATE_ATOM ) ) . '">' . esc_html( $event['start']->format( 'd.m.Y H:i' ) ) . '</time>';
-        if ( $event['end'] ) { $html .= ' — ' . esc_html( $event['end']->format( 'd.m.Y H:i' ) ); }
-        $html .= ' (' . esc_html( $event['start']->getTimezone()->getName() ) . ')</p><p>' . esc_html( get_the_title( $event['location_id'] ) ) . '</p>';
+        $html = '<article class="prihod-event' . ( $event['cancelled'] ? ' is-cancelled' : ( $event['moved'] ? ' is-moved' : '' ) ) . '"><div class="prihod-event-time"><time datetime="' . esc_attr( $event['start']->format( DATE_ATOM ) ) . '">' . esc_html( $event['start']->format( 'H:i' ) ) . '</time>';
+        if ( $event['end'] ) { $html .= '<small>— ' . esc_html( $event['end']->format( $event['end']->format( 'Y-m-d' ) === $event['start']->format( 'Y-m-d' ) ? 'H:i' : 'd.m.Y H:i' ) ) . '</small>'; }
+        $html .= '</div><div class="prihod-event-copy"><h3>' . esc_html( $event['title'] ) . '</h3><p class="prihod-event-meta">' . esc_html( $event['start']->format( 'd.m.Y' ) . ' · ' . $event['start']->getTimezone()->getName() ) . '</p><p>' . esc_html( get_the_title( $event['location_id'] ) ) . '</p>';
         if ( $event['cancelled'] ) { $html .= '<strong>' . esc_html__( 'Отменено', 'prihod' ) . '</strong>'; }
         if ( $event['moved'] ) { $html .= '<p>' . esc_html__( 'Изменение службы за', 'prihod' ) . ' ' . esc_html( $event['original_date'] ) . '</p>'; }
-        $html .= wpautop( wp_kses_post( $event['description'] ) ) . '</article>';
+        if ( trim( $event['description'] ) ) { $html .= '<details class="prihod-event-description"><summary>' . esc_html__( 'Подробнее о богослужении', 'prihod' ) . '</summary>' . wpautop( wp_kses_post( $event['description'] ) ) . '</details>'; }
+        $html .= '</div></article>';
         return $html;
     }
     private static function month( array $events, \DateTimeImmutable $from, \DateTimeImmutable $to ): string {
@@ -117,6 +118,25 @@ final class Public_View {
             $html .= '</div></div>';
         }
         return $html . '</div>';
+    }
+    private static function week_sidebar( \DateTimeImmutable $anchor, int $location ): string {
+        $from = $anchor->modify( 'first day of this month' ); $to = $from->modify( '+1 month' );
+        $events = Schedule::query( $from, $to, $location ); $days = array();
+        foreach ( $events as $event ) { $days[$event['start']->setTimezone( $from->getTimezone() )->format( 'Y-m-d' )] = true; }
+        $html = '<aside class="prihod-schedule-aside"><div class="prihod-mini-month"><h3>' . esc_html( wp_date( 'F Y', $from->getTimestamp(), $from->getTimezone() ) ) . '</h3><div class="prihod-mini-grid">';
+        foreach ( self::weekdays() as $day ) { $html .= '<span>' . esc_html( $day ) . '</span>'; }
+        for ( $i = 1; $i < (int) $from->format( 'N' ); ++$i ) { $html .= '<span></span>'; }
+        for ( $date = $from; $date < $to; $date = $date->modify( '+1 day' ) ) {
+            $key = $date->format( 'Y-m-d' );
+            $html .= '<a' . ( isset( $days[$key] ) ? ' class="has-services"' : '' ) . ' href="' . esc_url( add_query_arg( array( 'prihod_date' => $key, 'prihod_view' => 'week' ) ) ) . '">' . esc_html( $date->format( 'j' ) ) . '</a>';
+        }
+        $html .= '</div></div><div class="prihod-visit-card"><h3>' . esc_html__( 'Перед посещением', 'prihod' ) . '</h3><p>' . esc_html__( 'Проверьте дату, время и место богослужения. Изменения и отмены отмечены в расписании.', 'prihod' ) . '</p>';
+        $resources = get_option( 'prihod_resources', array() );
+        foreach ( array( 'first-visit' => __( 'Первый визит', 'prihod' ), 'requests' => __( 'Задать вопрос', 'prihod' ) ) as $key => $label ) {
+            $id = absint( $resources[$key]['id'] ?? 0 );
+            if ( $id && 'publish' === get_post_status( $id ) ) { $url = get_permalink( $id ); if ( function_exists( 'prihod_theme_preview_url' ) ) { $url = prihod_theme_preview_url( $url ); } $html .= '<a href="' . esc_url( $url ) . '">' . esc_html( $label ) . ' →</a>'; }
+        }
+        return $html . '</div></aside>';
     }
     private static function weekdays(): array {
         return array( __( 'Пн', 'prihod' ), __( 'Вт', 'prihod' ), __( 'Ср', 'prihod' ), __( 'Чт', 'prihod' ), __( 'Пт', 'prihod' ), __( 'Сб', 'prihod' ), __( 'Вс', 'prihod' ) );

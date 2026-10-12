@@ -1,7 +1,7 @@
 <?php
-// Non-destructive verification of an already installed, explicitly authorized test site.
+// Non-destructive verification of an already installed, explicitly authorized WordPress.
 defined( 'ABSPATH' ) || exit;
-if ( 'prihod.georg-kloster.ru' !== wp_parse_url( home_url(), PHP_URL_HOST ) ) { throw new RuntimeException( 'This check is restricted to the authorized test domain.' ); }
+if ( 'prihod.georg-kloster.ru' !== wp_parse_url( home_url(), PHP_URL_HOST ) ) { throw new RuntimeException( 'This check is restricted to the authorized WordPress domain.' ); }
 $checked = 0;
 $check = function ( bool $ok, string $label ) use ( &$checked ) { if ( ! $ok ) { throw new RuntimeException( $label ); } ++$checked; };
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -38,3 +38,13 @@ foreach ( array( 'de_DE', 'pl_PL', 'uk' ) as $locale ) {
     unload_textdomain( 'prihod-theme' );
 }
 echo wp_json_encode( array( 'status' => 'PRIHOD_SERVER_OK', 'checks' => $checked, 'wordpress' => get_bloginfo( 'version' ), 'php' => PHP_VERSION, 'theme' => wp_get_theme()->get( 'Version' ) ), JSON_UNESCAPED_UNICODE ) . PHP_EOL;
+
+$check( '1.0.0-rc.4' === PRIHOD_VERSION && '0.3.4' === wp_get_theme()->get( 'Version' ), 'Reference-design release versions must be installed.' );
+prihod_theme_prepare_provider_assets();
+do_shortcode( '[' . $donation_tag . ']' );
+$check( str_contains( (string) wp_scripts()->get_data( 'georg-kloster-orthodox-donate', 'data' ), 'georgKlosterOrthodoxDonate' ), 'Native donation configuration must exist before the block theme prints scripts.' );
+$config = array( 'example' => '[orthocal_today]', 'array' => array( 1, 2 ) );
+$markup = prihod_theme_calendar_markup( '<section data-orthocal="' . esc_attr( wp_json_encode( $config ) ) . '"></section>', array( 'blockName' => 'orthocal/calendar' ) );
+$tags = new WP_HTML_Tag_Processor( do_shortcode( $markup ) ); $tags->next_tag();
+$check( $config === json_decode( $tags->get_attribute( 'data-orthocal' ), true ), 'Calendar parameters must survive native shortcode processing.' );
+echo "REFERENCE_DESIGN_CHECK_OK: {$checked} total checks.\n";

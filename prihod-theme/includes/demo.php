@@ -31,6 +31,7 @@ function prihod_theme_demo_templates( array $pages = array() ): array {
         if ( isset( $texts[$key] ) ) { $page['content'] = '<!-- wp:paragraph --><p>' . esc_html( $texts[$key] ) . '</p><!-- /wp:paragraph -->' . $page['content']; }
         $page['template'] = in_array( $key, array( 'requests', 'prayer-notes', 'donations' ), true ) ? 'focused' : ( in_array( $key, array( 'news', 'sermons' ), true ) ? 'catalog' : ( in_array( $key, array( 'photos', 'calendar', 'schedule' ), true ) ? 'wide' : 'default' ) );
     }
+    if ( isset( $pages['about'] ) ) { $pages['about']['template'] = 'about'; }
     unset( $page ); return $pages;
 }
 function prihod_theme_demo_pages(): array {

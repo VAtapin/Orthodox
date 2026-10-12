@@ -3,7 +3,7 @@ Contributors: vatapin
 Tags: parish, church, orthodox
 Requires at least: 6.5
 Requires PHP: 8.0
-Stable tag: 1.0.0-rc.3
+Stable tag: 1.0.0-rc.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -45,7 +45,7 @@ Telegram, WhatsApp и Facebook доступны отдельными необя�
 
 == Changelog ==
 
-= 1.0.0-rc.3 =
+= 1.0.0-rc.4 =
 * Дашборд плагина, тематические разделы меню, четыре блока консоли WordPress.
 * Все настройки подключений внутри «Прихода»; раздел «Наши плагины» с версиями.
 * Совместимость с Orthodox Donations 1.0.2 и старым содержимым форм.

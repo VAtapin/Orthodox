@@ -25,3 +25,7 @@ update_option( 'prihod_modules', array( 'schedule' => true ) );
 wp_set_current_user( $editor_id );
 prihod_assert( ! current_user_can( 'edit_post', $service ), 'Editor cannot edit services without capability.' );
 wp_set_current_user( 1 );
+
+$formatter = new ReflectionMethod( Prihod\Public_View::class, 'event_html' ); $formatter->setAccessible( true );
+$overnight = $formatter->invoke( null, array( 'title' => 'Vigil', 'start' => new DateTimeImmutable( '2040-10-17 23:00', new DateTimeZone( 'Europe/Berlin' ) ), 'end' => new DateTimeImmutable( '2040-10-18 01:00', new DateTimeZone( 'Europe/Berlin' ) ), 'location_id' => 0, 'cancelled' => false, 'moved' => false, 'description' => '' ) );
+prihod_assert( str_contains( $overnight, '18.10.2040 01:00' ), 'Compact overnight services retain the next-day end date.' );

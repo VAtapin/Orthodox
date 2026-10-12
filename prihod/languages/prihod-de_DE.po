@@ -1494,3 +1494,132 @@ msgstr "Klosternachrichten"
 
 msgid "Жизнь обители в фотографиях"
 msgstr "Klosterleben in Bildern"
+
+msgid "Вера объединяет людей"
+msgstr "Der Glaube verbindet Menschen"
+
+msgid "Все богослужения"
+msgstr "Alle Gottesdienste"
+
+msgid "Все новости"
+msgstr "Alle Nachrichten"
+
+msgid "Все праздники дня"
+msgstr "Alle Feste des Tages"
+
+msgid "Все фото"
+msgstr "Alle Fotos"
+
+msgid "Встраиваемая карта OpenStreetMap (HTTPS)"
+msgstr "Eingebettete OpenStreetMap-Karte (HTTPS)"
+
+msgid "Вы можете продолжить работу с материалами в редакторе."
+msgstr "Sie können die Inhalte im Editor weiter bearbeiten."
+
+msgid "Где двое или трое собраны во имя Моё, там Я посреди них"
+msgstr "Wo zwei oder drei in meinem Namen versammelt sind, da bin ich mitten unter ihnen"
+
+msgid "Задать вопрос"
+msgstr "Eine Frage stellen"
+
+msgid "Здесь начинается Главное"
+msgstr "Hier beginnt das Wesentliche"
+
+msgid "Как добраться"
+msgstr "Anfahrt"
+
+msgid "Мф. 18:20"
+msgstr "Mt 18,20"
+
+msgid "Найти"
+msgstr "Suchen"
+
+msgid "Настройка завершена!"
+msgstr "Einrichtung abgeschlossen!"
+
+msgid "О жизни общины"
+msgstr "Über das Gemeindeleben"
+
+msgid "Обитель, где каждый найдёт свой путь"
+msgstr "Ein Kloster, in dem jeder seinen Weg findet"
+
+msgid "Опубликовано: %1$d. Готовых к публикации черновиков: %2$d."
+msgstr "Veröffentlicht: %1$d. Veröffentlichungsbereite Entwürfe: %2$d."
+
+msgid "Первый визит"
+msgstr "Erster Besuch"
+
+msgid "Перед посещением"
+msgstr "Vor Ihrem Besuch"
+
+msgid "Подать записку"
+msgstr "Gebetsanliegen einreichen"
+
+msgid "Подробнее о богослужении"
+msgstr "Mehr zum Gottesdienst"
+
+msgid "Поиск"
+msgstr "Suche"
+
+msgid "Посмотреть, что создано"
+msgstr "Erstellte Inhalte ansehen"
+
+msgid "Приход, где каждый найдёт свой путь"
+msgstr "Eine Gemeinde, in der jeder seinen Weg findet"
+
+msgid "Проверьте дату, время и место богослужения. Изменения и отмены отмечены в расписании."
+msgstr "Prüfen Sie Datum, Uhrzeit und Ort des Gottesdienstes. Änderungen und Absagen sind im Kalender gekennzeichnet."
+
+msgid "Смотреть расписание"
+msgstr "Zum Gottesdienstplan"
+
+msgid "Требуют проверки в редакторе: %d."
+msgstr "Im Editor zu prüfen: %d."
+
+msgid "Узнать больше"
+msgstr "Mehr erfahren"
+
+msgid "Узнать, как помочь"
+msgstr "Erfahren, wie Sie helfen können"
+
+msgid "Читать новости"
+msgstr "Nachrichten lesen"
+
+msgid "Вперёд"
+msgstr "Weiter"
+
+msgid "Перед заполнением"
+msgstr "Vor dem Ausfüllen"
+
+msgid "Карточка расписания"
+msgstr "Kachel: Gottesdienstplan"
+
+msgid "Карточка новостей"
+msgstr "Kachel: Nachrichten"
+
+msgid "Карточка общины"
+msgstr "Kachel: Gemeinde"
+
+msgid "Карточка вопроса священнику"
+msgstr "Kachel: Frage an den Priester"
+
+msgid "Карточка помощи"
+msgstr "Kachel: Unterstützung"
+
+msgid "Ближайшие богослужения"
+msgstr "Nächste Gottesdienste"
+
+msgid "Ближайшая служба"
+msgstr "Nächster Gottesdienst"
+
+msgid "Читайте также"
+msgstr "Lesen Sie auch"
+
+msgid "История и община"
+msgstr "Geschichte und Gemeinschaft"
+
+msgid "Наш приход"
+msgstr "Unsere Gemeinde"
+
+msgid "Наша обитель"
+msgstr "Unser Kloster"

@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var contactIndex = titles.length - 2;
         move(root.querySelector(selector('.klp-grid')), contactIndex); move(root.querySelector(selector('.klp-payment')), contactIndex); move(root.querySelector(selector('.klp-consent')), contactIndex);
         var progress = document.createElement('ol'); progress.className = 'prihod-form-progress'; progress.setAttribute('aria-label', prihodFormUI.steps);
-        titles.forEach(function (title, index) { var item = document.createElement('li'); item.textContent = (index + 1) + '. ' + title; progress.appendChild(item); }); form.insertBefore(progress, form.firstChild);
+        titles.forEach(function (title, index) { var item = document.createElement('li'); item.textContent = title; progress.appendChild(item); }); form.insertBefore(progress, form.firstChild);
         var controls = document.createElement('div'); controls.className = 'prihod-form-actions';
         var back = document.createElement('button'), next = document.createElement('button'); back.type = next.type = 'button'; back.textContent = prihodFormUI.back; next.textContent = prihodFormUI.next; controls.append(back, next); form.insertBefore(controls, submit);
         var alert = document.createElement('p'); alert.className = 'prihod-form-alert'; alert.setAttribute('role','alert'); alert.hidden = true; controls.before(alert);

@@ -41,3 +41,7 @@ cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
 export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-packages/apply-monastery-demo.php --user=prihod-owner
 ```
+
+Повторная сверка по всем макетам — DESIGN_CONFORMITY.md, новые снимки —
+design-reference/verification-2026-10-12/. История использует шаблон about только
+для неизменённого демо; исходный текст и ручная редактура сохраняются.

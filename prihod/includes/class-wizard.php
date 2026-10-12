@@ -32,7 +32,8 @@ final class Wizard {
         $started = ! empty( $state['started'] ) || $step > 0 || $state['revision'] > 0;
         self::progress( $step, $started );
         if ( ! $started ) { self::welcome( $state ); echo '</div>'; return; }
-        echo '<section class="prihod-wizard-card"><div class="prihod-step-heading"><p>' . esc_html( sprintf( __( 'Шаг %1$d из %2$d', 'prihod' ), $step + 1, count( self::steps() ) ) ) . '</p><h2>' . esc_html( self::steps()[ $step ] ) . '</h2></div>';
+        $stage = $step <= 5 ? 2 : ( $step <= 10 ? 3 : ( 11 === $step ? 4 : ( 12 === $step ? 5 : 6 ) ) );
+        echo '<section class="prihod-wizard-card"><div class="prihod-step-heading"><p>' . esc_html( sprintf( __( 'Шаг %1$d из %2$d', 'prihod' ), $stage, 6 ) ) . '</p><h2>' . esc_html( self::steps()[ $step ] ) . '</h2></div>';
         if ( ! empty( $state['notice'] ) ) { echo '<p role="status">' . esc_html( $state['notice'] ) . '</p>'; }
         $site = Site_Plan::analyze();
         echo '<p>' . esc_html__( 'Тема:', 'prihod' ) . ' ' . esc_html( $site['theme'] ) . ' · ' . esc_html__( 'Страниц и навигаций:', 'prihod' ) . ' ' . esc_html( count( $site['pages'] ) ) . ' · ' . esc_html( $site['language'] . ' / ' . $site['timezone'] ) . '</p>';
@@ -103,17 +104,11 @@ final class Wizard {
             if ( ! empty( $answers['publications'] ) ) { echo '<p>' . esc_html__( 'Будут подготовлены рубрики новостей, объявлений и проповедей.', 'prihod' ) . '</p>'; }
             echo '<label><input type="checkbox" name="confirm" value="1" required> ' . esc_html__( 'Подтверждаю этот план', 'prihod' ) . '</label><p><button class="button button-primary" name="operation" value="apply">' . esc_html__( 'Применить план', 'prihod' ) . '</button></p>';
         } else {
-            echo '<div class="prihod-wizard-success"><span class="dashicons dashicons-yes-alt" aria-hidden="true"></span><h2>' . esc_html__( 'Черновики подготовлены', 'prihod' ) . '</h2><p>' . esc_html__( 'Просмотрите страницы и отдельно подтвердите публикацию.', 'prihod' ) . '</p><a class="button" href="' . esc_url( home_url( '/' ) ) . '" target="_blank" rel="noopener">' . esc_html__( 'Открыть сайт', 'prihod' ) . '</a></div>';
-            foreach ( get_option( 'prihod_resources', array() ) as $key => $resource ) {
-                if ( in_array( $key, array( '_menu', '_navigation' ), true ) ) { continue; }
-                $post = get_post( $resource['id'] ); if ( ! $post ) { continue; }
-                echo '<p><label><input type="checkbox" name="publish_keys[]" value="' . esc_attr( $key ) . '"> ' . esc_html( $post->post_title ) . '</label> ';
-                if ( 'page' === $post->post_type ) { echo '<a href="' . esc_url( get_preview_post_link( $post ) ) . '" target="_blank" rel="noopener">' . esc_html__( 'Предварительный просмотр', 'prihod' ) . '</a> · '; }
-                echo '<a href="' . esc_url( get_edit_post_link( $post->ID ) ) . '">' . esc_html__( 'Редактор', 'prihod' ) . '</a></p>';
-            }
+            if ( Wizard_Result::render() ) {
             echo '<p><label><input type="checkbox" name="set_front" value="1"> ' . esc_html__( 'Назначить выбранную «Главную» главной страницей сайта', 'prihod' ) . '</label></p><p><label><input type="checkbox" name="navigation" value="1"> ' . esc_html__( 'Создать отдельную блоковую навигацию для выбора в редакторе сайта', 'prihod' ) . '</label></p>';
             self::select( 'menu_location', array( '' => __( 'Не менять меню', 'prihod' ) ) + get_registered_nav_menus(), '' );
             echo '<p>' . esc_html__( 'Выбор позиции меню заменит её текущую привязку новым меню «Прихода». Существующее меню и его пункты сохранятся.', 'prihod' ) . '</p><label><input required type="checkbox" name="confirm" value="1"> ' . esc_html__( 'Подтверждаю публикацию и выбранные изменения главной/навигации', 'prihod' ) . '</label><p><button class="button button-primary" name="operation" value="publish">' . esc_html__( 'Опубликовать выбранное', 'prihod' ) . '</button></p>';
+            }
         }
         if ( $step < 12 ) { echo '<p><button class="button button-primary" name="operation" value="next">' . esc_html__( 'Сохранить и продолжить', 'prihod' ) . '</button> <button class="button" name="operation" value="skip">' . esc_html__( 'Настроить позже', 'prihod' ) . '</button></p>'; }
         if ( $step > 0 ) { echo '<button class="button" name="operation" value="back" formnovalidate>' . esc_html__( 'Назад', 'prihod' ) . '</button> '; }

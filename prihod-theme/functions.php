@@ -4,27 +4,32 @@ require_once __DIR__ . '/includes/settings.php';
 require_once __DIR__ . '/includes/design.php';
 require_once __DIR__ . '/includes/demo.php';
 require_once __DIR__ . '/includes/render.php';
+require_once __DIR__ . '/includes/presentation.php';
+require_once __DIR__ . '/includes/calendar-markup.php';
+require_once __DIR__ . '/includes/home.php';
+require_once __DIR__ . '/includes/article.php';
 add_action( 'after_setup_theme', function () {
     load_theme_textdomain( 'prihod-theme', get_template_directory() . '/languages' );
     add_theme_support( 'editor-styles' ); add_editor_style( array( 'style.css', 'assets/theme.css' ) );
 } );
-add_action( 'wp_enqueue_scripts', function () { wp_enqueue_style( 'prihod-theme', get_stylesheet_uri(), array(), '0.3.1' ); wp_enqueue_style( 'prihod-theme-design', get_template_directory_uri() . '/assets/theme.css', array( 'prihod-theme' ), '0.3.1' ); } );
+add_action( 'wp_enqueue_scripts', function () { wp_enqueue_script( 'prihod-theme-gallery', get_template_directory_uri() . '/assets/gallery.js', array(), '0.3.4', true ); wp_enqueue_style( 'prihod-theme', get_stylesheet_uri(), array(), '0.3.4' ); wp_enqueue_style( 'prihod-theme-design', get_template_directory_uri() . '/assets/theme.css', array( 'prihod-theme' ), '0.3.4' ); wp_enqueue_style( 'prihod-theme-reference', get_template_directory_uri() . '/assets/reference.css', array( 'prihod-theme-design' ), '0.3.4.' . filemtime( get_template_directory() . '/assets/reference.css' ) ); } );
 add_action( 'wp_enqueue_scripts', function () {
     if ( ( ! shortcode_exists( 'kloster_form' ) && ! shortcode_exists( 'gkod_form' ) ) || empty( prihod_theme_options()['stepped_forms'] ) ) { return; }
     $dependencies = array();
     foreach ( array( 'kloster-prayer', 'georg-kloster-orthodox-donate' ) as $handle ) { if ( wp_script_is( $handle, 'registered' ) ) { $dependencies[] = $handle; } }
-    wp_enqueue_script( 'prihod-theme-forms', get_template_directory_uri() . '/assets/forms.js', $dependencies, '0.3.1', true );
+    wp_enqueue_script( 'prihod-theme-forms', get_template_directory_uri() . '/assets/forms.js', $dependencies, '0.3.4', true );
     wp_localize_script( 'prihod-theme-forms', 'prihodFormUI', array( 'type' => __( 'Тип записки', 'prihod-theme' ), 'names' => __( 'Имена', 'prihod-theme' ), 'total' => __( 'Сумма', 'prihod-theme' ), 'amount' => __( 'Пожертвование', 'prihod-theme' ), 'contacts' => __( 'Контакты', 'prihod-theme' ), 'review' => __( 'Подтверждение', 'prihod-theme' ), 'steps' => __( 'Этапы заполнения', 'prihod-theme' ), 'back' => __( 'Назад', 'prihod-theme' ), 'next' => __( 'Продолжить', 'prihod-theme' ), 'service' => __( 'Выберите требу перед продолжением.', 'prihod-theme' ), 'check' => __( 'Проверьте перед отправкой', 'prihod-theme' ) ) );
 }, 20 );
 add_filter( 'body_class', function ( array $classes ) {
     $settings = WP_Theme_JSON_Resolver::get_merged_data()->get_settings();
     $scheme = $settings['custom']['prihod']['scheme'] ?? 'classic';
     if ( prihod_theme_options()['sticky_header'] ) { $classes[] = 'prihod-sticky-header'; }
+    foreach ( get_option( 'prihod_resources', array() ) as $key => $resource ) { if ( ! empty( $resource['id'] ) && is_page( absint( $resource['id'] ) ) ) { $classes[] = 'prihod-page-' . sanitize_html_class( $key ); } }
     $classes[] = 'prihod-scheme-' . sanitize_html_class( $scheme ); return $classes;
 } );
 function prihod_theme_register_blocks(): void {
-    wp_register_script( 'prihod-theme-blocks', get_template_directory_uri() . '/assets/editor.js', array( 'wp-blocks', 'wp-element', 'wp-server-side-render', 'wp-i18n' ), '0.3.1', true );
-    $blocks = array( 'header' => __( 'Шапка прихода', 'prihod-theme' ), 'footer' => __( 'Подвал прихода', 'prihod-theme' ), 'home' => __( 'Главная прихода', 'prihod-theme' ), 'sidebar' => __( 'Боковая колонка', 'prihod-theme' ), 'page-heading' => __( 'Заголовок страницы', 'prihod-theme' ) );
+    wp_register_script( 'prihod-theme-blocks', get_template_directory_uri() . '/assets/editor.js', array( 'wp-blocks', 'wp-element', 'wp-server-side-render', 'wp-i18n' ), '0.3.4', true );
+    $blocks = array( 'header' => __( 'Шапка прихода', 'prihod-theme' ), 'footer' => __( 'Подвал прихода', 'prihod-theme' ), 'home' => __( 'Главная прихода', 'prihod-theme' ), 'related-posts' => __( 'Читайте также', 'prihod-theme' ), 'sidebar' => __( 'Боковая колонка', 'prihod-theme' ), 'page-heading' => __( 'Заголовок страницы', 'prihod-theme' ) );
     wp_localize_script( 'prihod-theme-blocks', 'prihodThemeBlocks', $blocks );
     foreach ( $blocks as $name => $title ) {
         $callback = 'prihod_theme_' . str_replace( array( 'page-heading', '-' ), array( 'heading', '_' ), $name );
@@ -41,3 +46,25 @@ add_action( 'init', function () {
         register_block_pattern( 'prihod-theme/contacts', array( 'title' => __( 'Контакты и духовенство', 'prihod-theme' ), 'categories' => array( 'prihod-theme' ), 'content' => '<!-- wp:prihod/contacts /--><!-- wp:prihod/clergy /-->' ) );
     }
 }, 30 );
+
+add_filter( 'render_block', function ( string $html ): string {
+    if ( ! prihod_theme_preview_scheme() ) { return $html; }
+    $tags = new WP_HTML_Tag_Processor( $html );
+    while ( $tags->next_tag( 'a' ) ) { $url = $tags->get_attribute( 'href' ); if ( is_string( $url ) ) { $tags->set_attribute( 'href', prihod_theme_preview_url( $url ) ); } }
+    return $tags->get_updated_html();
+} );
+
+add_action( 'admin_enqueue_scripts', function () {
+    if ( 'prihod-wizard' !== ( $_GET['page'] ?? '' ) ) { return; }
+    $photo = wp_get_attachment_image_url( prihod_theme_options()['hero_image'], 'full' );
+    if ( $photo ) { wp_add_inline_style( 'prihod-wizard', '.prihod-wizard-welcome{--prihod-wizard-photo:url(' . esc_url( $photo ) . ')}' ); }
+}, 30 );
+
+// Block themes render content before wp_head: register the provider's own assets
+// early so its shortcode can attach its native localized configuration.
+function prihod_theme_prepare_provider_assets(): void {
+    foreach ( array( '\\GeorgKlosterOrthodoxDonate\\Public_Form', '\\KlosterPrayer\\Public_Form' ) as $provider ) {
+        if ( shortcode_exists( 'gkod_form' ) || shortcode_exists( 'kloster_form' ) ) { if ( is_callable( array( $provider, 'register_assets' ) ) ) { $provider::register_assets(); } }
+    }
+}
+add_action( 'init', 'prihod_theme_prepare_provider_assets', 50 );

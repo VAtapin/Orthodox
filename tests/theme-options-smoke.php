@@ -37,3 +37,33 @@ wp_set_current_user( 1 );
 wp_trash_post( $demo['created']['photos'] );
 $after_trash = prihod_theme_import_demo( array( 'photos', 'first-visit' ) );
 prihod_assert( ! $after_trash['created'] && 'trash' === get_post_status( $demo['created']['photos'] ), 'Import does not recreate or restore a deliberately trashed demo page.' );
+
+prihod_assert( str_contains( $panel, '0.3.4' ) && ! str_contains( $panel, '<small>0.3.0' ), 'Theme panel reports the installed version.' );
+$map = prihod_theme_sanitize( array( 'map_embed' => 'https://www.openstreetmap.org/export/embed.html?marker=53,13' ) );
+prihod_assert( str_contains( $map['map_embed'], '/export/embed.html' ), 'Verified OpenStreetMap embeds are accepted.' );
+foreach ( array( 'javascript:alert(1)', 'https://example.com/export/embed.html', 'https://www.openstreetmap.org.evil.test/export/embed.html', 'https://www.openstreetmap.org/user/test' ) as $url ) { prihod_assert( '' === prihod_theme_sanitize( array( 'map_embed' => $url ) )['map_embed'], 'Other iframe origins and paths are rejected.' ); }
+$_GET['prihod_preview'] = 'blue';
+prihod_assert( str_contains( prihod_theme_preview_url( home_url( '/?page_id=8' ) ), 'prihod_preview=blue' ) && 'https://example.com/' === prihod_theme_preview_url( 'https://example.com/' ), 'Owner scheme previews survive internal navigation without rewriting external URLs.' );
+unset( $_GET['prihod_preview'] );
+$resources_backup = get_option( 'prihod_resources' );
+$id = wp_insert_post( array( 'post_type' => 'page', 'post_title' => 'Wizard published fixture', 'post_status' => 'publish', 'post_content' => 'Ready' ) );
+update_option( 'prihod_resources', array( 'about' => array( 'id' => $id, 'owned' => true ) ) );
+ob_start(); $has_drafts = Prihod\Wizard_Result::render(); $result = ob_get_clean();
+prihod_assert( ! $has_drafts && str_contains( $result, 'is-publish' ) && ! str_contains( $result, 'name="publish_keys[]"' ), 'Published wizard resources are labelled correctly and are not offered for republication.' );
+wp_update_post( array( 'ID' => $id, 'post_status' => 'draft' ) );
+update_post_meta( $id, '_prihod_generated_hash', hash( 'sha256', 'Wizard published fixture|Ready' ) );
+prihod_assert( Prihod\Wizard_Result::resources()['about']['publishable'], 'Untouched owned drafts remain explicitly publishable.' );
+$published_id = wp_insert_post( array( 'post_type' => 'page', 'post_title' => 'Published companion', 'post_status' => 'publish' ) );
+update_option( 'prihod_resources', array( 'about' => array( 'id' => $id, 'owned' => true ), 'news' => array( 'id' => $published_id, 'owned' => true ) ) );
+ob_start(); Prihod\Wizard_Result::render(); $mixed = ob_get_clean();
+prihod_assert( strpos( $mixed, 'name="publish_keys[]"' ) < strpos( $mixed, '<details' ) && ! str_contains( $mixed, 'prihod-wizard-resources" open' ) && 1 === substr_count( $mixed, 'name="publish_keys[]"' ), 'Mixed wizard results place only publishable drafts before the collapsed published resources.' );
+wp_update_post( array( 'ID' => $id, 'post_content' => 'Owner edited' ) );
+prihod_assert( ! Prihod\Wizard_Result::resources()['about']['publishable'], 'Manually edited drafts retain the existing owner-edit protection.' );
+update_option( 'prihod_resources', $resources_backup );
+
+$config = array( 'examples' => array( '[orthocal_today]', 'a [bracket] b', 'quote " and slash \\' ), 'nested' => array( array( 'number' => 1 ) ) );
+$markup = '<section data-orthocal="' . esc_attr( wp_json_encode( $config ) ) . '"></section>';
+$safe = prihod_theme_calendar_markup( $markup, array( 'blockName' => 'orthocal/calendar' ) );
+$processed = new WP_HTML_Tag_Processor( do_shortcode( $safe ) ); $processed->next_tag();
+prihod_assert( $config === json_decode( $processed->get_attribute( 'data-orthocal' ), true ), 'Calendar JSON string examples survive native shortcode processing and retain structural arrays.' );
+prihod_assert( $safe === prihod_theme_calendar_markup( $safe, array( 'blockName' => 'orthocal/calendar' ) ), 'Calendar markup protection is idempotent.' );
