@@ -1,0 +1,32 @@
+[
+  {
+    "scheme": "classic",
+    "labels": 0,
+    "overlap": false,
+    "width": 1280
+  },
+  {
+    "scheme": "hospitality",
+    "labels": 0,
+    "overlap": false,
+    "width": 1280
+  },
+  {
+    "scheme": "blue",
+    "labels": 0,
+    "overlap": false,
+    "width": 1280
+  },
+  {
+    "scheme": "editorial",
+    "labels": 0,
+    "overlap": false,
+    "width": 1280
+  },
+  {
+    "scheme": "tradition",
+    "labels": 0,
+    "overlap": false,
+    "width": 1280
+  }
+]

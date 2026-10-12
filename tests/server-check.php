@@ -69,7 +69,10 @@ $check( $checked_service_rows > 0, 'Published service rows must match the actual
 echo "SERVICE_LIST_CHECK_OK: {$checked} total checks.\n";
 $_GET = array( 'prihod_date' => ( new DateTimeImmutable( 'now', new DateTimeZone( Prihod\Profile::get()['timezone'] ) ) )->format( 'Y-m-d' ), 'prihod_view' => 'week' );
 $schedule_html = Prihod\Public_View::render( 'schedule' );
-$check( str_contains( $schedule_html, 'prihod-upcoming-card' ) && str_contains( $schedule_html, 'prihod-changes-card' ), 'Schedule must have two native overview panels before its filters.' );
+$schedule_anchor = new DateTimeImmutable( $_GET['prihod_date'], new DateTimeZone( Prihod\Profile::get()['timezone'] ) );
+$schedule_from = $schedule_anchor->modify( '-' . ( (int) $schedule_anchor->format( 'N' ) - 1 ) . ' days' );
+$has_changes = (bool) Prihod\Schedule::changes( $schedule_from, $schedule_from->modify( '+7 days' ) );
+$check( str_contains( $schedule_html, 'prihod-upcoming-card' ) && $has_changes === str_contains( $schedule_html, 'prihod-changes-card' ), 'Schedule shows its changes panel exactly when the selected period has real changes.' );
 $check( 1 === substr_count( $schedule_html, 'aria-current="date"' ) && preg_match_all( '/<a class="[^"]*\bis-selected-week\b/', $schedule_html ) >= 1, 'Mini calendar must distinguish today and the selected week.' );
 echo "SCHEDULE_OVERVIEW_CHECK_OK: {$checked} total checks.\n";
 $previous_query = $GLOBALS['wp_query']; $previous_post = $GLOBALS['post'] ?? null;
