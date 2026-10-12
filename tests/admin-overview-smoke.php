@@ -40,6 +40,9 @@ try {
         finally { ob_end_clean(); }
     }
     remove_filter( 'wp_die_handler', $die_filter );
+    wp_set_current_user( $staff_id );
+    ob_start(); Prihod\Dashboard::overview(); $staff_overview = ob_get_clean();
+    prihod_assert( str_contains( $staff_overview, 'prihod-card-requests_card' ) && ! str_contains( $staff_overview, 'prihod-site-summary' ) && ! str_contains( $staff_overview, 'prihod-card-profile_card' ), 'Request-only staff retain the authorized overview without parish or diagnostic data.' );
 } finally {
     wp_set_current_user( 1 ); $_GET = $saved_get;
     if ( $fixture ) { wp_delete_post( $fixture, true ); }

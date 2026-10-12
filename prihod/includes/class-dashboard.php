@@ -85,7 +85,7 @@ final class Dashboard {
         }
     }
     public static function overview(): void {
-        self::require_capability( 'manage_prihod' );
+        self::require_capability( Admin::menu_capability() );
         echo '<div class="wrap prihod-dashboard prihod-overview"><h1>' . esc_html__( 'Обзор прихода', 'prihod' ) . '</h1>';
         self::site_summary();
         echo '<div class="prihod-dash-grid">';
