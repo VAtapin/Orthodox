@@ -29,5 +29,5 @@ for name in ("prihod-telegram", "prihod-whatsapp", "prihod-social"):
     archive(target, f"{name}-0.1.1.zip")
 
 archive(ROOT / "prihod", "prihod-1.0.0-rc.4.zip")
-archive(ROOT / "prihod-theme", "prihod-theme-0.3.4.zip")
+archive(ROOT / "prihod-theme", "prihod-theme-0.3.5.zip")
 print("Built Core, theme and three independent connector ZIPs.")

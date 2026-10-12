@@ -69,8 +69,9 @@ function prihod_theme_home(): string {
     $html = '<section class="prihod-home-hero"' . ( $hero ? ' style="--prihod-hero-image:url(' . esc_url( $hero ) . ')"' : '' ) . '><div class="prihod-container prihod-hero-grid"><div class="prihod-hero-copy"><p class="prihod-eyebrow">' . esc_html__( 'Вера. Люди. Добрые дела.', 'prihod-theme' ) . '</p>';
     if ( 'tradition' === $scheme ) { $html .= '<h1>«' . esc_html__( 'Где двое или трое собраны во имя Моё, там Я посреди них', 'prihod-theme' ) . '»</h1><p class="prihod-hero-citation">' . esc_html__( 'Мф. 18:20', 'prihod-theme' ) . '</p>'; }
     else { $html .= '<h1>' . esc_html( $title ) . '</h1>'; }
+    if ( 'classic' === $scheme ) { $html .= prihod_theme_verse(); }
     $html .= '<p class="prihod-hero-description">' . esc_html( $profile['description'] ) . '</p>';
-    if ( in_array( $scheme, array( 'classic', 'hospitality' ), true ) ) { $html .= prihod_theme_verse(); }
+    if ( 'hospitality' === $scheme ) { $html .= prihod_theme_verse(); }
     if ( 'tradition' !== $scheme ) {
         $html .= '<div class="prihod-actions">';
         foreach ( array( $schedule => __( 'Расписание богослужений', 'prihod-theme' ), ( 'classic' === $scheme ? $contact : $about ) => ( 'classic' === $scheme ? __( 'Как добраться', 'prihod-theme' ) : $about_label ) ) as $url => $label ) { if ( $url ) { $html .= '<a class="prihod-button" href="' . esc_url( $url ) . '">' . esc_html( $label ) . ' →</a>'; } }

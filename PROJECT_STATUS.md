@@ -1,6 +1,6 @@
 # Статус «Прихода»
 
-Core 1.0.0-rc.4, тема 0.3.4, Telegram/WhatsApp/Facebook 0.1.1.
+Core 1.0.0-rc.4, тема 0.3.5, Telegram/WhatsApp/Facebook 0.1.1.
 Реализованы этапы 1–6: Core, расписание, обращения, мастер, права/диагностика/
 очистка и самостоятельные тема/подключения. Сборка: python scripts/package.py.
 Это release candidate. ТЗ и 16 исходных изображений сохранены.
@@ -37,7 +37,7 @@ HTTP/email не блокируются. PHP сайта 8.5.11; команды �
 сообщений/placeholder. Playground WP 7.1.3/PHP 8.4.25 — 182 assertions;
 WP 6.5.13/PHP 8.0.30 — 171. Standalone-компоненты и импорт
 13 страниц/6 материалов/8 медиа с повтором/ручной редактурой — пройдены;
-27 проверок структуры по макетам. На живом WordPress — 38 проверок.
+28 проверок структуры по макетам. На живом WordPress — 38 проверок.
 Браузер: 65 сочетаний страниц и схем, пять видов статьи, четыре мобильных страницы,
 настоящие формы до последнего шага без отправки, итог мастера и панель темы.
 Снимки и ограничения — docs/DESIGN_CONFORMITY.md. Переполнения и повреждённых
@@ -49,6 +49,10 @@ WP 6.5.13/PHP 8.0.30 — 171. Standalone-компоненты и импорт
 WordPress недоступен в текущем Playground; каталоги Core/темы проверены.
 Следующее: оставшиеся размеры/типографика по сохранённым парам и редактура владельцем.
 
-Ветка main, upstream origin/main. Предыдущий связанный commit d6a5e81
-Populate monastery demo pages and refine parish navigation. Этот статус включён
-в commit Align parish layouts with supplied design references; hash — git log -1.
+Ветка main, upstream origin/main. Предыдущий связанный commit 3a1ce35
+Align parish layouts with supplied design references. Этот статус включён
+в commit Refine classic hero and service strip; hash — git log -1.
+
+В 0.3.5 классическая цитата расположена перед описанием; дата и время службы
+разделены на соседние колонки. Проверены 1055/1122/390 px; карта на мобильном
+отрисована в видимой области, снимки classic/blue пересняты с начала страницы.

@@ -14,7 +14,7 @@ WordPress. Не менять окружение, Plesk, настройки др�
 - MariaDB 10.6.23, отдельная база и пользователь `prihod`.
 - SSH: предоставленный профиль Bitvise, пользователь `prihod`, не root.
 
-Установлены по прямому разрешению владельца: Core 1.0.0-rc.4, тема «Приход» 0.3.4,
+Установлены по прямому разрешению владельца: Core 1.0.0-rc.4, тема «Приход» 0.3.5,
 orthocal 1.3.78, Orthodox Donations 1.0.2 и Telegram/WhatsApp/Facebook подключения
 0.1.1. Пароли и профиль SSH не входят в репозиторий. Пароль администратора изменён
 владельцем; первоначальный установочный файл пароля устарел и для входа не используется.
@@ -53,7 +53,7 @@ tar; 24 таблицы MariaDB OK; HTTPS главной и входа 200; вх�
 cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
 export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
 php -d memory_limit=512M /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.4.zip --force --activate && \
-php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.4.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.5.zip --force --activate && \
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
 ```
 
@@ -83,7 +83,7 @@ scripts/apply-reference-design.php отдельно загружается в wp
 cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
 export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
 php -d memory_limit=512M /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.4.zip --force --activate && \
-php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.4.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.5.zip --force --activate && \
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-packages/apply-reference-design.php --user=prihod-owner && \
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
 ```

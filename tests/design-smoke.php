@@ -31,4 +31,9 @@ $original_about = $GLOBALS['post']; wp_update_post( array( 'ID' => $original_abo
 $check( 'original' === prihod_theme_about_content( 'original' ), 'About presentation preserves manually edited owner content.' );
 wp_update_post( array( 'ID' => $original_about->ID, 'post_content' => $original_about->post_content ) );
 $GLOBALS['post'] = get_post( $first['pages']['home'] );
+$_GET['prihod_preview'] = 'classic'; WP_Theme_JSON_Resolver::clean_cached_data();
+$home = prihod_theme_home();
+$quote_at = strpos( $home, '<blockquote' ); $description_at = strpos( $home, 'class="prihod-hero-description"' );
+$check( false !== $quote_at && false !== $description_at && $quote_at < $description_at, 'Classic hero places the verse before the real profile description.' );
+unset( $_GET['prihod_preview'] ); WP_Theme_JSON_Resolver::clean_cached_data();
 echo "DESIGN_SMOKE_OK: {$checks} checks.\n";
