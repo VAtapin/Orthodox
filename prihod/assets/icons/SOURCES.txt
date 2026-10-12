@@ -1,0 +1,13 @@
+Bundled fallback icons. No remote image requests are needed at runtime.
+
+christ.jpg: Christ Pantocrator, Sinai, 6th century. Faithful reproduction of a two-dimensional public domain work.
+Source: https://commons.wikimedia.org/wiki/File:Spas_vsederzhitel_sinay.jpg
+Thumbnail (250px, unmodified): https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Spas_vsederzhitel_sinay.jpg/250px-Spas_vsederzhitel_sinay.jpg
+License: Public Domain / PD-Art (PD-old-100-expired), as documented on the file page.
+
+resurrection.jpg: Resurrection / Anastasis (Descent into Hades), turn of the 15th/16th century, unknown author, Tretyakov Gallery.
+Source: https://commons.wikimedia.org/wiki/File:Resurrection_of_Jesus_icon1.jpg
+Thumbnail (330px, unmodified): https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Resurrection_of_Jesus_icon1.jpg/330px-Resurrection_of_Jesus_icon1.jpg
+License: Public Domain, as documented on the file page.
+
+Local replacements may be selected in Prihod settings. These are explicitly fallback images, not an API assertion about the saint commemorated on that date.

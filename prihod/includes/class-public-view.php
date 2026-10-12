@@ -79,10 +79,10 @@ final class Public_View {
         }
         return '<section class="prihod-block prihod-' . esc_attr( $key ) . '">' . $html . '</section>';
     }
-    private static function event_html( array $event ): string {
+    private static function event_html( array $event, bool $show_date = true ): string {
         $html = '<article class="prihod-event' . ( $event['cancelled'] ? ' is-cancelled' : ( $event['moved'] ? ' is-moved' : '' ) ) . '"><div class="prihod-event-time"><time datetime="' . esc_attr( $event['start']->format( DATE_ATOM ) ) . '">' . esc_html( $event['start']->format( 'H:i' ) ) . '</time>';
         if ( $event['end'] ) { $html .= '<small>— ' . esc_html( $event['end']->format( $event['end']->format( 'Y-m-d' ) === $event['start']->format( 'Y-m-d' ) ? 'H:i' : 'd.m.Y H:i' ) ) . '</small>'; }
-        $html .= Schedule_Calendar::icon_placeholder( $event ) . '</div><div class="prihod-event-copy"><h3>' . esc_html( $event['title'] ) . '</h3>' . Schedule_Calendar::feast_placeholder( $event ) . '<p class="prihod-event-meta">' . esc_html( $event['start']->format( 'd.m.Y' ) . ' · ' . $event['start']->getTimezone()->getName() ) . '</p><p>' . esc_html( get_the_title( $event['location_id'] ) ) . '</p>';
+        $html .= Schedule_Calendar::icon_placeholder( $event ) . '</div><div class="prihod-event-copy"><h3>' . esc_html( $event['title'] ) . '</h3>' . Schedule_Calendar::feast_placeholder( $event ) . '<p class="prihod-event-meta">' . esc_html( ( $show_date ? $event['start']->format( 'd.m.Y' ) . ' · ' : '' ) . $event['start']->getTimezone()->getName() ) . '</p><p>' . esc_html( get_the_title( $event['location_id'] ) ) . '</p>';
         if ( $event['cancelled'] ) { $html .= '<strong>' . esc_html__( 'Отменено', 'prihod' ) . '</strong>'; }
         if ( $event['moved'] ) { $html .= '<p>' . esc_html__( 'Изменение службы за', 'prihod' ) . ' ' . esc_html( $event['original_date'] ) . '</p>'; }
         if ( trim( $event['description'] ) ) { $html .= '<details class="prihod-event-description"><summary>' . esc_html__( 'Подробнее о богослужении', 'prihod' ) . '</summary>' . wpautop( wp_kses_post( $event['description'] ) ) . '</details>'; }
@@ -107,7 +107,7 @@ final class Public_View {
             foreach ( $items as $event ) { $panels .= self::event_html( $event ); }
             if ( ! $items ) { $panels .= '<p>' . esc_html__( 'Богослужения на эту дату не указаны.', 'prihod' ) . '</p>'; }
             $panels .= '</details>';
-            foreach ( $by_day[ $key ] ?? array() as $event ) { $html .= self::event_html( $event ); }
+            foreach ( $by_day[ $key ] ?? array() as $event ) { $html .= self::event_html( $event, false ); }
             $html .= '</td>'; ++$offset;
             if ( 0 === $offset % 7 && $date->modify( '+1 day' ) < $to ) { $html .= '</tr><tr>'; }
         }

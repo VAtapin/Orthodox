@@ -41,7 +41,7 @@ final class Maintenance {
                     elseif ( in_array( get_post_type( $resource['id'] ), array( 'page', 'wp_navigation' ), true ) ) { wp_delete_post( $resource['id'], true ); }
                 }
             }
-            foreach ( array( Profile::OPTION, 'prihod_modules', 'prihod_resources', 'prihod_retention_days', 'prihod_default_responsible', Calendar_Reminders::OPTION, 'prihod_calendar_last_sent', 'prihod_calendar_last_attempt', 'prihod_calendar_reminder_status' ) as $option ) { delete_option( $option ); }
+            foreach ( array( Profile::OPTION, 'prihod_modules', 'prihod_resources', 'prihod_retention_days', 'prihod_default_responsible', Calendar_Reminders::OPTION, Calendar_Icons::OPTION, 'prihod_calendar_last_sent', 'prihod_calendar_last_attempt', 'prihod_calendar_reminder_status' ) as $option ) { delete_option( $option ); }
             wp_clear_scheduled_hook( Calendar_Reminders::HOOK );
             foreach ( get_users( array( 'fields' => 'ID' ) ) as $id ) { delete_user_meta( $id, 'prihod_wizard_' . get_current_blog_id() ); }
             delete_option( 'prihod_purge_job' ); update_option( 'prihod_last_purge', gmdate( DATE_ATOM ), false );

@@ -21,13 +21,15 @@
 @media print{.prihod-month td>.prihod-event{display:block}.prihod-month td>time{display:inline}.prihod-month-day-choice,.prihod-month-panels{display:none!important}}
 
 /* A soft edge marks vestments without lowering text contrast. */
-.prihod-service-feast{font-weight:600;font-size:.95em;line-height:1.45;margin-block:8px}.prihod-vestment-label{display:block;font-size:.8em;margin-block:5px}.prihod-service-compact[data-vestment-color],.prihod-event[data-vestment-color],.prihod-upcoming-card[data-vestment-color]{box-shadow:inset 4px 0 0 var(--prihod-vestment-edge)}.prihod-service-compact[data-vestment-color],.prihod-event[data-vestment-color]{padding-inline-start:12px}
+.prihod-service-feast{font-weight:600;font-size:.95em;line-height:1.45;margin-block:8px}.prihod-vestment-label{display:block;font-size:.8em;margin-block:5px}.prihod-service-compact[data-vestment-color],.prihod-event[data-vestment-color],.prihod-upcoming-card[data-vestment-color]{box-shadow:inset 6px 0 0 var(--prihod-vestment-edge)}.prihod-service-compact[data-vestment-color],.prihod-event[data-vestment-color]{padding-inline-start:12px}
 [data-vestment-color="white"]{--prihod-vestment-edge:#faf8ef}
-[data-vestment-color="red"]{--prihod-vestment-edge:#b24743}
-[data-vestment-color="gold"]{--prihod-vestment-edge:#c39b3c}
-[data-vestment-color="green"]{--prihod-vestment-edge:#4c8161}
-[data-vestment-color="blue"]{--prihod-vestment-edge:#76a9cd}
-[data-vestment-color="purple"]{--prihod-vestment-edge:#856398}
+[data-vestment-color="red"]{--prihod-vestment-edge:#cb3035}
+[data-vestment-color="gold"]{--prihod-vestment-edge:#f2c500}
+[data-vestment-color="green"]{--prihod-vestment-edge:#159447}
+[data-vestment-color="blue"]{--prihod-vestment-edge:#349bd5}
+[data-vestment-color="purple"]{--prihod-vestment-edge:#8a45b5}
 [data-vestment-color="black"]{--prihod-vestment-edge:#353a40}
 
 .prihod-schedule-overview>.prihod-upcoming-card:only-child{grid-column:1/-1}
+
+.prihod-month .prihod-event[data-vestment-color]{padding-inline-start:12px}

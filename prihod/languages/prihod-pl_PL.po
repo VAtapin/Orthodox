@@ -2454,3 +2454,33 @@ msgstr "Automatycznie według kalendarza"
 
 msgid "Автоматический цвет определяется по календарю для каждой даты. Исключение на дату имеет приоритет."
 msgstr "Automatyczny kolor jest ustalany według kalendarza dla każdej daty. Wyjątek dla konkretnej daty ma pierwszeństwo."
+
+msgid "Выберите изображение из медиатеки."
+msgstr "Wybierz obraz z biblioteki mediów."
+
+msgid "Воскресение Христово — Сошествие во ад"
+msgstr "Zmartwychwstanie Chrystusa — Zstąpienie do otchłani"
+
+msgid "Спаситель — Христос Вседержитель"
+msgstr "Zbawiciel — Chrystus Pantokrator"
+
+msgid "Запасные иконы расписания"
+msgstr "Ikony zastępcze w harmonogramie"
+
+msgid "Икона дня имеет приоритет. Если изображения нет, используется воскресный или будничный образ. Встроенные образы хранятся на сайте; их можно заменить своей храмовой или месяцесловной иконой."
+msgstr "Ikona dnia ma pierwszeństwo. Gdy brakuje obrazu, używana jest ikona niedzielna lub powszednia. Wbudowane obrazy są przechowywane na stronie i można je zastąpić własną ikoną świątynną lub miesięczną."
+
+msgid "Показывать запасной образ, если иконы дня нет"
+msgstr "Pokaż ikonę zastępczą, gdy brakuje ikony dnia"
+
+msgid "Воскресенье: Воскресение Христово"
+msgstr "Niedziela: Zmartwychwstanie Chrystusa"
+
+msgid "Будни: храмовый или месяцесловный образ"
+msgstr "Dni powszednie: ikona świątynna lub miesięczna"
+
+msgid "Выбрать икону"
+msgstr "Wybierz ikonę"
+
+msgid "Встроенный образ"
+msgstr "Wbudowana ikona"

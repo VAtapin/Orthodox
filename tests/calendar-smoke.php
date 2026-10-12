@@ -61,7 +61,10 @@ if ( file_exists( WP_PLUGIN_DIR . '/orthocal/orthocal.php' ) ) {
     add_filter( 'pre_http_request', $transport, 10, 3 );
     $day = Prihod\Calendar_Adapter::day( '2026-10-14' );
     prihod_assert( ! is_wp_error( $day ) && str_contains( $day['feasts'][0], 'Покров' ) && ! empty( $day['icon']['media'] ), 'Actual orthocal adapter preserves feast title and its first authoritative icon via the native signed media endpoint.' );
-    prihod_assert( null === Prihod\Calendar_Adapter::day( '2026-10-17' )['icon'] && null === Prihod\Calendar_Adapter::day( '2026-10-18' )['icon'], 'Missing icons in actual API samples stay absent instead of substituting an unrelated image.' );
+    $weekday_icon = Prihod\Calendar_Adapter::day( '2026-10-17' )['icon']; $sunday_icon = Prihod\Calendar_Adapter::day( '2026-10-18' )['icon'];
+    prihod_assert( $weekday_icon['fallback'] && str_ends_with( $weekday_icon['url'], '/christ.jpg' ) && $sunday_icon['fallback'] && str_ends_with( $sunday_icon['url'], '/resurrection.jpg' ), 'Empty calendar dates use explicitly marked, local weekday/Sunday fallback images.' );
+    $cached_calls = $calls; Prihod\Calendar_Adapter::day( '2026-10-17' );
+    prihod_assert( $cached_calls === $calls, 'Repeated day reads reuse the existing provider cache/memo without another upstream request.' );
     prihod_assert( is_wp_error( Prihod\Calendar_Adapter::day( '2026-10-15' ) ) && is_wp_error( Prihod\Calendar_Adapter::day( '2026-10-16' ) ), 'Provider transport and schema errors are returned without changing services.' );
     $request = new WP_REST_Request( 'GET', '/prihod/v1/calendar-day' ); $request->set_param( 'date', '2026-10-14' );
     wp_set_current_user( 0 );
@@ -107,3 +110,30 @@ prihod_assert( '' === $automatic_events[0]['vestment_color'] && 'auto' === $auto
 
 prihod_assert( 'blue' === Prihod\Calendar_Colors::day( $sample['2026-10-14']['day'] )['color'], 'Major Marian feast outranks ordinary monastic and apostolic commemorations regardless of their order.' );
 prihod_assert( 'red' === Prihod\Calendar_Colors::day( array( 'events' => array( array( 'category' => 'commemoration', 'typeCode' => 4, 'title' => 'Великомученик Георгий' ), array( 'category' => 'commemoration', 'typeCode' => 7, 'title' => 'Преподобный' ) ) ) )['color'], 'Ranked martyr takes precedence over an ordinary monastic commemoration.' );
+
+$month_colors = json_decode( file_get_contents( __DIR__ . '/fixtures/calendar-month.json' ), true ); $colors_by_date = array();
+foreach ( $month_colors['days'] as $calendar_date ) { $colors_by_date[$calendar_date['date']] = Prihod\Calendar_Colors::day( $calendar_date )['color'] ?? ''; }
+prihod_assert( 'gold' === $colors_by_date['2026-10-17'] && 'gold' === $colors_by_date['2026-10-18'] && 'gold' === $colors_by_date['2026-10-24'] && 'gold' === $colors_by_date['2026-10-25'], 'Remaining October services receive ordinary gold, including plural hierarch abbreviations and Sundays.' );
+prihod_assert( 'purple' === $colors_by_date['2026-10-03'] && 'purple' === $colors_by_date['2026-10-04'] && 'gold' === $colors_by_date['2026-10-11'], 'Cross afterfeast outranks ordinary gold; ordinary Sunday does not inherit a monastic saint color.' );
+prihod_assert( 'red' === Prihod\Calendar_Colors::recommendation( array( 'Мчч. Михаила и Феодора' ) )['color'] && 'green' === Prihod\Calendar_Colors::recommendation( array( 'Прпп. Кирилла и Марии' ) )['color'] && 'gold' === Prihod\Calendar_Colors::recommendation( array( 'Свтт. Гурия и Варсонофия' ) )['color'], 'Plural Russian calendar abbreviations resolve their actual categories.' );
+
+$old_icon_settings = Prihod\Calendar_Icons::options();
+$icon_upload = wp_upload_bits( 'fallback-icon-test.jpg', null, file_get_contents( WP_PLUGIN_DIR . '/prihod/assets/icons/christ.jpg' ) );
+$replacement_icon = wp_insert_attachment( array( 'post_title' => 'Local replacement icon', 'post_mime_type' => 'image/jpeg' ), $icon_upload['file'] );
+update_post_meta( $replacement_icon, '_wp_attachment_image_alt', 'Chosen parish icon' );
+$replacement_settings = Prihod\Calendar_Icons::sanitize( array( 'enabled' => 1, 'weekday' => $replacement_icon, 'sunday' => 0 ) );
+update_option( Prihod\Calendar_Icons::OPTION, $replacement_settings );
+$chosen_icon = Prihod\Calendar_Icons::fallback( '2026-10-17' );
+prihod_assert( $replacement_icon === $replacement_settings['weekday'] && 'Chosen parish icon' === $chosen_icon['alt'] && wp_get_attachment_image_url( $replacement_icon, 'medium' ) === $chosen_icon['url'], 'A valid replacement image is retained and served through WordPress attachment APIs with its own alt text.' );
+prihod_assert( str_ends_with( Prihod\Calendar_Icons::fallback( '2026-10-18' )['url'], '/resurrection.jpg' ), 'A weekday replacement does not change the separate Sunday image.' );
+wp_delete_attachment( $replacement_icon, true );
+update_option( Prihod\Calendar_Icons::OPTION, array( 'enabled' => false, 'weekday' => 0, 'sunday' => 0 ) );
+prihod_assert( null === Prihod\Calendar_Icons::fallback( '2026-10-18' ), 'Explicitly disabling fallback images is respected.' );
+update_option( Prihod\Calendar_Icons::OPTION, $old_icon_settings );
+prihod_assert( $old_icon_settings === Prihod\Calendar_Icons::sanitize( array( 'enabled' => 1, 'weekday' => 987654321, 'sunday' => 0 ) ), 'Invalid replacement attachment retains the previous fallback settings.' );
+prihod_assert( $old_icon_settings === Prihod\Calendar_Icons::sanitize( 'invalid' ) && null === Prihod\Calendar_Icons::fallback( '2026-02-30' ), 'Malformed settings and invalid dates cannot select arbitrary fallback URLs.' );
+$_GET = array( 'prihod_date' => '2026-10-14', 'prihod_view' => 'month' );
+$month_view = Prihod\Public_View::render( 'schedule' ); $_GET = array();
+$table_end = strpos( $month_view, '</table>' ); $table_start = strpos( $month_view, '<table' );
+$month_table = substr( $month_view, $table_start, $table_end - $table_start );
+prihod_assert( ! preg_match( '/class="prihod-event-meta">\d{2}\.\d{2}\.\d{4}/', $month_table ) && str_contains( $month_view, 'class="prihod-month-day-panel"' ), 'Desktop month omits duplicate event dates while mobile full-day disclosures are preserved.' );

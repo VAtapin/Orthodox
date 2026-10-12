@@ -23,6 +23,7 @@ final class Plugin {
         Admin_Navigation::hooks();
         Schedule::hooks();
         Schedule_Calendar::hooks();
+        Calendar_Icons::hooks();
         Calendar_Reminders::hooks();
         Requests::hooks();
         Telegram_Requests::hooks();

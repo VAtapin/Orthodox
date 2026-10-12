@@ -6,9 +6,9 @@ body.post-type-prihod_service #poststuff{max-width:1400px;padding-top:10px}body.
 /* The same seven swatches accompany labels, never replace them. */
 .prihod-color-control{margin-block:16px}.prihod-color-swatch{display:inline-block;width:20px;height:20px;border:1px solid #8d939a;border-radius:50%;vertical-align:middle;background:transparent}.prihod-color-palette{display:flex;flex-wrap:wrap;gap:10px;margin-block:12px}.prihod-color-palette span{display:inline-flex;gap:6px;align-items:center}
 .prihod-color-swatch[data-color="white"]{background:#faf8ef}
-.prihod-color-swatch[data-color="red"]{background:#b24743}
-.prihod-color-swatch[data-color="gold"]{background:#c39b3c}
-.prihod-color-swatch[data-color="green"]{background:#4c8161}
-.prihod-color-swatch[data-color="blue"]{background:#76a9cd}
-.prihod-color-swatch[data-color="purple"]{background:#856398}
+.prihod-color-swatch[data-color="red"]{background:#cb3035}
+.prihod-color-swatch[data-color="gold"]{background:#f2c500}
+.prihod-color-swatch[data-color="green"]{background:#159447}
+.prihod-color-swatch[data-color="blue"]{background:#349bd5}
+.prihod-color-swatch[data-color="purple"]{background:#8a45b5}
 .prihod-color-swatch[data-color="black"]{background:#353a40}

@@ -127,6 +127,7 @@ final class Admin {
         }
         echo '</ul><p>' . esc_html__( 'Назначить права можно в разделе «Права сотрудников».', 'prihod' ) . '</p>';
         Calendar_Reminders::render();
+        Calendar_Icons::render();
         echo '</div>';
     }
 }

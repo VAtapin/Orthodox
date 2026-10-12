@@ -44,7 +44,7 @@ foreach ( array( 'de_DE', 'pl_PL', 'uk' ) as $locale ) {
 }
 echo wp_json_encode( array( 'status' => 'PRIHOD_SERVER_OK', 'checks' => $checked, 'wordpress' => get_bloginfo( 'version' ), 'php' => PHP_VERSION, 'theme' => wp_get_theme()->get( 'Version' ) ), JSON_UNESCAPED_UNICODE ) . PHP_EOL;
 
-$check( '1.0.0-rc.13' === PRIHOD_VERSION && '0.3.22' === wp_get_theme()->get( 'Version' ), 'Authorized Core rc.13 and theme 0.3.22 must be present.' );
+$check( '1.0.0-rc.14' === PRIHOD_VERSION && '0.3.22' === wp_get_theme()->get( 'Version' ), 'Core rc.14 and theme 0.3.22 must be present.' );
 prihod_theme_prepare_provider_assets();
 do_shortcode( '[' . $donation_tag . ']' );
 $check( str_contains( (string) wp_scripts()->get_data( 'georg-kloster-orthodox-donate', 'data' ), 'georgKlosterOrthodoxDonate' ), 'Native donation configuration must exist before the block theme prints scripts.' );
@@ -177,9 +177,14 @@ $check( 9 === count( Prihod\Calendar_Colors::labels() ) && 'blue' === Prihod\Cal
 $check( is_readable( WP_PLUGIN_DIR . '/prihod/assets/calendar-colors.js' ) && ( ! Prihod\Schedule::next() || str_contains( prihod_theme_compact_services(), 'data-prihod-feast' ) ), 'Homepage uses real calendar feast hooks and color editor is installed.' );
 echo 'CALENDAR_COLORS_CHECK_OK: ' . $checked . ' total checks.' . PHP_EOL;
 
-$check( '1.0.0-rc.13' === get_plugin_data( WP_PLUGIN_DIR . '/prihod/prihod.php', false, false )['Version'], 'Immediate Telegram replies require Core rc.13.' );
+$check( '1.0.0-rc.14' === get_plugin_data( WP_PLUGIN_DIR . '/prihod/prihod.php', false, false )['Version'], 'Calendar fallback release requires Core rc.14.' );
 $check( '0.1.3' === get_plugin_data( WP_PLUGIN_DIR . '/prihod-telegram/prihod-telegram.php', false, false )['Version'] && Prihod\Telegram_Requests::connector(), 'Independent Telegram 0.1.3 must be installed.' );
 $check( is_readable( WP_PLUGIN_DIR . '/prihod-telegram/assets/settings.js' ), 'Telegram required-field validation must be installed.' );
 $check( is_callable( array( Prihod\Request_Mail::class, 'compose' ) ) && is_callable( array( Prihod\Telegram_Request_Settings::class, 'configure' ) ), 'HTML mail and explicit reply setup must be available.' );
 $check( is_bool( Prihod\Telegram_Requests::ready() ), 'Reply state can be inspected without connecting or sending.' );
 echo 'TELEGRAM_REPLY_CHECK_OK: ' . $checked . ' total checks.' . PHP_EOL;
+
+$check( is_readable( WP_PLUGIN_DIR . '/prihod/assets/icons/christ.jpg' ) && is_readable( WP_PLUGIN_DIR . '/prihod/assets/icons/resurrection.jpg' ), 'Built-in fallback images must be installed locally.' );
+$check( is_callable( array( Prihod\Calendar_Icons::class, 'fallback' ) ) && is_readable( WP_PLUGIN_DIR . '/prihod/assets/calendar-icons.js' ), 'Fallback configuration and native media selection must be installed.' );
+$check( 'gold' === Prihod\Calendar_Colors::day( array( 'date' => '2026-10-25', 'events' => array() ) )['color'], 'An ordinary Sunday resolves to gold at read time.' );
+echo 'CALENDAR_FALLBACK_CHECK_OK: ' . $checked . ' total checks.' . PHP_EOL;

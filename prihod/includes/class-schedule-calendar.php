@@ -31,7 +31,8 @@ final class Schedule_Calendar {
         if ( empty( $event['day_icon'] ) || $event['cancelled'] ) { return ''; }
         wp_enqueue_script( 'prihod-schedule-icons', plugins_url( 'assets/schedule-icons.js', PRIHOD_FILE ), array(), PRIHOD_VERSION . '.' . filemtime( dirname( PRIHOD_FILE ) . '/assets/schedule-icons.js' ), true );
         $url = add_query_arg( 'date', $event['start']->format( 'Y-m-d' ), rest_url( Plugin::REST_NAMESPACE . '/schedule-feast' ) );
-        return '<figure class="prihod-service-icon" data-prihod-day-icon="' . esc_url( $url ) . '" hidden></figure>';
+        $fallback = Calendar_Icons::fallback( $event['start']->format( 'Y-m-d' ) );
+        return '<figure class="prihod-service-icon" data-prihod-day-icon="' . esc_url( $url ) . '" data-prihod-icon-fallback="' . esc_attr( wp_json_encode( $fallback ) ) . '" hidden></figure>';
     }
     public static function feast_placeholder( array $event ): string {
         if ( $event['cancelled'] ) { return ''; }

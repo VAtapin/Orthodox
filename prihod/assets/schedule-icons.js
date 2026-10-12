@@ -33,14 +33,22 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-prihod-day-icon]').forEach(async figure => {
         try {
             const url = figure.dataset.prihodDayIcon;
-            const icon = await loadIcon(url);
+            const fallback = JSON.parse(figure.dataset.prihodIconFallback || 'null');
+            const icon = await loadIcon(url).catch(() => fallback) || fallback;
             if (!icon) return;
             const imageUrl = icon.url;
             if (!imageUrl || !/^https?:\/\//.test(imageUrl)) return;
             const image = document.createElement('img');
             image.alt = icon.alt; image.decoding = 'async';
+            figure.dataset.iconSource = icon.fallback ? 'fallback' : 'day';
             image.addEventListener('load', () => { figure.hidden = false; }, {once: true});
-            image.addEventListener('error', () => { figure.hidden = true; }, {once: true});
+            image.addEventListener('error', () => {
+                if (fallback?.url && image.src !== fallback.url) {
+                    figure.querySelector('figcaption')?.remove();
+                    figure.dataset.iconSource = 'fallback'; image.alt = fallback.alt; image.src = fallback.url;
+                    image.addEventListener('error', () => { figure.hidden = true; }, {once:true});
+                } else figure.hidden = true;
+            }, {once: true});
             figure.append(image);
             if (icon.attribution) { const caption = document.createElement('figcaption'); caption.textContent = icon.attribution; figure.append(caption); }
             image.src = imageUrl;
