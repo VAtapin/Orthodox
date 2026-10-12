@@ -5,7 +5,7 @@ $check = static function ( $condition, $message ) use ( &$checks ) { if ( ! $con
 foreach ( array( 'classic' => 4, 'hospitality' => 5, 'editorial' => 5, 'tradition' => 5, 'blue' => 5 ) as $scheme => $count ) {
     $html = prihod_theme_home_features( $scheme, array_values( $first['images'] ), 'О монастыре', true );
     $check( substr_count( $html, 'class="prihod-feature ' ) + substr_count( $html, 'class="prihod-feature"' ) === $count, 'Reference feature count: ' . $scheme );
-    $check( substr_count( $html, 'prihod-feature-photo' ) === ( in_array( $scheme, array( 'classic', 'editorial', 'tradition' ), true ) ? $count : 0 ), 'Reference photo/icon family: ' . $scheme );
+    $check( substr_count( $html, 'prihod-feature-photo' ) === ( 'editorial' === $scheme ? $count - 1 : ( in_array( $scheme, array( 'classic', 'tradition' ), true ) ? $count : 0 ) ), 'Reference photo/icon family: ' . $scheme );
     $html = prihod_theme_home_news( $scheme, true );
     $check( substr_count( $html, 'class="prihod-news-card"' ) === ( 'hospitality' === $scheme ? 4 : 3 ), 'Reference news count: ' . $scheme );
 }
@@ -54,4 +54,30 @@ foreach ( $first['posts'] as $article_id ) {
 unset( $_GET['prihod_preview'] );
 $GLOBALS['wp_query'] = $saved_query;
 $GLOBALS['post'] = get_post( $first['pages']['home'] );
+$saved_query = $GLOBALS['wp_query'];
+$GLOBALS['wp_query'] = new WP_Query( array( 'page_id' => $first['pages']['home'] ) );
+foreach ( array( 'classic', 'hospitality', 'editorial', 'tradition', 'blue' ) as $scheme ) {
+    $_GET['prihod_preview'] = $scheme; WP_Theme_JSON_Resolver::clean_cached_data();
+    $header = prihod_theme_header(); $contacts = prihod_theme_contact_panel();
+    $check( str_contains( $header, 'prihod-header-support' ) === in_array( $scheme, array( 'hospitality', 'editorial' ), true ), 'Only the two reference header families gain a dedicated support button: ' . $scheme );
+    if ( 'hospitality' === $scheme ) { $check( str_contains( $contacts, 'prihod-contact-quote' ) && str_contains( $header, esc_url( prihod_theme_url( 'donations' ) ) ), 'Hospitality adds a third quote region and a real donation target.' ); }
+    if ( 'editorial' === $scheme ) {
+        $home = prihod_theme_home();
+        $check( str_contains( $contacts, 'prihod-contact-welcome' ) && str_contains( $contacts, '<img' ) && str_contains( $header, esc_url( prihod_theme_url( 'donations' ) ) ), 'Editorial adds actual welcome text/photo and a real donation target.' );
+        $check( str_contains( $home, __( 'Живая Церковь', 'prihod-theme' ) ) && str_contains( $home, __( 'Фотолетопись', 'prihod-theme' ) ) && str_contains( $home, 'prihod-feature-support-symbol' ), 'Editorial restores news/gallery eyebrows and the support symbol tile.' );
+    }
+}
+$original_options = get_option( 'prihod_theme_options' );
+$custom_options = prihod_theme_options(); $custom_options['feature_donations'] = $first['images']['monastery'];
+update_option( 'prihod_theme_options', $custom_options );
+$features = prihod_theme_home_features( 'editorial', array_values( $first['images'] ), 'О монастыре', true );
+$check( 5 === substr_count( $features, 'prihod-feature-photo' ) && ! str_contains( $features, 'prihod-feature-support-symbol' ), 'An owner-selected support photo takes precedence over the default symbolic tile.' );
+$custom_options['quote_text'] = 'Owner custom quote'; $custom_options['quote_source'] = 'Owner source';
+update_option( 'prihod_theme_options', $custom_options );
+$check( str_contains( prihod_theme_verse(), 'Owner custom quote' ) && str_contains( prihod_theme_verse(), 'Owner source' ), 'The quote uses saved owner content.' );
+$sanitized = prihod_theme_sanitize( array( 'quote_text' => '<script>bad</script>Safe text', 'quote_source' => '<b>Source</b>' ) );
+$check( ! str_contains( $sanitized['quote_text'], '<script>' ) && 'Source' === $sanitized['quote_source'], 'Quote fields are sanitized as text.' );
+update_option( 'prihod_theme_options', $original_options );
+unset( $_GET['prihod_preview'] ); WP_Theme_JSON_Resolver::clean_cached_data();
+$GLOBALS['wp_query'] = $saved_query;
 echo "DESIGN_SMOKE_OK: {$checks} checks.\n";

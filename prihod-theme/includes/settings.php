@@ -3,7 +3,7 @@ defined( 'ABSPATH' ) || exit;
 
 function prihod_theme_options(): array {
     $saved = get_option( 'prihod_theme_options', array() );
-    return array_merge( array( 'feature_schedule' => 0, 'feature_news' => 0, 'feature_about' => 0, 'feature_requests' => 0, 'feature_donations' => 0, 'hero_image' => 0, 'about_image' => 0, 'logo' => 0, 'gallery' => '', 'map_url' => '', 'map_embed' => '', 'languages' => array(), 'stepped_forms' => true, 'scheme' => '', 'width' => 1200, 'font' => 'sans', 'font_size' => 16, 'sticky_header' => false, 'header_contacts' => true, 'footer_text' => '' ), is_array( $saved ) ? $saved : array() );
+    return array_merge( array( 'feature_schedule' => 0, 'feature_news' => 0, 'feature_about' => 0, 'feature_requests' => 0, 'feature_donations' => 0, 'hero_image' => 0, 'about_image' => 0, 'logo' => 0, 'gallery' => '', 'map_url' => '', 'map_embed' => '', 'languages' => array(), 'stepped_forms' => true, 'scheme' => '', 'width' => 1200, 'font' => 'sans', 'font_size' => 16, 'sticky_header' => false, 'header_contacts' => true, 'footer_text' => '', 'quote_text' => __( 'Где двое или трое собраны во имя Моё, там Я посреди них', 'prihod-theme' ), 'quote_source' => __( 'Мф. 18:20', 'prihod-theme' ) ), is_array( $saved ) ? $saved : array() );
 }
 function prihod_theme_sanitize( $input ): array {
     $out = prihod_theme_options();
@@ -27,6 +27,7 @@ function prihod_theme_sanitize( $input ): array {
         $embed = is_string( $input['map_embed'] ) ? esc_url_raw( $input['map_embed'], array( 'https' ) ) : '';
         $out['map_embed'] = 'https' === wp_parse_url( $embed, PHP_URL_SCHEME ) && 'www.openstreetmap.org' === wp_parse_url( $embed, PHP_URL_HOST ) && '/export/embed.html' === wp_parse_url( $embed, PHP_URL_PATH ) ? $embed : '';
     }
+    foreach ( array( 'quote_text', 'quote_source' ) as $key ) { if ( array_key_exists( $key, $input ) ) { $out[$key] = is_string( $input[$key] ) ? sanitize_textarea_field( $input[$key] ) : ''; } }
     $out['languages'] = array();
     foreach ( array( 'ru', 'de', 'pl', 'uk' ) as $language ) {
         if ( is_string( $input['languages'][ $language ] ?? null ) ) {
@@ -44,9 +45,9 @@ add_action( 'admin_menu', function () {
 add_action( 'admin_enqueue_scripts', function () {
     if ( 'prihod-theme' !== ( $_GET['page'] ?? '' ) ) { return; }
     wp_enqueue_media();
-    wp_enqueue_style( 'prihod-theme-settings', get_template_directory_uri() . '/assets/settings.css', array(), '0.3.5' );
-    wp_enqueue_script( 'prihod-theme-media', get_template_directory_uri() . '/assets/media.js', array( 'jquery', 'media-views' ), '0.3.5', true );
-    wp_enqueue_script( 'prihod-theme-settings', get_template_directory_uri() . '/assets/settings.js', array(), '0.3.5', true );
+    wp_enqueue_style( 'prihod-theme-settings', get_template_directory_uri() . '/assets/settings.css', array(), '0.3.9' );
+    wp_enqueue_script( 'prihod-theme-media', get_template_directory_uri() . '/assets/media.js', array( 'jquery', 'media-views' ), '0.3.9', true );
+    wp_enqueue_script( 'prihod-theme-settings', get_template_directory_uri() . '/assets/settings.js', array(), '0.3.9', true );
 } );
 function prihod_theme_schemes(): array {
     return array( 'classic' => __( 'Классическая золотая', 'prihod-theme' ), 'hospitality' => __( 'Светлая гостеприимная', 'prihod-theme' ), 'editorial' => __( 'Журнальная', 'prihod-theme' ), 'tradition' => __( 'Традиционная', 'prihod-theme' ), 'blue' => __( 'Современная синяя', 'prihod-theme' ) );
@@ -86,6 +87,7 @@ function prihod_theme_settings_page(): void {
     echo '<p><label>' . esc_html__( 'Встраиваемая карта OpenStreetMap (HTTPS)', 'prihod-theme' ) . '<br><input type="url" class="regular-text" name="prihod_theme_options[map_embed]" value="' . esc_attr( $options['map_embed'] ?? '' ) . '"></label></p>';
     echo '<p>' . esc_html__( 'Выберите собственные фотографии из медиатеки. Без фото отображается спокойный фон. Скриншоты макетов не используются как контент.', 'prihod-theme' ) . '</p></section><section id="prihod-option-header" class="prihod-option-section"><h2>' . esc_html( $sections['header'] ) . '</h2>';
     foreach ( array( 'sticky_header' => __( 'Закрепить шапку при прокрутке', 'prihod-theme' ), 'header_contacts' => __( 'Показывать контакты в шапке', 'prihod-theme' ) ) as $key => $title ) { echo '<p><label><input type="checkbox" name="prihod_theme_options[' . esc_attr( $key ) . ']" value="1"' . checked( $options[$key], true, false ) . '> ' . esc_html( $title ) . '</label></p>'; }
+    echo '<p><label>' . esc_html__( 'Текст цитаты', 'prihod-theme' ) . '<br><textarea class="large-text" rows="3" name="prihod_theme_options[quote_text]">' . esc_textarea( $options['quote_text'] ) . '</textarea></label></p><p><label>' . esc_html__( 'Источник цитаты', 'prihod-theme' ) . '<br><input class="regular-text" name="prihod_theme_options[quote_source]" value="' . esc_attr( $options['quote_source'] ) . '"></label></p>';
     echo '<p><label>' . esc_html__( 'Дополнительный текст подвала', 'prihod-theme' ) . '<br><textarea class="large-text" rows="3" name="prihod_theme_options[footer_text]">' . esc_textarea( $options['footer_text'] ) . '</textarea></label></p></section><section id="prihod-option-forms" class="prihod-option-section"><h2>' . esc_html( $sections['forms'] ) . '</h2><p><label><input type="checkbox" name="prihod_theme_options[stepped_forms]" value="1"' . checked( $options['stepped_forms'], true, false ) . '> ' . esc_html__( 'Пошаговые формы записок и пожертвований', 'prihod-theme' ) . '</label></p></section><section id="prihod-option-languages" class="prihod-option-section"><h2>' . esc_html__( 'Языковые версии страниц', 'prihod-theme' ) . '</h2><p>' . esc_html__( 'Укажите адреса существующих версий сайта. Переводы материалов создаются отдельно; тема не переводит тексты автоматически.', 'prihod-theme' ) . '</p>';
     foreach ( array( 'ru' => 'Русский', 'de' => 'Deutsch', 'pl' => 'Polski', 'uk' => 'Українська' ) as $code => $name ) { echo '<p><label>' . esc_html( $name ) . '<br><input type="url" class="regular-text" name="prihod_theme_options[languages][' . esc_attr( $code ) . ']" value="' . esc_attr( $options['languages'][ $code ] ?? '' ) . '"></label></p>'; }
     echo '</section></form><section id="prihod-option-demo" class="prihod-option-section"><h2>' . esc_html( $sections['demo'] ) . '</h2>'; prihod_theme_demo_panel(); echo '</section></div></div></div>';

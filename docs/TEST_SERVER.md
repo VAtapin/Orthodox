@@ -14,7 +14,7 @@ WordPress. Не менять окружение, Plesk, настройки др�
 - MariaDB 10.6.23, отдельная база и пользователь `prihod`.
 - SSH: предоставленный профиль Bitvise, пользователь `prihod`, не root.
 
-Установлены по прямому разрешению владельца: Core 1.0.0-rc.6, тема «Приход» 0.3.8,
+Установлены по прямому разрешению владельца: Core 1.0.0-rc.6, тема «Приход» 0.3.9,
 orthocal 1.3.78, Orthodox Donations 1.0.2 и Telegram/WhatsApp/Facebook подключения
 0.1.1. Пароли и профиль SSH не входят в репозиторий. Пароль администратора изменён
 владельцем; первоначальный установочный файл пароля устарел и для входа не используется.
@@ -53,7 +53,7 @@ tar; 24 таблицы MariaDB OK; HTTPS главной и входа 200; вх�
 cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
 export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
 php -d memory_limit=512M /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.6.zip --force --activate && \
-php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.8.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.9.zip --force --activate && \
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
 ```
 
@@ -83,7 +83,7 @@ scripts/apply-reference-design.php отдельно загружается в wp
 cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
 export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
 php -d memory_limit=512M /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.6.zip --force --activate && \
-php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.8.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.9.zip --force --activate && \
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-packages/apply-reference-design.php --user=prihod-owner && \
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
 ```
@@ -92,20 +92,20 @@ php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-ch
 Новых серверных настроек, Node/Composer, migrations или блокировок команда не содержит.
 Отчёт и ограничения точности: DESIGN_CONFORMITY.md.
 
-Текущая сборка Core rc.6 / тема 0.3.8 уже применена: два верхних блока
+Текущая сборка Core rc.6 / тема 0.3.9 уже применена: два верхних блока
 публичного расписания, отметки мини-месяца и административные колонки.
 Для повторного обновления использовать первую команду выше. Данные служб
 и статусы опубликованных страниц не менялись. Проверка включает реальные
 даты таблицы, две карточки расписания и сегодняшнюю/выбранную дату.
 
-## Только обновление темы, 0.3.8
+## Только обновление темы, 0.3.9
 
 Пакет загружен и применён. Core rc.6 и внешние плагины не обновлялись.
 
 ```bash
 cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
 export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
-php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.8.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.9.zip --force --activate && \
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
 ```
 
@@ -115,3 +115,8 @@ php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-ch
 В0.3.8 исправлен итог записки/пожертвования. Он проверен локально без отправки
 на двух видах поминовения и двух штатных способах оплаты; на живом WordPress
 подтверждены обновлённый forms.js, его конфигурация и44 read-only проверки.
+
+Тема0.3.9 уже применена: отдельные шапки поддержки, три области контактов
+hospitality/editorial, оформление editorial и поля цитаты. Только обновление
+темы — последняя команда выше. Core rc.6 и внешние плагины не обновлялись;
+44 read-only проверки и браузерные переходы CTA пройдены.

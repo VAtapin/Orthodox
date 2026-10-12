@@ -15,6 +15,7 @@ function prihod_theme_icon( string $name ): string {
         'time' => '<circle cx="16" cy="16" r="13"/><path d="M16 7v10l7 4"/>',
         'search' => '<circle cx="13" cy="13" r="9"/><path d="m20 20 9 9"/>',
         'share' => '<circle cx="7" cy="16" r="4"/><circle cx="25" cy="6" r="4"/><circle cx="25" cy="26" r="4"/><path d="m11 14 10-6m-10 10 10 6"/>',
+        'support' => '<path d="M2 25l6-6h10c4 0 4 4 0 4h-5m5 0 9-7c3-2 5 1 2 4l-10 9H7l-5-4ZM16 18V8m0 5C8 13 7 5 7 5s10-1 9 8Zm0-5C16 2 25 1 25 1s1 9-9 11"/>',
         'cross' => '<path d="M16 2v28M6 10h20m-16 12 12 5"/>',
     );
     return '<svg class="prihod-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . ( $paths[$name] ?? $paths['about'] ) . '</svg>';
@@ -37,13 +38,18 @@ function prihod_theme_compact_services( int $limit = 1 ): string {
     return $html ?: '<p class="prihod-service-empty">' . esc_html__( 'Богослужения на выбранный период не указаны.', 'prihod' ) . '</p>';
 }
 function prihod_theme_verse(): string {
-    return '<blockquote class="prihod-verse"><p>«' . esc_html__( 'Где двое или трое собраны во имя Моё, там Я посреди них', 'prihod-theme' ) . '»</p><cite>' . esc_html__( 'Мф. 18:20', 'prihod-theme' ) . '</cite></blockquote>';
+    $options = prihod_theme_options();
+    return $options['quote_text'] ? '<blockquote class="prihod-verse"><p>«' . esc_html( $options['quote_text'] ) . '»</p>' . ( $options['quote_source'] ? '<cite>' . esc_html( $options['quote_source'] ) . '</cite>' : '' ) . '</blockquote>' : '';
 }
 function prihod_theme_section_title( string $title, string $url = '', string $link = '' ): string {
     $eyebrow = '';
     if ( 'blue' === prihod_theme_scheme() && is_front_page() ) {
         $labels = array( __( 'О приходе', 'prihod-theme' ) => __( 'Наш приход', 'prihod-theme' ), __( 'О монастыре', 'prihod-theme' ) => __( 'Наша обитель', 'prihod-theme' ), __( 'Новости прихода', 'prihod-theme' ) => __( 'Новости', 'prihod-theme' ), __( 'Новости обители', 'prihod-theme' ) => __( 'Новости', 'prihod-theme' ), __( 'Жизнь прихода в фотографиях', 'prihod-theme' ) => __( 'Фотогалерея', 'prihod-theme' ), __( 'Жизнь обители в фотографиях', 'prihod-theme' ) => __( 'Фотогалерея', 'prihod-theme' ), __( 'Как нас найти', 'prihod-theme' ) => __( 'Контакты', 'prihod-theme' ) );
         if ( isset( $labels[$title] ) ) { $eyebrow = '<p class="prihod-section-eyebrow">' . esc_html( $labels[$title] ) . '</p>'; }
+    }
+    if ( 'editorial' === prihod_theme_scheme() && is_front_page() ) {
+        if ( in_array( $title, array( __( 'Новости прихода', 'prihod-theme' ), __( 'Новости обители', 'prihod-theme' ) ), true ) ) { $eyebrow = '<p class="prihod-section-eyebrow">' . esc_html__( 'Живая Церковь', 'prihod-theme' ) . '</p>'; }
+        if ( in_array( $title, array( __( 'Жизнь прихода в фотографиях', 'prihod-theme' ), __( 'Жизнь обители в фотографиях', 'prihod-theme' ) ), true ) ) { $eyebrow = '<p class="prihod-section-eyebrow">' . esc_html__( 'Фотолетопись', 'prihod-theme' ) . '</p>'; }
     }
     return '<div class="prihod-section-title"><div>' . $eyebrow . '<h2>' . esc_html( $title ) . '</h2></div>' . ( $url ? '<a href="' . esc_url( $url ) . '">' . esc_html( $link ) . ' <span aria-hidden="true">→</span></a>' : '' ) . '</div>';
 }
@@ -64,6 +70,13 @@ function prihod_theme_contact_panel(): string {
         else { $html .= '<div class="prihod-map-address">' . prihod_theme_icon( 'contacts' ) . '<p>' . esc_html( $profile['address'] ) . '</p></div>'; }
         $html .= '<a class="prihod-button is-outline" href="' . esc_url( $options['map_url'] ) . '" target="_blank" rel="noopener">' . esc_html__( 'Открыть карту', 'prihod-theme' ) . ' →</a></div>';
     }
-    if ( 'tradition' === prihod_theme_scheme() ) { $html .= '<aside class="prihod-contact-motto">' . prihod_theme_verse() . prihod_theme_icon( 'cross' ) . '</aside>'; }
+    if ( 'hospitality' === prihod_theme_scheme() ) { $html .= '<aside class="prihod-contact-quote">' . prihod_theme_verse() . '</aside>'; }
+    elseif ( 'editorial' === prihod_theme_scheme() ) {
+        $html .= '<aside class="prihod-contact-welcome"><div><h3>' . esc_html__( 'Мы рядом', 'prihod-theme' ) . '</h3><p>' . esc_html( $profile['description'] ) . '</p>';
+        $contact = prihod_theme_url( 'contacts' );
+        if ( $contact ) { $html .= '<a href="' . esc_url( $contact ) . '">' . esc_html__( 'Связаться с нами', 'prihod-theme' ) . ' →</a>'; }
+        $html .= '</div>' . wp_get_attachment_image( $options['about_image'] ?: $options['hero_image'], 'medium' ) . '</aside>';
+    }
+    elseif ( 'tradition' === prihod_theme_scheme() ) { $html .= '<aside class="prihod-contact-motto">' . prihod_theme_verse() . prihod_theme_icon( 'cross' ) . '</aside>'; }
     return $html . '</div></section>';
 }

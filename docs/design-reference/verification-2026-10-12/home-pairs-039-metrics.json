@@ -1,0 +1,130 @@
+[
+  {
+    "scheme": "editorial",
+    "contactColumns": "211.047px 407.047px 376.906px",
+    "contactRegions": 3,
+    "heroHeight": 384.6875,
+    "overflow": false,
+    "scroll": 0,
+    "sectionY": {
+      ".prihod-editorial-news": 719,
+      ".prihod-feature-grid": 522,
+      ".prihod-home-contacts": 1307,
+      ".prihod-home-gallery": 1106,
+      ".prihod-news-section": 723
+    },
+    "supportUrl": "https://prihod.georg-kloster.ru/?page_id=18&prihod_preview=editorial",
+    "tileHeight": 173,
+    "width": 1122
+  },
+  {
+    "scheme": "hospitality",
+    "contactColumns": "525.391px 262.688px 218.922px",
+    "contactRegions": 3,
+    "heroHeight": 312.46875,
+    "overflow": false,
+    "scroll": 0,
+    "sectionY": {
+      ".prihod-editorial-news": null,
+      ".prihod-feature-grid": 451,
+      ".prihod-home-contacts": 1189,
+      ".prihod-home-gallery": 1043,
+      ".prihod-news-section": 807
+    },
+    "supportUrl": "https://prihod.georg-kloster.ru/?page_id=18&prihod_preview=hospitality",
+    "tileHeight": 108.5625,
+    "width": 1122
+  },
+  {
+    "scheme": "hospitality",
+    "mobile": true,
+    "contactColumns": "343px",
+    "contactRegions": 3,
+    "heroHeight": 704.796875,
+    "overflow": false,
+    "scroll": 0,
+    "sectionY": {
+      ".prihod-editorial-news": null,
+      ".prihod-feature-grid": 963,
+      ".prihod-home-contacts": 3036,
+      ".prihod-home-gallery": 2812,
+      ".prihod-news-section": 1982
+    },
+    "supportUrl": "https://prihod.georg-kloster.ru/?page_id=18&prihod_preview=hospitality",
+    "tileHeight": 171.625,
+    "width": 390
+  },
+  {
+    "scheme": "editorial",
+    "mobile": true,
+    "contactColumns": "343px",
+    "contactRegions": 3,
+    "heroHeight": 929.6875,
+    "overflow": false,
+    "scroll": 0,
+    "sectionY": {
+      ".prihod-editorial-news": 1800,
+      ".prihod-feature-grid": 1188,
+      ".prihod-home-contacts": 3031,
+      ".prihod-home-gallery": 2779,
+      ".prihod-news-section": 1804
+    },
+    "supportUrl": "https://prihod.georg-kloster.ru/?page_id=18&prihod_preview=editorial",
+    "tileHeight": 195.28125,
+    "width": 390
+  },
+  {
+    "scheme": "classic",
+    "regression": true,
+    "contactColumns": "575.953px 443.047px",
+    "contactRegions": 2,
+    "heroHeight": 280,
+    "overflow": false,
+    "scroll": 0,
+    "sectionY": {
+      ".prihod-editorial-news": null,
+      ".prihod-feature-grid": 486,
+      ".prihod-home-contacts": 1329,
+      ".prihod-home-gallery": 1183,
+      ".prihod-news-section": 915
+    },
+    "tileHeight": 185.890625,
+    "width": 1122
+  },
+  {
+    "scheme": "tradition",
+    "regression": true,
+    "contactColumns": "275.641px 399.703px 275.641px",
+    "contactRegions": 3,
+    "heroHeight": 290,
+    "overflow": false,
+    "scroll": 0,
+    "sectionY": {
+      ".prihod-editorial-news": null,
+      ".prihod-feature-grid": 544,
+      ".prihod-home-contacts": 1204,
+      ".prihod-home-gallery": 1005,
+      ".prihod-news-section": 1005
+    },
+    "tileHeight": 205.96875,
+    "width": 1122
+  },
+  {
+    "scheme": "blue",
+    "regression": true,
+    "contactColumns": "544.297px 418.688px",
+    "contactRegions": 2,
+    "heroHeight": 413.71875,
+    "overflow": false,
+    "scroll": 0,
+    "sectionY": {
+      ".prihod-editorial-news": null,
+      ".prihod-feature-grid": 539,
+      ".prihod-home-contacts": 1369,
+      ".prihod-home-gallery": 1202,
+      ".prihod-news-section": 930
+    },
+    "tileHeight": 115.234375,
+    "width": 1122
+  }
+]

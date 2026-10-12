@@ -19,7 +19,8 @@ function prihod_theme_home_features( string $scheme, array $photos, string $abou
         $url = prihod_theme_url( $key ); if ( ! $url ) { continue; }
         $card = $cards[$key]; $photo = absint( $options['feature_' . $key] ?? 0 ) ?: ( prihod_theme_resource_image( $key ) ?: ( $fallback_photos[$key] ?? 0 ) );
         if ( ! $photo ) { $photo = $photos[0] ?? 0; }
-        $html .= '<a class="prihod-feature' . ( $photo_cards ? ' has-photo' : '' ) . '" href="' . esc_url( $url ) . '">' . ( $photo_cards && $photo ? wp_get_attachment_image( $photo, 'medium_large', false, array( 'class' => 'prihod-feature-photo', 'style' => 'object-position:center 25%' ) ) : '' ) . '<div class="prihod-feature-copy">' . prihod_theme_icon( $key ) . '<div><h2>' . esc_html( $card[0] ) . '</h2><p>' . esc_html( $card[1] ) . '</p><span class="prihod-feature-link">' . esc_html( $card[2] ) . ' →</span></div></div></a>';
+        $support = 'editorial' === $scheme && 'donations' === $key && ! absint( $options['feature_donations'] );
+        $html .= '<a class="prihod-feature' . ( $support ? ' prihod-feature-support' : ( $photo_cards ? ' has-photo' : '' ) ) . '" href="' . esc_url( $url ) . '">' . ( $support ? '<div class="prihod-feature-support-symbol">' . prihod_theme_icon( 'support' ) . '</div>' : ( $photo_cards && $photo ? wp_get_attachment_image( $photo, 'medium_large', false, array( 'class' => 'prihod-feature-photo', 'style' => 'object-position:center 25%' ) ) : '' ) ) . '<div class="prihod-feature-copy">' . prihod_theme_icon( $key ) . '<div><h2>' . esc_html( $card[0] ) . '</h2><p>' . esc_html( $card[1] ) . '</p><span class="prihod-feature-link">' . esc_html( $card[2] ) . ' →</span></div></div></a>';
     }
     return $html . '</nav>';
 }

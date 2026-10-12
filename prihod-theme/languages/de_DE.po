@@ -1716,3 +1716,21 @@ msgstr "Häufigkeit"
 
 msgid "Карта (Stripe)"
 msgstr "Karte (Stripe)"
+
+msgid "Поддержать храм"
+msgstr "Die Kirche unterstützen"
+
+msgid "Мы рядом"
+msgstr "Wir sind für Sie da"
+
+msgid "Живая Церковь"
+msgstr "Lebendige Kirche"
+
+msgid "Фотолетопись"
+msgstr "Fotochronik"
+
+msgid "Текст цитаты"
+msgstr "Zitattext"
+
+msgid "Источник цитаты"
+msgstr "Quelle des Zitats"
