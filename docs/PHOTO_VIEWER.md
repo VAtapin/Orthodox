@@ -72,3 +72,43 @@ Native controls, подпись, navigation/focus lifecycle сохранены; 
 источник,contain, геометрия928×628/350×664, без горизонтального overflow.
 Отдельно проверены портрет и горизонтальный кадр, перелистывание и закрытие;
 ошибокJS нет. Снимки live-*-0320 и метрики live-photo-0320-metrics.json.
+
+
+### Иконы расписания: Core rc.15 / тема 0.3.23
+
+Используется существующий native core/image: Core предоставляет markup filter,
+тема регистрирует каждую включённую икону до hydration. Миниатюра обновляется
+в прежнем IMG, сохраняющем native directives. В WP6.5 uploadedSrc находится
+в data-wp-context, в новых версиях — в серверном metadata core/image.
+Приватное клиентское хранилище не читается и не разблокируется.
+
+GET /prihod/v1/schedule-icon-image?date=YYYY-MM-DD возвращает 302 только для
+опубликованной службы с включённой иконой. Дата валидируется, provider throttle
+сохранён. Полный источник orthocal разрешается через его signed REST media route
+без thumbnail=1; сторонний плагин не изменён. Запасные full-size оригиналы
+хранятся локально отдельно от прежних маленьких миниатюр, лицензии в SOURCES.txt.
+Без темы Core сохраняет обычную ссылку на полный источник в новой вкладке.
+
+Native окно ограничено прежними размерами, изображение contain; подпись и
+авторство сохраняются. Escape/крестик возвращают фокус на trigger. Повторное
+открытие иконы во время native closing animation ждёт её окончания.
+Источник 14.10.2026 содержит Хитон Господень, хотя главный праздник — Покров;
+его реальное название сохранено, другого образа API на эту дату не отдаёт.
+
+Проверки: WP7.1.3/PHP8.4.25 336/210; WP6.5.13/PHP8.0.30 310/209,
+62 unit, 2427 UI translations, PHP/JS syntax. Снимки просмотра в
+verification-2026-10-13/icon-viewer-rc15. Установка rc.15/0.3.23 ещё не разрешена;
+на сервере остаются rc.14/0.3.22.
+
+После отдельного разрешения и загрузки двух ZIP и tests/server-check.php только
+в wp-content этого WordPress команда обновления (фактический Plesk PHP8.5.11):
+
+```bash
+cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
+export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
+php /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.15.zip --force --activate && \
+php /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.23.zip --force && \
+php /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
+```
+
+Dependencies, migrations, Node build и серверные настройки не меняются.

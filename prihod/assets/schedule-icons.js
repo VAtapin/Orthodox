@@ -38,18 +38,33 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!icon) return;
             const imageUrl = icon.url;
             if (!imageUrl || !/^https?:\/\//.test(imageUrl)) return;
-            const image = document.createElement('img');
+            const native = figure.classList.contains('wp-lightbox-container');
+            const image = figure.querySelector('img') || document.createElement('img');
+            let activeIcon = icon;
             image.alt = icon.alt; image.decoding = 'async';
             figure.dataset.iconSource = icon.fallback ? 'fallback' : 'day';
-            image.addEventListener('load', () => { figure.hidden = false; }, {once: true});
+            const notify = () => {
+                figure.hidden = false;
+                const current = activeIcon;
+                if (!native) {
+                    const link = image.closest('a');
+                    if (link) link.href = current.fullUrl || image.src;
+                }
+                figure.dispatchEvent(new CustomEvent('prihod:icon-loaded', {bubbles:true,detail:{figure,image,icon:current}}));
+            };
+            image.addEventListener('load', notify, {once: true});
             image.addEventListener('error', () => {
                 if (fallback?.url && image.src !== fallback.url) {
+                    activeIcon = fallback;
                     figure.querySelector('figcaption')?.remove();
                     figure.dataset.iconSource = 'fallback'; image.alt = fallback.alt; image.src = fallback.url;
                     image.addEventListener('error', () => { figure.hidden = true; }, {once:true});
                 } else figure.hidden = true;
             }, {once: true});
-            figure.append(image);
+            if (!native) {
+                const link = document.createElement('a'); link.target = '_blank'; link.rel = 'noopener';
+                link.href = icon.fullUrl || imageUrl; link.append(image); figure.append(link);
+            }
             if (icon.attribution) { const caption = document.createElement('figcaption'); caption.textContent = icon.attribution; figure.append(caption); }
             image.src = imageUrl;
         } catch (_) { /* An unavailable icon never replaces the actual schedule. */ }

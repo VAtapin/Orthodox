@@ -32,7 +32,9 @@ final class Calendar_Icons {
         $id = absint( self::options()[$sunday ? 'sunday' : 'weekday'] );
         $url = $id && wp_attachment_is_image( $id ) ? wp_get_attachment_image_url( $id, 'medium' ) : false;
         $alt = $url ? ( get_post_meta( $id, '_wp_attachment_image_alt', true ) ?: get_the_title( $id ) ) : ( $sunday ? __( 'Воскресение Христово — Сошествие во ад', 'prihod' ) : __( 'Спаситель — Христос Вседержитель', 'prihod' ) );
-        return array( 'url' => $url ?: plugins_url( 'assets/icons/' . ( $sunday ? 'resurrection.jpg' : 'christ.jpg' ), PRIHOD_FILE ), 'alt' => sanitize_text_field( $alt ), 'attribution' => '', 'media' => '', 'fallback' => true );
+        $builtin = plugins_url( 'assets/icons/' . ( $sunday ? 'resurrection.jpg' : 'christ.jpg' ), PRIHOD_FILE );
+        $full = plugins_url( 'assets/icons/' . ( $sunday ? 'resurrection-full.jpg' : 'christ-full.jpg' ), PRIHOD_FILE );
+        return array( 'url' => $url ?: $builtin, 'fullUrl' => $url ? wp_get_attachment_image_url( $id, 'full' ) : $full, 'alt' => sanitize_text_field( $alt ), 'attribution' => '', 'media' => '', 'fallback' => true );
     }
     public static function render(): void {
         if ( ! current_user_can( 'manage_prihod_settings' ) ) { return; }

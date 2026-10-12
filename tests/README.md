@@ -186,3 +186,10 @@ home-detail-smoke.php: 11 проверок независимых владель
 девизов, пустых значений, sanitization/частичных старых форм, приоритета выбранных
 фото над символами tradition и обработки настоящего портрета. Временные параметры
 восстанавливаются. CSS geometry/лицо/мобильный overflow отдельно проверены браузером.
+
+### Просмотр икон rc.15 / тема 0.3.23
+
+336 smoke / 210 design на WP7.1.3/PHP8.4.25; 310 / 209 на WP6.5.13/PHP8.0.30.
+Проверены native Image metadata обеих версий, opt-in permission full-size endpoint,
+signed orthocal media без thumbnail, отдельно full/medium выбранных attachment.
+Никаких реальных отправок; интеграционные fixtures одноразовые.

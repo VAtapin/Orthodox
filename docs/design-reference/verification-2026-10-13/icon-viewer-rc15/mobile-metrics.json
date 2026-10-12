@@ -1,0 +1,38 @@
+[
+  {
+    "full": [
+      330,
+      3776
+    ],
+    "overflow": false,
+    "scheme": "prihod-scheme-classic",
+    "width": 390
+  },
+  {
+    "full": [
+      330,
+      3776
+    ],
+    "overflow": false,
+    "scheme": "prihod-scheme-hospitality",
+    "width": 390
+  },
+  {
+    "full": [
+      330,
+      3776
+    ],
+    "overflow": false,
+    "scheme": "prihod-scheme-editorial",
+    "width": 390
+  },
+  {
+    "full": [
+      330,
+      3776
+    ],
+    "overflow": false,
+    "scheme": "prihod-scheme-tradition",
+    "width": 390
+  }
+]

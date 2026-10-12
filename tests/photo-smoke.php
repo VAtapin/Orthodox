@@ -18,6 +18,16 @@ $custom = '<figure class="wp-block-post-featured-image owner-figure" style="marg
 $converted = prihod_theme_photo_html( $custom, $photo_id );
 $check( str_contains( $converted, 'owner-figure' ) && str_contains( $converted, 'margin-top:7px' ) && str_contains( $converted, 'target="_blank" rel="noopener"' ) && str_contains( $converted, 'Owner alternate text' ), 'Featured photo preserves figure styling, alternative text and existing link attributes.' );
 $check( '' === prihod_theme_photo( 0 ) && $custom === prihod_theme_photo_html( $custom, 0 ), 'Missing attachments do not create an empty viewer.' );
+$icon_event = array( 'day_icon' => true, 'cancelled' => false, 'start' => new DateTimeImmutable( '2026-10-18 Europe/Berlin' ) );
+$native_icon = Prihod\Schedule_Calendar::icon_placeholder( $icon_event );
+$check( str_contains( $native_icon, 'wp-lightbox-container' ) && str_contains( $native_icon, 'lightbox-trigger' ) && str_contains( $native_icon, 'data-wp-context=' ), 'Asynchronous service icons are registered as real native Image blocks before client hydration.' );
+$check( str_contains( $native_icon, 'class="prihod-service-icon' ) && str_contains( $native_icon, 'data-prihod-day-icon=' ) && str_contains( $native_icon, 'resurrection.jpg' ), 'Native icon registration retains the existing thumbnail size hooks, opt-in and local Sunday seed.' );
+$icon_tags = new WP_HTML_Tag_Processor( $native_icon ); $icon_tags->next_tag( 'FIGURE' );
+$icon_context = json_decode( $icon_tags->get_attribute( 'data-wp-context' ), true );
+$icon_metadata = isset( $icon_context['imageId'] ) ? wp_interactivity_state( 'core/image' )['metadata'][$icon_context['imageId']] : $icon_context;
+$check( str_contains( $icon_metadata['uploadedSrc'], 'schedule-icon-image' ) && str_contains( $icon_metadata['uploadedSrc'], 'date=2026-10-18' ), 'Native full-size metadata uses its own actual-date endpoint without accessing the private client store.' );
+$icon_event['day_icon'] = false;
+$check( '' === Prihod\Schedule_Calendar::icon_placeholder( $icon_event ), 'An opted-out service creates no native image trigger or hidden icon.' );
 $thumbnail_post = get_posts( array( 'post_type' => 'post', 'post_status' => 'publish', 'numberposts' => 1, 'meta_key' => '_thumbnail_id' ) )[0];
 $thumbnail_filter = static fn( $html ) => str_replace( '<img ', '<img data-owner-thumbnail="yes" ', $html );
 add_filter( 'post_thumbnail_html', $thumbnail_filter );

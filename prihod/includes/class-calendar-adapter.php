@@ -32,8 +32,11 @@ final class Calendar_Adapter {
             $item = \Orthocal_Plugin::icon_items( $day )[0] ?? null;
             if ( $item ) {
                 $source = $item['images'][0] ?? '';
-                $icon = array( 'url' => $item['localUrl'] ?? '', 'alt' => sanitize_text_field( $item['alt'] ?? '' ), 'attribution' => sanitize_text_field( $item['attribution'] ?? '' ), 'media' => '' );
-                if ( ! $icon['url'] && $source ) { $icon['media'] = add_query_arg( array( 'source' => $source, 'token' => \Orthocal_Media_Cache::token( $source ), 'thumbnail' => '1' ), rest_url( 'orthocal/v1/media' ) ); }
+                $icon = array( 'url' => $item['localUrl'] ?? '', 'fullUrl' => Schedule_Calendar::image_url( $date ), 'alt' => sanitize_text_field( $item['alt'] ?? '' ), 'attribution' => sanitize_text_field( $item['attribution'] ?? '' ), 'media' => '', 'fullMedia' => '' );
+                if ( $source ) {
+                    $icon['fullMedia'] = add_query_arg( array( 'source' => $source, 'token' => \Orthocal_Media_Cache::token( $source ) ), rest_url( 'orthocal/v1/media' ) );
+                    if ( ! $icon['url'] ) { $icon['media'] = add_query_arg( 'thumbnail', '1', $icon['fullMedia'] ); }
+                }
             }
         }
         $feasts = self::feasts( $day );

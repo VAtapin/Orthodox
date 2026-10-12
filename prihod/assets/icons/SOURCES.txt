@@ -11,3 +11,8 @@ Thumbnail (330px, unmodified): https://upload.wikimedia.org/wikipedia/commons/th
 License: Public Domain, as documented on the file page.
 
 Local replacements may be selected in Prihod settings. These are explicitly fallback images, not an API assertion about the saint commemorated on that date.
+
+Full-size, unmodified originals for the native enlarged viewer only:
+christ-full.jpg: https://upload.wikimedia.org/wikipedia/commons/4/4a/Spas_vsederzhitel_sinay.jpg
+resurrection-full.jpg: https://upload.wikimedia.org/wikipedia/commons/4/48/Resurrection_of_Jesus_icon1.jpg
+The same public-domain sources/licenses above apply. The small thumbnail files remain unchanged.

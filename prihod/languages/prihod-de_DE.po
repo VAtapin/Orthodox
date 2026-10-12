@@ -2484,3 +2484,6 @@ msgstr "Ikone auswählen"
 
 msgid "Встроенный образ"
 msgstr "Integrierte Ikone"
+
+msgid "Икона дня"
+msgstr "Tagesikone"

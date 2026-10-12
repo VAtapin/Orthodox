@@ -24,19 +24,20 @@ function prihod_theme_post_photo( $post, string $size = 'medium_large', string $
 }
 
 /** Preserve author markup and links while keeping the native zoom button outside links. */
-function prihod_theme_photo_html( string $content, int $id, string $group = '' ): string {
-    if ( ! $id || ! wp_attachment_is_image( $id ) || is_admin() ) { return $content; }
+function prihod_theme_photo_html( string $content, int $id, string $group = '', bool $external = false ): string {
+    if ( ( ! $external && ( ! $id || ! wp_attachment_is_image( $id ) ) ) || is_admin() ) { return $content; }
     $anchor = '';
     $content = preg_replace_callback( '/(<a\b[^>]*>)(\s*<img\b[^>]*>\s*)<\/a>/s', static function ( $match ) use ( &$anchor ) { $anchor = $match[1]; return $match[2]; }, $content, 1 );
     $tags = new WP_HTML_Tag_Processor( $content );
-    if ( $tags->next_tag( 'IMG' ) ) { $tags->add_class( 'wp-image-' . $id ); }
+    if ( $tags->next_tag( 'IMG' ) && $id ) { $tags->add_class( 'wp-image-' . $id ); }
     $content = $tags->get_updated_html();
-    $parsed = array( 'blockName' => 'core/image', 'attrs' => array( 'id' => $id, 'lightbox' => array( 'enabled' => true ) ), 'innerBlocks' => array(), 'innerHTML' => $content, 'innerContent' => array( $content ) );
+    $attrs = array( 'lightbox' => array( 'enabled' => true ) ); if ( $id ) { $attrs['id'] = $id; }
+    $parsed = array( 'blockName' => 'core/image', 'attrs' => $attrs, 'innerBlocks' => array(), 'innerHTML' => $content, 'innerContent' => array( $content ) );
     $block = new WP_Block( $parsed, $group ? array( 'galleryId' => $group ) : array() );
     $html = $block->render();
     $tags = new WP_HTML_Tag_Processor( $html );
     if ( $tags->next_tag( 'FIGURE' ) ) {
-        $tags->set_attribute( 'data-prihod-photo-id', (string) $id );
+        if ( $id ) { $tags->set_attribute( 'data-prihod-photo-id', (string) $id ); }
         if ( $group ) { $tags->set_attribute( 'data-prihod-photo-group', $group ); }
     }
     if ( $anchor && $tags->next_tag( 'IMG' ) ) { $tags->remove_attribute( 'data-wp-on--click' ); }
@@ -58,7 +59,20 @@ add_filter( 'render_block_core/post-featured-image', static function ( string $h
 }, 20, 3 );
 
 add_action( 'wp_enqueue_scripts', function () {
-    wp_enqueue_script( 'prihod-theme-photos', get_template_directory_uri() . '/assets/photos.js', array(), '0.3.20', true );
+    wp_enqueue_script( 'prihod-theme-photos', get_template_directory_uri() . '/assets/photos.js', array(), '0.3.23.' . filemtime( get_template_directory() . '/assets/photos.js' ), true );
     wp_enqueue_style( 'prihod-theme-photos', get_template_directory_uri() . '/assets/photos.css', array( 'prihod-theme-reference' ), '0.3.20.' . filemtime( get_template_directory() . '/assets/photos.css' ) );
     wp_localize_script( 'prihod-theme-photos', 'prihodPhotoLabels', array( 'previous' => __( 'Предыдущее фото', 'prihod-theme' ), 'next' => __( 'Следующее фото', 'prihod-theme' ) ) );
 } );
+
+// Register each asynchronous icon with the existing native Image viewer before hydration.
+add_filter( 'prihod_schedule_icon_markup', static function ( string $html, array $event, ?array $fallback ): string {
+    $seed = $fallback['url'] ?? plugins_url( 'assets/icons/christ.jpg', PRIHOD_FILE );
+    $full_url = \Prihod\Schedule_Calendar::image_url( $event['start']->format( 'Y-m-d' ) );
+    $image = '<img src="' . esc_url( $full_url ) . '" alt="' . esc_attr__( 'Икона дня', 'prihod-theme' ) . '" decoding="async">';
+    $html = str_replace( '</figure>', $image . '</figure>', $html );
+    $html = prihod_theme_photo_html( $html, 0, '', true );
+    // Native metadata retains its deferred full-size source; only the thumbnail is seeded.
+    $tags = new WP_HTML_Tag_Processor( $html );
+    if ( $tags->next_tag( 'IMG' ) ) { $tags->set_attribute( 'src', $seed ); }
+    return $tags->get_updated_html();
+}, 10, 3 );

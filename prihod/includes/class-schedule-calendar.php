@@ -17,7 +17,27 @@ final class Schedule_Calendar {
                 $data = Calendar_Adapter::day( $request['date'] );
                 return is_wp_error( $data ) ? $data : array( 'date' => $data['date'], 'icon' => $data['icon'] );
             } ) );
+            register_rest_route( Plugin::REST_NAMESPACE, '/schedule-icon-image', array( 'methods' => 'GET', 'args' => $args, 'permission_callback' => static fn( $request ) => self::public_date( $request['date'] ), 'callback' => array( self::class, 'image' ) ) );
         } );
+    }
+    /** Stable native Image-block source, resolved only when its viewer requests it. */
+    public static function image_url( string $date ): string { return add_query_arg( array( 'date' => $date, 'v' => PRIHOD_VERSION ), rest_url( Plugin::REST_NAMESPACE . '/schedule-icon-image' ) ); }
+    public static function image( \WP_REST_Request $request ) {
+        if ( is_callable( array( '\Orthocal_Plugin', 'throttle' ) ) ) { $rate = \Orthocal_Plugin::throttle(); if ( is_wp_error( $rate ) ) { return $rate; } }
+        $date = $request['date']; $data = Calendar_Adapter::day( $date );
+        $icon = is_wp_error( $data ) ? Calendar_Icons::fallback( $date ) : $data['icon'];
+        if ( ! $icon ) { return is_wp_error( $data ) ? $data : new \WP_Error( 'icon_unavailable', __( 'Икона дня недоступна.', 'prihod' ), array( 'status' => 404 ) ); }
+        $url = ! empty( $icon['fallback'] ) ? $icon['fullUrl'] : $icon['url'];
+        if ( ! empty( $icon['fullMedia'] ) ) {
+            parse_str( wp_parse_url( $icon['fullMedia'], PHP_URL_QUERY ) ?? '', $params );
+            $media_request = new \WP_REST_Request( 'GET', '/orthocal/v1/media' ); $media_request->set_query_params( $params );
+            $media = rest_do_request( $media_request );
+            $body = $media->get_data();
+            if ( $media->get_status() >= 400 || ! is_string( $body['url'] ?? null ) ) { return new \WP_Error( 'icon_unavailable', __( 'Икона дня недоступна.', 'prihod' ), array( 'status' => 503 ) ); }
+            $url = $body['url'];
+        }
+        if ( ! is_string( $url ) || ! preg_match( '~^https?://~i', $url ) ) { return new \WP_Error( 'icon_unavailable', __( 'Икона дня недоступна.', 'prihod' ), array( 'status' => 503 ) ); }
+        return new \WP_REST_Response( null, 302, array( 'Location' => esc_url_raw( $url ), 'Cache-Control' => 'public, max-age=60' ) );
     }
     public static function public_date( string $date, bool $icon_only = true ): bool {
         if ( ! Occurrences::date( $date ) || ! Modules::enabled( 'schedule' ) ) { return false; }
@@ -32,7 +52,8 @@ final class Schedule_Calendar {
         wp_enqueue_script( 'prihod-schedule-icons', plugins_url( 'assets/schedule-icons.js', PRIHOD_FILE ), array(), PRIHOD_VERSION . '.' . filemtime( dirname( PRIHOD_FILE ) . '/assets/schedule-icons.js' ), true );
         $url = add_query_arg( 'date', $event['start']->format( 'Y-m-d' ), rest_url( Plugin::REST_NAMESPACE . '/schedule-feast' ) );
         $fallback = Calendar_Icons::fallback( $event['start']->format( 'Y-m-d' ) );
-        return '<figure class="prihod-service-icon" data-prihod-day-icon="' . esc_url( $url ) . '" data-prihod-icon-fallback="' . esc_attr( wp_json_encode( $fallback ) ) . '" hidden></figure>';
+        $html = '<figure class="prihod-service-icon" data-prihod-day-icon="' . esc_url( $url ) . '" data-prihod-icon-fallback="' . esc_attr( wp_json_encode( $fallback ) ) . '" hidden></figure>';
+        return apply_filters( 'prihod_schedule_icon_markup', $html, $event, $fallback );
     }
     public static function feast_placeholder( array $event ): string {
         if ( $event['cancelled'] ) { return ''; }

@@ -4,9 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const nativeNavigation = !!overlay.querySelector('.wp-lightbox-navigation-button');
     const caption = document.createElement('p');
     caption.className = 'prihod-photo-caption';
+    caption.id = 'prihod-photo-caption';
     caption.setAttribute('aria-live', 'polite');
     overlay.append(caption);
-    let source = null, group = [], opener = null, navigating = false, wasOpen = false, focusTimer, returning;
+    overlay.setAttribute('aria-describedby', [overlay.getAttribute('aria-describedby'),caption.id].filter(Boolean).join(' '));
+    let source = null, group = [], opener = null, navigating = false, wasOpen = false, focusTimer, returning, reopenTimer, closingUntil = 0;
 
     function cancelReturn() {
         clearTimeout(focusTimer);
@@ -34,7 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const order = nativeNavigation && overlay.getAttribute('aria-label')?.match(/(?:^|\D)(\d+)\D+(\d+)(?:\D|$)/);
             if (order && Number(order[2]) === group.length && group[Number(order[1]) - 1]) source = group[Number(order[1]) - 1];
             else if (displayedId) source = group.find(item => imageId(item) === displayedId) || source;
-            const text = source.querySelector('figcaption')?.textContent.trim() || source.querySelector('img')?.alt || '';
+            const description = source.querySelector('img')?.alt || '';
+            const attribution = source.querySelector('figcaption')?.textContent.trim() || '';
+            const text = source.hasAttribute('data-prihod-day-icon') ? [description,attribution].filter(Boolean).join(' · ') : attribution || description;
             const position = group.length > 1 ? `${group.indexOf(source) + 1} / ${group.length}` : '';
             const label = [text, position].filter(Boolean).join(' · ');
             if (caption.textContent !== label) caption.textContent = label;
@@ -75,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', event => {
         if (returning && !overlay.classList.contains('active')) cancelReturn();
         const target = event.target instanceof Element ? event.target : null;
+        if (target?.closest('.wp-lightbox-close-button') || target === overlay) closingUntil = Date.now() + 700;
         const navigation = target?.closest('.prihod-photo-navigation');
         if (navigation && overlay.contains(navigation)) {
             event.preventDefault(); event.stopImmediatePropagation();
@@ -85,6 +90,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const figure = target?.closest('.wp-lightbox-container');
         if (!figure || (!target.matches('img') && !target.closest('.lightbox-trigger'))) return;
         if (target.closest('a[href]') && !target.closest('.lightbox-trigger')) return;
+        // The native close resets its selected image after its own animation.
+        if (figure.hasAttribute('data-prihod-day-icon') && Date.now() < closingUntil) {
+            event.preventDefault(); event.stopImmediatePropagation();
+            const trigger = target.closest('.lightbox-trigger') || figure.querySelector('.lightbox-trigger');
+            clearTimeout(reopenTimer);
+            reopenTimer = setTimeout(() => { if (trigger?.isConnected) trigger.click(); }, closingUntil - Date.now());
+            return;
+        }
         source = figure;
         group = collection(figure);
         if (!navigating) opener = target.closest('.lightbox-trigger') || figure.querySelector('.lightbox-trigger');
@@ -104,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, true);
     document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && overlay.classList.contains('active')) closingUntil = Date.now() + 700;
         if (returning && !overlay.classList.contains('active') && (event.key === 'Tab' || !overlay.contains(event.target))) cancelReturn();
         if (nativeNavigation || !overlay.classList.contains('active') || !overlay.contains(event.target)) return;
         if (['ArrowLeft', 'ArrowRight'].includes(event.key) && group.length > 1) {
