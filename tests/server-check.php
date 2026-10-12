@@ -39,7 +39,7 @@ foreach ( array( 'de_DE', 'pl_PL', 'uk' ) as $locale ) {
 }
 echo wp_json_encode( array( 'status' => 'PRIHOD_SERVER_OK', 'checks' => $checked, 'wordpress' => get_bloginfo( 'version' ), 'php' => PHP_VERSION, 'theme' => wp_get_theme()->get( 'Version' ) ), JSON_UNESCAPED_UNICODE ) . PHP_EOL;
 
-$check( '1.0.0-rc.7' === PRIHOD_VERSION && '0.3.15' === wp_get_theme()->get( 'Version' ), 'Reference-design release versions must be installed.' );
+$check( '1.0.0-rc.7' === PRIHOD_VERSION && '0.3.16' === wp_get_theme()->get( 'Version' ), 'Reference-design release versions must be installed.' );
 prihod_theme_prepare_provider_assets();
 do_shortcode( '[' . $donation_tag . ']' );
 $check( str_contains( (string) wp_scripts()->get_data( 'georg-kloster-orthodox-donate', 'data' ), 'georgKlosterOrthodoxDonate' ), 'Native donation configuration must exist before the block theme prints scripts.' );
@@ -129,3 +129,12 @@ $check( str_contains( $pilgrim_html, 'id="prihod-pilgrim-groups"' ) && str_conta
 $check( get_post_field( 'post_content', $GLOBALS['post']->ID ) === $pilgrim_original && get_page_template_slug( $GLOBALS['post']->ID ) === $pilgrim_template_original, 'Pilgrim presentation must not save content or the selected template.' );
 $GLOBALS['wp_query'] = $previous_query; $GLOBALS['post'] = $previous_post; $GLOBALS['_wp_current_template_id'] = $previous_template; $GLOBALS['_wp_current_template_content'] = $previous_template_content;
 echo "PILGRIM_DESIGN_CHECK_OK: {$checked} total checks.\n";
+
+$previous_query = $GLOBALS['wp_query']; $previous_post = $GLOBALS['post'] ?? null; $previous_template = $GLOBALS['_wp_current_template_id'] ?? ''; $previous_template_content = $GLOBALS['_wp_current_template_content'] ?? '';
+$GLOBALS['wp_query'] = new WP_Query( array( 'page_id' => $resources['contacts']['id'] ) ); $GLOBALS['post'] = get_post( $resources['contacts']['id'] ); $contact_original = $GLOBALS['post']->post_content; $contact_slug = get_page_template_slug( $GLOBALS['post']->ID );
+get_page_template(); $contact_template = get_block_template( get_stylesheet() . '//contacts', 'wp_template' ); $contact_html = do_blocks( $contact_template->content );
+$check( get_stylesheet() . '//contacts' === $GLOBALS['_wp_current_template_id'] && strpos( $contact_html, 'prihod-contacts-primary' ) < strpos( $contact_html, 'prihod-contacts-road' ), 'Real contacts must precede detailed road instructions.' );
+$check( str_contains( $contact_html, 'href="tel:+491714340444"' ) && str_contains( $contact_html, 'href="mailto:info@georg-kloster.de"' ) && str_contains( $contact_html, 'openstreetmap.org/export/embed.html' ), 'Native phone/email and existing confirmed map must be available.' );
+$check( get_post_field( 'post_content', $GLOBALS['post']->ID ) === $contact_original && get_page_template_slug( $GLOBALS['post']->ID ) === $contact_slug, 'Contact presentation must preserve page data and selected template.' );
+$GLOBALS['wp_query'] = $previous_query; $GLOBALS['post'] = $previous_post; $GLOBALS['_wp_current_template_id'] = $previous_template; $GLOBALS['_wp_current_template_content'] = $previous_template_content;
+echo "CONTACTS_DESIGN_CHECK_OK: {$checked} total checks.\n";

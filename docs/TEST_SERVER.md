@@ -157,3 +157,24 @@ WP 7.1.3/PHP 8.5.11; пять схем при 1122/390 и настоящие п�
 Сохранены содержание и выбранный в БД шаблон, настройки фото/карты не сохранялись.
 Применяется только тема: команда «Только обновление темы». Core rc.7, внешние
 плагины и общий сервер не обновлялись; импорт/публикация/отправка не выполнялись.
+
+## Подготовленные контакты 0.3.16 — пока не установлены
+
+Auto-review отклонил загрузку новой версии на общий сервер, потребовав отдельное
+разрешение на это обновление. Никакая часть загрузки/deployment не выполнялась;
+живой WordPress остаётся на 0.3.15, его 59 проверок не заменяют проверку 0.3.16.
+После прямого разрешения загрузить build/prihod-theme-0.3.16.zip и tests/server-check.php
+в существующие wp-content/prihod-packages и wp-content/prihod-server-check.php.
+Подготовленные локальные файлы команд: build/sftp-contacts-reference.txt,
+build/ssh-contacts-reference.sh. Последний содержит:
+
+```bash
+cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
+export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.16.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
+```
+
+Проверка 0.3.16 содержит 62 условия. Она подготовлена, но на сервере не запускалась.
+Никаких импортов, записей настроек, миграций, оплат/писем/публикаций или действий
+вне этого WordPress команда не включает. Core и внешние плагины не обновляются.

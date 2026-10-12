@@ -110,4 +110,5 @@ $GLOBALS['wp_query'] = $saved_query;
 require __DIR__ . '/catalog-smoke.php';
 require __DIR__ . '/clergy-design-smoke.php';
 require __DIR__ . '/pilgrim-design-smoke.php';
+require __DIR__ . '/contacts-design-smoke.php';
 echo "DESIGN_SMOKE_OK: {$checks} checks.\n";

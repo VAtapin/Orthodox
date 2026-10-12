@@ -1,0 +1,316 @@
+{
+  "desktop": [
+    {
+      "email": "mailto:info@georg-kloster.de",
+      "links": [
+        "http://127.0.0.1:9401/%d0%b2%d0%be%d0%bf%d1%80%d0%be%d1%81-%d1%81%d0%b2%d1%8f%d1%89%d0%b5%d0%bd%d0%bd%d0%b8%d0%ba%d1%83/?prihod_preview=classic",
+        "http://127.0.0.1:9401/%d0%bf%d0%b5%d1%80%d0%b2%d1%8b%d0%b9-%d1%80%d0%b0%d0%b7-%d0%b2-%d1%85%d1%80%d0%b0%d0%bc%d0%b5/?prihod_preview=classic"
+      ],
+      "map": "https://www.openstreetmap.org/export/embed.html?bbox=13.6518627%2C53.0821374%2C13.6918627%2C53.1021374&layer=mapnik&marker=53.0921374%2C13.6718627",
+      "overflow": false,
+      "phone": "tel:+491714340444",
+      "photo": {
+        "height": 130,
+        "top": 768.140625,
+        "width": 180
+      },
+      "primary": {
+        "height": 265.03125,
+        "top": 396.515625,
+        "width": 1058
+      },
+      "road": {
+        "height": 380.765625,
+        "top": 693.546875,
+        "width": 1058
+      },
+      "scheme": "classic",
+      "viewport": 1122
+    },
+    {
+      "email": "mailto:info@georg-kloster.de",
+      "links": [
+        "http://127.0.0.1:9401/%d0%b2%d0%be%d0%bf%d1%80%d0%be%d1%81-%d1%81%d0%b2%d1%8f%d1%89%d0%b5%d0%bd%d0%bd%d0%b8%d0%ba%d1%83/?prihod_preview=hospitality",
+        "http://127.0.0.1:9401/%d0%bf%d0%b5%d1%80%d0%b2%d1%8b%d0%b9-%d1%80%d0%b0%d0%b7-%d0%b2-%d1%85%d1%80%d0%b0%d0%bc%d0%b5/?prihod_preview=hospitality"
+      ],
+      "map": "https://www.openstreetmap.org/export/embed.html?bbox=13.6518627%2C53.0821374%2C13.6918627%2C53.1021374&layer=mapnik&marker=53.0921374%2C13.6718627",
+      "overflow": false,
+      "phone": "tel:+491714340444",
+      "photo": {
+        "height": 130,
+        "top": 781.875,
+        "width": 180
+      },
+      "primary": {
+        "height": 265.03125,
+        "top": 410.25,
+        "width": 1058
+      },
+      "road": {
+        "height": 380.765625,
+        "top": 707.28125,
+        "width": 1058
+      },
+      "scheme": "hospitality",
+      "viewport": 1122
+    },
+    {
+      "email": "mailto:info@georg-kloster.de",
+      "links": [
+        "http://127.0.0.1:9401/%d0%b2%d0%be%d0%bf%d1%80%d0%be%d1%81-%d1%81%d0%b2%d1%8f%d1%89%d0%b5%d0%bd%d0%bd%d0%b8%d0%ba%d1%83/?prihod_preview=editorial",
+        "http://127.0.0.1:9401/%d0%bf%d0%b5%d1%80%d0%b2%d1%8b%d0%b9-%d1%80%d0%b0%d0%b7-%d0%b2-%d1%85%d1%80%d0%b0%d0%bc%d0%b5/?prihod_preview=editorial"
+      ],
+      "map": "https://www.openstreetmap.org/export/embed.html?bbox=13.6518627%2C53.0821374%2C13.6918627%2C53.1021374&layer=mapnik&marker=53.0921374%2C13.6718627",
+      "overflow": false,
+      "phone": "tel:+491714340444",
+      "photo": {
+        "height": 130,
+        "top": 780.578125,
+        "width": 180
+      },
+      "primary": {
+        "height": 265.03125,
+        "top": 408.953125,
+        "width": 1058
+      },
+      "road": {
+        "height": 380.765625,
+        "top": 705.984375,
+        "width": 1058
+      },
+      "scheme": "editorial",
+      "viewport": 1122
+    },
+    {
+      "email": "mailto:info@georg-kloster.de",
+      "links": [
+        "http://127.0.0.1:9401/%d0%b2%d0%be%d0%bf%d1%80%d0%be%d1%81-%d1%81%d0%b2%d1%8f%d1%89%d0%b5%d0%bd%d0%bd%d0%b8%d0%ba%d1%83/?prihod_preview=tradition",
+        "http://127.0.0.1:9401/%d0%bf%d0%b5%d1%80%d0%b2%d1%8b%d0%b9-%d1%80%d0%b0%d0%b7-%d0%b2-%d1%85%d1%80%d0%b0%d0%bc%d0%b5/?prihod_preview=tradition"
+      ],
+      "map": "https://www.openstreetmap.org/export/embed.html?bbox=13.6518627%2C53.0821374%2C13.6918627%2C53.1021374&layer=mapnik&marker=53.0921374%2C13.6718627",
+      "overflow": false,
+      "phone": "tel:+491714340444",
+      "photo": {
+        "height": 130,
+        "top": 810.03125,
+        "width": 180
+      },
+      "primary": {
+        "height": 265.03125,
+        "top": 438.40625,
+        "width": 1010
+      },
+      "road": {
+        "height": 380.765625,
+        "top": 735.4375,
+        "width": 1010
+      },
+      "scheme": "tradition",
+      "viewport": 1122
+    },
+    {
+      "email": "mailto:info@georg-kloster.de",
+      "links": [
+        "http://127.0.0.1:9401/%d0%b2%d0%be%d0%bf%d1%80%d0%be%d1%81-%d1%81%d0%b2%d1%8f%d1%89%d0%b5%d0%bd%d0%bd%d0%b8%d0%ba%d1%83/?prihod_preview=blue",
+        "http://127.0.0.1:9401/%d0%bf%d0%b5%d1%80%d0%b2%d1%8b%d0%b9-%d1%80%d0%b0%d0%b7-%d0%b2-%d1%85%d1%80%d0%b0%d0%bc%d0%b5/?prihod_preview=blue"
+      ],
+      "map": "https://www.openstreetmap.org/export/embed.html?bbox=13.6518627%2C53.0821374%2C13.6918627%2C53.1021374&layer=mapnik&marker=53.0921374%2C13.6718627",
+      "overflow": false,
+      "phone": "tel:+491714340444",
+      "photo": {
+        "height": 130,
+        "top": 768.140625,
+        "width": 180
+      },
+      "primary": {
+        "height": 265.03125,
+        "top": 396.515625,
+        "width": 1002
+      },
+      "road": {
+        "height": 380.765625,
+        "top": 693.546875,
+        "width": 1002
+      },
+      "scheme": "blue",
+      "viewport": 1122
+    }
+  ],
+  "mobile": [
+    {
+      "columns": "343px",
+      "email": {
+        "height": 44,
+        "href": "mailto:info@georg-kloster.de",
+        "top": 650.546875,
+        "width": 149.765625
+      },
+      "overflow": false,
+      "phone": {
+        "height": 44,
+        "href": "tel:+491714340444",
+        "top": 596.546875,
+        "width": 115.515625
+      },
+      "photo": {
+        "height": 100,
+        "top": 1214.921875,
+        "width": 110
+      },
+      "primary": {
+        "height": 624.375,
+        "top": 487.546875,
+        "width": 343
+      },
+      "road": {
+        "height": 569.171875,
+        "top": 1143.921875,
+        "width": 343
+      },
+      "scheme": "classic",
+      "viewport": 390
+    },
+    {
+      "columns": "343px",
+      "email": {
+        "height": 44,
+        "href": "mailto:info@georg-kloster.de",
+        "top": 693.046875,
+        "width": 149.765625
+      },
+      "overflow": false,
+      "phone": {
+        "height": 44,
+        "href": "tel:+491714340444",
+        "top": 639.046875,
+        "width": 115.515625
+      },
+      "photo": {
+        "height": 100,
+        "top": 1257.421875,
+        "width": 110
+      },
+      "primary": {
+        "height": 624.375,
+        "top": 530.046875,
+        "width": 343
+      },
+      "road": {
+        "height": 569.171875,
+        "top": 1186.421875,
+        "width": 343
+      },
+      "scheme": "hospitality",
+      "viewport": 390
+    },
+    {
+      "columns": "343px",
+      "email": {
+        "height": 44,
+        "href": "mailto:info@georg-kloster.de",
+        "top": 693.046875,
+        "width": 149.765625
+      },
+      "overflow": false,
+      "phone": {
+        "height": 44,
+        "href": "tel:+491714340444",
+        "top": 639.046875,
+        "width": 115.515625
+      },
+      "photo": {
+        "height": 100,
+        "top": 1257.421875,
+        "width": 110
+      },
+      "primary": {
+        "height": 624.375,
+        "top": 530.046875,
+        "width": 343
+      },
+      "road": {
+        "height": 569.171875,
+        "top": 1186.421875,
+        "width": 343
+      },
+      "scheme": "editorial",
+      "viewport": 390
+    },
+    {
+      "columns": "319px",
+      "email": {
+        "height": 44,
+        "href": "mailto:info@georg-kloster.de",
+        "top": 699.890625,
+        "width": 147.90625
+      },
+      "overflow": false,
+      "phone": {
+        "height": 44,
+        "href": "tel:+491714340444",
+        "top": 645.890625,
+        "width": 114.140625
+      },
+      "photo": {
+        "height": 100,
+        "top": 1264.265625,
+        "width": 110
+      },
+      "primary": {
+        "height": 624.375,
+        "top": 536.890625,
+        "width": 319
+      },
+      "road": {
+        "height": 593.171875,
+        "top": 1193.265625,
+        "width": 319
+      },
+      "scheme": "tradition",
+      "viewport": 390
+    },
+    {
+      "columns": "343px",
+      "email": {
+        "height": 44,
+        "href": "mailto:info@georg-kloster.de",
+        "top": 650.546875,
+        "width": 149.765625
+      },
+      "overflow": false,
+      "phone": {
+        "height": 44,
+        "href": "tel:+491714340444",
+        "top": 596.546875,
+        "width": 115.515625
+      },
+      "photo": {
+        "height": 100,
+        "top": 1214.921875,
+        "width": 110
+      },
+      "primary": {
+        "height": 624.375,
+        "top": 487.546875,
+        "width": 343
+      },
+      "road": {
+        "height": 569.171875,
+        "top": 1143.921875,
+        "width": 343
+      },
+      "scheme": "blue",
+      "viewport": 390
+    }
+  ],
+  "tests": {
+    "current": 206,
+    "minimum": 195,
+    "design": 180,
+    "live": "Not deployed; auto-review rejected upload"
+  },
+  "navigation": [
+    "Question and first visit actual links clicked; blue preview retained"
+  ],
+  "scope": "Local WordPress screenshots only. Native contact data/website preserved. No phone/mail activation or form submissions. Existing confirmed OSM map; no standalone contact mockup or 99% claim."
+}
