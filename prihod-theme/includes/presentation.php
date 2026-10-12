@@ -6,6 +6,7 @@ function prihod_theme_icon( string $name ): string {
     $paths = array(
         'schedule' => '<rect x="4" y="6" width="24" height="22" rx="2"/><path d="M4 12h24M10 3v6m12-6v6M10 17h2m6 0h2m-10 5h2m6 0h2"/>',
         'about' => '<path d="M16 2v8m-3-5h6M16 9c-7 6-6 10 0 11 6-1 7-5 0-11ZM11 20v10h10V20M4 30V17h7m10-3h7v16M2 30h28m-17 0v-5h6v5"/>',
+        'group' => '<circle cx="11" cy="9" r="4"/><circle cx="23" cy="10" r="3"/><path d="M3 28v-6a8 8 0 0 1 16 0v6H3Zm17-11a7 7 0 0 1 9 6v5h-7M8 21v7m6-7v7"/>',
         'news' => '<rect x="6" y="3" width="21" height="26" rx="2"/><path d="M6 9H3v18c0 2 1 2 3 2m5-20h11m-11 5h11m-11 5h11m-11 5h7"/>',
         'requests' => '<path d="M4 5h18a6 6 0 0 1 6 6v6a6 6 0 0 1-6 6H12l-7 6v-8a6 6 0 0 1-3-5v-5a6 6 0 0 1 2-6Z"/><path d="M9 12h13m-13 5h9"/>',
         'donations' => '<path d="M16 28S2 19 2 10C2 1 13 0 16 8c3-8 14-7 14 2 0 9-14 18-14 18Z"/>',
@@ -64,12 +65,7 @@ function prihod_theme_contact_panel(): string {
         $html .= '<div>' . prihod_theme_icon( $item[0] ) . '<div><h3>' . esc_html( $item[1] ) . '</h3><p>' . $text . '</p></div></div>';
     }
     $html .= '</div>';
-    if ( $options['map_url'] ) {
-        $html .= '<div class="prihod-contact-map">';
-        if ( ! empty( $options['map_embed'] ) ) { $html .= '<iframe loading="eager" title="' . esc_attr__( 'Как нас найти', 'prihod-theme' ) . '" referrerpolicy="no-referrer" src="' . esc_url( $options['map_embed'] ) . '"></iframe>'; }
-        else { $html .= '<div class="prihod-map-address">' . prihod_theme_icon( 'contacts' ) . '<p>' . esc_html( $profile['address'] ) . '</p></div>'; }
-        $html .= '<a class="prihod-button is-outline" href="' . esc_url( $options['map_url'] ) . '" target="_blank" rel="noopener">' . esc_html__( 'Открыть карту', 'prihod-theme' ) . ' →</a></div>';
-    }
+    $html .= prihod_theme_contact_map();
     if ( 'hospitality' === prihod_theme_scheme() ) { $html .= '<aside class="prihod-contact-quote">' . prihod_theme_verse() . '</aside>'; }
     elseif ( 'editorial' === prihod_theme_scheme() ) {
         $html .= '<aside class="prihod-contact-welcome"><div><h3>' . esc_html__( 'Мы рядом', 'prihod-theme' ) . '</h3><p>' . esc_html( $profile['description'] ) . '</p>';
@@ -79,4 +75,15 @@ function prihod_theme_contact_panel(): string {
     }
     elseif ( 'tradition' === prihod_theme_scheme() ) { $html .= '<aside class="prihod-contact-motto">' . prihod_theme_verse() . prihod_theme_icon( 'cross' ) . '</aside>'; }
     return $html . '</div></section>';
+}
+
+function prihod_theme_contact_map(): string {
+    $profile = prihod_theme_profile(); $options = prihod_theme_options(); $html = '';
+    if ( $options['map_url'] ) {
+        $html .= '<div class="prihod-contact-map">';
+        if ( ! empty( $options['map_embed'] ) ) { $html .= '<iframe loading="eager" title="' . esc_attr__( 'Как нас найти', 'prihod-theme' ) . '" referrerpolicy="no-referrer" src="' . esc_url( $options['map_embed'] ) . '"></iframe>'; }
+        else { $html .= '<div class="prihod-map-address">' . prihod_theme_icon( 'contacts' ) . '<p>' . esc_html( $profile['address'] ) . '</p></div>'; }
+        $html .= '<a class="prihod-button is-outline" href="' . esc_url( $options['map_url'] ) . '" target="_blank" rel="noopener">' . esc_html__( 'Открыть карту', 'prihod-theme' ) . ' →</a></div>';
+    }
+    return $html;
 }

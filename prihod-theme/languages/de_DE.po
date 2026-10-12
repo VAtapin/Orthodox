@@ -1848,3 +1848,36 @@ msgstr "Keine Beiträge gefunden. Ändern Sie die Suche oder setzen Sie die Filt
 
 msgid "Все"
 msgstr "Alle"
+
+msgid "Заголовок паломникам"
+msgstr "Überschrift für Pilger"
+
+msgid "Информация паломнику"
+msgstr "Informationen für Pilger"
+
+msgid "Первое посещение"
+msgstr "Erster Besuch"
+
+msgid "Групповой визит"
+msgstr "Gruppenbesuch"
+
+msgid "Пребывание в обители"
+msgstr "Aufenthalt im Kloster"
+
+msgid "Групповой визит и пребывание"
+msgstr "Gruppenbesuch und Aufenthalt"
+
+msgid "Возможность пребывания и условия группового визита согласуйте с обителью заранее."
+msgstr "Bitte klären Sie einen möglichen Aufenthalt und die Bedingungen für einen Gruppenbesuch im Voraus mit dem Kloster."
+
+msgid "Позвонить в обитель"
+msgstr "Im Kloster anrufen"
+
+msgid "Согласовать приезд"
+msgstr "Besuch abstimmen"
+
+msgid "Фото заголовка паломникам"
+msgstr "Titelbild für Pilger"
+
+msgid "Фото страницы паломникам"
+msgstr "Fotos der Pilgerseite"

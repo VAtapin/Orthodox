@@ -1,0 +1,373 @@
+{
+  "desktop": [
+    {
+      "broken": 0,
+      "cta": "https://prihod.georg-kloster.ru/?page_id=11&prihod_preview=classic",
+      "ctaColor": "rgb(164, 109, 37)",
+      "heading": {
+        "bottom": 300,
+        "height": 175,
+        "left": 0,
+        "right": 1107,
+        "top": 125,
+        "width": 1107,
+        "x": 0,
+        "y": 125
+      },
+      "map": "https://www.openstreetmap.org/export/embed.html?bbox=13.6518627%2C53.0821374%2C13.6918627%2C53.1021374&layer=mapnik&marker=53.0921374%2C13.6718627",
+      "overflow": false,
+      "photoColumns": "248.75px 248.75px 248.75px 248.75px",
+      "photos": 4,
+      "quick": {
+        "bottom": 375.1875,
+        "height": 87.1875,
+        "left": 32,
+        "right": 1075,
+        "top": 288,
+        "width": 1043,
+        "x": 32,
+        "y": 288
+      },
+      "roadPhoto": {
+        "bottom": 1182.453125,
+        "height": 110,
+        "left": 32,
+        "right": 182,
+        "top": 1072.453125,
+        "width": 150,
+        "x": 32,
+        "y": 1072.453125
+      },
+      "scheme": "classic",
+      "sidebar": 0,
+      "width": 1122
+    },
+    {
+      "broken": 0,
+      "cta": "https://prihod.georg-kloster.ru/?page_id=11&prihod_preview=hospitality",
+      "ctaColor": "rgb(179, 139, 68)",
+      "heading": {
+        "bottom": 311.734375,
+        "height": 175,
+        "left": 0,
+        "right": 1107,
+        "top": 136.734375,
+        "width": 1107,
+        "x": 0,
+        "y": 136.734375
+      },
+      "map": "https://www.openstreetmap.org/export/embed.html?bbox=13.6518627%2C53.0821374%2C13.6918627%2C53.1021374&layer=mapnik&marker=53.0921374%2C13.6718627",
+      "overflow": false,
+      "photoColumns": "248.75px 248.75px 248.75px 248.75px",
+      "photos": 4,
+      "quick": {
+        "bottom": 386.921875,
+        "height": 87.1875,
+        "left": 32,
+        "right": 1075,
+        "top": 299.734375,
+        "width": 1043,
+        "x": 32,
+        "y": 299.734375
+      },
+      "roadPhoto": {
+        "bottom": 1194.1875,
+        "height": 110,
+        "left": 32,
+        "right": 182,
+        "top": 1084.1875,
+        "width": 150,
+        "x": 32,
+        "y": 1084.1875
+      },
+      "scheme": "hospitality",
+      "sidebar": 0,
+      "width": 1122
+    },
+    {
+      "broken": 0,
+      "cta": "https://prihod.georg-kloster.ru/?page_id=11&prihod_preview=editorial",
+      "ctaColor": "rgb(152, 78, 50)",
+      "heading": {
+        "bottom": 310.4375,
+        "height": 175,
+        "left": 0,
+        "right": 1107,
+        "top": 135.4375,
+        "width": 1107,
+        "x": 0,
+        "y": 135.4375
+      },
+      "map": "https://www.openstreetmap.org/export/embed.html?bbox=13.6518627%2C53.0821374%2C13.6918627%2C53.1021374&layer=mapnik&marker=53.0921374%2C13.6718627",
+      "overflow": false,
+      "photoColumns": "248.75px 248.75px 248.75px 248.75px",
+      "photos": 4,
+      "quick": {
+        "bottom": 385.625,
+        "height": 87.1875,
+        "left": 32,
+        "right": 1075,
+        "top": 298.4375,
+        "width": 1043,
+        "x": 32,
+        "y": 298.4375
+      },
+      "roadPhoto": {
+        "bottom": 1192.890625,
+        "height": 110,
+        "left": 32,
+        "right": 182,
+        "top": 1082.890625,
+        "width": 150,
+        "x": 32,
+        "y": 1082.890625
+      },
+      "scheme": "editorial",
+      "sidebar": 0,
+      "width": 1122
+    },
+    {
+      "broken": 0,
+      "cta": "https://prihod.georg-kloster.ru/?page_id=11&prihod_preview=tradition",
+      "ctaColor": "rgb(114, 85, 50)",
+      "heading": {
+        "bottom": 339.890625,
+        "height": 175,
+        "left": 24,
+        "right": 1083,
+        "top": 164.890625,
+        "width": 1059,
+        "x": 24,
+        "y": 164.890625
+      },
+      "map": "https://www.openstreetmap.org/export/embed.html?bbox=13.6518627%2C53.0821374%2C13.6918627%2C53.1021374&layer=mapnik&marker=53.0921374%2C13.6718627",
+      "overflow": false,
+      "photoColumns": "236.75px 236.75px 236.75px 236.75px",
+      "photos": 4,
+      "quick": {
+        "bottom": 415.078125,
+        "height": 87.1875,
+        "left": 56,
+        "right": 1051,
+        "top": 327.890625,
+        "width": 995,
+        "x": 56,
+        "y": 327.890625
+      },
+      "roadPhoto": {
+        "bottom": 1249.9375,
+        "height": 110,
+        "left": 56,
+        "right": 206,
+        "top": 1139.9375,
+        "width": 150,
+        "x": 56,
+        "y": 1139.9375
+      },
+      "scheme": "tradition",
+      "sidebar": 0,
+      "width": 1122
+    },
+    {
+      "broken": 0,
+      "cta": "https://prihod.georg-kloster.ru/?page_id=11&prihod_preview=blue",
+      "ctaColor": "rgb(57, 111, 163)",
+      "heading": {
+        "bottom": 300,
+        "height": 175,
+        "left": 0,
+        "right": 1107,
+        "top": 125,
+        "width": 1107,
+        "x": 0,
+        "y": 125
+      },
+      "map": "https://www.openstreetmap.org/export/embed.html?bbox=13.6518627%2C53.0821374%2C13.6918627%2C53.1021374&layer=mapnik&marker=53.0921374%2C13.6718627",
+      "overflow": false,
+      "photoColumns": "234.75px 234.75px 234.75px 234.75px",
+      "photos": 4,
+      "quick": {
+        "bottom": 375.1875,
+        "height": 87.1875,
+        "left": 60,
+        "right": 1047,
+        "top": 288,
+        "width": 987,
+        "x": 60,
+        "y": 288
+      },
+      "roadPhoto": {
+        "bottom": 1210.046875,
+        "height": 110,
+        "left": 60,
+        "right": 210,
+        "top": 1100.046875,
+        "width": 150,
+        "x": 60,
+        "y": 1100.046875
+      },
+      "scheme": "blue",
+      "sidebar": 0,
+      "width": 1122
+    }
+  ],
+  "mobile": [
+    {
+      "cta": "https://prihod.georg-kloster.ru/?page_id=11&prihod_preview=classic",
+      "overflow": false,
+      "photoColumns": "165.5px 165.5px",
+      "photos": 4,
+      "quickColumns": "166.5px 166.5px",
+      "roadColumns": "343px",
+      "scheme": "classic",
+      "sidebar": 0,
+      "visitColumns": "343px",
+      "width": 390
+    },
+    {
+      "cta": "https://prihod.georg-kloster.ru/?page_id=11&prihod_preview=hospitality",
+      "overflow": false,
+      "photoColumns": "165.5px 165.5px",
+      "photos": 4,
+      "quickColumns": "166.5px 166.5px",
+      "roadColumns": "343px",
+      "scheme": "hospitality",
+      "sidebar": 0,
+      "visitColumns": "343px",
+      "width": 390
+    },
+    {
+      "cta": "https://prihod.georg-kloster.ru/?page_id=11&prihod_preview=editorial",
+      "overflow": false,
+      "photoColumns": "165.5px 165.5px",
+      "photos": 4,
+      "quickColumns": "166.5px 166.5px",
+      "roadColumns": "343px",
+      "scheme": "editorial",
+      "sidebar": 0,
+      "visitColumns": "343px",
+      "width": 390
+    },
+    {
+      "cta": "https://prihod.georg-kloster.ru/?page_id=11&prihod_preview=tradition",
+      "overflow": false,
+      "photoColumns": "153.5px 153.5px",
+      "photos": 4,
+      "quickColumns": "154.5px 154.5px",
+      "roadColumns": "319px",
+      "scheme": "tradition",
+      "sidebar": 0,
+      "visitColumns": "319px",
+      "width": 390
+    },
+    {
+      "cta": "https://prihod.georg-kloster.ru/?page_id=11&prihod_preview=blue",
+      "overflow": false,
+      "photoColumns": "165.5px 165.5px",
+      "photos": 4,
+      "quickColumns": "166.5px 166.5px",
+      "roadColumns": "343px",
+      "scheme": "blue",
+      "sidebar": 0,
+      "visitColumns": "343px",
+      "width": 390
+    }
+  ],
+  "navigation": [
+    {
+      "hash": "#prihod-pilgrim-road",
+      "preview": "classic",
+      "targetExists": true,
+      "case": "quick-road",
+      "targetTopImmediatelyAfterClick": 1667.09375
+    },
+    {
+      "hash": "#prihod-pilgrim-info",
+      "preview": "classic",
+      "targetExists": true,
+      "case": "quick-first-visit",
+      "targetTopImmediatelyAfterClick": 1041.578125
+    },
+    {
+      "hash": "#prihod-pilgrim-groups",
+      "preview": "classic",
+      "targetExists": true,
+      "case": "quick-group",
+      "targetTopImmediatelyAfterClick": 1226.921875
+    },
+    {
+      "hash": "#prihod-pilgrim-groups",
+      "preview": "classic",
+      "targetExists": true,
+      "case": "quick-stay",
+      "targetTopImmediatelyAfterClick": 1226.921875
+    },
+    {
+      "case": "group-request",
+      "url": "https://prihod.georg-kloster.ru/?page_id=11&prihod_preview=classic",
+      "heading": "Вопрос священнику"
+    },
+    {
+      "case": "schedule",
+      "url": "https://prihod.georg-kloster.ru/?page_id=10&prihod_preview=classic",
+      "heading": "Расписание богослужений"
+    },
+    {
+      "case": "photographs",
+      "url": "https://prihod.georg-kloster.ru/?page_id=19&prihod_preview=classic",
+      "heading": "Жизнь обители в фотографиях"
+    },
+    {
+      "case": "group-anchor-settled",
+      "hash": "#prihod-pilgrim-groups",
+      "scrollY": 1116,
+      "targetTop": 211.921875,
+      "targetVisible": true,
+      "width": 390
+    },
+    {
+      "case": "map-visible",
+      "width": 390,
+      "scope": "Native map zoom in/out checked and returned to initial zoom; all five mobile screenshots captured after map entered viewport."
+    }
+  ],
+  "homeMapRegression": [
+    {
+      "map": "https://www.openstreetmap.org/export/embed.html?bbox=13.6518627%2C53.0821374%2C13.6918627%2C53.1021374&layer=mapnik&marker=53.0921374%2C13.6718627",
+      "maps": 1,
+      "overflow": false,
+      "scheme": "classic"
+    },
+    {
+      "map": "https://www.openstreetmap.org/export/embed.html?bbox=13.6518627%2C53.0821374%2C13.6918627%2C53.1021374&layer=mapnik&marker=53.0921374%2C13.6718627",
+      "maps": 1,
+      "overflow": false,
+      "scheme": "hospitality"
+    },
+    {
+      "map": "https://www.openstreetmap.org/export/embed.html?bbox=13.6518627%2C53.0821374%2C13.6918627%2C53.1021374&layer=mapnik&marker=53.0921374%2C13.6718627",
+      "maps": 1,
+      "overflow": false,
+      "scheme": "editorial"
+    },
+    {
+      "map": "https://www.openstreetmap.org/export/embed.html?bbox=13.6518627%2C53.0821374%2C13.6918627%2C53.1021374&layer=mapnik&marker=53.0921374%2C13.6718627",
+      "maps": 1,
+      "overflow": false,
+      "scheme": "tradition"
+    },
+    {
+      "map": "https://www.openstreetmap.org/export/embed.html?bbox=13.6518627%2C53.0821374%2C13.6918627%2C53.1021374&layer=mapnik&marker=53.0921374%2C13.6718627",
+      "maps": 1,
+      "overflow": false,
+      "scheme": "blue"
+    }
+  ],
+  "tests": {
+    "current": 206,
+    "minimum": 195,
+    "design": 166,
+    "live": 59
+  },
+  "scope": "Theme only. Genuine photographs, original text, existing request destination and OSM settings; no submissions. Initial anchor coordinates reflect smooth-scroll animation; separate settled state is recorded."
+}

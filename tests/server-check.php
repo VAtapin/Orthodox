@@ -39,7 +39,7 @@ foreach ( array( 'de_DE', 'pl_PL', 'uk' ) as $locale ) {
 }
 echo wp_json_encode( array( 'status' => 'PRIHOD_SERVER_OK', 'checks' => $checked, 'wordpress' => get_bloginfo( 'version' ), 'php' => PHP_VERSION, 'theme' => wp_get_theme()->get( 'Version' ) ), JSON_UNESCAPED_UNICODE ) . PHP_EOL;
 
-$check( '1.0.0-rc.7' === PRIHOD_VERSION && '0.3.14' === wp_get_theme()->get( 'Version' ), 'Reference-design release versions must be installed.' );
+$check( '1.0.0-rc.7' === PRIHOD_VERSION && '0.3.15' === wp_get_theme()->get( 'Version' ), 'Reference-design release versions must be installed.' );
 prihod_theme_prepare_provider_assets();
 do_shortcode( '[' . $donation_tag . ']' );
 $check( str_contains( (string) wp_scripts()->get_data( 'georg-kloster-orthodox-donate', 'data' ), 'georgKlosterOrthodoxDonate' ), 'Native donation configuration must exist before the block theme prints scripts.' );
@@ -120,3 +120,12 @@ $check( str_contains( $clergy, 'prihod-clergy-card' ) && 1 === substr_count( $cl
 $check( get_post_field( 'post_content', $GLOBALS['post']->ID ) === $clergy_original && str_contains( $clergy, esc_url( prihod_theme_url( 'requests' ) ) ), 'Clergy rendering preserves original content and the real question target.' );
 $GLOBALS['wp_query'] = $previous_query; $GLOBALS['post'] = $previous_post;
 echo "CLERGY_DESIGN_CHECK_OK: {$checked} total checks.\n";
+
+$previous_query = $GLOBALS['wp_query']; $previous_post = $GLOBALS['post'] ?? null; $previous_template = $GLOBALS['_wp_current_template_id'] ?? ''; $previous_template_content = $GLOBALS['_wp_current_template_content'] ?? '';
+$GLOBALS['wp_query'] = new WP_Query( array( 'page_id' => $resources['first-visit']['id'] ) ); $GLOBALS['post'] = get_post( $resources['first-visit']['id'] ); $pilgrim_original = $GLOBALS['post']->post_content; $pilgrim_template_original = get_page_template_slug( $GLOBALS['post']->ID );
+get_page_template(); $pilgrim_template = get_block_template( get_stylesheet() . '//pilgrim', 'wp_template' ); $pilgrim_html = do_blocks( $pilgrim_template->content );
+$check( get_stylesheet() . '//pilgrim' === $GLOBALS['_wp_current_template_id'] && str_contains( $pilgrim_html, 'prihod-pilgrim-quick' ) && str_contains( $pilgrim_html, 'prihod-pilgrim-photos' ) && ! str_contains( $pilgrim_template->content, 'prihod-sidebar' ), 'Pilgrim page must use its wide reference composition with genuine photographs.' );
+$check( str_contains( $pilgrim_html, 'id="prihod-pilgrim-groups"' ) && str_contains( $pilgrim_html, esc_url( prihod_theme_url( 'requests' ) ) ) && str_contains( $pilgrim_html, 'openstreetmap.org/export/embed.html' ), 'Visitor group agreement and the real configured road map must be available.' );
+$check( get_post_field( 'post_content', $GLOBALS['post']->ID ) === $pilgrim_original && get_page_template_slug( $GLOBALS['post']->ID ) === $pilgrim_template_original, 'Pilgrim presentation must not save content or the selected template.' );
+$GLOBALS['wp_query'] = $previous_query; $GLOBALS['post'] = $previous_post; $GLOBALS['_wp_current_template_id'] = $previous_template; $GLOBALS['_wp_current_template_content'] = $previous_template_content;
+echo "PILGRIM_DESIGN_CHECK_OK: {$checked} total checks.\n";

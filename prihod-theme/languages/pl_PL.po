@@ -1848,3 +1848,36 @@ msgstr "Nie znaleziono publikacji. Zmień wyszukiwanie lub wyczyść filtry."
 
 msgid "Все"
 msgstr "Wszystkie"
+
+msgid "Заголовок паломникам"
+msgstr "Nagłówek dla pielgrzymów"
+
+msgid "Информация паломнику"
+msgstr "Informacje dla pielgrzyma"
+
+msgid "Первое посещение"
+msgstr "Pierwsza wizyta"
+
+msgid "Групповой визит"
+msgstr "Wizyta grupowa"
+
+msgid "Пребывание в обители"
+msgstr "Pobyt w monasterze"
+
+msgid "Групповой визит и пребывание"
+msgstr "Wizyta grupowa i pobyt"
+
+msgid "Возможность пребывания и условия группового визита согласуйте с обителью заранее."
+msgstr "Możliwość pobytu i warunki wizyty grupowej należy wcześniej uzgodnić z monasterem."
+
+msgid "Позвонить в обитель"
+msgstr "Zadzwoń do monasteru"
+
+msgid "Согласовать приезд"
+msgstr "Uzgodnij przyjazd"
+
+msgid "Фото заголовка паломникам"
+msgstr "Zdjęcie nagłówka dla pielgrzymów"
+
+msgid "Фото страницы паломникам"
+msgstr "Zdjęcia strony dla pielgrzymów"
