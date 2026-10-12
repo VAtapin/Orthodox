@@ -14,7 +14,7 @@ WordPress. Не менять окружение, Plesk, настройки др�
 - MariaDB 10.6.23, отдельная база и пользователь `prihod`.
 - SSH: предоставленный профиль Bitvise, пользователь `prihod`, не root.
 
-Установлены по прямому разрешению владельца: Core 1.0.0-rc.7, тема «Приход» 0.3.15,
+Установлены по прямому разрешению владельца: Core 1.0.0-rc.7, тема «Приход» 0.3.16,
 orthocal 1.3.78, Orthodox Donations 1.0.2 и Telegram/WhatsApp/Facebook подключения
 0.1.1. Пароли и профиль SSH не входят в репозиторий. Пароль администратора изменён
 владельцем; первоначальный установочный файл пароля устарел и для входа не используется.
@@ -53,7 +53,7 @@ tar; 24 таблицы MariaDB OK; HTTPS главной и входа 200; вх�
 cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
 export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
 php -d memory_limit=512M /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.7.zip --force --activate && \
-php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.15.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.16.zip --force --activate && \
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
 ```
 
@@ -83,7 +83,7 @@ scripts/apply-reference-design.php отдельно загружается в wp
 cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
 export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
 php -d memory_limit=512M /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.7.zip --force --activate && \
-php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.15.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.16.zip --force --activate && \
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-packages/apply-reference-design.php --user=prihod-owner && \
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
 ```
@@ -105,7 +105,7 @@ php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-ch
 ```bash
 cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
 export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
-php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.15.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.16.zip --force --activate && \
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
 ```
 
@@ -158,13 +158,13 @@ WP 7.1.3/PHP 8.5.11; пять схем при 1122/390 и настоящие п�
 Применяется только тема: команда «Только обновление темы». Core rc.7, внешние
 плагины и общий сервер не обновлялись; импорт/публикация/отправка не выполнялись.
 
-## Подготовленные контакты 0.3.16 — пока не установлены
+## Установленные контакты 0.3.16
 
-Auto-review отклонил загрузку новой версии на общий сервер, потребовав отдельное
-разрешение на это обновление. Никакая часть загрузки/deployment не выполнялась;
-живой WordPress остаётся на 0.3.15, его 59 проверок не заменяют проверку 0.3.16.
-После прямого разрешения загрузить build/prihod-theme-0.3.16.zip и tests/server-check.php
-в существующие wp-content/prihod-packages и wp-content/prihod-server-check.php.
+12 октября после прямого разрешения владельца загружены build/prihod-theme-0.3.16.zip
+и tests/server-check.php в существующие wp-content/prihod-packages и
+wp-content/prihod-server-check.php. Выполнено только обновление активной темы.
+WordPress 7.1.3/PHP 8.5.11: 62 проверки прошли, включая контакты/дорогу,
+настоящие tel/mailto и существующую карту. Пять схем проверены в браузере на 1122/390.
 Подготовленные локальные файлы команд: build/sftp-contacts-reference.txt,
 build/ssh-contacts-reference.sh. Последний содержит:
 
@@ -175,6 +175,6 @@ php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packa
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
 ```
 
-Проверка 0.3.16 содержит 62 условия. Она подготовлена, но на сервере не запускалась.
+Проверка 0.3.16 завершилась CONTACTS_DESIGN_CHECK_OK: 62 total checks.
 Никаких импортов, записей настроек, миграций, оплат/писем/публикаций или действий
 вне этого WordPress команда не включает. Core и внешние плагины не обновляются.
