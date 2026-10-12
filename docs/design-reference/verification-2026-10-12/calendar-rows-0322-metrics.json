@@ -1,0 +1,62 @@
+[
+  {
+    "scheme": "classic",
+    "feastBottom": 490.1875,
+    "overlap": false,
+    "placeTop": 495.1875,
+    "scroll": 1265,
+    "width": 1280
+  },
+  {
+    "scheme": "tradition",
+    "feastBottom": 542.078125,
+    "overlap": false,
+    "placeTop": 547.078125,
+    "scroll": 1265,
+    "width": 1280
+  },
+  {
+    "scheme": "blue",
+    "feastBottom": 298.890625,
+    "overlap": false,
+    "placeTop": 344.890625,
+    "scroll": 1265,
+    "width": 1280
+  },
+  {
+    "scheme": "editorial",
+    "feastBottom": 264.890625,
+    "overlap": false,
+    "placeTop": 288.578125,
+    "scroll": 1265,
+    "width": 1280
+  },
+  {
+    "scheme": "hospitality",
+    "feastBottom": 352.453125,
+    "overlap": false,
+    "placeTop": 442.640625,
+    "scroll": 1265,
+    "width": 1280
+  },
+  {
+    "scheme": "classic",
+    "color": "blue",
+    "badgeTop": 521.984375,
+    "feastBottom": 490.1875,
+    "overlap": false,
+    "placeBottom": 511.984375,
+    "placeTop": 495.1875,
+    "width": 1280
+  },
+  {
+    "scheme": "tradition",
+    "color": "blue",
+    "badgeTop": 573.875,
+    "feastBottom": 542.078125,
+    "overlap": false,
+    "placeBottom": 563.875,
+    "placeTop": 547.078125,
+    "width": 1280
+  }
+]
