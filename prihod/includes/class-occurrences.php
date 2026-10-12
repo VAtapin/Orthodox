@@ -51,28 +51,24 @@ final class Occurrences {
         foreach ( array_keys( $rule['exceptions'] ) as $date ) { $dates[ $date ] = true; }
         $result = array();
         foreach ( array_keys( $dates ) as $original ) {
-            if ( ! self::matches( $rule, $original ) ) { continue; }
-            $override = $rule['exceptions'][ $original ] ?? array();
-            $cancelled = 'cancel' === ( $override['action'] ?? '' );
-            $date = $cancelled ? $original : ( $override['date'] ?? $original );
-            $time = $cancelled ? $rule['time'] : ( $override['time'] ?? $rule['time'] );
-            $timezone = $override['timezone'] ?? $rule['timezone'];
-            $start = self::instant( $date, $time, $timezone );
-            if ( ! $start || $start < $from || $start >= $to ) { continue; }
-            $end_time = $override['end'] ?? $rule['end'];
-            $end = null;
-            if ( $end_time ) {
-                $end_date = $end_time <= $time ? ( new \DateTimeImmutable( $date ) )->modify( '+1 day' )->format( 'Y-m-d' ) : $date;
-                $end = self::instant( $end_date, $end_time, $timezone );
-                if ( ! $end || $end <= $start ) { continue; }
-            }
-            $result[] = array(
-                'id' => $rule['id'] . ':' . $original, 'service_id' => $rule['id'], 'original_date' => $original,
-                'title' => $rule['title'], 'description' => $rule['description'], 'kind' => $rule['kind'],
-                'start' => $start, 'end' => $end, 'cancelled' => $cancelled, 'moved' => ! $cancelled && ! empty( $override ),
-                'location_id' => $override['location_id'] ?? $rule['location_id'],
-            );
+            $event = self::occurrence( $rule, $original );
+            if ( $event && $event['start'] >= $from && $event['start'] < $to ) { $result[] = $event; }
         }
         return $result;
+    }
+    /** Resolve one original date with the same clock/DST/override rules everywhere. */
+    public static function occurrence( array $rule, string $original ): ?array {
+        if ( ! self::matches( $rule, $original ) ) { return null; }
+        $override = $rule['exceptions'][$original] ?? array(); $cancelled = 'cancel' === ( $override['action'] ?? '' );
+        $date = $cancelled ? $original : ( $override['date'] ?? $original ); $time = $cancelled ? $rule['time'] : ( $override['time'] ?? $rule['time'] );
+        $start = self::instant( $date, $time, $override['timezone'] ?? $rule['timezone'] );
+        if ( ! $start ) { return null; }
+        $end_time = $override['end'] ?? $rule['end']; $end = null;
+        if ( $end_time ) {
+            $end_date = $end_time <= $time ? ( new \DateTimeImmutable( $date ) )->modify( '+1 day' )->format( 'Y-m-d' ) : $date;
+            $end = self::instant( $end_date, $end_time, $start->getTimezone()->getName() );
+            if ( ! $end || $end <= $start ) { return null; }
+        }
+        return array( 'id' => $rule['id'] . ':' . $original, 'service_id' => $rule['id'], 'original_date' => $original, 'title' => $rule['title'], 'description' => $rule['description'], 'kind' => $rule['kind'], 'start' => $start, 'end' => $end, 'cancelled' => $cancelled, 'moved' => ! $cancelled && ! empty( $override ), 'location_id' => $override['location_id'] ?? $rule['location_id'] );
     }
 }

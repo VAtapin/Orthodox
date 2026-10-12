@@ -548,3 +548,7 @@ ID места (0 — все)	Orts-ID (0 — alle)	ID miejsca (0 — wszystkie)	I
 С %s, без конечной даты	Ab %s, ohne Enddatum	Od %s, bez daty końcowej	З %s, без кінцевої дати
 Отменённых дат: %1$d. Переносов: %2$d.	Abgesagte Termine: %1$d. Verschiebungen: %2$d.	Odwołane terminy: %1$d. Przeniesienia: %2$d.	Скасованих дат: %1$d. Перенесень: %2$d.
 Перенесено с %s	Verschoben vom %s	Przeniesiono z %s	Перенесено з %s
+Изменения в расписании	Änderungen im Gottesdienstplan	Zmiany w harmonogramie nabożeństw	Зміни в розкладі богослужінь
+На выбранный период изменений не отмечено.	Für den gewählten Zeitraum sind keine Änderungen vermerkt.	W wybranym okresie nie odnotowano zmian.	На вибраний період змін не зазначено.
+Выбранная неделя	Ausgewählte Woche	Wybrany tydzień	Вибраний тиждень
+Богослужения	Gottesdienste	Nabożeństwa	Богослужіння

@@ -39,7 +39,7 @@ foreach ( array( 'de_DE', 'pl_PL', 'uk' ) as $locale ) {
 }
 echo wp_json_encode( array( 'status' => 'PRIHOD_SERVER_OK', 'checks' => $checked, 'wordpress' => get_bloginfo( 'version' ), 'php' => PHP_VERSION, 'theme' => wp_get_theme()->get( 'Version' ) ), JSON_UNESCAPED_UNICODE ) . PHP_EOL;
 
-$check( '1.0.0-rc.5' === PRIHOD_VERSION && '0.3.5' === wp_get_theme()->get( 'Version' ), 'Reference-design release versions must be installed.' );
+$check( '1.0.0-rc.6' === PRIHOD_VERSION && '0.3.6' === wp_get_theme()->get( 'Version' ), 'Reference-design release versions must be installed.' );
 prihod_theme_prepare_provider_assets();
 do_shortcode( '[' . $donation_tag . ']' );
 $check( str_contains( (string) wp_scripts()->get_data( 'georg-kloster-orthodox-donate', 'data' ), 'georgKlosterOrthodoxDonate' ), 'Native donation configuration must exist before the block theme prints scripts.' );
@@ -60,3 +60,8 @@ foreach ( get_posts( array( 'post_type' => 'prihod_service', 'post_status' => 'p
 }
 $check( count( array_unique( $single_dates ) ) >= 5, 'Existing dated liturgies must be distinguishable in the service list.' );
 echo "SERVICE_LIST_CHECK_OK: {$checked} total checks.\n";
+$_GET = array( 'prihod_date' => ( new DateTimeImmutable( 'now', new DateTimeZone( Prihod\Profile::get()['timezone'] ) ) )->format( 'Y-m-d' ), 'prihod_view' => 'week' );
+$schedule_html = Prihod\Public_View::render( 'schedule' );
+$check( str_contains( $schedule_html, 'prihod-upcoming-card' ) && str_contains( $schedule_html, 'prihod-changes-card' ), 'Schedule must have two native overview panels before its filters.' );
+$check( 1 === substr_count( $schedule_html, 'aria-current="date"' ) && preg_match_all( '/<a class="[^"]*\bis-selected-week\b/', $schedule_html ) >= 1, 'Mini calendar must distinguish today and the selected week.' );
+echo "SCHEDULE_OVERVIEW_CHECK_OK: {$checked} total checks.\n";

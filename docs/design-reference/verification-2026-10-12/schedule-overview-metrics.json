@@ -1,0 +1,47 @@
+[
+  {
+    "scheme": "classic",
+    "overflow": false,
+    "panels": 2,
+    "scroll": 0,
+    "today": 1,
+    "week": 7,
+    "width": 1055
+  },
+  {
+    "scheme": "hospitality",
+    "overflow": false,
+    "panels": 2,
+    "scroll": 0,
+    "today": 1,
+    "week": 7,
+    "width": 1055
+  },
+  {
+    "scheme": "editorial",
+    "overflow": false,
+    "panels": 2,
+    "scroll": 0,
+    "today": 1,
+    "week": 7,
+    "width": 1055
+  },
+  {
+    "scheme": "tradition",
+    "overflow": false,
+    "panels": 2,
+    "scroll": 0,
+    "today": 1,
+    "week": 7,
+    "width": 1055
+  },
+  {
+    "scheme": "blue",
+    "overflow": false,
+    "panels": 2,
+    "scroll": 0,
+    "today": 1,
+    "week": 7,
+    "width": 1055
+  }
+]

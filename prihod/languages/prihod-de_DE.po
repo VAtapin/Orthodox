@@ -1650,3 +1650,15 @@ msgstr "Abgesagte Termine: %1$d. Verschiebungen: %2$d."
 
 msgid "Перенесено с %s"
 msgstr "Verschoben vom %s"
+
+msgid "Изменения в расписании"
+msgstr "Änderungen im Gottesdienstplan"
+
+msgid "На выбранный период изменений не отмечено."
+msgstr "Für den gewählten Zeitraum sind keine Änderungen vermerkt."
+
+msgid "Выбранная неделя"
+msgstr "Ausgewählte Woche"
+
+msgid "Богослужения"
+msgstr "Gottesdienste"

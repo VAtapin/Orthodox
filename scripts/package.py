@@ -28,6 +28,6 @@ for name in ("prihod-telegram", "prihod-whatsapp", "prihod-social"):
     (target / "readme.txt").write_text(readme, encoding="utf-8")
     archive(target, f"{name}-0.1.1.zip")
 
-archive(ROOT / "prihod", "prihod-1.0.0-rc.5.zip")
-archive(ROOT / "prihod-theme", "prihod-theme-0.3.5.zip")
+archive(ROOT / "prihod", "prihod-1.0.0-rc.6.zip")
+archive(ROOT / "prihod-theme", "prihod-theme-0.3.6.zip")
 print("Built Core, theme and three independent connector ZIPs.")

@@ -93,13 +93,37 @@ final class Schedule {
     public static function query( \DateTimeImmutable $from, \DateTimeImmutable $to, int $location = 0, bool $cancelled = true ): array {
         if ( ! Modules::enabled( 'schedule' ) ) { return array(); }
         $result = array();
+        foreach ( self::published_rules() as $rule ) {
+            foreach ( Occurrences::expand( $rule, $from, $to ) as $event ) {
+                if ( ( $location && $location !== $event['location_id'] ) || ( ! $cancelled && $event['cancelled'] ) || 'publish' !== get_post_status( $event['location_id'] ) ) { continue; }
+                $result[] = $event;
+            }
+        }
+        usort( $result, fn( $a, $b ) => ( $a['start'] <=> $b['start'] ) ?: strcmp( $a['id'], $b['id'] ) );
+        return $result;
+    }
+    private static function published_rules(): \Generator {
         foreach ( get_posts( array( 'post_type' => 'prihod_service', 'post_status' => 'publish', 'numberposts' => -1 ) ) as $post ) {
             $data = get_post_meta( $post->ID, '_prihod_service', true );
             if ( ! is_array( $data ) || empty( $data['date'] ) ) { continue; }
             $rule = array_merge( self::defaults(), $data, array( 'id' => $post->ID, 'title' => $post->post_title, 'description' => $post->post_content ) );
             $rule['timezone'] = self::timezone( (int) $rule['location_id'], $rule['timezone'] );
-            foreach ( Occurrences::expand( $rule, $from, $to ) as $event ) {
-                if ( ( $location && $location !== $event['location_id'] ) || ( ! $cancelled && $event['cancelled'] ) || 'publish' !== get_post_status( $event['location_id'] ) ) { continue; }
+            yield $rule;
+        }
+    }
+    /** Include transfers out of the selected period, not just arrivals into it. */
+    public static function changes( \DateTimeImmutable $from, \DateTimeImmutable $to, int $location = 0 ): array {
+        if ( ! Modules::enabled( 'schedule' ) ) { return array(); }
+        $result = array();
+        foreach ( self::published_rules() as $rule ) {
+            foreach ( array_keys( $rule['exceptions'] ) as $original ) {
+                $event = Occurrences::occurrence( $rule, $original );
+                if ( ! $event || 'publish' !== get_post_status( $event['location_id'] ) || 'publish' !== get_post_status( $rule['location_id'] ) ) { continue; }
+                $original_start = Occurrences::instant( $original, $rule['time'], $rule['timezone'] );
+                $in_original = $original_start && $original_start >= $from && $original_start < $to;
+                $in_actual = $event['start'] >= $from && $event['start'] < $to;
+                if ( ! $in_original && ! $in_actual ) { continue; }
+                if ( $location && $location !== $event['location_id'] && ! ( $in_original && $location === $rule['location_id'] ) ) { continue; }
                 $result[] = $event;
             }
         }
