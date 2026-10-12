@@ -1,0 +1,292 @@
+{
+  "desktop": [
+    {
+      "scheme": "classic",
+      "anchors": [
+        {
+          "exists": true,
+          "href": "#prihod-about-history"
+        },
+        {
+          "exists": true,
+          "href": "#prihod-about-life"
+        },
+        {
+          "exists": true,
+          "href": "#prihod-about-clergy"
+        },
+        {
+          "exists": true,
+          "href": "#prihod-about-activities"
+        }
+      ],
+      "broken": 0,
+      "columns": "569px 270px",
+      "hero": 260.453125,
+      "overflow": false,
+      "photos": [
+        {
+          "class": "prihod-about-photos is-history",
+          "columns": "279.5px 279.5px",
+          "count": 2
+        },
+        {
+          "class": "prihod-about-photos is-life",
+          "columns": "321.125px 237.875px",
+          "count": 3
+        }
+      ],
+      "width": 954
+    },
+    {
+      "scheme": "hospitality",
+      "anchors": [
+        {
+          "exists": true,
+          "href": "#prihod-about-history"
+        },
+        {
+          "exists": true,
+          "href": "#prihod-about-life"
+        },
+        {
+          "exists": true,
+          "href": "#prihod-about-clergy"
+        },
+        {
+          "exists": true,
+          "href": "#prihod-about-activities"
+        }
+      ],
+      "broken": 0,
+      "columns": "569px 270px",
+      "hero": 260.453125,
+      "overflow": false,
+      "photos": [
+        {
+          "class": "prihod-about-photos is-history",
+          "columns": "279.5px 279.5px",
+          "count": 2
+        },
+        {
+          "class": "prihod-about-photos is-life",
+          "columns": "321.125px 237.875px",
+          "count": 3
+        }
+      ],
+      "width": 954
+    },
+    {
+      "scheme": "editorial",
+      "anchors": [
+        {
+          "exists": true,
+          "href": "#prihod-about-history"
+        },
+        {
+          "exists": true,
+          "href": "#prihod-about-life"
+        },
+        {
+          "exists": true,
+          "href": "#prihod-about-clergy"
+        },
+        {
+          "exists": true,
+          "href": "#prihod-about-activities"
+        }
+      ],
+      "broken": 0,
+      "columns": "569px 270px",
+      "hero": 260.453125,
+      "overflow": false,
+      "photos": [
+        {
+          "class": "prihod-about-photos is-history",
+          "columns": "279.5px 279.5px",
+          "count": 2
+        },
+        {
+          "class": "prihod-about-photos is-life",
+          "columns": "321.125px 237.875px",
+          "count": 3
+        }
+      ],
+      "width": 954
+    },
+    {
+      "scheme": "tradition",
+      "anchors": [
+        {
+          "exists": true,
+          "href": "#prihod-about-history"
+        },
+        {
+          "exists": true,
+          "href": "#prihod-about-life"
+        },
+        {
+          "exists": true,
+          "href": "#prihod-about-clergy"
+        },
+        {
+          "exists": true,
+          "href": "#prihod-about-activities"
+        }
+      ],
+      "broken": 0,
+      "columns": "521px 270px",
+      "hero": 260.453125,
+      "overflow": false,
+      "photos": [
+        {
+          "class": "prihod-about-photos is-history",
+          "columns": "255.5px 255.5px",
+          "count": 2
+        },
+        {
+          "class": "prihod-about-photos is-life",
+          "columns": "293.547px 217.453px",
+          "count": 3
+        }
+      ],
+      "width": 954
+    },
+    {
+      "scheme": "blue",
+      "anchors": [
+        {
+          "exists": true,
+          "href": "#prihod-about-history"
+        },
+        {
+          "exists": true,
+          "href": "#prihod-about-life"
+        },
+        {
+          "exists": true,
+          "href": "#prihod-about-clergy"
+        },
+        {
+          "exists": true,
+          "href": "#prihod-about-activities"
+        }
+      ],
+      "broken": 0,
+      "columns": "569px 270px",
+      "hero": 260.453125,
+      "overflow": false,
+      "photos": [
+        {
+          "class": "prihod-about-photos is-history",
+          "columns": "279.5px 279.5px",
+          "count": 2
+        },
+        {
+          "class": "prihod-about-photos is-life",
+          "columns": "321.125px 237.875px",
+          "count": 3
+        }
+      ],
+      "width": 954
+    }
+  ],
+  "mobile": {
+    "background": "linear-gradient(rgba(250, 248, 244, 0.96), rgba(250, 248, 244, 0.91)), url(\"https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/monastyr.jpg\")",
+    "columns": "358px",
+    "overflow": false,
+    "width": 390
+  },
+  "anchors": [
+    {
+      "width": 954,
+      "id": "history",
+      "hash": "#prihod-about-history",
+      "height": 1402,
+      "preview": "classic",
+      "top": 283.046875
+    },
+    {
+      "width": 954,
+      "id": "life",
+      "hash": "#prihod-about-life",
+      "height": 1402,
+      "preview": "classic",
+      "top": 746.03125
+    },
+    {
+      "width": 954,
+      "id": "clergy",
+      "hash": "#prihod-about-clergy",
+      "height": 1402,
+      "preview": "classic",
+      "top": 1152.984375
+    },
+    {
+      "width": 954,
+      "id": "activities",
+      "hash": "#prihod-about-activities",
+      "height": 1402,
+      "preview": "classic",
+      "top": 828.765625
+    },
+    {
+      "width": 390,
+      "id": "history",
+      "hash": "#prihod-about-history",
+      "height": 844,
+      "preview": "classic",
+      "top": 166.09375
+    },
+    {
+      "width": 390,
+      "id": "life",
+      "hash": "#prihod-about-life",
+      "height": 844,
+      "preview": "classic",
+      "top": 165.5625
+    },
+    {
+      "width": 390,
+      "id": "clergy",
+      "hash": "#prihod-about-clergy",
+      "height": 844,
+      "preview": "classic",
+      "top": 166.21875
+    },
+    {
+      "width": 390,
+      "id": "activities",
+      "hash": "#prihod-about-activities",
+      "height": 844,
+      "preview": "classic",
+      "top": 166.1875
+    }
+  ],
+  "cta": [
+    {
+      "name": "Впервые в храме?",
+      "url": "https://prihod.georg-kloster.ru/?page_id=12&prihod_preview=classic"
+    },
+    {
+      "name": "Узнать подробнее →",
+      "page": 13,
+      "url": "https://prihod.georg-kloster.ru/?page_id=13&prihod_preview=classic"
+    },
+    {
+      "name": "Узнать подробнее →",
+      "page": 18,
+      "url": "https://prihod.georg-kloster.ru/?page_id=18&prihod_preview=classic"
+    },
+    {
+      "name": "Как присоединиться →",
+      "page": 15,
+      "url": "https://prihod.georg-kloster.ru/?page_id=15&prihod_preview=classic"
+    },
+    {
+      "name": "Расписание →",
+      "page": 10,
+      "url": "https://prihod.georg-kloster.ru/?page_id=10&prihod_preview=classic"
+    }
+  ]
+}

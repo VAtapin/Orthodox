@@ -1734,3 +1734,33 @@ msgstr "Zitattext"
 
 msgid "Источник цитаты"
 msgstr "Quelle des Zitats"
+
+msgid "Разделы страницы"
+msgstr "Abschnitte der Seite"
+
+msgid "Рады встрече с вами"
+msgstr "Wir freuen uns auf Ihren Besuch"
+
+msgid "История"
+msgstr "Geschichte"
+
+msgid "Жизнь общины"
+msgstr "Gemeindeleben"
+
+msgid "Направления деятельности"
+msgstr "Unsere Tätigkeitsbereiche"
+
+msgid "Фото после истории"
+msgstr "Fotos nach dem Geschichtsabschnitt"
+
+msgid "Фото жизни общины"
+msgstr "Fotos aus dem Gemeindeleben"
+
+msgid "Как присоединиться"
+msgstr "So können Sie teilnehmen"
+
+msgid "Узнать подробнее"
+msgstr "Mehr erfahren"
+
+msgid "Впервые в храме?"
+msgstr "Zum ersten Mal in der Kirche?"

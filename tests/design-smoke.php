@@ -27,8 +27,24 @@ unset( $_GET['prihod_date'] );
 foreach ( array( 'prayer-notes', 'donations', 'requests' ) as $key ) { $GLOBALS['post'] = get_post( $first['pages'][$key] ); $rendered = prihod_theme_focus_content( apply_filters( 'the_content', $GLOBALS['post']->post_content ) ); $check( str_contains( $rendered, 'prihod-form-guidance' ) && ! str_contains( $rendered, '[gkod_' ), 'Guidance preserves rendered provider shortcodes: ' . $key ); }
 $GLOBALS['post'] = get_post( $first['pages']['about'] ); $about_html = prihod_theme_about_content( 'original' );
 $check( substr_count( $about_html, '<li><strong>' ) === 4 && str_contains( $about_html, '2006' ) && str_contains( $about_html, '2013' ), 'About timeline uses all four actual dates from the unchanged monastery history.' );
+foreach ( array( 'classic', 'hospitality', 'editorial', 'tradition', 'blue' ) as $scheme ) {
+    $_GET['prihod_preview'] = $scheme; WP_Theme_JSON_Resolver::clean_cached_data();
+    $heading = prihod_theme_heading(); $nav = prihod_theme_about_navigation(); $invitation = prihod_theme_about_invitation();
+    $check( str_contains( $heading, 'prihod-about-intro' ) && str_contains( $heading, esc_url( prihod_theme_url( 'first-visit' ) ) ), 'About hero uses the actual introduction and visitor URL: ' . $scheme );
+    foreach ( array( 'history', 'life', 'clergy', 'activities' ) as $anchor ) { $check( str_contains( $nav, 'href="#prihod-about-' . $anchor . '"' ) && str_contains( $about_html, 'id="prihod-about-' . $anchor . '"' ), 'Every about navigation anchor has a real target: ' . $scheme . '/' . $anchor ); }
+    $check( str_contains( $invitation, esc_url( prihod_theme_url( 'contacts' ) ) ) && str_contains( $invitation, esc_url( prihod_theme_url( 'schedule' ) ) ), 'Invitation uses published contacts and schedule URLs, preserving preview: ' . $scheme );
+}
+unset( $_GET['prihod_preview'] ); WP_Theme_JSON_Resolver::clean_cached_data();
+$check( str_contains( $about_html, 'is-history' ) && str_contains( $about_html, 'is-life' ) && str_contains( $about_html, 'prihod-about-directions' ), 'About renders two photographic regions and confirmed existing directions.' );
+$about_options = get_option( 'prihod_theme_options' ); $options = prihod_theme_options();
+$options['about_history_photos'] = (string) $first['images']['kitchen']; update_option( 'prihod_theme_options', $options );
+$check( str_contains( prihod_theme_about_photos( 'history' ), get_the_title( $first['images']['kitchen'] ) ) && 1 === substr_count( prihod_theme_about_photos( 'history' ), '<figure>' ), 'Owner-selected photographs and authentic captions take precedence over gallery defaults.' );
+$sanitized_photos = prihod_theme_sanitize( array( 'about_history_photos' => $first['images']['monastery'] . ',999999,' . $first['images']['clergy'], 'about_life_photos' => array( 'invalid' ) ) );
+$check( ! str_contains( $sanitized_photos['about_history_photos'], '999999' ) && '' === $sanitized_photos['about_life_photos'], 'About photo options accept images only and reject malformed input.' );
+update_option( 'prihod_theme_options', $about_options );
 $original_about = $GLOBALS['post']; wp_update_post( array( 'ID' => $original_about->ID, 'post_content' => 'Owner custom about' ) ); $GLOBALS['post'] = get_post( $original_about->ID );
 $check( 'original' === prihod_theme_about_content( 'original' ), 'About presentation preserves manually edited owner content.' );
+$check( '' === prihod_theme_about_navigation() && '' === prihod_theme_about_invitation() && '' === prihod_theme_about_intro(), 'An owner-edited about page is not transformed or given broken generated navigation.' );
 wp_update_post( array( 'ID' => $original_about->ID, 'post_content' => $original_about->post_content ) );
 $GLOBALS['post'] = get_post( $first['pages']['home'] );
 $_GET['prihod_preview'] = 'classic'; WP_Theme_JSON_Resolver::clean_cached_data();

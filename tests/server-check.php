@@ -39,7 +39,7 @@ foreach ( array( 'de_DE', 'pl_PL', 'uk' ) as $locale ) {
 }
 echo wp_json_encode( array( 'status' => 'PRIHOD_SERVER_OK', 'checks' => $checked, 'wordpress' => get_bloginfo( 'version' ), 'php' => PHP_VERSION, 'theme' => wp_get_theme()->get( 'Version' ) ), JSON_UNESCAPED_UNICODE ) . PHP_EOL;
 
-$check( '1.0.0-rc.6' === PRIHOD_VERSION && '0.3.10' === wp_get_theme()->get( 'Version' ), 'Reference-design release versions must be installed.' );
+$check( '1.0.0-rc.6' === PRIHOD_VERSION && '0.3.11' === wp_get_theme()->get( 'Version' ), 'Reference-design release versions must be installed.' );
 prihod_theme_prepare_provider_assets();
 do_shortcode( '[' . $donation_tag . ']' );
 $check( str_contains( (string) wp_scripts()->get_data( 'georg-kloster-orthodox-donate', 'data' ), 'georgKlosterOrthodoxDonate' ), 'Native donation configuration must exist before the block theme prints scripts.' );
@@ -78,3 +78,16 @@ foreach ( array( 'news', 'sermons' ) as $section_key ) {
 }
 $GLOBALS['wp_query'] = $previous_query; $GLOBALS['post'] = $previous_post;
 echo "ARTICLE_LAYOUT_CHECK_OK: {$checked} total checks.\n";
+$previous_query = $GLOBALS['wp_query']; $previous_post = $GLOBALS['post'] ?? null; $previous_get = $_GET;
+$GLOBALS['wp_query'] = new WP_Query( array( 'page_id' => $resources['about']['id'] ) ); $GLOBALS['post'] = get_post( $resources['about']['id'] ); $_GET = array();
+if ( prihod_theme_about_page() ) {
+    $about = prihod_theme_about_content( '' ); $nav = prihod_theme_about_navigation();
+    $check( str_contains( prihod_theme_heading(), 'prihod-about-intro' ) && str_contains( prihod_theme_heading(), esc_url( prihod_theme_url( 'first-visit' ) ) ), 'About heading must expose actual introduction and visitor destination.' );
+    $anchors_ok = true;
+    foreach ( array( 'history', 'life', 'clergy', 'activities' ) as $anchor ) { $anchors_ok = $anchors_ok && str_contains( $nav, 'href="#prihod-about-' . $anchor . '"' ) && str_contains( $about, 'id="prihod-about-' . $anchor . '"' ); }
+    $check( $anchors_ok, 'About section navigation must have real matching targets.' );
+    $check( str_contains( $about, 'is-history' ) && str_contains( $about, 'is-life' ) && substr_count( $about, '<li><strong>' ) === 4, 'About photographic compositions must retain the actual four historical milestones.' );
+    $check( str_contains( $about, 'prihod-about-directions' ) && str_contains( prihod_theme_about_invitation(), esc_url( prihod_theme_url( 'contacts' ) ) ) && str_contains( prihod_theme_about_invitation(), esc_url( prihod_theme_url( 'schedule' ) ) ), 'About activities and final invitation must link to actual published pages.' );
+}
+$GLOBALS['wp_query'] = $previous_query; $GLOBALS['post'] = $previous_post; $_GET = $previous_get;
+echo "ABOUT_LAYOUT_CHECK_OK: {$checked} total checks.\n";

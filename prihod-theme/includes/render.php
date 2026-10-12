@@ -83,6 +83,10 @@ function prihod_theme_heading(): string {
         return $html . '<h1>' . esc_html( get_the_title() ) . '</h1></div></div>';
     }
     $image = get_the_post_thumbnail_url( get_the_ID(), 'full' ) ?: wp_get_attachment_image_url( prihod_theme_resource_image( 'about' ) ?: prihod_theme_options()['about_image'] ?: prihod_theme_options()['hero_image'], 'full' );
+    if ( prihod_theme_about_page() ) {
+        $visit = prihod_theme_url( 'first-visit' ) ?: prihod_theme_url( 'contacts' );
+        return '<div class="prihod-page-heading prihod-about-heading"' . ( $image ? ' style="--prihod-hero-image:url(' . esc_url( $image ) . ')"' : '' ) . '><div class="prihod-container"><a class="prihod-breadcrumb" href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '">' . esc_html__( 'Главная', 'prihod-theme' ) . '</a><h1>' . esc_html( get_the_title() ) . '</h1><div class="prihod-about-intro">' . prihod_theme_about_intro() . '</div>' . ( $visit ? '<a class="prihod-button" href="' . esc_url( $visit ) . '">' . esc_html__( 'Впервые в храме?', 'prihod-theme' ) . ' →</a>' : '' ) . '</div></div>';
+    }
     return '<div class="prihod-page-heading"' . ( $image ? ' style="--prihod-hero-image:url(' . esc_url( $image ) . ')"' : '' ) . '><div class="prihod-container"><a class="prihod-breadcrumb" href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '">' . esc_html__( 'Главная', 'prihod-theme' ) . '</a><h1>' . esc_html( get_the_title() ) . '</h1></div></div>';
 }
 
