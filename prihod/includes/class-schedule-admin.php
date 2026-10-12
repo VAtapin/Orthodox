@@ -3,9 +3,58 @@ namespace Prihod;
 defined( 'ABSPATH' ) || exit;
 
 final class Schedule_Admin {
+    public static function columns( array $columns ): array {
+        $result = array();
+        foreach ( $columns as $key => $label ) {
+            $result[$key] = 'date' === $key ? __( 'Дата публикации', 'prihod' ) : $label;
+            if ( 'title' === $key ) {
+                $result += array( 'prihod_service_when' => __( 'Дата и время службы', 'prihod' ), 'prihod_service_place' => __( 'Место служения', 'prihod' ), 'prihod_service_kind' => __( 'Тип / повторение', 'prihod' ), 'prihod_service_changes' => __( 'Изменения', 'prihod' ) );
+            }
+        }
+        return $result;
+    }
+    /** Read the existing rule without changing it or confusing recurrence with an occurrence. */
+    public static function column_data( int $id ): array {
+        $empty = array( 'date' => __( 'Не настроено', 'prihod' ), 'time' => '', 'timezone' => '', 'place' => '—', 'kind' => '—', 'changes' => '—' );
+        $data = get_post_meta( $id, '_prihod_service', true );
+        if ( ! is_array( $data ) ) { return $empty; }
+        try { $rule = Schedule::validate( $data ); } catch ( \InvalidArgumentException $error ) { return $empty; }
+        $zone = Schedule::timezone( $rule['location_id'], $rule['timezone'] );
+        $date = ( new \DateTimeImmutable( $rule['date'] ) )->format( 'd.m.Y' );
+        $kinds = array( 'single' => __( 'Разовая', 'prihod' ), 'regular' => __( 'Регулярная', 'prihod' ), 'holiday' => __( 'Праздничная', 'prihod' ) );
+        $result = array( 'date' => $date, 'time' => $rule['time'], 'timezone' => $zone, 'place' => get_the_title( $rule['location_id'] ), 'kind' => $kinds[$rule['kind']], 'changes' => '—' );
+        if ( 'regular' === $rule['kind'] ) {
+            $result['date'] = $rule['until'] ? sprintf( __( 'С %1$s по %2$s', 'prihod' ), $date, ( new \DateTimeImmutable( $rule['until'] ) )->format( 'd.m.Y' ) ) : sprintf( __( 'С %s, без конечной даты', 'prihod' ), $date );
+            $days = array( 1 => __( 'Пн', 'prihod' ), __( 'Вт', 'prihod' ), __( 'Ср', 'prihod' ), __( 'Чт', 'prihod' ), __( 'Пт', 'prihod' ), __( 'Сб', 'prihod' ), __( 'Вс', 'prihod' ) );
+            $result['kind'] .= ' · ' . implode( ', ', array_intersect_key( $days, array_flip( $rule['weekdays'] ) ) );
+            if ( $rule['exceptions'] ) {
+                $cancelled = count( array_filter( $rule['exceptions'], static fn( $change ) => 'cancel' === $change['action'] ) );
+                $result['changes'] = sprintf( __( 'Отменённых дат: %1$d. Переносов: %2$d.', 'prihod' ), $cancelled, count( $rule['exceptions'] ) - $cancelled );
+            }
+        } else {
+            // Use the same recurrence engine as the public schedule for overrides.
+            $change = $rule['exceptions'][$rule['date']] ?? array();
+            $effective_zone = $change['timezone'] ?? $zone;
+            $anchor = new \DateTimeImmutable( $change['date'] ?? $rule['date'], new \DateTimeZone( $effective_zone ) );
+            $rule = array_merge( $rule, array( 'timezone' => $zone, 'id' => $id, 'title' => get_the_title( $id ), 'description' => '' ) );
+            $events = Occurrences::expand( $rule, $anchor->modify( '-1 day' ), $anchor->modify( '+2 days' ) );
+            if ( ! $events ) { return $empty; }
+            $event = $events[0];
+            $result['date'] = $event['start']->format( 'd.m.Y' ); $result['time'] = $event['start']->format( 'H:i' ); $result['timezone'] = $event['start']->getTimezone()->getName(); $result['place'] = get_the_title( $event['location_id'] );
+            if ( $event['cancelled'] ) { $result['changes'] = __( 'Отменено', 'prihod' ); }
+            elseif ( $event['moved'] ) { $result['changes'] = sprintf( __( 'Перенесено с %s', 'prihod' ), $date ); }
+        }
+        return $result;
+    }
+    public static function column( string $column, int $id ): void {
+        if ( ! in_array( $column, array( 'prihod_service_when', 'prihod_service_place', 'prihod_service_kind', 'prihod_service_changes' ), true ) ) { return; }
+        $data = self::column_data( $id );
+        if ( 'prihod_service_when' === $column ) { echo '<strong>' . esc_html( $data['date'] ) . '</strong><br>' . esc_html( $data['time'] ) . '<br><span class="description">' . esc_html( $data['timezone'] ) . '</span>'; }
+        else { echo esc_html( $data[ array( 'prihod_service_place' => 'place', 'prihod_service_kind' => 'kind', 'prihod_service_changes' => 'changes' )[$column] ] ); }
+    }
     public static function assets(): void {
         if ( 'prihod_service' !== ( get_current_screen()->post_type ?? '' ) ) { return; }
-        wp_enqueue_style( 'prihod-schedule-admin', plugins_url( 'assets/schedule-admin.css', PRIHOD_FILE ), array(), PRIHOD_VERSION );
+        wp_enqueue_style( 'prihod-schedule-admin', plugins_url( 'assets/schedule-admin.css', PRIHOD_FILE ), array(), PRIHOD_VERSION . '.' . filemtime( dirname( PRIHOD_FILE ) . '/assets/schedule-admin.css' ) );
         wp_enqueue_script( 'prihod-schedule-admin', plugins_url( 'assets/schedule-admin.js', PRIHOD_FILE ), array(), PRIHOD_VERSION, true );
         wp_localize_script( 'prihod-schedule-admin', 'prihodScheduleUI', array( 'description' => __( 'Описание богослужения', 'prihod' ) ) );
     }

@@ -1623,3 +1623,30 @@ msgstr "Nasza parafia"
 
 msgid "Наша обитель"
 msgstr "Nasz monaster"
+
+msgid "Дата публикации"
+msgstr "Data publikacji"
+
+msgid "Дата и время службы"
+msgstr "Data i godzina nabożeństwa"
+
+msgid "Тип / повторение"
+msgstr "Typ / powtarzanie"
+
+msgid "Изменения"
+msgstr "Zmiany"
+
+msgid "Не настроено"
+msgstr "Nie skonfigurowano"
+
+msgid "С %1$s по %2$s"
+msgstr "Od %1$s do %2$s"
+
+msgid "С %s, без конечной даты"
+msgstr "Od %s, bez daty końcowej"
+
+msgid "Отменённых дат: %1$d. Переносов: %2$d."
+msgstr "Odwołane terminy: %1$d. Przeniesienia: %2$d."
+
+msgid "Перенесено с %s"
+msgstr "Przeniesiono z %s"

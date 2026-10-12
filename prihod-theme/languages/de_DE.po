@@ -1623,3 +1623,30 @@ msgstr "Unsere Gemeinde"
 
 msgid "Наша обитель"
 msgstr "Unser Kloster"
+
+msgid "Дата публикации"
+msgstr "Veröffentlichungsdatum"
+
+msgid "Дата и время службы"
+msgstr "Datum und Uhrzeit des Gottesdienstes"
+
+msgid "Тип / повторение"
+msgstr "Art / Wiederholung"
+
+msgid "Изменения"
+msgstr "Änderungen"
+
+msgid "Не настроено"
+msgstr "Nicht eingerichtet"
+
+msgid "С %1$s по %2$s"
+msgstr "Vom %1$s bis %2$s"
+
+msgid "С %s, без конечной даты"
+msgstr "Ab %s, ohne Enddatum"
+
+msgid "Отменённых дат: %1$d. Переносов: %2$d."
+msgstr "Abgesagte Termine: %1$d. Verschiebungen: %2$d."
+
+msgid "Перенесено с %s"
+msgstr "Verschoben vom %s"

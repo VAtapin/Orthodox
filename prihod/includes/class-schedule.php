@@ -11,6 +11,8 @@ final class Schedule {
         } );
         add_action( 'save_post_prihod_service', array( Schedule_Admin::class, 'save' ) );
         add_action( 'admin_enqueue_scripts', array( Schedule_Admin::class, 'assets' ) );
+        add_filter( 'manage_prihod_service_posts_columns', array( Schedule_Admin::class, 'columns' ) );
+        add_action( 'manage_prihod_service_posts_custom_column', array( Schedule_Admin::class, 'column' ), 10, 2 );
     }
     public static function register(): void {
         $caps = array_map( fn() => 'manage_prihod_schedule', Capabilities::directory() );

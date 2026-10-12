@@ -539,3 +539,12 @@ ID места (0 — все)	Orts-ID (0 — alle)	ID miejsca (0 — wszystkie)	I
 История и община	Geschichte und Gemeinschaft	Historia i wspólnota	Історія та громада
 Наш приход	Unsere Gemeinde	Nasza parafia	Наша парафія
 Наша обитель	Unser Kloster	Nasz monaster	Наша обитель
+Дата публикации	Veröffentlichungsdatum	Data publikacji	Дата публікації
+Дата и время службы	Datum und Uhrzeit des Gottesdienstes	Data i godzina nabożeństwa	Дата й час богослужіння
+Тип / повторение	Art / Wiederholung	Typ / powtarzanie	Тип / повторення
+Изменения	Änderungen	Zmiany	Зміни
+Не настроено	Nicht eingerichtet	Nie skonfigurowano	Не налаштовано
+С %1$s по %2$s	Vom %1$s bis %2$s	Od %1$s do %2$s	З %1$s до %2$s
+С %s, без конечной даты	Ab %s, ohne Enddatum	Od %s, bez daty końcowej	З %s, без кінцевої дати
+Отменённых дат: %1$d. Переносов: %2$d.	Abgesagte Termine: %1$d. Verschiebungen: %2$d.	Odwołane terminy: %1$d. Przeniesienia: %2$d.	Скасованих дат: %1$d. Перенесень: %2$d.
+Перенесено с %s	Verschoben vom %s	Przeniesiono z %s	Перенесено з %s

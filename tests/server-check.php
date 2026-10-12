@@ -39,7 +39,7 @@ foreach ( array( 'de_DE', 'pl_PL', 'uk' ) as $locale ) {
 }
 echo wp_json_encode( array( 'status' => 'PRIHOD_SERVER_OK', 'checks' => $checked, 'wordpress' => get_bloginfo( 'version' ), 'php' => PHP_VERSION, 'theme' => wp_get_theme()->get( 'Version' ) ), JSON_UNESCAPED_UNICODE ) . PHP_EOL;
 
-$check( '1.0.0-rc.4' === PRIHOD_VERSION && '0.3.5' === wp_get_theme()->get( 'Version' ), 'Reference-design release versions must be installed.' );
+$check( '1.0.0-rc.5' === PRIHOD_VERSION && '0.3.5' === wp_get_theme()->get( 'Version' ), 'Reference-design release versions must be installed.' );
 prihod_theme_prepare_provider_assets();
 do_shortcode( '[' . $donation_tag . ']' );
 $check( str_contains( (string) wp_scripts()->get_data( 'georg-kloster-orthodox-donate', 'data' ), 'georgKlosterOrthodoxDonate' ), 'Native donation configuration must exist before the block theme prints scripts.' );
@@ -48,3 +48,15 @@ $markup = prihod_theme_calendar_markup( '<section data-orthocal="' . esc_attr( w
 $tags = new WP_HTML_Tag_Processor( do_shortcode( $markup ) ); $tags->next_tag();
 $check( $config === json_decode( $tags->get_attribute( 'data-orthocal' ), true ), 'Calendar parameters must survive native shortcode processing.' );
 echo "REFERENCE_DESIGN_CHECK_OK: {$checked} total checks.\n";
+$columns = apply_filters( 'manage_prihod_service_posts_columns', array( 'title' => 'Title', 'date' => 'Date' ) );
+$check( isset( $columns['prihod_service_when'], $columns['prihod_service_place'], $columns['prihod_service_kind'], $columns['prihod_service_changes'] ) && __( 'Дата публикации', 'prihod' ) === $columns['date'], 'Administrative service list must distinguish schedule information from publication.' );
+$single_dates = array();
+foreach ( get_posts( array( 'post_type' => 'prihod_service', 'post_status' => 'publish', 'numberposts' => -1 ) ) as $post ) {
+    $rule = get_post_meta( $post->ID, '_prihod_service', true );
+    if ( 'single' !== ( $rule['kind'] ?? '' ) || ! empty( $rule['exceptions'] ) ) { continue; }
+    $row = Prihod\Schedule_Admin::column_data( $post->ID );
+    if ( $row['date'] !== ( new DateTimeImmutable( $rule['date'] ) )->format( 'd.m.Y' ) || $row['time'] !== $rule['time'] || $row['timezone'] !== Prihod\Schedule::timezone( $rule['location_id'], $rule['timezone'] ?? '' ) ) { throw new RuntimeException( 'Service list does not match stored dates, times and timezone.' ); }
+    $single_dates[] = $row['date'];
+}
+$check( count( array_unique( $single_dates ) ) >= 5, 'Existing dated liturgies must be distinguishable in the service list.' );
+echo "SERVICE_LIST_CHECK_OK: {$checked} total checks.\n";
