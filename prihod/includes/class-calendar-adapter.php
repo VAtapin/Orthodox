@@ -36,7 +36,8 @@ final class Calendar_Adapter {
                 if ( ! $icon['url'] && $source ) { $icon['media'] = add_query_arg( array( 'source' => $source, 'token' => \Orthocal_Media_Cache::token( $source ), 'thumbnail' => '1' ), rest_url( 'orthocal/v1/media' ) ); }
             }
         }
-        return array( 'date' => $date, 'feasts' => self::feasts( $day ), 'icon' => $icon );
+        $feasts = self::feasts( $day );
+        return array( 'date' => $date, 'feasts' => $feasts, 'icon' => $icon, 'recommendation' => Calendar_Colors::recommendation( $feasts ) );
     }
     public static function week( \DateTimeImmutable $from ) {
         $to = $from->modify( '+7 days' ); $months = array(); $result = array();

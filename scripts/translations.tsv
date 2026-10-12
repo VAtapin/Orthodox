@@ -726,3 +726,21 @@ ID места (0 — все)	Orts-ID (0 — alle)	ID miejsca (0 — wszystkie)	I
 Суббота	Samstag	Sobota	Субота
 Богослужений: %d	Gottesdienste: %d	Nabożeństwa: %d	Богослужінь: %d
 Богослужения на эту дату не указаны.	Für dieses Datum sind keine Gottesdienste eingetragen.	Na ten dzień nie wpisano nabożeństw.	Богослужіння на цю дату не вказані.
+Без выделения	Ohne Hervorhebung	Bez wyróżnienia	Без виділення
+Белый	Weiß	Biały	Білий
+Красный	Rot	Czerwony	Червоний
+Золотой / жёлтый	Gold / Gelb	Złoty / żółty	Золотий / жовтий
+Зелёный	Grün	Zielony	Зелений
+Голубой	Hellblau	Błękitny	Блакитний
+Фиолетовый	Violett	Fioletowy	Фіолетовий
+Чёрный	Schwarz	Czarny	Чорний
+Выберите цвет облачения из списка.	Wählen Sie eine Gewandfarbe aus der Liste.	Wybierz kolor szat z listy.	Виберіть колір облачення зі списку.
+Цвет облачения	Gewandfarbe	Kolor szat	Колір облачення
+Использовать рекомендованный	Empfehlung übernehmen	Zastosuj zalecany kolor	Використати рекомендований
+Образцы цветов	Farbmuster	Próbki kolorów	Зразки кольорів
+Цвет облачения на эту дату	Gewandfarbe für dieses Datum	Kolor szat na ten dzień	Колір облачення на цю дату
+Дат с отдельным цветом: %d.	Termine mit eigener Farbe: %d.	Daty z osobnym kolorem: %d.	Дат з окремим кольором: %d.
+Рекомендация: %1$s — %2$s. Цвет можно изменить.	Empfehlung: %1$s — %2$s. Die Farbe kann geändert werden.	Zalecenie: %1$s — %2$s. Kolor można zmienić.	Рекомендація: %1$s — %2$s. Колір можна змінити.
+Однозначной рекомендации нет. Выберите цвет вручную.	Keine eindeutige Empfehlung. Wählen Sie die Farbe manuell.	Brak jednoznacznego zalecenia. Wybierz kolor ręcznie.	Однозначної рекомендації немає. Виберіть колір вручну.
+Для регулярной службы цвет праздника задаётся в исключении на отдельную дату.	Bei regelmäßigen Gottesdiensten wird die Festfarbe als Ausnahme für ein einzelnes Datum festgelegt.	Dla regularnego nabożeństwa kolor świąteczny ustawia się w wyjątku dla konkretnej daty.	Для регулярної служби колір свята задається у винятку на окрему дату.
+Исключения отдельных дат	Ausnahmen für einzelne Termine	Wyjątki dla poszczególnych dat	Винятки окремих дат

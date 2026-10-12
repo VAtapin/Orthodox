@@ -133,4 +133,12 @@ foreach ( array( array( 'email' => 'invalid' ), array( 'name' => array() ), arra
     try { Prihod\Requests::validate( array_merge( $request_input, $change ) ); check( false, 'Invalid request should throw.' ); }
     catch ( InvalidArgumentException $error ) { check( true, 'Invalid request rejected.' ); }
 }
+
+
+check( 8 === count( Prihod\Calendar_Colors::labels() ), 'Seven vestment colors plus neutral choice.' );
+check( 'blue' === Prihod\Calendar_Colors::recommendation( array( 'Покров Пресвятой Богородицы' ) )['color'], 'Pokrov recommends blue.' );
+check( 'green' === Prihod\Calendar_Colors::recommendation( array( 'Pfingsten' ) )['color'], 'Pentecost recommendation supports German.' );
+check( null === Prihod\Calendar_Colors::recommendation( array( 'Unknown feast' ) ) && null === Prihod\Calendar_Colors::recommendation( array( 'Покров', 'Троица' ) ), 'Unknown and conflicting feasts never invent a color.' );
+try { Prihod\Calendar_Colors::validate( 'javascript:red' ); check( false, 'Invalid color rejected.' ); } catch ( InvalidArgumentException $e ) { check( true, 'Invalid color rejected.' ); }
+
 echo "Passed {$count} assertions (isolated unit tests).\n";

@@ -1,11 +1,15 @@
 """Build independent installable ZIPs using only Python's standard library."""
 from pathlib import Path
+import argparse
 import shutil
 import zipfile
 
 ROOT = Path(__file__).resolve().parent.parent
 BUILD = ROOT / "build"
 BUILD.mkdir(exist_ok=True)
+parser = argparse.ArgumentParser()
+parser.add_argument('--only', nargs='+', choices=['core', 'theme', 'connectors'], default=['core', 'theme', 'connectors'])
+selected = parser.parse_args().only
 
 def archive(folder: Path, filename: str) -> None:
     with zipfile.ZipFile(BUILD / filename, "w", zipfile.ZIP_DEFLATED) as output:
@@ -13,7 +17,7 @@ def archive(folder: Path, filename: str) -> None:
             if path.is_file():
                 output.write(path, Path(folder.name) / path.relative_to(folder))
 
-for name in ("prihod-telegram", "prihod-whatsapp", "prihod-social"):
+for name in (("prihod-telegram", "prihod-whatsapp", "prihod-social") if "connectors" in selected else ()):
     target = BUILD / "packages" / name
     (target / "includes").mkdir(parents=True, exist_ok=True)
     shutil.copyfile(ROOT / "extensions" / name / f"{name}.php", target / f"{name}.php")
@@ -28,6 +32,8 @@ for name in ("prihod-telegram", "prihod-whatsapp", "prihod-social"):
     (target / "readme.txt").write_text(readme, encoding="utf-8")
     archive(target, f"{name}-0.1.1.zip")
 
-archive(ROOT / "prihod", "prihod-1.0.0-rc.10.zip")
-archive(ROOT / "prihod-theme", "prihod-theme-0.3.20.zip")
-print("Built Core, theme and three independent connector ZIPs.")
+if "core" in selected:
+    archive(ROOT / "prihod", "prihod-1.0.0-rc.11.zip")
+if "theme" in selected:
+    archive(ROOT / "prihod-theme", "prihod-theme-0.3.21.zip")
+print("Built: " + ", ".join(selected))

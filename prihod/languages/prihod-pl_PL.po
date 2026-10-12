@@ -2077,6 +2077,12 @@ msgstr "Obecny motyw"
 msgid "Материал"
 msgstr "Materiał"
 
+msgid "Предыдущее фото"
+msgstr "Poprzednie zdjęcie"
+
+msgid "Следующее фото"
+msgstr "Następne zdjęcie"
+
 msgid "Календарный плагин недоступен."
 msgstr "Wtyczka kalendarza jest niedostępna."
 
@@ -2178,3 +2184,57 @@ msgstr "Nabożeństwa: %d"
 
 msgid "Богослужения на эту дату не указаны."
 msgstr "Na ten dzień nie wpisano nabożeństw."
+
+msgid "Без выделения"
+msgstr "Bez wyróżnienia"
+
+msgid "Белый"
+msgstr "Biały"
+
+msgid "Красный"
+msgstr "Czerwony"
+
+msgid "Золотой / жёлтый"
+msgstr "Złoty / żółty"
+
+msgid "Зелёный"
+msgstr "Zielony"
+
+msgid "Голубой"
+msgstr "Błękitny"
+
+msgid "Фиолетовый"
+msgstr "Fioletowy"
+
+msgid "Чёрный"
+msgstr "Czarny"
+
+msgid "Выберите цвет облачения из списка."
+msgstr "Wybierz kolor szat z listy."
+
+msgid "Цвет облачения"
+msgstr "Kolor szat"
+
+msgid "Использовать рекомендованный"
+msgstr "Zastosuj zalecany kolor"
+
+msgid "Образцы цветов"
+msgstr "Próbki kolorów"
+
+msgid "Цвет облачения на эту дату"
+msgstr "Kolor szat na ten dzień"
+
+msgid "Дат с отдельным цветом: %d."
+msgstr "Daty z osobnym kolorem: %d."
+
+msgid "Рекомендация: %1$s — %2$s. Цвет можно изменить."
+msgstr "Zalecenie: %1$s — %2$s. Kolor można zmienić."
+
+msgid "Однозначной рекомендации нет. Выберите цвет вручную."
+msgstr "Brak jednoznacznego zalecenia. Wybierz kolor ręcznie."
+
+msgid "Для регулярной службы цвет праздника задаётся в исключении на отдельную дату."
+msgstr "Dla regularnego nabożeństwa kolor świąteczny ustawia się w wyjątku dla konkretnej daty."
+
+msgid "Исключения отдельных дат"
+msgstr "Wyjątki dla poszczególnych dat"

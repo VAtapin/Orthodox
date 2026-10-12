@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', function () {
         var replacement = row.querySelector('[data-prihod-replacement]');
         replacement.hidden = removed || row.querySelector('[name$="[action]"]').value !== 'replace';
         replacement.querySelectorAll('input,select').forEach(function (input) { input.disabled = replacement.hidden; });
+        var color = row.querySelector('[data-prihod-color-control]');
+        color.hidden = removed || row.querySelector('[name$="[action]"]').value === 'cancel';
+        color.querySelector('select').disabled = color.hidden;
         row.querySelector('[name$="[original]"]').required = !removed;
         row.classList.toggle('is-removed', removed);
     }

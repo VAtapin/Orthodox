@@ -24,7 +24,7 @@ final class Schedule {
         ) );
     }
     public static function defaults(): array {
-        return array( 'kind' => 'single', 'date' => '', 'until' => '', 'time' => '09:00', 'end' => '', 'weekdays' => array(), 'location_id' => 0, 'timezone' => '', 'exceptions' => array(), 'day_icon' => false );
+        return array( 'kind' => 'single', 'date' => '', 'until' => '', 'time' => '09:00', 'end' => '', 'weekdays' => array(), 'location_id' => 0, 'timezone' => '', 'exceptions' => array(), 'day_icon' => false, 'vestment_color' => '' );
     }
     public static function timezone( int $location, string $explicit = '' ): string {
         $zone = $explicit ?: ( Directory::details( $location )['timezone'] ?? '' );
@@ -33,6 +33,7 @@ final class Schedule {
     }
     public static function validate( array $input ): array {
         $rule = array_merge( self::defaults(), array_intersect_key( $input, self::defaults() ) );
+        $rule['vestment_color'] = Calendar_Colors::validate( $rule['vestment_color'] );
         if ( ! in_array( $rule['day_icon'], array( true, false, 1, 0, '1', '0', '' ), true ) ) { throw new \InvalidArgumentException( __( 'Некорректные поля расписания.', 'prihod' ) ); }
         $rule['day_icon'] = in_array( $rule['day_icon'], array( true, 1, '1' ), true );
         foreach ( array( 'kind', 'date', 'until', 'time', 'end', 'timezone' ) as $key ) {
@@ -60,10 +61,12 @@ final class Schedule {
         foreach ( $rule['exceptions'] as $original => $change ) {
             if ( ! is_string( $original ) || ! Occurrences::matches( $rule, $original ) || ! is_array( $change ) ) { throw new \InvalidArgumentException( __( 'Исключение должно относиться к существующей дате службы.', 'prihod' ) ); }
             if ( 'cancel' === ( $change['action'] ?? '' ) ) { $exceptions[ $original ] = array( 'action' => 'cancel' ); continue; }
+            if ( 'color' === ( $change['action'] ?? '' ) ) { $exceptions[$original] = array( 'action' => 'color', 'vestment_color' => Calendar_Colors::validate( $change['vestment_color'] ?? '' ) ); continue; }
             if ( 'replace' !== ( $change['action'] ?? '' ) ) { throw new \InvalidArgumentException( __( 'Выберите отмену или перенос.', 'prihod' ) ); }
             $replacement = array( 'action' => 'replace', 'date' => $change['date'] ?? $original, 'time' => $change['time'] ?? $rule['time'], 'end' => $change['end'] ?? $rule['end'], 'timezone' => $change['timezone'] ?? $rule['timezone'] );
             foreach ( array( 'date', 'time', 'end', 'timezone' ) as $key ) { if ( ! is_string( $replacement[ $key ] ) ) { throw new \InvalidArgumentException( __( 'Некорректное исключение.', 'prihod' ) ); } }
             $replacement['location_id'] = self::location( $change['location_id'] ?? $rule['location_id'] );
+            if ( array_key_exists( 'vestment_color', $change ) ) { $replacement['vestment_color'] = Calendar_Colors::validate( $change['vestment_color'] ); }
             if ( $replacement['timezone'] && ! in_array( $replacement['timezone'], timezone_identifiers_list(), true ) ) { throw new \InvalidArgumentException( __( 'Некорректный часовой пояс переноса.', 'prihod' ) ); }
             $replacement['timezone'] = self::timezone( $replacement['location_id'], $replacement['timezone'] );
             if ( ! Occurrences::date( $replacement['date'] ) || ! Occurrences::time( $replacement['time'] ) || ( $replacement['end'] && ! Occurrences::time( $replacement['end'] ) )
@@ -119,6 +122,7 @@ final class Schedule {
         $result = array();
         foreach ( self::published_rules() as $rule ) {
             foreach ( array_keys( $rule['exceptions'] ) as $original ) {
+                if ( 'color' === $rule['exceptions'][$original]['action'] ) { continue; }
                 $event = Occurrences::occurrence( $rule, $original );
                 if ( ! $event || 'publish' !== get_post_status( $event['location_id'] ) || 'publish' !== get_post_status( $rule['location_id'] ) ) { continue; }
                 $original_start = Occurrences::instant( $original, $rule['time'], $rule['timezone'] );

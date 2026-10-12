@@ -19,3 +19,13 @@
 @media(max-width:600px){.prihod-month td>.prihod-event,.prihod-month td>time{display:none}.prihod-month-day-choice{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:44px;min-width:0;text-decoration:none;gap:2px}.prihod-month-day-choice small{font:10px/1.2 system-ui;background:#e7dcc7;border-radius:50%;min-width:15px;padding:2px}.prihod-month-day-choice[aria-current]{outline:2px solid currentColor;outline-offset:-2px;border-radius:4px}.prihod-month-panels{display:block;margin-top:16px}.prihod-month-panels.is-enhanced>.prihod-month-day-panel:not([open]){display:none}.prihod-month-day-panel{margin-bottom:8px;border:1px solid #ddd;border-radius:4px;padding:8px;min-width:0}.prihod-month-day-panel>summary{cursor:pointer;padding:8px;font-size:13px}.prihod-month-day-panel .prihod-event-copy h3{font-size:18px;overflow-wrap:normal;word-break:normal}.prihod-month-day-panel .prihod-event-copy p{font-size:12px}}
 @media(max-width:600px){.prihod-schedule .prihod-month td{height:auto;padding:0;vertical-align:middle}}
 @media print{.prihod-month td>.prihod-event{display:block}.prihod-month td>time{display:inline}.prihod-month-day-choice,.prihod-month-panels{display:none!important}}
+
+/* A soft edge marks vestments without lowering text contrast. */
+.prihod-service-feast{font-weight:600;font-size:.95em;line-height:1.45;margin-block:8px}.prihod-vestment-label{display:block;font-size:.8em;margin-block:5px}.prihod-service-compact[data-vestment-color],.prihod-event[data-vestment-color],.prihod-upcoming-card[data-vestment-color]{box-shadow:inset 4px 0 0 var(--prihod-vestment-edge);padding-inline-start:12px}
+[data-vestment-color="white"]{--prihod-vestment-edge:#faf8ef}
+[data-vestment-color="red"]{--prihod-vestment-edge:#b24743}
+[data-vestment-color="gold"]{--prihod-vestment-edge:#c39b3c}
+[data-vestment-color="green"]{--prihod-vestment-edge:#4c8161}
+[data-vestment-color="blue"]{--prihod-vestment-edge:#76a9cd}
+[data-vestment-color="purple"]{--prihod-vestment-edge:#856398}
+[data-vestment-color="black"]{--prihod-vestment-edge:#353a40}

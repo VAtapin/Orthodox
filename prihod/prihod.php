@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Приход
  * Description: Сведения о приходе, расписание, обращения и безопасный мастер подготовки православного сайта.
- * Version: 1.0.0-rc.10
+ * Version: 1.0.0-rc.11
  * Requires at least: 6.5
  * Requires PHP: 8.0
  * License: GPL-2.0-or-later
@@ -12,7 +12,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'PRIHOD_VERSION', '1.0.0-rc.10' );
+define( 'PRIHOD_VERSION', '1.0.0-rc.11' );
 define( 'PRIHOD_FILE', __FILE__ );
 
 require_once __DIR__ . '/includes/class-capabilities.php';
@@ -30,6 +30,7 @@ require_once __DIR__ . '/includes/class-occurrences.php';
 require_once __DIR__ . '/includes/class-schedule.php';
 require_once __DIR__ . '/includes/class-schedule-admin.php';
 require_once __DIR__ . '/includes/class-calendar-adapter.php';
+require_once __DIR__ . '/includes/class-calendar-colors.php';
 require_once __DIR__ . '/includes/class-schedule-calendar.php';
 require_once __DIR__ . '/includes/class-calendar-reminders.php';
 require_once __DIR__ . '/includes/class-public-view.php';

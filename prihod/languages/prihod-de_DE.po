@@ -2077,6 +2077,12 @@ msgstr "Aktuelles Theme"
 msgid "Материал"
 msgstr "Inhalt"
 
+msgid "Предыдущее фото"
+msgstr "Vorheriges Foto"
+
+msgid "Следующее фото"
+msgstr "Nächstes Foto"
+
 msgid "Календарный плагин недоступен."
 msgstr "Das Kalender-Plugin ist nicht verfügbar."
 
@@ -2178,3 +2184,57 @@ msgstr "Gottesdienste: %d"
 
 msgid "Богослужения на эту дату не указаны."
 msgstr "Für dieses Datum sind keine Gottesdienste eingetragen."
+
+msgid "Без выделения"
+msgstr "Ohne Hervorhebung"
+
+msgid "Белый"
+msgstr "Weiß"
+
+msgid "Красный"
+msgstr "Rot"
+
+msgid "Золотой / жёлтый"
+msgstr "Gold / Gelb"
+
+msgid "Зелёный"
+msgstr "Grün"
+
+msgid "Голубой"
+msgstr "Hellblau"
+
+msgid "Фиолетовый"
+msgstr "Violett"
+
+msgid "Чёрный"
+msgstr "Schwarz"
+
+msgid "Выберите цвет облачения из списка."
+msgstr "Wählen Sie eine Gewandfarbe aus der Liste."
+
+msgid "Цвет облачения"
+msgstr "Gewandfarbe"
+
+msgid "Использовать рекомендованный"
+msgstr "Empfehlung übernehmen"
+
+msgid "Образцы цветов"
+msgstr "Farbmuster"
+
+msgid "Цвет облачения на эту дату"
+msgstr "Gewandfarbe für dieses Datum"
+
+msgid "Дат с отдельным цветом: %d."
+msgstr "Termine mit eigener Farbe: %d."
+
+msgid "Рекомендация: %1$s — %2$s. Цвет можно изменить."
+msgstr "Empfehlung: %1$s — %2$s. Die Farbe kann geändert werden."
+
+msgid "Однозначной рекомендации нет. Выберите цвет вручную."
+msgstr "Keine eindeutige Empfehlung. Wählen Sie die Farbe manuell."
+
+msgid "Для регулярной службы цвет праздника задаётся в исключении на отдельную дату."
+msgstr "Bei regelmäßigen Gottesdiensten wird die Festfarbe als Ausnahme für ein einzelnes Datum festgelegt."
+
+msgid "Исключения отдельных дат"
+msgstr "Ausnahmen für einzelne Termine"

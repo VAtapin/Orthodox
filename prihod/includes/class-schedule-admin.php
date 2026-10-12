@@ -29,7 +29,9 @@ final class Schedule_Admin {
             $result['kind'] .= ' · ' . implode( ', ', array_intersect_key( $days, array_flip( $rule['weekdays'] ) ) );
             if ( $rule['exceptions'] ) {
                 $cancelled = count( array_filter( $rule['exceptions'], static fn( $change ) => 'cancel' === $change['action'] ) );
-                $result['changes'] = sprintf( __( 'Отменённых дат: %1$d. Переносов: %2$d.', 'prihod' ), $cancelled, count( $rule['exceptions'] ) - $cancelled );
+                $result['changes'] = sprintf( __( 'Отменённых дат: %1$d. Переносов: %2$d.', 'prihod' ), $cancelled, count( array_filter( $rule['exceptions'], static fn( $change ) => 'replace' === $change['action'] ) ) );
+                $colors = count( array_filter( $rule['exceptions'], static fn( $change ) => 'color' === $change['action'] ) );
+                if ( $colors ) { $result['changes'] .= ' ' . sprintf( __( 'Дат с отдельным цветом: %d.', 'prihod' ), $colors ); }
             }
         } else {
             // Use the same recurrence engine as the public schedule for overrides.
@@ -56,8 +58,9 @@ final class Schedule_Admin {
         if ( 'prihod_service' !== ( get_current_screen()->post_type ?? '' ) ) { return; }
         wp_enqueue_style( 'prihod-schedule-admin', plugins_url( 'assets/schedule-admin.css', PRIHOD_FILE ), array(), PRIHOD_VERSION . '.' . filemtime( dirname( PRIHOD_FILE ) . '/assets/schedule-admin.css' ) );
         wp_enqueue_script( 'prihod-schedule-admin', plugins_url( 'assets/schedule-admin.js', PRIHOD_FILE ), array(), PRIHOD_VERSION, true );
+        wp_enqueue_script( 'prihod-calendar-colors', plugins_url( 'assets/calendar-colors.js', PRIHOD_FILE ), array( 'prihod-schedule-admin' ), PRIHOD_VERSION . '.' . filemtime( dirname( PRIHOD_FILE ) . '/assets/calendar-colors.js' ), true );
         wp_enqueue_script( 'prihod-calendar-admin', plugins_url( 'assets/calendar-admin.js', PRIHOD_FILE ), array( 'prihod-schedule-admin' ), PRIHOD_VERSION . '.' . filemtime( dirname( PRIHOD_FILE ) . '/assets/calendar-admin.js' ), true );
-        wp_localize_script( 'prihod-schedule-admin', 'prihodScheduleUI', array( 'description' => __( 'Описание богослужения', 'prihod' ), 'endpoint' => rest_url( Plugin::REST_NAMESPACE . '/calendar-day' ), 'nonce' => wp_create_nonce( 'wp_rest' ), 'loading' => __( 'Проверяем календарь…', 'prihod' ), 'unavailable' => __( 'Календарь временно недоступен. Расписание можно заполнить вручную.', 'prihod' ), 'empty' => __( 'Великих праздников на эту дату нет.', 'prihod' ), 'liturgy' => __( 'Литургия', 'prihod' ), 'titleFilled' => __( 'Название уже заполнено. Чтобы использовать подсказку, сначала очистите его.', 'prihod' ) ) );
+        wp_localize_script( 'prihod-schedule-admin', 'prihodScheduleUI', array( 'description' => __( 'Описание богослужения', 'prihod' ), 'endpoint' => rest_url( Plugin::REST_NAMESPACE . '/calendar-day' ), 'nonce' => wp_create_nonce( 'wp_rest' ), 'loading' => __( 'Проверяем календарь…', 'prihod' ), 'unavailable' => __( 'Календарь временно недоступен. Расписание можно заполнить вручную.', 'prihod' ), 'empty' => __( 'Великих праздников на эту дату нет.', 'prihod' ), 'liturgy' => __( 'Литургия', 'prihod' ), 'colorRecommendation' => __( 'Рекомендация: %1$s — %2$s. Цвет можно изменить.', 'prihod' ), 'colorEmpty' => __( 'Однозначной рекомендации нет. Выберите цвет вручную.', 'prihod' ), 'colorRegular' => __( 'Для регулярной службы цвет праздника задаётся в исключении на отдельную дату.', 'prihod' ), 'titleFilled' => __( 'Название уже заполнено. Чтобы использовать подсказку, сначала очистите его.', 'prihod' ) ) );
     }
     public static function input( string $name, string $value, string $type = 'text' ): string {
         return '<input type="' . esc_attr( $type ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '">';
@@ -72,6 +75,7 @@ final class Schedule_Admin {
     public static function render( $post ): void {
         $data = get_post_meta( $post->ID, '_prihod_service', true );
         $rule = array_merge( Schedule::defaults(), is_array( $data ) ? $data : array() );
+        $rule['_color_persisted'] = is_array( $data ) && array_key_exists( 'vestment_color', $data );
         $suggested_date = $_GET['prihod_calendar_date'] ?? '';
         if ( 'auto-draft' === $post->post_status && is_string( $suggested_date ) && Occurrences::date( $suggested_date ) ) { $rule['date'] = $suggested_date; $rule['time'] = ''; }
         wp_nonce_field( 'prihod_service_' . $post->ID, 'prihod_service_nonce' );
@@ -92,7 +96,7 @@ final class Schedule_Admin {
         foreach ( $days as $index => $label ) {
             echo '<label><input type="checkbox" name="prihod_service[weekdays][]" value="' . esc_attr( $index + 1 ) . '"' . checked( in_array( $index + 1, $rule['weekdays'], true ), true, false ) . '> ' . esc_html( $label ) . '</label>';
         }
-        echo '</div><label class="prihod-service-field">' . esc_html__( 'Последняя дата повторений (необязательно)', 'prihod' ) . self::input( 'prihod_service[until]', $rule['until'], 'date' ) . '</label></fieldset><details class="prihod-service-section"><summary>' . esc_html__( 'Часовой пояс и особенности времени', 'prihod' ) . '</summary><label class="prihod-service-field">' . esc_html__( 'Часовой пояс (пусто — пояс места или прихода)', 'prihod' ) . self::input( 'prihod_service[timezone]', $rule['timezone'] ) . '</label><p class="prihod-service-help">' . esc_html__( 'Окончание раньше или равное началу означает следующий день. При весеннем переводе часов несуществующее время регулярной службы пропускается; осенью используется первое вхождение времени.', 'prihod' ) . '</p></details><details class="prihod-service-section"' . ( $rule['exceptions'] ? ' open' : '' ) . '><summary>' . esc_html__( 'Отмены и переносы отдельных дат', 'prihod' ) . '</summary><div id="prihod-exceptions">';
+        echo '</div><label class="prihod-service-field">' . esc_html__( 'Последняя дата повторений (необязательно)', 'prihod' ) . self::input( 'prihod_service[until]', $rule['until'], 'date' ) . '</label></fieldset><details class="prihod-service-section"><summary>' . esc_html__( 'Часовой пояс и особенности времени', 'prihod' ) . '</summary><label class="prihod-service-field">' . esc_html__( 'Часовой пояс (пусто — пояс места или прихода)', 'prihod' ) . self::input( 'prihod_service[timezone]', $rule['timezone'] ) . '</label><p class="prihod-service-help">' . esc_html__( 'Окончание раньше или равное началу означает следующий день. При весеннем переводе часов несуществующее время регулярной службы пропускается; осенью используется первое вхождение времени.', 'prihod' ) . '</p></details><details class="prihod-service-section"' . ( $rule['exceptions'] ? ' open' : '' ) . '><summary>' . esc_html__( 'Исключения отдельных дат', 'prihod' ) . '</summary><div id="prihod-exceptions">';
         $index = 0;
         foreach ( $rule['exceptions'] as $date => $change ) { echo self::row( $index++, $date, $change, $rule ); }
         echo '</div>';
@@ -102,7 +106,7 @@ final class Schedule_Admin {
     private static function row( $index, string $date, array $change, array $rule ): string {
         $prefix = 'prihod_exceptions[' . $index . ']';
         $html = '<fieldset class="prihod-exception-row"><legend>' . esc_html__( 'Исключение', 'prihod' ) . '</legend><div class="prihod-service-grid"><label class="prihod-service-field">' . esc_html__( 'Исходная дата', 'prihod' ) . self::input( $prefix . '[original]', $date, 'date' ) . '</label><label class="prihod-service-field">' . esc_html__( 'Действие', 'prihod' ) . '<select name="' . esc_attr( $prefix . '[action]' ) . '">';
-        foreach ( array( 'cancel' => __( 'Отмена', 'prihod' ), 'replace' => __( 'Перенос / изменение времени', 'prihod' ) ) as $key => $label ) {
+        foreach ( array( 'cancel' => __( 'Отмена', 'prihod' ), 'replace' => __( 'Перенос / изменение времени', 'prihod' ), 'color' => __( 'Цвет облачения на эту дату', 'prihod' ) ) as $key => $label ) {
             $html .= '<option value="' . esc_attr( $key ) . '"' . selected( $change['action'] ?? 'cancel', $key, false ) . '>' . esc_html( $label ) . '</option>';
         }
         $html .= '</select></label></div><div class="prihod-service-grid" data-prihod-replacement>';
@@ -110,7 +114,7 @@ final class Schedule_Admin {
             $html .= '<label class="prihod-service-field">' . esc_html( $label ) . self::input( $prefix . '[' . $key . ']', $change[ $key ] ?? ( 'date' === $key ? $date : $rule[ $key ] ), 'date' === $key ? 'date' : 'time' ) . '</label>';
         }
         $html .= '<label class="prihod-service-field">' . esc_html__( 'Место после переноса', 'prihod' ) . self::locations( $prefix . '[location_id]', (int) ( $change['location_id'] ?? $rule['location_id'] ) ) . '</label></div>';
-        return $html . '<label class="prihod-exception-remove"><input type="checkbox" name="' . esc_attr( $prefix . '[remove]' ) . '" value="1"> ' . esc_html__( 'Удалить исключение', 'prihod' ) . '</label></fieldset>';
+        return $html . Calendar_Colors::field( $prefix . '[vestment_color]', $change['vestment_color'] ?? ( $rule['vestment_color'] ?? '' ), array_key_exists( 'vestment_color', $change ) ) . '<label class="prihod-exception-remove"><input type="checkbox" name="' . esc_attr( $prefix . '[remove]' ) . '" value="1"> ' . esc_html__( 'Удалить исключение', 'prihod' ) . '</label></fieldset>';
     }
     public static function save( int $id ): void {
         if ( ! Modules::enabled( 'schedule' ) || ! current_user_can( 'manage_prihod_schedule' ) || ! current_user_can( 'edit_post', $id ) || wp_is_post_autosave( $id ) || wp_is_post_revision( $id ) || ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) ) { return; }

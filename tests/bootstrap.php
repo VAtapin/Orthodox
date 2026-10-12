@@ -42,6 +42,6 @@ function add_filter( $name, $callback, ...$args ) { add_action( $name, $callback
 function register_post_type( $name, $args ) { $GLOBALS['types'][ $name ] = $args; }
 function wp_die( $message, $title = '', $args = array() ) { throw new RuntimeException( 'denied', $args['response'] ?? 0 ); }
 function esc_html__( $text, $domain ) { return $text; }
-foreach ( array( 'class-capabilities', 'class-profile', 'class-directory', 'interface-integration', 'class-integration-registry', 'class-admin', 'class-plugin', 'class-modules', 'class-occurrences', 'class-schedule', 'class-schedule-admin', 'class-requests' ) as $name ) {
+foreach ( array( 'class-capabilities', 'class-profile', 'class-directory', 'interface-integration', 'class-integration-registry', 'class-admin', 'class-plugin', 'class-modules', 'class-occurrences', 'class-calendar-colors', 'class-schedule', 'class-schedule-admin', 'class-requests' ) as $name ) {
     require dirname( __DIR__ ) . '/prihod/includes/' . $name . '.php';
 }

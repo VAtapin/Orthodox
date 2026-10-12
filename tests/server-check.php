@@ -44,7 +44,7 @@ foreach ( array( 'de_DE', 'pl_PL', 'uk' ) as $locale ) {
 }
 echo wp_json_encode( array( 'status' => 'PRIHOD_SERVER_OK', 'checks' => $checked, 'wordpress' => get_bloginfo( 'version' ), 'php' => PHP_VERSION, 'theme' => wp_get_theme()->get( 'Version' ) ), JSON_UNESCAPED_UNICODE ) . PHP_EOL;
 
-$check( '1.0.0-rc.10' === PRIHOD_VERSION && in_array( wp_get_theme()->get( 'Version' ), array( '0.3.17', '0.3.18', '0.3.19' ), true ), 'Authorized calendar Core and compatible installed theme must be present.' );
+$check( '1.0.0-rc.11' === PRIHOD_VERSION && '0.3.21' === wp_get_theme()->get( 'Version' ), 'Authorized calendar Core and compatible installed theme must be present.' );
 prihod_theme_prepare_provider_assets();
 do_shortcode( '[' . $donation_tag . ']' );
 $check( str_contains( (string) wp_scripts()->get_data( 'georg-kloster-orthodox-donate', 'data' ), 'georgKlosterOrthodoxDonate' ), 'Native donation configuration must exist before the block theme prints scripts.' );
@@ -169,3 +169,7 @@ $check( str_contains( $calendar_editor, 'prihod_service[day_icon]' ) && str_cont
 $reminders = Prihod\Calendar_Reminders::options();
 $check( is_bool( $reminders['enabled'] ) && ( '' === $reminders['time'] || Prihod\Occurrences::time( $reminders['time'] ) ), 'Reminder configuration is readable without enabling it or sending messages.' );
 echo "CALENDAR_FEATURES_CHECK_OK: {$checked} total checks.\n";
+
+$check( 8 === count( Prihod\Calendar_Colors::labels() ) && 'blue' === Prihod\Calendar_Colors::recommendation( array( 'Покров Пресвятой Богородицы' ) )['color'], 'Seven vestment colors plus neutral and Pokrov recommendation must be available.' );
+$check( is_readable( WP_PLUGIN_DIR . '/prihod/assets/calendar-colors.js' ) && ( ! Prihod\Schedule::next() || str_contains( prihod_theme_compact_services(), 'data-prihod-feast' ) ), 'Homepage uses real calendar feast hooks and color editor is installed.' );
+echo 'CALENDAR_COLORS_CHECK_OK: ' . $checked . ' total checks.' . PHP_EOL;

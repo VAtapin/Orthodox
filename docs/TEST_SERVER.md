@@ -313,3 +313,23 @@ php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-ch
 Core остаётсяrc.9. Изменения ограничены темой/её проверкой внутриwp-content.
 Установленный код1c2b987; архив SHA256
 02017A41155F0EC54E2321BB399680F2554642C436A43A701A8AF9CBB9B047BF.
+
+## Подготовлено: Core rc.11 и тема0.3.21
+
+Пока не установлены. Только после прямого разрешения владельца загрузить
+build/prihod-1.0.0-rc.11.zip иbuild/prihod-theme-0.3.21.zip в
+wp-content/prihod-packages этого WordPress; tests/server-check.php в
+wp-content/prihod-server-check.php. Команда ограничена этим WordPress:
+
+```bash
+cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
+export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
+php -d memory_limit=512M /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.11.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.21.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
+```
+
+Core включает ранее подготовленныйrc.10 и новый календарный блок; тема добавляет
+его вывод в пяти композициях главной. Нет миграций/сброса данных/нового сервиса,
+Composer/Node/внешние плагины не нужны. Недельное напоминание остаётся по настройкам
+владельца, без включения при установке. Настройки подключений не меняются.

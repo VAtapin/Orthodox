@@ -1,5 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
     const requests = new Map();
+    const normalize = value => value.normalize('NFKC').toLocaleLowerCase().replace(/[\p{P}\p{S}\s]+/gu, ' ').trim();
+    document.querySelectorAll('[data-prihod-feast]').forEach(async label => {
+        const host = label.closest('.prihod-event,.prihod-upcoming-card,.prihod-service-compact');
+        if (host && label.dataset.color) host.dataset.vestmentColor = label.dataset.color;
+        try {
+            const url = label.dataset.prihodFeast;
+            if (!requests.has(url)) requests.set(url, fetch(url).then(response => { if (!response.ok) throw Error(); return response.json(); }));
+            const data = await requests.get(url);
+            const feasts = Array.isArray(data.feasts) ? data.feasts.filter(title => typeof title === 'string' && title.trim()) : [];
+            if (!feasts.length) return;
+            const manual = normalize(label.dataset.serviceTitle || '');
+            const unique = feasts.filter(title => !manual.includes(normalize(title)));
+            label.textContent = unique.join('; '); label.hidden = !unique.length;
+        } catch (_) { /* Keep the actual service usable when the calendar cannot be read. */ }
+    });
     async function loadIcon(url) {
         const response = await fetch(url);
         if (!response.ok) throw Error();

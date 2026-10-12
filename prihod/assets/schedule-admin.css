@@ -2,3 +2,13 @@ body.post-type-prihod_service #poststuff{max-width:1400px;padding-top:10px}body.
 @media(min-width:783px){.post-type-prihod_service .wp-list-table .column-title{width:22%}.post-type-prihod_service .wp-list-table .column-prihod_service_when{width:22%}.post-type-prihod_service .wp-list-table .column-prihod_service_place{width:18%}.post-type-prihod_service .wp-list-table .column-prihod_service_kind{width:14%}.post-type-prihod_service .wp-list-table .column-prihod_service_changes{width:10%}.post-type-prihod_service .wp-list-table .column-date{width:12%}} .post-type-prihod_service .column-prihod_service_when .description{font-size:12px;overflow-wrap:anywhere}
 @media(max-width:782px){.post-type-prihod_service .wp-list-table td.column-prihod_service_when{display:block!important;position:relative;width:auto!important;padding:8px 10px 12px 35%}.post-type-prihod_service .wp-list-table td.column-prihod_service_when:before{content:attr(data-colname);position:absolute;left:10px;top:8px;width:30%;font-size:12px;line-height:1.4}}
 .prihod-service-icon{max-width:150px;margin:16px 0}.prihod-service-icon[hidden]{display:none}.prihod-service-icon img{max-width:100%;max-height:160px;object-fit:contain} [data-prihod-calendar-status]{overflow-wrap:anywhere}
+
+/* The same seven swatches accompany labels, never replace them. */
+.prihod-color-control{margin-block:16px}.prihod-color-swatch{display:inline-block;width:20px;height:20px;border:1px solid #8d939a;border-radius:50%;vertical-align:middle;background:transparent}.prihod-color-palette{display:flex;flex-wrap:wrap;gap:10px;margin-block:12px}.prihod-color-palette span{display:inline-flex;gap:6px;align-items:center}
+.prihod-color-swatch[data-color="white"]{background:#faf8ef}
+.prihod-color-swatch[data-color="red"]{background:#b24743}
+.prihod-color-swatch[data-color="gold"]{background:#c39b3c}
+.prihod-color-swatch[data-color="green"]{background:#4c8161}
+.prihod-color-swatch[data-color="blue"]{background:#76a9cd}
+.prihod-color-swatch[data-color="purple"]{background:#856398}
+.prihod-color-swatch[data-color="black"]{background:#353a40}
