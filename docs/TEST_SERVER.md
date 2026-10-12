@@ -182,7 +182,9 @@ php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-ch
 ## Подготовлена тема 0.3.17 — сервер пока 0.3.16
 
 После прямого разрешения именно на новое обновление загрузить
-build/prihod-theme-0.3.17.zip и актуальный tests/server-check.php в прежний wp-content.
+build/prihod-theme-0.3.17.zip и build/server-check-theme-0317.php в прежний wp-content.
+Этот замороженный checker ожидаетCore rc.7 и тему0.3.17; текущий tests/server-check.php
+уже ожидаетCore rc.8 и не подходит для обновления только темы.
 Подготовленные файлы команд — build/sftp-home-details.txt и build/ssh-home-details.sh.
 Команда для этого WordPress, после загрузки архива/checker:
 
@@ -195,3 +197,23 @@ php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-ch
 
 Core, существующие плагины, настройки и материалы не обновлять/не импортировать.
 Серверная проверка новой версии ещё не запускалась; 62 проверки выше относятся к 0.3.16.
+
+## Подготовлен Core rc.8 вместе с темой0.3.17
+
+Обзор/пустые состояния проверены локально, серверCore rc.7 не обновлялся.
+Нужно прямое разрешение на эти две версии. После загрузки только их архивов и
+tests/server-check.php в прежние wp-content/prihod-packages и wp-content/:
+
+```bash
+cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
+export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
+php -d memory_limit=512M /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.8.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.17.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
+```
+
+Подготовлены build/sftp-admin-overview.txt и build/ssh-admin-overview.sh.
+Ожидаются64read-only проверки, но на сервере пока не запускались. Никаких импортов,
+публикаций материалов, писем, оплат, изменений Plesk/окружения/других сайтов.
+Мастер не сбрасывать. Для повторного исполнения сначала сверить версии: этот
+пакет не является завершением следующего блока общего оформления админки.

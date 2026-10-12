@@ -46,12 +46,23 @@ final class Request_Admin {
         } else {
             $page = max( 1, isset( $_GET['paged'] ) && is_scalar( $_GET['paged'] ) ? absint( $_GET['paged'] ) : 1 );
             $filter = isset( $_GET['status'] ) && is_string( $_GET['status'] ) ? sanitize_key( $_GET['status'] ) : '';
-            echo '<form><input type="hidden" name="page" value="prihod-requests"><select name="status"><option value="">' . esc_html__( 'Все статусы', 'prihod' ) . '</option>';
+            if ( ! isset( Requests::statuses()[$filter] ) ) { $filter = ''; }
+            echo '<form class="prihod-request-filters"><input type="hidden" name="page" value="prihod-requests"><label for="prihod-status-filter">' . esc_html__( 'Статус', 'prihod' ) . '</label><select id="prihod-status-filter" name="status"><option value="">' . esc_html__( 'Все статусы', 'prihod' ) . '</option>';
             foreach ( Requests::statuses() as $value => $label ) { echo '<option value="' . esc_attr( $value ) . '"' . selected( $filter, $value, false ) . '>' . esc_html( $label ) . '</option>'; }
-            echo '</select><button>' . esc_html__( 'Показать', 'prihod' ) . '</button></form><table class="widefat"><thead><tr><th>' . esc_html__( 'Тема', 'prihod' ) . '</th><th>' . esc_html__( 'Статус', 'prihod' ) . '</th><th>' . esc_html__( 'Ответственный', 'prihod' ) . '</th></tr></thead><tbody>';
+            echo '</select><button class="button button-primary">' . esc_html__( 'Показать', 'prihod' ) . '</button>';
+            if ( $filter ) { echo '<a class="button" href="' . esc_url( admin_url( 'admin.php?page=prihod-requests' ) ) . '">' . esc_html__( 'Сбросить фильтр', 'prihod' ) . '</a>'; }
+            echo '</form><table class="widefat"><thead><tr><th>' . esc_html__( 'Тема', 'prihod' ) . '</th><th>' . esc_html__( 'Статус', 'prihod' ) . '</th><th>' . esc_html__( 'Ответственный', 'prihod' ) . '</th></tr></thead><tbody>';
             $args = array( 'post_type' => 'prihod_request', 'post_status' => 'private', 'posts_per_page' => 25, 'paged' => $page, 'orderby' => 'ID', 'order' => 'DESC' );
             if ( isset( Requests::statuses()[ $filter ] ) ) { $args['meta_key'] = '_prihod_request_status'; $args['meta_value'] = $filter; }
             $query = new \WP_Query( $args );
+            if ( ! $query->posts ) {
+                $has_previous = false;
+                if ( $page > 1 ) { $first_args = $args; $first_args['paged'] = 1; $first_args['posts_per_page'] = 1; $first_args['fields'] = 'ids'; $first_args['no_found_rows'] = true; $has_previous = (bool) ( new \WP_Query( $first_args ) )->posts; }
+                $message = $has_previous ? __( 'На этой странице обращений нет.', 'prihod' ) : ( $filter ? __( 'По выбранному статусу обращений не найдено.', 'prihod' ) : __( 'Обращений пока нет.', 'prihod' ) );
+                echo '<tr><td colspan="3" class="prihod-request-empty"><p role="status">' . esc_html( $message ) . '</p>';
+                if ( $has_previous ) { echo '<a class="button" href="' . esc_url( add_query_arg( array( 'page' => 'prihod-requests', 'status' => $filter ), admin_url( 'admin.php' ) ) ) . '">' . esc_html__( 'Первая страница', 'prihod' ) . '</a>'; }
+                echo '</td></tr>';
+            }
             foreach ( $query->posts as $post ) {
                 $user = get_userdata( (int) get_post_meta( $post->ID, '_prihod_assigned', true ) );
                 echo '<tr><td><a href="' . esc_url( add_query_arg( array( 'page' => 'prihod-requests', 'request_id' => $post->ID ), admin_url( 'admin.php' ) ) ) . '">' . esc_html( $post->post_title ) . '</a></td><td>' . esc_html( Requests::statuses()[ get_post_meta( $post->ID, '_prihod_request_status', true ) ] ?? '' ) . '</td><td>' . esc_html( $user ? $user->display_name : '' ) . '</td></tr>';

@@ -85,14 +85,44 @@ final class Dashboard {
         }
     }
     public static function overview(): void {
-        echo '<div class="wrap prihod-dashboard"><h1>' . esc_html__( 'Обзор прихода', 'prihod' ) . '</h1><div class="prihod-dash-grid">';
+        self::require_capability( 'manage_prihod' );
+        echo '<div class="wrap prihod-dashboard prihod-overview"><h1>' . esc_html__( 'Обзор прихода', 'prihod' ) . '</h1>';
+        self::site_summary();
+        echo '<div class="prihod-dash-grid">';
         foreach ( array( 'manage_prihod' => array( __( 'Информация', 'prihod' ), 'profile_card' ), 'manage_prihod_schedule' => array( __( 'Ближайшие службы', 'prihod' ), 'services_card' ), 'view_prihod_requests' => array( __( 'Обращения', 'prihod' ), 'requests_card' ), 'manage_prihod_settings' => array( __( 'Наши плагины', 'prihod' ), 'integrations_card' ) ) as $capability => $card ) {
-            if ( current_user_can( $capability ) ) { echo '<section class="prihod-dash-card"><h2>' . esc_html( $card[0] ) . '</h2>'; call_user_func( array( self::class, $card[1] ) ); echo '</section>'; }
+            if ( current_user_can( $capability ) ) { echo '<section class="prihod-dash-card prihod-card-' . esc_attr( $card[1] ) . '"><h2>' . esc_html( $card[0] ) . '</h2>'; call_user_func( array( self::class, $card[1] ) ); echo '</section>'; }
         }
         echo '</div><p class="prihod-dash-actions">';
         if ( current_user_can( 'manage_prihod' ) ) { self::button( __( 'Информация', 'prihod' ), 'admin.php?page=prihod-info' ); }
         if ( current_user_can( 'manage_prihod_settings' ) ) { self::button( __( 'Настройки', 'prihod' ), 'admin.php?page=prihod-settings-hub' ); }
         echo '</p></div>';
+    }
+    private static function site_summary(): void {
+        if ( ! current_user_can( 'manage_prihod_settings' ) ) { return; }
+        $report = Diagnostics::report();
+        $states = array(
+            array( __( 'Сведения о приходе', 'prihod' ), $report['profile_complete'] ? __( 'Настроено', 'prihod' ) : __( 'Требует настройки', 'prihod' ), $report['profile_complete'] ? 'ready' : 'warning' ),
+            array( __( 'Расписание', 'prihod' ), $report['schedule_enabled'] ? __( 'Включено', 'prihod' ) : __( 'Выключено', 'prihod' ), $report['schedule_enabled'] ? 'ready' : 'unknown' ),
+            array( __( 'Ближайшие службы', 'prihod' ), $report['next_service_found'] ? __( 'Найдена ближайшая служба', 'prihod' ) : __( 'Ближайшая служба не указана', 'prihod' ), $report['next_service_found'] ? 'ready' : 'warning' ),
+            array( __( 'Политика конфиденциальности', 'prihod' ), $report['privacy_page'] ? __( 'Настроено', 'prihod' ) : __( 'Требует настройки', 'prihod' ), $report['privacy_page'] ? 'ready' : 'warning' ),
+            array( __( 'Доставка email', 'prihod' ), __( 'Не проверено', 'prihod' ), 'unknown' ),
+            array( 'WP-Cron', $report['cron_disabled'] ? __( 'Выключено', 'prihod' ) : __( 'Не проверено', 'prihod' ), 'unknown' ),
+            array( __( 'Проверка сроков хранения', 'prihod' ), $report['retention_scheduled'] ? __( 'Запланировано', 'prihod' ) : __( 'Не запланировано', 'prihod' ), $report['retention_scheduled'] ? 'ready' : 'warning' ),
+        );
+        echo '<section class="prihod-dash-card prihod-site-summary"><h2>' . esc_html__( 'Состояние сайта', 'prihod' ) . '</h2><dl class="prihod-state-grid">';
+        foreach ( $states as $state ) { echo '<div><dt>' . esc_html( $state[0] ) . '</dt><dd class="prihod-state prihod-state-' . esc_attr( $state[2] ) . '">' . esc_html( $state[1] ) . '</dd></div>'; }
+        echo '</dl><h3>' . esc_html__( 'Страницы сайта', 'prihod' ) . '</h3><ul class="prihod-page-states">';
+        $resources = get_option( 'prihod_resources', array() );
+        $page_labels = array( 'publish' => __( 'Опубликована', 'prihod' ), 'draft' => __( 'Черновик', 'prihod' ), 'private' => __( 'Личная', 'prihod' ), 'pending' => __( 'Ожидает проверки', 'prihod' ), 'future' => __( 'Запланирована', 'prihod' ), 'trash' => __( 'В корзине', 'prihod' ) );
+        foreach ( Site_Plan::pages() as $key => $template ) {
+            $id = absint( $resources[$key]['id'] ?? 0 ); $post = $id ? get_post( $id ) : null;
+            $status = $post && 'page' === $post->post_type ? ( $report['pages'][$key] ?? 'missing' ) : 'missing';
+            $label = 'missing' === $status ? __( 'Не создана', 'prihod' ) : ( $page_labels[$status] ?? ( get_post_status_object( $status )->label ?? __( 'Не проверено', 'prihod' ) ) );
+            $url = '';
+            if ( $post && 'page' === $post->post_type && current_user_can( 'read_post', $id ) ) { $url = 'publish' === $status ? get_permalink( $id ) : get_edit_post_link( $id, 'raw' ); }
+            echo '<li><span>' . ( $url ? '<a href="' . esc_url( $url ) . '">' : '' ) . esc_html( $template['title'] ) . ( $url ? '</a>' : '' ) . '</span><span class="prihod-state prihod-state-' . ( 'publish' === $status ? 'ready' : 'warning' ) . '">' . esc_html( $label ) . '</span></li>';
+        }
+        echo '</ul><div class="prihod-dash-actions">'; self::button( __( 'Проверка сайта', 'prihod' ), 'admin.php?page=prihod-check' ); echo '</div></section>';
     }
     public static function information(): void {
         self::require_capability( 'manage_prihod' );

@@ -1,1 +1,19 @@
 .prihod-dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px;margin:24px 0}.prihod-dash-card{background:#fff;border:1px solid #dcdcde;border-radius:8px;padding:24px}.prihod-dash-card h2{margin-top:0}.prihod-dash-actions{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}.prihod-dash-card .prihod-event{border-bottom:1px solid #dcdcde;padding:10px 0}.prihod-dash-card .prihod-event h3{font-size:15px}.prihod-dash-card p{overflow-wrap:anywhere}
+.prihod-overview .prihod-dash-grid{align-items:start;grid-template-columns:repeat(3,minmax(0,1fr))}
+.prihod-overview .prihod-dash-card .prihod-event{display:grid;grid-template-columns:48px minmax(0,1fr);gap:10px;padding:12px 0}
+.prihod-overview .prihod-event-copy h3{margin:0 0 4px}.prihod-overview .prihod-event-copy p{margin:4px 0;line-height:1.5}
+.prihod-overview .prihod-event-time{padding:0;align-self:start}
+.prihod-overview .prihod-card-integrations_card{grid-column:1/-1}
+.prihod-overview .prihod-card-integrations_card{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 20px}
+.prihod-overview .prihod-card-integrations_card h2,.prihod-overview .prihod-card-integrations_card>.button{grid-column:1/-1;justify-self:start}
+.prihod-site-summary{margin-top:20px}
+.prihod-state-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px 20px;margin:16px 0}
+.prihod-state-grid dt{font-weight:600;margin-bottom:5px}.prihod-state-grid dd{margin:0}
+.prihod-state{font-size:12px;line-height:1.5}.prihod-state-ready{color:#176b34}.prihod-state-warning{color:#805900}.prihod-state-unknown{color:#50575e}
+.prihod-page-states{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 20px;margin:12px 0}
+.prihod-page-states li{display:flex;justify-content:space-between;gap:12px;margin:0;overflow-wrap:anywhere}.prihod-page-states .prihod-state{flex-shrink:0}
+.prihod-request-filters{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:20px 0}.prihod-request-filters label{font-weight:600}
+.widefat td.prihod-request-empty{padding:24px}.prihod-request-empty p{margin:0 0 12px}
+@media(min-width:1400px){.prihod-overview .prihod-dash-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.prihod-overview .prihod-card-integrations_card{grid-column:auto;display:block}}
+@media(max-width:900px){.prihod-state-grid,.prihod-page-states,.prihod-overview .prihod-dash-grid,.prihod-overview .prihod-card-integrations_card{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.prihod-state-grid,.prihod-page-states,.prihod-overview .prihod-dash-grid,.prihod-overview .prihod-card-integrations_card{grid-template-columns:minmax(0,1fr)}.prihod-dash-card{padding:18px}}

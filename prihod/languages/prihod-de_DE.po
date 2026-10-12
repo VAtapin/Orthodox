@@ -1827,3 +1827,147 @@ msgstr "Thema der Frage"
 
 msgid "Фото страницы вопроса"
 msgstr "Foto der Fragenseite"
+
+msgid "Рубрики публикаций"
+msgstr "Rubriken der Beiträge"
+
+msgid "Поиск публикаций"
+msgstr "Beiträge suchen"
+
+msgid "Поиск публикаций…"
+msgstr "Beiträge suchen…"
+
+msgid "Сбросить фильтры"
+msgstr "Filter zurücksetzen"
+
+msgid "Читать далее →"
+msgstr "Weiterlesen →"
+
+msgid "Материалы не найдены. Измените запрос или сбросьте фильтры."
+msgstr "Keine Beiträge gefunden. Ändern Sie die Suche oder setzen Sie die Filter zurück."
+
+msgid "Все"
+msgstr "Alle"
+
+msgid "Заголовок паломникам"
+msgstr "Überschrift für Pilger"
+
+msgid "Информация паломнику"
+msgstr "Informationen für Pilger"
+
+msgid "Первое посещение"
+msgstr "Erster Besuch"
+
+msgid "Групповой визит"
+msgstr "Gruppenbesuch"
+
+msgid "Пребывание в обители"
+msgstr "Aufenthalt im Kloster"
+
+msgid "Групповой визит и пребывание"
+msgstr "Gruppenbesuch und Aufenthalt"
+
+msgid "Возможность пребывания и условия группового визита согласуйте с обителью заранее."
+msgstr "Bitte klären Sie einen möglichen Aufenthalt und die Bedingungen für einen Gruppenbesuch im Voraus mit dem Kloster."
+
+msgid "Позвонить в обитель"
+msgstr "Im Kloster anrufen"
+
+msgid "Согласовать приезд"
+msgstr "Besuch abstimmen"
+
+msgid "Фото заголовка паломникам"
+msgstr "Titelbild für Pilger"
+
+msgid "Фото страницы паломникам"
+msgstr "Fotos der Pilgerseite"
+
+msgid "С любовью к Богу и людям"
+msgstr "Mit Liebe zu Gott und den Menschen"
+
+msgid "Вера объединяет сердца"
+msgstr "Der Glaube verbindet Herzen"
+
+msgid "Девиз в шапке классической схемы"
+msgstr "Motto im klassischen Kopfbereich"
+
+msgid "Надпись первого экрана классической схемы"
+msgstr "Aufschrift im klassischen ersten Bereich"
+
+msgid "Цитата под кнопками синей схемы"
+msgstr "Zitat unter den Schaltflächen des blauen Stils"
+
+msgid "Источник цитаты синей схемы"
+msgstr "Quelle des Zitats im blauen Stil"
+
+msgid "Настроено"
+msgstr "Eingerichtet"
+
+msgid "Требует настройки"
+msgstr "Einrichtung erforderlich"
+
+msgid "Включено"
+msgstr "Aktiviert"
+
+msgid "Выключено"
+msgstr "Deaktiviert"
+
+msgid "Найдена ближайшая служба"
+msgstr "Nächster Gottesdienst gefunden"
+
+msgid "Ближайшая служба не указана"
+msgstr "Nächster Gottesdienst nicht angegeben"
+
+msgid "Доставка email"
+msgstr "E-Mail-Zustellung"
+
+msgid "Не проверено"
+msgstr "Nicht geprüft"
+
+msgid "Проверка сроков хранения"
+msgstr "Prüfung der Aufbewahrungsfristen"
+
+msgid "Запланировано"
+msgstr "Geplant"
+
+msgid "Не запланировано"
+msgstr "Nicht geplant"
+
+msgid "Состояние сайта"
+msgstr "Website-Status"
+
+msgid "Не создана"
+msgstr "Nicht erstellt"
+
+msgid "Сбросить фильтр"
+msgstr "Filter zurücksetzen"
+
+msgid "На этой странице обращений нет."
+msgstr "Auf dieser Seite gibt es keine Anfragen."
+
+msgid "По выбранному статусу обращений не найдено."
+msgstr "Für den ausgewählten Status wurden keine Anfragen gefunden."
+
+msgid "Обращений пока нет."
+msgstr "Noch keine Anfragen."
+
+msgid "Первая страница"
+msgstr "Erste Seite"
+
+msgid "Опубликована"
+msgstr "Veröffentlicht"
+
+msgid "Черновик"
+msgstr "Entwurf"
+
+msgid "Личная"
+msgstr "Privat"
+
+msgid "Ожидает проверки"
+msgstr "Prüfung ausstehend"
+
+msgid "Запланирована"
+msgstr "Geplant"
+
+msgid "В корзине"
+msgstr "Im Papierkorb"

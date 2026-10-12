@@ -74,6 +74,7 @@ require __DIR__ . '/wizard-smoke.php';
 require __DIR__ . '/theme-smoke.php';
 require __DIR__ . '/integrations-smoke.php';
 require __DIR__ . '/dashboard-smoke.php';
+require __DIR__ . '/admin-overview-smoke.php';
 require __DIR__ . '/admin-navigation-smoke.php';
 deactivate_plugins( 'prihod/prihod.php' );
 prihod_assert( get_post( $location ) && 'Parish' === get_option( 'prihod_profile' )['name'], 'Deactivation retains parish records.' );
