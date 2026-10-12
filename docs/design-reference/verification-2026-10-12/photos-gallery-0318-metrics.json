@@ -1,0 +1,552 @@
+[
+  {
+    "scheme": "classic",
+    "view": "desktop",
+    "scrollBeforeActivation": 0,
+    "actualScheme": "classic",
+    "caption": "Игумен Даниил (Ирбитс), наместник обители · 3 / 5",
+    "image": [
+      {
+        "complete": true,
+        "fit": "contain",
+        "natural": [
+          1238,
+          1239
+        ],
+        "rect": {
+          "bottom": 860.3677978515625,
+          "height": 809.8906860351562,
+          "left": 237.13677978515625,
+          "right": 887.595703125,
+          "top": 50.47711181640625,
+          "width": 650.4589233398438,
+          "x": 237.13677978515625,
+          "y": 50.47711181640625
+        }
+      },
+      {
+        "complete": true,
+        "fit": "contain",
+        "natural": [
+          1238,
+          1239
+        ],
+        "rect": {
+          "bottom": 860.3677978515625,
+          "height": 809.8906860351562,
+          "left": 237.13677978515625,
+          "right": 887.595703125,
+          "top": 50.47711181640625,
+          "width": 650.4589233398438,
+          "x": 237.13677978515625,
+          "y": 50.47711181640625
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": [
+      1122,
+      900
+    ],
+    "closed": {
+      "active": false,
+      "focus": "Enlarge 1 of 5",
+      "scroll": 0
+    }
+  },
+  {
+    "scheme": "hospitality",
+    "view": "desktop",
+    "scrollBeforeActivation": 0,
+    "actualScheme": "hospitality",
+    "caption": "Игумен Даниил (Ирбитс), наместник обители · 3 / 5",
+    "image": [
+      {
+        "complete": true,
+        "fit": "contain",
+        "natural": [
+          1238,
+          1239
+        ],
+        "rect": {
+          "bottom": 861.0235633850098,
+          "height": 804.32275390625,
+          "left": 244.256103515625,
+          "right": 890.2431030273438,
+          "top": 56.700809478759766,
+          "width": 645.9869995117188,
+          "x": 244.256103515625,
+          "y": 56.700809478759766
+        }
+      },
+      {
+        "complete": true,
+        "fit": "contain",
+        "natural": [
+          1238,
+          1239
+        ],
+        "rect": {
+          "bottom": 861.0235633850098,
+          "height": 804.32275390625,
+          "left": 244.256103515625,
+          "right": 890.2431030273438,
+          "top": 56.700809478759766,
+          "width": 645.9869995117188,
+          "x": 244.256103515625,
+          "y": 56.700809478759766
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": [
+      1122,
+      900
+    ],
+    "closed": {
+      "active": false,
+      "focus": "Enlarge 1 of 5",
+      "scroll": 0
+    }
+  },
+  {
+    "scheme": "editorial",
+    "view": "desktop",
+    "scrollBeforeActivation": 0,
+    "actualScheme": "editorial",
+    "caption": "Игумен Даниил (Ирбитс), наместник обители · 3 / 5",
+    "image": [
+      {
+        "complete": true,
+        "fit": "contain",
+        "natural": [
+          1238,
+          1239
+        ],
+        "rect": {
+          "bottom": 861.8434906005859,
+          "height": 797.3681640625,
+          "left": 253.1483459472656,
+          "right": 893.5498352050781,
+          "top": 64.47532653808594,
+          "width": 640.4014892578125,
+          "x": 253.1483459472656,
+          "y": 64.47532653808594
+        }
+      },
+      {
+        "complete": true,
+        "fit": "contain",
+        "natural": [
+          1238,
+          1239
+        ],
+        "rect": {
+          "bottom": 861.8434906005859,
+          "height": 797.3681640625,
+          "left": 253.1483459472656,
+          "right": 893.5498352050781,
+          "top": 64.47532653808594,
+          "width": 640.4014892578125,
+          "x": 253.1483459472656,
+          "y": 64.47532653808594
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": [
+      1122,
+      900
+    ],
+    "closed": {
+      "active": false,
+      "focus": "Enlarge 1 of 5",
+      "scroll": 0
+    }
+  },
+  {
+    "scheme": "tradition",
+    "view": "desktop",
+    "scrollBeforeActivation": 0,
+    "actualScheme": "tradition",
+    "caption": "Игумен Даниил (Ирбитс), наместник обители · 3 / 5",
+    "image": [
+      {
+        "complete": true,
+        "fit": "contain",
+        "natural": [
+          1238,
+          1239
+        ],
+        "rect": {
+          "bottom": 861.8825378417969,
+          "height": 797.4974365234375,
+          "left": 251.172607421875,
+          "right": 891.7539672851562,
+          "top": 64.38510131835938,
+          "width": 640.5813598632812,
+          "x": 251.172607421875,
+          "y": 64.38510131835938
+        }
+      },
+      {
+        "complete": true,
+        "fit": "contain",
+        "natural": [
+          1238,
+          1239
+        ],
+        "rect": {
+          "bottom": 861.8825378417969,
+          "height": 797.4974365234375,
+          "left": 251.172607421875,
+          "right": 891.7539672851562,
+          "top": 64.38510131835938,
+          "width": 640.5813598632812,
+          "x": 251.172607421875,
+          "y": 64.38510131835938
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": [
+      1122,
+      900
+    ],
+    "closed": {
+      "active": false,
+      "focus": "Enlarge 1 of 5",
+      "scroll": 0
+    }
+  },
+  {
+    "scheme": "blue",
+    "view": "desktop",
+    "scrollBeforeActivation": 0,
+    "actualScheme": "blue",
+    "caption": "Игумен Даниил (Ирбитс), наместник обители · 3 / 5",
+    "image": [
+      {
+        "complete": true,
+        "fit": "contain",
+        "natural": [
+          1238,
+          1239
+        ],
+        "rect": {
+          "bottom": 859.5973815917969,
+          "height": 795.6949462890625,
+          "left": 253.64569091796875,
+          "right": 891.5662841796875,
+          "top": 63.902435302734375,
+          "width": 637.9205932617188,
+          "x": 253.64569091796875,
+          "y": 63.902435302734375
+        }
+      },
+      {
+        "complete": true,
+        "fit": "contain",
+        "natural": [
+          1238,
+          1239
+        ],
+        "rect": {
+          "bottom": 859.5973815917969,
+          "height": 795.6949462890625,
+          "left": 253.64569091796875,
+          "right": 891.5662841796875,
+          "top": 63.902435302734375,
+          "width": 637.9205932617188,
+          "x": 253.64569091796875,
+          "y": 63.902435302734375
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": [
+      1122,
+      900
+    ],
+    "closed": {
+      "active": false,
+      "focus": "Enlarge 1 of 5",
+      "scroll": 0
+    }
+  },
+  {
+    "scheme": "classic",
+    "view": "mobile",
+    "scrollBeforeActivation": 0,
+    "actualScheme": "classic",
+    "caption": "Игумен Даниил (Ирбитс), наместник обители · 3 / 5",
+    "image": [
+      {
+        "complete": true,
+        "fit": "contain",
+        "natural": [
+          1238,
+          1239
+        ],
+        "rect": {
+          "bottom": 617.6233673095703,
+          "height": 390.9358520507813,
+          "left": 23.997772216796875,
+          "right": 350.9441223144531,
+          "top": 226.68751525878903,
+          "width": 326.94635009765625,
+          "x": 23.997772216796875,
+          "y": 226.68751525878903
+        }
+      },
+      {
+        "complete": true,
+        "fit": "contain",
+        "natural": [
+          1238,
+          1239
+        ],
+        "rect": {
+          "bottom": 617.6233673095703,
+          "height": 390.9358520507813,
+          "left": 23.997772216796875,
+          "right": 350.9441223144531,
+          "top": 226.68751525878903,
+          "width": 326.94635009765625,
+          "x": 23.997772216796875,
+          "y": 226.68751525878903
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": [
+      390,
+      844
+    ],
+    "closed": {
+      "active": false,
+      "focus": "Enlarge 1 of 5",
+      "scroll": 0
+    }
+  },
+  {
+    "scheme": "hospitality",
+    "view": "mobile",
+    "scrollBeforeActivation": 0,
+    "actualScheme": "hospitality",
+    "caption": "Игумен Даниил (Ирбитс), наместник обители · 3 / 5",
+    "image": [
+      {
+        "complete": true,
+        "fit": "contain",
+        "natural": [
+          1238,
+          1239
+        ],
+        "rect": {
+          "bottom": 617.60986328125,
+          "height": 390.9448547363281,
+          "left": 23.998092651367188,
+          "right": 350.95201110839844,
+          "top": 226.66500854492188,
+          "width": 326.95391845703125,
+          "x": 23.998092651367188,
+          "y": 226.66500854492188
+        }
+      },
+      {
+        "complete": true,
+        "fit": "contain",
+        "natural": [
+          1238,
+          1239
+        ],
+        "rect": {
+          "bottom": 617.60986328125,
+          "height": 390.9448547363281,
+          "left": 23.998092651367188,
+          "right": 350.95201110839844,
+          "top": 226.66500854492188,
+          "width": 326.95391845703125,
+          "x": 23.998092651367188,
+          "y": 226.66500854492188
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": [
+      390,
+      844
+    ],
+    "closed": {
+      "active": false,
+      "focus": "Enlarge 1 of 5",
+      "scroll": 0
+    }
+  },
+  {
+    "scheme": "editorial",
+    "view": "mobile",
+    "scrollBeforeActivation": 0,
+    "actualScheme": "editorial",
+    "caption": "Игумен Даниил (Ирбитс), наместник обители · 3 / 5",
+    "image": [
+      {
+        "complete": true,
+        "fit": "contain",
+        "natural": [
+          1238,
+          1239
+        ],
+        "rect": {
+          "bottom": 617.5,
+          "height": 391,
+          "left": 24,
+          "right": 351,
+          "top": 226.5,
+          "width": 327,
+          "x": 24,
+          "y": 226.5
+        }
+      },
+      {
+        "complete": true,
+        "fit": "contain",
+        "natural": [
+          1238,
+          1239
+        ],
+        "rect": {
+          "bottom": 617.5,
+          "height": 391,
+          "left": 24,
+          "right": 351,
+          "top": 226.5,
+          "width": 327,
+          "x": 24,
+          "y": 226.5
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": [
+      390,
+      844
+    ],
+    "closed": {
+      "active": false,
+      "focus": "Enlarge 1 of 5",
+      "scroll": 0
+    }
+  },
+  {
+    "scheme": "tradition",
+    "view": "mobile",
+    "scrollBeforeActivation": 0,
+    "actualScheme": "tradition",
+    "caption": "Игумен Даниил (Ирбитс), наместник обители · 3 / 5",
+    "image": [
+      {
+        "complete": true,
+        "fit": "contain",
+        "natural": [
+          1238,
+          1239
+        ],
+        "rect": {
+          "bottom": 617.6775665283203,
+          "height": 390.9020385742187,
+          "left": 24.00160217285156,
+          "right": 350.91969299316406,
+          "top": 226.77552795410156,
+          "width": 326.9180908203125,
+          "x": 24.00160217285156,
+          "y": 226.77552795410156
+        }
+      },
+      {
+        "complete": true,
+        "fit": "contain",
+        "natural": [
+          1238,
+          1239
+        ],
+        "rect": {
+          "bottom": 617.6775665283203,
+          "height": 390.9020385742187,
+          "left": 24.00160217285156,
+          "right": 350.91969299316406,
+          "top": 226.77552795410156,
+          "width": 326.9180908203125,
+          "x": 24.00160217285156,
+          "y": 226.77552795410156
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": [
+      390,
+      844
+    ],
+    "closed": {
+      "active": false,
+      "focus": "Enlarge 1 of 5",
+      "scroll": 0
+    }
+  },
+  {
+    "scheme": "blue",
+    "view": "mobile",
+    "scrollBeforeActivation": 0,
+    "actualScheme": "blue",
+    "caption": "Игумен Даниил (Ирбитс), наместник обители · 3 / 5",
+    "image": [
+      {
+        "complete": true,
+        "fit": "contain",
+        "natural": [
+          1238,
+          1239
+        ],
+        "rect": {
+          "bottom": 620.6427001953125,
+          "height": 389.26361083984375,
+          "left": 23.93975830078125,
+          "right": 349.487548828125,
+          "top": 231.37908935546875,
+          "width": 325.54779052734375,
+          "x": 23.93975830078125,
+          "y": 231.37908935546875
+        }
+      },
+      {
+        "complete": true,
+        "fit": "contain",
+        "natural": [
+          1238,
+          1239
+        ],
+        "rect": {
+          "bottom": 620.6427001953125,
+          "height": 389.26361083984375,
+          "left": 23.93975830078125,
+          "right": 349.487548828125,
+          "top": 231.37908935546875,
+          "width": 325.54779052734375,
+          "x": 23.93975830078125,
+          "y": 231.37908935546875
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": [
+      390,
+      844
+    ],
+    "closed": {
+      "active": false,
+      "focus": "Enlarge 1 of 5",
+      "scroll": 0
+    }
+  }
+]

@@ -1,0 +1,2796 @@
+[
+  {
+    "scheme": "classic",
+    "context": "home",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 13,
+    "title": "Добро пожаловать в нашу обитель!",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Праздник Святой Троицы в монастыре — 2026",
+      "images": [
+        {
+          "alt": "Праздник Святой Троицы в монастыре — 2026",
+          "fit": "contain",
+          "natural": [
+            1122,
+            1402
+          ]
+        },
+        {
+          "alt": "Праздник Святой Троицы в монастыре — 2026",
+          "fit": "contain",
+          "natural": [
+            1122,
+            1402
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "classic",
+    "context": "about",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 6,
+    "title": "О монастыре",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Свято-Георгиевский монастырь в Гётчендорфе · 1 / 2",
+      "images": [
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        },
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "classic",
+    "context": "clergy",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Духовенство",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Игумен Даниил (Ирбитс), наместник обители",
+      "images": [
+        {
+          "alt": "Игумен Даниил (Ирбитс), наместник обители",
+          "fit": "contain",
+          "natural": [
+            1238,
+            1239
+          ]
+        },
+        {
+          "alt": "Игумен Даниил (Ирбитс), наместник обители",
+          "fit": "contain",
+          "natural": [
+            1238,
+            1239
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "classic",
+    "context": "pilgrim",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 5,
+    "title": "Паломнику",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Свято-Георгиевский монастырь в Гётчендорфе · 1 / 4",
+      "images": [
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        },
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "classic",
+    "context": "contacts",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Контакты и дорога",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Дорога к храму в Гётчендорфе",
+      "images": [
+        {
+          "alt": "Дорога к храму в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "alt": "Дорога к храму в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1024,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "classic",
+    "context": "news",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 3,
+    "title": "Новости обители",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Забота о будущем монастыря",
+      "images": [
+        {
+          "alt": "Забота о будущем монастыря",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "alt": "Забота о будущем монастыря",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "classic",
+    "context": "sermons",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 3,
+    "title": "Проповеди и беседы",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Место Бога в повседневной жизни",
+      "images": [
+        {
+          "alt": "Место Бога в повседневной жизни",
+          "fit": "contain",
+          "natural": [
+            1672,
+            941
+          ]
+        },
+        {
+          "alt": "Место Бога в повседневной жизни",
+          "fit": "contain",
+          "natural": [
+            1672,
+            941
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "classic",
+    "context": "article",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Забота о будущем монастыря",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Забота о будущем обители",
+      "images": [
+        {
+          "alt": "Забота о будущем обители",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "alt": "Забота о будущем обители",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "hospitality",
+    "context": "home",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 10,
+    "title": "Добро пожаловать в нашу обитель!",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Праздник Святой Троицы в монастыре — 2026",
+      "images": [
+        {
+          "alt": "Праздник Святой Троицы в монастыре — 2026",
+          "fit": "contain",
+          "natural": [
+            1122,
+            1402
+          ]
+        },
+        {
+          "alt": "Праздник Святой Троицы в монастыре — 2026",
+          "fit": "contain",
+          "natural": [
+            1122,
+            1402
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "hospitality",
+    "context": "about",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 6,
+    "title": "О монастыре",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Свято-Георгиевский монастырь в Гётчендорфе · 1 / 2",
+      "images": [
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        },
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "hospitality",
+    "context": "clergy",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Духовенство",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Игумен Даниил (Ирбитс), наместник обители",
+      "images": [
+        {
+          "alt": "Игумен Даниил (Ирбитс), наместник обители",
+          "fit": "contain",
+          "natural": [
+            1238,
+            1239
+          ]
+        },
+        {
+          "alt": "Игумен Даниил (Ирбитс), наместник обители",
+          "fit": "contain",
+          "natural": [
+            1238,
+            1239
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "hospitality",
+    "context": "pilgrim",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 5,
+    "title": "Паломнику",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Свято-Георгиевский монастырь в Гётчендорфе · 1 / 4",
+      "images": [
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        },
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "hospitality",
+    "context": "contacts",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Контакты и дорога",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Дорога к храму в Гётчендорфе",
+      "images": [
+        {
+          "alt": "Дорога к храму в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "alt": "Дорога к храму в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1024,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "hospitality",
+    "context": "news",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 3,
+    "title": "Новости обители",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Забота о будущем монастыря",
+      "images": [
+        {
+          "alt": "Забота о будущем монастыря",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "alt": "Забота о будущем монастыря",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "hospitality",
+    "context": "sermons",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 3,
+    "title": "Проповеди и беседы",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Место Бога в повседневной жизни",
+      "images": [
+        {
+          "alt": "Место Бога в повседневной жизни",
+          "fit": "contain",
+          "natural": [
+            1672,
+            941
+          ]
+        },
+        {
+          "alt": "Место Бога в повседневной жизни",
+          "fit": "contain",
+          "natural": [
+            1672,
+            941
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "hospitality",
+    "context": "article",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Забота о будущем монастыря",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Забота о будущем обители",
+      "images": [
+        {
+          "alt": "Забота о будущем обители",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "alt": "Забота о будущем обители",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "editorial",
+    "context": "home",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 13,
+    "title": "Здесь начинается Главное",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Праздник Святой Троицы в монастыре — 2026",
+      "images": [
+        {
+          "alt": "Праздник Святой Троицы в монастыре — 2026",
+          "fit": "contain",
+          "natural": [
+            1122,
+            1402
+          ]
+        },
+        {
+          "alt": "Праздник Святой Троицы в монастыре — 2026",
+          "fit": "contain",
+          "natural": [
+            1122,
+            1402
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "editorial",
+    "context": "about",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 6,
+    "title": "О монастыре",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Свято-Георгиевский монастырь в Гётчендорфе · 1 / 2",
+      "images": [
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        },
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "editorial",
+    "context": "clergy",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Духовенство",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Игумен Даниил (Ирбитс), наместник обители",
+      "images": [
+        {
+          "alt": "Игумен Даниил (Ирбитс), наместник обители",
+          "fit": "contain",
+          "natural": [
+            1238,
+            1239
+          ]
+        },
+        {
+          "alt": "Игумен Даниил (Ирбитс), наместник обители",
+          "fit": "contain",
+          "natural": [
+            1238,
+            1239
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "editorial",
+    "context": "pilgrim",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 5,
+    "title": "Паломнику",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Свято-Георгиевский монастырь в Гётчендорфе · 1 / 4",
+      "images": [
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        },
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "editorial",
+    "context": "contacts",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Контакты и дорога",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Дорога к храму в Гётчендорфе",
+      "images": [
+        {
+          "alt": "Дорога к храму в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "alt": "Дорога к храму в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1024,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "editorial",
+    "context": "news",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 3,
+    "title": "Новости обители",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Забота о будущем монастыря",
+      "images": [
+        {
+          "alt": "Забота о будущем монастыря",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "alt": "Забота о будущем монастыря",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "editorial",
+    "context": "sermons",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 3,
+    "title": "Проповеди и беседы",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Место Бога в повседневной жизни",
+      "images": [
+        {
+          "alt": "Место Бога в повседневной жизни",
+          "fit": "contain",
+          "natural": [
+            1672,
+            941
+          ]
+        },
+        {
+          "alt": "Место Бога в повседневной жизни",
+          "fit": "contain",
+          "natural": [
+            1672,
+            941
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "editorial",
+    "context": "article",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Забота о будущем монастыря",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Забота о будущем обители",
+      "images": [
+        {
+          "alt": "Забота о будущем обители",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "alt": "Забота о будущем обители",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "tradition",
+    "context": "home",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 12,
+    "title": "«Где двое или трое собраны во имя Моё, там Я посреди них»",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Праздник Святой Троицы в монастыре — 2026",
+      "images": [
+        {
+          "alt": "Праздник Святой Троицы в монастыре — 2026",
+          "fit": "contain",
+          "natural": [
+            1122,
+            1402
+          ]
+        },
+        {
+          "alt": "Праздник Святой Троицы в монастыре — 2026",
+          "fit": "contain",
+          "natural": [
+            1122,
+            1402
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "tradition",
+    "context": "about",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 6,
+    "title": "О монастыре",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Свято-Георгиевский монастырь в Гётчендорфе · 1 / 2",
+      "images": [
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        },
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "tradition",
+    "context": "clergy",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Духовенство",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Игумен Даниил (Ирбитс), наместник обители",
+      "images": [
+        {
+          "alt": "Игумен Даниил (Ирбитс), наместник обители",
+          "fit": "contain",
+          "natural": [
+            1238,
+            1239
+          ]
+        },
+        {
+          "alt": "Игумен Даниил (Ирбитс), наместник обители",
+          "fit": "contain",
+          "natural": [
+            1238,
+            1239
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "tradition",
+    "context": "pilgrim",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 5,
+    "title": "Паломнику",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Свято-Георгиевский монастырь в Гётчендорфе · 1 / 4",
+      "images": [
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        },
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "tradition",
+    "context": "contacts",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Контакты и дорога",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Дорога к храму в Гётчендорфе",
+      "images": [
+        {
+          "alt": "Дорога к храму в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "alt": "Дорога к храму в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1024,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "tradition",
+    "context": "news",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 3,
+    "title": "Новости обители",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Забота о будущем монастыря",
+      "images": [
+        {
+          "alt": "Забота о будущем монастыря",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "alt": "Забота о будущем монастыря",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "tradition",
+    "context": "sermons",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 3,
+    "title": "Проповеди и беседы",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Место Бога в повседневной жизни",
+      "images": [
+        {
+          "alt": "Место Бога в повседневной жизни",
+          "fit": "contain",
+          "natural": [
+            1672,
+            941
+          ]
+        },
+        {
+          "alt": "Место Бога в повседневной жизни",
+          "fit": "contain",
+          "natural": [
+            1672,
+            941
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "tradition",
+    "context": "article",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Забота о будущем монастыря",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Забота о будущем обители",
+      "images": [
+        {
+          "alt": "Забота о будущем обители",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "alt": "Забота о будущем обители",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "blue",
+    "context": "home",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 12,
+    "title": "Обитель, где каждый найдёт свой путь",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Праздник Святой Троицы в монастыре — 2026",
+      "images": [
+        {
+          "alt": "Праздник Святой Троицы в монастыре — 2026",
+          "fit": "contain",
+          "natural": [
+            1122,
+            1402
+          ]
+        },
+        {
+          "alt": "Праздник Святой Троицы в монастыре — 2026",
+          "fit": "contain",
+          "natural": [
+            1122,
+            1402
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "blue",
+    "context": "about",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 6,
+    "title": "О монастыре",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Свято-Георгиевский монастырь в Гётчендорфе · 1 / 2",
+      "images": [
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        },
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "blue",
+    "context": "clergy",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Духовенство",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Игумен Даниил (Ирбитс), наместник обители",
+      "images": [
+        {
+          "alt": "Игумен Даниил (Ирбитс), наместник обители",
+          "fit": "contain",
+          "natural": [
+            1238,
+            1239
+          ]
+        },
+        {
+          "alt": "Игумен Даниил (Ирбитс), наместник обители",
+          "fit": "contain",
+          "natural": [
+            1238,
+            1239
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "blue",
+    "context": "pilgrim",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 5,
+    "title": "Паломнику",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Свято-Георгиевский монастырь в Гётчендорфе · 1 / 4",
+      "images": [
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        },
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "blue",
+    "context": "contacts",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Контакты и дорога",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Дорога к храму в Гётчендорфе",
+      "images": [
+        {
+          "alt": "Дорога к храму в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "alt": "Дорога к храму в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1024,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "blue",
+    "context": "news",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 3,
+    "title": "Новости обители",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Забота о будущем монастыря",
+      "images": [
+        {
+          "alt": "Забота о будущем монастыря",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "alt": "Забота о будущем монастыря",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "blue",
+    "context": "sermons",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 3,
+    "title": "Проповеди и беседы",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Место Бога в повседневной жизни",
+      "images": [
+        {
+          "alt": "Место Бога в повседневной жизни",
+          "fit": "contain",
+          "natural": [
+            1672,
+            941
+          ]
+        },
+        {
+          "alt": "Место Бога в повседневной жизни",
+          "fit": "contain",
+          "natural": [
+            1672,
+            941
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "blue",
+    "context": "article",
+    "view": "desktop",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Забота о будущем монастыря",
+    "viewport": [
+      1122,
+      900
+    ],
+    "opened": {
+      "caption": "Забота о будущем обители",
+      "images": [
+        {
+          "alt": "Забота о будущем обители",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "alt": "Забота о будущем обители",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "classic",
+    "context": "home",
+    "view": "mobile",
+    "actualScheme": "classic",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 13,
+    "title": "Добро пожаловать в нашу обитель!",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Праздник Святой Троицы в монастыре — 2026",
+      "images": [
+        {
+          "alt": "Праздник Святой Троицы в монастыре — 2026",
+          "fit": "contain",
+          "natural": [
+            1122,
+            1402
+          ]
+        },
+        {
+          "alt": "Праздник Святой Троицы в монастыре — 2026",
+          "fit": "contain",
+          "natural": [
+            1122,
+            1402
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "classic",
+    "context": "about",
+    "view": "mobile",
+    "actualScheme": "classic",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 6,
+    "title": "О монастыре",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Свято-Георгиевский монастырь в Гётчендорфе · 1 / 2",
+      "images": [
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        },
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "classic",
+    "context": "clergy",
+    "view": "mobile",
+    "actualScheme": "classic",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Духовенство",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Игумен Даниил (Ирбитс), наместник обители",
+      "images": [
+        {
+          "alt": "Игумен Даниил (Ирбитс), наместник обители",
+          "fit": "contain",
+          "natural": [
+            1238,
+            1239
+          ]
+        },
+        {
+          "alt": "Игумен Даниил (Ирбитс), наместник обители",
+          "fit": "contain",
+          "natural": [
+            1238,
+            1239
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "classic",
+    "context": "pilgrim",
+    "view": "mobile",
+    "actualScheme": "classic",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 5,
+    "title": "Паломнику",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Свято-Георгиевский монастырь в Гётчендорфе · 1 / 4",
+      "images": [
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        },
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "classic",
+    "context": "contacts",
+    "view": "mobile",
+    "actualScheme": "classic",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Контакты и дорога",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Дорога к храму в Гётчендорфе",
+      "images": [
+        {
+          "alt": "Дорога к храму в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "alt": "Дорога к храму в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1024,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "classic",
+    "context": "news",
+    "view": "mobile",
+    "actualScheme": "classic",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 3,
+    "title": "Новости обители",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Забота о будущем монастыря",
+      "images": [
+        {
+          "alt": "Забота о будущем монастыря",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "alt": "Забота о будущем монастыря",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "classic",
+    "context": "sermons",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "classic",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 3,
+    "title": "Проповеди и беседы",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Место Бога в повседневной жизни",
+      "images": [
+        {
+          "alt": "Место Бога в повседневной жизни",
+          "fit": "contain",
+          "natural": [
+            1672,
+            941
+          ]
+        },
+        {
+          "alt": "Место Бога в повседневной жизни",
+          "fit": "contain",
+          "natural": [
+            1672,
+            941
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "classic",
+    "context": "article",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "classic",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Забота о будущем монастыря",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Забота о будущем обители",
+      "images": [
+        {
+          "alt": "Забота о будущем обители",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "alt": "Забота о будущем обители",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "hospitality",
+    "context": "home",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "hospitality",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 10,
+    "title": "Добро пожаловать в нашу обитель!",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Праздник Святой Троицы в монастыре — 2026",
+      "images": [
+        {
+          "alt": "Праздник Святой Троицы в монастыре — 2026",
+          "fit": "contain",
+          "natural": [
+            1122,
+            1402
+          ]
+        },
+        {
+          "alt": "Праздник Святой Троицы в монастыре — 2026",
+          "fit": "contain",
+          "natural": [
+            1122,
+            1402
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "hospitality",
+    "context": "about",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "hospitality",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 6,
+    "title": "О монастыре",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Свято-Георгиевский монастырь в Гётчендорфе · 1 / 2",
+      "images": [
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        },
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "hospitality",
+    "context": "clergy",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "hospitality",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Духовенство",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Игумен Даниил (Ирбитс), наместник обители",
+      "images": [
+        {
+          "alt": "Игумен Даниил (Ирбитс), наместник обители",
+          "fit": "contain",
+          "natural": [
+            1238,
+            1239
+          ]
+        },
+        {
+          "alt": "Игумен Даниил (Ирбитс), наместник обители",
+          "fit": "contain",
+          "natural": [
+            1238,
+            1239
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "hospitality",
+    "context": "pilgrim",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "hospitality",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 5,
+    "title": "Паломнику",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Свято-Георгиевский монастырь в Гётчендорфе · 1 / 4",
+      "images": [
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        },
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "hospitality",
+    "context": "contacts",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "hospitality",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Контакты и дорога",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Дорога к храму в Гётчендорфе",
+      "images": [
+        {
+          "alt": "Дорога к храму в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "alt": "Дорога к храму в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1024,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "hospitality",
+    "context": "news",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "hospitality",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 3,
+    "title": "Новости обители",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Забота о будущем монастыря",
+      "images": [
+        {
+          "alt": "Забота о будущем монастыря",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "alt": "Забота о будущем монастыря",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "hospitality",
+    "context": "sermons",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "hospitality",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 3,
+    "title": "Проповеди и беседы",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Место Бога в повседневной жизни",
+      "images": [
+        {
+          "alt": "Место Бога в повседневной жизни",
+          "fit": "contain",
+          "natural": [
+            1672,
+            941
+          ]
+        },
+        {
+          "alt": "Место Бога в повседневной жизни",
+          "fit": "contain",
+          "natural": [
+            1672,
+            941
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "hospitality",
+    "context": "article",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "hospitality",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Забота о будущем монастыря",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Забота о будущем обители",
+      "images": [
+        {
+          "alt": "Забота о будущем обители",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "alt": "Забота о будущем обители",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "editorial",
+    "context": "home",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "editorial",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 13,
+    "title": "Здесь начинается Главное",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Праздник Святой Троицы в монастыре — 2026",
+      "images": [
+        {
+          "alt": "Праздник Святой Троицы в монастыре — 2026",
+          "fit": "contain",
+          "natural": [
+            1122,
+            1402
+          ]
+        },
+        {
+          "alt": "Праздник Святой Троицы в монастыре — 2026",
+          "fit": "contain",
+          "natural": [
+            1122,
+            1402
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "editorial",
+    "context": "about",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "editorial",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 6,
+    "title": "О монастыре",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Свято-Георгиевский монастырь в Гётчендорфе · 1 / 2",
+      "images": [
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        },
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "editorial",
+    "context": "clergy",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "editorial",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Духовенство",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Игумен Даниил (Ирбитс), наместник обители",
+      "images": [
+        {
+          "alt": "Игумен Даниил (Ирбитс), наместник обители",
+          "fit": "contain",
+          "natural": [
+            1238,
+            1239
+          ]
+        },
+        {
+          "alt": "Игумен Даниил (Ирбитс), наместник обители",
+          "fit": "contain",
+          "natural": [
+            1238,
+            1239
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "editorial",
+    "context": "pilgrim",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "editorial",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 5,
+    "title": "Паломнику",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Свято-Георгиевский монастырь в Гётчендорфе · 1 / 4",
+      "images": [
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        },
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "editorial",
+    "context": "contacts",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "editorial",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Контакты и дорога",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Дорога к храму в Гётчендорфе",
+      "images": [
+        {
+          "alt": "Дорога к храму в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "alt": "Дорога к храму в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1024,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "editorial",
+    "context": "news",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "editorial",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 3,
+    "title": "Новости обители",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Забота о будущем монастыря",
+      "images": [
+        {
+          "alt": "Забота о будущем монастыря",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "alt": "Забота о будущем монастыря",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "editorial",
+    "context": "sermons",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "editorial",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 3,
+    "title": "Проповеди и беседы",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Место Бога в повседневной жизни",
+      "images": [
+        {
+          "alt": "Место Бога в повседневной жизни",
+          "fit": "contain",
+          "natural": [
+            1672,
+            941
+          ]
+        },
+        {
+          "alt": "Место Бога в повседневной жизни",
+          "fit": "contain",
+          "natural": [
+            1672,
+            941
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "editorial",
+    "context": "article",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "editorial",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Забота о будущем монастыря",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Забота о будущем обители",
+      "images": [
+        {
+          "alt": "Забота о будущем обители",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "alt": "Забота о будущем обители",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "tradition",
+    "context": "home",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "tradition",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 12,
+    "title": "«Где двое или трое собраны во имя Моё, там Я посреди них»",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Праздник Святой Троицы в монастыре — 2026",
+      "images": [
+        {
+          "alt": "Праздник Святой Троицы в монастыре — 2026",
+          "fit": "contain",
+          "natural": [
+            1122,
+            1402
+          ]
+        },
+        {
+          "alt": "Праздник Святой Троицы в монастыре — 2026",
+          "fit": "contain",
+          "natural": [
+            1122,
+            1402
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "tradition",
+    "context": "about",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "tradition",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 6,
+    "title": "О монастыре",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Свято-Георгиевский монастырь в Гётчендорфе · 1 / 2",
+      "images": [
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        },
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "tradition",
+    "context": "clergy",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "tradition",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Духовенство",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Игумен Даниил (Ирбитс), наместник обители",
+      "images": [
+        {
+          "alt": "Игумен Даниил (Ирбитс), наместник обители",
+          "fit": "contain",
+          "natural": [
+            1238,
+            1239
+          ]
+        },
+        {
+          "alt": "Игумен Даниил (Ирбитс), наместник обители",
+          "fit": "contain",
+          "natural": [
+            1238,
+            1239
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "tradition",
+    "context": "pilgrim",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "tradition",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 5,
+    "title": "Паломнику",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Свято-Георгиевский монастырь в Гётчендорфе · 1 / 4",
+      "images": [
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        },
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "tradition",
+    "context": "contacts",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "tradition",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Контакты и дорога",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Дорога к храму в Гётчендорфе",
+      "images": [
+        {
+          "alt": "Дорога к храму в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "alt": "Дорога к храму в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1024,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "tradition",
+    "context": "news",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "tradition",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 3,
+    "title": "Новости обители",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Забота о будущем монастыря",
+      "images": [
+        {
+          "alt": "Забота о будущем монастыря",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "alt": "Забота о будущем монастыря",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "tradition",
+    "context": "sermons",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "tradition",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 3,
+    "title": "Проповеди и беседы",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Место Бога в повседневной жизни",
+      "images": [
+        {
+          "alt": "Место Бога в повседневной жизни",
+          "fit": "contain",
+          "natural": [
+            1672,
+            941
+          ]
+        },
+        {
+          "alt": "Место Бога в повседневной жизни",
+          "fit": "contain",
+          "natural": [
+            1672,
+            941
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "tradition",
+    "context": "article",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "tradition",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Забота о будущем монастыря",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Забота о будущем обители",
+      "images": [
+        {
+          "alt": "Забота о будущем обители",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "alt": "Забота о будущем обители",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "blue",
+    "context": "home",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "blue",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 12,
+    "title": "Обитель, где каждый найдёт свой путь",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Праздник Святой Троицы в монастыре — 2026",
+      "images": [
+        {
+          "alt": "Праздник Святой Троицы в монастыре — 2026",
+          "fit": "contain",
+          "natural": [
+            1122,
+            1402
+          ]
+        },
+        {
+          "alt": "Праздник Святой Троицы в монастыре — 2026",
+          "fit": "contain",
+          "natural": [
+            1122,
+            1402
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "blue",
+    "context": "about",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "blue",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 6,
+    "title": "О монастыре",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Свято-Георгиевский монастырь в Гётчендорфе · 1 / 2",
+      "images": [
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        },
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "blue",
+    "context": "clergy",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "blue",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Духовенство",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Игумен Даниил (Ирбитс), наместник обители",
+      "images": [
+        {
+          "alt": "Игумен Даниил (Ирбитс), наместник обители",
+          "fit": "contain",
+          "natural": [
+            1238,
+            1239
+          ]
+        },
+        {
+          "alt": "Игумен Даниил (Ирбитс), наместник обители",
+          "fit": "contain",
+          "natural": [
+            1238,
+            1239
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "blue",
+    "context": "pilgrim",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "blue",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 5,
+    "title": "Паломнику",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Свято-Георгиевский монастырь в Гётчендорфе · 1 / 4",
+      "images": [
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        },
+        {
+          "alt": "Свято-Георгиевский монастырь в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1600,
+            900
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "blue",
+    "context": "contacts",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "blue",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Контакты и дорога",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Дорога к храму в Гётчендорфе",
+      "images": [
+        {
+          "alt": "Дорога к храму в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1024,
+            1024
+          ]
+        },
+        {
+          "alt": "Дорога к храму в Гётчендорфе",
+          "fit": "contain",
+          "natural": [
+            1024,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "blue",
+    "context": "news",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "blue",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 3,
+    "title": "Новости обители",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Забота о будущем монастыря",
+      "images": [
+        {
+          "alt": "Забота о будущем монастыря",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "alt": "Забота о будущем монастыря",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "blue",
+    "context": "sermons",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "blue",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 3,
+    "title": "Проповеди и беседы",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Место Бога в повседневной жизни",
+      "images": [
+        {
+          "alt": "Место Бога в повседневной жизни",
+          "fit": "contain",
+          "natural": [
+            1672,
+            941
+          ]
+        },
+        {
+          "alt": "Место Бога в повседневной жизни",
+          "fit": "contain",
+          "natural": [
+            1672,
+            941
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "scheme": "blue",
+    "context": "article",
+    "view": "mobile",
+    "activation": "Enter",
+    "actualScheme": "blue",
+    "nestedButtons": 0,
+    "overflow": false,
+    "photos": 1,
+    "title": "Забота о будущем монастыря",
+    "viewport": [
+      390,
+      844
+    ],
+    "opened": {
+      "caption": "Забота о будущем обители",
+      "images": [
+        {
+          "alt": "Забота о будущем обители",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        },
+        {
+          "alt": "Забота о будущем обители",
+          "fit": "contain",
+          "natural": [
+            1536,
+            1024
+          ]
+        }
+      ]
+    }
+  }
+]

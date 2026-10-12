@@ -223,3 +223,24 @@ Bitvise sexec принимает файл команды в одну строк�
 писем, оплат, изменений Plesk/окружения/других сайтов. Живой мастер не сбрасывать.
 PHP8.5 — фактическое ранее подтверждённое окружение именно этого WordPress.
 На сервере нет Git checkout; Composer и Node build для этих ZIP не требуются.
+
+## Тема0.3.18 — подготовлено, пока не установлено
+
+Сначала получить прямое разрешение владельца на0.3.18. Только после него загрузить
+build/prihod-theme-0.3.18.zip в wp-content/prihod-packages и
+build/server-check-theme-0318.php в wp-content/prihod-server-check.php того же сайта.
+Проверка ожидает уже установленный Core rc.9, меняется только тема. Архив0.3.17 и
+его ранее исполненный checker сохранены. Git checkout на сервере отсутствует.
+После разрешённой загрузки команда для SSH/Plesk:
+
+```bash
+cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
+export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.18.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
+```
+
+PHP8.5 — подтверждённый handler именно этого WordPress. Node/build/Composer и
+изменения окружения не нужны. Затем фактически открыть страницу19 и проверить
+фото/перелистывание/закрытие на desktop/mobile; программный checker не заменяет
+браузерную проверку. Выполнение этой команды пока не разрешено и не заявляется.

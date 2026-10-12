@@ -71,7 +71,7 @@ function prihod_theme_contact_panel(): string {
         $html .= '<aside class="prihod-contact-welcome"><div><h3>' . esc_html__( 'Мы рядом', 'prihod-theme' ) . '</h3><p>' . esc_html( $profile['description'] ) . '</p>';
         $contact = prihod_theme_url( 'contacts' );
         if ( $contact ) { $html .= '<a href="' . esc_url( $contact ) . '">' . esc_html__( 'Связаться с нами', 'prihod-theme' ) . ' →</a>'; }
-        $html .= '</div>' . wp_get_attachment_image( $options['about_image'] ?: $options['hero_image'], 'medium' ) . '</aside>';
+        $html .= '</div>' . prihod_theme_photo( $options['about_image'] ?: $options['hero_image'], 'medium' ) . '</aside>';
     }
     elseif ( 'tradition' === prihod_theme_scheme() ) { $html .= '<aside class="prihod-contact-motto">' . prihod_theme_verse() . prihod_theme_icon( 'cross' ) . '</aside>'; }
     return $html . '</div></section>';

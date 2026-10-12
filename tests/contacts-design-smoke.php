@@ -9,7 +9,8 @@ $check( get_stylesheet() . '//contacts' === $GLOBALS['_wp_current_template_id'] 
 $contact_html = do_blocks( $contact_template->content ); $contact_data = prihod_theme_contacts_data();
 $check( strpos( $contact_html, $contact_data['intro'] ) < strpos( $contact_html, 'prihod-contacts-primary' ) && strpos( $contact_html, 'prihod-contacts-primary' ) < strpos( $contact_html, 'prihod-contacts-road' ), 'Introduction, genuine contacts and detailed road instructions retain their intended hierarchy.' );
 $check( str_contains( $contact_html, 'href="tel:+491714340444"' ) && str_contains( $contact_html, 'href="mailto:info@georg-kloster.de"' ) && str_contains( $contact_html, 'href="https://georg-kloster.ru/' ), 'Native contacts retain actual address, clickable phone/email and website.' );
-$check( str_contains( $contact_html, $contact_data['body'] ) && str_contains( $contact_html, $contact_data['photo'] ) && str_contains( $contact_html, $contact_data['tail'] ), 'Every original road paragraph, photograph/caption and source remains present.' );
+$contact_photo_tags = new WP_HTML_Tag_Processor( $contact_data['photo'] ); $contact_photo_tags->next_tag( 'IMG' );
+$check( str_contains( $contact_html, $contact_data['body'] ) && str_contains( $contact_html, esc_attr( $contact_photo_tags->get_attribute( 'src' ) ) ) && str_contains( $contact_html, esc_attr( $contact_photo_tags->get_attribute( 'alt' ) ) ) && str_contains( wp_strip_all_tags( $contact_html ), wp_strip_all_tags( $contact_data['photo'] ) ) && str_contains( $contact_html, $contact_data['tail'] ), 'Every original road paragraph, photograph/caption and source remains present.' );
 $check( str_contains( $contact_html, prihod_theme_contact_map() ), 'Contact page reuses the existing map component and settings.' );
 foreach ( array( 'classic', 'hospitality', 'editorial', 'tradition', 'blue' ) as $scheme ) {
     $_GET['prihod_preview'] = $scheme; $contact_html = do_blocks( $contact_template->content );

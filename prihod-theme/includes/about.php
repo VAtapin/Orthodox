@@ -18,12 +18,12 @@ function prihod_theme_about_photos( string $family ): string {
     $gallery = array_values( array_filter( array_map( 'absint', explode( ',', $options['gallery'] ) ), 'wp_attachment_is_image' ) );
     $fallback = 'history' === $family ? array( $gallery[0] ?? $options['hero_image'], $gallery[3] ?? $options['about_image'] ) : array( $options['about_image'], $gallery[4] ?? 0, $gallery[0] ?? $options['hero_image'] );
     $ids = $options[$key] ? array_map( 'absint', explode( ',', $options[$key] ) ) : $fallback;
-    $html = '';
+    $html = ''; $group = wp_unique_id( 'prihod-about-' );
     foreach ( array_slice( array_unique( array_filter( $ids, 'wp_attachment_is_image' ) ), 0, 'history' === $family ? 2 : 3 ) as $id ) {
         $caption = wp_get_attachment_caption( $id ) ?: get_the_title( $id );
-        $html .= '<figure>' . wp_get_attachment_image( $id, 'large' ) . '<figcaption>' . esc_html( $caption ) . '</figcaption></figure>';
+        $html .= prihod_theme_photo( $id, 'large', array(), esc_html( $caption ), '', $group );
     }
-    return $html ? '<div class="prihod-about-photos is-' . esc_attr( $family ) . '">' . $html . '</div>' : '';
+    return $html ? prihod_theme_photo_gallery( '<div class="prihod-about-photos is-' . esc_attr( $family ) . '">' . $html . '</div>', $group ) : '';
 }
 function prihod_theme_about_directions(): string {
     $resources = get_option( 'prihod_resources', array() ); $html = '';
@@ -69,7 +69,7 @@ function prihod_theme_about_content( string $html ): string {
         } else { $result .= render_block( $block ); }
     }
     if ( $section ) { $result .= prihod_theme_about_photos( 2 === $section ? 'life' : 'history' ) . '</section>'; }
-    if ( class_exists( '\Prihod\Directory' ) && get_posts( array( 'post_type' => 'prihod_clergy', 'post_status' => 'publish', 'numberposts' => 1 ) ) ) { $result .= '<section id="prihod-about-clergy" class="prihod-about-clergy"><h2>' . esc_html__( 'Духовенство', 'prihod-theme' ) . '</h2>' . wp_get_attachment_image( prihod_theme_resource_image( 'clergy' ), 'medium' ) . prihod_theme_block( 'prihod/clergy' ) . '</section>'; }
+    if ( class_exists( '\Prihod\Directory' ) && get_posts( array( 'post_type' => 'prihod_clergy', 'post_status' => 'publish', 'numberposts' => 1 ) ) ) { $result .= '<section id="prihod-about-clergy" class="prihod-about-clergy"><h2>' . esc_html__( 'Духовенство', 'prihod-theme' ) . '</h2>' . prihod_theme_photo( prihod_theme_resource_image( 'clergy' ), 'medium' ) . prihod_theme_block( 'prihod/clergy' ) . '</section>'; }
     return $result . prihod_theme_about_directions();
 }
 add_filter( 'render_block_core/post-content', 'prihod_theme_about_content' );

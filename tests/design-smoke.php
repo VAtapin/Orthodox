@@ -5,7 +5,7 @@ $check = static function ( $condition, $message ) use ( &$checks ) { if ( ! $con
 foreach ( array( 'classic' => 4, 'hospitality' => 5, 'editorial' => 5, 'tradition' => 5, 'blue' => 5 ) as $scheme => $count ) {
     $html = prihod_theme_home_features( $scheme, array_values( $first['images'] ), 'О монастыре', true );
     $check( substr_count( $html, 'class="prihod-feature ' ) + substr_count( $html, 'class="prihod-feature"' ) === $count, 'Reference feature count: ' . $scheme );
-    $check( substr_count( $html, 'prihod-feature-photo' ) === ( 'tradition' === $scheme ? 3 : ( 'editorial' === $scheme ? $count - 1 : ( 'classic' === $scheme ? $count : 0 ) ) ), 'Reference photo/icon family: ' . $scheme );
+    $check( preg_match_all( '/<img\b[^>]*class="[^"]*\bprihod-feature-photo\b/', $html ) === ( 'tradition' === $scheme ? 3 : ( 'editorial' === $scheme ? $count - 1 : ( 'classic' === $scheme ? $count : 0 ) ) ), 'Reference photo/icon family: ' . $scheme );
     $html = prihod_theme_home_news( $scheme, true );
     $check( substr_count( $html, 'class="prihod-news-card"' ) === ( 'hospitality' === $scheme ? 4 : 3 ), 'Reference news count: ' . $scheme );
 }
@@ -38,7 +38,7 @@ unset( $_GET['prihod_preview'] ); WP_Theme_JSON_Resolver::clean_cached_data();
 $check( str_contains( $about_html, 'is-history' ) && str_contains( $about_html, 'is-life' ) && str_contains( $about_html, 'prihod-about-directions' ), 'About renders two photographic regions and confirmed existing directions.' );
 $about_options = get_option( 'prihod_theme_options' ); $options = prihod_theme_options();
 $options['about_history_photos'] = (string) $first['images']['kitchen']; update_option( 'prihod_theme_options', $options );
-$check( str_contains( prihod_theme_about_photos( 'history' ), get_the_title( $first['images']['kitchen'] ) ) && 1 === substr_count( prihod_theme_about_photos( 'history' ), '<figure>' ), 'Owner-selected photographs and authentic captions take precedence over gallery defaults.' );
+$check( str_contains( prihod_theme_about_photos( 'history' ), get_the_title( $first['images']['kitchen'] ) ) && 1 === substr_count( prihod_theme_about_photos( 'history' ), '<figure ' ), 'Owner-selected photographs and authentic captions take precedence over gallery defaults.' );
 $sanitized_photos = prihod_theme_sanitize( array( 'about_history_photos' => $first['images']['monastery'] . ',999999,' . $first['images']['clergy'], 'about_life_photos' => array( 'invalid' ) ) );
 $check( ! str_contains( $sanitized_photos['about_history_photos'], '999999' ) && '' === $sanitized_photos['about_life_photos'], 'About photo options accept images only and reject malformed input.' );
 update_option( 'prihod_theme_options', $about_options );
@@ -98,7 +98,7 @@ $original_options = get_option( 'prihod_theme_options' );
 $custom_options = prihod_theme_options(); $custom_options['feature_donations'] = $first['images']['monastery'];
 update_option( 'prihod_theme_options', $custom_options );
 $features = prihod_theme_home_features( 'editorial', array_values( $first['images'] ), 'О монастыре', true );
-$check( 5 === substr_count( $features, 'prihod-feature-photo' ) && ! str_contains( $features, 'prihod-feature-support-symbol' ), 'An owner-selected support photo takes precedence over the default symbolic tile.' );
+$check( 5 === preg_match_all( '/<img\b[^>]*class="[^"]*\bprihod-feature-photo\b/', $features ) && ! str_contains( $features, 'prihod-feature-support-symbol' ), 'An owner-selected support photo takes precedence over the default symbolic tile.' );
 $custom_options['quote_text'] = 'Owner custom quote'; $custom_options['quote_source'] = 'Owner source';
 update_option( 'prihod_theme_options', $custom_options );
 $check( str_contains( prihod_theme_verse(), 'Owner custom quote' ) && str_contains( prihod_theme_verse(), 'Owner source' ), 'The quote uses saved owner content.' );
@@ -112,4 +112,5 @@ require __DIR__ . '/clergy-design-smoke.php';
 require __DIR__ . '/pilgrim-design-smoke.php';
 require __DIR__ . '/contacts-design-smoke.php';
 require __DIR__ . '/home-detail-smoke.php';
+require __DIR__ . '/photo-smoke.php';
 echo "DESIGN_SMOKE_OK: {$checks} checks.\n";

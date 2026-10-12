@@ -1,0 +1,117 @@
+[
+  {
+    "scheme": "classic",
+    "view": "desktop",
+    "caption": "Монастырская кухня и гостеприимство · 5 / 5",
+    "overflow": false,
+    "photo": "Монастырская кухня и гостеприимство",
+    "viewport": [
+      1122,
+      900
+    ]
+  },
+  {
+    "scheme": "hospitality",
+    "view": "desktop",
+    "caption": "Монастырская кухня и гостеприимство · 5 / 5",
+    "overflow": false,
+    "photo": "Монастырская кухня и гостеприимство",
+    "viewport": [
+      1122,
+      900
+    ]
+  },
+  {
+    "scheme": "editorial",
+    "view": "desktop",
+    "caption": "Монастырская кухня и гостеприимство · 5 / 5",
+    "overflow": false,
+    "photo": "Монастырская кухня и гостеприимство",
+    "viewport": [
+      1122,
+      900
+    ]
+  },
+  {
+    "scheme": "tradition",
+    "view": "desktop",
+    "caption": "Монастырская кухня и гостеприимство · 5 / 5",
+    "overflow": false,
+    "photo": "Монастырская кухня и гостеприимство",
+    "viewport": [
+      1122,
+      900
+    ]
+  },
+  {
+    "scheme": "blue",
+    "view": "desktop",
+    "caption": "Забота о будущем обители · 8 / 8",
+    "overflow": false,
+    "photo": "Забота о будущем обители",
+    "viewport": [
+      1122,
+      900
+    ]
+  },
+  {
+    "scheme": "classic",
+    "view": "mobile",
+    "actualScheme": "classic",
+    "caption": "Монастырская кухня и гостеприимство · 5 / 5",
+    "overflow": false,
+    "photo": "Монастырская кухня и гостеприимство",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "scheme": "hospitality",
+    "view": "mobile",
+    "actualScheme": "hospitality",
+    "caption": "Монастырская кухня и гостеприимство · 5 / 5",
+    "overflow": false,
+    "photo": "Монастырская кухня и гостеприимство",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "scheme": "editorial",
+    "view": "mobile",
+    "actualScheme": "editorial",
+    "caption": "Монастырская кухня и гостеприимство · 5 / 5",
+    "overflow": false,
+    "photo": "Монастырская кухня и гостеприимство",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "scheme": "tradition",
+    "view": "mobile",
+    "actualScheme": "tradition",
+    "caption": "Монастырская кухня и гостеприимство · 5 / 5",
+    "overflow": false,
+    "photo": "Монастырская кухня и гостеприимство",
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "scheme": "blue",
+    "view": "mobile",
+    "actualScheme": "blue",
+    "caption": "Забота о будущем обители · 8 / 8",
+    "overflow": false,
+    "photo": "Забота о будущем обители",
+    "viewport": [
+      390,
+      844
+    ]
+  }
+]

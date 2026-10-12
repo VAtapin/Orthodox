@@ -41,15 +41,14 @@ function prihod_theme_pilgrim_photos( array $data ): string {
     $ids = $options['pilgrim_photos'] ? explode( ',', $options['pilgrim_photos'] ) : explode( ',', $options['gallery'] );
     $ids = array_unique( array_filter( array_map( 'absint', $ids ), 'wp_attachment_is_image' ) );
     if ( ! $options['pilgrim_photos'] ) { $ids = array_diff( $ids, array( $data['photo_id'] ) ); }
-    $html = ''; $url = prihod_theme_url( 'photos' );
+    $html = ''; $url = prihod_theme_url( 'photos' ); $group = wp_unique_id( 'prihod-pilgrim-' );
     foreach ( array_slice( $ids, 0, 4 ) as $id ) {
         $caption = wp_get_attachment_caption( $id ) ?: get_the_title( $id );
-        $image = wp_get_attachment_image( $id, 'medium_large' );
-        $html .= '<figure>' . ( $url ? '<a href="' . esc_url( $url ) . '">' . $image . '</a>' : $image ) . '<figcaption>' . esc_html( $caption ) . '</figcaption></figure>';
+        $html .= prihod_theme_photo( $id, 'medium_large', array(), esc_html( $caption ), $url, $group );
     }
     $resources = get_option( 'prihod_resources', array() );
     $title = $url ? get_the_title( absint( $resources['photos']['id'] ?? 0 ) ) : __( 'Фотогалерея', 'prihod-theme' );
-    return $html ? '<section class="prihod-pilgrim-photos">' . prihod_theme_section_title( $title, $url, __( 'Все фото', 'prihod-theme' ) ) . '<div class="prihod-pilgrim-photo-grid">' . $html . '</div></section>' : '';
+    return $html ? '<section class="prihod-pilgrim-photos">' . prihod_theme_section_title( $title, $url, __( 'Все фото', 'prihod-theme' ) ) . prihod_theme_photo_gallery( '<div class="prihod-pilgrim-photo-grid">' . $html . '</div>', $group ) . '</section>' : '';
 }
 function prihod_theme_pilgrim_content( string $html ): string {
     $data = prihod_theme_pilgrim_data(); $post = get_post();

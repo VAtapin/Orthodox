@@ -10,7 +10,7 @@ $_GET['prihod_preview'] = 'editorial'; WP_Theme_JSON_Resolver::clean_cached_data
 $check( str_contains( $header, 'prihod-header-quote' ) && str_contains( $header, 'Owner general quotation' ) && str_contains( $header, 'Owner general source' ) && str_contains( $header, 'tel:+491714340444' ) && str_contains( $header, 'mailto:info@georg-kloster.de' ), 'Editorial header gains the actual configured quote without removing contacts.' );
 $_GET['prihod_preview'] = 'classic'; WP_Theme_JSON_Resolver::clean_cached_data();
 $check( str_contains( prihod_theme_header(), 'Owner header motto' ) && str_contains( prihod_theme_home(), 'Owner decorative words' ), 'Classic motto blocks use owner-editable words.' );
-$check( str_contains( prihod_theme_home(), 'prihod-feature-photo is-portrait' ) && str_contains( prihod_theme_home_gallery( array( $first['images']['clergy'] ), true ), 'class="is-portrait"' ), 'Known clergy photographs receive intact portrait treatment in features and galleries.' );
+$check( str_contains( prihod_theme_home(), 'prihod-feature-photo is-portrait' ) && str_contains( prihod_theme_home_gallery( array( $first['images']['clergy'] ), true ), 'is-portrait wp-image-' ), 'Known clergy photographs receive intact portrait treatment in features and galleries.' );
 $_GET['prihod_preview'] = 'tradition'; WP_Theme_JSON_Resolver::clean_cached_data(); $home = prihod_theme_home();
 $check( 2 === substr_count( $home, 'prihod-feature-symbol' ) && str_contains( $home, 'prihod-section-eyebrow' ), 'Traditional question/support tiles use native symbols and about gains its eyebrow.' );
 $options['feature_requests'] = $first['images']['clergy']; $options['feature_donations'] = $first['images']['monastery']; update_option( 'prihod_theme_options', $options );

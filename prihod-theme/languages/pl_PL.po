@@ -1899,3 +1899,9 @@ msgstr "Cytat pod przyciskami niebieskiego stylu"
 
 msgid "Источник цитаты синей схемы"
 msgstr "Źródło cytatu niebieskiego stylu"
+
+msgid "Предыдущее фото"
+msgstr "Poprzednie zdjęcie"
+
+msgid "Следующее фото"
+msgstr "Następne zdjęcie"

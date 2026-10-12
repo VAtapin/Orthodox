@@ -19,7 +19,8 @@ $check( 1 === substr_count( $clergy_result, '<img' ) && str_contains( $clergy_re
 $check( str_contains( $clergy_result, 'Беседа со священником' ) && str_contains( $clergy_result, 'georg-kloster.ru/igumen-daniil-irbits/' ), 'Meeting information and the original source link remain visible.' );
 $check( str_contains( $clergy_result, esc_url( prihod_theme_url( 'requests' ) ) ) && get_post_field( 'post_content', $clergy_page->ID ) === $clergy_original, 'Question navigation uses the registered page while original content is never saved.' );
 $second = wp_insert_post( array( 'post_type' => 'prihod_clergy', 'post_status' => 'publish', 'post_title' => 'Disposable second priest', 'post_content' => 'Second real fixture biography.' ) );
-$check( prihod_theme_clergy_content( do_blocks( $clergy_original ) ) === do_blocks( $clergy_original ), 'A single photograph is never assigned to multiple published people.' );
+$two_native = do_blocks( $clergy_original );
+$check( prihod_theme_clergy_content( $two_native ) === $two_native, 'A single photograph is never assigned to multiple published people.' );
 wp_delete_post( $second, true );
 $draft = wp_insert_post( array( 'post_type' => 'prihod_clergy', 'post_status' => 'draft', 'post_title' => 'Private clergy fixture' ) );
 $check( str_contains( prihod_theme_clergy_content( $clergy_native ), 'prihod-clergy-card' ), 'Unpublished clergy do not appear in the public card or prevent the single published portrait.' );

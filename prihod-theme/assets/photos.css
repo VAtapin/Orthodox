@@ -1,0 +1,28 @@
+.prihod-photo-item{margin:0;position:relative;min-width:0;max-width:100%}
+.prihod-photo-item>a{display:block}.prihod-photo-item img{display:block;max-width:100%}
+.prihod-photo-item .lightbox-trigger{z-index:2}
+.prihod-about-clergy>.prihod-photo-item img{width:130px;height:155px;object-fit:cover;object-position:center 25%}
+@media(max-width:600px){.prihod-about-clergy>.prihod-photo-item img{width:90px;height:115px}}
+@media(max-width:600px){body .wp-lightbox-container button.lightbox-trigger{opacity:1;width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;border-radius:50%}}
+.wp-lightbox-container[aria-busy=true] .lightbox-trigger{cursor:progress}
+.prihod-feature-copy{text-decoration:none;color:inherit}
+.prihod-feature-support-symbol{text-decoration:none;color:inherit}
+.prihod-photo-strip>.prihod-photo-item{scroll-snap-align:start}
+.prihod-news-card .prihod-photo-item>a,.prihod-news-card>a.prihod-news-copy{display:block}
+.prihod-scheme-hospitality .prihod-news-card{display:grid;grid-template-columns:85px minmax(0,1fr)}
+.prihod-tradition-stories .prihod-news-card{display:grid;grid-template-columns:80px minmax(0,1fr);gap:8px}
+.prihod-scheme-blue .prihod-news-card{display:grid;grid-template-columns:115px minmax(0,1fr)}
+.prihod-scheme-blue .prihod-photo-strip>.prihod-photo-item{flex:0 0 calc((100% - 40px)/6)}
+.prihod-scheme-blue .prihod-photo-strip .prihod-photo-item img{width:100%}
+@media(min-width:901px){.prihod-tradition-stories .prihod-photo-strip>.prihod-photo-item:nth-child(n+5){display:none}.prihod-scheme-blue .prihod-news-card{grid-template-columns:110px minmax(0,1fr)}}
+@media(max-width:900px){.prihod-photo-strip>.prihod-photo-item{flex:0 0 160px}.prihod-photo-strip .prihod-photo-item img{width:100%}.prihod-tradition-stories .prihod-news-card{grid-template-columns:65px minmax(0,1fr);gap:8px}}
+@media(max-width:600px){.prihod-scheme-blue .prihod-photo-strip>.prihod-photo-item{flex-basis:calc(25% - 7px)}}
+.wp-lightbox-overlay .lightbox-image-container{max-width:calc(100% - 48px);max-height:calc(100% - 160px);z-index:2000001!important}
+.wp-lightbox-overlay .lightbox-image-container figure{max-width:100%;max-height:100%}
+.wp-lightbox-overlay .lightbox-image-container img{object-fit:contain!important;width:100%!important;height:100%!important;min-width:0;max-width:100%;max-height:100%}
+.wp-lightbox-overlay .prihod-photo-caption{position:absolute;bottom:12px;left:64px;right:64px;max-height:70px;overflow:auto;padding:10px 16px;margin:0;background:#ffffffed;color:#24354b;text-align:center;font:14px/1.5 system-ui;border-radius:6px;z-index:2000003}
+.wp-lightbox-overlay .prihod-photo-caption:empty{display:none}
+.wp-lightbox-overlay .prihod-photo-navigation{position:absolute;top:50%;z-index:2000004;background:#ffffffed;color:#24354b;border:1px solid #ccd6e4;border-radius:50%;width:44px;height:44px;cursor:pointer;font-size:24px;padding:0;display:grid;place-items:center;line-height:1;box-sizing:border-box}
+.wp-lightbox-overlay .prihod-photo-navigation.is-previous{left:12px}.wp-lightbox-overlay .prihod-photo-navigation.is-next{right:12px}.wp-lightbox-overlay .prihod-photo-navigation[hidden]{display:none}
+.wp-lightbox-overlay .prihod-photo-navigation:focus-visible{outline:3px solid #096dcc;outline-offset:3px}
+@media(max-width:600px){.wp-lightbox-overlay .prihod-photo-caption{left:52px;right:52px;bottom:8px;font-size:12px;max-height:64px}.wp-lightbox-overlay .prihod-photo-navigation{width:44px;height:44px}}

@@ -1,0 +1,152 @@
+[
+  {
+    "scheme": "classic",
+    "view": "desktop",
+    "caption": "Праздник Святой Троицы в монастыре — 2026 · 2 / 5",
+    "scroll": 0,
+    "viewport": [
+      1122,
+      900
+    ],
+    "closed": {
+      "active": false,
+      "focus": "Enlarge image: Свято-Георгиевский монастырь в Гётчендорфе",
+      "scroll": 0
+    }
+  },
+  {
+    "scheme": "hospitality",
+    "view": "desktop",
+    "caption": "Праздник Святой Троицы в монастыре — 2026 · 2 / 5",
+    "scroll": 0,
+    "viewport": [
+      1122,
+      900
+    ],
+    "closed": {
+      "active": false,
+      "focus": "Enlarge image: Свято-Георгиевский монастырь в Гётчендорфе",
+      "scroll": 0
+    }
+  },
+  {
+    "scheme": "editorial",
+    "view": "desktop",
+    "caption": "Праздник Святой Троицы в монастыре — 2026 · 2 / 5",
+    "scroll": 0,
+    "viewport": [
+      1122,
+      900
+    ],
+    "closed": {
+      "active": false,
+      "focus": "Enlarge image: Свято-Георгиевский монастырь в Гётчендорфе",
+      "scroll": 0
+    }
+  },
+  {
+    "scheme": "tradition",
+    "view": "desktop",
+    "caption": "Праздник Святой Троицы в монастыре — 2026 · 2 / 5",
+    "scroll": 0,
+    "viewport": [
+      1122,
+      900
+    ],
+    "closed": {
+      "active": false,
+      "focus": "Enlarge image: Свято-Георгиевский монастырь в Гётчендорфе",
+      "scroll": 0
+    }
+  },
+  {
+    "scheme": "blue",
+    "view": "desktop",
+    "caption": "Праздник Святой Троицы в монастыре — 2026 · 2 / 5",
+    "scroll": 0,
+    "viewport": [
+      1122,
+      900
+    ],
+    "closed": {
+      "active": false,
+      "focus": "Enlarge image: Свято-Георгиевский монастырь в Гётчендорфе",
+      "scroll": 0
+    }
+  },
+  {
+    "scheme": "classic",
+    "view": "mobile",
+    "caption": "Праздник Святой Троицы в монастыре — 2026 · 2 / 5",
+    "scroll": 0,
+    "viewport": [
+      390,
+      844
+    ],
+    "closed": {
+      "active": false,
+      "focus": "Enlarge image: Свято-Георгиевский монастырь в Гётчендорфе",
+      "scroll": 0
+    }
+  },
+  {
+    "scheme": "hospitality",
+    "view": "mobile",
+    "caption": "Праздник Святой Троицы в монастыре — 2026 · 2 / 5",
+    "scroll": 0,
+    "viewport": [
+      390,
+      844
+    ],
+    "closed": {
+      "active": false,
+      "focus": "Enlarge image: Свято-Георгиевский монастырь в Гётчендорфе",
+      "scroll": 0
+    }
+  },
+  {
+    "scheme": "editorial",
+    "view": "mobile",
+    "caption": "Праздник Святой Троицы в монастыре — 2026 · 2 / 5",
+    "scroll": 0,
+    "viewport": [
+      390,
+      844
+    ],
+    "closed": {
+      "active": false,
+      "focus": "Enlarge image: Свято-Георгиевский монастырь в Гётчендорфе",
+      "scroll": 0
+    }
+  },
+  {
+    "scheme": "tradition",
+    "view": "mobile",
+    "caption": "Праздник Святой Троицы в монастыре — 2026 · 2 / 5",
+    "scroll": 0,
+    "viewport": [
+      390,
+      844
+    ],
+    "closed": {
+      "active": false,
+      "focus": "Enlarge image: Свято-Георгиевский монастырь в Гётчендорфе",
+      "scroll": 0
+    }
+  },
+  {
+    "scheme": "blue",
+    "view": "mobile",
+    "caption": "Праздник Святой Троицы в монастыре — 2026 · 2 / 5",
+    "scroll": 0,
+    "viewport": [
+      390,
+      844
+    ],
+    "closed": {
+      "active": false,
+      "focus": "Enlarge image: Свято-Георгиевский монастырь в Гётчендорфе",
+      "scroll": 0
+    }
+  }
+]

@@ -1,0 +1,182 @@
+[
+  {
+    "scheme": "classic",
+    "context": "home",
+    "view": "desktop",
+    "caption": "Забота о будущем обители",
+    "nested": 0,
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "classic",
+    "context": "article",
+    "view": "desktop",
+    "caption": "Праздник Святой Троицы в монастыре — 2026",
+    "nested": 0,
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "editorial",
+    "context": "home",
+    "view": "desktop",
+    "caption": "Забота о будущем обители",
+    "nested": 0,
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "editorial",
+    "context": "article",
+    "view": "desktop",
+    "caption": "Праздник Святой Троицы в монастыре — 2026",
+    "nested": 0,
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "hospitality",
+    "context": "home",
+    "view": "desktop",
+    "caption": "Забота о будущем обители",
+    "nested": 0,
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "hospitality",
+    "context": "article",
+    "view": "desktop",
+    "caption": "Праздник Святой Троицы в монастыре — 2026",
+    "nested": 0,
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "tradition",
+    "context": "home",
+    "view": "desktop",
+    "caption": "Забота о будущем обители",
+    "nested": 0,
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "tradition",
+    "context": "article",
+    "view": "desktop",
+    "caption": "Праздник Святой Троицы в монастыре — 2026",
+    "nested": 0,
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "blue",
+    "context": "home",
+    "view": "desktop",
+    "caption": "Забота о будущем обители",
+    "nested": 0,
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "blue",
+    "context": "article",
+    "view": "desktop",
+    "caption": "Праздник Святой Троицы в монастыре — 2026",
+    "nested": 0,
+    "overflow": false,
+    "width": 1122
+  },
+  {
+    "scheme": "classic",
+    "context": "home",
+    "view": "mobile",
+    "caption": "Забота о будущем обители",
+    "nested": 0,
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "classic",
+    "context": "article",
+    "view": "mobile",
+    "caption": "Праздник Святой Троицы в монастыре — 2026",
+    "nested": 0,
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "editorial",
+    "context": "home",
+    "view": "mobile",
+    "caption": "Забота о будущем обители",
+    "nested": 0,
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "editorial",
+    "context": "article",
+    "view": "mobile",
+    "caption": "Праздник Святой Троицы в монастыре — 2026",
+    "nested": 0,
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "hospitality",
+    "context": "home",
+    "view": "mobile",
+    "caption": "Забота о будущем обители",
+    "nested": 0,
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "hospitality",
+    "context": "article",
+    "view": "mobile",
+    "caption": "Праздник Святой Троицы в монастыре — 2026",
+    "nested": 0,
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "tradition",
+    "context": "home",
+    "view": "mobile",
+    "caption": "Забота о будущем обители",
+    "nested": 0,
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "tradition",
+    "context": "article",
+    "view": "mobile",
+    "caption": "Праздник Святой Троицы в монастыре — 2026",
+    "nested": 0,
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "blue",
+    "context": "home",
+    "view": "mobile",
+    "caption": "Забота о будущем обители",
+    "nested": 0,
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "blue",
+    "context": "article",
+    "view": "mobile",
+    "caption": "Праздник Святой Троицы в монастыре — 2026",
+    "nested": 0,
+    "overflow": false,
+    "width": 390
+  }
+]
