@@ -1,0 +1,17 @@
+{
+  "current": {
+    "wordpress": "7.1.3",
+    "php": "8.4.25",
+    "assertions": 276,
+    "design": 206
+  },
+  "minimum": {
+    "wordpress": "6.5.13",
+    "php": "8.0.30",
+    "assertions": 256,
+    "design": 205
+  },
+  "core_fixture": "frozen1.0.0-rc.10",
+  "zip_sha256": "02017a41155f0ec54e2321bb399680f2554642c436a43a701a8af9cbb9b047bf",
+  "live": "0.3.19 remains installed"
+}

@@ -1,0 +1,506 @@
+[
+  {
+    "h": 998,
+    "overflow": false,
+    "thumbs": [
+      {
+        "h": 85,
+        "w": 232.796875
+      },
+      {
+        "h": 85,
+        "w": 232.796875
+      },
+      {
+        "h": 85,
+        "w": 232.796875
+      },
+      {
+        "h": 85,
+        "w": 232.796875
+      },
+      {
+        "h": 85,
+        "w": 232.8125
+      }
+    ],
+    "url": "http://127.0.0.1:9401/?prihod_preview=classic",
+    "w": 1910,
+    "portrait": {
+      "fit": "contain",
+      "h": 628,
+      "imgH": 628,
+      "imgW": 928,
+      "nh": 1402,
+      "nw": 1122,
+      "src": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-1fa22ae5db9e2d7741456a4a453d6be6.png",
+      "w": 928
+    },
+    "landscape": {
+      "fit": "contain",
+      "h": 628,
+      "imgH": 628,
+      "imgW": 928,
+      "nh": 802,
+      "nw": 1217,
+      "src": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-1e8f3d4db46ef0a09286b04888beb46f.png",
+      "w": 928
+    }
+  },
+  {
+    "h": 998,
+    "overflow": false,
+    "thumbs": [
+      {
+        "h": 155,
+        "w": 188.796875
+      },
+      {
+        "h": 155,
+        "w": 188.796875
+      },
+      {
+        "h": 155,
+        "w": 188.796875
+      },
+      {
+        "h": 155,
+        "w": 188.796875
+      },
+      {
+        "h": 155,
+        "w": 188.8125
+      }
+    ],
+    "url": "http://127.0.0.1:9401/?prihod_preview=editorial",
+    "w": 1910,
+    "portrait": {
+      "fit": "contain",
+      "h": 628,
+      "imgH": 628,
+      "imgW": 928,
+      "nh": 1402,
+      "nw": 1122,
+      "src": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-1fa22ae5db9e2d7741456a4a453d6be6.png",
+      "w": 928
+    },
+    "landscape": {
+      "fit": "contain",
+      "h": 628,
+      "imgH": 628,
+      "imgW": 928,
+      "nh": 802,
+      "nw": 1217,
+      "src": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-1e8f3d4db46ef0a09286b04888beb46f.png",
+      "w": 928
+    }
+  },
+  {
+    "h": 998,
+    "overflow": false,
+    "thumbs": [
+      {
+        "h": 107,
+        "w": 232.796875
+      },
+      {
+        "h": 107,
+        "w": 232.796875
+      },
+      {
+        "h": 107,
+        "w": 232.796875
+      },
+      {
+        "h": 107,
+        "w": 232.796875
+      },
+      {
+        "h": 107,
+        "w": 232.8125
+      }
+    ],
+    "url": "http://127.0.0.1:9401/?prihod_preview=hospitality",
+    "w": 1910,
+    "portrait": {
+      "fit": "contain",
+      "h": 628,
+      "imgH": 628,
+      "imgW": 928,
+      "nh": 1402,
+      "nw": 1122,
+      "src": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-1fa22ae5db9e2d7741456a4a453d6be6.png",
+      "w": 928
+    },
+    "landscape": {
+      "fit": "contain",
+      "h": 628,
+      "imgH": 628,
+      "imgW": 928,
+      "nh": 802,
+      "nw": 1217,
+      "src": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-1e8f3d4db46ef0a09286b04888beb46f.png",
+      "w": 928
+    }
+  },
+  {
+    "h": 998,
+    "overflow": false,
+    "thumbs": [
+      {
+        "h": 140,
+        "w": 110.640625
+      },
+      {
+        "h": 140,
+        "w": 110.65625
+      },
+      {
+        "h": 140,
+        "w": 110.65625
+      },
+      {
+        "h": 140,
+        "w": 110.65625
+      },
+      {
+        "h": 0,
+        "w": 0
+      }
+    ],
+    "url": "http://127.0.0.1:9401/?prihod_preview=tradition",
+    "w": 1910,
+    "portrait": {
+      "fit": "contain",
+      "h": 628,
+      "imgH": 628,
+      "imgW": 928,
+      "nh": 1402,
+      "nw": 1122,
+      "src": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-1fa22ae5db9e2d7741456a4a453d6be6.png",
+      "w": 928
+    },
+    "landscape": {
+      "fit": "contain",
+      "h": 628,
+      "imgH": 628,
+      "imgW": 928,
+      "nh": 802,
+      "nw": 1217,
+      "src": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-1e8f3d4db46ef0a09286b04888beb46f.png",
+      "w": 928
+    }
+  },
+  {
+    "h": 998,
+    "overflow": false,
+    "thumbs": [
+      {
+        "h": 85,
+        "w": 179.65625
+      },
+      {
+        "h": 85,
+        "w": 179.65625
+      },
+      {
+        "h": 85,
+        "w": 179.65625
+      },
+      {
+        "h": 85,
+        "w": 179.65625
+      },
+      {
+        "h": 85,
+        "w": 179.65625
+      },
+      {
+        "h": 85,
+        "w": 179.65625
+      },
+      {
+        "h": 85,
+        "w": 179.65625
+      },
+      {
+        "h": 85,
+        "w": 179.65625
+      }
+    ],
+    "url": "http://127.0.0.1:9401/?prihod_preview=blue",
+    "w": 1910,
+    "portrait": {
+      "fit": "contain",
+      "h": 628,
+      "imgH": 628,
+      "imgW": 928,
+      "nh": 1402,
+      "nw": 1122,
+      "src": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-1fa22ae5db9e2d7741456a4a453d6be6.png",
+      "w": 928
+    },
+    "landscape": {
+      "fit": "contain",
+      "h": 628,
+      "imgH": 628,
+      "imgW": 928,
+      "nh": 802,
+      "nw": 1217,
+      "src": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-1e8f3d4db46ef0a09286b04888beb46f.png",
+      "w": 928
+    }
+  },
+  {
+    "h": 844,
+    "overflow": false,
+    "thumbs": [
+      {
+        "h": 110,
+        "w": 160
+      },
+      {
+        "h": 110,
+        "w": 160
+      },
+      {
+        "h": 110,
+        "w": 160
+      },
+      {
+        "h": 110,
+        "w": 160
+      },
+      {
+        "h": 110,
+        "w": 160
+      }
+    ],
+    "url": "http://127.0.0.1:9401/?prihod_preview=classic",
+    "w": 390,
+    "portrait": {
+      "fit": "contain",
+      "h": 664,
+      "imgH": 664,
+      "imgW": 350,
+      "nh": 1402,
+      "nw": 1122,
+      "src": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-1fa22ae5db9e2d7741456a4a453d6be6.png",
+      "w": 350
+    },
+    "landscape": {
+      "fit": "contain",
+      "h": 664,
+      "imgH": 664,
+      "imgW": 350,
+      "nh": 802,
+      "nw": 1217,
+      "src": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-1e8f3d4db46ef0a09286b04888beb46f.png",
+      "w": 350
+    }
+  },
+  {
+    "h": 844,
+    "overflow": false,
+    "thumbs": [
+      {
+        "h": 110,
+        "w": 160
+      },
+      {
+        "h": 110,
+        "w": 160
+      },
+      {
+        "h": 110,
+        "w": 160
+      },
+      {
+        "h": 110,
+        "w": 160
+      },
+      {
+        "h": 110,
+        "w": 160
+      }
+    ],
+    "url": "http://127.0.0.1:9401/?prihod_preview=editorial",
+    "w": 390,
+    "portrait": {
+      "fit": "contain",
+      "h": 664,
+      "imgH": 664,
+      "imgW": 350,
+      "nh": 1402,
+      "nw": 1122,
+      "src": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-1fa22ae5db9e2d7741456a4a453d6be6.png",
+      "w": 350
+    },
+    "landscape": {
+      "fit": "contain",
+      "h": 664,
+      "imgH": 664,
+      "imgW": 350,
+      "nh": 802,
+      "nw": 1217,
+      "src": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-1e8f3d4db46ef0a09286b04888beb46f.png",
+      "w": 350
+    }
+  },
+  {
+    "h": 844,
+    "overflow": false,
+    "thumbs": [
+      {
+        "h": 107,
+        "w": 160
+      },
+      {
+        "h": 107,
+        "w": 160
+      },
+      {
+        "h": 107,
+        "w": 160
+      },
+      {
+        "h": 107,
+        "w": 160
+      },
+      {
+        "h": 107,
+        "w": 160
+      }
+    ],
+    "url": "http://127.0.0.1:9401/?prihod_preview=hospitality",
+    "w": 390,
+    "portrait": {
+      "fit": "contain",
+      "h": 664,
+      "imgH": 664,
+      "imgW": 350,
+      "nh": 1402,
+      "nw": 1122,
+      "src": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-1fa22ae5db9e2d7741456a4a453d6be6.png",
+      "w": 350
+    },
+    "landscape": {
+      "fit": "contain",
+      "h": 664,
+      "imgH": 664,
+      "imgW": 350,
+      "nh": 802,
+      "nw": 1217,
+      "src": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-1e8f3d4db46ef0a09286b04888beb46f.png",
+      "w": 350
+    }
+  },
+  {
+    "h": 844,
+    "overflow": false,
+    "thumbs": [
+      {
+        "h": 115,
+        "w": 160
+      },
+      {
+        "h": 115,
+        "w": 160
+      },
+      {
+        "h": 115,
+        "w": 160
+      },
+      {
+        "h": 115,
+        "w": 160
+      },
+      {
+        "h": 115,
+        "w": 160
+      }
+    ],
+    "url": "http://127.0.0.1:9401/?prihod_preview=tradition",
+    "w": 390,
+    "portrait": {
+      "fit": "contain",
+      "h": 664,
+      "imgH": 664,
+      "imgW": 350,
+      "nh": 1402,
+      "nw": 1122,
+      "src": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-1fa22ae5db9e2d7741456a4a453d6be6.png",
+      "w": 350
+    },
+    "landscape": {
+      "fit": "contain",
+      "h": 664,
+      "imgH": 664,
+      "imgW": 350,
+      "nh": 802,
+      "nw": 1217,
+      "src": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-1e8f3d4db46ef0a09286b04888beb46f.png",
+      "w": 350
+    }
+  },
+  {
+    "h": 844,
+    "overflow": false,
+    "thumbs": [
+      {
+        "h": 85,
+        "w": 78.75
+      },
+      {
+        "h": 85,
+        "w": 78.75
+      },
+      {
+        "h": 85,
+        "w": 78.75
+      },
+      {
+        "h": 85,
+        "w": 78.75
+      },
+      {
+        "h": 85,
+        "w": 78.75
+      },
+      {
+        "h": 85,
+        "w": 78.75
+      },
+      {
+        "h": 85,
+        "w": 78.75
+      },
+      {
+        "h": 85,
+        "w": 78.75
+      }
+    ],
+    "url": "http://127.0.0.1:9401/?prihod_preview=blue",
+    "w": 390,
+    "portrait": {
+      "fit": "contain",
+      "h": 664,
+      "imgH": 664,
+      "imgW": 350,
+      "nh": 1402,
+      "nw": 1122,
+      "src": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-1fa22ae5db9e2d7741456a4a453d6be6.png",
+      "w": 350
+    },
+    "landscape": {
+      "fit": "contain",
+      "h": 664,
+      "imgH": 664,
+      "imgW": 350,
+      "nh": 802,
+      "nw": 1217,
+      "src": "http://127.0.0.1:9401/wp-content/uploads/2026/10/fixture-1e8f3d4db46ef0a09286b04888beb46f.png",
+      "w": 350
+    }
+  }
+]

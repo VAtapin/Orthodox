@@ -58,7 +58,7 @@ add_filter( 'render_block_core/post-featured-image', static function ( string $h
 }, 20, 3 );
 
 add_action( 'wp_enqueue_scripts', function () {
-    wp_enqueue_script( 'prihod-theme-photos', get_template_directory_uri() . '/assets/photos.js', array(), '0.3.19', true );
-    wp_enqueue_style( 'prihod-theme-photos', get_template_directory_uri() . '/assets/photos.css', array( 'prihod-theme-reference' ), '0.3.19.' . filemtime( get_template_directory() . '/assets/photos.css' ) );
+    wp_enqueue_script( 'prihod-theme-photos', get_template_directory_uri() . '/assets/photos.js', array(), '0.3.20', true );
+    wp_enqueue_style( 'prihod-theme-photos', get_template_directory_uri() . '/assets/photos.css', array( 'prihod-theme-reference' ), '0.3.20.' . filemtime( get_template_directory() . '/assets/photos.css' ) );
     wp_localize_script( 'prihod-theme-photos', 'prihodPhotoLabels', array( 'previous' => __( 'Предыдущее фото', 'prihod-theme' ), 'next' => __( 'Следующее фото', 'prihod-theme' ) ) );
 } );

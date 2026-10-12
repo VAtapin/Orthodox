@@ -292,3 +292,21 @@ PHP 8.5 — подтверждённое окружение именно это�
 Живые снимки/метрики сохранены отдельно. Детали — docs/PORTRAIT_CARDS.md.
 Архив установленного кода342590c: SHA256
 7F13805DA478EA1D0E4D6E6DAE86E2AA37CA9FC2B06AFFDF44AE5155A8E77A01.
+
+## Тема0.3.20 — исправленная панель фото, локально проверена
+
+После прямого разрешения на эту версию загрузить build/prihod-theme-0.3.20.zip
+вwp-content/prihod-packages, build/server-check-theme-0320.php в
+wp-content/prihod-server-check.php только этого WordPress. Проверка совместима
+сCorerc.9/rc.10; текущая календарная разработка вZIPтемы не входит.
+
+```bash
+cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
+export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.20.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
+```
+
+Затем фактически проверить голубые миниатюры/отдельную панель/полные фото на сайте
+на1910/390 и версию загруженногоCSS, исходники и геометрию. Только тема/её проверка,
+безCore/внешних плагинов/настроек сервера/Node/Composer. Пока не установлено.

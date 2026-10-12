@@ -1,0 +1,802 @@
+[
+  {
+    "page": "about",
+    "scheme": "classic",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "about",
+    "scheme": "editorial",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "about",
+    "scheme": "hospitality",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "about",
+    "scheme": "tradition",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "about",
+    "scheme": "blue",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "clergy",
+    "scheme": "classic",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1238,
+    "width": 390
+  },
+  {
+    "page": "clergy",
+    "scheme": "editorial",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1238,
+    "width": 390
+  },
+  {
+    "page": "clergy",
+    "scheme": "hospitality",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1238,
+    "width": 390
+  },
+  {
+    "page": "clergy",
+    "scheme": "tradition",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1238,
+    "width": 390
+  },
+  {
+    "page": "clergy",
+    "scheme": "blue",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1238,
+    "width": 390
+  },
+  {
+    "page": "pilgrim",
+    "scheme": "classic",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "pilgrim",
+    "scheme": "editorial",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "pilgrim",
+    "scheme": "hospitality",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "pilgrim",
+    "scheme": "tradition",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "pilgrim",
+    "scheme": "blue",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "contacts",
+    "scheme": "classic",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1024,
+    "width": 390
+  },
+  {
+    "page": "contacts",
+    "scheme": "editorial",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1024,
+    "width": 390
+  },
+  {
+    "page": "contacts",
+    "scheme": "hospitality",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1024,
+    "width": 390
+  },
+  {
+    "page": "contacts",
+    "scheme": "tradition",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1024,
+    "width": 390
+  },
+  {
+    "page": "contacts",
+    "scheme": "blue",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1024,
+    "width": 390
+  },
+  {
+    "page": "news",
+    "scheme": "classic",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1536,
+    "width": 390
+  },
+  {
+    "page": "news",
+    "scheme": "editorial",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1536,
+    "width": 390
+  },
+  {
+    "page": "news",
+    "scheme": "hospitality",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1536,
+    "width": 390
+  },
+  {
+    "page": "news",
+    "scheme": "tradition",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1536,
+    "width": 390
+  },
+  {
+    "page": "news",
+    "scheme": "blue",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1536,
+    "width": 390
+  },
+  {
+    "page": "sermons",
+    "scheme": "classic",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1672,
+    "width": 390
+  },
+  {
+    "page": "sermons",
+    "scheme": "editorial",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1672,
+    "width": 390
+  },
+  {
+    "page": "sermons",
+    "scheme": "hospitality",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1672,
+    "width": 390
+  },
+  {
+    "page": "sermons",
+    "scheme": "tradition",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1672,
+    "width": 390
+  },
+  {
+    "page": "sermons",
+    "scheme": "blue",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1672,
+    "width": 390
+  },
+  {
+    "page": "article",
+    "scheme": "classic",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1536,
+    "width": 390
+  },
+  {
+    "page": "article",
+    "scheme": "editorial",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1536,
+    "width": 390
+  },
+  {
+    "page": "article",
+    "scheme": "hospitality",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1536,
+    "width": 390
+  },
+  {
+    "page": "article",
+    "scheme": "tradition",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1536,
+    "width": 390
+  },
+  {
+    "page": "article",
+    "scheme": "blue",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1536,
+    "width": 390
+  },
+  {
+    "page": "about",
+    "scheme": "classic",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "about",
+    "scheme": "editorial",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "about",
+    "scheme": "hospitality",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "about",
+    "scheme": "tradition",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "about",
+    "scheme": "blue",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "clergy",
+    "scheme": "classic",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1238,
+    "width": 390
+  },
+  {
+    "page": "clergy",
+    "scheme": "editorial",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1238,
+    "width": 390
+  },
+  {
+    "page": "clergy",
+    "scheme": "hospitality",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1238,
+    "width": 390
+  },
+  {
+    "page": "clergy",
+    "scheme": "tradition",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1238,
+    "width": 390
+  },
+  {
+    "page": "clergy",
+    "scheme": "blue",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1238,
+    "width": 390
+  },
+  {
+    "page": "pilgrim",
+    "scheme": "classic",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "pilgrim",
+    "scheme": "editorial",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "pilgrim",
+    "scheme": "hospitality",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "pilgrim",
+    "scheme": "tradition",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "pilgrim",
+    "scheme": "blue",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "contacts",
+    "scheme": "classic",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1024,
+    "width": 390
+  },
+  {
+    "page": "contacts",
+    "scheme": "editorial",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1024,
+    "width": 390
+  },
+  {
+    "page": "contacts",
+    "scheme": "hospitality",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1024,
+    "width": 390
+  },
+  {
+    "page": "contacts",
+    "scheme": "tradition",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1024,
+    "width": 390
+  },
+  {
+    "page": "contacts",
+    "scheme": "blue",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1024,
+    "width": 390
+  },
+  {
+    "page": "news",
+    "scheme": "classic",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1536,
+    "width": 390
+  },
+  {
+    "page": "news",
+    "scheme": "editorial",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1536,
+    "width": 390
+  },
+  {
+    "page": "news",
+    "scheme": "hospitality",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1536,
+    "width": 390
+  },
+  {
+    "page": "news",
+    "scheme": "tradition",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1536,
+    "width": 390
+  },
+  {
+    "page": "news",
+    "scheme": "blue",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1536,
+    "width": 390
+  },
+  {
+    "page": "sermons",
+    "scheme": "classic",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1672,
+    "width": 390
+  },
+  {
+    "page": "sermons",
+    "scheme": "editorial",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1672,
+    "width": 390
+  },
+  {
+    "page": "sermons",
+    "scheme": "hospitality",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1672,
+    "width": 390
+  },
+  {
+    "page": "sermons",
+    "scheme": "tradition",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1672,
+    "width": 390
+  },
+  {
+    "page": "sermons",
+    "scheme": "blue",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1672,
+    "width": 390
+  },
+  {
+    "page": "article",
+    "scheme": "classic",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1536,
+    "width": 390
+  },
+  {
+    "page": "article",
+    "scheme": "editorial",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1536,
+    "width": 390
+  },
+  {
+    "page": "article",
+    "scheme": "hospitality",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1536,
+    "width": 390
+  },
+  {
+    "page": "article",
+    "scheme": "tradition",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1536,
+    "width": 390
+  },
+  {
+    "page": "article",
+    "scheme": "blue",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1536,
+    "width": 390
+  },
+  {
+    "page": "gallery",
+    "scheme": "classic",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "gallery",
+    "scheme": "editorial",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "gallery",
+    "scheme": "hospitality",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "gallery",
+    "scheme": "tradition",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "gallery",
+    "scheme": "blue",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "gallery",
+    "scheme": "classic",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "gallery",
+    "scheme": "editorial",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "gallery",
+    "scheme": "hospitality",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "gallery",
+    "scheme": "tradition",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  },
+  {
+    "page": "gallery",
+    "scheme": "blue",
+    "boxH": 664,
+    "fit": "contain",
+    "height": 844,
+    "imgH": 664,
+    "nw": 1600,
+    "width": 390
+  }
+]
