@@ -10,7 +10,7 @@ final class Schedule_Calendar {
             register_rest_route( Plugin::REST_NAMESPACE, '/schedule-feast', array( 'methods' => 'GET', 'args' => $args, 'permission_callback' => static fn( $request ) => self::public_date( $request['date'], false ), 'callback' => static function ( $request ) {
                 if ( is_callable( array( '\Orthocal_Plugin', 'throttle' ) ) ) { $rate = \Orthocal_Plugin::throttle(); if ( is_wp_error( $rate ) ) { return $rate; } }
                 $data = Calendar_Adapter::day( $request['date'] );
-                return is_wp_error( $data ) ? $data : array( 'date' => $data['date'], 'feasts' => $data['feasts'] );
+                return is_wp_error( $data ) ? $data : array( 'date' => $data['date'], 'feasts' => $data['feasts'], 'color' => $data['recommendation']['color'] ?? '', 'icon' => self::public_date( $request['date'] ) ? $data['icon'] : null );
             } ) );
             register_rest_route( Plugin::REST_NAMESPACE, '/schedule-icon', array( 'methods' => 'GET', 'args' => $args, 'permission_callback' => static fn( $request ) => self::public_date( $request['date'] ), 'callback' => static function ( $request ) {
                 if ( is_callable( array( '\Orthocal_Plugin', 'throttle' ) ) ) { $rate = \Orthocal_Plugin::throttle(); if ( is_wp_error( $rate ) ) { return $rate; } }
@@ -30,7 +30,7 @@ final class Schedule_Calendar {
     public static function icon_placeholder( array $event ): string {
         if ( empty( $event['day_icon'] ) || $event['cancelled'] ) { return ''; }
         wp_enqueue_script( 'prihod-schedule-icons', plugins_url( 'assets/schedule-icons.js', PRIHOD_FILE ), array(), PRIHOD_VERSION . '.' . filemtime( dirname( PRIHOD_FILE ) . '/assets/schedule-icons.js' ), true );
-        $url = add_query_arg( 'date', $event['start']->format( 'Y-m-d' ), rest_url( Plugin::REST_NAMESPACE . '/schedule-icon' ) );
+        $url = add_query_arg( 'date', $event['start']->format( 'Y-m-d' ), rest_url( Plugin::REST_NAMESPACE . '/schedule-feast' ) );
         return '<figure class="prihod-service-icon" data-prihod-day-icon="' . esc_url( $url ) . '" hidden></figure>';
     }
     public static function feast_placeholder( array $event ): string {
@@ -38,8 +38,7 @@ final class Schedule_Calendar {
         wp_enqueue_script( 'prihod-schedule-icons', plugins_url( 'assets/schedule-icons.js', PRIHOD_FILE ), array(), PRIHOD_VERSION . '.' . filemtime( dirname( PRIHOD_FILE ) . '/assets/schedule-icons.js' ), true );
         $url = add_query_arg( 'date', $event['start']->format( 'Y-m-d' ), rest_url( Plugin::REST_NAMESPACE . '/schedule-feast' ) );
         $color = $event['vestment_color'] ?? '';
-        $badge = $color && array_key_exists( $color, Calendar_Colors::labels() ) ? '<span class="prihod-vestment-label">' . esc_html__( 'Цвет облачения', 'prihod' ) . ': ' . esc_html( Calendar_Colors::labels()[$color] ) . '</span>' : '';
-        return $badge . '<p class="prihod-service-feast" data-prihod-feast="' . esc_url( $url ) . '" data-service-title="' . esc_attr( $event['title'] ) . '" data-color="' . esc_attr( $event['vestment_color'] ?? '' ) . '" hidden></p>';
+        return '<p class="prihod-service-feast" data-prihod-feast="' . esc_url( $url ) . '" data-service-title="' . esc_attr( $event['title'] ) . '" data-color="' . esc_attr( $color ) . '" hidden></p>';
     }
     public static function editor( array $rule ): void {
         echo Calendar_Colors::field( 'prihod_service[vestment_color]', $rule['vestment_color'] ?? '', ! empty( $rule['_color_persisted'] ) );

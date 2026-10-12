@@ -76,8 +76,7 @@ final class Requests {
         update_post_meta( $message, '_prihod_internal', $internal );
         if ( ! $internal ) {
             update_post_meta( $message, '_prihod_delivery', 'pending' );
-            $queued = wp_schedule_single_event( time() + 1, 'prihod_request_mail', array( $id, $message ), true );
-            if ( is_wp_error( $queued ) || ! $queued ) { update_post_meta( $message, '_prihod_delivery', 'failed' ); }
+            self::deliver( $id, $message );
         }
         return $message;
     }
@@ -93,7 +92,8 @@ final class Requests {
             $success = false;
             if ( is_array( $sender ) && is_email( $sender['email'] ?? '' ) ) {
                 $mail = Request_Mail::compose( $post, $message, $sender );
-                $success = wp_mail( $sender['email'], $mail['subject'], $mail['message'], $mail['headers'] );
+                $transport = array(); $success = Request_Mail::send( $sender['email'], $mail, $transport );
+                if ( $transport ) { update_post_meta( $message_id, '_prihod_mail_transport', $transport ); }
             }
             $attempt = (int) get_post_meta( $message_id, '_prihod_attempts', true ) + 1;
             update_post_meta( $message_id, '_prihod_attempts', $attempt );
@@ -109,8 +109,7 @@ final class Requests {
         $message = get_post( $message_id );
         if ( ! $message || 'prihod_message' !== $message->post_type || (int) $message->post_parent !== $id || get_post_meta( $message_id, '_prihod_internal', true ) || 'failed' !== get_post_meta( $message_id, '_prihod_delivery', true ) ) { throw new \InvalidArgumentException( __( 'Ответ недоступен для повторной отправки.', 'prihod' ) ); }
         wp_clear_scheduled_hook( 'prihod_request_mail', array( $id, $message_id ) ); update_post_meta( $message_id, '_prihod_attempts', 0 );
-        $queued = wp_schedule_single_event( time() + 1, 'prihod_request_mail', array( $id, $message_id ), true );
-        update_post_meta( $message_id, '_prihod_delivery', is_wp_error( $queued ) || ! $queued ? 'failed' : 'pending' );
+        update_post_meta( $message_id, '_prihod_delivery', 'pending' ); self::deliver( $id, $message_id );
     }
     public static function delete( int $id ): void {
         self::assert_request( $id );

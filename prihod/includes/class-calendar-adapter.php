@@ -37,7 +37,7 @@ final class Calendar_Adapter {
             }
         }
         $feasts = self::feasts( $day );
-        return array( 'date' => $date, 'feasts' => $feasts, 'icon' => $icon, 'recommendation' => Calendar_Colors::recommendation( $feasts ) );
+        return array( 'date' => $date, 'feasts' => $feasts, 'icon' => $icon, 'recommendation' => Calendar_Colors::day( $day ) );
     }
     public static function week( \DateTimeImmutable $from ) {
         $to = $from->modify( '+7 days' ); $months = array(); $result = array();

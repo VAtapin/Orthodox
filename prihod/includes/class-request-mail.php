@@ -10,9 +10,25 @@ final class Request_Mail {
         $switched = is_string( $locale ) && in_array( $locale, array( 'ru_RU', 'de_DE', 'pl_PL', 'uk' ), true ) && switch_to_locale( $locale );
         try {
             $headers = array( 'Content-Type: text/html; charset=UTF-8' );
-            $email = Profile::get()['email']; if ( is_email( $email ) ) { $headers[] = 'Reply-To: ' . $email; }
+            $profile = Profile::get(); $email = $profile['email'];
+            if ( is_email( $email ) ) {
+                $brand = trim( preg_replace( '/[<>\r\n]/', '', sanitize_text_field( $profile['name'] ?: get_bloginfo( 'name' ) ) ) );
+                $headers[] = 'From: ' . $brand . ' <' . $email . '>'; $headers[] = 'Reply-To: ' . $email;
+            }
             return array( 'subject' => __( 'Ответ на обращение:', 'prihod' ) . ' ' . sanitize_text_field( $request->post_title ), 'message' => self::markup( $request, $reply, $sender ), 'headers' => $headers );
         } finally { if ( $switched ) { restore_previous_locale(); } }
+    }
+    /** Set the PHP-mail envelope for this reply only; leave other plugins' mail alone. */
+    public static function send( string $recipient, array $mail, array &$transport ): bool {
+        $email = Profile::get()['email']; $mailer_used = null; $previous_sender = '';
+        $envelope = static function ( $mailer ) use ( $email, &$mailer_used, &$previous_sender, &$transport ): void {
+            $mailer_used = $mailer; $previous_sender = $mailer->Sender;
+            if ( is_email( $email ) && 'mail' === $mailer->Mailer ) { $mailer->Sender = $email; }
+            $transport = array( 'method' => sanitize_key( $mailer->Mailer ), 'from' => sanitize_email( $mailer->From ), 'envelope' => sanitize_email( $mailer->Sender ) );
+        };
+        add_action( 'phpmailer_init', $envelope, PHP_INT_MAX );
+        try { return wp_mail( $recipient, $mail['subject'], $mail['message'], $mail['headers'] ); }
+        finally { remove_action( 'phpmailer_init', $envelope, PHP_INT_MAX ); if ( $mailer_used ) { $mailer_used->Sender = $previous_sender; } }
     }
     private static function markup( \WP_Post $request, \WP_Post $reply, array $sender ): string {
         $profile = Profile::get();

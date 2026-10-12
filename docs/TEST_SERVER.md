@@ -383,5 +383,26 @@ Telegram при установке не включался, webhook не рег�
 По последующей прямой просьбе владельца полный режим подключён штатным API:
 личный чат/бот проверены, Telegram подтвердил webhook, сотрудник — владелец сайта.
 Полное обращение88 принятоAPI(1часть), связь с кабинетом сохранена. Содержимое,
-email посетителя и секреты не выводились и не записаны вGit. Реальный ответ и
-доставка SMTP ещё ожидают проверки владельцем; синтетические ответы не отправлялись.
+email посетителя и секреты не выводились и не записаны вGit. Реальные ответы89/90 получены через webhook и переданы PHP-почтовой системе.
+Получение в ящике не подтверждено; SMTP не используется. Синтетических ответов нет.
+
+## Подготовленный комплект rc.13 (ещё не установлен)
+
+Core rc.13, Telegram0.1.3 и тема0.3.22 устанавливаются только после прямого
+разрешения владельца. Готовые ZIP и tests/server-check.php сначала загрузить
+в соответствующие wp-content/prihod-packages и wp-content этого WordPress.
+Затем команда установки и проверки (сохранённые материалы/подключения остаются):
+
+```bash
+cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
+export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
+php /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.13.zip --force --activate && \
+php /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-telegram-0.1.3.zip --force --activate && \
+php /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.22.zip --force && \
+php /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
+```
+
+PHP8.5 — фактический PHP этого сайта. Node/Composer/migrations не требуются.
+Здесь нет изменений Plesk/почтового сервера/wp-config/соседних сайтов; SMTP не
+настраивается, Gmail запрещён. Немедленный wp_mail не подтверждает доставку
+в ящик: получение проверяет сам владелец. Реальные повторы прежних писем не выполнялись.

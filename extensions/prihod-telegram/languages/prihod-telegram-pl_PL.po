@@ -2433,3 +2433,24 @@ msgstr "Nie udało się dodać sprawdzenia do kolejki. Spróbuj później."
 
 msgid "Проверка подключения ещё в очереди. Обновите страницу позже."
 msgstr "Sprawdzenie połączenia jest jeszcze w kolejce. Odśwież stronę później."
+
+msgid "Сохранить и отправить ответ"
+msgstr "Zapisz i wyślij odpowiedź"
+
+msgid "Отправляется"
+msgstr "Wysyłanie"
+
+msgid "Сообщение"
+msgstr "Wiadomość"
+
+msgid "Ответ сохранён. Письмо передано почтовой системе."
+msgstr "Odpowiedź zapisana. Wiadomość e-mail została przekazana do systemu pocztowego."
+
+msgid "Ответ сохранён, но письмо не удалось отправить. Проверьте обращение на сайте."
+msgstr "Odpowiedź zapisana, ale nie udało się wysłać e-maila. Sprawdź zgłoszenie na stronie."
+
+msgid "Автоматически по календарю"
+msgstr "Automatycznie według kalendarza"
+
+msgid "Автоматический цвет определяется по календарю для каждой даты. Исключение на дату имеет приоритет."
+msgstr "Automatyczny kolor jest ustalany według kalendarza dla każdej daty. Wyjątek dla konkretnej daty ma pierwszeństwo."

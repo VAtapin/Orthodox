@@ -71,5 +71,5 @@ $today_html = Prihod\Public_View::render( 'schedule' );
 prihod_assert( 1 === substr_count( $today_html, 'aria-current="date"' ), 'The mini calendar shows today in the selected month, including cross-month weeks.' );
 update_post_meta( $service, '_prihod_service', $rule_before );
 $_GET = array( 'prihod_date' => '2026-02-01' );
-prihod_assert( str_contains( Prihod\Public_View::render( 'schedule' ), __( 'На выбранный период изменений не отмечено.', 'prihod' ) ), 'An unchanged period shows an honest empty changes state.' );
+prihod_assert( ! str_contains( Prihod\Public_View::render( 'schedule' ), 'prihod-changes-card' ), 'An unchanged period omits the changes card entirely.' );
 $_GET = array();

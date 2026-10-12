@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Приход: Telegram
  * Description: Публикации WordPress и уведомления через официальный Telegram Bot API. Может работать без «Прихода».
- * Version: 0.1.2
+ * Version: 0.1.3
  * Requires at least: 6.5
  * Requires PHP: 8.0
  * License: GPL-2.0-or-later

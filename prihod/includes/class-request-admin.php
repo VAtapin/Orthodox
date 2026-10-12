@@ -40,7 +40,7 @@ final class Request_Admin {
                     foreach ( get_users( array( 'capability' => 'view_prihod_requests' ) ) as $user ) { if ( user_can( $user, 'reply_prihod_requests' ) ) { echo '<option value="' . esc_attr( $user->ID ) . '"' . selected( (int) get_post_meta( $id, '_prihod_assigned', true ), $user->ID, false ) . '>' . esc_html( $user->display_name ) . '</option>'; } }
                     echo '</select></label></p>';
                 }
-                submit_button( __( 'Сохранить / поставить ответ в очередь', 'prihod' ) );
+                submit_button( __( 'Сохранить и отправить ответ', 'prihod' ) );
                 if ( current_user_can( 'delete_prihod_requests' ) ) { echo '<p><label><input type="checkbox" name="confirm_delete" value="1"> ' . esc_html__( 'Подтверждаю полное удаление обращения и переписки', 'prihod' ) . '</label> <button type="submit" name="delete" value="1" class="button">' . esc_html__( 'Удалить', 'prihod' ) . '</button></p>'; }
                 echo '</form>';
             }
@@ -74,7 +74,7 @@ final class Request_Admin {
         echo '</div>';
     }
     private static function delivery_label( string $status ): string {
-        return array( 'pending' => __( 'В очереди', 'prihod' ), 'sent' => __( 'Почтовая система приняла письмо', 'prihod' ), 'failed' => __( 'Ошибка отправки', 'prihod' ) )[ $status ] ?? __( 'Не отправлено', 'prihod' );
+        return array( 'pending' => __( 'Отправляется', 'prihod' ), 'sent' => __( 'Почтовая система приняла письмо', 'prihod' ), 'failed' => __( 'Ошибка отправки', 'prihod' ) )[ $status ] ?? __( 'Не отправлено', 'prihod' );
     }
     public static function update(): void {
         self::authorize(); $id = absint( $_POST['request_id'] ?? 0 );

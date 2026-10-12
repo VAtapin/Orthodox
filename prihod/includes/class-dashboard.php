@@ -25,7 +25,7 @@ final class Dashboard {
     }
     public static function organize_menu(): void {
         global $submenu;
-        $hidden = array( 'prihod-profile', 'prihod-integrations', 'prihod-settings', 'prihod-check', 'prihod-access', 'prihod-data', 'prihod-theme', 'prihod-connect-telegram', 'prihod-connect-whatsapp', 'prihod-connect-facebook', 'edit.php?post_type=prihod_location', 'edit.php?post_type=prihod_clergy', 'edit.php?post_type=prihod_service' );
+        $hidden = array( 'prihod-profile', 'prihod-integrations', 'prihod-settings', 'prihod-check', 'prihod-access', 'prihod-data', 'prihod-theme', 'prihod-connect-telegram', 'prihod-connect-whatsapp', 'prihod-connect-facebook', 'edit.php?post_type=prihod_location', 'edit.php?post_type=prihod_clergy' );
         foreach ( $hidden as $slug ) {
             $original_hook = get_plugin_page_hookname( $slug, 'prihod' );
             $item = remove_submenu_page( 'prihod', $slug );
@@ -39,7 +39,7 @@ final class Dashboard {
             } );
         }
         $items = $submenu['prihod'] ?? array(); $ordered = array();
-        foreach ( array( 'prihod', 'prihod-info', 'prihod-requests', 'prihod-plugins', 'prihod-settings-hub', 'prihod-wizard' ) as $slug ) {
+        foreach ( array( 'prihod', 'prihod-info', 'edit.php?post_type=prihod_service', 'prihod-requests', 'prihod-plugins', 'prihod-settings-hub', 'prihod-wizard' ) as $slug ) {
             foreach ( $items as $key => $item ) { if ( $slug === $item[2] ) { $ordered[] = $item; unset( $items[$key] ); } }
         }
         $submenu['prihod'] = array_merge( $ordered, array_values( $items ) );
@@ -119,7 +119,7 @@ final class Dashboard {
             $label = 'missing' === $status ? __( 'Не создана', 'prihod' ) : Admin_Navigation::status_label( $status );
             $url = '';
             if ( $post && 'page' === $post->post_type && current_user_can( 'read_post', $id ) ) { $url = 'publish' === $status ? get_permalink( $id ) : get_edit_post_link( $id, 'raw' ); }
-            echo '<li><span>' . ( $url ? '<a href="' . esc_url( $url ) . '">' : '' ) . esc_html( $template['title'] ) . ( $url ? '</a>' : '' ) . '</span><span class="prihod-state prihod-state-' . ( 'publish' === $status ? 'ready' : 'warning' ) . '">' . esc_html( $label ) . '</span></li>';
+            echo '<li><span>' . ( $url ? '<a href="' . esc_url( $url ) . '"' . ( 'publish' === $status ? ' target="_blank" rel="noopener noreferrer"' : '' ) . '>' : '' ) . esc_html( $template['title'] ) . ( $url ? '</a>' : '' ) . '</span><span class="prihod-state prihod-state-' . ( 'publish' === $status ? 'ready' : 'warning' ) . '">' . esc_html( $label ) . '</span></li>';
         }
         echo '</ul><div class="prihod-dash-actions">'; self::button( __( 'Проверка сайта', 'prihod' ), 'admin.php?page=prihod-check' ); echo '</div></section>';
     }

@@ -2433,3 +2433,24 @@ msgstr "Die Prüfung konnte nicht in die Warteschlange gestellt werden. Versuche
 
 msgid "Проверка подключения ещё в очереди. Обновите страницу позже."
 msgstr "Die Verbindungsprüfung ist noch in der Warteschlange. Aktualisieren Sie die Seite später."
+
+msgid "Сохранить и отправить ответ"
+msgstr "Antwort speichern und senden"
+
+msgid "Отправляется"
+msgstr "Wird gesendet"
+
+msgid "Сообщение"
+msgstr "Nachricht"
+
+msgid "Ответ сохранён. Письмо передано почтовой системе."
+msgstr "Antwort gespeichert. Die E-Mail wurde an das Mailsystem übergeben."
+
+msgid "Ответ сохранён, но письмо не удалось отправить. Проверьте обращение на сайте."
+msgstr "Antwort gespeichert, aber die E-Mail konnte nicht gesendet werden. Prüfen Sie die Anfrage auf der Website."
+
+msgid "Автоматически по календарю"
+msgstr "Automatisch nach dem Kalender"
+
+msgid "Автоматический цвет определяется по календарю для каждой даты. Исключение на дату имеет приоритет."
+msgstr "Die automatische Farbe wird für jedes Datum aus dem Kalender ermittelt. Eine Ausnahme für das Datum hat Vorrang."

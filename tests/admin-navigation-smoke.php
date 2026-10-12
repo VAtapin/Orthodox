@@ -7,7 +7,9 @@ prihod_assert( str_contains( $navigation, 'page=prihod' ) && str_contains( $navi
 do_action( 'admin_enqueue_scripts', 'test_page_prihod-connect-facebook' );
 prihod_assert( wp_style_is( 'prihod-admin-ui', 'enqueued' ) && str_contains( apply_filters( 'admin_body_class', '' ), 'prihod-own-admin' ), 'Own connector screen receives shared admin primitives and scoped body class.' );
 $_GET = array(); set_current_screen( 'prihod_service' );
-prihod_assert( 'prihod-info' === Prihod\Admin_Navigation::section(), 'Service editor belongs to Information.' );
+prihod_assert( 'edit.php?post_type=prihod_service' === Prihod\Admin_Navigation::section(), 'Service editor highlights its dedicated Schedule entry.' );
+ob_start(); Prihod\Admin_Navigation::render(); $schedule_nav = ob_get_clean();
+prihod_assert( str_contains( $schedule_nav, 'edit.php?post_type=prihod_service" aria-current="page">Расписание</a>' ), 'Schedule tab goes directly to the native service list and remains active in the editor.' );
 Prihod\Schedule_Admin::assets();
 prihod_assert( wp_style_is( 'prihod-schedule-admin', 'enqueued' ), 'Service layout is loaded on its own editor.' );
 ob_start(); Prihod\Schedule_Admin::render( (object) array( 'ID' => 0 ) ); $editor = ob_get_clean();

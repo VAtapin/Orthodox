@@ -12,3 +12,4 @@ Thumbs.db
 /tests/.connectors-result.json
 /tests/.monastery-result.json
 /tests/.telegram-mail-preview.html
+/tests/.telegram-message-preview.html

@@ -9,6 +9,8 @@ update_option( 'prihod_resources', array( 'home' => array( 'id' => $published ),
 ob_start(); Prihod\Dashboard::overview(); $summary = ob_get_clean();
 prihod_assert( str_contains( $summary, 'prihod-site-summary' ) && str_contains( $summary, 'prihod-page-states' ), 'Overview renders existing diagnostic and page states.' );
 prihod_assert( str_contains( $summary, esc_url( get_permalink( $published ) ) ) && str_contains( $summary, esc_url( get_edit_post_link( $draft, 'raw' ) ) ), 'Published and draft resources link to their actual view and editor.' );
+prihod_assert( str_contains( $summary, '<a href="' . esc_url( get_permalink( $published ) ) . '" target="_blank" rel="noopener noreferrer">' ), 'Published site page opens in another tab while preserving the parish overview.' );
+prihod_assert( str_contains( $summary, '<a href="' . esc_url( get_edit_post_link( $draft, 'raw' ) ) . '">' ), 'Draft editor retains its normal authorized navigation.' );
 prihod_assert( str_contains( $summary, 'Не создана' ) && str_contains( $summary, 'Не проверено' ) && str_contains( $summary, 'prihod-check' ), 'Missing pages and unverified delivery are explicit, with diagnostic navigation.' );
 update_option( 'prihod_resources', $saved_resources ); wp_delete_post( $published, true ); wp_delete_post( $draft, true );
 $existing_requests = get_posts( array( 'post_type' => 'prihod_request', 'post_status' => 'private', 'numberposts' => -1, 'fields' => 'ids' ) );

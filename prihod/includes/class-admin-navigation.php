@@ -35,7 +35,8 @@ final class Admin_Navigation {
         $page = self::page(); $type = get_current_screen()->post_type ?? '';
         if ( 'prihod-wizard' === $page ) { return 'prihod-wizard'; }
         if ( 'prihod-requests' === $page || 'prihod_request' === $type ) { return 'prihod-requests'; }
-        if ( 'prihod-info' === $page || 'prihod-profile' === $page || in_array( $type, array( 'prihod_location', 'prihod_clergy', 'prihod_service' ), true ) ) { return 'prihod-info'; }
+        if ( 'prihod_service' === $type ) { return 'edit.php?post_type=prihod_service'; }
+        if ( 'prihod-info' === $page || 'prihod-profile' === $page || in_array( $type, array( 'prihod_location', 'prihod_clergy' ), true ) ) { return 'prihod-info'; }
         if ( 'prihod-plugins' === $page || ! self::core_screen() ) { return 'prihod-plugins'; }
         return 'prihod' === $page ? 'prihod' : 'prihod-settings-hub';
     }
@@ -44,6 +45,7 @@ final class Admin_Navigation {
         $items = array();
         if ( current_user_can( Admin::menu_capability() ) ) { $items['prihod'] = __( 'Обзор прихода', 'prihod' ); }
         if ( current_user_can( 'manage_prihod' ) ) { $items['prihod-info'] = __( 'Информация', 'prihod' ); }
+        if ( current_user_can( 'manage_prihod_schedule' ) ) { $items['edit.php?post_type=prihod_service'] = __( 'Расписание', 'prihod' ); }
         if ( current_user_can( 'view_prihod_requests' ) ) { $items['prihod-requests'] = __( 'Обращения', 'prihod' ); }
         if ( current_user_can( 'manage_prihod_settings' ) ) {
             $items['prihod-plugins'] = __( 'Наши плагины', 'prihod' ); $items['prihod-settings-hub'] = __( 'Настройки', 'prihod' );
@@ -53,13 +55,13 @@ final class Admin_Navigation {
         echo '<div class="prihod-admin-navigation">';
         if ( self::core_screen() ) {
             echo '<div class="prihod-nav-brand"><strong>' . self::symbol( 'church' ) . esc_html__( 'Приход', 'prihod' ) . '</strong>';
-            $descriptions = array( 'prihod' => __( 'Состояние сайта и ближайшие дела', 'prihod' ), 'prihod-info' => __( 'Сведения, духовенство и богослужения', 'prihod' ), 'prihod-requests' => __( 'Обращения и ответы посетителям', 'prihod' ), 'prihod-plugins' => __( 'Установленные компоненты вашего сайта', 'prihod' ), 'prihod-settings-hub' => __( 'Параметры прихода, оформления и подключений', 'prihod' ), 'prihod-wizard' => __( 'Подготовка сайта по шагам', 'prihod' ) );
+            $descriptions = array( 'edit.php?post_type=prihod_service' => __( 'Расписание богослужений', 'prihod' ), 'prihod' => __( 'Состояние сайта и ближайшие дела', 'prihod' ), 'prihod-info' => __( 'Сведения, духовенство и богослужения', 'prihod' ), 'prihod-requests' => __( 'Обращения и ответы посетителям', 'prihod' ), 'prihod-plugins' => __( 'Установленные компоненты вашего сайта', 'prihod' ), 'prihod-settings-hub' => __( 'Параметры прихода, оформления и подключений', 'prihod' ), 'prihod-wizard' => __( 'Подготовка сайта по шагам', 'prihod' ) );
             echo '<p>' . esc_html( $descriptions[self::section()] ?? '' ) . '</p></div>';
         } else {
             echo '<strong>' . esc_html__( 'Приход', 'prihod' ) . '</strong>';
         }
         echo '<nav aria-label="' . esc_attr__( 'Разделы прихода', 'prihod' ) . '">';
-        foreach ( $items as $page => $label ) { echo '<a href="' . esc_url( admin_url( 'admin.php?page=' . $page ) ) . '"' . ( self::section() === $page ? ' aria-current="page"' : '' ) . '>' . esc_html( $label ) . '</a>'; }
+        foreach ( $items as $page => $label ) { echo '<a href="' . esc_url( admin_url( str_starts_with( $page, 'edit.php?' ) ? $page : 'admin.php?page=' . $page ) ) . '"' . ( self::section() === $page ? ' aria-current="page"' : '' ) . '>' . esc_html( $label ) . '</a>'; }
         echo '</nav></div>';
     }
 }

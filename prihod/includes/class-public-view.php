@@ -132,6 +132,7 @@ final class Public_View {
         $next = Schedule::next( $location, 1 );
         if ( $next ) {
             $event = $next[0];
+            $html .= Schedule_Calendar::icon_placeholder( $event );
             $html .= '<p class="prihod-overview-date"><time datetime="' . esc_attr( $event['start']->format( DATE_ATOM ) ) . '">' . esc_html( wp_date( 'j F · H:i', $event['start']->getTimestamp(), $event['start']->getTimezone() ) ) . '</time></p><strong>' . esc_html( $event['title'] ) . '</strong>' . Schedule_Calendar::feast_placeholder( $event ) . '<p>' . esc_html( get_the_title( $event['location_id'] ) ) . '<small>' . esc_html( $event['start']->getTimezone()->getName() ) . '</small></p>';
             $resources = get_option( 'prihod_resources', array() );
             $id = absint( $resources['contacts']['id'] ?? 0 );
@@ -141,10 +142,10 @@ final class Public_View {
                 $html .= '<a href="' . esc_url( $url ) . '">' . esc_html__( 'Как добраться', 'prihod' ) . ' →</a>';
             }
         } else { $html .= '<p>' . esc_html__( 'Ближайшая служба пока не указана.', 'prihod' ) . '</p>'; }
-        $html .= '</div><div class="prihod-changes-card"><h3>' . esc_html__( 'Изменения в расписании', 'prihod' ) . '</h3>';
+        $html .= '</div>';
         $changes = Schedule::changes( $from, $to, $location );
-        if ( ! $changes ) { $html .= '<p>' . esc_html__( 'На выбранный период изменений не отмечено.', 'prihod' ) . '</p>'; }
-        else {
+        if ( $changes ) {
+            $html .= '<div class="prihod-changes-card"><h3>' . esc_html__( 'Изменения в расписании', 'prihod' ) . '</h3>';
             $html .= '<ul>';
             foreach ( $changes as $event ) {
                 $original = new \DateTimeImmutable( $event['original_date'] );
@@ -152,9 +153,9 @@ final class Public_View {
                 if ( ! $event['cancelled'] ) { $html .= '<small>→ ' . esc_html( $event['start']->format( 'd.m.Y H:i' ) . ' · ' . $event['start']->getTimezone()->getName() . ' · ' . get_the_title( $event['location_id'] ) ) . '</small>'; }
                 $html .= '</li>';
             }
-            $html .= '</ul>';
+            $html .= '</ul></div>';
         }
-        return $html . '</div></div>';
+        return $html . '</div>';
     }
     private static function week_sidebar( \DateTimeImmutable $anchor, int $location, \DateTimeImmutable $week_from ): string {
         $from = $anchor->modify( 'first day of this month' ); $to = $from->modify( '+1 month' );

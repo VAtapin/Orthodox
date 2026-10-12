@@ -29,3 +29,5 @@
 [data-vestment-color="blue"]{--prihod-vestment-edge:#76a9cd}
 [data-vestment-color="purple"]{--prihod-vestment-edge:#856398}
 [data-vestment-color="black"]{--prihod-vestment-edge:#353a40}
+
+.prihod-schedule-overview>.prihod-upcoming-card:only-child{grid-column:1/-1}

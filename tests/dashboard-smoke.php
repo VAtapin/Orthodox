@@ -15,8 +15,14 @@ prihod_assert( str_contains( $overview, 'prihod-wizard' ) && str_contains( $over
 ob_start(); Prihod\Dashboard::settings(); $settings_hub = ob_get_clean();
 prihod_assert( str_contains( $settings_hub, 'prihod-connect-telegram' ) && str_contains( $settings_hub, 'prihod-connect-whatsapp' ) && str_contains( $settings_hub, 'prihod-connect-facebook' ), 'Settings hub provides direct buttons for every connector.' );
 Prihod\Dashboard::organize_menu();
+// WordPress normally inserts CPT entries while building the real admin menu.
+if ( ! in_array( 'edit.php?post_type=prihod_service', array_column( $submenu['prihod'], 2 ), true ) ) {
+    add_submenu_page( 'prihod', 'Schedule', 'Schedule', 'manage_prihod_schedule', 'edit.php?post_type=prihod_service' );
+    Prihod\Dashboard::organize_menu();
+}
 prihod_assert( 'prihod' === $submenu['prihod'][0][2], 'Primary menu opens dashboard instead of location records.' );
 $slugs = array_column( $submenu['prihod'], 2 );
+prihod_assert( in_array( 'edit.php?post_type=prihod_service', $slugs, true ), 'Frequently used native Schedule is retained in the parish sidebar.' );
 prihod_assert( in_array( 'prihod-info', $slugs, true ) && in_array( 'prihod-plugins', $slugs, true ) && ! in_array( 'prihod-profile', $slugs, true ), 'Menu groups information, plugins and settings without exposing every settings form.' );
 global $plugin_page, $pagenow, $parent_file, $_registered_pages;
 $previous_page = $plugin_page ?? null; $previous_pagenow = $pagenow ?? null;

@@ -97,3 +97,13 @@ update_option( Prihod\Profile::OPTION, $old_profile );
 wp_clear_scheduled_hook( Prihod\Calendar_Reminders::HOOK );
 delete_option( 'prihod_calendar_last_sent' ); delete_option( 'prihod_calendar_last_attempt' ); delete_option( 'prihod_calendar_reminder_status' );
 $_POST = array(); $_GET = array();
+
+prihod_assert( 'green' === Prihod\Calendar_Colors::recommendation( array( 'Преподобный Сергий Радонежский' ) )['color'] && 'red' === Prihod\Calendar_Colors::recommendation( array( 'Великомученик Георгий' ) )['color'], 'Ranked monastic saints and martyrs have distinct traditional colors.' );
+prihod_assert( null === Prihod\Calendar_Colors::recommendation( array( 'Преподобный Сергий', 'Мученик Георгий' ) ), 'Conflicting ranked commemorations require manual choice rather than a guessed color.' );
+prihod_assert( ! str_contains( Prihod\Schedule_Calendar::feast_placeholder( $expanded_colors[0] ), 'prihod-vestment-label' ), 'Public service colors have no redundant written badge.' );
+$automatic = $color_rule; $automatic['vestment_color'] = 'auto'; $automatic['exceptions']['2026-10-17']['vestment_color'] = '';
+$automatic_events = Prihod\Occurrences::expand( array_merge( $automatic, array( 'id' => 1, 'title' => 'Fixture', 'description' => '', 'timezone' => 'Europe/Berlin' ) ), new DateTimeImmutable( '2026-10-17 UTC' ), new DateTimeImmutable( '2026-10-25 UTC' ) );
+prihod_assert( '' === $automatic_events[0]['vestment_color'] && 'auto' === $automatic_events[1]['vestment_color'], 'Explicit neutral date override suppresses automatic color without changing subsequent recurrence.' );
+
+prihod_assert( 'blue' === Prihod\Calendar_Colors::day( $sample['2026-10-14']['day'] )['color'], 'Major Marian feast outranks ordinary monastic and apostolic commemorations regardless of their order.' );
+prihod_assert( 'red' === Prihod\Calendar_Colors::day( array( 'events' => array( array( 'category' => 'commemoration', 'typeCode' => 4, 'title' => 'Великомученик Георгий' ), array( 'category' => 'commemoration', 'typeCode' => 7, 'title' => 'Преподобный' ) ) ) )['color'], 'Ranked martyr takes precedence over an ordinary monastic commemoration.' );

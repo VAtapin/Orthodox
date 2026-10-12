@@ -34,18 +34,19 @@ final class Telegram_Requests {
     }
     public static function chunks( string $text ): array {
         $chars = preg_split( '//u', $text, -1, PREG_SPLIT_NO_EMPTY );
-        return array_map( static fn( $part ) => implode( '', $part ), array_chunk( $chars ?: array(), 1600 ) );
+        return array_map( static fn( $part ) => implode( '', $part ), array_chunk( $chars ?: array(), 1200 ) );
     }
     public static function notify( int $id ): void {
         if ( ! self::ready() || empty( self::connector()->settings()['notify_requests'] ) || get_option( 'prihod_purge_job' ) ) { return; }
         $post = get_post( $id );
         if ( ! $post || 'prihod_request' !== $post->post_type || 'private' !== $post->post_status ) { return; }
         $sender = (array) get_post_meta( $id, '_prihod_sender', true );
-        $text = __( 'Новое обращение', 'prihod' ) . ' #' . $id . "\n" . __( 'Имя', 'prihod' ) . ': ' . ( $sender['name'] ?? '' ) . "\nEmail: " . ( $sender['email'] ?? '' ) . "\n" . __( 'Тема', 'prihod' ) . ': ' . $post->post_title . "\n" . __( 'Дата', 'prihod' ) . ': ' . get_post_time( 'd.m.Y H:i', false, $post ) . "\n" . __( 'Статус', 'prihod' ) . ': ' . ( Requests::statuses()[get_post_meta( $id, '_prihod_request_status', true )] ?? '' ) . "\n\n" . $post->post_content;
-        $parts = self::chunks( $text ); $url = admin_url( 'admin.php?page=prihod-requests&request_id=' . $id );
+        $header = '<b>' . esc_html__( 'Новое обращение', 'prihod' ) . ' #' . $id . "</b>\n\n";
+        foreach ( array( __( 'Имя', 'prihod' ) => $sender['name'] ?? '', 'Email' => $sender['email'] ?? '', __( 'Тема', 'prihod' ) => $post->post_title, __( 'Дата', 'prihod' ) => get_post_time( 'd.m.Y H:i', false, $post ), __( 'Статус', 'prihod' ) => Requests::statuses()[get_post_meta( $id, '_prihod_request_status', true )] ?? '' ) as $label => $value ) { $header .= '<b>' . esc_html( $label ) . ':</b> ' . esc_html( $value ) . "\n"; }
+        $parts = self::chunks( $post->post_content ); $url = admin_url( 'admin.php?page=prihod-requests&request_id=' . $id );
         foreach ( $parts as $index => $part ) {
-            $prefix = '#' . $id . ' · ' . ( $index + 1 ) . '/' . count( $parts ) . "\n";
-            self::connector()->queue( $prefix . $part . "\n\n" . __( 'Ответьте на это сообщение кнопкой «Ответить» в Telegram.', 'prihod' ), $url, 'request', $id, array( 'request_id' => $id, 'configuration' => self::options()['configuration'] ) );
+            $text = $header . "\n<b>" . esc_html__( 'Сообщение', 'prihod' ) . '</b> · ' . ( $index + 1 ) . '/' . count( $parts ) . "\n" . esc_html( $part ) . "\n\n" . esc_html__( 'Ответьте на это сообщение кнопкой «Ответить» в Telegram.', 'prihod' );
+            self::connector()->queue( $text, $url, 'request', $id, array( 'request_id' => $id, 'configuration' => self::options()['configuration'], 'telegram_html' => true ) );
         }
     }
     public static function sent( string $provider, string $job_id, array $job, array $response ): void {
@@ -81,7 +82,7 @@ final class Telegram_Requests {
             if ( $existing ) { return $ok; }
             wp_set_current_user( (int) $o['staff'] );
             $id = Requests::message( $posts[0]->ID, $body, false, $receipt );
-            $text = 'pending' === get_post_meta( $id, '_prihod_delivery', true ) ? __( 'Ответ сохранён. Письмо поставлено в очередь.', 'prihod' ) : __( 'Ответ сохранён, но письмо не поставлено в очередь. Проверьте обращение на сайте.', 'prihod' );
+            $text = 'sent' === get_post_meta( $id, '_prihod_delivery', true ) ? __( 'Ответ сохранён. Письмо передано почтовой системе.', 'prihod' ) : __( 'Ответ сохранён, но письмо не удалось отправить. Проверьте обращение на сайте.', 'prihod' );
             self::connector()->queue( $text, admin_url( 'admin.php?page=prihod-requests&request_id=' . $posts[0]->ID ), 'request', $posts[0]->ID );
             return $ok;
         } catch ( \Throwable $error ) {

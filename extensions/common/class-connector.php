@@ -84,7 +84,7 @@ final class Connector {
         }
         do_action( 'prihod_connector_settings_fields', $this->id, $settings );
         echo '<p>' . esc_html__( 'Публикации отправляются только по отдельному выбору в редакторе записи. Для WhatsApp получатель должен согласиться на сообщения; шаблон утверждается в Meta. Отправки выполняются через WP-Cron.', 'prihod-connect' ) . '</p>'; submit_button(); echo '</form>';
-        if ( 'telegram' === $this->id ) { wp_enqueue_script( 'prihod-telegram-settings', plugins_url( 'assets/settings.js', $this->file ), array(), '0.1.2', true ); wp_localize_script( 'prihod-telegram-settings', 'prihodTelegramSettings', array( 'hasToken' => '' !== $settings['token'] ) ); }
+        if ( 'telegram' === $this->id ) { wp_enqueue_script( 'prihod-telegram-settings', plugins_url( 'assets/settings.js', $this->file ), array(), '0.1.3', true ); wp_localize_script( 'prihod-telegram-settings', 'prihodTelegramSettings', array( 'hasToken' => '' !== $settings['token'] ) ); }
         $last = get_option( 'prihod_connect_last_' . $this->id, array() );
         if ( 'failed' === ( $last['status'] ?? '' ) ) {
             echo '<p>' . esc_html__( 'Последняя отправка завершилась ошибкой. Код HTTP:', 'prihod-connect' ) . ' ' . esc_html( $last['http_code'] ) . '</p><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="prihod_retry_' . esc_attr( $this->id ) . '">'; wp_nonce_field( 'prihod_retry_' . $this->id );
@@ -137,7 +137,9 @@ final class Connector {
     public function queue( string $text, string $url, string $kind, int $source, array $reply_context = array() ): string {
         if ( ! $this->valid( $this->settings() ) ) { return ''; }
         if ( ! in_array( $kind, array( 'post', 'request', 'schedule' ), true ) || ( 'facebook' === $this->id && 'post' !== $kind ) ) { return ''; }
-        $settings = $this->settings(); $limit = max( 1, min( 3000, (int) apply_filters( 'prihod_connector_text_limit', 900, $this->id, $kind ) ) ); $text = wp_html_excerpt( wp_strip_all_tags( $text ), $limit, '…' ); $url = esc_url_raw( $url );
+        $settings = $this->settings(); $limit = max( 1, min( 3000, (int) apply_filters( 'prihod_connector_text_limit', 900, $this->id, $kind ) ) );
+        $html = 'telegram' === $this->id && 'request' === $kind && ! empty( $reply_context['telegram_html'] ) && ! empty( $reply_context['request_id'] );
+        $text = $html ? wp_kses( $text, array( 'b' => array() ) ) : wp_html_excerpt( wp_strip_all_tags( $text ), $limit, '…' ); $url = esc_url_raw( $url );
         $id = hash( 'sha256', $this->id . $kind . $source . $text . $url . $settings['target'] . $settings['recipient'] . ( $reply_context['configuration'] ?? '' ) ); $key = 'prihod_job_' . $this->id . '_' . $id;
         $target = hash( 'sha256', $settings['target'] . '|' . $settings['recipient'] );
         if ( add_option( $key, array( 'text' => $text, 'url' => $url, 'kind' => $kind, 'source' => $source, 'target' => $target, 'status' => 'pending', 'attempts' => 0, 'reply_context' => $reply_context ), '', false ) ) {
@@ -148,7 +150,8 @@ final class Connector {
         return $id;
     }
     public function request( array $job ): array {
-        $settings = $this->settings(); $text = $job['text'] . "\n" . $job['url'];
+        $settings = $this->settings(); $html = 'telegram' === $this->id && ! empty( $job['reply_context']['telegram_html'] );
+        $text = $job['text'] . ( $html ? "\n\n" : "\n" ) . ( $html ? esc_html( $job['url'] ) : $job['url'] );
         $headers = array( 'Content-Type' => 'application/json' );
         if ( 'telegram' === $this->id ) { $url = 'https://api.telegram.org/bot' . $settings['token'] . '/sendMessage'; $body = array( 'chat_id' => $settings['target'], 'text' => $text, 'link_preview_options' => array( 'is_disabled' => true ) ); }
         else {
@@ -156,6 +159,7 @@ final class Connector {
             $url = 'https://graph.facebook.com/' . $settings['api_version'] . '/' . $settings['target'] . ( 'whatsapp' === $this->id ? '/messages' : '/feed' );
             $body = 'whatsapp' === $this->id ? array( 'messaging_product' => 'whatsapp', 'to' => $settings['recipient'], 'type' => 'template', 'template' => array( 'name' => $settings['template'], 'language' => array( 'code' => $settings['language'] ), 'components' => array( array( 'type' => 'body', 'parameters' => array( array( 'type' => 'text', 'text' => wp_html_excerpt( $text, 1000, '…' ) ) ) ) ) ) ) : array( 'message' => $job['text'], 'link' => $job['url'] );
         }
+        if ( $html ) { $body['parse_mode'] = 'HTML'; }
         return array( 'url' => $url, 'args' => array( 'headers' => $headers, 'body' => wp_json_encode( $body ), 'timeout' => 15, 'redirection' => 0 ) );
     }
     public function worker( string $id ): void {

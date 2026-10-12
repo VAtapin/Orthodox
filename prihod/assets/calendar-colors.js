@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             recommended = ''; use.hidden = true; status.textContent = '';
             if (select.disabled || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return;
             if (!row && kind.value === 'regular') {
-                if (!manual) { select.value = ''; paint(); }
+                if (!manual) { select.value = 'auto'; paint(); }
                 status.textContent = labels.colorRegular; return;
             }
             if (!manual) { select.value = ''; paint(); }

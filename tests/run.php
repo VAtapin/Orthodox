@@ -135,7 +135,7 @@ foreach ( array( array( 'email' => 'invalid' ), array( 'name' => array() ), arra
 }
 
 
-check( 8 === count( Prihod\Calendar_Colors::labels() ), 'Seven vestment colors plus neutral choice.' );
+check( 9 === count( Prihod\Calendar_Colors::labels() ), 'Automatic choice, seven vestment colors plus neutral choice.' );
 check( 'blue' === Prihod\Calendar_Colors::recommendation( array( 'Покров Пресвятой Богородицы' ) )['color'], 'Pokrov recommends blue.' );
 check( 'green' === Prihod\Calendar_Colors::recommendation( array( 'Pfingsten' ) )['color'], 'Pentecost recommendation supports German.' );
 check( null === Prihod\Calendar_Colors::recommendation( array( 'Unknown feast' ) ) && null === Prihod\Calendar_Colors::recommendation( array( 'Покров', 'Троица' ) ), 'Unknown and conflicting feasts never invent a color.' );
