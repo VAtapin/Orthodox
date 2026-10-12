@@ -655,3 +655,38 @@ ID места (0 — все)	Orts-ID (0 — alle)	ID miejsca (0 — wszystkie)	I
 Ожидает проверки	Prüfung ausstehend	Oczekuje na zatwierdzenie	Очікує на перевірку
 Запланирована	Geplant	Zaplanowana	Запланована
 В корзине	Im Papierkorb	W koszu	У кошику
+Главная и меню настраиваются отдельно при публикации.	Startseite und Menü werden bei der Veröffentlichung separat eingerichtet.	Strona główna i menu są ustawiane osobno przy publikacji.	Головна сторінка й меню налаштовуються окремо під час публікації.
+До подтверждения страницы, меню и тема не изменяются. Новые материалы будут черновиками.	Vor der Bestätigung bleiben Seiten, Menü und Theme unverändert. Neue Inhalte werden als Entwürfe vorbereitet.	Do potwierdzenia strony, menu i motyw pozostają bez zmian. Nowe materiały będą szkicami.	До підтвердження сторінки, меню й тема не змінюються. Нові матеріали будуть чернетками.
+Дополнительная настройка	Weitere Einstellungen	Dodatkowe ustawienia	Додаткові налаштування
+Использовать страницу	Seite verwenden	Użyj strony	Використати сторінку
+Контакты, языки и часовой пояс	Kontakte, Sprachen und Zeitzone	Kontakt, języki i strefa czasowa	Контакти, мови й часовий пояс
+Меню	Menü	Menu	Меню
+Некорректное действие.	Ungültige Aktion.	Nieprawidłowa czynność.	Некоректна дія.
+Новости и объявления	Nachrichten und Bekanntmachungen	Aktualności i ogłoszenia	Новини й оголошення
+Перед публикацией обращений задайте страницу политики конфиденциальности.	Legen Sie vor der Veröffentlichung des Anfrageformulars die Datenschutzseite fest.	Przed publikacją formularza zgłoszeń ustaw stronę polityki prywatności.	Перед публікацією звернень задайте сторінку політики конфіденційності.
+Подготовить сведения о храмах и адресах	Angaben zu Kirchen und Adressen vorbereiten	Przygotuj informacje o świątyniach i adresach	Підготувати відомості про храми й адреси
+Подготовить страницу и сведения о священнослужителях	Seite und Angaben zu Geistlichen vorbereiten	Przygotuj stronę i informacje o duchownych	Підготувати сторінку й відомості про священнослужителів
+Просмотреть установленные плагины и варианты подключения	Installierte Plugins und Verbindungsmöglichkeiten ansehen	Zobacz zainstalowane wtyczki i opcje połączeń	Переглянути встановлені плагіни й варіанти підключення
+Публикация и меню	Veröffentlichung und Menü	Publikacja i menu	Публікація й меню
+Публикация расписания, ближайшая служба, календарь	Gottesdienstplan, nächster Gottesdienst und Kalender	Publikacja harmonogramu, najbliższe nabożeństwo, kalendarz	Публікація розкладу, найближче богослужіння, календар
+Расскажите о вашем приходе	Erzählen Sie von Ihrer Gemeinde	Opowiedz o swojej parafii	Розкажіть про ваш прихід
+Рубрики новостей, объявлений и проповедей	Kategorien für Nachrichten, Bekanntmachungen und Predigten	Kategorie aktualności, ogłoszeń i kazań	Рубрики новин, оголошень і проповідей
+Сведения о текущем сайте	Angaben zur aktuellen Website	Informacje o bieżącej witrynie	Відомості про поточний сайт
+Форма для обращений, кабинет для ответственных	Anfrageformular und Bereich für Zuständige	Formularz zgłoszeń i panel osób odpowiedzialnych	Форма звернень і кабінет відповідальних
+Состояние сайта и ближайшие дела	Website-Status und nächste Aufgaben	Stan witryny i najbliższe zadania	Стан сайту й найближчі справи
+Сведения, духовенство и богослужения	Angaben, Geistliche und Gottesdienste	Informacje, duchowieństwo i nabożeństwa	Відомості, духовенство й богослужіння
+Обращения и ответы посетителям	Anfragen und Antworten an Besucher	Zgłoszenia i odpowiedzi odwiedzającym	Звернення й відповіді відвідувачам
+Установленные компоненты вашего сайта	Installierte Komponenten Ihrer Website	Zainstalowane komponenty witryny	Встановлені компоненти вашого сайту
+Параметры прихода, оформления и подключений	Einstellungen für Gemeinde, Gestaltung und Verbindungen	Ustawienia parafii, wyglądu i połączeń	Параметри приходу, оформлення й підключень
+Подготовка сайта по шагам	Website Schritt für Schritt vorbereiten	Przygotowanie witryny krok po kroku	Підготовка сайту за кроками
+Выберите возможности	Wählen Sie die Funktionen	Wybierz funkcje	Виберіть можливості
+Проверьте план изменений	Prüfen Sie den Änderungsplan	Sprawdź plan zmian	Перевірте план змін
+Материалы требуют проверки	Inhalte müssen geprüft werden	Materiały wymagają sprawdzenia	Матеріали потребують перевірки
+Выбранная тема недоступна или недостаточно прав.	Das gewählte Theme ist nicht verfügbar oder die Berechtigung fehlt.	Wybrany motyw jest niedostępny lub brakuje uprawnień.	Вибрана тема недоступна або бракує прав.
+Схемы оформления доступны только для темы «Приход» и её администратора.	Die Gestaltungsschemata sind nur für das Theme „Prihod“ und dessen Administrator verfügbar.	Schematy wyglądu są dostępne tylko dla motywu „Prihod” i jego administratora.	Схеми оформлення доступні лише для теми «Приход» та її адміністратора.
+Использовать тему	Theme verwenden	Użyj motywu	Використати тему
+Оформление темы «Приход»	Gestaltung des Themes „Prihod“	Wygląd motywu „Prihod”	Оформлення теми «Приход»
+Сохранить текущее оформление	Aktuelle Gestaltung beibehalten	Zachowaj obecny wygląd	Зберегти поточне оформлення
+Выбор установленной темы и оформления применяется только после подтверждения плана. Установка новых тем выполняется вручную.	Das gewählte installierte Theme und die Gestaltung werden erst nach Bestätigung des Plans angewendet. Neue Themes werden manuell installiert.	Wybrany zainstalowany motyw i wygląd zostaną zastosowane dopiero po potwierdzeniu planu. Nowe motywy instaluje się ręcznie.	Вибір встановленої теми й оформлення застосовується лише після підтвердження плану. Нові теми встановлюються вручну.
+Текущая тема	Aktuelles Theme	Obecny motyw	Поточна тема
+Материал	Inhalt	Materiał	Матеріал

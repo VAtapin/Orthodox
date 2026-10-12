@@ -26,6 +26,11 @@ $check( 5 === substr_count( $theme_panel, 'name="prihod_theme_options[scheme]"' 
 $check( count( prihod_theme_demo_pages() ) >= 10, 'Demo catalog includes actual parish and provider compositions.' );
 ob_start(); Prihod\Wizard::render(); $wizard = ob_get_clean();
 $check( str_contains( $wizard, 'prihod-wizard' ), 'Setup wizard must render.' );
+$wizard_meta_before = get_user_meta( get_current_user_id(), 'prihod_wizard_' . get_current_blog_id(), true );
+$wizard_state = Prihod\Wizard::state();
+$check( 6 === count( Prihod\Wizard::steps() ) && isset( $wizard_state['stage'] ), 'Wizard must expose six actual stages.' );
+$check( $wizard_meta_before === get_user_meta( get_current_user_id(), 'prihod_wizard_' . get_current_blog_id(), true ), 'Reading the new wizard must preserve stored interview answers.' );
+$check( is_readable( WP_PLUGIN_DIR . '/prihod/assets/admin-ui.css' ) && is_readable( WP_PLUGIN_DIR . '/prihod/assets/parish-symbols.svg' ), 'Shared own-screen appearance and church symbols must be installed.' );
 ob_start(); Prihod\Dashboard::overview(); $dashboard = ob_get_clean();
 $check( str_contains( $dashboard, 'prihod-plugins' ) && str_contains( $dashboard, 'prihod-wizard' ), 'Dashboard must expose plugins and setup.' );
 ob_start(); Prihod\Dashboard::plugins(); $plugins_html = ob_get_clean();
@@ -39,7 +44,7 @@ foreach ( array( 'de_DE', 'pl_PL', 'uk' ) as $locale ) {
 }
 echo wp_json_encode( array( 'status' => 'PRIHOD_SERVER_OK', 'checks' => $checked, 'wordpress' => get_bloginfo( 'version' ), 'php' => PHP_VERSION, 'theme' => wp_get_theme()->get( 'Version' ) ), JSON_UNESCAPED_UNICODE ) . PHP_EOL;
 
-$check( '1.0.0-rc.8' === PRIHOD_VERSION && '0.3.17' === wp_get_theme()->get( 'Version' ), 'Reference-design release versions must be installed.' );
+$check( '1.0.0-rc.9' === PRIHOD_VERSION && '0.3.17' === wp_get_theme()->get( 'Version' ), 'Reference-design release versions must be installed.' );
 prihod_theme_prepare_provider_assets();
 do_shortcode( '[' . $donation_tag . ']' );
 $check( str_contains( (string) wp_scripts()->get_data( 'georg-kloster-orthodox-donate', 'data' ), 'georgKlosterOrthodoxDonate' ), 'Native donation configuration must exist before the block theme prints scripts.' );

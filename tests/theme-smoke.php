@@ -23,7 +23,7 @@ foreach ( array( 'de_DE' => 'Willkommen in unserer Gemeinde!', 'pl_PL' => 'Witam
     prihod_assert( $expected === __( 'Добро пожаловать в наш приход!', 'prihod-theme' ), 'Bundled theme translation works: ' . $locale );
     unload_textdomain( 'prihod-theme' );
     load_textdomain( 'prihod', WP_PLUGIN_DIR . '/prihod/languages/prihod-' . $locale . '.mo' );
-    prihod_assert( 'Расписание' !== Prihod\Wizard::steps()[6], 'Bundled Core locale is available: ' . $locale );
+    prihod_assert( 'Возможности' !== Prihod\Wizard::steps()[2], 'Bundled Core locale is available: ' . $locale );
     prihod_assert( 'Мастер настройки' !== __( 'Мастер настройки', 'prihod' ), 'Wizard translation works: ' . $locale );
     unload_textdomain( 'prihod' );
 }

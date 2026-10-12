@@ -113,11 +113,10 @@ final class Dashboard {
         foreach ( $states as $state ) { echo '<div><dt>' . esc_html( $state[0] ) . '</dt><dd class="prihod-state prihod-state-' . esc_attr( $state[2] ) . '">' . esc_html( $state[1] ) . '</dd></div>'; }
         echo '</dl><h3>' . esc_html__( 'Страницы сайта', 'prihod' ) . '</h3><ul class="prihod-page-states">';
         $resources = get_option( 'prihod_resources', array() );
-        $page_labels = array( 'publish' => __( 'Опубликована', 'prihod' ), 'draft' => __( 'Черновик', 'prihod' ), 'private' => __( 'Личная', 'prihod' ), 'pending' => __( 'Ожидает проверки', 'prihod' ), 'future' => __( 'Запланирована', 'prihod' ), 'trash' => __( 'В корзине', 'prihod' ) );
         foreach ( Site_Plan::pages() as $key => $template ) {
             $id = absint( $resources[$key]['id'] ?? 0 ); $post = $id ? get_post( $id ) : null;
             $status = $post && 'page' === $post->post_type ? ( $report['pages'][$key] ?? 'missing' ) : 'missing';
-            $label = 'missing' === $status ? __( 'Не создана', 'prihod' ) : ( $page_labels[$status] ?? ( get_post_status_object( $status )->label ?? __( 'Не проверено', 'prihod' ) ) );
+            $label = 'missing' === $status ? __( 'Не создана', 'prihod' ) : Admin_Navigation::status_label( $status );
             $url = '';
             if ( $post && 'page' === $post->post_type && current_user_can( 'read_post', $id ) ) { $url = 'publish' === $status ? get_permalink( $id ) : get_edit_post_link( $id, 'raw' ); }
             echo '<li><span>' . ( $url ? '<a href="' . esc_url( $url ) . '">' : '' ) . esc_html( $template['title'] ) . ( $url ? '</a>' : '' ) . '</span><span class="prihod-state prihod-state-' . ( 'publish' === $status ? 'ready' : 'warning' ) . '">' . esc_html( $label ) . '</span></li>';
@@ -126,12 +125,12 @@ final class Dashboard {
     }
     public static function information(): void {
         self::require_capability( 'manage_prihod' );
-        echo '<div class="wrap prihod-dashboard"><h1>' . esc_html__( 'Информация', 'prihod' ) . '</h1>'; self::profile_card();
+        echo '<div class="wrap prihod-dashboard"><h1>' . esc_html__( 'Информация', 'prihod' ) . '</h1><section class="prihod-dash-card">'; self::profile_card();
         echo '<p class="prihod-dash-actions">';
         self::button( __( 'Места служения', 'prihod' ), 'edit.php?post_type=prihod_location' );
         self::button( __( 'Духовенство', 'prihod' ), 'edit.php?post_type=prihod_clergy' );
         if ( current_user_can( 'manage_prihod_schedule' ) ) { self::button( __( 'Расписание', 'prihod' ), 'edit.php?post_type=prihod_service' ); }
-        echo '</p></div>';
+        echo '</p></section></div>';
     }
     public static function plugins(): void {
         self::require_capability( 'manage_prihod_settings' );

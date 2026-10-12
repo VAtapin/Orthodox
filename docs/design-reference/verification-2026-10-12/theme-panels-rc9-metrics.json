@@ -1,0 +1,79 @@
+[
+  {
+    "title": "Оформление",
+    "contentBottom": 2142.1875,
+    "footerTop": 0,
+    "height": 2142,
+    "scroll": 375,
+    "visible": [
+      "prihod-option-schemes"
+    ],
+    "width": 390
+  },
+  {
+    "title": "Макет и шрифты",
+    "contentBottom": 1178.90625,
+    "footerTop": 0,
+    "height": 1179,
+    "scroll": 375,
+    "visible": [
+      "prihod-option-layout"
+    ],
+    "width": 390
+  },
+  {
+    "title": "Фотографии",
+    "contentBottom": 3552.25,
+    "footerTop": 0,
+    "height": 3552,
+    "scroll": 375,
+    "visible": [
+      "prihod-option-photos"
+    ],
+    "width": 390
+  },
+  {
+    "title": "Шапка и подвал",
+    "contentBottom": 1871.28125,
+    "footerTop": 0,
+    "height": 1871,
+    "scroll": 375,
+    "visible": [
+      "prihod-option-header"
+    ],
+    "width": 390
+  },
+  {
+    "title": "Формы",
+    "contentBottom": 1018.8125,
+    "footerTop": 0,
+    "height": 1019,
+    "scroll": 375,
+    "visible": [
+      "prihod-option-forms"
+    ],
+    "width": 390
+  },
+  {
+    "title": "Языки",
+    "contentBottom": 1323.28125,
+    "footerTop": 45,
+    "height": 1323,
+    "scroll": 375,
+    "visible": [
+      "prihod-option-languages"
+    ],
+    "width": 390
+  },
+  {
+    "title": "Демо-страницы",
+    "contentBottom": 2091.203125,
+    "footerTop": 0,
+    "height": 2091,
+    "scroll": 375,
+    "visible": [
+      "prihod-option-demo"
+    ],
+    "width": 390
+  }
+]

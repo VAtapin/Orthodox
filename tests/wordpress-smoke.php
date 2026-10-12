@@ -71,6 +71,7 @@ prihod_assert( str_contains( $html, 'prihod_profile[name]' ) && str_contains( $h
 require __DIR__ . '/schedule-smoke.php';
 require __DIR__ . '/requests-smoke.php';
 require __DIR__ . '/wizard-smoke.php';
+require __DIR__ . '/wizard-interview-smoke.php';
 require __DIR__ . '/theme-smoke.php';
 require __DIR__ . '/integrations-smoke.php';
 require __DIR__ . '/dashboard-smoke.php';

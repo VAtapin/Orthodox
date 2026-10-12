@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <symbol id="church" viewBox="0 0 40 48">
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 3v7m-3-4h6M20 11c-2 3-6 5-6 9a6 6 0 0 0 12 0c0-4-4-6-6-9ZM15 25v8H9v11h22V33h-6v-8M6 45h28M18 44V34a2 2 0 0 1 4 0v10M18 28h4M12 38v3m16-3v3"/>
+    </g>
+  </symbol>
+  <symbol id="parish" viewBox="0 0 40 48">
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 5v7m-3-4h6M20 13l-7 8h14l-7-8ZM15 21v7L8 33v11h24V33l-7-5v-7M6 45h28M18 44V34a2 2 0 0 1 4 0v10M12 37v3m16-3v3M18 25h4"/>
+    </g>
+  </symbol>
+  <symbol id="monastery" viewBox="0 0 40 48">
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 2v7m-3-4h6M20 10c-2 3-5 5-5 8a5 5 0 0 0 10 0c0-3-3-5-5-8ZM16 23v21h8V23M9 17v6m-2-3h4M9 24l-5 6h10l-5-6ZM5 30v14h10M31 17v6m-2-3h4M31 24l-5 6h10l-5-6ZM25 44h10V30M2 45h36M18 44v-8a2 2 0 0 1 4 0v8M8 34v5m24-5v5M18 28h4"/>
+    </g>
+  </symbol>
+  <symbol id="chapel" viewBox="0 0 40 48">
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 6v8m-3-5h6M20 15l-8 12h16l-8-12ZM13 27v17h14V27M10 45h20M17 44V34a3 3 0 0 1 6 0v10M18 30h4"/>
+    </g>
+  </symbol>
+</svg>

@@ -1,0 +1,38 @@
+[
+  {
+    "key": "result",
+    "heading": "Настройка завершена!",
+    "scroll": 387,
+    "width": 390
+  },
+  {
+    "key": "plan",
+    "heading": "Проверьте план изменений",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "pages",
+    "heading": "Страницы сайта",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "features",
+    "heading": "Выберите возможности",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "profile",
+    "heading": "Расскажите о вашем приходе",
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "key": "welcome",
+    "heading": "Добро пожаловать!",
+    "scroll": 375,
+    "width": 390
+  }
+]

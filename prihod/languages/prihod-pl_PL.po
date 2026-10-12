@@ -1971,3 +1971,108 @@ msgstr "Zaplanowana"
 
 msgid "В корзине"
 msgstr "W koszu"
+
+msgid "Главная и меню настраиваются отдельно при публикации."
+msgstr "Strona główna i menu są ustawiane osobno przy publikacji."
+
+msgid "До подтверждения страницы, меню и тема не изменяются. Новые материалы будут черновиками."
+msgstr "Do potwierdzenia strony, menu i motyw pozostają bez zmian. Nowe materiały będą szkicami."
+
+msgid "Дополнительная настройка"
+msgstr "Dodatkowe ustawienia"
+
+msgid "Использовать страницу"
+msgstr "Użyj strony"
+
+msgid "Контакты, языки и часовой пояс"
+msgstr "Kontakt, języki i strefa czasowa"
+
+msgid "Меню"
+msgstr "Menu"
+
+msgid "Некорректное действие."
+msgstr "Nieprawidłowa czynność."
+
+msgid "Новости и объявления"
+msgstr "Aktualności i ogłoszenia"
+
+msgid "Перед публикацией обращений задайте страницу политики конфиденциальности."
+msgstr "Przed publikacją formularza zgłoszeń ustaw stronę polityki prywatności."
+
+msgid "Подготовить сведения о храмах и адресах"
+msgstr "Przygotuj informacje o świątyniach i adresach"
+
+msgid "Подготовить страницу и сведения о священнослужителях"
+msgstr "Przygotuj stronę i informacje o duchownych"
+
+msgid "Просмотреть установленные плагины и варианты подключения"
+msgstr "Zobacz zainstalowane wtyczki i opcje połączeń"
+
+msgid "Публикация и меню"
+msgstr "Publikacja i menu"
+
+msgid "Публикация расписания, ближайшая служба, календарь"
+msgstr "Publikacja harmonogramu, najbliższe nabożeństwo, kalendarz"
+
+msgid "Расскажите о вашем приходе"
+msgstr "Opowiedz o swojej parafii"
+
+msgid "Рубрики новостей, объявлений и проповедей"
+msgstr "Kategorie aktualności, ogłoszeń i kazań"
+
+msgid "Сведения о текущем сайте"
+msgstr "Informacje o bieżącej witrynie"
+
+msgid "Форма для обращений, кабинет для ответственных"
+msgstr "Formularz zgłoszeń i panel osób odpowiedzialnych"
+
+msgid "Состояние сайта и ближайшие дела"
+msgstr "Stan witryny i najbliższe zadania"
+
+msgid "Сведения, духовенство и богослужения"
+msgstr "Informacje, duchowieństwo i nabożeństwa"
+
+msgid "Обращения и ответы посетителям"
+msgstr "Zgłoszenia i odpowiedzi odwiedzającym"
+
+msgid "Установленные компоненты вашего сайта"
+msgstr "Zainstalowane komponenty witryny"
+
+msgid "Параметры прихода, оформления и подключений"
+msgstr "Ustawienia parafii, wyglądu i połączeń"
+
+msgid "Подготовка сайта по шагам"
+msgstr "Przygotowanie witryny krok po kroku"
+
+msgid "Выберите возможности"
+msgstr "Wybierz funkcje"
+
+msgid "Проверьте план изменений"
+msgstr "Sprawdź plan zmian"
+
+msgid "Материалы требуют проверки"
+msgstr "Materiały wymagają sprawdzenia"
+
+msgid "Выбранная тема недоступна или недостаточно прав."
+msgstr "Wybrany motyw jest niedostępny lub brakuje uprawnień."
+
+msgid "Схемы оформления доступны только для темы «Приход» и её администратора."
+msgstr "Schematy wyglądu są dostępne tylko dla motywu „Prihod” i jego administratora."
+
+msgid "Использовать тему"
+msgstr "Użyj motywu"
+
+msgid "Оформление темы «Приход»"
+msgstr "Wygląd motywu „Prihod”"
+
+msgid "Сохранить текущее оформление"
+msgstr "Zachowaj obecny wygląd"
+
+msgid "Выбор установленной темы и оформления применяется только после подтверждения плана. Установка новых тем выполняется вручную."
+msgstr "Wybrany zainstalowany motyw i wygląd zostaną zastosowane dopiero po potwierdzeniu planu. Nowe motywy instaluje się ręcznie."
+
+msgid "Текущая тема"
+msgstr "Obecny motyw"
+
+msgid "Материал"
+msgstr "Materiał"

@@ -4,6 +4,8 @@ set_current_screen( 'dashboard' );
 $_GET['page'] = 'prihod-connect-facebook';
 ob_start(); Prihod\Admin_Navigation::render(); $navigation = ob_get_clean();
 prihod_assert( str_contains( $navigation, 'page=prihod' ) && str_contains( $navigation, 'Обзор прихода' ) && str_contains( $navigation, 'aria-current="page"' ), 'Connector has shared navigation back to parish overview.' );
+do_action( 'admin_enqueue_scripts', 'test_page_prihod-connect-facebook' );
+prihod_assert( wp_style_is( 'prihod-admin-ui', 'enqueued' ) && str_contains( apply_filters( 'admin_body_class', '' ), 'prihod-own-admin' ), 'Own connector screen receives shared admin primitives and scoped body class.' );
 $_GET = array(); set_current_screen( 'prihod_service' );
 prihod_assert( 'prihod-info' === Prihod\Admin_Navigation::section(), 'Service editor belongs to Information.' );
 Prihod\Schedule_Admin::assets();
@@ -13,3 +15,8 @@ prihod_assert( str_contains( $editor, 'prihod-service-grid' ) && str_contains( $
 prihod_assert( str_contains( $editor, '<div id="prihod-exceptions"></div>' ), 'New service has no misleading empty exception.' );
 set_current_screen( 'dashboard' );
 prihod_assert( ! Prihod\Admin_Navigation::active(), 'Unrelated WordPress screens retain their own interface.' );
+prihod_assert( ! str_contains( apply_filters( 'admin_body_class', '' ), 'prihod-own-admin' ), 'Unrelated WordPress screen cannot receive Prihod appearance selectors.' );
+wp_dequeue_style( 'prihod-admin-ui' ); $_GET['page'] = 'orthocal';
+do_action( 'admin_enqueue_scripts', 'test_page_orthocal' );
+prihod_assert( ! wp_style_is( 'prihod-admin-ui', 'enqueued' ) && ! str_contains( apply_filters( 'admin_body_class', '' ), 'prihod-own-admin' ), 'External calendar keeps its own appearance despite optional navigation.' );
+unset( $_GET['page'] );

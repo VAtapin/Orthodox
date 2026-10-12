@@ -3,6 +3,13 @@ namespace Prihod;
 defined( 'ABSPATH' ) || exit;
 
 final class Site_Plan {
+    public const THEME_SCHEMES = array( 'classic', 'hospitality', 'editorial', 'tradition', 'blue' );
+    private static function theme_choices( array $answers ): void {
+        $theme = $answers['theme_choice'] ?? 'current'; $scheme = $answers['scheme_choice'] ?? 'inherit';
+        if ( ! in_array( $theme, array( 'current', 'prihod-theme' ), true ) || ! is_string( $scheme ) || ( 'inherit' !== $scheme && ! in_array( $scheme, self::THEME_SCHEMES, true ) ) ) { throw new \InvalidArgumentException( __( 'Некорректное действие.', 'prihod' ) ); }
+        if ( 'prihod-theme' === $theme && ( ! wp_get_theme( 'prihod-theme' )->exists() || ! current_user_can( 'switch_themes' ) ) ) { throw new \RuntimeException( __( 'Выбранная тема недоступна или недостаточно прав.', 'prihod' ) ); }
+        if ( 'inherit' !== $scheme && ( ! current_user_can( 'manage_options' ) || ( 'prihod-theme' !== $theme && 'prihod-theme' !== get_stylesheet() ) ) ) { throw new \RuntimeException( __( 'Схемы оформления доступны только для темы «Приход» и её администратора.', 'prihod' ) ); }
+    }
     public static function pages(): array {
         $pages = array(
             'home' => array( 'title' => __( 'Главная', 'prihod' ), 'content' => '<!-- wp:prihod/profile /--><!-- wp:prihod/next-service /--><!-- wp:prihod/contacts /-->' ),
@@ -31,11 +38,12 @@ final class Site_Plan {
         }
         $data = array( 'theme' => get_stylesheet(), 'front' => get_option( 'page_on_front' ), 'front_mode' => get_option( 'show_on_front' ), 'menu_locations' => get_nav_menu_locations(),
             'menus' => wp_get_nav_menus(), 'pages' => $pages, 'language' => get_locale(), 'timezone' => wp_timezone_string(), 'plugins' => get_option( 'active_plugins', array() ),
-            'profile' => Profile::get(), 'modules' => get_option( 'prihod_modules', array() ), 'resources' => get_option( 'prihod_resources', array() ) );
+            'profile' => Profile::get(), 'modules' => get_option( 'prihod_modules', array() ), 'resources' => get_option( 'prihod_resources', array() ), 'theme_options' => get_option( 'prihod_theme_options', array() ) );
         $data['fingerprint'] = hash( 'sha256', wp_json_encode( $data ) );
         return $data;
     }
     public static function plan( array $answers ): array {
+        self::theme_choices( $answers );
         $site = self::analyze(); $resources = get_option( 'prihod_resources', array() ); $pages = array();
         foreach ( self::pages() as $key => $template ) {
             if ( empty( $answers['pages'][ $key ] ) || ( in_array( $key, array( 'schedule', 'requests' ), true ) && empty( $answers['modules'][ $key ] ) ) ) { continue; }
@@ -53,10 +61,16 @@ final class Site_Plan {
         try {
             if ( ! hash_equals( self::analyze()['fingerprint'], $plan['fingerprint'] ) ) { throw new \RuntimeException( __( 'Сайт изменился после просмотра плана. Сформируйте план заново.', 'prihod' ) ); }
             $answers = $plan['answers'];
+            self::theme_choices( $answers );
             $responsible = absint( $answers['responsible'] ?? 0 );
             if ( $responsible && ( ! user_can( $responsible, 'view_prihod_requests' ) || ! user_can( $responsible, 'reply_prihod_requests' ) ) ) { throw new \RuntimeException( __( 'Ответственный больше не имеет необходимых прав.', 'prihod' ) ); }
             update_option( Profile::OPTION, Profile::sanitize( $answers['profile'] ?? array() ), false );
             update_option( 'prihod_modules', Modules::sanitize( $answers['modules'] ?? array() ), false );
+            if ( 'prihod-theme' === ( $answers['theme_choice'] ?? '' ) && 'prihod-theme' !== get_stylesheet() ) { switch_theme( 'prihod-theme' ); }
+            if ( 'inherit' !== ( $answers['scheme_choice'] ?? 'inherit' ) ) {
+                $options = get_option( 'prihod_theme_options', array() ); $options = is_array( $options ) ? $options : array();
+                $options['scheme'] = $answers['scheme_choice']; update_option( 'prihod_theme_options', $options );
+            }
             update_option( 'prihod_default_responsible', $responsible, false );
             $resources = get_option( 'prihod_resources', array() );
             foreach ( array( 'locations' => 'prihod_location', 'clergy' => 'prihod_clergy' ) as $group => $type ) {

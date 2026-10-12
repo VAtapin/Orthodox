@@ -1,0 +1,36 @@
+/* Shared primitives for Prihod screens; never applied to other WordPress pages. */
+.prihod-own-admin{--pw-blue:#096dcc;--pw-ink:#24354b;--pw-border:#dce5f0;--pw-paper:#fff}
+.prihod-own-admin #wpcontent{background:linear-gradient(125deg,#f1f6fd,#f8fbff);color:var(--pw-ink)}
+.prihod-own-admin #wpbody-content>.wrap{max-width:1240px;box-sizing:border-box;margin:0;padding:24px 32px 48px;color:var(--pw-ink)}
+.prihod-own-admin .prihod-admin-navigation{max-width:1176px;margin:24px 32px 0;background:#fff;border-color:var(--pw-border);border-radius:12px}
+.prihod-own-admin .prihod-admin-navigation a[aria-current]{background:var(--pw-blue)}
+.prihod-own-admin #adminmenu #toplevel_page_prihod.wp-has-current-submenu>a{background:var(--pw-blue)}
+.prihod-nav-brand>strong{font:600 22px/1.3 Georgia,serif;color:#25384a;white-space:nowrap}.prihod-nav-brand>p{font-size:12px;color:#61718a;margin:4px 0 0;max-width:260px}
+.prihod-church-symbol{width:30px;height:36px;color:inherit;vertical-align:middle;flex-shrink:0}.prihod-nav-brand>strong>.prihod-church-symbol{width:24px;height:28px;margin-right:8px;color:var(--pw-blue)}
+.prihod-own-admin .prihod-nav-brand{flex:0 0 155px}.prihod-own-admin .prihod-nav-brand>p{font-size:11px;line-height:1.4}.prihod-own-admin .prihod-admin-navigation{gap:16px}.prihod-own-admin .prihod-admin-navigation nav{gap:4px;flex:1}.prihod-own-admin .prihod-admin-navigation nav a{font-size:13px;padding:8px 10px}
+.prihod-own-admin .wrap h1{font-size:24px;font-weight:650;color:var(--pw-ink);margin:0 0 24px;padding:0;line-height:1.3}
+.prihod-own-admin .wrap h1:before{font:24px/1 dashicons;content:"\f102";display:inline-block;margin-right:12px;color:var(--pw-blue);vertical-align:middle}
+.prihod-own-admin .wrap h2{color:var(--pw-ink)}
+.prihod-own-admin .button{border-radius:6px;border-color:#cbd8e8;background:#fff;color:#285a8b}
+.prihod-own-admin .button-primary{background:var(--pw-blue);border-color:var(--pw-blue);color:#fff}
+.prihod-own-admin .button-primary:hover,.prihod-own-admin .button-primary:focus{background:#075ba9;border-color:#075ba9;color:#fff}
+.prihod-own-admin #wpbody-content .wrap>.button,.prihod-own-admin .prihod-dash-actions .button{padding:6px 16px;min-height:38px}
+.prihod-own-admin .prihod-dash-card,.prihod-own-admin #wpbody-content>.wrap>form:not([id=post]),.prihod-own-admin #wpbody-content>.wrap>.form-table{background:var(--pw-paper);border:1px solid var(--pw-border);border-radius:12px;padding:24px;box-shadow:0 6px 24px #16324c05}
+.prihod-own-admin #wpbody-content>.wrap>form.prihod-request-filters{background:transparent;border:0;border-radius:0;padding:0;box-shadow:none}
+.prihod-own-admin .widefat,.prihod-own-admin .postbox{border-color:var(--pw-border);border-radius:8px;box-shadow:none;overflow:hidden}
+.prihod-own-admin .postbox-header{border-color:var(--pw-border)}
+.prihod-own-admin .form-table th{width:210px;color:var(--pw-ink)}
+.prihod-own-admin .form-table input:not([type=checkbox]):not([type=radio]),.prihod-own-admin .form-table select,.prihod-own-admin .form-table textarea,.prihod-own-admin .prihod-wizard input:not([type=checkbox]):not([type=radio]):not([type=hidden]),.prihod-own-admin .prihod-wizard select,.prihod-own-admin .prihod-wizard textarea{border:1px solid #ccd6e4;border-radius:6px;max-width:100%;min-height:40px;color:var(--pw-ink);padding:8px 10px;box-sizing:border-box}
+.prihod-own-admin .wrap :focus-visible{outline:3px solid var(--pw-blue);outline-offset:3px}
+.prihod-own-admin .wrap form:not([id=post]) input:is(:not([type]),[type=text],[type=password],[type=email],[type=url],[type=number]),.prihod-own-admin .wrap form:not([id=post]) select,.prihod-own-admin .wrap form:not([id=post]) textarea{border:1px solid #ccd6e4;border-radius:6px;max-width:100%;min-height:40px;padding:8px 10px;box-sizing:border-box;color:var(--pw-ink)}
+.prihod-own-admin .prihod-ui-notice,.prihod-own-admin .notice{border-radius:6px;box-shadow:none}
+.prihod-own-admin .prihod-ui-notice[role=alert]{padding:14px 16px;background:#fff1f2;border:1px solid #e6bdc2;color:#8c2934}
+.prihod-own-admin .prihod-ui-warning{border:1px solid #eadba8;background:#fff9e9;color:#67501a;padding:14px 16px;border-radius:8px;font-size:13px}
+.prihod-own-admin .prihod-ui-hint{color:#5a6e86;font-size:13px}
+.prihod-own-admin .prihod-theme-settings .button-primary{background:var(--pw-blue);border-color:var(--pw-blue)}
+.prihod-own-admin .prihod-options-nav{background:var(--pw-blue)}.prihod-own-admin .wrap>.prihod-dash-card+.prihod-dash-card{margin-top:16px}
+@media(max-width:782px){.prihod-own-admin #wpbody-content>.wrap{padding:20px 12px 32px}.prihod-own-admin .prihod-admin-navigation{margin:12px 12px 0}.prihod-own-admin .form-table th{width:auto}.prihod-own-admin #wpbody-content>.wrap>form:not([id=post]){padding:18px}}
+#prihod_dashboard_profile,#prihod_dashboard_services,#prihod_dashboard_requests,#prihod_dashboard_plugins{border-color:#dce5f0;border-radius:10px;box-shadow:none}
+@media(max-width:600px){.prihod-own-admin .prihod-admin-navigation{flex-direction:column;align-items:stretch;gap:12px}.prihod-own-admin .prihod-nav-brand{flex:auto}.prihod-own-admin .prihod-admin-navigation nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}.prihod-own-admin .prihod-admin-navigation nav a{text-align:center;box-sizing:border-box}}
+[id^=prihod_dashboard_] .button-primary{background:#096dcc;border-color:#096dcc;border-radius:6px;color:#fff}
+[id^=prihod_dashboard_] .button{border-radius:6px}[id^=prihod_dashboard_] .prihod-event-copy p{margin:4px 0}

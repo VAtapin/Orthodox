@@ -20,10 +20,15 @@ final class Diagnostics {
     public static function render(): void {
         if ( ! current_user_can( 'manage_prihod_settings' ) ) { wp_die( esc_html__( 'Недостаточно прав.', 'prihod' ), '', array( 'response' => 403 ) ); }
         $report = self::report();
-        echo '<div class="wrap"><h1>' . esc_html__( 'Проверка сайта', 'prihod' ) . '</h1><ul>';
+        echo '<div class="wrap"><h1>' . esc_html__( 'Проверка сайта', 'prihod' ) . '</h1><section class="prihod-dash-card"><ul>';
         foreach ( array( 'profile_complete' => __( 'Название прихода заполнено', 'prihod' ), 'next_service_found' => __( 'Ближайшая служба найдена', 'prihod' ), 'privacy_page' => __( 'Политика конфиденциальности задана', 'prihod' ), 'retention_scheduled' => __( 'Проверка сроков хранения запланирована', 'prihod' ) ) as $key => $label ) { echo '<li>' . esc_html( $label ) . ': ' . esc_html( $report[ $key ] ? __( 'Да', 'prihod' ) : __( 'Нет', 'prihod' ) ) . '</li>'; }
         echo '</ul><p>' . esc_html__( 'Доставка email не проверена. Для очереди ответов требуется работающий WP-Cron или серверный cron. Принятие письма транспортом не гарантирует доставку адресату.', 'prihod' ) . '</p>';
-        foreach ( $report['pages'] as $key => $status ) { echo '<p>' . esc_html( $key . ': ' . $status ) . '</p>'; }
-        echo '</div>';
+        $templates = Site_Plan::pages(); $resources = get_option( 'prihod_resources', array() );
+        foreach ( $report['pages'] as $key => $status ) {
+            $id = absint( $resources[$key]['id'] ?? 0 );
+            $label = $templates[$key]['title'] ?? ( $id && current_user_can( 'read_post', $id ) ? get_the_title( $id ) : __( 'Материал', 'prihod' ) );
+            echo '<p>' . esc_html( $label ) . ': ' . esc_html( 'missing' === $status ? __( 'Не создана', 'prihod' ) : Admin_Navigation::status_label( $status ) ) . '</p>';
+        }
+        echo '</section></div>';
     }
 }

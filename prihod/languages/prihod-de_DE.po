@@ -1971,3 +1971,108 @@ msgstr "Geplant"
 
 msgid "В корзине"
 msgstr "Im Papierkorb"
+
+msgid "Главная и меню настраиваются отдельно при публикации."
+msgstr "Startseite und Menü werden bei der Veröffentlichung separat eingerichtet."
+
+msgid "До подтверждения страницы, меню и тема не изменяются. Новые материалы будут черновиками."
+msgstr "Vor der Bestätigung bleiben Seiten, Menü und Theme unverändert. Neue Inhalte werden als Entwürfe vorbereitet."
+
+msgid "Дополнительная настройка"
+msgstr "Weitere Einstellungen"
+
+msgid "Использовать страницу"
+msgstr "Seite verwenden"
+
+msgid "Контакты, языки и часовой пояс"
+msgstr "Kontakte, Sprachen und Zeitzone"
+
+msgid "Меню"
+msgstr "Menü"
+
+msgid "Некорректное действие."
+msgstr "Ungültige Aktion."
+
+msgid "Новости и объявления"
+msgstr "Nachrichten und Bekanntmachungen"
+
+msgid "Перед публикацией обращений задайте страницу политики конфиденциальности."
+msgstr "Legen Sie vor der Veröffentlichung des Anfrageformulars die Datenschutzseite fest."
+
+msgid "Подготовить сведения о храмах и адресах"
+msgstr "Angaben zu Kirchen und Adressen vorbereiten"
+
+msgid "Подготовить страницу и сведения о священнослужителях"
+msgstr "Seite und Angaben zu Geistlichen vorbereiten"
+
+msgid "Просмотреть установленные плагины и варианты подключения"
+msgstr "Installierte Plugins und Verbindungsmöglichkeiten ansehen"
+
+msgid "Публикация и меню"
+msgstr "Veröffentlichung und Menü"
+
+msgid "Публикация расписания, ближайшая служба, календарь"
+msgstr "Gottesdienstplan, nächster Gottesdienst und Kalender"
+
+msgid "Расскажите о вашем приходе"
+msgstr "Erzählen Sie von Ihrer Gemeinde"
+
+msgid "Рубрики новостей, объявлений и проповедей"
+msgstr "Kategorien für Nachrichten, Bekanntmachungen und Predigten"
+
+msgid "Сведения о текущем сайте"
+msgstr "Angaben zur aktuellen Website"
+
+msgid "Форма для обращений, кабинет для ответственных"
+msgstr "Anfrageformular und Bereich für Zuständige"
+
+msgid "Состояние сайта и ближайшие дела"
+msgstr "Website-Status und nächste Aufgaben"
+
+msgid "Сведения, духовенство и богослужения"
+msgstr "Angaben, Geistliche und Gottesdienste"
+
+msgid "Обращения и ответы посетителям"
+msgstr "Anfragen und Antworten an Besucher"
+
+msgid "Установленные компоненты вашего сайта"
+msgstr "Installierte Komponenten Ihrer Website"
+
+msgid "Параметры прихода, оформления и подключений"
+msgstr "Einstellungen für Gemeinde, Gestaltung und Verbindungen"
+
+msgid "Подготовка сайта по шагам"
+msgstr "Website Schritt für Schritt vorbereiten"
+
+msgid "Выберите возможности"
+msgstr "Wählen Sie die Funktionen"
+
+msgid "Проверьте план изменений"
+msgstr "Prüfen Sie den Änderungsplan"
+
+msgid "Материалы требуют проверки"
+msgstr "Inhalte müssen geprüft werden"
+
+msgid "Выбранная тема недоступна или недостаточно прав."
+msgstr "Das gewählte Theme ist nicht verfügbar oder die Berechtigung fehlt."
+
+msgid "Схемы оформления доступны только для темы «Приход» и её администратора."
+msgstr "Die Gestaltungsschemata sind nur für das Theme „Prihod“ und dessen Administrator verfügbar."
+
+msgid "Использовать тему"
+msgstr "Theme verwenden"
+
+msgid "Оформление темы «Приход»"
+msgstr "Gestaltung des Themes „Prihod“"
+
+msgid "Сохранить текущее оформление"
+msgstr "Aktuelle Gestaltung beibehalten"
+
+msgid "Выбор установленной темы и оформления применяется только после подтверждения плана. Установка новых тем выполняется вручную."
+msgstr "Das gewählte installierte Theme und die Gestaltung werden erst nach Bestätigung des Plans angewendet. Neue Themes werden manuell installiert."
+
+msgid "Текущая тема"
+msgstr "Aktuelles Theme"
+
+msgid "Материал"
+msgstr "Inhalt"

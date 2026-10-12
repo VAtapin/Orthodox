@@ -198,22 +198,25 @@ php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-ch
 Core, существующие плагины, настройки и материалы не обновлять/не импортировать.
 Серверная проверка новой версии ещё не запускалась; 62 проверки выше относятся к 0.3.16.
 
-## Подготовлен Core rc.8 вместе с темой0.3.17
+## Подготовлен Core rc.9 вместе с темой 0.3.17
 
-Обзор/пустые состояния проверены локально, серверCore rc.7 не обновлялся.
-Нужно прямое разрешение на эти две версии. После загрузки только их архивов и
-tests/server-check.php в прежние wp-content/prihod-packages и wp-content/:
+Мастер и собственные экраны проверены локально; сервер остаётся Core rc.7 / тема0.3.16.
+Предложение rc.8 заменено rc.9. Нужно прямое разрешение на новые версии.
+До исполнения загрузить именно build/prihod-1.0.0-rc.9.zip,
+build/prihod-theme-0.3.17.zip в wp-content/prihod-packages, а подготовленный
+tests/server-check.php — в wp-content/prihod-server-check.php этого WordPress.
 
 ```bash
 cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
 export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
-php -d memory_limit=512M /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.8.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.9.zip --force --activate && \
 php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.17.zip --force --activate && \
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
 ```
 
-Подготовлены build/sftp-admin-overview.txt и build/ssh-admin-overview.sh.
-Ожидаются64read-only проверки, но на сервере пока не запускались. Никаких импортов,
-публикаций материалов, писем, оплат, изменений Plesk/окружения/других сайтов.
-Мастер не сбрасывать. Для повторного исполнения сначала сверить версии: этот
-пакет не является завершением следующего блока общего оформления админки.
+Подготовлены build/sftp-admin-rc9.txt и build/ssh-admin-rc9.sh; старый rc.8 пакет
+и его проверка сохранены отдельно и не подменены rc.9. Ожидаются67read-only проверок;
+на сервере новая проверка ещё не запускалась. Никаких импортов/публикаций материалов,
+писем, оплат, изменений Plesk/окружения/других сайтов. Живой мастер не сбрасывать.
+PHP8.5 — фактическое ранее подтверждённое окружение именно этого WordPress.
+На сервере нет Git checkout; Composer и Node build для этих ZIP не требуются.

@@ -3,7 +3,7 @@ Contributors: vatapin
 Tags: parish, church, orthodox
 Requires at least: 6.5
 Requires PHP: 8.0
-Stable tag: 1.0.0-rc.8
+Stable tag: 1.0.0-rc.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -44,6 +44,11 @@ Telegram, WhatsApp и Facebook доступны отдельными необя�
 Нет. Основные функции принадлежат плагину.
 
 == Changelog ==
+
+= 1.0.0-rc.9 =
+* Шесть настоящих этапов мастера, общий выбор возможностей и сохранение прежнего интервью.
+* Единое оформление собственных экранов и компактная навигация на телефоне.
+* Выбор установленной темы и схемы применяется только после подтверждения плана.
 
 = 1.0.0-rc.6 =
 Overview cards show actual upcoming services and changes; mini calendar marks today and the selected week.

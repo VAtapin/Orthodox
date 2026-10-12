@@ -100,8 +100,9 @@ final class Admin {
         );
         foreach ( $this->integrations->all() as $integration ) {
             $report = $this->integrations->report( $integration );
-            echo '<h2>' . esc_html( $report['name'] ) . '</h2><p>' . esc_html( $labels[ $report['status'] ] ) . '</p><p>' . esc_html( $report['message'] ) . '</p>';
+            echo '<section class="prihod-dash-card"><h2>' . esc_html( $report['name'] ) . '</h2><p>' . esc_html( $labels[ $report['status'] ] ) . '</p><p>' . esc_html( $report['message'] ) . '</p>';
             if ( ! empty( $report['settings_url'] ) ) { echo '<p><a href="' . esc_url( $report['settings_url'] ) . '">' . esc_html__( 'Настроить подключение', 'prihod' ) . '</a></p>'; }
+            echo '</section>';
         }
         echo '</div>';
     }

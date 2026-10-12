@@ -1,0 +1,28 @@
+{
+  "current": {
+    "status": "WORDPRESS_SMOKE_OK",
+    "assertions": 253,
+    "wordpress": "7.1.3",
+    "php": "8.4.25"
+  },
+  "minimum": {
+    "status": "WORDPRESS_SMOKE_OK",
+    "assertions": 242,
+    "wordpress": "6.5.13",
+    "php": "8.0.30"
+  },
+  "design": {
+    "status": "MONASTERY_DEMO_OK",
+    "pages": 13,
+    "posts": 6,
+    "media": 8,
+    "preserved": [
+      "home"
+    ],
+    "design_checks": 191
+  },
+  "php_syntax": "passed",
+  "unit_assertions": 57,
+  "translation_checks": 2034,
+  "server_rc9": "not run"
+}
