@@ -1,0 +1,257 @@
+{
+  "desktop": [
+    {
+      "scheme": "classic",
+      "banners": 1,
+      "consent": true,
+      "customHidden": true,
+      "fields": [
+        {
+          "described": true,
+          "name": "name",
+          "placeholder": "Введите ваше имя",
+          "required": true
+        },
+        {
+          "described": true,
+          "name": "email",
+          "placeholder": "name@example.org",
+          "required": true
+        },
+        {
+          "described": true,
+          "name": "subject",
+          "placeholder": null,
+          "required": true
+        },
+        {
+          "described": true,
+          "name": "body",
+          "placeholder": "Опишите ваш вопрос…",
+          "required": true
+        }
+      ],
+      "headingBeforeMain": true,
+      "hero": 170,
+      "overflow": false,
+      "selectOptions": 8,
+      "sidebarQuote": true,
+      "sidebarServices": 0,
+      "width": 1122
+    },
+    {
+      "scheme": "hospitality",
+      "banners": 1,
+      "consent": true,
+      "customHidden": true,
+      "fields": [
+        {
+          "described": true,
+          "name": "name",
+          "placeholder": "Введите ваше имя",
+          "required": true
+        },
+        {
+          "described": true,
+          "name": "email",
+          "placeholder": "name@example.org",
+          "required": true
+        },
+        {
+          "described": true,
+          "name": "subject",
+          "placeholder": null,
+          "required": true
+        },
+        {
+          "described": true,
+          "name": "body",
+          "placeholder": "Опишите ваш вопрос…",
+          "required": true
+        }
+      ],
+      "headingBeforeMain": true,
+      "hero": 170,
+      "overflow": false,
+      "selectOptions": 8,
+      "sidebarQuote": true,
+      "sidebarServices": 0,
+      "width": 1122
+    },
+    {
+      "scheme": "editorial",
+      "banners": 1,
+      "consent": true,
+      "customHidden": true,
+      "fields": [
+        {
+          "described": true,
+          "name": "name",
+          "placeholder": "Введите ваше имя",
+          "required": true
+        },
+        {
+          "described": true,
+          "name": "email",
+          "placeholder": "name@example.org",
+          "required": true
+        },
+        {
+          "described": true,
+          "name": "subject",
+          "placeholder": null,
+          "required": true
+        },
+        {
+          "described": true,
+          "name": "body",
+          "placeholder": "Опишите ваш вопрос…",
+          "required": true
+        }
+      ],
+      "headingBeforeMain": true,
+      "hero": 170,
+      "overflow": false,
+      "selectOptions": 8,
+      "sidebarQuote": true,
+      "sidebarServices": 0,
+      "width": 1122
+    },
+    {
+      "scheme": "tradition",
+      "banners": 1,
+      "consent": true,
+      "customHidden": true,
+      "fields": [
+        {
+          "described": true,
+          "name": "name",
+          "placeholder": "Введите ваше имя",
+          "required": true
+        },
+        {
+          "described": true,
+          "name": "email",
+          "placeholder": "name@example.org",
+          "required": true
+        },
+        {
+          "described": true,
+          "name": "subject",
+          "placeholder": null,
+          "required": true
+        },
+        {
+          "described": true,
+          "name": "body",
+          "placeholder": "Опишите ваш вопрос…",
+          "required": true
+        }
+      ],
+      "headingBeforeMain": true,
+      "hero": 170,
+      "overflow": false,
+      "selectOptions": 8,
+      "sidebarQuote": true,
+      "sidebarServices": 0,
+      "width": 1122
+    },
+    {
+      "scheme": "blue",
+      "banners": 1,
+      "consent": true,
+      "customHidden": true,
+      "fields": [
+        {
+          "described": true,
+          "name": "name",
+          "placeholder": "Введите ваше имя",
+          "required": true
+        },
+        {
+          "described": true,
+          "name": "email",
+          "placeholder": "name@example.org",
+          "required": true
+        },
+        {
+          "described": true,
+          "name": "subject",
+          "placeholder": null,
+          "required": true
+        },
+        {
+          "described": true,
+          "name": "body",
+          "placeholder": "Опишите ваш вопрос…",
+          "required": true
+        }
+      ],
+      "headingBeforeMain": true,
+      "hero": 170,
+      "overflow": false,
+      "selectOptions": 8,
+      "sidebarQuote": true,
+      "sidebarServices": 0,
+      "width": 1122
+    }
+  ],
+  "mobile": {
+    "background": "linear-gradient(rgba(250, 248, 244, 0.96), rgba(250, 248, 244, 0.92)), url(\"https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n.jpg\")",
+    "columns": "343px",
+    "fieldWidths": [
+      {
+        "font": "16px",
+        "name": "name",
+        "width": 343
+      },
+      {
+        "font": "16px",
+        "name": "email",
+        "width": 343
+      },
+      {
+        "font": "16px",
+        "name": "subject",
+        "width": 343
+      },
+      {
+        "font": "16px",
+        "name": "body",
+        "width": 343
+      }
+    ],
+    "hero": 150,
+    "overflow": false,
+    "width": 390
+  },
+  "keyboard": [
+    {
+      "case": "other-empty",
+      "customRequired": true,
+      "focused": "subject_other",
+      "missing": true,
+      "selected": "__other"
+    },
+    {
+      "case": "other-filled",
+      "custom": "Свой вопрос о посещении",
+      "valid": true
+    },
+    {
+      "case": "preset",
+      "disabled": true,
+      "hidden": true,
+      "required": false,
+      "selected": "О посещении храма"
+    }
+  ],
+  "mobileKeyboard": {
+    "focused": "subject_other",
+    "hidden": false,
+    "required": true,
+    "selected": "__other"
+  },
+  "breadcrumb": "https://prihod.georg-kloster.ru/?page_id=8&prihod_preview=classic",
+  "liveSubmission": false
+}

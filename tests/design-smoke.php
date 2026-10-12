@@ -69,6 +69,17 @@ foreach ( $first['posts'] as $article_id ) {
 }
 unset( $_GET['prihod_preview'] );
 $GLOBALS['wp_query'] = $saved_query;
+$GLOBALS['post'] = get_post( $first['pages']['requests'] );
+$question_sidebar = prihod_theme_sidebar();
+$check( str_contains( $question_sidebar, 'prihod-verse' ) && ! str_contains( $question_sidebar, 'prihod-service-compact' ) && ! str_contains( $question_sidebar, __( 'Есть вопросы?', 'prihod-theme' ) ), 'Question sidebar keeps the calendar/verse composition without repeating the question invitation or service list.' );
+foreach ( array( 'classic', 'hospitality', 'editorial', 'tradition', 'blue' ) as $scheme ) {
+    $_GET['prihod_preview'] = $scheme; WP_Theme_JSON_Resolver::clean_cached_data();
+    $heading = prihod_theme_focused_banner();
+    $check( str_contains( $heading, 'prihod-request-heading' ) && str_contains( $heading, 'aria-current="page"' ) && str_contains( $heading, esc_url( prihod_theme_url( 'about' ) ) ) && '' === prihod_theme_focused_heading(), 'Question photo banner and real breadcrumb render once, preserving preview: ' . $scheme );
+}
+unset( $_GET['prihod_preview'] ); WP_Theme_JSON_Resolver::clean_cached_data();
+$GLOBALS['post'] = get_post( $first['pages']['donations'] );
+$check( '' === prihod_theme_focused_banner() && str_contains( prihod_theme_focused_heading(), 'prihod-page-heading' ), 'Other focused form pages retain their existing heading composition.' );
 $GLOBALS['post'] = get_post( $first['pages']['home'] );
 $saved_query = $GLOBALS['wp_query'];
 $GLOBALS['wp_query'] = new WP_Query( array( 'page_id' => $first['pages']['home'] ) );

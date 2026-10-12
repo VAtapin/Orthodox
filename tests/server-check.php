@@ -39,7 +39,7 @@ foreach ( array( 'de_DE', 'pl_PL', 'uk' ) as $locale ) {
 }
 echo wp_json_encode( array( 'status' => 'PRIHOD_SERVER_OK', 'checks' => $checked, 'wordpress' => get_bloginfo( 'version' ), 'php' => PHP_VERSION, 'theme' => wp_get_theme()->get( 'Version' ) ), JSON_UNESCAPED_UNICODE ) . PHP_EOL;
 
-$check( '1.0.0-rc.6' === PRIHOD_VERSION && '0.3.11' === wp_get_theme()->get( 'Version' ), 'Reference-design release versions must be installed.' );
+$check( '1.0.0-rc.7' === PRIHOD_VERSION && '0.3.12' === wp_get_theme()->get( 'Version' ), 'Reference-design release versions must be installed.' );
 prihod_theme_prepare_provider_assets();
 do_shortcode( '[' . $donation_tag . ']' );
 $check( str_contains( (string) wp_scripts()->get_data( 'georg-kloster-orthodox-donate', 'data' ), 'georgKlosterOrthodoxDonate' ), 'Native donation configuration must exist before the block theme prints scripts.' );
@@ -91,3 +91,12 @@ if ( prihod_theme_about_page() ) {
 }
 $GLOBALS['wp_query'] = $previous_query; $GLOBALS['post'] = $previous_post; $_GET = $previous_get;
 echo "ABOUT_LAYOUT_CHECK_OK: {$checked} total checks.\n";
+$previous_query = $GLOBALS['wp_query']; $previous_post = $GLOBALS['post'] ?? null;
+$GLOBALS['wp_query'] = new WP_Query( array( 'page_id' => $resources['requests']['id'] ) ); $GLOBALS['post'] = get_post( $resources['requests']['id'] );
+$focused = do_blocks( file_get_contents( get_template_directory() . '/templates/focused.html' ) );
+$check( 1 === substr_count( $focused, 'prihod-request-heading' ) && strpos( $focused, 'prihod-request-heading' ) < strpos( $focused, '<main' ) && str_contains( $focused, 'aria-current="page"' ), 'Question photo heading and breadcrumb must precede both content columns.' );
+$form = Prihod\Request_Form::render();
+$check( str_contains( $form, '<select name="subject" required' ) && str_contains( $form, 'value="__other"' ) && str_contains( $form, 'name="consent"' ) && str_contains( $form, 'placeholder="name@example.org"' ) && str_contains( $form, 'prihod-required-help' ), 'Native topic choices, required hints and consent must remain available.' );
+$check( wp_script_is( 'prihod-request-form', 'enqueued' ) && 'Own subject' === Prihod\Request_Form::submission_data( array( 'subject' => '__other', 'subject_other' => 'Own subject' ) )['subject'], 'Own-subject enhancement and existing submission normalization must be available.' );
+$GLOBALS['wp_query'] = $previous_query; $GLOBALS['post'] = $previous_post;
+echo "QUESTION_FORM_CHECK_OK: {$checked} total checks.\n";

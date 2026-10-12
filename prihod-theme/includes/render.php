@@ -67,6 +67,7 @@ function prihod_theme_sidebar(): string {
         foreach ( array( 'schedule' => __( 'Расписание богослужений', 'prihod-theme' ), 'prayer-notes' => __( 'Подать записку', 'prihod-theme' ), 'requests' => __( 'Вопрос священнику', 'prihod-theme' ) ) as $key => $label ) { $url = prihod_theme_url( $key ); if ( $url ) { $html .= '<a href="' . esc_url( $url ) . '">' . prihod_theme_icon( 'prayer-notes' === $key ? 'about' : $key ) . esc_html( $label ) . '</a>'; } }
         $html .= '</nav></section>';
     }
+    if ( prihod_theme_request_page() ) { return $html . prihod_theme_verse(); }
     $next = prihod_theme_compact_services( 3 );
     if ( $next ) { $html .= '<section class="prihod-panel"><h2>' . esc_html__( 'Ближайшие службы', 'prihod-theme' ) . '</h2>' . $next . '<a class="prihod-service-all" href="' . esc_url( prihod_theme_url( 'schedule' ) ) . '">' . esc_html__( 'Все богослужения', 'prihod-theme' ) . ' →</a></section>'; }
     $contact = prihod_theme_url( 'contacts' );
@@ -83,12 +84,23 @@ function prihod_theme_heading(): string {
         return $html . '<h1>' . esc_html( get_the_title() ) . '</h1></div></div>';
     }
     $image = get_the_post_thumbnail_url( get_the_ID(), 'full' ) ?: wp_get_attachment_image_url( prihod_theme_resource_image( 'about' ) ?: prihod_theme_options()['about_image'] ?: prihod_theme_options()['hero_image'], 'full' );
+    if ( prihod_theme_request_page() ) {
+        $image = wp_get_attachment_image_url( prihod_theme_options()['request_image'] ?: prihod_theme_resource_image( 'clergy' ) ?: prihod_theme_resource_image( 'about' ), 'full' );
+        $about = prihod_theme_url( 'about' );
+        return '<div class="prihod-page-heading prihod-request-heading"' . ( $image ? ' style="--prihod-hero-image:url(' . esc_url( $image ) . ')"' : '' ) . '><div class="prihod-container"><h1>' . esc_html( get_the_title() ) . '</h1><nav aria-label="' . esc_attr__( 'Путь к странице', 'prihod-theme' ) . '"><a href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '">' . esc_html__( 'Главная', 'prihod-theme' ) . '</a>' . ( $about ? '<span aria-hidden="true"> → </span><a href="' . esc_url( $about ) . '">' . esc_html( get_the_title( get_option( 'prihod_resources', array() )['about']['id'] ) ) . '</a>' : '' ) . '<span aria-hidden="true"> → </span><span aria-current="page">' . esc_html( get_the_title() ) . '</span></nav></div></div>';
+    }
     if ( prihod_theme_about_page() ) {
         $visit = prihod_theme_url( 'first-visit' ) ?: prihod_theme_url( 'contacts' );
         return '<div class="prihod-page-heading prihod-about-heading"' . ( $image ? ' style="--prihod-hero-image:url(' . esc_url( $image ) . ')"' : '' ) . '><div class="prihod-container"><a class="prihod-breadcrumb" href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '">' . esc_html__( 'Главная', 'prihod-theme' ) . '</a><h1>' . esc_html( get_the_title() ) . '</h1><div class="prihod-about-intro">' . prihod_theme_about_intro() . '</div>' . ( $visit ? '<a class="prihod-button" href="' . esc_url( $visit ) . '">' . esc_html__( 'Впервые в храме?', 'prihod-theme' ) . ' →</a>' : '' ) . '</div></div>';
     }
     return '<div class="prihod-page-heading"' . ( $image ? ' style="--prihod-hero-image:url(' . esc_url( $image ) . ')"' : '' ) . '><div class="prihod-container"><a class="prihod-breadcrumb" href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '">' . esc_html__( 'Главная', 'prihod-theme' ) . '</a><h1>' . esc_html( get_the_title() ) . '</h1></div></div>';
 }
+function prihod_theme_request_page(): bool {
+    $post = get_post(); $resources = get_option( 'prihod_resources', array() );
+    return $post && $post->ID === absint( $resources['requests']['id'] ?? 0 ) && ( has_block( 'prihod/requests', $post ) || has_shortcode( $post->post_content, 'prihod_requests' ) );
+}
+function prihod_theme_focused_banner(): string { return prihod_theme_request_page() ? prihod_theme_heading() : ''; }
+function prihod_theme_focused_heading(): string { return prihod_theme_request_page() ? '' : prihod_theme_heading(); }
 
 /** Put the unchanged demo's guidance beside its form flow, preserving owner edits. */
 function prihod_theme_focus_content( string $html ): string {

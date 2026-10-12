@@ -14,7 +14,7 @@ WordPress. Не менять окружение, Plesk, настройки др�
 - MariaDB 10.6.23, отдельная база и пользователь `prihod`.
 - SSH: предоставленный профиль Bitvise, пользователь `prihod`, не root.
 
-Установлены по прямому разрешению владельца: Core 1.0.0-rc.6, тема «Приход» 0.3.11,
+Установлены по прямому разрешению владельца: Core 1.0.0-rc.7, тема «Приход» 0.3.12,
 orthocal 1.3.78, Orthodox Donations 1.0.2 и Telegram/WhatsApp/Facebook подключения
 0.1.1. Пароли и профиль SSH не входят в репозиторий. Пароль администратора изменён
 владельцем; первоначальный установочный файл пароля устарел и для входа не используется.
@@ -52,8 +52,8 @@ tar; 24 таблицы MariaDB OK; HTTPS главной и входа 200; вх�
 ```bash
 cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
 export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
-php -d memory_limit=512M /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.6.zip --force --activate && \
-php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.11.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.7.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.12.zip --force --activate && \
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
 ```
 
@@ -82,8 +82,8 @@ scripts/apply-reference-design.php отдельно загружается в wp
 ```bash
 cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
 export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
-php -d memory_limit=512M /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.6.zip --force --activate && \
-php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.11.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.7.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.12.zip --force --activate && \
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-packages/apply-reference-design.php --user=prihod-owner && \
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
 ```
@@ -92,20 +92,20 @@ php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-ch
 Новых серверных настроек, Node/Composer, migrations или блокировок команда не содержит.
 Отчёт и ограничения точности: DESIGN_CONFORMITY.md.
 
-Текущая сборка Core rc.6 / тема 0.3.11 уже применена: два верхних блока
+Текущая сборка Core rc.7 / тема 0.3.12 уже применена: два верхних блока
 публичного расписания, отметки мини-месяца и административные колонки.
 Для повторного обновления использовать первую команду выше. Данные служб
 и статусы опубликованных страниц не менялись. Проверка включает реальные
 даты таблицы, две карточки расписания и сегодняшнюю/выбранную дату.
 
-## Только обновление темы, 0.3.11
+## Только обновление темы, 0.3.12
 
-Пакет загружен и применён. Core rc.6 и внешние плагины не обновлялись.
+Пакет загружен и применён. Core rc.7 и внешние плагины не обновлялись.
 
 ```bash
 cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
 export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
-php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.11.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.12.zip --force --activate && \
 php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
 ```
 
@@ -116,17 +116,25 @@ php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-ch
 на двух видах поминовения и двух штатных способах оплаты; на живом WordPress
 подтверждены обновлённый forms.js, его конфигурация и44 read-only проверки.
 
-Тема0.3.11 уже применена: отдельные шапки поддержки, три области контактов
+Тема0.3.12 уже применена: отдельные шапки поддержки, три области контактов
 hospitality/editorial, оформление editorial и поля цитаты. Только обновление
-темы — последняя команда выше. Core rc.6 и внешние плагины не обновлялись;
+темы — последняя команда выше. Core rc.7 и внешние плагины не обновлялись;
 44 read-only проверки и браузерные переходы CTA пройдены.
 
-Тема0.3.11 уже применена: исправлена мобильная читаемость hospitality hero;
+Тема0.3.12 уже применена: исправлена мобильная читаемость hospitality hero;
 390/430/1122px и44 read-only проверки пройдены. Плагины и серверные настройки
 не менялись. Для повторного обновления темы использовать последнюю команду выше.
 
 
-Тема 0.3.11 применена: композиция страницы обители по эталону 06, рабочие якоря,
+Тема 0.3.12 применена: композиция страницы обители по эталону 06, рабочие якоря,
 настоящие фотообласти и нижнее приглашение. Контент/настройки владельца не сохранялись.
 Повторная живая проверка: 48 checks, WP 7.1.3/PHP 8.5.11. Только тема, без Core
 или внешних подключений. Команда раздела «Только обновление темы» уже актуальна.
+
+
+Core rc.7 / тема 0.3.12 применены: собственная форма вопроса и её фото-полоса,
+темы/обязательные поля/компактная боковая колонка. 51 проверка WP 7.1.3/PHP 8.5.11.
+Старые обращения, текст страницы и настройки владельца не перезаписывались.
+Пакеты находятся в wp-content/prihod-packages. Для этого блока нужны оба пакета:
+использовать первую команду (Core + тема + проверка), без повторного импорта контента.
+Внешние плагины/подключения, PHP/Plesk и другие сайты не менялись.

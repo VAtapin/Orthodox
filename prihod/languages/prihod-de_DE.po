@@ -1662,3 +1662,168 @@ msgstr "Ausgewählte Woche"
 
 msgid "Богослужения"
 msgstr "Gottesdienste"
+
+msgid "Поделиться"
+msgstr "Teilen"
+
+msgid "Ссылка скопирована."
+msgstr "Link kopiert."
+
+msgid "Скопируйте выделенную ссылку."
+msgstr "Kopieren Sie den markierten Link."
+
+msgid "Ссылка на статью"
+msgstr "Link zum Artikel"
+
+msgid "Путь к статье"
+msgstr "Artikelnavigation"
+
+msgid "Дата и ссылка статьи"
+msgstr "Datum und Link des Artikels"
+
+msgid "Возврат к разделу"
+msgstr "Zurück zum Bereich"
+
+msgid "Через приложения"
+msgstr "Über Apps"
+
+msgid "Скопировать ссылку"
+msgstr "Link kopieren"
+
+msgid "Поминовение"
+msgstr "Gebetsanliegen"
+
+msgid "Выбранные требы"
+msgstr "Ausgewählte Gebete und Gottesdienste"
+
+msgid "Способ оплаты"
+msgstr "Zahlungsart"
+
+msgid "Ваша записка"
+msgstr "Ihr Gebetsanliegen"
+
+msgid "Ваше пожертвование"
+msgstr "Ihre Spende"
+
+msgid "Ваши контактные данные"
+msgstr "Ihre Kontaktdaten"
+
+msgid "Изменить"
+msgstr "Ändern"
+
+msgid "Периодичность"
+msgstr "Häufigkeit"
+
+msgid "Карта (Stripe)"
+msgstr "Karte (Stripe)"
+
+msgid "Поддержать храм"
+msgstr "Die Kirche unterstützen"
+
+msgid "Мы рядом"
+msgstr "Wir sind für Sie da"
+
+msgid "Живая Церковь"
+msgstr "Lebendige Kirche"
+
+msgid "Фотолетопись"
+msgstr "Fotochronik"
+
+msgid "Текст цитаты"
+msgstr "Zitattext"
+
+msgid "Источник цитаты"
+msgstr "Quelle des Zitats"
+
+msgid "Разделы страницы"
+msgstr "Abschnitte der Seite"
+
+msgid "Рады встрече с вами"
+msgstr "Wir freuen uns auf Ihren Besuch"
+
+msgid "История"
+msgstr "Geschichte"
+
+msgid "Жизнь общины"
+msgstr "Gemeindeleben"
+
+msgid "Направления деятельности"
+msgstr "Unsere Tätigkeitsbereiche"
+
+msgid "Фото после истории"
+msgstr "Fotos nach dem Geschichtsabschnitt"
+
+msgid "Фото жизни общины"
+msgstr "Fotos aus dem Gemeindeleben"
+
+msgid "Как присоединиться"
+msgstr "So können Sie teilnehmen"
+
+msgid "Узнать подробнее"
+msgstr "Mehr erfahren"
+
+msgid "Впервые в храме?"
+msgstr "Zum ersten Mal in der Kirche?"
+
+msgid "Ваш email"
+msgstr "Ihre E-Mail-Adresse"
+
+msgid "Ваше имя"
+msgstr "Ihr Name"
+
+msgid "Введите ваше имя"
+msgstr "Geben Sie Ihren Namen ein"
+
+msgid "Введите свою тему вопроса"
+msgstr "Geben Sie Ihr eigenes Thema ein"
+
+msgid "Введите свою тему вопроса."
+msgstr "Geben Sie Ihr eigenes Thema ein."
+
+msgid "Выберите тему"
+msgstr "Thema auswählen"
+
+msgid "Для другой темы укажите своё название в поле ниже."
+msgstr "Geben Sie für ein anderes Thema unten eine eigene Bezeichnung ein."
+
+msgid "Другая тема"
+msgstr "Anderes Thema"
+
+msgid "О богослужениях"
+msgstr "Zu den Gottesdiensten"
+
+msgid "О жизни прихода"
+msgstr "Zum Gemeindeleben"
+
+msgid "О записках"
+msgstr "Zu Gebetszetteln"
+
+msgid "О посещении храма"
+msgstr "Zum Kirchenbesuch"
+
+msgid "О связи со священником"
+msgstr "Zum Kontakt mit dem Priester"
+
+msgid "О таинствах и требах"
+msgstr "Zu Sakramenten und kirchlichen Diensten"
+
+msgid "Опишите ваш вопрос…"
+msgstr "Beschreiben Sie Ihre Frage…"
+
+msgid "Полоса заголовка формы"
+msgstr "Titelbereich des Formulars"
+
+msgid "Поля со звёздочкой обязательны для заполнения."
+msgstr "Felder mit einem Sternchen sind Pflichtfelder."
+
+msgid "Путь к странице"
+msgstr "Pfad zur Seite"
+
+msgid "Своя тема вопроса"
+msgstr "Eigenes Thema"
+
+msgid "Тема вопроса"
+msgstr "Thema der Frage"
+
+msgid "Фото страницы вопроса"
+msgstr "Foto der Fragenseite"

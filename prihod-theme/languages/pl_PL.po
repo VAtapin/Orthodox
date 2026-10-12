@@ -1764,3 +1764,66 @@ msgstr "Dowiedz się więcej"
 
 msgid "Впервые в храме?"
 msgstr "Pierwszy raz w świątyni?"
+
+msgid "Ваш email"
+msgstr "Twój email"
+
+msgid "Ваше имя"
+msgstr "Twoje imię"
+
+msgid "Введите ваше имя"
+msgstr "Wpisz swoje imię"
+
+msgid "Введите свою тему вопроса"
+msgstr "Wpisz własny temat pytania"
+
+msgid "Введите свою тему вопроса."
+msgstr "Wpisz własny temat pytania."
+
+msgid "Выберите тему"
+msgstr "Wybierz temat"
+
+msgid "Для другой темы укажите своё название в поле ниже."
+msgstr "Dla innego tematu wpisz własną nazwę w polu poniżej."
+
+msgid "Другая тема"
+msgstr "Inny temat"
+
+msgid "О богослужениях"
+msgstr "O nabożeństwach"
+
+msgid "О жизни прихода"
+msgstr "O życiu parafii"
+
+msgid "О записках"
+msgstr "O karteczkach modlitewnych"
+
+msgid "О посещении храма"
+msgstr "O odwiedzinach w świątyni"
+
+msgid "О связи со священником"
+msgstr "O kontakcie z kapłanem"
+
+msgid "О таинствах и требах"
+msgstr "O sakramentach i posługach"
+
+msgid "Опишите ваш вопрос…"
+msgstr "Opisz swoje pytanie…"
+
+msgid "Полоса заголовка формы"
+msgstr "Baner tytułu formularza"
+
+msgid "Поля со звёздочкой обязательны для заполнения."
+msgstr "Pola oznaczone gwiazdką są obowiązkowe."
+
+msgid "Путь к странице"
+msgstr "Ścieżka do strony"
+
+msgid "Своя тема вопроса"
+msgstr "Własny temat pytania"
+
+msgid "Тема вопроса"
+msgstr "Temat pytania"
+
+msgid "Фото страницы вопроса"
+msgstr "Zdjęcie strony pytania"

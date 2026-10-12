@@ -11,7 +11,9 @@
 в устанавливаемый плагин. `composer check` вызывает те же проверки, если Composer
 доступен в окружении; зависимостей нет.
 
-Также проверять `node --check prihod-theme/assets/settings.js`.
+Также проверять `node --check prihod-theme/assets/settings.js` и
+`node --check prihod/assets/request-form.js`. requests-smoke.php проверяет
+выбранную/свою тему через существующий submit handler в одноразовой БД, без писем.
 theme-options-smoke.php проверяет сохранение пяти схем, ограничения настроек,
 защищённую панель, импорт/повторный импорт, ручные правки, корзину и права.
 Standalone тема проверяет отдельно создание демо, назначение главной и навигацию.
