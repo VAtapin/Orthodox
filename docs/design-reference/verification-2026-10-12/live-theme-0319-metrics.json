@@ -1,0 +1,402 @@
+{
+  "theme": "0.3.19",
+  "core": "1.0.0-rc.9",
+  "wordpress": "7.1.3",
+  "php": "8.5.11",
+  "server_checks": 72,
+  "home": [
+    {
+      "overflow": false,
+      "photoCss": "https://prihod.georg-kloster.ru/wp-content/themes/prihod-theme/assets/photos.css?ver=0.3.19.1791827319",
+      "portraits": [
+        {
+          "background": "url(\"https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n-768x769.jpg\")",
+          "filter": "blur(12px) brightness(0.72)",
+          "fit": "contain",
+          "height": 80,
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n-768x769.jpg",
+          "width": 249.75
+        },
+        {
+          "background": "url(\"https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n-768x769.jpg\")",
+          "filter": "blur(12px) brightness(0.72)",
+          "fit": "contain",
+          "height": 85,
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n-768x769.jpg",
+          "width": 201.40625
+        }
+      ],
+      "url": "https://prihod.georg-kloster.ru/?prihod_preview=classic",
+      "width": 1122
+    },
+    {
+      "overflow": false,
+      "photoCss": "https://prihod.georg-kloster.ru/wp-content/themes/prihod-theme/assets/photos.css?ver=0.3.19.1791827319",
+      "portraits": [
+        {
+          "background": "url(\"https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n-768x769.jpg\")",
+          "filter": "blur(12px) brightness(0.72)",
+          "fit": "contain",
+          "height": 85,
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n-768x769.jpg",
+          "width": 199
+        },
+        {
+          "background": "none",
+          "filter": "none",
+          "fit": "contain",
+          "height": 172.390625,
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n-768x769.jpg",
+          "width": 157.40625
+        }
+      ],
+      "url": "https://prihod.georg-kloster.ru/?prihod_preview=editorial",
+      "width": 1122
+    },
+    {
+      "overflow": false,
+      "photoCss": "https://prihod.georg-kloster.ru/wp-content/themes/prihod-theme/assets/photos.css?ver=0.3.19.1791827319",
+      "portraits": [
+        {
+          "background": "url(\"https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n-768x769.jpg\")",
+          "filter": "blur(12px) brightness(0.72)",
+          "fit": "contain",
+          "height": 107,
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n-768x769.jpg",
+          "width": 201.40625
+        }
+      ],
+      "url": "https://prihod.georg-kloster.ru/?prihod_preview=hospitality",
+      "width": 1122
+    },
+    {
+      "overflow": false,
+      "photoCss": "https://prihod.georg-kloster.ru/wp-content/themes/prihod-theme/assets/photos.css?ver=0.3.19.1791827319",
+      "portraits": [
+        {
+          "background": "none",
+          "filter": "none",
+          "fit": "cover",
+          "height": 140,
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n-768x769.jpg",
+          "width": 92.953125
+        }
+      ],
+      "url": "https://prihod.georg-kloster.ru/?prihod_preview=tradition",
+      "width": 1122
+    },
+    {
+      "overflow": false,
+      "photoCss": "https://prihod.georg-kloster.ru/wp-content/themes/prihod-theme/assets/photos.css?ver=0.3.19.1791827319",
+      "portraits": [
+        {
+          "background": "none",
+          "filter": "none",
+          "fit": "contain",
+          "height": 192.203125,
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n-768x769.jpg",
+          "width": 144.15625
+        }
+      ],
+      "url": "https://prihod.georg-kloster.ru/?prihod_preview=blue",
+      "width": 1122
+    },
+    {
+      "overflow": false,
+      "portraits": [
+        {
+          "background": "url(\"https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n-768x769.jpg\")",
+          "filter": "blur(12px) brightness(0.72)",
+          "fit": "contain",
+          "height": 100,
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n-768x769.jpg",
+          "width": 164.5
+        },
+        {
+          "background": "url(\"https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n-768x769.jpg\")",
+          "filter": "blur(12px) brightness(0.72)",
+          "fit": "contain",
+          "height": 110,
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n-768x769.jpg",
+          "width": 160
+        }
+      ],
+      "url": "https://prihod.georg-kloster.ru/?prihod_preview=classic",
+      "width": 390
+    },
+    {
+      "overflow": false,
+      "portraits": [
+        {
+          "background": "url(\"https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n-768x769.jpg\")",
+          "filter": "blur(12px) brightness(0.72)",
+          "fit": "contain",
+          "height": 105,
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n-768x769.jpg",
+          "width": 166.5
+        },
+        {
+          "background": "none",
+          "filter": "none",
+          "fit": "contain",
+          "height": 110,
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n-768x769.jpg",
+          "width": 160
+        }
+      ],
+      "url": "https://prihod.georg-kloster.ru/?prihod_preview=editorial",
+      "width": 390
+    },
+    {
+      "overflow": false,
+      "portraits": [
+        {
+          "background": "url(\"https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n-768x769.jpg\")",
+          "filter": "blur(12px) brightness(0.72)",
+          "fit": "contain",
+          "height": 107,
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n-768x769.jpg",
+          "width": 160
+        }
+      ],
+      "url": "https://prihod.georg-kloster.ru/?prihod_preview=hospitality",
+      "width": 390
+    },
+    {
+      "overflow": false,
+      "portraits": [
+        {
+          "background": "none",
+          "filter": "none",
+          "fit": "contain",
+          "height": 115,
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n-768x769.jpg",
+          "width": 160
+        }
+      ],
+      "url": "https://prihod.georg-kloster.ru/?prihod_preview=tradition",
+      "width": 390
+    },
+    {
+      "overflow": false,
+      "portraits": [
+        {
+          "background": "none",
+          "filter": "none",
+          "fit": "contain",
+          "height": 110,
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/524331069_10240316547955133_7476596320833021101_n-768x769.jpg",
+          "width": 78.75
+        }
+      ],
+      "url": "https://prihod.georg-kloster.ru/?prihod_preview=blue",
+      "width": 390
+    }
+  ],
+  "gallery": [
+    {
+      "caption": "Праздник Святой Троицы в монастыре — 2026 · 2 / 5",
+      "dialog": "Увеличено изображение 2 из 5: Праздник Святой Троицы в монастыре — 2026",
+      "images": [
+        {
+          "fit": "contain",
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/troica-2026-819x1024.jpeg"
+        },
+        {
+          "fit": "contain",
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/troica-2026.jpeg"
+        }
+      ],
+      "url": "https://prihod.georg-kloster.ru/?page_id=19&prihod_preview=classic",
+      "width": 1122,
+      "closed": true
+    },
+    {
+      "caption": "Праздник Святой Троицы в монастыре — 2026 · 2 / 5",
+      "dialog": "Увеличено изображение 2 из 5: Праздник Святой Троицы в монастыре — 2026",
+      "images": [
+        {
+          "fit": "contain",
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/troica-2026.jpeg"
+        },
+        {
+          "fit": "contain",
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/troica-2026.jpeg"
+        }
+      ],
+      "url": "https://prihod.georg-kloster.ru/?page_id=19&prihod_preview=editorial",
+      "width": 1122,
+      "closed": true
+    },
+    {
+      "caption": "Праздник Святой Троицы в монастыре — 2026 · 2 / 5",
+      "dialog": "Увеличено изображение 2 из 5: Праздник Святой Троицы в монастыре — 2026",
+      "images": [
+        {
+          "fit": "contain",
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/troica-2026.jpeg"
+        },
+        {
+          "fit": "contain",
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/troica-2026.jpeg"
+        }
+      ],
+      "url": "https://prihod.georg-kloster.ru/?page_id=19&prihod_preview=hospitality",
+      "width": 1122,
+      "closed": true
+    },
+    {
+      "caption": "Праздник Святой Троицы в монастыре — 2026 · 2 / 5",
+      "dialog": "Увеличено изображение 2 из 5: Праздник Святой Троицы в монастыре — 2026",
+      "images": [
+        {
+          "fit": "contain",
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/troica-2026.jpeg"
+        },
+        {
+          "fit": "contain",
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/troica-2026.jpeg"
+        }
+      ],
+      "url": "https://prihod.georg-kloster.ru/?page_id=19&prihod_preview=tradition",
+      "width": 1122,
+      "closed": true
+    },
+    {
+      "caption": "Праздник Святой Троицы в монастыре — 2026 · 2 / 5",
+      "dialog": "Увеличено изображение 2 из 5: Праздник Святой Троицы в монастыре — 2026",
+      "images": [
+        {
+          "fit": "contain",
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/troica-2026.jpeg"
+        },
+        {
+          "fit": "contain",
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/troica-2026.jpeg"
+        }
+      ],
+      "url": "https://prihod.georg-kloster.ru/?page_id=19&prihod_preview=blue",
+      "width": 1122,
+      "closed": true
+    },
+    {
+      "caption": "Праздник Святой Троицы в монастыре — 2026 · 2 / 5",
+      "dialog": "Увеличено изображение 2 из 5: Праздник Святой Троицы в монастыре — 2026",
+      "images": [
+        {
+          "fit": "contain",
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/troica-2026.jpeg"
+        },
+        {
+          "fit": "contain",
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/troica-2026.jpeg"
+        }
+      ],
+      "url": "https://prihod.georg-kloster.ru/?page_id=19&prihod_preview=classic",
+      "width": 390,
+      "closed": true
+    },
+    {
+      "caption": "Праздник Святой Троицы в монастыре — 2026 · 2 / 5",
+      "dialog": "Увеличено изображение 2 из 5: Праздник Святой Троицы в монастыре — 2026",
+      "images": [
+        {
+          "fit": "contain",
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/troica-2026.jpeg"
+        },
+        {
+          "fit": "contain",
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/troica-2026.jpeg"
+        }
+      ],
+      "url": "https://prihod.georg-kloster.ru/?page_id=19&prihod_preview=editorial",
+      "width": 390,
+      "closed": true
+    },
+    {
+      "caption": "Праздник Святой Троицы в монастыре — 2026 · 2 / 5",
+      "dialog": "Увеличено изображение 2 из 5: Праздник Святой Троицы в монастыре — 2026",
+      "images": [
+        {
+          "fit": "contain",
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/troica-2026.jpeg"
+        },
+        {
+          "fit": "contain",
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/troica-2026.jpeg"
+        }
+      ],
+      "url": "https://prihod.georg-kloster.ru/?page_id=19&prihod_preview=hospitality",
+      "width": 390,
+      "closed": true
+    },
+    {
+      "caption": "Праздник Святой Троицы в монастыре — 2026 · 2 / 5",
+      "dialog": "Увеличено изображение 2 из 5: Праздник Святой Троицы в монастыре — 2026",
+      "images": [
+        {
+          "fit": "contain",
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/troica-2026.jpeg"
+        },
+        {
+          "fit": "contain",
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/troica-2026.jpeg"
+        }
+      ],
+      "url": "https://prihod.georg-kloster.ru/?page_id=19&prihod_preview=tradition",
+      "width": 390,
+      "closed": true
+    },
+    {
+      "caption": "Праздник Святой Троицы в монастыре — 2026 · 2 / 5",
+      "dialog": "Увеличено изображение 2 из 5: Праздник Святой Троицы в монастыре — 2026",
+      "images": [
+        {
+          "fit": "contain",
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/troica-2026.jpeg"
+        },
+        {
+          "fit": "contain",
+          "loaded": true,
+          "src": "https://prihod.georg-kloster.ru/wp-content/uploads/2026/10/troica-2026.jpeg"
+        }
+      ],
+      "url": "https://prihod.georg-kloster.ru/?page_id=19&prihod_preview=blue",
+      "width": 390,
+      "closed": true
+    }
+  ]
+}
