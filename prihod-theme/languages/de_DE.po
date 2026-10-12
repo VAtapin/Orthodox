@@ -1881,3 +1881,21 @@ msgstr "Titelbild für Pilger"
 
 msgid "Фото страницы паломникам"
 msgstr "Fotos der Pilgerseite"
+
+msgid "С любовью к Богу и людям"
+msgstr "Mit Liebe zu Gott und den Menschen"
+
+msgid "Вера объединяет сердца"
+msgstr "Der Glaube verbindet Herzen"
+
+msgid "Девиз в шапке классической схемы"
+msgstr "Motto im klassischen Kopfbereich"
+
+msgid "Надпись первого экрана классической схемы"
+msgstr "Aufschrift im klassischen ersten Bereich"
+
+msgid "Цитата под кнопками синей схемы"
+msgstr "Zitat unter den Schaltflächen des blauen Stils"
+
+msgid "Источник цитаты синей схемы"
+msgstr "Quelle des Zitats im blauen Stil"

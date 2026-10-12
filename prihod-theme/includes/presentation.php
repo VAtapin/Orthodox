@@ -38,9 +38,9 @@ function prihod_theme_compact_services( int $limit = 1 ): string {
     }
     return $html ?: '<p class="prihod-service-empty">' . esc_html__( 'Богослужения на выбранный период не указаны.', 'prihod' ) . '</p>';
 }
-function prihod_theme_verse(): string {
+function prihod_theme_verse( string $text_key = 'quote_text', string $source_key = 'quote_source' ): string {
     $options = prihod_theme_options();
-    return $options['quote_text'] ? '<blockquote class="prihod-verse"><p>«' . esc_html( $options['quote_text'] ) . '»</p>' . ( $options['quote_source'] ? '<cite>' . esc_html( $options['quote_source'] ) . '</cite>' : '' ) . '</blockquote>' : '';
+    return $options[$text_key] ? '<blockquote class="prihod-verse"><p>«' . esc_html( $options[$text_key] ) . '»</p>' . ( $options[$source_key] ? '<cite>' . esc_html( $options[$source_key] ) . '</cite>' : '' ) . '</blockquote>' : '';
 }
 function prihod_theme_section_title( string $title, string $url = '', string $link = '' ): string {
     $eyebrow = '';

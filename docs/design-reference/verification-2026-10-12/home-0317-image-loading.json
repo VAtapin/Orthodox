@@ -1,0 +1,55 @@
+{
+  "checks": [
+    {
+      "missing": [],
+      "scheme": "hospitality",
+      "size": 1122
+    },
+    {
+      "missing": [],
+      "scheme": "editorial",
+      "size": 1122
+    },
+    {
+      "missing": [],
+      "scheme": "tradition",
+      "size": 1122
+    },
+    {
+      "missing": [],
+      "scheme": "blue",
+      "size": 1122
+    },
+    {
+      "missing": [],
+      "scheme": "classic",
+      "size": 1122
+    },
+    {
+      "missing": [],
+      "scheme": "hospitality",
+      "size": 390
+    },
+    {
+      "missing": [],
+      "scheme": "editorial",
+      "size": 390
+    },
+    {
+      "missing": [],
+      "scheme": "tradition",
+      "size": 390
+    },
+    {
+      "missing": [],
+      "scheme": "blue",
+      "size": 390
+    },
+    {
+      "missing": [],
+      "scheme": "classic",
+      "size": 390
+    }
+  ],
+  "method": "Temporary eager-loading helper in disposable fixture only. Every native image complete with nonzero natural width before final screenshots; product lazy-loading remains unchanged."
+}

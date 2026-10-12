@@ -5,7 +5,7 @@ $check = static function ( $condition, $message ) use ( &$checks ) { if ( ! $con
 foreach ( array( 'classic' => 4, 'hospitality' => 5, 'editorial' => 5, 'tradition' => 5, 'blue' => 5 ) as $scheme => $count ) {
     $html = prihod_theme_home_features( $scheme, array_values( $first['images'] ), 'О монастыре', true );
     $check( substr_count( $html, 'class="prihod-feature ' ) + substr_count( $html, 'class="prihod-feature"' ) === $count, 'Reference feature count: ' . $scheme );
-    $check( substr_count( $html, 'prihod-feature-photo' ) === ( 'editorial' === $scheme ? $count - 1 : ( in_array( $scheme, array( 'classic', 'tradition' ), true ) ? $count : 0 ) ), 'Reference photo/icon family: ' . $scheme );
+    $check( substr_count( $html, 'prihod-feature-photo' ) === ( 'tradition' === $scheme ? 3 : ( 'editorial' === $scheme ? $count - 1 : ( 'classic' === $scheme ? $count : 0 ) ) ), 'Reference photo/icon family: ' . $scheme );
     $html = prihod_theme_home_news( $scheme, true );
     $check( substr_count( $html, 'class="prihod-news-card"' ) === ( 'hospitality' === $scheme ? 4 : 3 ), 'Reference news count: ' . $scheme );
 }
@@ -111,4 +111,5 @@ require __DIR__ . '/catalog-smoke.php';
 require __DIR__ . '/clergy-design-smoke.php';
 require __DIR__ . '/pilgrim-design-smoke.php';
 require __DIR__ . '/contacts-design-smoke.php';
+require __DIR__ . '/home-detail-smoke.php';
 echo "DESIGN_SMOKE_OK: {$checks} checks.\n";

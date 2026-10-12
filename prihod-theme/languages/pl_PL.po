@@ -1881,3 +1881,21 @@ msgstr "Zdjęcie nagłówka dla pielgrzymów"
 
 msgid "Фото страницы паломникам"
 msgstr "Zdjęcia strony dla pielgrzymów"
+
+msgid "С любовью к Богу и людям"
+msgstr "Z miłością do Boga i ludzi"
+
+msgid "Вера объединяет сердца"
+msgstr "Wiara łączy serca"
+
+msgid "Девиз в шапке классической схемы"
+msgstr "Motto w nagłówku klasycznego stylu"
+
+msgid "Надпись первого экрана классической схемы"
+msgstr "Napis w pierwszej sekcji klasycznego stylu"
+
+msgid "Цитата под кнопками синей схемы"
+msgstr "Cytat pod przyciskami niebieskiego stylu"
+
+msgid "Источник цитаты синей схемы"
+msgstr "Źródło cytatu niebieskiego stylu"

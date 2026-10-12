@@ -1,0 +1,857 @@
+{
+  "beforeLive0316": [
+    {
+      "container": {
+        "height": 312.46875,
+        "width": 1043,
+        "x": 32,
+        "y": 138.734375
+      },
+      "feature": {
+        "height": 108.5625,
+        "width": 199,
+        "x": 32,
+        "y": 465.203125
+      },
+      "gallery": {
+        "height": 85,
+        "width": 1043,
+        "x": 32,
+        "y": 1087.9375
+      },
+      "header": {
+        "height": 106.734375,
+        "width": 1107,
+        "x": 0,
+        "y": 32
+      },
+      "hero": {
+        "height": 312.46875,
+        "width": 1107,
+        "x": 0,
+        "y": 138.734375
+      },
+      "news": {
+        "height": 236.375,
+        "width": 1043,
+        "x": 32,
+        "y": 806.765625
+      },
+      "portrait": null,
+      "quote": null,
+      "scheme": "hospitality",
+      "service": {
+        "height": 276.46875,
+        "width": 224,
+        "x": 851,
+        "y": 156.734375
+      },
+      "viewport": 1122
+    },
+    {
+      "container": {
+        "height": 384.6875,
+        "width": 1107,
+        "x": 0,
+        "y": 137.4375
+      },
+      "feature": {
+        "height": 173,
+        "width": 199,
+        "x": 32,
+        "y": 534.125
+      },
+      "gallery": {
+        "height": 172.390625,
+        "width": 823,
+        "x": 252,
+        "y": 1120.171875
+      },
+      "header": {
+        "height": 105.4375,
+        "width": 1107,
+        "x": 0,
+        "y": 32
+      },
+      "hero": {
+        "height": 384.6875,
+        "width": 1107,
+        "x": 0,
+        "y": 137.4375
+      },
+      "news": {
+        "height": 383.046875,
+        "width": 759.75,
+        "x": 32,
+        "y": 723.125
+      },
+      "portrait": {
+        "height": 85,
+        "width": 199,
+        "x": 665,
+        "y": 534.125
+      },
+      "quote": {
+        "height": 383.046875,
+        "width": 253.25,
+        "x": 821.75,
+        "y": 723.125
+      },
+      "scheme": "editorial",
+      "service": {
+        "height": 384.6875,
+        "width": 357.09375,
+        "x": 749.890625,
+        "y": 137.4375
+      },
+      "viewport": 1122
+    },
+    {
+      "container": {
+        "height": 290,
+        "width": 995,
+        "x": 56,
+        "y": 166.890625
+      },
+      "feature": {
+        "height": 205.96875,
+        "width": 189.390625,
+        "x": 56,
+        "y": 561.984375
+      },
+      "gallery": {
+        "height": 140,
+        "width": 387.609375,
+        "x": 663.390625,
+        "y": 1038.75
+      },
+      "header": {
+        "height": 134.890625,
+        "width": 1059,
+        "x": 24,
+        "y": 32
+      },
+      "hero": {
+        "height": 290,
+        "width": 1059,
+        "x": 24,
+        "y": 166.890625
+      },
+      "news": {
+        "height": 198.6875,
+        "width": 581.390625,
+        "x": 56,
+        "y": 1004.953125
+      },
+      "portrait": {
+        "height": 90,
+        "width": 187.40625,
+        "x": 661.1875,
+        "y": 562.984375
+      },
+      "quote": null,
+      "scheme": "tradition",
+      "service": {
+        "height": 75.09375,
+        "width": 995,
+        "x": 56,
+        "y": 468.890625
+      },
+      "viewport": 1122
+    },
+    {
+      "container": {
+        "height": 413.71875,
+        "width": 987,
+        "x": 60,
+        "y": 125
+      },
+      "feature": {
+        "height": 115.234375,
+        "width": 187.796875,
+        "x": 60,
+        "y": 556.71875
+      },
+      "gallery": {
+        "height": 85,
+        "width": 905,
+        "x": 60,
+        "y": 1267.875
+      },
+      "header": {
+        "height": 93,
+        "width": 1107,
+        "x": 0,
+        "y": 32
+      },
+      "hero": {
+        "height": 413.71875,
+        "width": 1107,
+        "x": 0,
+        "y": 125
+      },
+      "news": {
+        "height": 271.734375,
+        "width": 987,
+        "x": 60,
+        "y": 930.34375
+      },
+      "portrait": null,
+      "quote": null,
+      "scheme": "blue",
+      "service": {
+        "height": 363.71875,
+        "width": 224,
+        "x": 823,
+        "y": 150
+      },
+      "viewport": 1122
+    },
+    {
+      "container": {
+        "height": 280,
+        "width": 1043,
+        "x": 32,
+        "y": 125
+      },
+      "feature": {
+        "height": 185.890625,
+        "width": 251.75,
+        "x": 32,
+        "y": 498.390625
+      },
+      "gallery": {
+        "height": 85,
+        "width": 1043,
+        "x": 32,
+        "y": 1228.15625
+      },
+      "header": {
+        "height": 93,
+        "width": 1107,
+        "x": 0,
+        "y": 32
+      },
+      "hero": {
+        "height": 280,
+        "width": 1107,
+        "x": 0,
+        "y": 125
+      },
+      "news": {
+        "height": 268.078125,
+        "width": 1043,
+        "x": 32,
+        "y": 915.28125
+      },
+      "portrait": {
+        "height": 80,
+        "width": 249.75,
+        "x": 560.5,
+        "y": 499.390625
+      },
+      "quote": null,
+      "scheme": "classic",
+      "service": {
+        "height": 69.390625,
+        "width": 1043,
+        "x": 32,
+        "y": 417
+      },
+      "viewport": 1122
+    }
+  ],
+  "afterLocal0317": [
+    {
+      "container": {
+        "height": 312.46875,
+        "width": 1043,
+        "x": 32,
+        "y": 138.734375
+      },
+      "date": {
+        "height": 19.5,
+        "width": 182,
+        "x": 872,
+        "y": 277.703125
+      },
+      "feature": {
+        "height": 106.5625,
+        "width": 199,
+        "x": 32,
+        "y": 465.203125
+      },
+      "gallery": {
+        "height": 107,
+        "width": 1043,
+        "x": 32,
+        "y": 1083.9375
+      },
+      "header": {
+        "height": 106.734375,
+        "width": 1107,
+        "x": 0,
+        "y": 32
+      },
+      "headerQuote": null,
+      "hero": {
+        "height": 312.46875,
+        "width": 1107,
+        "x": 0,
+        "y": 138.734375
+      },
+      "leftQuote": {
+        "height": 39.1875,
+        "width": 380,
+        "x": 92,
+        "y": 336.125
+      },
+      "news": {
+        "height": 234.375,
+        "width": 1043,
+        "x": 32,
+        "y": 804.765625
+      },
+      "overflow": false,
+      "portrait": null,
+      "portraitFit": null,
+      "quote": null,
+      "scheme": "hospitality",
+      "service": {
+        "height": 276.46875,
+        "width": 224,
+        "x": 851,
+        "y": 156.734375
+      },
+      "symbols": 0,
+      "time": {
+        "height": 24.1875,
+        "width": 182,
+        "x": 872,
+        "y": 304.203125
+      },
+      "viewport": 1122
+    },
+    {
+      "container": {
+        "height": 395.359375,
+        "width": 1107,
+        "x": 0,
+        "y": 145.296875
+      },
+      "date": {
+        "height": 18.6875,
+        "width": 46.5,
+        "x": 830.890625,
+        "y": 264.484375
+      },
+      "feature": {
+        "height": 173,
+        "width": 199,
+        "x": 32,
+        "y": 552.65625
+      },
+      "gallery": {
+        "height": 172.390625,
+        "width": 823,
+        "x": 252,
+        "y": 1138.703125
+      },
+      "header": {
+        "height": 113.296875,
+        "width": 1107,
+        "x": 0,
+        "y": 32
+      },
+      "headerQuote": {
+        "height": 44,
+        "width": 200,
+        "x": 336,
+        "y": 44
+      },
+      "hero": {
+        "height": 395.359375,
+        "width": 1107,
+        "x": 0,
+        "y": 145.296875
+      },
+      "leftQuote": null,
+      "news": {
+        "height": 383.046875,
+        "width": 715.046875,
+        "x": 32,
+        "y": 741.65625
+      },
+      "overflow": false,
+      "portrait": {
+        "height": 85,
+        "width": 199,
+        "x": 665,
+        "y": 552.65625
+      },
+      "portraitFit": "contain",
+      "quote": {
+        "height": 283.75,
+        "width": 297.953125,
+        "x": 777.046875,
+        "y": 741.65625
+      },
+      "scheme": "editorial",
+      "service": {
+        "height": 395.359375,
+        "width": 357.09375,
+        "x": 749.890625,
+        "y": 145.296875
+      },
+      "symbols": 0,
+      "time": {
+        "height": 18.6875,
+        "width": 42.984375,
+        "x": 882.390625,
+        "y": 264.484375
+      },
+      "viewport": 1122
+    },
+    {
+      "container": {
+        "height": 290,
+        "width": 1023,
+        "x": 42,
+        "y": 166.890625
+      },
+      "date": {
+        "height": 33.59375,
+        "width": 145.515625,
+        "x": 411,
+        "y": 486.78125
+      },
+      "feature": {
+        "height": 205.96875,
+        "width": 195,
+        "x": 42,
+        "y": 556.28125
+      },
+      "gallery": {
+        "height": 140,
+        "width": 398.796875,
+        "x": 666.1875,
+        "y": 1061.59375
+      },
+      "header": {
+        "height": 134.890625,
+        "width": 1059,
+        "x": 24,
+        "y": 32
+      },
+      "headerQuote": null,
+      "hero": {
+        "height": 290,
+        "width": 1059,
+        "x": 24,
+        "y": 166.890625
+      },
+      "leftQuote": null,
+      "news": {
+        "height": 198.6875,
+        "width": 598.1875,
+        "x": 42,
+        "y": 1027.796875
+      },
+      "overflow": false,
+      "portrait": null,
+      "quote": null,
+      "scheme": "tradition",
+      "service": {
+        "height": 69.390625,
+        "width": 1023,
+        "x": 42,
+        "y": 468.890625
+      },
+      "symbols": 2,
+      "time": {
+        "height": 41.296875,
+        "width": 72,
+        "x": 568.515625,
+        "y": 482.9375
+      },
+      "viewport": 1122
+    },
+    {
+      "container": {
+        "height": 341.578125,
+        "width": 987,
+        "x": 60,
+        "y": 125
+      },
+      "date": {
+        "height": 30,
+        "width": 117.84375,
+        "x": 842,
+        "y": 256
+      },
+      "feature": {
+        "height": 115.234375,
+        "width": 187.796875,
+        "x": 60,
+        "y": 484.578125
+      },
+      "gallery": {
+        "height": 85,
+        "width": 905,
+        "x": 60,
+        "y": 1216.40625
+      },
+      "header": {
+        "height": 93,
+        "width": 1107,
+        "x": 0,
+        "y": 32
+      },
+      "headerQuote": null,
+      "hero": {
+        "height": 341.578125,
+        "width": 1107,
+        "x": 0,
+        "y": 125
+      },
+      "leftQuote": {
+        "height": 37.28125,
+        "width": 380,
+        "x": 60,
+        "y": 384.46875
+      },
+      "news": {
+        "height": 292.40625,
+        "width": 987,
+        "x": 60,
+        "y": 858.203125
+      },
+      "overflow": false,
+      "portrait": null,
+      "quote": null,
+      "scheme": "blue",
+      "service": {
+        "height": 305.578125,
+        "width": 224,
+        "x": 823,
+        "y": 143
+      },
+      "symbols": 0,
+      "time": {
+        "height": 25.296875,
+        "width": 58.15625,
+        "x": 969.84375,
+        "y": 258.34375
+      },
+      "viewport": 1122
+    },
+    {
+      "container": {
+        "height": 280,
+        "width": 1043,
+        "x": 32,
+        "y": 125
+      },
+      "date": {
+        "height": 43.390625,
+        "width": 180.890625,
+        "x": 316,
+        "y": 430
+      },
+      "feature": {
+        "height": 185.890625,
+        "width": 251.75,
+        "x": 32,
+        "y": 498.390625
+      },
+      "gallery": {
+        "height": 85,
+        "width": 1043,
+        "x": 32,
+        "y": 1228.15625
+      },
+      "header": {
+        "height": 93,
+        "width": 1107,
+        "x": 0,
+        "y": 32
+      },
+      "headerQuote": null,
+      "hero": {
+        "height": 280,
+        "width": 1107,
+        "x": 0,
+        "y": 125
+      },
+      "leftQuote": {
+        "height": 19.59375,
+        "width": 450,
+        "x": 85,
+        "y": 246.21875
+      },
+      "news": {
+        "height": 268.078125,
+        "width": 1043,
+        "x": 32,
+        "y": 915.28125
+      },
+      "overflow": false,
+      "portrait": {
+        "height": 80,
+        "width": 249.75,
+        "x": 560.5,
+        "y": 499.390625
+      },
+      "portraitFit": "contain",
+      "quote": null,
+      "scheme": "classic",
+      "service": {
+        "height": 69.390625,
+        "width": 1043,
+        "x": 32,
+        "y": 417
+      },
+      "symbols": 0,
+      "time": {
+        "height": 41.296875,
+        "width": 80,
+        "x": 510.890625,
+        "y": 431.046875
+      },
+      "viewport": 1122
+    }
+  ],
+  "mobile": [
+    {
+      "heroHeight": 765.796875,
+      "links": [
+        "http://127.0.0.1:9401/%d1%80%d0%b0%d1%81%d0%bf%d0%b8%d1%81%d0%b0%d0%bd%d0%b8%d0%b5-%d0%b1%d0%be%d0%b3%d0%be%d1%81%d0%bb%d1%83%d0%b6%d0%b5%d0%bd%d0%b8%d0%b9/?prihod_preview=hospitality",
+        "http://127.0.0.1:9401/%d0%be-%d0%bf%d1%80%d0%b8%d1%85%d0%be%d0%b4%d0%b5/?prihod_preview=hospitality",
+        "http://127.0.0.1:9401/%d0%bd%d0%be%d0%b2%d0%be%d1%81%d1%82%d0%b8/?prihod_preview=hospitality",
+        "http://127.0.0.1:9401/%d0%b2%d0%be%d0%bf%d1%80%d0%be%d1%81-%d1%81%d0%b2%d1%8f%d1%89%d0%b5%d0%bd%d0%bd%d0%b8%d0%ba%d1%83/?prihod_preview=hospitality",
+        "http://127.0.0.1:9401/%d0%ba%d0%be%d0%bd%d1%82%d0%b0%d0%ba%d1%82%d1%8b/?prihod_preview=hospitality"
+      ],
+      "overflow": false,
+      "phone": "tel:+491714340444",
+      "portraitFits": [
+        "contain"
+      ],
+      "scheme": "hospitality",
+      "viewport": 390
+    },
+    {
+      "heroHeight": 929.6875,
+      "links": [
+        "http://127.0.0.1:9401/%d1%80%d0%b0%d1%81%d0%bf%d0%b8%d1%81%d0%b0%d0%bd%d0%b8%d0%b5-%d0%b1%d0%be%d0%b3%d0%be%d1%81%d0%bb%d1%83%d0%b6%d0%b5%d0%bd%d0%b8%d0%b9/?prihod_preview=editorial",
+        "http://127.0.0.1:9401/%d0%bd%d0%be%d0%b2%d0%be%d1%81%d1%82%d0%b8/?prihod_preview=editorial",
+        "http://127.0.0.1:9401/%d0%be-%d0%bf%d1%80%d0%b8%d1%85%d0%be%d0%b4%d0%b5/?prihod_preview=editorial",
+        "http://127.0.0.1:9401/%d0%b2%d0%be%d0%bf%d1%80%d0%be%d1%81-%d1%81%d0%b2%d1%8f%d1%89%d0%b5%d0%bd%d0%bd%d0%b8%d0%ba%d1%83/?prihod_preview=editorial",
+        "http://127.0.0.1:9401/%d0%bf%d0%be%d0%b6%d0%b5%d1%80%d1%82%d0%b2%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d1%8f/?prihod_preview=editorial"
+      ],
+      "overflow": false,
+      "phone": "tel:+491714340444",
+      "portraitFits": [
+        "contain",
+        "contain"
+      ],
+      "scheme": "editorial",
+      "viewport": 390
+    },
+    {
+      "heroHeight": 441.109375,
+      "links": [
+        "http://127.0.0.1:9401/%d1%80%d0%b0%d1%81%d0%bf%d0%b8%d1%81%d0%b0%d0%bd%d0%b8%d0%b5-%d0%b1%d0%be%d0%b3%d0%be%d1%81%d0%bb%d1%83%d0%b6%d0%b5%d0%bd%d0%b8%d0%b9/?prihod_preview=tradition",
+        "http://127.0.0.1:9401/%d0%bd%d0%be%d0%b2%d0%be%d1%81%d1%82%d0%b8/?prihod_preview=tradition",
+        "http://127.0.0.1:9401/%d0%be-%d0%bf%d1%80%d0%b8%d1%85%d0%be%d0%b4%d0%b5/?prihod_preview=tradition",
+        "http://127.0.0.1:9401/%d0%b2%d0%be%d0%bf%d1%80%d0%be%d1%81-%d1%81%d0%b2%d1%8f%d1%89%d0%b5%d0%bd%d0%bd%d0%b8%d0%ba%d1%83/?prihod_preview=tradition",
+        "http://127.0.0.1:9401/%d0%bf%d0%be%d0%b6%d0%b5%d1%80%d1%82%d0%b2%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d1%8f/?prihod_preview=tradition"
+      ],
+      "overflow": false,
+      "phone": "tel:+491714340444",
+      "portraitFits": [
+        "contain"
+      ],
+      "scheme": "tradition",
+      "viewport": 390
+    },
+    {
+      "heroHeight": 783.1875,
+      "links": [
+        "http://127.0.0.1:9401/%d1%80%d0%b0%d1%81%d0%bf%d0%b8%d1%81%d0%b0%d0%bd%d0%b8%d0%b5-%d0%b1%d0%be%d0%b3%d0%be%d1%81%d0%bb%d1%83%d0%b6%d0%b5%d0%bd%d0%b8%d0%b9/?prihod_preview=blue",
+        "http://127.0.0.1:9401/%d0%be-%d0%bf%d1%80%d0%b8%d1%85%d0%be%d0%b4%d0%b5/?prihod_preview=blue",
+        "http://127.0.0.1:9401/%d0%bd%d0%be%d0%b2%d0%be%d1%81%d1%82%d0%b8/?prihod_preview=blue",
+        "http://127.0.0.1:9401/%d0%b2%d0%be%d0%bf%d1%80%d0%be%d1%81-%d1%81%d0%b2%d1%8f%d1%89%d0%b5%d0%bd%d0%bd%d0%b8%d0%ba%d1%83/?prihod_preview=blue",
+        "http://127.0.0.1:9401/%d0%ba%d0%be%d0%bd%d1%82%d0%b0%d0%ba%d1%82%d1%8b/?prihod_preview=blue"
+      ],
+      "overflow": false,
+      "phone": "tel:+491714340444",
+      "portraitFits": [
+        "contain"
+      ],
+      "scheme": "blue",
+      "viewport": 390
+    },
+    {
+      "heroHeight": 464.734375,
+      "links": [
+        "http://127.0.0.1:9401/%d1%80%d0%b0%d1%81%d0%bf%d0%b8%d1%81%d0%b0%d0%bd%d0%b8%d0%b5-%d0%b1%d0%be%d0%b3%d0%be%d1%81%d0%bb%d1%83%d0%b6%d0%b5%d0%bd%d0%b8%d0%b9/?prihod_preview=classic",
+        "http://127.0.0.1:9401/%d0%bd%d0%be%d0%b2%d0%be%d1%81%d1%82%d0%b8/?prihod_preview=classic",
+        "http://127.0.0.1:9401/%d0%b2%d0%be%d0%bf%d1%80%d0%be%d1%81-%d1%81%d0%b2%d1%8f%d1%89%d0%b5%d0%bd%d0%bd%d0%b8%d0%ba%d1%83/?prihod_preview=classic",
+        "http://127.0.0.1:9401/%d0%bf%d0%be%d0%b6%d0%b5%d1%80%d1%82%d0%b2%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d1%8f/?prihod_preview=classic"
+      ],
+      "overflow": false,
+      "phone": "tel:+491714340444",
+      "portraitFits": [
+        "contain",
+        "contain"
+      ],
+      "scheme": "classic",
+      "viewport": 390
+    }
+  ],
+  "pairs": [
+    {
+      "scheme": "hospitality",
+      "viewport": 1101,
+      "reference": "01-home.png",
+      "referenceX": 51,
+      "referenceTop": 54,
+      "width": 1022,
+      "actualWidth": 1022,
+      "actualX": 32,
+      "adminbar": 32,
+      "heroHeight": 312.46875,
+      "overflow": false
+    },
+    {
+      "scheme": "editorial",
+      "viewport": 1161,
+      "reference": "02-home.png",
+      "referenceX": 40,
+      "referenceTop": 32,
+      "width": 1082,
+      "actualWidth": 1082,
+      "actualX": 32,
+      "adminbar": 32,
+      "heroHeight": 395.359375,
+      "overflow": false
+    },
+    {
+      "scheme": "tradition",
+      "viewport": 1139,
+      "reference": "03-home.png",
+      "referenceX": 43,
+      "referenceTop": 32,
+      "width": 1040,
+      "actualWidth": 1040,
+      "actualX": 42,
+      "adminbar": 32,
+      "heroHeight": 290,
+      "overflow": false
+    },
+    {
+      "scheme": "blue",
+      "viewport": 1080,
+      "reference": "04-home.png",
+      "referenceX": 90,
+      "referenceTop": 35,
+      "width": 945,
+      "actualWidth": 945,
+      "actualX": 60,
+      "adminbar": 32,
+      "heroHeight": 341.578125,
+      "overflow": false
+    },
+    {
+      "scheme": "classic",
+      "viewport": 1049,
+      "reference": "05-home.png",
+      "referenceX": 43,
+      "referenceTop": 32,
+      "width": 970,
+      "actualWidth": 970,
+      "actualX": 32,
+      "adminbar": 32,
+      "heroHeight": 280,
+      "overflow": false
+    }
+  ],
+  "navigation": [
+    {
+      "scheme": "hospitality",
+      "url": "http://127.0.0.1:9401/%d0%b2%d0%be%d0%bf%d1%80%d0%be%d1%81-%d1%81%d0%b2%d1%8f%d1%89%d0%b5%d0%bd%d0%bd%d0%b8%d0%ba%d1%83/?prihod_preview=hospitality",
+      "heading": "Вопрос священнику"
+    },
+    {
+      "scheme": "editorial",
+      "url": "http://127.0.0.1:9401/%d0%b2%d0%be%d0%bf%d1%80%d0%be%d1%81-%d1%81%d0%b2%d1%8f%d1%89%d0%b5%d0%bd%d0%bd%d0%b8%d0%ba%d1%83/?prihod_preview=editorial",
+      "heading": "Вопрос священнику"
+    },
+    {
+      "scheme": "tradition",
+      "url": "http://127.0.0.1:9401/%d0%b2%d0%be%d0%bf%d1%80%d0%be%d1%81-%d1%81%d0%b2%d1%8f%d1%89%d0%b5%d0%bd%d0%bd%d0%b8%d0%ba%d1%83/?prihod_preview=tradition",
+      "heading": "Вопрос священнику"
+    },
+    {
+      "scheme": "blue",
+      "url": "http://127.0.0.1:9401/%d0%b2%d0%be%d0%bf%d1%80%d0%be%d1%81-%d1%81%d0%b2%d1%8f%d1%89%d0%b5%d0%bd%d0%bd%d0%b8%d0%ba%d1%83/?prihod_preview=blue",
+      "heading": "Вопрос священнику"
+    },
+    {
+      "scheme": "classic",
+      "url": "http://127.0.0.1:9401/%d0%b2%d0%be%d0%bf%d1%80%d0%be%d1%81-%d1%81%d0%b2%d1%8f%d1%89%d0%b5%d0%bd%d0%bd%d0%b8%d0%ba%d1%83/?prihod_preview=classic",
+      "heading": "Вопрос священнику"
+    }
+  ],
+  "innerHeaders": [
+    {
+      "email": "mailto:info@georg-kloster.de",
+      "headerHeight": 188.328125,
+      "overflow": false,
+      "phone": "tel:+491714340444",
+      "scheme": "hospitality"
+    },
+    {
+      "email": "mailto:info@georg-kloster.de",
+      "headerHeight": 252.828125,
+      "overflow": false,
+      "phone": "tel:+491714340444",
+      "scheme": "editorial"
+    },
+    {
+      "email": "mailto:info@georg-kloster.de",
+      "headerHeight": 195.171875,
+      "overflow": false,
+      "phone": "tel:+491714340444",
+      "scheme": "tradition"
+    },
+    {
+      "email": "mailto:info@georg-kloster.de",
+      "headerHeight": 145.828125,
+      "overflow": false,
+      "phone": "tel:+491714340444",
+      "scheme": "blue"
+    },
+    {
+      "email": "mailto:info@georg-kloster.de",
+      "headerHeight": 172.125,
+      "overflow": false,
+      "phone": "tel:+491714340444",
+      "scheme": "classic"
+    }
+  ],
+  "tests": {
+    "current": 206,
+    "minimum": 195,
+    "design": 191,
+    "translation": 1917
+  },
+  "scope": "Local theme only; live stays 0.3.16. Reference content boundaries manually identified with approximately 2px tolerance. Pair screenshots match inner main widths; browser frame and adminbar excluded. Actual content/profile/native WP language differ; before-live/after-local figures describe this real content fixture, not a pixel percentage. All five actual request links opened; no submissions.",
+  "portraitCorrection": {
+    "scheme": "tradition",
+    "naturalWidth": 1238,
+    "naturalHeight": 1239,
+    "desktop": "cover: near-square source cropped horizontally, full vertical face preserved",
+    "mobile": "contain on paper background; overflow false"
+  }
+}

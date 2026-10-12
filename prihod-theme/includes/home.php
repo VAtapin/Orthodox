@@ -19,8 +19,8 @@ function prihod_theme_home_features( string $scheme, array $photos, string $abou
         $url = prihod_theme_url( $key ); if ( ! $url ) { continue; }
         $card = $cards[$key]; $photo = absint( $options['feature_' . $key] ?? 0 ) ?: ( prihod_theme_resource_image( $key ) ?: ( $fallback_photos[$key] ?? 0 ) );
         if ( ! $photo ) { $photo = $photos[0] ?? 0; }
-        $support = 'editorial' === $scheme && 'donations' === $key && ! absint( $options['feature_donations'] );
-        $html .= '<a class="prihod-feature' . ( $support ? ' prihod-feature-support' : ( $photo_cards ? ' has-photo' : '' ) ) . '" href="' . esc_url( $url ) . '">' . ( $support ? '<div class="prihod-feature-support-symbol">' . prihod_theme_icon( 'support' ) . '</div>' : ( $photo_cards && $photo ? wp_get_attachment_image( $photo, 'medium_large', false, array( 'class' => 'prihod-feature-photo', 'style' => 'object-position:center 25%' ) ) : '' ) ) . '<div class="prihod-feature-copy">' . prihod_theme_icon( $key ) . '<div><h2>' . esc_html( $card[0] ) . '</h2><p>' . esc_html( $card[1] ) . '</p><span class="prihod-feature-link">' . esc_html( $card[2] ) . ' →</span></div></div></a>';
+        $support = ( 'editorial' === $scheme && 'donations' === $key || 'tradition' === $scheme && in_array( $key, array( 'requests', 'donations' ), true ) ) && ! absint( $options['feature_' . $key] ?? 0 );
+        $html .= '<a class="prihod-feature' . ( $support ? ( 'editorial' === $scheme ? ' prihod-feature-support' : ' prihod-feature-symbol' ) : ( $photo_cards ? ' has-photo' : '' ) ) . '" href="' . esc_url( $url ) . '">' . ( $support ? '<div class="prihod-feature-support-symbol">' . prihod_theme_icon( 'requests' === $key ? 'requests' : 'support' ) . '</div>' : ( $photo_cards && $photo ? wp_get_attachment_image( $photo, 'medium_large', false, array( 'class' => 'prihod-feature-photo' . ( 'requests' === $key ? ' is-portrait' : '' ), 'style' => 'object-position:center 25%' ) ) : '' ) ) . '<div class="prihod-feature-copy">' . prihod_theme_icon( $key ) . '<div><h2>' . esc_html( $card[0] ) . '</h2><p>' . esc_html( $card[1] ) . '</p><span class="prihod-feature-link">' . esc_html( $card[2] ) . ' →</span></div></div></a>';
     }
     return $html . '</nav>';
 }
@@ -53,7 +53,7 @@ function prihod_theme_home_gallery( array $photos, bool $monastery ): string {
         $photos = array_values( array_unique( array_filter( array_merge( $photos, array_map( 'get_post_thumbnail_id', $published ) ), 'wp_attachment_is_image' ) ) );
     }
     $html = '<section class="prihod-home-gallery">' . prihod_theme_section_title( $monastery ? __( 'Жизнь обители в фотографиях', 'prihod-theme' ) : __( 'Жизнь прихода в фотографиях', 'prihod-theme' ), prihod_theme_url( 'photos' ), __( 'Все фото', 'prihod-theme' ) ) . '<div class="prihod-photo-strip">';
-    foreach ( $photos as $id ) { $html .= wp_get_attachment_image( $id, 'medium_large', false, array( 'style' => 'object-position:center 25%' ) ); }
+    foreach ( $photos as $id ) { $html .= wp_get_attachment_image( $id, 'medium_large', false, array( 'class' => $id === prihod_theme_resource_image( 'clergy' ) ? 'is-portrait' : '', 'style' => 'object-position:center 25%' ) ); }
     return $html . '</div><div class="prihod-gallery-controls"><button type="button" data-gallery-direction="-1" aria-label="' . esc_attr__( 'Назад', 'prihod-theme' ) . '">←</button><button type="button" data-gallery-direction="1" aria-label="' . esc_attr__( 'Вперёд', 'prihod-theme' ) . '">→</button></div></section>';
 }
 function prihod_theme_home(): string {
@@ -78,14 +78,16 @@ function prihod_theme_home(): string {
         foreach ( array( $schedule => __( 'Расписание богослужений', 'prihod-theme' ), ( 'classic' === $scheme ? $contact : $about ) => ( 'classic' === $scheme ? __( 'Как добраться', 'prihod-theme' ) : $about_label ) ) as $url => $label ) { if ( $url ) { $html .= '<a class="prihod-button" href="' . esc_url( $url ) . '">' . esc_html( $label ) . ' →</a>'; } }
         $html .= '</div>';
     }
+    if ( 'blue' === $scheme ) { $html .= prihod_theme_verse( 'hero_quote_text', 'hero_quote_source' ); }
     $html .= ( 'editorial' === $scheme ? prihod_theme_home_content() : '' ) . '</div>';
+    if ( 'classic' === $scheme && $options['hero_motto'] ) { $html .= '<aside class="prihod-classic-motto">' . esc_html( $options['hero_motto'] ) . '</aside>'; }
     if ( in_array( $scheme, array( 'hospitality', 'blue', 'editorial' ), true ) ) { $html .= prihod_theme_home_service_panel( $scheme, $schedule ); }
     if ( 'tradition' === $scheme ) { $html .= '<aside class="prihod-tradition-motto">' . prihod_theme_icon( 'cross' ) . '<p>' . esc_html__( 'Вера объединяет людей', 'prihod-theme' ) . '</p></aside>'; }
     $html .= '</div></section><div class="prihod-container">';
     if ( in_array( $scheme, array( 'classic', 'tradition' ), true ) ) { $html .= prihod_theme_home_service_panel( $scheme, $schedule ); }
     $html .= prihod_theme_home_features( $scheme, $card_photos, $about_label, $monastery );
     if ( 'editorial' !== $scheme ) {
-        $html .= '<section class="prihod-about-section"><div class="prihod-about-copy">' . prihod_theme_section_title( $about_label ) . '<p>' . nl2br( esc_html( $profile['description'] ) ) . '</p>' . ( $about ? '<a class="prihod-button is-outline" href="' . esc_url( $about ) . '">' . esc_html( $monastery ? __( 'Подробнее об обители', 'prihod-theme' ) : __( 'Подробнее о приходе', 'prihod-theme' ) ) . ' →</a>' : '' ) . prihod_theme_home_content() . '</div><div class="prihod-about-photo">' . wp_get_attachment_image( $options['about_image'] ?: $options['hero_image'], 'large' ) . '</div>' . ( 'blue' === $scheme ? '' : prihod_theme_verse() ) . '</section>';
+        $html .= '<section class="prihod-about-section"><div class="prihod-about-copy">' . ( 'tradition' === $scheme ? '<p class="prihod-section-eyebrow">' . esc_html( $monastery ? __( 'Наша обитель', 'prihod-theme' ) : __( 'Наш приход', 'prihod-theme' ) ) . '</p>' : '' ) . prihod_theme_section_title( $about_label ) . '<p>' . nl2br( esc_html( $profile['description'] ) ) . '</p>' . ( $about ? '<a class="prihod-button is-outline" href="' . esc_url( $about ) . '">' . esc_html( $monastery ? __( 'Подробнее об обители', 'prihod-theme' ) : __( 'Подробнее о приходе', 'prihod-theme' ) ) . ' →</a>' : '' ) . prihod_theme_home_content() . '</div><div class="prihod-about-photo">' . wp_get_attachment_image( $options['about_image'] ?: $options['hero_image'], 'large' ) . '</div>' . ( 'blue' === $scheme ? '' : prihod_theme_verse() ) . '</section>';
     }
     $news = prihod_theme_home_news( $scheme, $monastery ); $gallery = prihod_theme_home_gallery( $photos, $monastery );
     if ( 'editorial' === $scheme ) { $html .= '<div class="prihod-editorial-news">' . $news . prihod_theme_verse() . '</div>' . $gallery; }

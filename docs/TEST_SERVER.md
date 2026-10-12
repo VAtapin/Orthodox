@@ -178,3 +178,20 @@ php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-ch
 Проверка 0.3.16 завершилась CONTACTS_DESIGN_CHECK_OK: 62 total checks.
 Никаких импортов, записей настроек, миграций, оплат/писем/публикаций или действий
 вне этого WordPress команда не включает. Core и внешние плагины не обновляются.
+
+## Подготовлена тема 0.3.17 — сервер пока 0.3.16
+
+После прямого разрешения именно на новое обновление загрузить
+build/prihod-theme-0.3.17.zip и актуальный tests/server-check.php в прежний wp-content.
+Подготовленные файлы команд — build/sftp-home-details.txt и build/ssh-home-details.sh.
+Команда для этого WordPress, после загрузки архива/checker:
+
+```bash
+cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
+export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
+php -d memory_limit=512M /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.17.zip --force --activate && \
+php -d memory_limit=512M /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
+```
+
+Core, существующие плагины, настройки и материалы не обновлять/не импортировать.
+Серверная проверка новой версии ещё не запускалась; 62 проверки выше относятся к 0.3.16.

@@ -39,7 +39,10 @@ function prihod_theme_header(): string {
     if ( $profile['phone'] ) { $contacts .= '<a href="' . esc_url( 'tel:' . preg_replace( '/[^+0-9]/', '', $profile['phone'] ) ) . '">' . prihod_theme_icon( 'phone' ) . esc_html( $profile['phone'] ) . '</a>'; }
     if ( $profile['email'] ) { $contacts .= '<a href="' . esc_url( 'mailto:' . $profile['email'] ) . '">' . prihod_theme_icon( 'email' ) . esc_html( $profile['email'] ) . '</a>'; }
     if ( ! prihod_theme_options()['header_contacts'] ) { $contacts = ''; }
-    $scheme = prihod_theme_scheme(); $donation = prihod_theme_url( 'donations' );
+    $scheme = prihod_theme_scheme(); $options = prihod_theme_options();
+    if ( 'classic' === $scheme && $options['header_motto'] ) { $contacts = '<span class="prihod-header-motto">' . esc_html( $options['header_motto'] ) . '</span>' . $contacts; }
+    if ( 'editorial' === $scheme && $options['quote_text'] ) { $contacts = '<div class="prihod-header-quote">' . prihod_theme_verse() . '</div>' . $contacts; }
+    $donation = prihod_theme_url( 'donations' );
     if ( $donation && in_array( $scheme, array( 'hospitality', 'editorial' ), true ) ) {
         $label = 'editorial' === $scheme ? __( 'Поддержать храм', 'prihod-theme' ) : ( 'monastery' === ( $profile['type'] ?? '' ) ? __( 'Помочь обители', 'prihod-theme' ) : __( 'Помочь приходу', 'prihod-theme' ) );
         $contacts .= '<a class="prihod-header-support prihod-button" href="' . esc_url( $donation ) . '">' . esc_html( $label ) . '</a>';
