@@ -1,0 +1,61 @@
+{
+  "mobile": [
+    {
+      "background": "rgba(255, 255, 255, 0.96)",
+      "overflow": false,
+      "texts": [
+        {
+          "color": "rgb(38, 44, 60)",
+          "contained": true,
+          "minContrast": 12.751307849838907,
+          "selector": "h1"
+        },
+        {
+          "color": "rgb(38, 44, 60)",
+          "contained": true,
+          "minContrast": 12.751307849838907,
+          "selector": ".prihod-hero-description"
+        },
+        {
+          "color": "rgb(96, 100, 92)",
+          "contained": true,
+          "minContrast": 5.533648074276291,
+          "selector": ".prihod-verse p"
+        }
+      ],
+      "width": 390
+    },
+    {
+      "background": "rgba(255, 255, 255, 0.96)",
+      "overflow": false,
+      "texts": [
+        {
+          "color": "rgb(38, 44, 60)",
+          "contained": true,
+          "minContrast": 12.751307849838907,
+          "selector": "h1"
+        },
+        {
+          "color": "rgb(38, 44, 60)",
+          "contained": true,
+          "minContrast": 12.751307849838907,
+          "selector": ".prihod-hero-description"
+        },
+        {
+          "color": "rgb(96, 100, 92)",
+          "contained": true,
+          "minContrast": 5.533648074276291,
+          "selector": ".prihod-verse p"
+        }
+      ],
+      "width": 430
+    }
+  ],
+  "desktop": {
+    "background": "rgba(0, 0, 0, 0)",
+    "heroHeight": 312.46875,
+    "overflow": false,
+    "padding": "0px",
+    "width": 1122
+  }
+}

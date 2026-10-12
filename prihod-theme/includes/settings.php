@@ -45,9 +45,9 @@ add_action( 'admin_menu', function () {
 add_action( 'admin_enqueue_scripts', function () {
     if ( 'prihod-theme' !== ( $_GET['page'] ?? '' ) ) { return; }
     wp_enqueue_media();
-    wp_enqueue_style( 'prihod-theme-settings', get_template_directory_uri() . '/assets/settings.css', array(), '0.3.9' );
-    wp_enqueue_script( 'prihod-theme-media', get_template_directory_uri() . '/assets/media.js', array( 'jquery', 'media-views' ), '0.3.9', true );
-    wp_enqueue_script( 'prihod-theme-settings', get_template_directory_uri() . '/assets/settings.js', array(), '0.3.9', true );
+    wp_enqueue_style( 'prihod-theme-settings', get_template_directory_uri() . '/assets/settings.css', array(), '0.3.10' );
+    wp_enqueue_script( 'prihod-theme-media', get_template_directory_uri() . '/assets/media.js', array( 'jquery', 'media-views' ), '0.3.10', true );
+    wp_enqueue_script( 'prihod-theme-settings', get_template_directory_uri() . '/assets/settings.js', array(), '0.3.10', true );
 } );
 function prihod_theme_schemes(): array {
     return array( 'classic' => __( 'Классическая золотая', 'prihod-theme' ), 'hospitality' => __( 'Светлая гостеприимная', 'prihod-theme' ), 'editorial' => __( 'Журнальная', 'prihod-theme' ), 'tradition' => __( 'Традиционная', 'prihod-theme' ), 'blue' => __( 'Современная синяя', 'prihod-theme' ) );

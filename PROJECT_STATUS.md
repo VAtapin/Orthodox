@@ -1,6 +1,6 @@
 # Статус «Прихода»
 
-Core 1.0.0-rc.6, тема 0.3.9, Telegram/WhatsApp/Facebook 0.1.1.
+Core 1.0.0-rc.6, тема 0.3.10, Telegram/WhatsApp/Facebook 0.1.1.
 Реализованы этапы 1–6: Core, расписание, обращения, мастер, права/диагностика/
 очистка и самостоятельные тема/подключения. Сборка: python scripts/package.py.
 Это release candidate. ТЗ и 16 исходных изображений сохранены.
@@ -51,9 +51,9 @@ WP 6.5.13/PHP 8.0.30 — 185. Standalone-компоненты и импорт
 WordPress недоступен в текущем Playground; каталоги Core/темы проверены.
 Следующее: оставшиеся размеры/типографика по сохранённым парам и редактура владельцем.
 
-Ветка main, upstream origin/main. Предыдущий связанный commit aaf3c5e
-Complete prayer and donation confirmation details. Этот статус включён
-в commit Refine hospitality and editorial home compositions; hash — git log -1.
+Ветка main, upstream origin/main. Предыдущий связанный commit 14e515c
+Refine hospitality and editorial home compositions. Этот статус включён
+в commit Protect mobile hospitality hero text contrast; hash — git log -1.
 
 Дополнения текущего оформления: классическая цитата перед описанием, дата/время
 службы в отдельных колонках; верхние реальные блоки расписания и отметки
@@ -70,3 +70,11 @@ Complete prayer and donation confirmation details. Этот статус вкл�
 Первый экран и плитки компактнее без обрезания описания. Цитата/источник доступны
 в панели темы с семью разделами. Проверены 1122/390 px, реальные CTA и остальные три
 схемы; 44 live checks. Обновлена только тема, Core и внешние плагины не менялись.
+
+В0.3.10 мобильный hospitality hero получил светлую подложку под всеми текстами
+при ширине≤800px, более тёмную цитату. При390/430px минимальный расчётный контраст
+поверх чёрного фото: заголовок/описание12.75:1, цитата5.53:1; тексты внутри
+подложки, переполнения нет. Desktop1122px сохранил прозрачную copy-область
+и прежнюю высоту hero312.47px. Повторены196 WP7.1.3 assertions,63 design checks
+и44 live checks. Минимальный WP6.5 проверен на0.3.9; для CSS-правки не повторялся.
+Сценарий: tests/mobile-hero-contrast-cases.md; снимки/метрики сохранены.
