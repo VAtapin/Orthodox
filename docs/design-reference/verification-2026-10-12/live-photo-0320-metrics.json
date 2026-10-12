@@ -1,0 +1,142 @@
+[
+  {
+    "scheme": "classic",
+    "width": 1910,
+    "images": [
+      {
+        "fit": "contain",
+        "h": 628,
+        "loaded": true,
+        "w": 928
+      }
+    ],
+    "overflow": false,
+    "w": 1910
+  },
+  {
+    "scheme": "blue",
+    "width": 1910,
+    "images": [
+      {
+        "fit": "contain",
+        "h": 628,
+        "loaded": true,
+        "w": 928
+      }
+    ],
+    "overflow": false,
+    "w": 1910
+  },
+  {
+    "scheme": "editorial",
+    "width": 1910,
+    "images": [
+      {
+        "fit": "contain",
+        "h": 628,
+        "loaded": true,
+        "w": 928
+      }
+    ],
+    "overflow": false,
+    "w": 1910
+  },
+  {
+    "scheme": "hospitality",
+    "width": 1910,
+    "images": [
+      {
+        "fit": "contain",
+        "h": 628,
+        "loaded": true,
+        "w": 928
+      }
+    ],
+    "overflow": false,
+    "w": 1910
+  },
+  {
+    "scheme": "classic",
+    "width": 390,
+    "images": [
+      {
+        "fit": "contain",
+        "h": 664,
+        "loaded": true,
+        "w": 350
+      }
+    ],
+    "overflow": false,
+    "w": 390
+  },
+  {
+    "scheme": "blue",
+    "width": 390,
+    "images": [
+      {
+        "fit": "contain",
+        "h": 664,
+        "loaded": true,
+        "w": 350
+      }
+    ],
+    "overflow": false,
+    "w": 390
+  },
+  {
+    "scheme": "editorial",
+    "width": 390,
+    "images": [
+      {
+        "fit": "contain",
+        "h": 664,
+        "loaded": true,
+        "w": 350
+      }
+    ],
+    "overflow": false,
+    "w": 390
+  },
+  {
+    "scheme": "hospitality",
+    "width": 390,
+    "images": [
+      {
+        "fit": "contain",
+        "h": 664,
+        "loaded": true,
+        "w": 350
+      }
+    ],
+    "overflow": false,
+    "w": 390
+  },
+  {
+    "scheme": "tradition",
+    "width": 1910,
+    "images": [
+      {
+        "fit": "contain",
+        "h": 628,
+        "loaded": true,
+        "w": 928
+      }
+    ],
+    "overflow": false,
+    "w": 1910
+  },
+  {
+    "scheme": "tradition",
+    "width": 390,
+    "images": [
+      {
+        "fit": "contain",
+        "h": 664,
+        "loaded": true,
+        "w": 350
+      }
+    ],
+    "overflow": false,
+    "w": 390
+  }
+]
