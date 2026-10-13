@@ -57,10 +57,22 @@ cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
 Тесты:этапы/время/MIME Message-ID, восстановление PHPMailer, отсутствие адресов/текста,
 без повторной отправки accepted, exception redaction, guest/editor denial,
 монотонный retry/сохранение failed,50записей,30-дневная очистка без удаления переписки.
-HTML1440/390 без overflow. Серверный post-check Core17 ещё не запускался:
-на сервере rc.15, новый ZIP требует прямого согласия.
+HTML1440/390 без overflow. Core17 установлен 13 октября с прямого согласия:
+98 серверных проверок прошли на WP7.1.3/PHP8.5.11. Отпечаток настроек,
+служб и всей закрытой переписки совпал до/после установки:
+67d92b09ff76dedc92e3249362713d8d8886d76056202cad23d83669b181725a.
+ZIP SHA256:301373A938B80D87431AC05F5F212C5717BF79E6D4EACEE75269DD1CA6DBF1A7.
 
-После согласованной загрузки Core17 ZIP и server-check только в wp-content:
+Владелец отдельно разрешил тестовые письма и повторы. В18:14:58–59Berlin
+отправлены два оформленных письма через штатный Requests::deliver и PHP mail:
+закрытое тестовое обращение100, ответы101/102. Каждый прошёл
+started→composed→mailer_ready→accepted сразу; Message-ID наблюдался в PHPMailer,
+From/envelope совпадают с профилем, short_circuit=false, ошибок нет.
+Вторая отправка — отдельный тестовый ответ, статус sent не сбрасывался для обхода
+защиты от дублей. Failed retry не понадобился. Подтверждение получения ожидается
+от владельца; Gmail и почтовые ящики не открывались, принятие не названо доставкой.
+
+Для повторного согласованного обновления тем же уже загруженным комплектом внутри wp-content:
 
 ```bash
 cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
@@ -69,5 +81,5 @@ php /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.
 php /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
 ```
 
-Установка не отправляет/не повторяет письма. Тема0.3.26/Telegram0.1.3/сторонние плагины
+Сама установка не отправляет/не повторяет письма. Тема0.3.26/Telegram0.1.3/сторонние плагины
 и сервер не обновляются. Core17 включает ранее подготовленные изменения медиа Core16.
