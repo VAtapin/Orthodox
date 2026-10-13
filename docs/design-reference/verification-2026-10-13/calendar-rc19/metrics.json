@@ -1,0 +1,3462 @@
+[
+  {
+    "days": [
+      {
+        "border": "rgb(52, 155, 213)",
+        "color": "rgb(178, 34, 34)",
+        "date": "2026-10-14"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "color": "rgb(128, 96, 0)",
+        "date": "2026-10-17"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "color": "rgb(128, 96, 0)",
+        "date": "2026-10-18"
+      },
+      {
+        "border": "rgb(203, 48, 53)",
+        "color": "rgb(168, 32, 38)",
+        "date": "2026-10-21"
+      },
+      {
+        "border": "rgba(0, 0, 0, 0)",
+        "color": "rgb(179, 139, 68)",
+        "date": "2026-10-25"
+      }
+    ],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "0",
+        "text": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "hospitality",
+    "width": 1440,
+    "scheme": "hospitality",
+    "view": "week"
+  },
+  {
+    "days": [
+      {
+        "border": "rgb(52, 155, 213)",
+        "color": "rgb(178, 34, 34)",
+        "date": "2026-10-14"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "color": "rgb(128, 96, 0)",
+        "date": "2026-10-17"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "color": "rgb(128, 96, 0)",
+        "date": "2026-10-18"
+      },
+      {
+        "border": "rgb(203, 48, 53)",
+        "color": "rgb(168, 32, 38)",
+        "date": "2026-10-21"
+      },
+      {
+        "border": "rgba(0, 0, 0, 0)",
+        "color": "rgb(179, 139, 68)",
+        "date": "2026-10-25"
+      }
+    ],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "0",
+        "text": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "hospitality",
+    "width": 390,
+    "scheme": "hospitality",
+    "view": "week"
+  },
+  {
+    "days": [],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Бденный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "hospitality",
+    "width": 1440,
+    "scheme": "hospitality",
+    "view": "month"
+  },
+  {
+    "days": [],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Бденный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "hospitality",
+    "width": 390,
+    "scheme": "hospitality",
+    "view": "month"
+  },
+  {
+    "days": [],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "0",
+        "text": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "hospitality",
+    "width": 1440,
+    "scheme": "hospitality",
+    "view": "list"
+  },
+  {
+    "days": [],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "0",
+        "text": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "hospitality",
+    "width": 390,
+    "scheme": "hospitality",
+    "view": "list"
+  },
+  {
+    "days": [
+      {
+        "border": "rgb(52, 155, 213)",
+        "color": "rgb(178, 34, 34)",
+        "date": "2026-10-14"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "color": "rgb(128, 96, 0)",
+        "date": "2026-10-17"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "color": "rgb(128, 96, 0)",
+        "date": "2026-10-18"
+      },
+      {
+        "border": "rgb(203, 48, 53)",
+        "color": "rgb(168, 32, 38)",
+        "date": "2026-10-21"
+      },
+      {
+        "border": "rgba(0, 0, 0, 0)",
+        "color": "rgb(152, 78, 50)",
+        "date": "2026-10-25"
+      }
+    ],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "0",
+        "text": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "editorial",
+    "width": 1440,
+    "scheme": "editorial",
+    "view": "week"
+  },
+  {
+    "days": [
+      {
+        "border": "rgb(52, 155, 213)",
+        "color": "rgb(178, 34, 34)",
+        "date": "2026-10-14"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "color": "rgb(128, 96, 0)",
+        "date": "2026-10-17"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "color": "rgb(128, 96, 0)",
+        "date": "2026-10-18"
+      },
+      {
+        "border": "rgb(203, 48, 53)",
+        "color": "rgb(168, 32, 38)",
+        "date": "2026-10-21"
+      },
+      {
+        "border": "rgba(0, 0, 0, 0)",
+        "color": "rgb(152, 78, 50)",
+        "date": "2026-10-25"
+      }
+    ],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "0",
+        "text": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "editorial",
+    "width": 390,
+    "scheme": "editorial",
+    "view": "week"
+  },
+  {
+    "days": [],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "0",
+        "text": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "editorial",
+    "width": 1440,
+    "scheme": "editorial",
+    "view": "list"
+  },
+  {
+    "days": [],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "0",
+        "text": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "editorial",
+    "width": 390,
+    "scheme": "editorial",
+    "view": "list"
+  },
+  {
+    "days": [
+      {
+        "border": "rgb(52, 155, 213)",
+        "color": "rgb(178, 34, 34)",
+        "date": "2026-10-14"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "color": "rgb(128, 96, 0)",
+        "date": "2026-10-17"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "color": "rgb(128, 96, 0)",
+        "date": "2026-10-18"
+      },
+      {
+        "border": "rgb(203, 48, 53)",
+        "color": "rgb(168, 32, 38)",
+        "date": "2026-10-21"
+      },
+      {
+        "border": "rgba(0, 0, 0, 0)",
+        "color": "rgb(114, 85, 50)",
+        "date": "2026-10-25"
+      }
+    ],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "0",
+        "text": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "tradition",
+    "width": 1440,
+    "scheme": "tradition",
+    "view": "week"
+  },
+  {
+    "days": [
+      {
+        "border": "rgb(52, 155, 213)",
+        "color": "rgb(178, 34, 34)",
+        "date": "2026-10-14"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "color": "rgb(128, 96, 0)",
+        "date": "2026-10-17"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "color": "rgb(128, 96, 0)",
+        "date": "2026-10-18"
+      },
+      {
+        "border": "rgb(203, 48, 53)",
+        "color": "rgb(168, 32, 38)",
+        "date": "2026-10-21"
+      },
+      {
+        "border": "rgba(0, 0, 0, 0)",
+        "color": "rgb(114, 85, 50)",
+        "date": "2026-10-25"
+      }
+    ],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "0",
+        "text": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "tradition",
+    "width": 390,
+    "scheme": "tradition",
+    "view": "week"
+  },
+  {
+    "days": [],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Бденный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "tradition",
+    "width": 1440,
+    "scheme": "tradition",
+    "view": "month"
+  },
+  {
+    "days": [],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Бденный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "tradition",
+    "width": 390,
+    "scheme": "tradition",
+    "view": "month"
+  },
+  {
+    "days": [],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "0",
+        "text": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "tradition",
+    "width": 1440,
+    "scheme": "tradition",
+    "view": "list"
+  },
+  {
+    "days": [],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "0",
+        "text": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "tradition",
+    "width": 390,
+    "scheme": "tradition",
+    "view": "list"
+  },
+  {
+    "days": [
+      {
+        "border": "rgb(52, 155, 213)",
+        "color": "rgb(178, 34, 34)",
+        "date": "2026-10-14"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "color": "rgb(128, 96, 0)",
+        "date": "2026-10-17"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "color": "rgb(128, 96, 0)",
+        "date": "2026-10-18"
+      },
+      {
+        "border": "rgb(203, 48, 53)",
+        "color": "rgb(168, 32, 38)",
+        "date": "2026-10-21"
+      },
+      {
+        "border": "rgba(0, 0, 0, 0)",
+        "color": "rgb(57, 111, 163)",
+        "date": "2026-10-25"
+      }
+    ],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "0",
+        "text": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "blue",
+    "width": 1440,
+    "scheme": "blue",
+    "view": "week"
+  },
+  {
+    "days": [
+      {
+        "border": "rgb(52, 155, 213)",
+        "color": "rgb(178, 34, 34)",
+        "date": "2026-10-14"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "color": "rgb(128, 96, 0)",
+        "date": "2026-10-17"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "color": "rgb(128, 96, 0)",
+        "date": "2026-10-18"
+      },
+      {
+        "border": "rgb(203, 48, 53)",
+        "color": "rgb(168, 32, 38)",
+        "date": "2026-10-21"
+      },
+      {
+        "border": "rgba(0, 0, 0, 0)",
+        "color": "rgb(57, 111, 163)",
+        "date": "2026-10-25"
+      }
+    ],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "0",
+        "text": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "blue",
+    "width": 390,
+    "scheme": "blue",
+    "view": "week"
+  },
+  {
+    "days": [],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Бденный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "blue",
+    "width": 1440,
+    "scheme": "blue",
+    "view": "month"
+  },
+  {
+    "days": [],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Бденный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "blue",
+    "width": 390,
+    "scheme": "blue",
+    "view": "month"
+  },
+  {
+    "days": [],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "0",
+        "text": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "blue",
+    "width": 1440,
+    "scheme": "blue",
+    "view": "list"
+  },
+  {
+    "days": [],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "0",
+        "text": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "blue",
+    "width": 390,
+    "scheme": "blue",
+    "view": "list"
+  },
+  {
+    "days": [
+      {
+        "border": "rgb(52, 155, 213)",
+        "color": "rgb(178, 34, 34)",
+        "date": "2026-10-14"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "color": "rgb(128, 96, 0)",
+        "date": "2026-10-17"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "color": "rgb(128, 96, 0)",
+        "date": "2026-10-18"
+      },
+      {
+        "border": "rgb(203, 48, 53)",
+        "color": "rgb(168, 32, 38)",
+        "date": "2026-10-21"
+      },
+      {
+        "border": "rgba(0, 0, 0, 0)",
+        "color": "rgb(164, 109, 37)",
+        "date": "2026-10-25"
+      }
+    ],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "0",
+        "text": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "classic",
+    "width": 1440,
+    "scheme": "classic",
+    "view": "week"
+  },
+  {
+    "days": [
+      {
+        "border": "rgb(52, 155, 213)",
+        "color": "rgb(178, 34, 34)",
+        "date": "2026-10-14"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "color": "rgb(128, 96, 0)",
+        "date": "2026-10-17"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "color": "rgb(128, 96, 0)",
+        "date": "2026-10-18"
+      },
+      {
+        "border": "rgb(203, 48, 53)",
+        "color": "rgb(168, 32, 38)",
+        "date": "2026-10-21"
+      },
+      {
+        "border": "rgba(0, 0, 0, 0)",
+        "color": "rgb(164, 109, 37)",
+        "date": "2026-10-25"
+      }
+    ],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "0",
+        "text": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "classic",
+    "width": 390,
+    "scheme": "classic",
+    "view": "week"
+  },
+  {
+    "days": [],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "0",
+        "text": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "classic",
+    "width": 1440,
+    "scheme": "classic",
+    "view": "list"
+  },
+  {
+    "days": [],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "0",
+        "text": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      },
+      {
+        "compact": "0",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "classic",
+    "width": 390,
+    "scheme": "classic",
+    "view": "list"
+  },
+  {
+    "days": [],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Бденный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "classic",
+    "width": 1440,
+    "scheme": "classic",
+    "view": "month"
+  },
+  {
+    "days": [],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Бденный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "classic",
+    "width": 390,
+    "scheme": "classic",
+    "view": "month"
+  },
+  {
+    "days": [],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Бденный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "editorial",
+    "view": "month",
+    "width": 1440,
+    "scheme": "editorial"
+  },
+  {
+    "days": [],
+    "marks": [
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Бденный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Шестеричная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Великий праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Славословная служба",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      },
+      {
+        "alt": "Полиелейный праздник",
+        "loaded": true
+      }
+    ],
+    "memories": [
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      },
+      {
+        "compact": "1",
+        "text": ""
+      }
+    ],
+    "monthUrls": [
+      "http://127.0.0.1:9401/wp-json/prihod/v1/schedule-month?date=2026-10-01"
+    ],
+    "overflow": false,
+    "places": 0,
+    "preview": "editorial",
+    "view": "month",
+    "width": 390,
+    "scheme": "editorial"
+  }
+]

@@ -45,7 +45,7 @@ preg_match( '/data-mini-date="2026-10-17" data-service-colors="([^"]*)"/', $mini
 prihod_assert( in_array( 'blue', json_decode( html_entity_decode( $mini_match[1] ?? '[]', ENT_QUOTES ), true ), true ) && str_contains( $mini_html, 'data-prihod-mini-month=' ), 'Mini month exposes actual date-specific manual service colors and one shared month request.' );
 prihod_assert( $color_rule === get_post_meta( $icon_service, '_prihod_service', true ), 'Mini month rendering does not persist computed calendar values into service rules.' );
 update_post_meta( $icon_service, '_prihod_service', $icon_rule );
-prihod_assert( str_contains( Prihod\Schedule_Calendar::feast_placeholder( $icon_events[0] ), 'date=2026-10-18' ), 'Public feast follows actual moved local date.' );
+prihod_assert( str_contains( Prihod\Schedule_Calendar::feast_placeholder( $icon_events[0] ), 'date=2026-10-01' ) && str_contains( Prihod\Schedule_Calendar::feast_placeholder( $icon_events[0] ), 'data-calendar-date="2026-10-18"' ), 'Public feast follows actual moved local date through a shared month request.' );
 $without_icon = $icon_rule; $without_icon['day_icon'] = false;
 update_post_meta( $icon_service, '_prihod_service', $without_icon );
 prihod_assert( Prihod\Schedule_Calendar::public_date( '2026-10-18', false ) && ! Prihod\Schedule_Calendar::public_date( '2026-10-18' ), 'Public feast does not depend on optional icon consent; icon route still does.' );
@@ -76,6 +76,17 @@ if ( file_exists( WP_PLUGIN_DIR . '/orthocal/orthocal.php' ) ) {
     prihod_assert( empty( $mini_month['days']['2026-10-17']['feasts'] ), 'Ordinary saint commemorations are not marked as great feasts.' );
     $mini_calls = $calls; Prihod\Calendar_Adapter::month( '2026-10-01' );
     prihod_assert( $mini_calls === $calls, 'Repeated mini month reads reuse the provider month cache without per-day calls.' );
+    $ranked = Prihod\Calendar_Adapter::liturgical( array( 'events' => array(
+        array( 'category' => 'commemoration', 'typeCode' => 5, 'title' => 'Doxology', 'typikonMark' => array( 'label' => 'Doxology mark', 'svgSource' => '/assets/typikon/doxology.svg' ) ),
+        array( 'category' => 'commemoration', 'typeCode' => 3, 'title' => 'Vigil', 'typikonMark' => array( 'label' => 'Vigil mark', 'svgSource' => '/assets/typikon/vigil.svg' ) ),
+        array( 'category' => 'commemoration', 'typeCode' => 2, 'title' => 'Great', 'typikonMark' => array( 'label' => 'Great mark', 'svgSource' => '/assets/typikon/great.svg' ) ),
+        array( 'category' => 'commemoration', 'typeCode' => 7, 'title' => 'Ordinary' ),
+    ) ) );
+    prihod_assert( array( 'Vigil', 'Great' ) === $ranked['memories'] && 'Great mark' === $ranked['typikon']['label'] && str_contains( $ranked['typikon']['media'], 'source=' ), 'Only great/vigil names are shown; the highest explicit API mark wins regardless of order and uses signed provider media.' );
+    $unknown = Prihod\Calendar_Adapter::liturgical( array( 'events' => array( array( 'category' => 'commemoration', 'typeCode' => 7, 'title' => 'Преподобный' ), array( 'category' => 'commemoration', 'typeCode' => 3, 'title' => 'Vigil without mark' ) ) ) );
+    prihod_assert( null === $unknown['typikon'] && array( 'Vigil without mark' ) === $unknown['memories'], 'Missing API mark never becomes a guessed cross even for a high-rank title.' );
+    $unsafe = Prihod\Calendar_Adapter::liturgical( array( 'events' => array( array( 'category' => 'commemoration', 'typeCode' => 2, 'title' => 'Great', 'typikonMark' => array( 'label' => 'Invalid', 'svgSource' => 'https://untrusted.example/great.svg' ) ) ) ) );
+    prihod_assert( null === $unsafe['typikon'], 'Marker sources are restricted to the calendar provider typikon asset catalog.' );
     prihod_assert( is_wp_error( Prihod\Calendar_Adapter::month( '2026-10-14' ) ) && is_wp_error( Prihod\Calendar_Adapter::month( '2027-10-01' ) ), 'Month summary rejects non-anchor dates and preserves provider errors.' );
     $mini_request = new WP_REST_Request( 'GET', '/prihod/v1/schedule-month' ); $mini_request->set_param( 'date', '2026-10-01' );
     wp_set_current_user( 0 ); $mini_response = rest_do_request( $mini_request );
@@ -181,3 +192,16 @@ $month_view = Prihod\Public_View::render( 'schedule' ); $_GET = array();
 $table_end = strpos( $month_view, '</table>' ); $table_start = strpos( $month_view, '<table' );
 $month_table = substr( $month_view, $table_start, $table_end - $table_start );
 prihod_assert( ! preg_match( '/class="prihod-event-meta">\d{2}\.\d{2}\.\d{4}/', $month_table ) && str_contains( $month_view, 'class="prihod-month-day-panel"' ), 'Desktop month omits duplicate event dates while mobile full-day disclosures are preserved.' );
+
+$published_places = get_posts( array( 'post_type' => 'prihod_location', 'post_status' => 'publish', 'numberposts' => -1, 'fields' => 'ids' ) );
+foreach ( $published_places as $place_id ) { if ( $place_id !== $location ) { wp_update_post( array( 'ID' => $place_id, 'post_status' => 'draft' ) ); } }
+$event_renderer = new ReflectionMethod( Prihod\Public_View::class, 'event_html' ); $event_renderer->setAccessible( true );
+$one_place = $event_renderer->invoke( null, $expanded_colors[0] );
+prihod_assert( ! str_contains( $one_place, 'prihod-event-place' ) && str_contains( $one_place, 'Europe/Berlin' ), 'One published place removes only the redundant place line, preserving date/timezone and the service.' );
+$extra_place = wp_insert_post( array( 'post_type' => 'prihod_location', 'post_title' => 'Second public place fixture', 'post_status' => 'publish' ) );
+$many_places = $event_renderer->invoke( null, $expanded_colors[0] );
+prihod_assert( str_contains( $many_places, 'prihod-event-place' ) && str_contains( $many_places, esc_html( get_the_title( $expanded_colors[0]['location_id'] ) ) ), 'Multiple configured public places retain each service place even when the displayed period uses one place.' );
+$compact_place = $event_renderer->invoke( null, $expanded_colors[0], false, true );
+prihod_assert( str_contains( $compact_place, 'data-compact="1"' ) && str_contains( $many_places, 'data-compact="0"' ), 'Month service cards request only marks, while week/list cards request high-rank memories.' );
+wp_delete_post( $extra_place, true );
+foreach ( $published_places as $place_id ) { if ( $place_id !== $location ) { wp_update_post( array( 'ID' => $place_id, 'post_status' => 'publish' ) ); } }

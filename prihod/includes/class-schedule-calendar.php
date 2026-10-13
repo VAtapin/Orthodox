@@ -59,12 +59,12 @@ final class Schedule_Calendar {
         $html = '<figure class="prihod-service-icon" data-prihod-day-icon="' . esc_url( $url ) . '" data-prihod-icon-fallback="' . esc_attr( wp_json_encode( $fallback ) ) . '" hidden></figure>';
         return apply_filters( 'prihod_schedule_icon_markup', $html, $event, $fallback );
     }
-    public static function feast_placeholder( array $event ): string {
+    public static function feast_placeholder( array $event, bool $compact = false ): string {
         if ( $event['cancelled'] ) { return ''; }
         wp_enqueue_script( 'prihod-schedule-icons', plugins_url( 'assets/schedule-icons.js', PRIHOD_FILE ), array(), PRIHOD_VERSION . '.' . filemtime( dirname( PRIHOD_FILE ) . '/assets/schedule-icons.js' ), true );
-        $url = add_query_arg( 'date', $event['start']->format( 'Y-m-d' ), rest_url( Plugin::REST_NAMESPACE . '/schedule-feast' ) );
+        $url = add_query_arg( 'date', $event['start']->format( 'Y-m-01' ), rest_url( Plugin::REST_NAMESPACE . '/schedule-month' ) );
         $color = $event['vestment_color'] ?? '';
-        return '<p class="prihod-service-feast" data-prihod-feast="' . esc_url( $url ) . '" data-service-title="' . esc_attr( $event['title'] ) . '" data-color="' . esc_attr( $color ) . '" hidden></p>';
+        return '<p class="prihod-service-feast" data-prihod-feast="' . esc_url( $url ) . '" data-calendar-date="' . esc_attr( $event['start']->format( 'Y-m-d' ) ) . '" data-compact="' . ( $compact ? '1' : '0' ) . '" data-service-title="' . esc_attr( $event['title'] ) . '" data-color="' . esc_attr( $color ) . '" hidden></p>';
     }
     public static function editor( array $rule ): void {
         echo Calendar_Colors::field( 'prihod_service[vestment_color]', $rule['vestment_color'] ?? '', ! empty( $rule['_color_persisted'] ) );

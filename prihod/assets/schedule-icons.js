@@ -5,6 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
         return requests.get(url);
     }
     const colors = {white:'#faf8ef',red:'#cb3035',gold:'#f2c500',green:'#159447',blue:'#349bd5',purple:'#8a45b5',black:'#353a40'};
+    const textColors = {white:'#6b6045',red:'#a82026',gold:'#806000',green:'#14652f',blue:'#17618b',purple:'#713894',black:'#353a40'};
+    async function marker(host, info) {
+        const mark = info?.typikon;
+        if (!mark?.label || (!mark.url && !mark.media)) return;
+        try {
+            const url = mark.url || (await day(mark.media)).url;
+            if (!url || !/^https?:\/\//.test(url)) return;
+            const image = document.createElement('img'); image.className = 'prihod-typikon';
+            image.width = 20; image.height = 20; image.alt = mark.label; image.title = mark.label;
+            image.addEventListener('error', () => image.remove(), {once:true});
+            image.src = url; host.prepend(image); host.hidden = false;
+        } catch (_) { /* No substitute mark when authoritative media is unavailable. */ }
+    }
     document.querySelectorAll('[data-prihod-mini-month]').forEach(async month => {
         const links = Array.from(month.querySelectorAll('[data-mini-date]'));
         function frame(link, automatic) {
@@ -12,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const edges = [...new Set(chosen.filter(color => Object.hasOwn(colors, color)))].slice(0, 4);
             link.classList.toggle('has-vestment-frame', edges.length > 0);
             link.style.borderColor = edges.map(color => colors[color]).join(' ');
+            link.style.setProperty('--prihod-day-ink', edges.length ? textColors[edges[0]] : '');
         }
         links.forEach(link => frame(link, ''));
         try {
@@ -20,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const info = data.days?.[link.dataset.miniDate];
                 if (!info) return;
                 frame(link, info.color);
+                marker(link, info);
                 const feasts = Array.isArray(info.feasts) ? info.feasts.filter(title => typeof title === 'string' && title.trim()) : [];
                 link.classList.toggle('is-great-feast', feasts.length > 0);
                 if (feasts.length) {
@@ -35,13 +50,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (host && label.dataset.color && label.dataset.color !== 'auto') host.dataset.vestmentColor = label.dataset.color;
         try {
             const url = label.dataset.prihodFeast;
-            const data = await day(url);
+            const month = await day(url);
+            const data = month.days?.[label.dataset.calendarDate];
+            if (!data) return;
             if (host && label.dataset.color === 'auto' && ['white','red','gold','green','blue','purple','black'].includes(data.color)) host.dataset.vestmentColor = data.color;
-            const feasts = Array.isArray(data.feasts) ? data.feasts.filter(title => typeof title === 'string' && title.trim()) : [];
-            if (!feasts.length) return;
+            const feasts = Array.isArray(data.memories) ? data.memories.filter(title => typeof title === 'string' && title.trim()) : [];
             const manual = normalize(label.dataset.serviceTitle || '');
             const unique = feasts.filter(title => !manual.includes(normalize(title)));
-            label.textContent = unique.join('; '); label.hidden = !unique.length;
+            if (label.dataset.compact !== '1') label.textContent = unique.join('; ');
+            label.hidden = !label.textContent;
+            marker(label, data);
         } catch (_) { /* Keep the actual service usable when the calendar cannot be read. */ }
     });
     async function loadIcon(url) {

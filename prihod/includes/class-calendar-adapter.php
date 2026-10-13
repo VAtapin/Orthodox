@@ -52,9 +52,29 @@ final class Calendar_Adapter {
         foreach ( $data['days'] as $day ) {
             $key = is_array( $day ) ? ( $day['date'] ?? '' ) : '';
             if ( ! is_string( $key ) || ! Occurrences::date( $key ) || substr( $key, 0, 7 ) !== substr( $date, 0, 7 ) ) { continue; }
-            $days[$key] = array( 'feasts' => self::feasts( $day ), 'color' => Calendar_Colors::day( $day )['color'] ?? '' );
+            $days[$key] = array( 'feasts' => self::feasts( $day ), 'color' => Calendar_Colors::day( $day )['color'] ?? '' ) + self::liturgical( $day );
         }
         return array( 'date' => $date, 'days' => $days );
+    }
+    /** API ranks 0–2: great; 3: vigil. Never infer a mark from a saint's name. */
+    public static function liturgical( array $day ): array {
+        $memories = array(); $primary = null; $rank = 99;
+        foreach ( $day['events'] ?? array() as $event ) {
+            if ( ! is_array( $event ) || 'commemoration' !== ( $event['category'] ?? '' ) || ! isset( $event['typeCode'] ) || ! is_numeric( $event['typeCode'] ) ) { continue; }
+            $code = (int) $event['typeCode'];
+            if ( $code < 0 || $code > 6 || (float) $event['typeCode'] !== (float) $code || ! is_string( $event['title'] ?? null ) ) { continue; }
+            $title = sanitize_text_field( $event['title'] ?? '' );
+            if ( $code <= 3 && $title ) { $memories[] = $title; }
+            $mark = $event['typikonMark'] ?? null;
+            if ( ! is_array( $mark ) || ! is_string( $mark['label'] ?? null ) || ! is_string( $mark['svgSource'] ?? null ) || ! class_exists( '\Orthocal_Media_Cache' ) ) { continue; }
+            $source = $mark['svgSource'];
+            if ( ! preg_match( '~^/assets/typikon/(great|vigil|polyeleos|doxology|six-stichera)\.svg$~D', $source ) || ! \Orthocal_Media_Cache::token( $source ) ) { continue; }
+            if ( $code < $rank ) {
+                $rank = $code;
+                $primary = array( 'label' => sanitize_text_field( $mark['label'] ), 'url' => \Orthocal_Media_Cache::url( $source ), 'media' => add_query_arg( array( 'source' => $source, 'token' => \Orthocal_Media_Cache::token( $source ) ), rest_url( 'orthocal/v1/media' ) ) );
+            }
+        }
+        return array( 'memories' => array_values( array_unique( $memories ) ), 'typikon' => $primary );
     }
     public static function week( \DateTimeImmutable $from ) {
         $to = $from->modify( '+7 days' ); $months = array(); $result = array();

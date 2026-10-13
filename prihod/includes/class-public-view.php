@@ -79,10 +79,16 @@ final class Public_View {
         }
         return '<section class="prihod-block prihod-' . esc_attr( $key ) . '">' . $html . '</section>';
     }
-    private static function event_html( array $event, bool $show_date = true ): string {
+    private static function location_title( int $id ): string {
+        $places = get_posts( array( 'post_type' => 'prihod_location', 'post_status' => 'publish', 'numberposts' => 2, 'fields' => 'ids' ) );
+        return 1 === count( $places ) ? '' : get_the_title( $id );
+    }
+    private static function event_html( array $event, bool $show_date = true, bool $compact = false ): string {
         $html = '<article class="prihod-event' . ( $event['cancelled'] ? ' is-cancelled' : ( $event['moved'] ? ' is-moved' : '' ) ) . '"><div class="prihod-event-time"><time datetime="' . esc_attr( $event['start']->format( DATE_ATOM ) ) . '">' . esc_html( $event['start']->format( 'H:i' ) ) . '</time>';
         if ( $event['end'] ) { $html .= '<small>— ' . esc_html( $event['end']->format( $event['end']->format( 'Y-m-d' ) === $event['start']->format( 'Y-m-d' ) ? 'H:i' : 'd.m.Y H:i' ) ) . '</small>'; }
-        $html .= Schedule_Calendar::icon_placeholder( $event ) . '</div><div class="prihod-event-copy"><h3>' . esc_html( $event['title'] ) . '</h3>' . Schedule_Calendar::feast_placeholder( $event ) . '<p class="prihod-event-meta">' . esc_html( ( $show_date ? $event['start']->format( 'd.m.Y' ) . ' · ' : '' ) . $event['start']->getTimezone()->getName() ) . '</p><p>' . esc_html( get_the_title( $event['location_id'] ) ) . '</p>';
+        $html .= Schedule_Calendar::icon_placeholder( $event ) . '</div><div class="prihod-event-copy"><h3>' . esc_html( $event['title'] ) . '</h3>' . Schedule_Calendar::feast_placeholder( $event, $compact ) . '<p class="prihod-event-meta">' . esc_html( ( $show_date ? $event['start']->format( 'd.m.Y' ) . ' · ' : '' ) . $event['start']->getTimezone()->getName() ) . '</p>';
+        $place = self::location_title( $event['location_id'] );
+        if ( $place ) { $html .= '<p class="prihod-event-place">' . esc_html( $place ) . '</p>'; }
         if ( $event['cancelled'] ) { $html .= '<strong>' . esc_html__( 'Отменено', 'prihod' ) . '</strong>'; }
         if ( $event['moved'] ) { $html .= '<p>' . esc_html__( 'Изменение службы за', 'prihod' ) . ' ' . esc_html( $event['original_date'] ) . '</p>'; }
         if ( trim( $event['description'] ) ) { $html .= '<details class="prihod-event-description"><summary>' . esc_html__( 'Подробнее о богослужении', 'prihod' ) . '</summary>' . wpautop( wp_kses_post( $event['description'] ) ) . '</details>'; }
@@ -104,10 +110,11 @@ final class Public_View {
             $count = sprintf( __( 'Богослужений: %d', 'prihod' ), count( $items ) );
             $html .= '<td' . ( $key === $today ? ' class="is-today"' : '' ) . '><time datetime="' . esc_attr( $key ) . '">' . esc_html( $date->format( 'j' ) ) . '</time><a class="prihod-month-day-choice' . ( $items ? ' has-services' : '' ) . '" href="#' . esc_attr( $target ) . '" data-prihod-month-day="' . esc_attr( $key ) . '" aria-label="' . esc_attr( $date->format( 'd.m.Y' ) . ' · ' . $count ) . '"' . ( $key === $selected ? ' aria-current="date"' : '' ) . '>' . esc_html( $date->format( 'j' ) ) . ( $items ? '<small>' . esc_html( count( $items ) ) . '</small>' : '' ) . '</a>';
             $panels .= '<details class="prihod-month-day-panel" id="' . esc_attr( $target ) . '"' . ( $key === $selected ? ' open' : '' ) . '><summary>' . esc_html( $date->format( 'd.m.Y' ) . ' · ' . self::weekdays()[ (int) $date->format( 'N' ) - 1 ] . ' · ' . $count ) . '</summary>';
-            foreach ( $items as $event ) { $panels .= self::event_html( $event ); }
+            foreach ( $items as $event ) { $panels .= self::event_html( $event, true, true ); }
             if ( ! $items ) { $panels .= '<p>' . esc_html__( 'Богослужения на эту дату не указаны.', 'prihod' ) . '</p>'; }
             $panels .= '</details>';
-            foreach ( $by_day[ $key ] ?? array() as $event ) { $html .= self::event_html( $event, false ); }
+            if ( ! $items ) { $html .= Schedule_Calendar::feast_placeholder( array( 'start' => $date, 'cancelled' => false, 'title' => '', 'vestment_color' => '' ), true ); }
+            foreach ( $by_day[ $key ] ?? array() as $event ) { $html .= self::event_html( $event, false, true ); }
             $html .= '</td>'; ++$offset;
             if ( 0 === $offset % 7 && $date->modify( '+1 day' ) < $to ) { $html .= '</tr><tr>'; }
         }
@@ -133,7 +140,7 @@ final class Public_View {
         if ( $next ) {
             $event = $next[0];
             $html .= Schedule_Calendar::icon_placeholder( $event );
-            $html .= '<p class="prihod-overview-date"><time datetime="' . esc_attr( $event['start']->format( DATE_ATOM ) ) . '">' . esc_html( wp_date( 'j F · H:i', $event['start']->getTimestamp(), $event['start']->getTimezone() ) ) . '</time></p><strong>' . esc_html( $event['title'] ) . '</strong>' . Schedule_Calendar::feast_placeholder( $event ) . '<p>' . esc_html( get_the_title( $event['location_id'] ) ) . '<small>' . esc_html( $event['start']->getTimezone()->getName() ) . '</small></p>';
+            $html .= '<p class="prihod-overview-date"><time datetime="' . esc_attr( $event['start']->format( DATE_ATOM ) ) . '">' . esc_html( wp_date( 'j F · H:i', $event['start']->getTimestamp(), $event['start']->getTimezone() ) ) . '</time></p><strong>' . esc_html( $event['title'] ) . '</strong>' . Schedule_Calendar::feast_placeholder( $event ) . '<p>' . esc_html( self::location_title( $event['location_id'] ) ) . '<small>' . esc_html( $event['start']->getTimezone()->getName() ) . '</small></p>';
             $resources = get_option( 'prihod_resources', array() );
             $id = absint( $resources['contacts']['id'] ?? 0 );
             if ( $id && 'publish' === get_post_status( $id ) ) {
@@ -150,7 +157,7 @@ final class Public_View {
             foreach ( $changes as $event ) {
                 $original = new \DateTimeImmutable( $event['original_date'] );
                 $html .= '<li class="' . ( $event['cancelled'] ? 'is-cancelled' : 'is-moved' ) . '"><strong>' . esc_html( $event['cancelled'] ? __( 'Отменено', 'prihod' ) : __( 'Перенос / изменение времени', 'prihod' ) ) . '</strong> · ' . esc_html( $original->format( 'd.m.Y' ) . ' · ' . $event['title'] );
-                if ( ! $event['cancelled'] ) { $html .= '<small>→ ' . esc_html( $event['start']->format( 'd.m.Y H:i' ) . ' · ' . $event['start']->getTimezone()->getName() . ' · ' . get_the_title( $event['location_id'] ) ) . '</small>'; }
+                if ( ! $event['cancelled'] ) { $place = self::location_title( $event['location_id'] ); $html .= '<small>→ ' . esc_html( $event['start']->format( 'd.m.Y H:i' ) . ' · ' . $event['start']->getTimezone()->getName() . ( $place ? ' · ' . $place : '' ) ) . '</small>'; }
                 $html .= '</li>';
             }
             $html .= '</ul></div>';
