@@ -193,3 +193,23 @@ home-detail-smoke.php: 11 проверок независимых владель
 Проверены native Image metadata обеих версий, opt-in permission full-size endpoint,
 signed orthocal media без thumbnail, отдельно full/medium выбранных attachment.
 Никаких реальных отправок; интеграционные fixtures одноразовые.
+
+
+### Регрессия ширины «О монастыре», тема0.3.24
+
+Через CUA при одинаковых viewport1920×1080/1122×998/390×844 сравнить about и
+расписание для каждой схемы: main/header/footer, ширину/позицию, overflow,
+четыре реальных года/описания, одинаковую ширину этапов и sidebar270px на
+настольных экранах, вертикальную последовательность на мобильном. Отдельно
+сохранить1440px в настройках одноразового локального WordPress, измерить снова
+и восстановить1200px. Нельзя выполнять изменение настройки на production.
+Readonly DOM-метрики сохранены в JSON; проверка фактических результатов:
+
+```powershell
+python tests/about-width-check.py docs/design-reference/verification-2026-10-13/about-width-0324/metrics.json
+```
+
+Прошли16layoutcases. Документированный полный порядок WordPress smoke →
+standalone → monastery design прошёл310/210 на WP7.1.3/PHP8.4.25. Monastery
+fixture нельзя запускать отдельно до активации/инициализации Core: её native
+блоки требуют подготовленной среды. Снимки about для всех15сочетаний сохранены.
