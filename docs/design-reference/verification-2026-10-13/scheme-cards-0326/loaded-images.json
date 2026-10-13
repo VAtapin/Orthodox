@@ -1,0 +1,86 @@
+{
+  "images": [
+    {
+      "box": {
+        "bottom": 951.421875,
+        "height": 194.75,
+        "left": 45,
+        "right": 355,
+        "top": 756.671875,
+        "width": 310,
+        "x": 45,
+        "y": 756.671875
+      },
+      "complete": true,
+      "height": 891,
+      "name": "Классическая золотая",
+      "width": 1425
+    },
+    {
+      "box": {
+        "bottom": 1285.171875,
+        "height": 194.75,
+        "left": 45,
+        "right": 355,
+        "top": 1090.421875,
+        "width": 310,
+        "x": 45,
+        "y": 1090.421875
+      },
+      "complete": true,
+      "height": 891,
+      "name": "Светлая гостеприимная",
+      "width": 1425
+    },
+    {
+      "box": {
+        "bottom": 1618.921875,
+        "height": 194.75,
+        "left": 45,
+        "right": 355,
+        "top": 1424.171875,
+        "width": 310,
+        "x": 45,
+        "y": 1424.171875
+      },
+      "complete": true,
+      "height": 891,
+      "name": "Журнальная",
+      "width": 1425
+    },
+    {
+      "box": {
+        "bottom": 1952.671875,
+        "height": 194.75,
+        "left": 45,
+        "right": 355,
+        "top": 1757.921875,
+        "width": 310,
+        "x": 45,
+        "y": 1757.921875
+      },
+      "complete": true,
+      "height": 891,
+      "name": "Традиционная",
+      "width": 1425
+    },
+    {
+      "box": {
+        "bottom": 2286.421875,
+        "height": 194.75,
+        "left": 45,
+        "right": 355,
+        "top": 2091.671875,
+        "width": 310,
+        "x": 45,
+        "y": 2091.671875
+      },
+      "complete": true,
+      "height": 891,
+      "name": "Современная синяя",
+      "width": 1425
+    }
+  ],
+  "overflow": false,
+  "width": 390
+}

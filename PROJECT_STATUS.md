@@ -23,8 +23,14 @@ theme-alone/connectors-alone,2496translations,PHP syntax/diff-check прошли
 профиля, темы, Telegram, модулей, site_icon/theme_mods совпал до/после:
 c4657c462dd30cb068f8de523e61530ffd0a5fcbac57ab1518b67637daa5b837.
 Core и сторонние плагины, изображения/материалы владельца и серверные настройки не менялись.
+Повторная визуальная приёмка: прежний live screenshot был снят до полной загрузки
+трёх JPEG (naturalWidth уже задан, но изображение ещё частичное). Исходные и ZIP
+изображения полные и совпадают; CSS не обрезает их. После complete=true для всех5
+пересняты live desktop1920 и full-page mobile390: все карточки заполнены, overflow нет.
+Исправлены только снимки/протокол приёмки; новая тема/установка не требуется.
+Последний связанный commit:6747bcf. Текущий блок: Verify fully loaded scheme screenshots.
 Implementation commit:dc18a73, Add scheme screenshots and safe previews.
-Текущий блок приёмки: Record verified theme26 deployment.
+Приёмка установки: Record verified theme26 deployment (6747bcf).
 
 Core rc.16 подготовлен: Telegram Reply — отдельная запись/письмо на каждый ответ,
 включая после answered; duplicate webhook не загружает файл и не отправляет повтор.
