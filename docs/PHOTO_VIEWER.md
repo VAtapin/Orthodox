@@ -97,11 +97,11 @@ Native окно ограничено прежними размерами, изо
 
 Проверки: WP7.1.3/PHP8.4.25 336/210; WP6.5.13/PHP8.0.30 310/209,
 62 unit, 2427 UI translations, PHP/JS syntax. Снимки просмотра в
-verification-2026-10-13/icon-viewer-rc15. Установка rc.15/0.3.23 ещё не разрешена;
-на сервере остаются rc.14/0.3.22.
+verification-2026-10-13/icon-viewer-rc15. rc.15/0.3.23 установлены с прямого разрешения 13 октября;
+87 серверных проверок прошли на WP7.1.3/PHP8.5.11.
 
-После отдельного разрешения и загрузки двух ZIP и tests/server-check.php только
-в wp-content этого WordPress команда обновления (фактический Plesk PHP8.5.11):
+Два ZIP и tests/server-check.php загружены только в wp-content этого WordPress.
+Команда повторного обновления (фактический Plesk PHP8.5.11):
 
 ```bash
 cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
@@ -112,3 +112,8 @@ php /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod
 ```
 
 Dependencies, migrations, Node build и серверные настройки не меняются.
+
+Живая приёмка rc.15/0.3.23: полный источник, contain, Escape/фокус и быстрый
+повтор подтверждены. Mobile390px: контейнер350×664, без overflow/ошибокJS.
+Профиль/службы/тема/Telegram/модули имеют одинаковый отпечаток до/после.
+Снимки live-* и live-metrics.json в icon-viewer-rc15.

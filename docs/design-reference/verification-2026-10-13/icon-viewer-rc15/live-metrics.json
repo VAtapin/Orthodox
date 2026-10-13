@@ -1,0 +1,45 @@
+{
+  "caption": "Воскресение Христово — Сошествие во ад",
+  "frames": [
+    {
+      "bottom": 0,
+      "height": 0,
+      "left": 0,
+      "right": 0,
+      "top": 0,
+      "width": 0,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "bottom": 754,
+      "height": 664,
+      "left": 12.5,
+      "right": 362.5,
+      "top": 90,
+      "width": 350,
+      "x": 12.5,
+      "y": 90
+    }
+  ],
+  "images": [
+    {
+      "contain": "contain",
+      "height": 495,
+      "src": "https://prihod.georg-kloster.ru/wp-content/plugins/prihod/assets/icons/resurrection.jpg",
+      "width": 330
+    },
+    {
+      "contain": "contain",
+      "height": 5664,
+      "src": "https://prihod.georg-kloster.ru/index.php?rest_route=%2Fprihod%2Fv1%2Fschedule-icon-image&date=2026-10-18&v=1.0.0-rc.15",
+      "width": 3776
+    }
+  ],
+  "open": "wp-lightbox-overlay zoom active show-closing-animation",
+  "overflow": false,
+  "width": 390,
+  "closed": {
+    "closed": true
+  }
+}
