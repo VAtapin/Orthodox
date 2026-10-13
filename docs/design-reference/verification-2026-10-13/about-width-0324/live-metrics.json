@@ -1,0 +1,1802 @@
+[
+  {
+    "about": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 47.21875,
+            "width": 1200,
+            "x": 352.5,
+            "y": 2446.59375
+          }
+        ],
+        "header": [
+          {
+            "height": 92,
+            "width": 1200,
+            "x": 352.5,
+            "y": 32
+          }
+        ],
+        "main": {
+          "height": 1858.625,
+          "width": 1200,
+          "x": 352.5,
+          "y": 458.96875
+        }
+      },
+      "scheme": "classic",
+      "sidebar": {
+        "height": 1834.625,
+        "width": 270,
+        "x": 1282.5,
+        "y": 482.96875
+      },
+      "timeline": {
+        "borderLeft": "0px",
+        "borderTop": "1px",
+        "items": [
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.890625,
+              "width": 214.5,
+              "x": 352.5,
+              "y": 512.46875
+            },
+            "year": "2006"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.890625,
+              "width": 214.5,
+              "x": 583,
+              "y": 512.46875
+            },
+            "year": "2007"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.890625,
+              "width": 214.5,
+              "x": 813.5,
+              "y": 512.46875
+            },
+            "year": "2011"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.890625,
+              "width": 214.5,
+              "x": 1044,
+              "y": 512.46875
+            },
+            "year": "2013"
+          }
+        ]
+      },
+      "viewport": 1920
+    },
+    "reference": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 47.21875,
+            "width": 1200,
+            "x": 352.5,
+            "y": 1575.203125
+          }
+        ],
+        "header": [
+          {
+            "height": 92,
+            "width": 1200,
+            "x": 352.5,
+            "y": 32
+          }
+        ],
+        "main": {
+          "height": 1288.21875,
+          "width": 1200,
+          "x": 352.5,
+          "y": 269.984375
+        }
+      },
+      "scheme": "classic",
+      "sidebar": null,
+      "timeline": null,
+      "viewport": 1920
+    }
+  },
+  {
+    "about": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 47.21875,
+            "width": 1200,
+            "x": 352.5,
+            "y": 2458.328125
+          }
+        ],
+        "header": [
+          {
+            "height": 103.734375,
+            "width": 1200,
+            "x": 352.5,
+            "y": 32
+          }
+        ],
+        "main": {
+          "height": 1858.625,
+          "width": 1200,
+          "x": 352.5,
+          "y": 470.703125
+        }
+      },
+      "scheme": "hospitality",
+      "sidebar": {
+        "height": 1834.625,
+        "width": 270,
+        "x": 1282.5,
+        "y": 494.703125
+      },
+      "timeline": {
+        "borderLeft": "0px",
+        "borderTop": "1px",
+        "items": [
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.890625,
+              "width": 214.5,
+              "x": 352.5,
+              "y": 524.203125
+            },
+            "year": "2006"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.890625,
+              "width": 214.5,
+              "x": 583,
+              "y": 524.203125
+            },
+            "year": "2007"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.890625,
+              "width": 214.5,
+              "x": 813.5,
+              "y": 524.203125
+            },
+            "year": "2011"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.890625,
+              "width": 214.5,
+              "x": 1044,
+              "y": 524.203125
+            },
+            "year": "2013"
+          }
+        ]
+      },
+      "viewport": 1920
+    },
+    "reference": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 47.21875,
+            "width": 1200,
+            "x": 352.5,
+            "y": 1699.96875
+          }
+        ],
+        "header": [
+          {
+            "height": 103.734375,
+            "width": 1200,
+            "x": 352.5,
+            "y": 32
+          }
+        ],
+        "main": {
+          "height": 1401.25,
+          "width": 1200,
+          "x": 352.5,
+          "y": 281.71875
+        }
+      },
+      "scheme": "hospitality",
+      "sidebar": null,
+      "timeline": null,
+      "viewport": 1920
+    }
+  },
+  {
+    "about": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 47.21875,
+            "width": 1200,
+            "x": 352.5,
+            "y": 2464.890625
+          }
+        ],
+        "header": [
+          {
+            "height": 110.296875,
+            "width": 1200,
+            "x": 352.5,
+            "y": 32
+          }
+        ],
+        "main": {
+          "height": 1858.625,
+          "width": 1200,
+          "x": 352.5,
+          "y": 477.265625
+        }
+      },
+      "scheme": "editorial",
+      "sidebar": {
+        "height": 1834.625,
+        "width": 270,
+        "x": 1282.5,
+        "y": 501.265625
+      },
+      "timeline": {
+        "borderLeft": "0px",
+        "borderTop": "1px",
+        "items": [
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.890625,
+              "width": 214.5,
+              "x": 352.5,
+              "y": 530.765625
+            },
+            "year": "2006"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.890625,
+              "width": 214.5,
+              "x": 583,
+              "y": 530.765625
+            },
+            "year": "2007"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.890625,
+              "width": 214.5,
+              "x": 813.5,
+              "y": 530.765625
+            },
+            "year": "2011"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.890625,
+              "width": 214.5,
+              "x": 1044,
+              "y": 530.765625
+            },
+            "year": "2013"
+          }
+        ]
+      },
+      "viewport": 1920
+    },
+    "reference": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 47.21875,
+            "width": 1200,
+            "x": 352.5,
+            "y": 1706.53125
+          }
+        ],
+        "header": [
+          {
+            "height": 110.296875,
+            "width": 1200,
+            "x": 352.5,
+            "y": 32
+          }
+        ],
+        "main": {
+          "height": 1401.25,
+          "width": 1200,
+          "x": 352.5,
+          "y": 288.28125
+        }
+      },
+      "scheme": "editorial",
+      "sidebar": null,
+      "timeline": null,
+      "viewport": 1920
+    }
+  },
+  {
+    "about": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 47.21875,
+            "width": 1200,
+            "x": 352.5,
+            "y": 2487.484375
+          }
+        ],
+        "header": [
+          {
+            "height": 131.890625,
+            "width": 1200,
+            "x": 352.5,
+            "y": 32
+          }
+        ],
+        "main": {
+          "height": 1859.625,
+          "width": 1200,
+          "x": 352.5,
+          "y": 498.859375
+        }
+      },
+      "scheme": "tradition",
+      "sidebar": {
+        "height": 1835.625,
+        "width": 270,
+        "x": 1282.5,
+        "y": 522.859375
+      },
+      "timeline": {
+        "borderLeft": "0px",
+        "borderTop": "1px",
+        "items": [
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 132.890625,
+              "width": 214.5,
+              "x": 352.5,
+              "y": 552.359375
+            },
+            "year": "2006"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 132.890625,
+              "width": 214.5,
+              "x": 583,
+              "y": 552.359375
+            },
+            "year": "2007"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 132.890625,
+              "width": 214.5,
+              "x": 813.5,
+              "y": 552.359375
+            },
+            "year": "2011"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 132.890625,
+              "width": 214.5,
+              "x": 1044,
+              "y": 552.359375
+            },
+            "year": "2013"
+          }
+        ]
+      },
+      "viewport": 1920
+    },
+    "reference": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 47.21875,
+            "width": 1200,
+            "x": 352.5,
+            "y": 1729.125
+          }
+        ],
+        "header": [
+          {
+            "height": 131.890625,
+            "width": 1200,
+            "x": 352.5,
+            "y": 32
+          }
+        ],
+        "main": {
+          "height": 1402.25,
+          "width": 1200,
+          "x": 352.5,
+          "y": 309.875
+        }
+      },
+      "scheme": "tradition",
+      "sidebar": null,
+      "timeline": null,
+      "viewport": 1920
+    }
+  },
+  {
+    "about": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 47.21875,
+            "width": 1200,
+            "x": 352.5,
+            "y": 2446.59375
+          }
+        ],
+        "header": [
+          {
+            "height": 92,
+            "width": 1200,
+            "x": 352.5,
+            "y": 32
+          }
+        ],
+        "main": {
+          "height": 1858.625,
+          "width": 1200,
+          "x": 352.5,
+          "y": 458.96875
+        }
+      },
+      "scheme": "blue",
+      "sidebar": {
+        "height": 1834.625,
+        "width": 270,
+        "x": 1282.5,
+        "y": 482.96875
+      },
+      "timeline": {
+        "borderLeft": "0px",
+        "borderTop": "1px",
+        "items": [
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.890625,
+              "width": 214.5,
+              "x": 352.5,
+              "y": 512.46875
+            },
+            "year": "2006"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.890625,
+              "width": 214.5,
+              "x": 583,
+              "y": 512.46875
+            },
+            "year": "2007"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.890625,
+              "width": 214.5,
+              "x": 813.5,
+              "y": 512.46875
+            },
+            "year": "2011"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.890625,
+              "width": 214.5,
+              "x": 1044,
+              "y": 512.46875
+            },
+            "year": "2013"
+          }
+        ]
+      },
+      "viewport": 1920
+    },
+    "reference": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 47.21875,
+            "width": 1200,
+            "x": 352.5,
+            "y": 1688.234375
+          }
+        ],
+        "header": [
+          {
+            "height": 92,
+            "width": 1200,
+            "x": 352.5,
+            "y": 32
+          }
+        ],
+        "main": {
+          "height": 1401.25,
+          "width": 1200,
+          "x": 352.5,
+          "y": 269.984375
+        }
+      },
+      "scheme": "blue",
+      "sidebar": null,
+      "timeline": null,
+      "viewport": 1920
+    }
+  },
+  {
+    "about": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 49.59375,
+            "width": 1043,
+            "x": 32,
+            "y": 2400.171875
+          }
+        ],
+        "header": [
+          {
+            "height": 92,
+            "width": 1043,
+            "x": 32,
+            "y": 32
+          }
+        ],
+        "main": {
+          "height": 1812.484375,
+          "width": 1043,
+          "x": 32,
+          "y": 458.6875
+        }
+      },
+      "scheme": "classic",
+      "sidebar": {
+        "height": 1788.484375,
+        "width": 270,
+        "x": 805,
+        "y": 482.6875
+      },
+      "timeline": {
+        "borderLeft": "0px",
+        "borderTop": "1px",
+        "items": [
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.609375,
+              "width": 175.25,
+              "x": 32,
+              "y": 512.1875
+            },
+            "year": "2006"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.609375,
+              "width": 175.25,
+              "x": 223.25,
+              "y": 512.1875
+            },
+            "year": "2007"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.609375,
+              "width": 175.25,
+              "x": 414.5,
+              "y": 512.1875
+            },
+            "year": "2011"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.609375,
+              "width": 175.25,
+              "x": 605.75,
+              "y": 512.1875
+            },
+            "year": "2013"
+          }
+        ]
+      },
+      "viewport": 1122
+    },
+    "reference": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 49.59375,
+            "width": 1043,
+            "x": 32,
+            "y": 1680.203125
+          }
+        ],
+        "header": [
+          {
+            "height": 92,
+            "width": 1043,
+            "x": 32,
+            "y": 32
+          }
+        ],
+        "main": {
+          "height": 1400.90625,
+          "width": 1043,
+          "x": 32,
+          "y": 262.296875
+        }
+      },
+      "scheme": "classic",
+      "sidebar": null,
+      "timeline": null,
+      "viewport": 1122
+    }
+  },
+  {
+    "about": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 49.59375,
+            "width": 1043,
+            "x": 32,
+            "y": 2411.90625
+          }
+        ],
+        "header": [
+          {
+            "height": 103.734375,
+            "width": 1043,
+            "x": 32,
+            "y": 32
+          }
+        ],
+        "main": {
+          "height": 1812.484375,
+          "width": 1043,
+          "x": 32,
+          "y": 470.421875
+        }
+      },
+      "scheme": "hospitality",
+      "sidebar": {
+        "height": 1788.484375,
+        "width": 270,
+        "x": 805,
+        "y": 494.421875
+      },
+      "timeline": {
+        "borderLeft": "0px",
+        "borderTop": "1px",
+        "items": [
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.609375,
+              "width": 175.25,
+              "x": 32,
+              "y": 523.921875
+            },
+            "year": "2006"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.609375,
+              "width": 175.25,
+              "x": 223.25,
+              "y": 523.921875
+            },
+            "year": "2007"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.609375,
+              "width": 175.25,
+              "x": 414.5,
+              "y": 523.921875
+            },
+            "year": "2011"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.609375,
+              "width": 175.25,
+              "x": 605.75,
+              "y": 523.921875
+            },
+            "year": "2013"
+          }
+        ]
+      },
+      "viewport": 1122
+    },
+    "reference": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 49.59375,
+            "width": 1043,
+            "x": 32,
+            "y": 1578.90625
+          }
+        ],
+        "header": [
+          {
+            "height": 103.734375,
+            "width": 1043,
+            "x": 32,
+            "y": 32
+          }
+        ],
+        "main": {
+          "height": 1287.875,
+          "width": 1043,
+          "x": 32,
+          "y": 274.03125
+        }
+      },
+      "scheme": "hospitality",
+      "sidebar": null,
+      "timeline": null,
+      "viewport": 1122
+    }
+  },
+  {
+    "about": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 49.59375,
+            "width": 1043,
+            "x": 32,
+            "y": 2418.46875
+          }
+        ],
+        "header": [
+          {
+            "height": 110.296875,
+            "width": 1043,
+            "x": 32,
+            "y": 32
+          }
+        ],
+        "main": {
+          "height": 1812.484375,
+          "width": 1043,
+          "x": 32,
+          "y": 476.984375
+        }
+      },
+      "scheme": "editorial",
+      "sidebar": {
+        "height": 1788.484375,
+        "width": 270,
+        "x": 805,
+        "y": 500.984375
+      },
+      "timeline": {
+        "borderLeft": "0px",
+        "borderTop": "1px",
+        "items": [
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.609375,
+              "width": 175.25,
+              "x": 32,
+              "y": 530.484375
+            },
+            "year": "2006"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.609375,
+              "width": 175.25,
+              "x": 223.25,
+              "y": 530.484375
+            },
+            "year": "2007"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.609375,
+              "width": 175.25,
+              "x": 414.5,
+              "y": 530.484375
+            },
+            "year": "2011"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.609375,
+              "width": 175.25,
+              "x": 605.75,
+              "y": 530.484375
+            },
+            "year": "2013"
+          }
+        ]
+      },
+      "viewport": 1122
+    },
+    "reference": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 49.59375,
+            "width": 1043,
+            "x": 32,
+            "y": 1585.46875
+          }
+        ],
+        "header": [
+          {
+            "height": 110.296875,
+            "width": 1043,
+            "x": 32,
+            "y": 32
+          }
+        ],
+        "main": {
+          "height": 1287.875,
+          "width": 1043,
+          "x": 32,
+          "y": 280.59375
+        }
+      },
+      "scheme": "editorial",
+      "sidebar": null,
+      "timeline": null,
+      "viewport": 1122
+    }
+  },
+  {
+    "about": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 49.59375,
+            "width": 995,
+            "x": 56,
+            "y": 2437.8125
+          }
+        ],
+        "header": [
+          {
+            "height": 131.890625,
+            "width": 995,
+            "x": 56,
+            "y": 32
+          }
+        ],
+        "main": {
+          "height": 1810.234375,
+          "width": 995,
+          "x": 56,
+          "y": 498.578125
+        }
+      },
+      "scheme": "tradition",
+      "sidebar": {
+        "height": 1786.234375,
+        "width": 270,
+        "x": 781,
+        "y": 522.578125
+      },
+      "timeline": {
+        "borderLeft": "0px",
+        "borderTop": "1px",
+        "items": [
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.609375,
+              "width": 163.25,
+              "x": 56,
+              "y": 552.078125
+            },
+            "year": "2006"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.609375,
+              "width": 163.25,
+              "x": 235.25,
+              "y": 552.078125
+            },
+            "year": "2007"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.609375,
+              "width": 163.25,
+              "x": 414.5,
+              "y": 552.078125
+            },
+            "year": "2011"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 131.609375,
+              "width": 163.25,
+              "x": 593.75,
+              "y": 552.078125
+            },
+            "year": "2013"
+          }
+        ]
+      },
+      "viewport": 1122
+    },
+    "reference": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 49.59375,
+            "width": 995,
+            "x": 56,
+            "y": 1608.0625
+          }
+        ],
+        "header": [
+          {
+            "height": 131.890625,
+            "width": 995,
+            "x": 56,
+            "y": 32
+          }
+        ],
+        "main": {
+          "height": 1288.875,
+          "width": 995,
+          "x": 56,
+          "y": 302.1875
+        }
+      },
+      "scheme": "tradition",
+      "sidebar": null,
+      "timeline": null,
+      "viewport": 1122
+    }
+  },
+  {
+    "about": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 49.59375,
+            "width": 987,
+            "x": 60,
+            "y": 2413.421875
+          }
+        ],
+        "header": [
+          {
+            "height": 92,
+            "width": 987,
+            "x": 60,
+            "y": 32
+          }
+        ],
+        "main": {
+          "height": 1825.734375,
+          "width": 987,
+          "x": 60,
+          "y": 458.6875
+        }
+      },
+      "scheme": "blue",
+      "sidebar": {
+        "height": 1801.734375,
+        "width": 270,
+        "x": 777,
+        "y": 482.6875
+      },
+      "timeline": {
+        "borderLeft": "0px",
+        "borderTop": "1px",
+        "items": [
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 151.109375,
+              "width": 161.25,
+              "x": 60,
+              "y": 512.1875
+            },
+            "year": "2006"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 151.109375,
+              "width": 161.25,
+              "x": 237.25,
+              "y": 512.1875
+            },
+            "year": "2007"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 151.109375,
+              "width": 161.25,
+              "x": 414.5,
+              "y": 512.1875
+            },
+            "year": "2011"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 151.109375,
+              "width": 161.25,
+              "x": 591.75,
+              "y": 512.1875
+            },
+            "year": "2013"
+          }
+        ]
+      },
+      "viewport": 1122
+    },
+    "reference": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 49.59375,
+            "width": 987,
+            "x": 60,
+            "y": 1567.171875
+          }
+        ],
+        "header": [
+          {
+            "height": 92,
+            "width": 987,
+            "x": 60,
+            "y": 32
+          }
+        ],
+        "main": {
+          "height": 1287.875,
+          "width": 987,
+          "x": 60,
+          "y": 262.296875
+        }
+      },
+      "scheme": "blue",
+      "sidebar": null,
+      "timeline": null,
+      "viewport": 1122
+    }
+  },
+  {
+    "about": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 202.421875,
+            "width": 343,
+            "x": 16,
+            "y": 5102.625
+          }
+        ],
+        "header": [
+          {
+            "height": 171.125,
+            "width": 343,
+            "x": 16,
+            "y": 46
+          }
+        ],
+        "main": {
+          "height": 4288.890625,
+          "width": 343,
+          "x": 16,
+          "y": 619.640625
+        }
+      },
+      "scheme": "classic",
+      "sidebar": {
+        "height": 1199.890625,
+        "width": 343,
+        "x": 16,
+        "y": 3708.640625
+      },
+      "timeline": {
+        "borderLeft": "1px",
+        "borderTop": "0px",
+        "items": [
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 93.796875,
+              "width": 338,
+              "x": 21,
+              "y": 672.140625
+            },
+            "year": "2006"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 74.296875,
+              "width": 338,
+              "x": 21,
+              "y": 785.9375
+            },
+            "year": "2007"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 74.296875,
+              "width": 338,
+              "x": 21,
+              "y": 880.234375
+            },
+            "year": "2011"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 93.796875,
+              "width": 338,
+              "x": 21,
+              "y": 974.53125
+            },
+            "year": "2013"
+          }
+        ]
+      },
+      "viewport": 390
+    },
+    "reference": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 202.421875,
+            "width": 343,
+            "x": 16,
+            "y": 2423.8125
+          }
+        ],
+        "header": [
+          {
+            "height": 171.125,
+            "width": 343,
+            "x": 16,
+            "y": 46
+          }
+        ],
+        "main": {
+          "height": 2031.34375,
+          "width": 343,
+          "x": 16,
+          "y": 375.46875
+        }
+      },
+      "scheme": "classic",
+      "sidebar": null,
+      "timeline": null,
+      "viewport": 390
+    }
+  },
+  {
+    "about": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 202.421875,
+            "width": 343,
+            "x": 16,
+            "y": 5084.828125
+          }
+        ],
+        "header": [
+          {
+            "height": 187.328125,
+            "width": 343,
+            "x": 16,
+            "y": 46
+          }
+        ],
+        "main": {
+          "height": 4254.890625,
+          "width": 343,
+          "x": 16,
+          "y": 635.84375
+        }
+      },
+      "scheme": "hospitality",
+      "sidebar": {
+        "height": 1165.890625,
+        "width": 343,
+        "x": 16,
+        "y": 3724.84375
+      },
+      "timeline": {
+        "borderLeft": "1px",
+        "borderTop": "0px",
+        "items": [
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 93.796875,
+              "width": 338,
+              "x": 21,
+              "y": 688.34375
+            },
+            "year": "2006"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 74.296875,
+              "width": 338,
+              "x": 21,
+              "y": 802.140625
+            },
+            "year": "2007"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 74.296875,
+              "width": 338,
+              "x": 21,
+              "y": 896.4375
+            },
+            "year": "2011"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 93.796875,
+              "width": 338,
+              "x": 21,
+              "y": 990.734375
+            },
+            "year": "2013"
+          }
+        ]
+      },
+      "viewport": 390
+    },
+    "reference": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 202.421875,
+            "width": 343,
+            "x": 16,
+            "y": 2440.015625
+          }
+        ],
+        "header": [
+          {
+            "height": 187.328125,
+            "width": 343,
+            "x": 16,
+            "y": 46
+          }
+        ],
+        "main": {
+          "height": 2031.34375,
+          "width": 343,
+          "x": 16,
+          "y": 391.671875
+        }
+      },
+      "scheme": "hospitality",
+      "sidebar": null,
+      "timeline": null,
+      "viewport": 390
+    }
+  },
+  {
+    "about": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 202.421875,
+            "width": 343,
+            "x": 16,
+            "y": 5149.328125
+          }
+        ],
+        "header": [
+          {
+            "height": 251.828125,
+            "width": 343,
+            "x": 16,
+            "y": 46
+          }
+        ],
+        "main": {
+          "height": 4254.890625,
+          "width": 343,
+          "x": 16,
+          "y": 700.34375
+        }
+      },
+      "scheme": "editorial",
+      "sidebar": {
+        "height": 1165.890625,
+        "width": 343,
+        "x": 16,
+        "y": 3789.34375
+      },
+      "timeline": {
+        "borderLeft": "1px",
+        "borderTop": "0px",
+        "items": [
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 93.796875,
+              "width": 338,
+              "x": 21,
+              "y": 752.84375
+            },
+            "year": "2006"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 74.296875,
+              "width": 338,
+              "x": 21,
+              "y": 866.640625
+            },
+            "year": "2007"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 74.296875,
+              "width": 338,
+              "x": 21,
+              "y": 960.9375
+            },
+            "year": "2011"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 93.796875,
+              "width": 338,
+              "x": 21,
+              "y": 1055.234375
+            },
+            "year": "2013"
+          }
+        ]
+      },
+      "viewport": 390
+    },
+    "reference": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 202.421875,
+            "width": 343,
+            "x": 16,
+            "y": 2504.515625
+          }
+        ],
+        "header": [
+          {
+            "height": 251.828125,
+            "width": 343,
+            "x": 16,
+            "y": 46
+          }
+        ],
+        "main": {
+          "height": 2031.34375,
+          "width": 343,
+          "x": 16,
+          "y": 456.171875
+        }
+      },
+      "scheme": "editorial",
+      "sidebar": null,
+      "timeline": null,
+      "viewport": 390
+    }
+  },
+  {
+    "about": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 220.5625,
+            "width": 319,
+            "x": 28,
+            "y": 5240.5
+          }
+        ],
+        "header": [
+          {
+            "height": 194.171875,
+            "width": 319,
+            "x": 28,
+            "y": 46
+          }
+        ],
+        "main": {
+          "height": 4344.625,
+          "width": 319,
+          "x": 28,
+          "y": 642.6875
+        }
+      },
+      "scheme": "tradition",
+      "sidebar": {
+        "height": 1198.390625,
+        "width": 319,
+        "x": 28,
+        "y": 3788.921875
+      },
+      "timeline": {
+        "borderLeft": "1px",
+        "borderTop": "0px",
+        "items": [
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 94.34375,
+              "width": 314,
+              "x": 33,
+              "y": 729.6875
+            },
+            "year": "2006"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 74.84375,
+              "width": 314,
+              "x": 33,
+              "y": 844.03125
+            },
+            "year": "2007"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 74.84375,
+              "width": 314,
+              "x": 33,
+              "y": 938.875
+            },
+            "year": "2011"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 94.34375,
+              "width": 314,
+              "x": 33,
+              "y": 1033.71875
+            },
+            "year": "2013"
+          }
+        ]
+      },
+      "viewport": 390
+    },
+    "reference": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 220.5625,
+            "width": 319,
+            "x": 28,
+            "y": 2639.953125
+          }
+        ],
+        "header": [
+          {
+            "height": 194.171875,
+            "width": 319,
+            "x": 28,
+            "y": 46
+          }
+        ],
+        "main": {
+          "height": 2224.4375,
+          "width": 319,
+          "x": 28,
+          "y": 398.515625
+        }
+      },
+      "scheme": "tradition",
+      "sidebar": null,
+      "timeline": null,
+      "viewport": 390
+    }
+  },
+  {
+    "about": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 202.421875,
+            "width": 343,
+            "x": 16,
+            "y": 5037.046875
+          }
+        ],
+        "header": [
+          {
+            "height": 144.828125,
+            "width": 343,
+            "x": 16,
+            "y": 46
+          }
+        ],
+        "main": {
+          "height": 4249.609375,
+          "width": 343,
+          "x": 16,
+          "y": 593.34375
+        }
+      },
+      "scheme": "blue",
+      "sidebar": {
+        "height": 1160.609375,
+        "width": 343,
+        "x": 16,
+        "y": 3682.34375
+      },
+      "timeline": {
+        "borderLeft": "1px",
+        "borderTop": "0px",
+        "items": [
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 93.796875,
+              "width": 338,
+              "x": 21,
+              "y": 645.84375
+            },
+            "year": "2006"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 74.296875,
+              "width": 338,
+              "x": 21,
+              "y": 759.640625
+            },
+            "year": "2007"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 74.296875,
+              "width": 338,
+              "x": 21,
+              "y": 853.9375
+            },
+            "year": "2011"
+          },
+          {
+            "font": 13,
+            "overflow": false,
+            "rect": {
+              "height": 93.796875,
+              "width": 338,
+              "x": 21,
+              "y": 948.234375
+            },
+            "year": "2013"
+          }
+        ]
+      },
+      "viewport": 390
+    },
+    "reference": {
+      "limit": 1200,
+      "overflow": false,
+      "parts": {
+        "footer": [
+          {
+            "height": 202.421875,
+            "width": 343,
+            "x": 16,
+            "y": 2397.515625
+          }
+        ],
+        "header": [
+          {
+            "height": 144.828125,
+            "width": 343,
+            "x": 16,
+            "y": 46
+          }
+        ],
+        "main": {
+          "height": 2031.34375,
+          "width": 343,
+          "x": 16,
+          "y": 349.171875
+        }
+      },
+      "scheme": "blue",
+      "sidebar": null,
+      "timeline": null,
+      "viewport": 390
+    }
+  }
+]
