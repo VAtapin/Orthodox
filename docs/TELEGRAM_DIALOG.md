@@ -1,6 +1,6 @@
-# Переписка через Telegram — Core rc.16
+# Переписка через Telegram — Core rc.17
 
-Только Приход; тема0.3.25, Telegram0.1.3 и сторонние плагины не меняются.
+Только Приход; тема0.3.26, Telegram0.1.3 и сторонние плагины не меняются.
 Requests уже допускал новые ответы после answered; новая проверка подтверждает
 отдельные записи/письма и сохранность истории. Текстовый ответ/фото/статический
 стикер отправляются кнопкой Reply к исходному сообщению бота. Закрытое обращение
@@ -27,8 +27,9 @@ Private meta _prihod_reply_media; защищённый admin-post endpoint то�
 Сохранён один ответ97 от13октября13:46:07UTC (15:46:07 Europe/Berlin), Telegram Reply.
 Одна попытка; delivery=sent; transport=mail; From и envelope совпадают с профилем.
 Это подтверждает передачу PHP-почте, не доставку адресату. WP_DEBUG_LOG выключен;
-доступного журнала дальнейшей доставки внутри WordPress нет. К общим серверным
-логам/настройкам и Gmail не обращались, реальных писем/сообщений не отправляли.
+доступного журнала дальнейшей доставки внутри WordPress нет. С прямого разрешения проверен MTA-доступ: /var/log/maillog существует,640syslog:adm,
+SSH prihod:psacln не может читать его. Права/настройки сервера не менялись; Gmail
+не подключался, реальных писем/сообщений не отправляли. Подробнее MAIL_DIAGNOSTICS.md.
 Причина недоставки после PHP остаётся неподтверждённой. Требуется запись MTA
 именно об этой отправке от администратора, прежде чем утверждать причину отказа.
 Фото/стикер не сохранены старым обработчиком: он допускал только message.text.
@@ -49,8 +50,8 @@ WordPress. Gmail запрещён. До выбора канала и реали�
 
 ## Проверки и установка
 
-WP7.1.3/PHP8.4.25:336 smoke/223 design;
-WP6.5.13/PHP8.0.30:336/222;62 unit,2472 UI translations, PHP syntax.
+WP7.1.3/PHP8.4.25:356 smoke/223 design;
+WP6.5.13/PHP8.0.30:356/222;62 unit,2556 UI translations, PHP syntax.
 Транспорт Telegram и wp_mail перехвачен:2разных ответа, duplicate update, PNG+caption,
 настоящий WebP→PNG, multipart/related/alternative и CID, безопасное восстановление
 PHPMailer, запрет guest/editor/forged nonce, export/delete, path traversal,
@@ -58,15 +59,15 @@ HTTP failure/recovery, недопустимый animated sticker, отсутст
 HTML-образец письма: desktop1440/mobile390, изображение загружено, overflow нет.
 Это браузерный просмотр MIME-HTML, не подтверждение доставки в реальный ящик.
 
-Пакет build/prihod-1.0.0-rc.16.zip,
-SHA256:7E7F93CF889713C4AF060869418D3E9DFBA40B9CDE80C7305CBD2F1150856613.
-На сервере пока rc.15; rc.16 требует прямого согласия владельца.
+Пакет build/prihod-1.0.0-rc.17.zip,
+SHA256:301373A938B80D87431AC05F5F212C5717BF79E6D4EACEE75269DD1CA6DBF1A7.
+На сервере пока rc.15; rc.17 требует прямого согласия владельца.
 После согласованной загрузки пакета и проверки только в wp-content:
 
 ```bash
 cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
 export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
-php /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.16.zip --force && \
+php /usr/local/bin/wp plugin install wp-content/prihod-packages/prihod-1.0.0-rc.17.zip --force && \
 php /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
 ```
 

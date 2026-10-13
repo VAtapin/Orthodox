@@ -2535,3 +2535,90 @@ msgstr "Przekazano do systemu pocztowego. Dostarczenie do skrzynki nie zostało 
 
 msgid "Можно ответить несколько раз на сообщение бота: каждый ответ сохраняется отдельно и сразу передаётся PHP-почте. Фото с подписью и статический стикер вставляются в письмо. Ответы посетителя по email пока автоматически не принимаются."
 msgstr "Można wielokrotnie odpowiadać na wiadomość bota: każda odpowiedź jest zapisywana osobno i natychmiast przekazywana do poczty PHP. Zdjęcia z podpisem i statyczne naklejki są osadzane w wiadomości. Odpowiedzi gościa przez email nie są jeszcze automatycznie odbierane."
+
+msgid "Предпросмотр открывается в новой вкладке и не меняет сайт. Чтобы применить оформление, выберите карточку и сохраните изменения."
+msgstr "Podgląd otwiera się w nowej karcie i nie zmienia witryny. Aby zastosować wygląd, wybierz kartę i zapisz zmiany."
+
+msgid "Скриншоты показывают пример с демо-материалами. Предпросмотр использует ваши страницы, фотографии и настройки; собственные стили редактора сайта имеют приоритет."
+msgstr "Zrzuty ekranu pokazują przykład z treścią demonstracyjną. Podgląd wykorzystuje Twoje strony, zdjęcia i ustawienia; własne style edytora witryny mają pierwszeństwo."
+
+msgid "Текущее оформление"
+msgstr "Aktualny wygląd"
+
+msgid "Предпросмотр: %s (новая вкладка)"
+msgstr "Podgląd: %s (nowa karta)"
+
+msgid "Предпросмотр оформления"
+msgstr "Podgląd wyglądu"
+
+msgid "Предпросмотр: %s"
+msgstr "Podgląd: %s"
+
+msgid "Оформление сайта не изменено."
+msgstr "Wygląd witryny nie został zmieniony."
+
+msgid "Вернуться к оформлениям"
+msgstr "Powrót do wyglądów"
+
+msgid "Предпросмотр"
+msgstr "Podgląd"
+
+msgid "Попытки отправки письма"
+msgstr "Próby wysyłki wiadomości"
+
+msgid "Технический журнал хранится 30 дней. Принятие письма транспортом не подтверждает доставку в ящик."
+msgstr "Dziennik techniczny jest przechowywany przez 30 dni. Przyjęcie przez transport nie potwierdza dostarczenia do skrzynki."
+
+msgid "Для этого ответа технический журнал отсутствует. Старые отправки не восстанавливаются задним числом."
+msgstr "Dla tej odpowiedzi brak dziennika technicznego. Dawne wysyłki nie są odtwarzane wstecz."
+
+msgid "Попытка начата, результат не получен"
+msgstr "Próba rozpoczęta, brak wyniku"
+
+msgid "Обращение #%1$d · ответ #%2$d · попытка %3$d"
+msgstr "Zgłoszenie #%1$d · odpowiedź #%2$d · próba %3$d"
+
+msgid "Начало (UTC)"
+msgstr "Początek (UTC)"
+
+msgid "Окончание (UTC)"
+msgstr "Koniec (UTC)"
+
+msgid "Транспорт"
+msgstr "Transport"
+
+msgid "Назначенный Message-ID"
+msgstr "Przypisany Message-ID"
+
+msgid "ID попытки"
+msgstr "ID próby"
+
+msgid "Код ошибки"
+msgstr "Kod błędu"
+
+msgid "Тип исключения"
+msgstr "Typ wyjątku"
+
+msgid "Код исключения"
+msgstr "Kod wyjątku"
+
+msgid "Код SMTP"
+msgstr "Kod SMTP"
+
+msgid "Письмо обработано перехватчиком WordPress; фактический транспорт не зафиксирован."
+msgstr "Wiadomość została obsłużona przez przechwytywanie WordPress; faktyczny transport nie został zarejestrowany."
+
+msgid "Этапы:"
+msgstr "Etapy:"
+
+msgid "Письмо подготовлено"
+msgstr "Wiadomość przygotowana"
+
+msgid "Транспорт подготовлен"
+msgstr "Transport przygotowany"
+
+msgid "Принято транспортом"
+msgstr "Przyjęto przez transport"
+
+msgid "Принято WordPress; результат транспорта неизвестен."
+msgstr "Przyjęto przez WordPress; wynik transportu jest nieznany."

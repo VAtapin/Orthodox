@@ -44,7 +44,7 @@ foreach ( array( 'de_DE', 'pl_PL', 'uk' ) as $locale ) {
 }
 echo wp_json_encode( array( 'status' => 'PRIHOD_SERVER_OK', 'checks' => $checked, 'wordpress' => get_bloginfo( 'version' ), 'php' => PHP_VERSION, 'theme' => wp_get_theme()->get( 'Version' ) ), JSON_UNESCAPED_UNICODE ) . PHP_EOL;
 
-$check( in_array( PRIHOD_VERSION, array( '1.0.0-rc.15', '1.0.0-rc.16' ), true ) && '0.3.26' === wp_get_theme()->get( 'Version' ), 'Approved Core rc.15/rc.16 and theme 0.3.26 must be present.' );
+$check( '1.0.0-rc.17' === PRIHOD_VERSION && '0.3.26' === wp_get_theme()->get( 'Version' ), 'Core rc.17 and theme 0.3.26 must be present.' );
 prihod_theme_prepare_provider_assets();
 do_shortcode( '[' . $donation_tag . ']' );
 $check( str_contains( (string) wp_scripts()->get_data( 'georg-kloster-orthodox-donate', 'data' ), 'georgKlosterOrthodoxDonate' ), 'Native donation configuration must exist before the block theme prints scripts.' );
@@ -177,7 +177,7 @@ $check( 9 === count( Prihod\Calendar_Colors::labels() ) && 'blue' === Prihod\Cal
 $check( is_readable( WP_PLUGIN_DIR . '/prihod/assets/calendar-colors.js' ) && ( ! Prihod\Schedule::next() || str_contains( prihod_theme_compact_services(), 'data-prihod-feast' ) ), 'Homepage uses real calendar feast hooks and color editor is installed.' );
 echo 'CALENDAR_COLORS_CHECK_OK: ' . $checked . ' total checks.' . PHP_EOL;
 
-$check( in_array( get_plugin_data( WP_PLUGIN_DIR . '/prihod/prihod.php', false, false )['Version'], array( '1.0.0-rc.15', '1.0.0-rc.16' ), true ), 'Approved calendar release requires Core rc.15 or rc.16.' );
+$check( '1.0.0-rc.17' === get_plugin_data( WP_PLUGIN_DIR . '/prihod/prihod.php', false, false )['Version'], 'Calendar release requires Core rc.17.' );
 $check( '0.1.3' === get_plugin_data( WP_PLUGIN_DIR . '/prihod-telegram/prihod-telegram.php', false, false )['Version'] && Prihod\Telegram_Requests::connector(), 'Independent Telegram 0.1.3 must be installed.' );
 $check( is_readable( WP_PLUGIN_DIR . '/prihod-telegram/assets/settings.js' ), 'Telegram required-field validation must be installed.' );
 $check( is_callable( array( Prihod\Request_Mail::class, 'compose' ) ) && is_callable( array( Prihod\Telegram_Request_Settings::class, 'configure' ) ), 'HTML mail and explicit reply setup must be available.' );
@@ -193,7 +193,7 @@ $check( is_readable( WP_PLUGIN_DIR . '/prihod/assets/icons/christ-full.jpg' ) &&
 $check( is_callable( array( Prihod\Schedule_Calendar::class, 'image' ) ) && has_filter( 'prihod_schedule_icon_markup' ), 'Native icon viewer integration and its full-size endpoint must be present.' );
 echo 'CALENDAR_VIEWER_CHECK_OK: ' . $checked . ' total checks.' . PHP_EOL;
 
-if ( '1.0.0-rc.16' === PRIHOD_VERSION ) {
+if ( in_array( PRIHOD_VERSION, array( '1.0.0-rc.16', '1.0.0-rc.17' ), true ) ) {
 $check( is_callable( array( Prihod\Request_Media::class, 'telegram' ) ) && is_callable( array( Prihod\Request_Media::class, 'serve' ) ), 'Private reply media integration must be installed.' );
 $check( false === Prihod\Request_Media::can_view( 0, '' ) && ! has_action( 'admin_post_nopriv_prihod_reply_image' ), 'Private image access must not expose an anonymous handler.' );
 $sample_reply_image = Prihod\Request_Media::image( base64_decode( 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aWQAAAABJRU5ErkJggg==' ) );
@@ -206,3 +206,9 @@ foreach ( array_keys( prihod_theme_schemes() ) as $scheme ) {
 }
 $check( has_action( 'wp_body_open', 'prihod_theme_preview_notice' ) !== false, 'Owner preview must provide a return to scheme settings.' );
 echo 'SCHEME_PREVIEW_CHECK_OK: ' . $checked . ' total checks.' . PHP_EOL;
+
+if ( '1.0.0-rc.17' === PRIHOD_VERSION ) {
+    $check( is_callable( array( Prihod\Request_Mail_Log::class, 'rows' ) ) && is_callable( array( Prihod\Request_Mail_Log::class, 'retention' ) ) && 30 === Prihod\Request_Mail_Log::DAYS, 'Private bounded mail diagnostics must be installed.' );
+    $check( ! has_action( 'admin_post_nopriv_prihod_mail_log' ), 'Diagnostics must never add an anonymous endpoint.' );
+    echo 'MAIL_DIAGNOSTICS_CHECK_OK: ' . $checked . ' total checks.' . PHP_EOL;
+}

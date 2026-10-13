@@ -20,30 +20,43 @@ final class Request_Mail {
         } finally { if ( $switched ) { restore_previous_locale(); } }
     }
     /** Set the PHP-mail envelope for this reply only; leave other plugins' mail alone. */
-    public static function send( string $recipient, array $mail, array &$transport ): bool {
-        $email = Profile::get()['email']; $mailer_used = null; $previous_sender = ''; $previous_text = ''; $attachments = null;
-        $envelope = static function ( $mailer ) use ( $email, $mail, &$mailer_used, &$previous_sender, &$previous_text, &$attachments, &$transport ): void {
-            $mailer_used = $mailer; $previous_sender = $mailer->Sender; $previous_text = $mailer->AltBody ?? '';
+    public static function send( string $recipient, array $mail, array &$transport, array $context = array() ): bool {
+        $email = Profile::get()['email']; $mailer_used = null; $previous_sender = ''; $previous_text = ''; $attachments = null; $previous_message_id = '';
+        $attempt_id = $context['journal'] ?? wp_generate_uuid4();
+        $host = preg_replace( '/[^a-z0-9.-]/', '', strtolower( (string) wp_parse_url( home_url(), PHP_URL_HOST ) ) ) ?: 'localhost.localdomain';
+        $message_id = '<prihod-' . $attempt_id . '@' . $host . '>';
+        $envelope = static function ( $mailer ) use ( $email, $mail, $context, $message_id, &$mailer_used, &$previous_sender, &$previous_text, &$previous_message_id, &$attachments, &$transport ): void {
+            $mailer_used = $mailer; $previous_sender = $mailer->Sender; $previous_text = $mailer->AltBody ?? ''; $previous_message_id = $mailer->MessageID; $mailer->MessageID = $message_id;
             if ( is_email( $email ) && 'mail' === $mailer->Mailer ) { $mailer->Sender = $email; }
             $mailer->AltBody = $mail['text'] ?? '';
             if ( ! empty( $mail['inline_media'] ) ) {
                 $media = Request_Media::validated( $mail['inline_media'] ); $attachments = $mailer->getAttachments();
                 $mailer->addStringEmbeddedImage( base64_decode( $media['data'], true ), $mail['cid'], 'reply-image.' . ( 'image/png' === $media['mime'] ? 'png' : 'jpg' ), 'base64', $media['mime'] );
             }
-            $transport = array( 'method' => sanitize_key( $mailer->Mailer ), 'from' => sanitize_email( $mailer->From ), 'envelope' => sanitize_email( $mailer->Sender ) );
+            $transport = array( 'method' => sanitize_key( $mailer->Mailer ), 'message_id' => $message_id, 'from_matches_profile' => $mailer->From === $email, 'envelope_matches_profile' => $mailer->Sender === $email );
+            if ( ! empty( $context['reply'] ) && ! empty( $context['journal'] ) ) { Request_Mail_Log::record( $context['reply'], $context['journal'], 'mailer_ready', $transport ); }
         };
-        $failure = static function ( $error ) use ( &$transport ): void { $transport['error_code'] = $error instanceof \WP_Error ? sanitize_key( $error->get_error_code() ) : 'mail_error'; };
+        $failure = static function ( $error ) use ( &$transport ): void {
+            $transport['error_code'] = 'wp_mail_failed';
+            $data = $error instanceof \WP_Error ? $error->get_error_data() : array();
+            if ( is_array( $data ) && isset( $data['phpmailer_exception_code'] ) ) { $transport['exception_code'] = (int) $data['phpmailer_exception_code']; }
+        };
         add_action( 'phpmailer_init', $envelope, PHP_INT_MAX ); add_action( 'wp_mail_failed', $failure );
         try {
             $accepted = wp_mail( $recipient, $mail['subject'], $mail['message'], $mail['headers'] );
+            $transport['short_circuit'] = null === $mailer_used;
+            if ( $mailer_used ) {
+                $transport['message_id_observed'] = $message_id === $mailer_used->getLastMessageID();
+                if ( 'smtp' === $mailer_used->Mailer ) { $smtp_error = $mailer_used->getSMTPInstance()->getError(); if ( preg_match( '/^[1-5][0-9]{2}$/D', (string) ( $smtp_error['smtp_code'] ?? '' ) ) ) { $transport['smtp_code'] = (int) $smtp_error['smtp_code']; } }
+            }
             $transport['attempted_at_gmt'] = gmdate( DATE_ATOM ); $transport['accepted'] = (bool) $accepted;
             if ( ! $accepted && empty( $transport['error_code'] ) ) { $transport['error_code'] = 'mail_not_accepted'; }
             return $accepted;
-        } catch ( \Throwable $error ) { $transport['error_code'] = 'mail_exception'; $transport['accepted'] = false; return false; }
+        } catch ( \Throwable $error ) { $transport['error_code'] = 'mail_exception'; $transport['exception_type'] = get_class( $error ); $transport['accepted'] = false; $transport['attempted_at_gmt'] = gmdate( DATE_ATOM ); return false; }
         finally {
             remove_action( 'phpmailer_init', $envelope, PHP_INT_MAX ); remove_action( 'wp_mail_failed', $failure );
             if ( $mailer_used ) {
-                $mailer_used->Sender = $previous_sender; $mailer_used->AltBody = $previous_text;
+                $mailer_used->Sender = $previous_sender; $mailer_used->AltBody = $previous_text; $mailer_used->MessageID = $previous_message_id;
                 if ( null !== $attachments ) {
                     $mailer_used->clearAttachments();
                     foreach ( $attachments as $a ) {

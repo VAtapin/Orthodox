@@ -1,0 +1,34 @@
+<?php
+$reply = Prihod\Requests::messages( $id )[0];
+$rows = Prihod\Request_Mail_Log::rows( $reply->ID ); $row = $rows[0];
+prihod_assert( 1 === count( $rows ) && 'accepted' === $row['status'] && 'mail' === $row['transport'] && isset( $row['stage_times']['mailer_ready'] ) && array( 'started', 'composed', 'mailer_ready', 'accepted' ) === $row['stages'], 'Mail diagnostics record the ordered real preparation/acceptance stages and transport.' );
+prihod_assert( str_contains( $mime_emails[0], 'Message-ID: ' . $row['message_id'] ) && $row['message_id_observed'] && '' === $mailers[0]->MessageID, 'Each attempt has its own traceable MIME Message-ID, observed after preparation and restored for unrelated mail.' );
+$json = wp_json_encode( $rows );
+prihod_assert( ! str_contains( $json, 'visitor@example.org' ) && ! str_contains( $json, 'Local answer' ) && ! str_contains( $json, 'TEST_ONLY' ) && ! str_contains( $json, 'previous@example.org' ), 'Technical diagnostics exclude addresses, message bodies and secrets.' );
+$before = count( $emails ); Prihod\Requests::deliver( $id, $reply->ID );
+prihod_assert( $before === count( $emails ) && $rows === Prihod\Request_Mail_Log::rows( $reply->ID ), 'Already accepted mail adds neither a false attempt nor another send.' );
+$current_user = get_current_user_id(); wp_set_current_user( 0 );
+prihod_assert( '' === Prihod\Request_Mail_Log::render( $reply->ID ), 'Guests cannot render private diagnostics.' );
+wp_set_current_user( $editor_id );
+prihod_assert( '' === Prihod\Request_Mail_Log::render( $reply->ID ), 'Ordinary editors cannot render private diagnostics.' );
+wp_set_current_user( 1 );
+$markup = Prihod\Request_Mail_Log::render( $reply->ID );
+prihod_assert( str_contains( $markup, '<details' ) && str_contains( $markup, 'Message-ID' ) && str_contains( $markup, 'Доставка в ящик не подтверждена' ) && ! str_contains( $markup, 'Доставка подтверждена' ), 'Authorized staff can expand attempt diagnostics, without an invented delivered status.' );
+file_put_contents( __DIR__ . '/.mail-log-preview.html', '<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><body style="padding:20px;font:16px/1.6 system-ui;max-width:850px;margin:auto"><h1>Диагностика отправки · вымышленные данные</h1>' . $markup . '</body></html>' );
+$before = count( $emails );
+$throw_mail = static function () { throw new RuntimeException( 'DO_NOT_LOG visitor@example.org PRIVATE_BODY SECRET_TOKEN' ); };
+add_filter( 'pre_wp_mail', $throw_mail, 1 );
+$failed = Prihod\Requests::message( $id, 'Failed fixture answer', false );
+remove_filter( 'pre_wp_mail', $throw_mail, 1 );
+$failure = Prihod\Request_Mail_Log::rows( $failed )[0];
+prihod_assert( 'failed' === $failure['status'] && 'mail_exception' === $failure['error_code'] && 'RuntimeException' === $failure['exception_type'] && $before === count( $emails ) && ! str_contains( wp_json_encode( $failure ), 'DO_NOT_LOG' ), 'Exceptions record only safe class/code, never sensitive exception messages, and retain a failed attempt.' );
+Prihod\Requests::retry( $id, $failed ); $retry = Prihod\Request_Mail_Log::rows( $failed );
+prihod_assert( 2 === count( $retry ) && $retry[0]['id'] !== $retry[1]['id'] && 'failed' === $retry[0]['status'] && 'accepted' === $retry[1]['status'] && 1 === $retry[0]['attempt'] && 2 === $retry[1]['attempt'], 'Explicit retry preserves the previous failed attempt and creates a unique traceable attempt.' );
+$many = $retry;
+for ( $n = 0; $n < 55; ++$n ) { $trace = Prihod\Request_Mail_Log::begin( $id, $failed ); Prihod\Request_Mail_Log::record( $failed, $trace, 'failed', array( 'error_code' => 'PRIVATE_ADDRESS@SECRET.invalid', 'body' => 'DO_NOT_LOG' ) ); }
+prihod_assert( 50 === count( Prihod\Request_Mail_Log::rows( $failed ) ) && ! str_contains( wp_json_encode( Prihod\Request_Mail_Log::rows( $failed ) ), 'SECRET' ), 'Attempt journal is bounded and filters unapproved error fields.' );
+$expired = Prihod\Request_Mail_Log::rows( $failed ); foreach ( $expired as &$entry ) { $entry['started_gmt'] = gmdate( DATE_ATOM, time() - 31 * DAY_IN_SECONDS ); } unset( $entry );
+update_post_meta( $failed, '_prihod_mail_log', $expired ); update_post_meta( $failed, '_prihod_mail_log_expires', time() - DAY_IN_SECONDS );
+Prihod\Request_Mail_Log::retention();
+prihod_assert( ! get_post_meta( $failed, '_prihod_mail_log', true ) && get_post( $failed ) && get_post_meta( $failed, '_prihod_delivery', true ) === 'sent' && ! get_post_meta( $failed, '_prihod_mail_transport', true ), '30-day diagnostic cleanup removes only the journal, keeping correspondence and delivery state.' );
+wp_clear_scheduled_hook( 'prihod_request_mail', array( $id, $failed ) ); wp_set_current_user( $current_user );

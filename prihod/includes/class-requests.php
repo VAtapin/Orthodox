@@ -91,14 +91,18 @@ final class Requests {
         $token = Lock::acquire( $lock, 300 );
         if ( ! $token ) { return; }
         try {
-            $sender = get_post_meta( $id, '_prihod_sender', true );
-            $success = false;
-            if ( is_array( $sender ) && is_email( $sender['email'] ?? '' ) ) {
-                $mail = Request_Mail::compose( $post, $message, $sender );
-                $transport = array(); $success = Request_Mail::send( $sender['email'], $mail, $transport );
-                if ( $transport ) { update_post_meta( $message_id, '_prihod_mail_transport', $transport ); }
-            }
             $attempt = (int) get_post_meta( $message_id, '_prihod_attempts', true ) + 1;
+            $journal = Request_Mail_Log::begin( $id, $message_id );
+            $sender = get_post_meta( $id, '_prihod_sender', true ); $success = false; $transport = array();
+            try {
+                if ( is_array( $sender ) && is_email( $sender['email'] ?? '' ) ) {
+                    $mail = Request_Mail::compose( $post, $message, $sender );
+                    Request_Mail_Log::record( $message_id, $journal, 'composed' );
+                    $success = Request_Mail::send( $sender['email'], $mail, $transport, array( 'reply' => $message_id, 'journal' => $journal ) );
+                } else { $transport['error_code'] = 'invalid_recipient'; }
+            } catch ( \Throwable $error ) { $transport['error_code'] = 'compose_exception'; }
+            if ( $transport ) { update_post_meta( $message_id, '_prihod_mail_transport', $transport ); }
+            Request_Mail_Log::record( $message_id, $journal, $success ? 'accepted' : 'failed', $transport );
             update_post_meta( $message_id, '_prihod_attempts', $attempt );
             update_post_meta( $message_id, '_prihod_delivery', $success ? 'sent' : 'failed' );
             if ( $success ) {
@@ -124,6 +128,7 @@ final class Requests {
         return get_posts( array( 'post_type' => 'prihod_message', 'post_status' => 'private', 'post_parent' => $id, 'numberposts' => -1, 'orderby' => 'ID', 'order' => 'ASC' ) );
     }
     public static function retention(): void {
+        Request_Mail_Log::retention();
         $days = max( 30, min( 3650, (int) get_option( 'prihod_retention_days', 365 ) ) );
         $posts = get_posts( array( 'post_type' => 'prihod_request', 'post_status' => 'private', 'numberposts' => 100,
             'meta_key' => '_prihod_request_status', 'meta_value' => 'closed', 'date_query' => array( array( 'before' => gmdate( 'Y-m-d H:i:s', time() - $days * DAY_IN_SECONDS ), 'column' => 'post_modified_gmt' ) ) ) );

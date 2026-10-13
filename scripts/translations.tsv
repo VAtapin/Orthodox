@@ -852,3 +852,23 @@ Telegram не подтвердил приём ответов.	Telegram hat den E
 Оформление сайта не изменено.	Das Design der Website wurde nicht geändert.	Wygląd witryny nie został zmieniony.	Оформлення сайту не змінено.
 Вернуться к оформлениям	Zurück zu den Designs	Powrót do wyglądów	Повернутися до оформлень
 Предпросмотр	Vorschau	Podgląd	Попередній перегляд
+Попытки отправки письма	E-Mail-Sendeversuche	Próby wysyłki wiadomości	Спроби надсилання листа
+Технический журнал хранится 30 дней. Принятие письма транспортом не подтверждает доставку в ящик.	Das technische Protokoll wird 30 Tage gespeichert. Die Annahme durch den Transport bestätigt keine Zustellung ins Postfach.	Dziennik techniczny jest przechowywany przez 30 dni. Przyjęcie przez transport nie potwierdza dostarczenia do skrzynki.	Технічний журнал зберігається 30 днів. Прийняття листа транспортом не підтверджує доставку до скриньки.
+Для этого ответа технический журнал отсутствует. Старые отправки не восстанавливаются задним числом.	Für diese Antwort ist kein technisches Protokoll vorhanden. Frühere Sendungen werden nicht nachträglich rekonstruiert.	Dla tej odpowiedzi brak dziennika technicznego. Dawne wysyłki nie są odtwarzane wstecz.	Для цієї відповіді технічний журнал відсутній. Старі надсилання не відновлюються заднім числом.
+Попытка начата, результат не получен	Versuch gestartet, Ergebnis liegt nicht vor	Próba rozpoczęta, brak wyniku	Спробу розпочато, результат не отримано
+Обращение #%1$d · ответ #%2$d · попытка %3$d	Anfrage #%1$d · Antwort #%2$d · Versuch %3$d	Zgłoszenie #%1$d · odpowiedź #%2$d · próba %3$d	Звернення #%1$d · відповідь #%2$d · спроба %3$d
+Начало (UTC)	Beginn (UTC)	Początek (UTC)	Початок (UTC)
+Окончание (UTC)	Ende (UTC)	Koniec (UTC)	Завершення (UTC)
+Транспорт	Transport	Transport	Транспорт
+Назначенный Message-ID	Zugewiesene Message-ID	Przypisany Message-ID	Призначений Message-ID
+ID попытки	Versuchs-ID	ID próby	ID спроби
+Код ошибки	Fehlercode	Kod błędu	Код помилки
+Тип исключения	Ausnahmetyp	Typ wyjątku	Тип винятку
+Код исключения	Ausnahmecode	Kod wyjątku	Код винятку
+Код SMTP	SMTP-Code	Kod SMTP	Код SMTP
+Письмо обработано перехватчиком WordPress; фактический транспорт не зафиксирован.	Die E-Mail wurde von einem WordPress-Handler verarbeitet; der tatsächliche Transport wurde nicht erfasst.	Wiadomość została obsłużona przez przechwytywanie WordPress; faktyczny transport nie został zarejestrowany.	Лист оброблено перехоплювачем WordPress; фактичний транспорт не зафіксовано.
+Этапы:	Schritte:	Etapy:	Етапи:
+Письмо подготовлено	E-Mail vorbereitet	Wiadomość przygotowana	Лист підготовлено
+Транспорт подготовлен	Transport vorbereitet	Transport przygotowany	Транспорт підготовлено
+Принято транспортом	Vom Transport angenommen	Przyjęto przez transport	Прийнято транспортом
+Принято WordPress; результат транспорта неизвестен.	Von WordPress angenommen; das Transportergebnis ist unbekannt.	Przyjęto przez WordPress; wynik transportu jest nieznany.	Прийнято WordPress; результат транспорту невідомий.

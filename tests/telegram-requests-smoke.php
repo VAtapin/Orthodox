@@ -90,6 +90,7 @@ try {
     $note = Prihod\Requests::message( $id, 'Internal fixture note', true ); Prihod\Requests::deliver( $id, $note );
     prihod_assert( 1 === count( $emails ) && ! str_contains( implode( "\n", $sent_texts ), 'Internal fixture note' ), 'Internal notes never reach Telegram or visitor mail.' );
     require __DIR__ . '/telegram-media-smoke.php';
+    require __DIR__ . '/mail-log-smoke.php';
     $preview_id = Prihod\Requests::create( array( 'name' => 'Мария', 'email' => 'visitor@example.org', 'subject' => 'О посещении храма', 'body' => "Здравствуйте! Можно ли приехать на воскресную литургию?\n\nБудем вдвоём. Подскажите, пожалуйста, как подготовиться к посещению." ) ); $created_requests[] = $preview_id;
     $preview_jobs = get_post_meta( $preview_id, '_prihod_jobs_telegram', true ); $preview_job = get_option( 'prihod_job_telegram_' . $preview_jobs[0] );
     file_put_contents( __DIR__ . '/.telegram-message-preview.html', '<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><body style="background:#dcead1;font:15px/1.5 Arial,sans-serif;padding:24px"><p>Образец форматирования · вымышленные данные</p><div style="max-width:520px;background:white;padding:20px;border-radius:14px;white-space:pre-wrap;overflow-wrap:anywhere">' . $preview_job['text'] . '</div></body></html>' );
