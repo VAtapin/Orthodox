@@ -16,4 +16,12 @@
 
 344smoke/223design на WP7.1.3/PHP8.4.25;344/222 на WP6.5.13/PHP8.0.30.
 2496переводов/placeholder, PHPsyntax и gitdiffcheck. Реальных отправок нет.
-Установка theme26 не выполнена, требуется прямое согласие владельца.
+С прямого согласия владельца theme26 установлена13октября в WordPress
+prihod.georg-kloster.ru. 93серверные проверки WP7.1.3/PHP8.5.11 прошли.
+`live-settings-desktop.jpg` и `live-settings-mobile.jpg`: все5снимков загрузились,
+1920/390 без overflow, выбранный classic не менялся. Кнопка preview открыла
+отдельную вкладку blue, переход page_id8 сохранил схему и панель возврата.
+Отпечаток служб/профиля/темы/Telegram/модулей/site_icon/theme_mods до и после:
+`c4657c462dd30cb068f8de523e61530ffd0a5fcbac57ab1518b67637daa5b837`.
+ZIP SHA256:`A5E3CE42D61078798F2AC035C6F95F6D2036D422D070A831E6BAD1A6B3178A00`.
+Core остаётсяrc.15, Telegram0.1.3, сторонние плагины и сервер не обновлялись.
