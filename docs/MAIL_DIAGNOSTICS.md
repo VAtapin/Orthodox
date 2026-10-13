@@ -130,7 +130,23 @@ DMARC поддомена также отсутствует; тестовые п�
 По следующему прямому поручению отправлен новый тест №3 после SPF:
 обращение100/ответ108,13октября18:45:07Berlin, PHP mail accepted без ошибок,
 наблюдавшийся Message-ID и started/composed/mailer_ready/accepted записаны.
-Доставка пока не подтверждена; Gmail не читался. Одноразовый файл удалён.
+Владелец предоставил исходник полученного письма: Message-ID совпадает с тестом108,
+Gmail Received18:45:08Berlin, SPF pass и DMARC pass. Фактическая доставка подтверждена.
+DKIM permerror(no key for signature), d=georg-kloster.de,s=default:
+для этой подписи нужен ключ default._domainkey.georg-kloster.de, а не поддомена .ru.
+Предыдущее направление на публикацию DKIM .ru было сделано до установления
+signing domain и не исправляет подтверждённую подпись .de; исправлено по исходнику.
+Final From/Return-Path — домен prihod.georg-kloster.ru, Reply-To — georg-kloster.de.
+Таким образом, приложение и фактическое SMTP-письмо различаются после обработки
+Plesk: SPF исправлен у реального envelope, DKIM требует отдельного ключа .de.
+Сырые заголовки, адрес получателя и текст письма в Git не включались.
+Gmail не читался. Одноразовый файл удалён; сервер и DNS .de не изменялись.
+Следующее прямое поручение владельца — DKIM для .de. Проверены NS:
+huxley.ns.cloudflare.com/paislee.ns.cloudflare.com; default._domainkey.georg-kloster.de
+не опубликован. Действующая панель DNS — Cloudflare. Владелец настраивает вручную:
+public key из Plesk именно georg-kloster.de → TXT name default._domainkey,
+content полный v=DKIM1;p=… в Cloudflare. Существующий Zoho SPF не заменять;
+ключ другой зоны без сверки не копировать. Результат публикации пока ожидается.
 Глобальные NS, DNS-шаблоны, другие сайты и почтовые ящики не затрагиваются.
 
 Для повторного согласованного обновления тем же уже загруженным комплектом внутри wp-content:
