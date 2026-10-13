@@ -2562,3 +2562,72 @@ msgstr "Zurück zu den Designs"
 
 msgid "Предпросмотр"
 msgstr "Vorschau"
+
+msgid "Попытки отправки письма"
+msgstr "E-Mail-Sendeversuche"
+
+msgid "Технический журнал хранится 30 дней. Принятие письма транспортом не подтверждает доставку в ящик."
+msgstr "Das technische Protokoll wird 30 Tage gespeichert. Die Annahme durch den Transport bestätigt keine Zustellung ins Postfach."
+
+msgid "Для этого ответа технический журнал отсутствует. Старые отправки не восстанавливаются задним числом."
+msgstr "Für diese Antwort ist kein technisches Protokoll vorhanden. Frühere Sendungen werden nicht nachträglich rekonstruiert."
+
+msgid "Попытка начата, результат не получен"
+msgstr "Versuch gestartet, Ergebnis liegt nicht vor"
+
+msgid "Обращение #%1$d · ответ #%2$d · попытка %3$d"
+msgstr "Anfrage #%1$d · Antwort #%2$d · Versuch %3$d"
+
+msgid "Начало (UTC)"
+msgstr "Beginn (UTC)"
+
+msgid "Окончание (UTC)"
+msgstr "Ende (UTC)"
+
+msgid "Транспорт"
+msgstr "Transport"
+
+msgid "Назначенный Message-ID"
+msgstr "Zugewiesene Message-ID"
+
+msgid "ID попытки"
+msgstr "Versuchs-ID"
+
+msgid "Код ошибки"
+msgstr "Fehlercode"
+
+msgid "Тип исключения"
+msgstr "Ausnahmetyp"
+
+msgid "Код исключения"
+msgstr "Ausnahmecode"
+
+msgid "Код SMTP"
+msgstr "SMTP-Code"
+
+msgid "Письмо обработано перехватчиком WordPress; фактический транспорт не зафиксирован."
+msgstr "Die E-Mail wurde von einem WordPress-Handler verarbeitet; der tatsächliche Transport wurde nicht erfasst."
+
+msgid "Этапы:"
+msgstr "Schritte:"
+
+msgid "Письмо подготовлено"
+msgstr "E-Mail vorbereitet"
+
+msgid "Транспорт подготовлен"
+msgstr "Transport vorbereitet"
+
+msgid "Принято транспортом"
+msgstr "Vom Transport angenommen"
+
+msgid "Принято WordPress; результат транспорта неизвестен."
+msgstr "Von WordPress angenommen; das Transportergebnis ist unbekannt."
+
+msgid "Показывать логотип"
+msgstr "Logo anzeigen"
+
+msgid "Показывать название"
+msgstr "Namen anzeigen"
+
+msgid "Логотип и название отключены. На сайте останется ссылка на главную страницу."
+msgstr "Logo und Name sind ausgeblendet. Ein Link zur Startseite bleibt auf der Website sichtbar."

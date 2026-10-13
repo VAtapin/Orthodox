@@ -3,11 +3,14 @@ defined( 'ABSPATH' ) || exit;
 
 function prihod_theme_options(): array {
     $saved = get_option( 'prihod_theme_options', array() );
+    $saved = array_merge( array( 'logo_show' => true ), is_array( $saved ) ? $saved : array() );
     return array_merge( array( 'feature_schedule' => 0, 'feature_news' => 0, 'feature_about' => 0, 'feature_requests' => 0, 'feature_donations' => 0, 'hero_image' => 0, 'about_image' => 0, 'request_image' => 0, 'pilgrim_image' => 0, 'pilgrim_photos' => '', 'logo' => 0, 'logo_width' => 240, 'logo_removed' => false, 'logo_hide_title' => false, 'social_image' => 0, 'social_meta' => true, 'gallery' => '', 'about_history_photos' => '', 'about_life_photos' => '', 'map_url' => '', 'map_embed' => '', 'languages' => array(), 'stepped_forms' => true, 'scheme' => '', 'width' => 1200, 'font' => 'sans', 'font_size' => 16, 'sticky_header' => false, 'header_contacts' => true, 'footer_text' => '', 'header_motto' => __( 'С любовью к Богу и людям', 'prihod-theme' ), 'hero_motto' => __( 'Вера объединяет сердца', 'prihod-theme' ), 'hero_quote_text' => __( 'Где двое или трое собраны во имя Моё, там Я посреди них', 'prihod-theme' ), 'hero_quote_source' => __( 'Мф. 18:20', 'prihod-theme' ), 'quote_text' => __( 'Где двое или трое собраны во имя Моё, там Я посреди них', 'prihod-theme' ), 'quote_source' => __( 'Мф. 18:20', 'prihod-theme' ) ), is_array( $saved ) ? $saved : array() );
 }
 function prihod_theme_sanitize( $input ): array {
     $out = prihod_theme_options();
     if ( ! is_array( $input ) ) { return $out; }
+    if ( array_key_exists( 'logo_show', $input ) ) { $out['logo_show'] = ! empty( $input['logo_show'] ); }
+    if ( array_key_exists( 'title_visible', $input ) ) { $out['logo_hide_title'] = empty( $input['title_visible'] ); }
     foreach ( array( 'logo_hide_title', 'logo_removed', 'social_meta' ) as $key ) { if ( array_key_exists( $key, $input ) ) { $out[$key] = ! empty( $input[$key] ); } }
     if ( array_key_exists( 'logo_width', $input ) ) { $out['logo_width'] = max( 64, min( 320, is_scalar( $input['logo_width'] ) ? absint( $input['logo_width'] ) : 240 ) ); }
     if ( array_key_exists( 'social_image', $input ) ) { $id = is_scalar( $input['social_image'] ) ? absint( $input['social_image'] ) : 0; $out['social_image'] = $id && wp_attachment_is_image( $id ) ? $id : 0; }
@@ -54,9 +57,9 @@ add_action( 'admin_menu', function () {
 add_action( 'admin_enqueue_scripts', function () {
     if ( 'prihod-theme' !== ( $_GET['page'] ?? '' ) ) { return; }
     wp_enqueue_media();
-    wp_enqueue_style( 'prihod-theme-settings', get_template_directory_uri() . '/assets/settings.css', array(), '0.3.26' );
-    wp_enqueue_script( 'prihod-theme-media', get_template_directory_uri() . '/assets/media.js', array( 'jquery', 'media-views' ), '0.3.26', true );
-    wp_enqueue_script( 'prihod-theme-settings', get_template_directory_uri() . '/assets/settings.js', array(), '0.3.26', true );
+    wp_enqueue_style( 'prihod-theme-settings', get_template_directory_uri() . '/assets/settings.css', array(), '0.3.27' );
+    wp_enqueue_script( 'prihod-theme-media', get_template_directory_uri() . '/assets/media.js', array( 'jquery', 'media-views' ), '0.3.27', true );
+    wp_enqueue_script( 'prihod-theme-settings', get_template_directory_uri() . '/assets/settings.js', array(), '0.3.27', true );
 } );
 function prihod_theme_schemes(): array {
     return array( 'classic' => __( 'Классическая золотая', 'prihod-theme' ), 'hospitality' => __( 'Светлая гостеприимная', 'prihod-theme' ), 'editorial' => __( 'Журнальная', 'prihod-theme' ), 'tradition' => __( 'Традиционная', 'prihod-theme' ), 'blue' => __( 'Современная синяя', 'prihod-theme' ) );

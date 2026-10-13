@@ -1,0 +1,1522 @@
+[
+  {
+    "shape": "owner-wide",
+    "scheme": "classic",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide",
+        "image": {
+          "bottom": 206,
+          "height": 96,
+          "left": 112.5,
+          "right": 432.5,
+          "top": 110,
+          "width": 320,
+          "x": 112.5,
+          "y": 110
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 206,
+          "height": 96,
+          "left": 112.5,
+          "right": 632.5,
+          "top": 110,
+          "width": 520,
+          "x": 112.5,
+          "y": 110
+        },
+        "title": {
+          "bottom": 191.1875,
+          "height": 74.78125,
+          "left": 444.5,
+          "right": 573.71875,
+          "top": 116.40625,
+          "width": 129.21875,
+          "x": 444.5,
+          "y": 116.40625
+        }
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide",
+        "image": {
+          "bottom": 1701.71875,
+          "height": 96,
+          "left": 112.5,
+          "right": 432.5,
+          "top": 1605.71875,
+          "width": 320,
+          "x": 112.5,
+          "y": 1605.71875
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 1739.828125,
+          "height": 134.109375,
+          "left": 112.5,
+          "right": 566.359375,
+          "top": 1605.71875,
+          "width": 453.859375,
+          "x": 112.5,
+          "y": 1605.71875
+        },
+        "title": {
+          "bottom": 1732.71875,
+          "height": 17,
+          "left": 112.5,
+          "right": 336.1875,
+          "top": 1715.71875,
+          "width": 223.6875,
+          "x": 112.5,
+          "y": 1715.71875
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": 1440
+  },
+  {
+    "shape": "owner-wide",
+    "scheme": "hospitality",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide",
+        "image": {
+          "bottom": 209,
+          "height": 96,
+          "left": 112.5,
+          "right": 432.5,
+          "top": 113,
+          "width": 320,
+          "x": 112.5,
+          "y": 113
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 209,
+          "height": 96,
+          "left": 112.5,
+          "right": 632.5,
+          "top": 113,
+          "width": 520,
+          "x": 112.5,
+          "y": 113
+        },
+        "title": {
+          "bottom": 194.1875,
+          "height": 74.78125,
+          "left": 444.5,
+          "right": 573.71875,
+          "top": 119.40625,
+          "width": 129.21875,
+          "x": 444.5,
+          "y": 119.40625
+        }
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide",
+        "image": {
+          "bottom": 1634.078125,
+          "height": 96,
+          "left": 112.5,
+          "right": 432.5,
+          "top": 1538.078125,
+          "width": 320,
+          "x": 112.5,
+          "y": 1538.078125
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 1672.1875,
+          "height": 134.109375,
+          "left": 112.5,
+          "right": 566.359375,
+          "top": 1538.078125,
+          "width": 453.859375,
+          "x": 112.5,
+          "y": 1538.078125
+        },
+        "title": {
+          "bottom": 1665.078125,
+          "height": 17,
+          "left": 112.5,
+          "right": 336.1875,
+          "top": 1648.078125,
+          "width": 223.6875,
+          "x": 112.5,
+          "y": 1648.078125
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": 1440
+  },
+  {
+    "shape": "owner-wide",
+    "scheme": "editorial",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide",
+        "image": {
+          "bottom": 233.21875,
+          "height": 96,
+          "left": 112.5,
+          "right": 432.5,
+          "top": 137.21875,
+          "width": 320,
+          "x": 112.5,
+          "y": 137.21875
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 233.21875,
+          "height": 96,
+          "left": 112.5,
+          "right": 632.5,
+          "top": 137.21875,
+          "width": 520,
+          "x": 112.5,
+          "y": 137.21875
+        },
+        "title": {
+          "bottom": 218.40625,
+          "height": 74.78125,
+          "left": 444.5,
+          "right": 573.71875,
+          "top": 143.625,
+          "width": 129.21875,
+          "x": 444.5,
+          "y": 143.625
+        }
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide",
+        "image": {
+          "bottom": 1787.09375,
+          "height": 96,
+          "left": 112.5,
+          "right": 432.5,
+          "top": 1691.09375,
+          "width": 320,
+          "x": 112.5,
+          "y": 1691.09375
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 1825.203125,
+          "height": 134.109375,
+          "left": 112.5,
+          "right": 566.359375,
+          "top": 1691.09375,
+          "width": 453.859375,
+          "x": 112.5,
+          "y": 1691.09375
+        },
+        "title": {
+          "bottom": 1818.09375,
+          "height": 17,
+          "left": 112.5,
+          "right": 336.1875,
+          "top": 1801.09375,
+          "width": 223.6875,
+          "x": 112.5,
+          "y": 1801.09375
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": 1440
+  },
+  {
+    "shape": "owner-wide",
+    "scheme": "tradition",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide",
+        "image": {
+          "bottom": 207,
+          "height": 96,
+          "left": 112.5,
+          "right": 432.5,
+          "top": 111,
+          "width": 320,
+          "x": 112.5,
+          "y": 111
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 251.390625,
+          "height": 140.390625,
+          "left": 112.5,
+          "right": 580.5,
+          "top": 111,
+          "width": 468,
+          "x": 112.5,
+          "y": 111
+        },
+        "title": {
+          "bottom": 241,
+          "height": 22,
+          "left": 112.5,
+          "right": 410.75,
+          "top": 219,
+          "width": 298.25,
+          "x": 112.5,
+          "y": 219
+        }
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide",
+        "image": {
+          "bottom": 1739.40625,
+          "height": 96,
+          "left": 112.5,
+          "right": 432.5,
+          "top": 1643.40625,
+          "width": 320,
+          "x": 112.5,
+          "y": 1643.40625
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 1777.515625,
+          "height": 134.109375,
+          "left": 112.5,
+          "right": 561.453125,
+          "top": 1643.40625,
+          "width": 448.953125,
+          "x": 112.5,
+          "y": 1643.40625
+        },
+        "title": {
+          "bottom": 1769.40625,
+          "height": 17,
+          "left": 112.5,
+          "right": 336.1875,
+          "top": 1752.40625,
+          "width": 223.6875,
+          "x": 112.5,
+          "y": 1752.40625
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": 1440
+  },
+  {
+    "shape": "owner-wide",
+    "scheme": "blue",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide",
+        "image": {
+          "bottom": 209,
+          "height": 96,
+          "left": 112.5,
+          "right": 432.5,
+          "top": 113,
+          "width": 320,
+          "x": 112.5,
+          "y": 113
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 209,
+          "height": 96,
+          "left": 112.5,
+          "right": 632.5,
+          "top": 113,
+          "width": 520,
+          "x": 112.5,
+          "y": 113
+        },
+        "title": {
+          "bottom": 194.1875,
+          "height": 74.78125,
+          "left": 444.5,
+          "right": 573.71875,
+          "top": 119.40625,
+          "width": 129.21875,
+          "x": 444.5,
+          "y": 119.40625
+        }
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide",
+        "image": {
+          "bottom": 1629.609375,
+          "height": 96,
+          "left": 112.5,
+          "right": 432.5,
+          "top": 1533.609375,
+          "width": 320,
+          "x": 112.5,
+          "y": 1533.609375
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 1667.71875,
+          "height": 134.109375,
+          "left": 112.5,
+          "right": 566.359375,
+          "top": 1533.609375,
+          "width": 453.859375,
+          "x": 112.5,
+          "y": 1533.609375
+        },
+        "title": {
+          "bottom": 1660.609375,
+          "height": 17,
+          "left": 112.5,
+          "right": 336.1875,
+          "top": 1643.609375,
+          "width": 223.6875,
+          "x": 112.5,
+          "y": 1643.609375
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": 1440
+  },
+  {
+    "shape": "owner-wide",
+    "scheme": "classic",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide",
+        "image": {
+          "bottom": 278,
+          "height": 96,
+          "left": 16,
+          "right": 336,
+          "top": 182,
+          "width": 320,
+          "x": 16,
+          "y": 182
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 320.34375,
+          "height": 138.34375,
+          "left": 16,
+          "right": 359,
+          "top": 182,
+          "width": 343,
+          "x": 16,
+          "y": 182
+        },
+        "title": {
+          "bottom": 312,
+          "height": 22,
+          "left": 16,
+          "right": 314.25,
+          "top": 290,
+          "width": 298.25,
+          "x": 16,
+          "y": 290
+        }
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide",
+        "image": {
+          "bottom": 3976.953125,
+          "height": 96,
+          "left": 16,
+          "right": 336,
+          "top": 3880.953125,
+          "width": 320,
+          "x": 16,
+          "y": 3880.953125
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 4015.0625,
+          "height": 134.109375,
+          "left": 16,
+          "right": 359,
+          "top": 3880.953125,
+          "width": 343,
+          "x": 16,
+          "y": 3880.953125
+        },
+        "title": {
+          "bottom": 4007.953125,
+          "height": 17,
+          "left": 16,
+          "right": 239.6875,
+          "top": 3990.953125,
+          "width": 223.6875,
+          "x": 16,
+          "y": 3990.953125
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": 390
+  },
+  {
+    "shape": "owner-wide",
+    "scheme": "hospitality",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide",
+        "image": {
+          "bottom": 278,
+          "height": 96,
+          "left": 16,
+          "right": 336,
+          "top": 182,
+          "width": 320,
+          "x": 16,
+          "y": 182
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 320.34375,
+          "height": 138.34375,
+          "left": 16,
+          "right": 359,
+          "top": 182,
+          "width": 343,
+          "x": 16,
+          "y": 182
+        },
+        "title": {
+          "bottom": 312,
+          "height": 22,
+          "left": 16,
+          "right": 314.25,
+          "top": 290,
+          "width": 298.25,
+          "x": 16,
+          "y": 290
+        }
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide",
+        "image": {
+          "bottom": 3967.8125,
+          "height": 96,
+          "left": 16,
+          "right": 336,
+          "top": 3871.8125,
+          "width": 320,
+          "x": 16,
+          "y": 3871.8125
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 4005.921875,
+          "height": 134.109375,
+          "left": 16,
+          "right": 359,
+          "top": 3871.8125,
+          "width": 343,
+          "x": 16,
+          "y": 3871.8125
+        },
+        "title": {
+          "bottom": 3998.8125,
+          "height": 17,
+          "left": 16,
+          "right": 239.6875,
+          "top": 3981.8125,
+          "width": 223.6875,
+          "x": 16,
+          "y": 3981.8125
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": 390
+  },
+  {
+    "shape": "owner-wide",
+    "scheme": "editorial",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide",
+        "image": {
+          "bottom": 278,
+          "height": 96,
+          "left": 16,
+          "right": 336,
+          "top": 182,
+          "width": 320,
+          "x": 16,
+          "y": 182
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 320.34375,
+          "height": 138.34375,
+          "left": 16,
+          "right": 359,
+          "top": 182,
+          "width": 343,
+          "x": 16,
+          "y": 182
+        },
+        "title": {
+          "bottom": 312,
+          "height": 22,
+          "left": 16,
+          "right": 314.25,
+          "top": 290,
+          "width": 298.25,
+          "x": 16,
+          "y": 290
+        }
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide",
+        "image": {
+          "bottom": 4058.125,
+          "height": 96,
+          "left": 16,
+          "right": 336,
+          "top": 3962.125,
+          "width": 320,
+          "x": 16,
+          "y": 3962.125
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 4096.234375,
+          "height": 134.109375,
+          "left": 16,
+          "right": 359,
+          "top": 3962.125,
+          "width": 343,
+          "x": 16,
+          "y": 3962.125
+        },
+        "title": {
+          "bottom": 4089.125,
+          "height": 17,
+          "left": 16,
+          "right": 239.6875,
+          "top": 4072.125,
+          "width": 223.6875,
+          "x": 16,
+          "y": 4072.125
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": 390
+  },
+  {
+    "shape": "owner-wide",
+    "scheme": "tradition",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide",
+        "image": {
+          "bottom": 274.6875,
+          "height": 95.6875,
+          "left": 28,
+          "right": 347,
+          "top": 179,
+          "width": 319,
+          "x": 28,
+          "y": 179
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 318.03125,
+          "height": 139.03125,
+          "left": 28,
+          "right": 347,
+          "top": 179,
+          "width": 319,
+          "x": 28,
+          "y": 179
+        },
+        "title": {
+          "bottom": 308.6875,
+          "height": 22,
+          "left": 28,
+          "right": 326.25,
+          "top": 286.6875,
+          "width": 298.25,
+          "x": 28,
+          "y": 286.6875
+        }
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide",
+        "image": {
+          "bottom": 3847.25,
+          "height": 95.6875,
+          "left": 28,
+          "right": 347,
+          "top": 3751.5625,
+          "width": 319,
+          "x": 28,
+          "y": 3751.5625
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 3885.359375,
+          "height": 133.796875,
+          "left": 28,
+          "right": 347,
+          "top": 3751.5625,
+          "width": 319,
+          "x": 28,
+          "y": 3751.5625
+        },
+        "title": {
+          "bottom": 3877.25,
+          "height": 17,
+          "left": 28,
+          "right": 251.6875,
+          "top": 3860.25,
+          "width": 223.6875,
+          "x": 28,
+          "y": 3860.25
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": 390
+  },
+  {
+    "shape": "owner-wide",
+    "scheme": "blue",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide",
+        "image": {
+          "bottom": 278,
+          "height": 96,
+          "left": 16,
+          "right": 336,
+          "top": 182,
+          "width": 320,
+          "x": 16,
+          "y": 182
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 320.34375,
+          "height": 138.34375,
+          "left": 16,
+          "right": 359,
+          "top": 182,
+          "width": 343,
+          "x": 16,
+          "y": 182
+        },
+        "title": {
+          "bottom": 312,
+          "height": 22,
+          "left": 16,
+          "right": 314.25,
+          "top": 290,
+          "width": 298.25,
+          "x": 16,
+          "y": 290
+        }
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide",
+        "image": {
+          "bottom": 3604.296875,
+          "height": 96,
+          "left": 16,
+          "right": 336,
+          "top": 3508.296875,
+          "width": 320,
+          "x": 16,
+          "y": 3508.296875
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 3642.40625,
+          "height": 134.109375,
+          "left": 16,
+          "right": 359,
+          "top": 3508.296875,
+          "width": 343,
+          "x": 16,
+          "y": 3508.296875
+        },
+        "title": {
+          "bottom": 3635.296875,
+          "height": 17,
+          "left": 16,
+          "right": 239.6875,
+          "top": 3618.296875,
+          "width": 223.6875,
+          "x": 16,
+          "y": 3618.296875
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": 390
+  },
+  {
+    "shape": "square",
+    "scheme": "classic",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-square",
+        "image": {
+          "bottom": 185,
+          "height": 72,
+          "left": 112.5,
+          "right": 184.5,
+          "top": 113,
+          "width": 72,
+          "x": 112.5,
+          "y": 113
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 185,
+          "height": 72,
+          "left": 112.5,
+          "right": 494.75,
+          "top": 113,
+          "width": 382.25,
+          "x": 112.5,
+          "y": 113
+        },
+        "title": {
+          "bottom": 155.796875,
+          "height": 22,
+          "left": 196.5,
+          "right": 494.75,
+          "top": 133.796875,
+          "width": 298.25,
+          "x": 196.5,
+          "y": 133.796875
+        }
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-square",
+        "image": {
+          "bottom": 1656.71875,
+          "height": 72,
+          "left": 112.5,
+          "right": 184.5,
+          "top": 1584.71875,
+          "width": 72,
+          "x": 112.5,
+          "y": 1584.71875
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 1656.71875,
+          "height": 72,
+          "left": 112.5,
+          "right": 418.921875,
+          "top": 1584.71875,
+          "width": 306.421875,
+          "x": 112.5,
+          "y": 1584.71875
+        },
+        "title": {
+          "bottom": 1637.21875,
+          "height": 38.109375,
+          "left": 196.5,
+          "right": 339.796875,
+          "top": 1599.109375,
+          "width": 143.296875,
+          "x": 196.5,
+          "y": 1599.109375
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": 1440
+  },
+  {
+    "shape": "square",
+    "scheme": "hospitality",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-square",
+        "image": {
+          "bottom": 189.859375,
+          "height": 72,
+          "left": 112.5,
+          "right": 184.5,
+          "top": 117.859375,
+          "width": 72,
+          "x": 112.5,
+          "y": 117.859375
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 189.859375,
+          "height": 72,
+          "left": 112.5,
+          "right": 494.75,
+          "top": 117.859375,
+          "width": 382.25,
+          "x": 112.5,
+          "y": 117.859375
+        },
+        "title": {
+          "bottom": 160.65625,
+          "height": 22,
+          "left": 196.5,
+          "right": 494.75,
+          "top": 138.65625,
+          "width": 298.25,
+          "x": 196.5,
+          "y": 138.65625
+        }
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-square",
+        "image": {
+          "bottom": 1595.8125,
+          "height": 72,
+          "left": 112.5,
+          "right": 184.5,
+          "top": 1523.8125,
+          "width": 72,
+          "x": 112.5,
+          "y": 1523.8125
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 1595.8125,
+          "height": 72,
+          "left": 112.5,
+          "right": 418.921875,
+          "top": 1523.8125,
+          "width": 306.421875,
+          "x": 112.5,
+          "y": 1523.8125
+        },
+        "title": {
+          "bottom": 1576.3125,
+          "height": 38.109375,
+          "left": 196.5,
+          "right": 339.796875,
+          "top": 1538.203125,
+          "width": 143.296875,
+          "x": 196.5,
+          "y": 1538.203125
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": 1440
+  },
+  {
+    "shape": "square",
+    "scheme": "editorial",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-square",
+        "image": {
+          "bottom": 193.140625,
+          "height": 72,
+          "left": 112.5,
+          "right": 184.5,
+          "top": 121.140625,
+          "width": 72,
+          "x": 112.5,
+          "y": 121.140625
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 193.140625,
+          "height": 72,
+          "left": 112.5,
+          "right": 494.75,
+          "top": 121.140625,
+          "width": 382.25,
+          "x": 112.5,
+          "y": 121.140625
+        },
+        "title": {
+          "bottom": 163.9375,
+          "height": 22,
+          "left": 196.5,
+          "right": 494.75,
+          "top": 141.9375,
+          "width": 298.25,
+          "x": 196.5,
+          "y": 141.9375
+        }
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-square",
+        "image": {
+          "bottom": 1706.953125,
+          "height": 72,
+          "left": 112.5,
+          "right": 184.5,
+          "top": 1634.953125,
+          "width": 72,
+          "x": 112.5,
+          "y": 1634.953125
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 1706.953125,
+          "height": 72,
+          "left": 112.5,
+          "right": 418.921875,
+          "top": 1634.953125,
+          "width": 306.421875,
+          "x": 112.5,
+          "y": 1634.953125
+        },
+        "title": {
+          "bottom": 1687.453125,
+          "height": 38.109375,
+          "left": 196.5,
+          "right": 339.796875,
+          "top": 1649.34375,
+          "width": 143.296875,
+          "x": 196.5,
+          "y": 1649.34375
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": 1440
+  },
+  {
+    "shape": "square",
+    "scheme": "tradition",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-square",
+        "image": {
+          "bottom": 183,
+          "height": 72,
+          "left": 112.5,
+          "right": 184.5,
+          "top": 111,
+          "width": 72,
+          "x": 112.5,
+          "y": 111
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 183,
+          "height": 72,
+          "left": 112.5,
+          "right": 580.5,
+          "top": 111,
+          "width": 468,
+          "x": 112.5,
+          "y": 111
+        },
+        "title": {
+          "bottom": 152.796875,
+          "height": 22,
+          "left": 196.5,
+          "right": 494.75,
+          "top": 130.796875,
+          "width": 298.25,
+          "x": 196.5,
+          "y": 130.796875
+        }
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-square",
+        "image": {
+          "bottom": 1647.015625,
+          "height": 72,
+          "left": 112.5,
+          "right": 184.5,
+          "top": 1575.015625,
+          "width": 72,
+          "x": 112.5,
+          "y": 1575.015625
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 1647.015625,
+          "height": 72,
+          "left": 112.5,
+          "right": 414.90625,
+          "top": 1575.015625,
+          "width": 302.40625,
+          "x": 112.5,
+          "y": 1575.015625
+        },
+        "title": {
+          "bottom": 1626.515625,
+          "height": 38.109375,
+          "left": 196.5,
+          "right": 339.796875,
+          "top": 1588.40625,
+          "width": 143.296875,
+          "x": 196.5,
+          "y": 1588.40625
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": 1440
+  },
+  {
+    "shape": "square",
+    "scheme": "blue",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-square",
+        "image": {
+          "bottom": 185,
+          "height": 72,
+          "left": 112.5,
+          "right": 184.5,
+          "top": 113,
+          "width": 72,
+          "x": 112.5,
+          "y": 113
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 185,
+          "height": 72,
+          "left": 112.5,
+          "right": 494.75,
+          "top": 113,
+          "width": 382.25,
+          "x": 112.5,
+          "y": 113
+        },
+        "title": {
+          "bottom": 155.796875,
+          "height": 22,
+          "left": 196.5,
+          "right": 494.75,
+          "top": 133.796875,
+          "width": 298.25,
+          "x": 196.5,
+          "y": 133.796875
+        }
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-square",
+        "image": {
+          "bottom": 1581.609375,
+          "height": 72,
+          "left": 112.5,
+          "right": 184.5,
+          "top": 1509.609375,
+          "width": 72,
+          "x": 112.5,
+          "y": 1509.609375
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 1581.609375,
+          "height": 72,
+          "left": 112.5,
+          "right": 418.921875,
+          "top": 1509.609375,
+          "width": 306.421875,
+          "x": 112.5,
+          "y": 1509.609375
+        },
+        "title": {
+          "bottom": 1562.109375,
+          "height": 38.109375,
+          "left": 196.5,
+          "right": 339.796875,
+          "top": 1524,
+          "width": 143.296875,
+          "x": 196.5,
+          "y": 1524
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": 1440
+  },
+  {
+    "shape": "square",
+    "scheme": "classic",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-square",
+        "image": {
+          "bottom": 242,
+          "height": 60,
+          "left": 16,
+          "right": 76,
+          "top": 182,
+          "width": 60,
+          "x": 16,
+          "y": 182
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 242,
+          "height": 60,
+          "left": 16,
+          "right": 359,
+          "top": 182,
+          "width": 343,
+          "x": 16,
+          "y": 182
+        },
+        "title": {
+          "bottom": 231,
+          "height": 46.34375,
+          "left": 88,
+          "right": 279.0625,
+          "top": 184.65625,
+          "width": 191.0625,
+          "x": 88,
+          "y": 184.65625
+        }
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-square",
+        "image": {
+          "bottom": 3862.609375,
+          "height": 60,
+          "left": 16,
+          "right": 76,
+          "top": 3802.609375,
+          "width": 60,
+          "x": 16,
+          "y": 3802.609375
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 3862.609375,
+          "height": 60,
+          "left": 16,
+          "right": 359,
+          "top": 3802.609375,
+          "width": 343,
+          "x": 16,
+          "y": 3802.609375
+        },
+        "title": {
+          "bottom": 3838.546875,
+          "height": 17,
+          "left": 88,
+          "right": 311.6875,
+          "top": 3821.546875,
+          "width": 223.6875,
+          "x": 88,
+          "y": 3821.546875
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": 390
+  },
+  {
+    "shape": "square",
+    "scheme": "hospitality",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-square",
+        "image": {
+          "bottom": 242,
+          "height": 60,
+          "left": 16,
+          "right": 76,
+          "top": 182,
+          "width": 60,
+          "x": 16,
+          "y": 182
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 242,
+          "height": 60,
+          "left": 16,
+          "right": 359,
+          "top": 182,
+          "width": 343,
+          "x": 16,
+          "y": 182
+        },
+        "title": {
+          "bottom": 231,
+          "height": 46.34375,
+          "left": 88,
+          "right": 279.0625,
+          "top": 184.65625,
+          "width": 191.0625,
+          "x": 88,
+          "y": 184.65625
+        }
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-square",
+        "image": {
+          "bottom": 3853.46875,
+          "height": 60,
+          "left": 16,
+          "right": 76,
+          "top": 3793.46875,
+          "width": 60,
+          "x": 16,
+          "y": 3793.46875
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 3853.46875,
+          "height": 60,
+          "left": 16,
+          "right": 359,
+          "top": 3793.46875,
+          "width": 343,
+          "x": 16,
+          "y": 3793.46875
+        },
+        "title": {
+          "bottom": 3829.40625,
+          "height": 17,
+          "left": 88,
+          "right": 311.6875,
+          "top": 3812.40625,
+          "width": 223.6875,
+          "x": 88,
+          "y": 3812.40625
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": 390
+  },
+  {
+    "shape": "square",
+    "scheme": "editorial",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-square",
+        "image": {
+          "bottom": 242,
+          "height": 60,
+          "left": 16,
+          "right": 76,
+          "top": 182,
+          "width": 60,
+          "x": 16,
+          "y": 182
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 242,
+          "height": 60,
+          "left": 16,
+          "right": 359,
+          "top": 182,
+          "width": 343,
+          "x": 16,
+          "y": 182
+        },
+        "title": {
+          "bottom": 231,
+          "height": 46.34375,
+          "left": 88,
+          "right": 279.0625,
+          "top": 184.65625,
+          "width": 191.0625,
+          "x": 88,
+          "y": 184.65625
+        }
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-square",
+        "image": {
+          "bottom": 3943.78125,
+          "height": 60,
+          "left": 16,
+          "right": 76,
+          "top": 3883.78125,
+          "width": 60,
+          "x": 16,
+          "y": 3883.78125
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 3943.78125,
+          "height": 60,
+          "left": 16,
+          "right": 359,
+          "top": 3883.78125,
+          "width": 343,
+          "x": 16,
+          "y": 3883.78125
+        },
+        "title": {
+          "bottom": 3919.71875,
+          "height": 17,
+          "left": 88,
+          "right": 311.6875,
+          "top": 3902.71875,
+          "width": 223.6875,
+          "x": 88,
+          "y": 3902.71875
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": 390
+  },
+  {
+    "shape": "square",
+    "scheme": "tradition",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-square",
+        "image": {
+          "bottom": 242,
+          "height": 60,
+          "left": 28,
+          "right": 88,
+          "top": 182,
+          "width": 60,
+          "x": 28,
+          "y": 182
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 242,
+          "height": 60,
+          "left": 28,
+          "right": 347,
+          "top": 182,
+          "width": 319,
+          "x": 28,
+          "y": 182
+        },
+        "title": {
+          "bottom": 231,
+          "height": 47.34375,
+          "left": 100,
+          "right": 291.0625,
+          "top": 183.65625,
+          "width": 191.0625,
+          "x": 100,
+          "y": 183.65625
+        }
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-square",
+        "image": {
+          "bottom": 3735.53125,
+          "height": 60,
+          "left": 28,
+          "right": 88,
+          "top": 3675.53125,
+          "width": 60,
+          "x": 28,
+          "y": 3675.53125
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 3735.53125,
+          "height": 60,
+          "left": 28,
+          "right": 347,
+          "top": 3675.53125,
+          "width": 319,
+          "x": 28,
+          "y": 3675.53125
+        },
+        "title": {
+          "bottom": 3710.46875,
+          "height": 17,
+          "left": 100,
+          "right": 323.6875,
+          "top": 3693.46875,
+          "width": 223.6875,
+          "x": 100,
+          "y": 3693.46875
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": 390
+  },
+  {
+    "shape": "square",
+    "scheme": "blue",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-square",
+        "image": {
+          "bottom": 242,
+          "height": 60,
+          "left": 16,
+          "right": 76,
+          "top": 182,
+          "width": 60,
+          "x": 16,
+          "y": 182
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 242,
+          "height": 60,
+          "left": 16,
+          "right": 359,
+          "top": 182,
+          "width": 343,
+          "x": 16,
+          "y": 182
+        },
+        "title": {
+          "bottom": 231,
+          "height": 46.34375,
+          "left": 88,
+          "right": 279.0625,
+          "top": 184.65625,
+          "width": 191.0625,
+          "x": 88,
+          "y": 184.65625
+        }
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-square",
+        "image": {
+          "bottom": 3489.953125,
+          "height": 60,
+          "left": 16,
+          "right": 76,
+          "top": 3429.953125,
+          "width": 60,
+          "x": 16,
+          "y": 3429.953125
+        },
+        "loaded": true,
+        "rect": {
+          "bottom": 3489.953125,
+          "height": 60,
+          "left": 16,
+          "right": 359,
+          "top": 3429.953125,
+          "width": 343,
+          "x": 16,
+          "y": 3429.953125
+        },
+        "title": {
+          "bottom": 3465.890625,
+          "height": 17,
+          "left": 88,
+          "right": 311.6875,
+          "top": 3448.890625,
+          "width": 223.6875,
+          "x": 88,
+          "y": 3448.890625
+        }
+      }
+    ],
+    "overflow": false,
+    "viewport": 390
+  }
+]

@@ -31,8 +31,15 @@ function prihod_theme_brand(): string {
     $logo_id = $options['logo_removed'] ? 0 : ( $options['logo'] ?: get_theme_mod( 'custom_logo' ) );
     if ( $logo_id ) { $logo = '<a href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '">' . wp_get_attachment_image( $logo_id, 'full', false, array( 'class' => 'custom-logo', 'alt' => $profile['name'] ) ) . '</a>'; }
     $text = '<div><a class="prihod-brand-title" href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '">' . esc_html( ! empty( $profile['short_name'] ) ? $profile['short_name'] : $profile['name'] ) . '</a><p>' . esc_html( get_bloginfo( 'description' ) ) . '</p></div>';
-    $hide = $options['logo_hide_title'] && $logo_id;
-    return '<div class="prihod-brand" style="--prihod-logo-width:' . absint( $options['logo_width'] ) . 'px">' . $logo . ( $hide ? '' : $text ) . '</div>';
+    $hide = $options['logo_hide_title'] && ( $logo_id || ! $options['logo_show'] );
+    $visible_logo = $options['logo_show'] ? $logo : '';
+    // Keep an accessible home link even when both display controls are disabled.
+    if ( ! $visible_logo && $hide ) { $visible_logo = '<a class="prihod-brand-home" href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '">' . esc_html__( 'Главная', 'prihod-theme' ) . '</a>'; }
+    $meta = $logo_id ? wp_get_attachment_metadata( $logo_id ) : array();
+    $wide = $meta && ( $meta['width'] ?? 0 ) > 1.5 * ( $meta['height'] ?? 1 );
+    $class = $options['logo_show'] && $logo_id ? ' prihod-brand-custom' . ( $wide ? ' prihod-brand-wide' : ' prihod-brand-square' ) : '';
+    if ( $wide && $hide && $options['logo_show'] ) { $class .= ' prihod-brand-logo-only'; }
+    return '<div class="prihod-brand' . $class . '" style="--prihod-logo-width:' . absint( $options['logo_width'] ) . 'px">' . $visible_logo . ( $hide ? '' : $text ) . '</div>';
 }
 function prihod_theme_block( string $name, array $attributes = array() ): string {
     if ( ! WP_Block_Type_Registry::get_instance()->is_registered( $name ) ) { return ''; }

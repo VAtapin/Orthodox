@@ -1,0 +1,332 @@
+[
+  {
+    "scheme": "classic",
+    "viewport": 1440,
+    "brands": [
+      {
+        "image": {
+          "bottom": 209,
+          "height": 96,
+          "left": 112.5,
+          "right": 432.5,
+          "top": 113,
+          "width": 320,
+          "x": 112.5,
+          "y": 113
+        },
+        "title": false
+      },
+      {
+        "image": {
+          "bottom": 1704.71875,
+          "height": 96,
+          "left": 112.5,
+          "right": 432.5,
+          "top": 1608.71875,
+          "width": 320,
+          "x": 112.5,
+          "y": 1608.71875
+        },
+        "title": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "scheme": "hospitality",
+    "viewport": 1440,
+    "brands": [
+      {
+        "image": {
+          "bottom": 197,
+          "height": 96,
+          "left": 112.5,
+          "right": 432.5,
+          "top": 101,
+          "width": 320,
+          "x": 112.5,
+          "y": 101
+        },
+        "title": false
+      },
+      {
+        "image": {
+          "bottom": 1622.078125,
+          "height": 96,
+          "left": 112.5,
+          "right": 432.5,
+          "top": 1526.078125,
+          "width": 320,
+          "x": 112.5,
+          "y": 1526.078125
+        },
+        "title": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "scheme": "editorial",
+    "viewport": 1440,
+    "brands": [
+      {
+        "image": {
+          "bottom": 103,
+          "height": 96,
+          "left": 112.5,
+          "right": 432.5,
+          "top": 7,
+          "width": 320,
+          "x": 112.5,
+          "y": 7
+        },
+        "title": false
+      },
+      {
+        "image": {
+          "bottom": 1632.65625,
+          "height": 96,
+          "left": 112.5,
+          "right": 432.5,
+          "top": 1536.65625,
+          "width": 320,
+          "x": 112.5,
+          "y": 1536.65625
+        },
+        "title": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "scheme": "tradition",
+    "viewport": 1440,
+    "brands": [
+      {
+        "image": {
+          "bottom": 195,
+          "height": 96,
+          "left": 112.5,
+          "right": 432.5,
+          "top": 99,
+          "width": 320,
+          "x": 112.5,
+          "y": 99
+        },
+        "title": false
+      },
+      {
+        "image": {
+          "bottom": 1683.015625,
+          "height": 96,
+          "left": 112.5,
+          "right": 432.5,
+          "top": 1587.015625,
+          "width": 320,
+          "x": 112.5,
+          "y": 1587.015625
+        },
+        "title": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "scheme": "blue",
+    "viewport": 1440,
+    "brands": [
+      {
+        "image": {
+          "bottom": 207,
+          "height": 96,
+          "left": 112.5,
+          "right": 432.5,
+          "top": 111,
+          "width": 320,
+          "x": 112.5,
+          "y": 111
+        },
+        "title": false
+      },
+      {
+        "image": {
+          "bottom": 1627.609375,
+          "height": 96,
+          "left": 112.5,
+          "right": 432.5,
+          "top": 1531.609375,
+          "width": 320,
+          "x": 112.5,
+          "y": 1531.609375
+        },
+        "title": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "scheme": "classic",
+    "viewport": 390,
+    "brands": [
+      {
+        "image": {
+          "bottom": 268,
+          "height": 96,
+          "left": 16,
+          "right": 336,
+          "top": 172,
+          "width": 320,
+          "x": 16,
+          "y": 172
+        },
+        "title": false
+      },
+      {
+        "image": {
+          "bottom": 3924.609375,
+          "height": 96,
+          "left": 16,
+          "right": 336,
+          "top": 3828.609375,
+          "width": 320,
+          "x": 16,
+          "y": 3828.609375
+        },
+        "title": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "scheme": "hospitality",
+    "viewport": 390,
+    "brands": [
+      {
+        "image": {
+          "bottom": 268,
+          "height": 96,
+          "left": 16,
+          "right": 336,
+          "top": 172,
+          "width": 320,
+          "x": 16,
+          "y": 172
+        },
+        "title": false
+      },
+      {
+        "image": {
+          "bottom": 3915.46875,
+          "height": 96,
+          "left": 16,
+          "right": 336,
+          "top": 3819.46875,
+          "width": 320,
+          "x": 16,
+          "y": 3819.46875
+        },
+        "title": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "scheme": "editorial",
+    "viewport": 390,
+    "brands": [
+      {
+        "image": {
+          "bottom": 268,
+          "height": 96,
+          "left": 16,
+          "right": 336,
+          "top": 172,
+          "width": 320,
+          "x": 16,
+          "y": 172
+        },
+        "title": false
+      },
+      {
+        "image": {
+          "bottom": 4005.78125,
+          "height": 96,
+          "left": 16,
+          "right": 336,
+          "top": 3909.78125,
+          "width": 320,
+          "x": 16,
+          "y": 3909.78125
+        },
+        "title": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "scheme": "tradition",
+    "viewport": 390,
+    "brands": [
+      {
+        "image": {
+          "bottom": 267.6875,
+          "height": 95.6875,
+          "left": 28,
+          "right": 347,
+          "top": 172,
+          "width": 319,
+          "x": 28,
+          "y": 172
+        },
+        "title": false
+      },
+      {
+        "image": {
+          "bottom": 3796.90625,
+          "height": 95.6875,
+          "left": 28,
+          "right": 347,
+          "top": 3701.21875,
+          "width": 319,
+          "x": 28,
+          "y": 3701.21875
+        },
+        "title": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "scheme": "blue",
+    "viewport": 390,
+    "brands": [
+      {
+        "image": {
+          "bottom": 268,
+          "height": 96,
+          "left": 16,
+          "right": 336,
+          "top": 172,
+          "width": 320,
+          "x": 16,
+          "y": 172
+        },
+        "title": false
+      },
+      {
+        "image": {
+          "bottom": 3551.953125,
+          "height": 96,
+          "left": 16,
+          "right": 336,
+          "top": 3455.953125,
+          "width": 320,
+          "x": 16,
+          "y": 3455.953125
+        },
+        "title": false
+      }
+    ],
+    "overflow": false
+  }
+]

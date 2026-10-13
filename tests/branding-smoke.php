@@ -22,6 +22,17 @@ $check( $wide === $out['logo'] && 320 === $out['logo_width'] && $out['logo_hide_
 update_option( 'prihod_theme_options', $out );
 $brand = prihod_theme_brand();
 $check( str_contains( $brand, 'branding-wide.png' ) && ! str_contains( $brand, 'prihod-brand-title' ), 'Wide logo uses uncropped original and can replace adjacent title.' );
+$check( $out['logo_show'] && str_contains( $brand, 'prihod-brand-wide' ), 'Existing logos stay enabled and wide proportions are identified.' );
+$title_only = prihod_theme_sanitize( array( 'logo_show' => 0, 'title_visible' => 1 ) );
+update_option( 'prihod_theme_options', $title_only );
+$check( ! str_contains( prihod_theme_brand(), 'custom-logo' ) && str_contains( prihod_theme_brand(), 'prihod-brand-title' ) && $wide === $title_only['logo'], 'Logo can be hidden independently without deleting its attachment choice.' );
+$both_off = prihod_theme_sanitize( array( 'logo_show' => 0, 'title_visible' => 0 ) );
+update_option( 'prihod_theme_options', $both_off );
+$check( str_contains( prihod_theme_brand(), 'prihod-brand-home' ) && ! str_contains( prihod_theme_brand(), 'custom-logo' ) && ! str_contains( prihod_theme_brand(), 'prihod-brand-title' ), 'Both controls off retains an accessible home link.' );
+$both_on = prihod_theme_sanitize( array( 'logo_show' => 1, 'title_visible' => 1 ) );
+update_option( 'prihod_theme_options', $both_on );
+$check( str_contains( prihod_theme_brand(), 'custom-logo' ) && str_contains( prihod_theme_brand(), 'prihod-brand-title' ), 'Logo and site title can both be enabled.' );
+update_option( 'prihod_theme_options', $out );
 $custom_logo_before = get_theme_mod( 'custom_logo' );
 set_theme_mod( 'custom_logo', $square );
 $removed = prihod_theme_sanitize( array( 'logo' => 0, 'logo_removed' => 1 ) );

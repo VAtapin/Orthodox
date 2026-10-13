@@ -2562,3 +2562,72 @@ msgstr "Powrót do wyglądów"
 
 msgid "Предпросмотр"
 msgstr "Podgląd"
+
+msgid "Попытки отправки письма"
+msgstr "Próby wysyłki wiadomości"
+
+msgid "Технический журнал хранится 30 дней. Принятие письма транспортом не подтверждает доставку в ящик."
+msgstr "Dziennik techniczny jest przechowywany przez 30 dni. Przyjęcie przez transport nie potwierdza dostarczenia do skrzynki."
+
+msgid "Для этого ответа технический журнал отсутствует. Старые отправки не восстанавливаются задним числом."
+msgstr "Dla tej odpowiedzi brak dziennika technicznego. Dawne wysyłki nie są odtwarzane wstecz."
+
+msgid "Попытка начата, результат не получен"
+msgstr "Próba rozpoczęta, brak wyniku"
+
+msgid "Обращение #%1$d · ответ #%2$d · попытка %3$d"
+msgstr "Zgłoszenie #%1$d · odpowiedź #%2$d · próba %3$d"
+
+msgid "Начало (UTC)"
+msgstr "Początek (UTC)"
+
+msgid "Окончание (UTC)"
+msgstr "Koniec (UTC)"
+
+msgid "Транспорт"
+msgstr "Transport"
+
+msgid "Назначенный Message-ID"
+msgstr "Przypisany Message-ID"
+
+msgid "ID попытки"
+msgstr "ID próby"
+
+msgid "Код ошибки"
+msgstr "Kod błędu"
+
+msgid "Тип исключения"
+msgstr "Typ wyjątku"
+
+msgid "Код исключения"
+msgstr "Kod wyjątku"
+
+msgid "Код SMTP"
+msgstr "Kod SMTP"
+
+msgid "Письмо обработано перехватчиком WordPress; фактический транспорт не зафиксирован."
+msgstr "Wiadomość została obsłużona przez przechwytywanie WordPress; faktyczny transport nie został zarejestrowany."
+
+msgid "Этапы:"
+msgstr "Etapy:"
+
+msgid "Письмо подготовлено"
+msgstr "Wiadomość przygotowana"
+
+msgid "Транспорт подготовлен"
+msgstr "Transport przygotowany"
+
+msgid "Принято транспортом"
+msgstr "Przyjęto przez transport"
+
+msgid "Принято WordPress; результат транспорта неизвестен."
+msgstr "Przyjęto przez WordPress; wynik transportu jest nieznany."
+
+msgid "Показывать логотип"
+msgstr "Pokaż logo"
+
+msgid "Показывать название"
+msgstr "Pokaż nazwę"
+
+msgid "Логотип и название отключены. На сайте останется ссылка на главную страницу."
+msgstr "Logo i nazwa są wyłączone. Na stronie pozostanie odnośnik do strony głównej."

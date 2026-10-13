@@ -44,7 +44,8 @@ foreach ( array( 'de_DE', 'pl_PL', 'uk' ) as $locale ) {
 }
 echo wp_json_encode( array( 'status' => 'PRIHOD_SERVER_OK', 'checks' => $checked, 'wordpress' => get_bloginfo( 'version' ), 'php' => PHP_VERSION, 'theme' => wp_get_theme()->get( 'Version' ) ), JSON_UNESCAPED_UNICODE ) . PHP_EOL;
 
-$check( '1.0.0-rc.17' === PRIHOD_VERSION && '0.3.26' === wp_get_theme()->get( 'Version' ), 'Core rc.17 and theme 0.3.26 must be present.' );
+$check( '1.0.0-rc.17' === PRIHOD_VERSION && '0.3.27' === wp_get_theme()->get( 'Version' ), 'Core rc.17 and theme 0.3.27 must be present.' );
+$check( array_key_exists( 'logo_show', prihod_theme_options() ) && array_key_exists( 'logo_hide_title', prihod_theme_options() ), 'Independent compatible branding preferences must be available.' );
 prihod_theme_prepare_provider_assets();
 do_shortcode( '[' . $donation_tag . ']' );
 $check( str_contains( (string) wp_scripts()->get_data( 'georg-kloster-orthodox-donate', 'data' ), 'georgKlosterOrthodoxDonate' ), 'Native donation configuration must exist before the block theme prints scripts.' );
