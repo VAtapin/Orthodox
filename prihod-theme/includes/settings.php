@@ -3,11 +3,14 @@ defined( 'ABSPATH' ) || exit;
 
 function prihod_theme_options(): array {
     $saved = get_option( 'prihod_theme_options', array() );
-    return array_merge( array( 'feature_schedule' => 0, 'feature_news' => 0, 'feature_about' => 0, 'feature_requests' => 0, 'feature_donations' => 0, 'hero_image' => 0, 'about_image' => 0, 'request_image' => 0, 'pilgrim_image' => 0, 'pilgrim_photos' => '', 'logo' => 0, 'gallery' => '', 'about_history_photos' => '', 'about_life_photos' => '', 'map_url' => '', 'map_embed' => '', 'languages' => array(), 'stepped_forms' => true, 'scheme' => '', 'width' => 1200, 'font' => 'sans', 'font_size' => 16, 'sticky_header' => false, 'header_contacts' => true, 'footer_text' => '', 'header_motto' => __( 'С любовью к Богу и людям', 'prihod-theme' ), 'hero_motto' => __( 'Вера объединяет сердца', 'prihod-theme' ), 'hero_quote_text' => __( 'Где двое или трое собраны во имя Моё, там Я посреди них', 'prihod-theme' ), 'hero_quote_source' => __( 'Мф. 18:20', 'prihod-theme' ), 'quote_text' => __( 'Где двое или трое собраны во имя Моё, там Я посреди них', 'prihod-theme' ), 'quote_source' => __( 'Мф. 18:20', 'prihod-theme' ) ), is_array( $saved ) ? $saved : array() );
+    return array_merge( array( 'feature_schedule' => 0, 'feature_news' => 0, 'feature_about' => 0, 'feature_requests' => 0, 'feature_donations' => 0, 'hero_image' => 0, 'about_image' => 0, 'request_image' => 0, 'pilgrim_image' => 0, 'pilgrim_photos' => '', 'logo' => 0, 'logo_width' => 240, 'logo_removed' => false, 'logo_hide_title' => false, 'social_image' => 0, 'social_meta' => true, 'gallery' => '', 'about_history_photos' => '', 'about_life_photos' => '', 'map_url' => '', 'map_embed' => '', 'languages' => array(), 'stepped_forms' => true, 'scheme' => '', 'width' => 1200, 'font' => 'sans', 'font_size' => 16, 'sticky_header' => false, 'header_contacts' => true, 'footer_text' => '', 'header_motto' => __( 'С любовью к Богу и людям', 'prihod-theme' ), 'hero_motto' => __( 'Вера объединяет сердца', 'prihod-theme' ), 'hero_quote_text' => __( 'Где двое или трое собраны во имя Моё, там Я посреди них', 'prihod-theme' ), 'hero_quote_source' => __( 'Мф. 18:20', 'prihod-theme' ), 'quote_text' => __( 'Где двое или трое собраны во имя Моё, там Я посреди них', 'prihod-theme' ), 'quote_source' => __( 'Мф. 18:20', 'prihod-theme' ) ), is_array( $saved ) ? $saved : array() );
 }
 function prihod_theme_sanitize( $input ): array {
     $out = prihod_theme_options();
     if ( ! is_array( $input ) ) { return $out; }
+    foreach ( array( 'logo_hide_title', 'logo_removed', 'social_meta' ) as $key ) { if ( array_key_exists( $key, $input ) ) { $out[$key] = ! empty( $input[$key] ); } }
+    if ( array_key_exists( 'logo_width', $input ) ) { $out['logo_width'] = max( 64, min( 320, is_scalar( $input['logo_width'] ) ? absint( $input['logo_width'] ) : 240 ) ); }
+    if ( array_key_exists( 'social_image', $input ) ) { $id = is_scalar( $input['social_image'] ) ? absint( $input['social_image'] ) : 0; $out['social_image'] = $id && wp_attachment_is_image( $id ) ? $id : 0; }
     $out['stepped_forms'] = ! empty( $input['stepped_forms'] );
     $out['sticky_header'] = ! empty( $input['sticky_header'] );
     $out['header_contacts'] = ! empty( $input['header_contacts'] );
@@ -17,7 +20,7 @@ function prihod_theme_sanitize( $input ): array {
     $out['font'] = in_array( $input['font'] ?? null, array( 'sans', 'serif' ), true ) ? $input['font'] : 'sans';
     $out['footer_text'] = is_string( $input['footer_text'] ?? null ) ? sanitize_textarea_field( $input['footer_text'] ) : '';
     foreach ( array( 'hero_image', 'about_image', 'request_image', 'pilgrim_image', 'logo', 'feature_schedule', 'feature_news', 'feature_about', 'feature_requests', 'feature_donations' ) as $key ) {
-        if ( 'pilgrim_image' === $key && ! array_key_exists( $key, $input ) ) { continue; }
+        if ( in_array( $key, array( 'pilgrim_image', 'logo' ), true ) && ! array_key_exists( $key, $input ) ) { continue; }
         $id = is_scalar( $input[ $key ] ?? null ) ? absint( $input[ $key ] ) : 0;
         $out[ $key ] = $id && wp_attachment_is_image( $id ) ? $id : 0;
     }
@@ -51,9 +54,9 @@ add_action( 'admin_menu', function () {
 add_action( 'admin_enqueue_scripts', function () {
     if ( 'prihod-theme' !== ( $_GET['page'] ?? '' ) ) { return; }
     wp_enqueue_media();
-    wp_enqueue_style( 'prihod-theme-settings', get_template_directory_uri() . '/assets/settings.css', array(), '0.3.17' );
-    wp_enqueue_script( 'prihod-theme-media', get_template_directory_uri() . '/assets/media.js', array( 'jquery', 'media-views' ), '0.3.17', true );
-    wp_enqueue_script( 'prihod-theme-settings', get_template_directory_uri() . '/assets/settings.js', array(), '0.3.17', true );
+    wp_enqueue_style( 'prihod-theme-settings', get_template_directory_uri() . '/assets/settings.css', array(), '0.3.25' );
+    wp_enqueue_script( 'prihod-theme-media', get_template_directory_uri() . '/assets/media.js', array( 'jquery', 'media-views' ), '0.3.25', true );
+    wp_enqueue_script( 'prihod-theme-settings', get_template_directory_uri() . '/assets/settings.js', array(), '0.3.25', true );
 } );
 function prihod_theme_schemes(): array {
     return array( 'classic' => __( 'Классическая золотая', 'prihod-theme' ), 'hospitality' => __( 'Светлая гостеприимная', 'prihod-theme' ), 'editorial' => __( 'Журнальная', 'prihod-theme' ), 'tradition' => __( 'Традиционная', 'prihod-theme' ), 'blue' => __( 'Современная синяя', 'prihod-theme' ) );
@@ -61,7 +64,7 @@ function prihod_theme_schemes(): array {
 function prihod_theme_settings_page(): void {
     if ( ! current_user_can( 'manage_options' ) ) { wp_die( esc_html__( 'Недостаточно прав.', 'prihod-theme' ) ); }
     $options = prihod_theme_options();
-    $sections = array( 'schemes' => __( 'Оформление', 'prihod-theme' ), 'layout' => __( 'Макет и шрифты', 'prihod-theme' ), 'photos' => __( 'Фотографии', 'prihod-theme' ), 'header' => __( 'Шапка и подвал', 'prihod-theme' ), 'forms' => __( 'Формы', 'prihod-theme' ), 'languages' => __( 'Языки', 'prihod-theme' ), 'demo' => __( 'Демо-страницы', 'prihod-theme' ) );
+    $sections = array( 'schemes' => __( 'Оформление', 'prihod-theme' ), 'layout' => __( 'Макет и шрифты', 'prihod-theme' ), 'branding' => __( 'Логотип, иконка и соцсети', 'prihod-theme' ), 'photos' => __( 'Фотографии', 'prihod-theme' ), 'header' => __( 'Шапка и подвал', 'prihod-theme' ), 'forms' => __( 'Формы', 'prihod-theme' ), 'languages' => __( 'Языки', 'prihod-theme' ), 'demo' => __( 'Демо-страницы', 'prihod-theme' ) );
     echo '<div class="wrap prihod-theme-settings"><h1>' . esc_html__( 'Оформление прихода', 'prihod-theme' ) . ' <small>' . esc_html( wp_get_theme()->get( 'Version' ) ) . '</small></h1>';
     settings_errors();
     if ( isset( $_GET['demo_done'] ) ) { echo '<div class="notice notice-success"><p>' . esc_html__( 'Демо-страницы подготовлены. Откройте их в редакторе и добавьте материалы своего прихода.', 'prihod-theme' ) . '</p></div>'; }
@@ -83,8 +86,8 @@ function prihod_theme_settings_page(): void {
     foreach ( array( 'width' => array( __( 'Ширина сайта, px', 'prihod-theme' ), 960, 1440 ), 'font_size' => array( __( 'Размер основного текста, px', 'prihod-theme' ), 14, 20 ) ) as $key => $field ) { echo '<p><label>' . esc_html( $field[0] ) . '<br><input type="number" min="' . $field[1] . '" max="' . $field[2] . '" name="prihod_theme_options[' . esc_attr( $key ) . ']" value="' . esc_attr( $options[$key] ) . '"></label></p>'; }
     echo '<p><label>' . esc_html__( 'Основной шрифт', 'prihod-theme' ) . '<br><select name="prihod_theme_options[font]">';
     foreach ( array( 'sans' => __( 'Простой', 'prihod-theme' ), 'serif' => __( 'Книжный', 'prihod-theme' ) ) as $id => $title ) { echo '<option value="' . $id . '"' . selected( $options['font'], $id, false ) . '>' . esc_html( $title ) . '</option>'; }
-    echo '</select></label></p></section><section id="prihod-option-photos" class="prihod-option-section"><h2>' . esc_html( $sections['photos'] ) . '</h2>';
-    foreach ( array( 'hero_image' => __( 'Главное фото', 'prihod-theme' ), 'about_image' => __( 'Фото прихода', 'prihod-theme' ), 'request_image' => __( 'Фото страницы вопроса', 'prihod-theme' ), 'pilgrim_image' => __( 'Фото заголовка паломникам', 'prihod-theme' ), 'pilgrim_photos' => __( 'Фото страницы паломникам', 'prihod-theme' ), 'gallery' => __( 'Фотогалерея', 'prihod-theme' ), 'about_history_photos' => __( 'Фото после истории', 'prihod-theme' ), 'about_life_photos' => __( 'Фото жизни общины', 'prihod-theme' ), 'logo' => __( 'Логотип', 'prihod-theme' ), 'feature_schedule' => __( 'Карточка расписания', 'prihod-theme' ), 'feature_news' => __( 'Карточка новостей', 'prihod-theme' ), 'feature_about' => __( 'Карточка общины', 'prihod-theme' ), 'feature_requests' => __( 'Карточка вопроса священнику', 'prihod-theme' ), 'feature_donations' => __( 'Карточка помощи', 'prihod-theme' ) ) as $key => $label ) {
+    echo '</select></label></p></section>'; prihod_theme_branding_panel( $options ); echo '<section id="prihod-option-photos" class="prihod-option-section"><h2>' . esc_html( $sections['photos'] ) . '</h2>';
+    foreach ( array( 'hero_image' => __( 'Главное фото', 'prihod-theme' ), 'about_image' => __( 'Фото прихода', 'prihod-theme' ), 'request_image' => __( 'Фото страницы вопроса', 'prihod-theme' ), 'pilgrim_image' => __( 'Фото заголовка паломникам', 'prihod-theme' ), 'pilgrim_photos' => __( 'Фото страницы паломникам', 'prihod-theme' ), 'gallery' => __( 'Фотогалерея', 'prihod-theme' ), 'about_history_photos' => __( 'Фото после истории', 'prihod-theme' ), 'about_life_photos' => __( 'Фото жизни общины', 'prihod-theme' ), 'feature_schedule' => __( 'Карточка расписания', 'prihod-theme' ), 'feature_news' => __( 'Карточка новостей', 'prihod-theme' ), 'feature_about' => __( 'Карточка общины', 'prihod-theme' ), 'feature_requests' => __( 'Карточка вопроса священнику', 'prihod-theme' ), 'feature_donations' => __( 'Карточка помощи', 'prihod-theme' ) ) as $key => $label ) {
         echo '<div class="prihod-media-field"><h2>' . esc_html( $label ) . '</h2><input type="hidden" name="prihod_theme_options[' . esc_attr( $key ) . ']" value="' . esc_attr( $options[ $key ] ) . '"><div class="prihod-media-preview">';
         foreach ( explode( ',', (string) $options[ $key ] ) as $id ) { echo wp_get_attachment_image( absint( $id ), 'thumbnail' ); }
         echo '</div><button class="button prihod-media-select" type="button" data-multiple="' . ( in_array( $key, array( 'gallery', 'about_history_photos', 'about_life_photos', 'pilgrim_photos' ), true ) ? '1' : '0' ) . '">' . esc_html__( 'Выбрать фотографии', 'prihod-theme' ) . '</button> <button class="button prihod-media-clear" type="button">' . esc_html__( 'Убрать', 'prihod-theme' ) . '</button></div>';

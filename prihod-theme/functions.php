@@ -1,6 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 require_once __DIR__ . '/includes/settings.php';
+require_once __DIR__ . '/includes/branding.php';
 require_once __DIR__ . '/includes/design.php';
 require_once __DIR__ . '/includes/demo.php';
 require_once __DIR__ . '/includes/render.php';

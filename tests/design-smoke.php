@@ -114,3 +114,5 @@ require __DIR__ . '/contacts-design-smoke.php';
 require __DIR__ . '/home-detail-smoke.php';
 require __DIR__ . '/photo-smoke.php';
 echo "DESIGN_SMOKE_OK: {$checks} checks.\n";
+
+require __DIR__ . '/branding-smoke.php';

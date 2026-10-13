@@ -155,3 +155,6 @@
 .prihod-tradition-stories>section{min-width:0}@media(max-width:900px){.prihod-tradition-stories{grid-template-columns:minmax(0,1fr)}}
 
 .prihod-scheme-tradition .prihod-photo-strip img.is-portrait{background:var(--wp--preset--color--paper)}@media(min-width:901px){.prihod-scheme-tradition .prihod-photo-strip img.is-portrait{object-fit:cover}}
+/* Branding keeps the complete image, including wide lettering. */
+.prihod-brand{min-width:0}.prihod-brand>a:not(.prihod-mark){display:flex;flex:0 1 auto;min-width:0;max-width:min(var(--prihod-logo-width,240px),100%)}.prihod-brand .custom-logo{display:block;width:auto;height:auto;max-width:100%;max-height:72px;object-fit:contain}.prihod-brand>div{min-width:0;overflow-wrap:anywhere}
+@media(max-width:600px){.prihod-brand .custom-logo{max-height:60px}.prihod-brand>a:not(.prihod-mark){max-width:min(var(--prihod-logo-width,240px),65vw)}}

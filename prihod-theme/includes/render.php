@@ -26,9 +26,13 @@ function prihod_theme_languages(): string {
 }
 function prihod_theme_brand(): string {
     $profile = prihod_theme_profile();
-    $logo = has_custom_logo() ? get_custom_logo() : '<a class="prihod-mark" href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '" aria-label="' . esc_attr( $profile['name'] ) . '"><svg viewBox="0 0 64 76" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M32 2v14M27 7h10M32 14c-13 11-11 17 0 19 11-2 13-8 0-19ZM23 33v37h18V33M13 70V44h10M41 44h10v26M7 70h50M28 70V52h8v18M29 41h6"/></g></svg></a>';
-    if ( prihod_theme_options()['logo'] ) { $logo = '<a href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '">' . wp_get_attachment_image( prihod_theme_options()['logo'], 'thumbnail', false, array( 'class' => 'custom-logo' ) ) . '</a>'; }
-    return '<div class="prihod-brand">' . $logo . '<div><a class="prihod-brand-title" href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '">' . esc_html( ! empty( $profile['short_name'] ) ? $profile['short_name'] : $profile['name'] ) . '</a><p>' . esc_html( get_bloginfo( 'description' ) ) . '</p></div></div>';
+    $options = prihod_theme_options();
+    $logo = '<a class="prihod-mark" href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '" aria-label="' . esc_attr( $profile['name'] ) . '"><svg viewBox="0 0 64 76" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M32 2v14M27 7h10M32 14c-13 11-11 17 0 19 11-2 13-8 0-19ZM23 33v37h18V33M13 70V44h10M41 44h10v26M7 70h50M28 70V52h8v18M29 41h6"/></g></svg></a>';
+    $logo_id = $options['logo_removed'] ? 0 : ( $options['logo'] ?: get_theme_mod( 'custom_logo' ) );
+    if ( $logo_id ) { $logo = '<a href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '">' . wp_get_attachment_image( $logo_id, 'full', false, array( 'class' => 'custom-logo', 'alt' => $profile['name'] ) ) . '</a>'; }
+    $text = '<div><a class="prihod-brand-title" href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '">' . esc_html( ! empty( $profile['short_name'] ) ? $profile['short_name'] : $profile['name'] ) . '</a><p>' . esc_html( get_bloginfo( 'description' ) ) . '</p></div>';
+    $hide = $options['logo_hide_title'] && $logo_id;
+    return '<div class="prihod-brand" style="--prihod-logo-width:' . absint( $options['logo_width'] ) . 'px">' . $logo . ( $hide ? '' : $text ) . '</div>';
 }
 function prihod_theme_block( string $name, array $attributes = array() ): string {
     if ( ! WP_Block_Type_Registry::get_instance()->is_registered( $name ) ) { return ''; }
