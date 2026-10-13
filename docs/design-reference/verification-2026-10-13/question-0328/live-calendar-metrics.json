@@ -1,0 +1,152 @@
+[
+  {
+    "days": [
+      {
+        "border": "rgb(52, 155, 213)",
+        "borderWidth": "2px",
+        "classes": "has-services is-selected-week has-vestment-frame is-great-feast",
+        "color": "rgb(178, 34, 34)",
+        "date": "2026-10-14",
+        "title": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "borderWidth": "2px",
+        "classes": "has-services is-selected-week has-vestment-frame",
+        "color": "rgb(164, 109, 37)",
+        "date": "2026-10-17",
+        "title": ""
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "borderWidth": "2px",
+        "classes": "has-services is-selected-week has-vestment-frame",
+        "color": "rgb(164, 109, 37)",
+        "date": "2026-10-18",
+        "title": ""
+      }
+    ],
+    "overflow": false,
+    "scheme": "classic"
+  },
+  {
+    "days": [
+      {
+        "border": "rgb(52, 155, 213)",
+        "borderWidth": "2px",
+        "classes": "has-services is-selected-week has-vestment-frame is-great-feast",
+        "color": "rgb(178, 34, 34)",
+        "date": "2026-10-14",
+        "title": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "borderWidth": "2px",
+        "classes": "has-services is-selected-week has-vestment-frame",
+        "color": "rgb(179, 139, 68)",
+        "date": "2026-10-17",
+        "title": ""
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "borderWidth": "2px",
+        "classes": "has-services is-selected-week has-vestment-frame",
+        "color": "rgb(179, 139, 68)",
+        "date": "2026-10-18",
+        "title": ""
+      }
+    ],
+    "overflow": false,
+    "scheme": "hospitality"
+  },
+  {
+    "days": [
+      {
+        "border": "rgb(52, 155, 213)",
+        "borderWidth": "2px",
+        "classes": "has-services is-selected-week has-vestment-frame is-great-feast",
+        "color": "rgb(178, 34, 34)",
+        "date": "2026-10-14",
+        "title": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "borderWidth": "2px",
+        "classes": "has-services is-selected-week has-vestment-frame",
+        "color": "rgb(152, 78, 50)",
+        "date": "2026-10-17",
+        "title": ""
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "borderWidth": "2px",
+        "classes": "has-services is-selected-week has-vestment-frame",
+        "color": "rgb(152, 78, 50)",
+        "date": "2026-10-18",
+        "title": ""
+      }
+    ],
+    "overflow": false,
+    "scheme": "editorial"
+  },
+  {
+    "days": [
+      {
+        "border": "rgb(52, 155, 213)",
+        "borderWidth": "2px",
+        "classes": "has-services is-selected-week has-vestment-frame is-great-feast",
+        "color": "rgb(178, 34, 34)",
+        "date": "2026-10-14",
+        "title": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "borderWidth": "2px",
+        "classes": "has-services is-selected-week has-vestment-frame",
+        "color": "rgb(114, 85, 50)",
+        "date": "2026-10-17",
+        "title": ""
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "borderWidth": "2px",
+        "classes": "has-services is-selected-week has-vestment-frame",
+        "color": "rgb(114, 85, 50)",
+        "date": "2026-10-18",
+        "title": ""
+      }
+    ],
+    "overflow": false,
+    "scheme": "tradition"
+  },
+  {
+    "days": [
+      {
+        "border": "rgb(52, 155, 213)",
+        "borderWidth": "2px",
+        "classes": "has-services is-selected-week has-vestment-frame is-great-feast",
+        "color": "rgb(178, 34, 34)",
+        "date": "2026-10-14",
+        "title": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии"
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "borderWidth": "2px",
+        "classes": "has-services is-selected-week has-vestment-frame",
+        "color": "rgb(57, 111, 163)",
+        "date": "2026-10-17",
+        "title": ""
+      },
+      {
+        "border": "rgb(242, 197, 0)",
+        "borderWidth": "2px",
+        "classes": "has-services is-selected-week has-vestment-frame",
+        "color": "rgb(57, 111, 163)",
+        "date": "2026-10-18",
+        "title": ""
+      }
+    ],
+    "overflow": false,
+    "scheme": "blue"
+  }
+]

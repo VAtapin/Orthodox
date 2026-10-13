@@ -105,7 +105,7 @@ echo "ABOUT_LAYOUT_CHECK_OK: {$checked} total checks.\n";
 $previous_query = $GLOBALS['wp_query']; $previous_post = $GLOBALS['post'] ?? null;
 $GLOBALS['wp_query'] = new WP_Query( array( 'page_id' => $resources['requests']['id'] ) ); $GLOBALS['post'] = get_post( $resources['requests']['id'] );
 $focused = do_blocks( file_get_contents( get_template_directory() . '/templates/focused.html' ) );
-$check( 1 === substr_count( $focused, 'prihod-request-heading' ) && strpos( $focused, 'prihod-request-heading' ) < strpos( $focused, '<main' ) && str_contains( $focused, 'aria-current="page"' ), 'Question photo heading and breadcrumb must precede both content columns.' );
+$check( 1 === substr_count( $focused, 'class="prihod-page-heading prihod-request-heading"' ) && strpos( $focused, 'prihod-request-heading' ) < strpos( $focused, '<main' ) && str_contains( $focused, 'class="prihod-request-photo"' ) && str_contains( $focused, 'aria-current="page"' ), 'Question photo heading and breadcrumb must precede both content columns.' );
 $form = Prihod\Request_Form::render();
 $check( str_contains( $form, '<select name="subject" required' ) && str_contains( $form, 'value="__other"' ) && str_contains( $form, 'name="consent"' ) && str_contains( $form, 'placeholder="name@example.org"' ) && str_contains( $form, 'prihod-required-help' ), 'Native topic choices, required hints and consent must remain available.' );
 $check( wp_script_is( 'prihod-request-form', 'enqueued' ) && 'Own subject' === Prihod\Request_Form::submission_data( array( 'subject' => '__other', 'subject_other' => 'Own subject' ) )['subject'], 'Own-subject enhancement and existing submission normalization must be available.' );
