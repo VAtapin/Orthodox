@@ -89,7 +89,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const notify = () => {
                 figure.hidden = false;
                 const current = activeIcon;
-                if (!native) {
+                if (native) {
+                    const trigger = figure.querySelector('.lightbox-trigger');
+                    if (trigger) {
+                        const action = trigger.dataset.prihodAction || trigger.getAttribute('aria-label') || '';
+                        trigger.dataset.prihodAction = action;
+                        const label = [action, image.alt].filter(Boolean).join(': ');
+                        trigger.setAttribute('aria-label', label);
+                        trigger.title = label;
+                    }
+                } else {
                     const link = image.closest('a');
                     if (link) link.href = current.fullUrl || image.src;
                 }
