@@ -19,6 +19,17 @@ prihod_assert( '' === prihod_theme_preview_scheme(), 'Public visitors cannot alt
 wp_set_current_user( 1 ); unset( $_GET['prihod_preview'] ); WP_Theme_JSON_Resolver::clean_cached_data();
 ob_start(); prihod_theme_settings_page(); $panel = ob_get_clean();
 prihod_assert( 5 === substr_count( $panel, 'name="prihod_theme_options[scheme]"' ) && str_contains( $panel, 'prihod-option-demo' ) && str_contains( $panel, 'name="_wpnonce"' ), 'Theme panel provides five choices, grouped controls and protected demo action.' );
+foreach ( prihod_theme_schemes() as $scheme => $title ) {
+    $size = getimagesize( get_template_directory() . '/assets/schemes/' . $scheme . '.jpg' );
+    prihod_assert( 1425 === $size[0] && 891 === $size[1] && IMAGETYPE_JPEG === $size[2] && str_contains( $panel, '/assets/schemes/' . $scheme . '.jpg' ), 'Scheme card uses its real equally sized screenshot: ' . $scheme );
+}
+prihod_assert( 5 === substr_count( $panel, 'class="prihod-scheme-actions"' ) && ! preg_match( '/<label[^>]*>(?:(?!<\/label>).)*<a /s', $panel ) && 5 === substr_count( $panel, '(новая вкладка)' ), 'Preview links are accessible separate actions, never nested inside a scheme selection label.' );
+$_GET['prihod_preview'] = 'editorial';
+ob_start(); prihod_theme_preview_notice(); $notice = ob_get_clean();
+prihod_assert( str_contains( $notice, 'prihod-preview-notice' ) && str_contains( $notice, 'page=prihod-theme#prihod-option-schemes' ) && ! str_contains( $notice, 'options.php' ) && $previous_options === get_option( 'prihod_theme_options' ), 'Owner preview explains unchanged design and returns to the existing settings without saving.' );
+wp_set_current_user( 0 ); ob_start(); prihod_theme_preview_notice(); $guest_notice = ob_get_clean();
+prihod_assert( '' === $guest_notice, 'Public visitors never receive the owner preview controls.' );
+wp_set_current_user( 1 ); unset( $_GET['prihod_preview'] ); WP_Theme_JSON_Resolver::clean_cached_data();
 $profile_before = Prihod\Profile::get(); $modules_before = get_option( 'prihod_modules' ); $front_before = get_option( 'page_on_front' );
 $demo = prihod_theme_import_demo( array( 'first-visit', 'photos', 'not-a-page' ) );
 prihod_assert( 2 === count( $demo['created'] ) && 'draft' === get_post_status( $demo['created']['photos'] ), 'Demo import creates selected editable draft pages and ignores unknown keys.' );

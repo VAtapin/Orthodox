@@ -2523,3 +2523,42 @@ msgstr "Linkvorschau für soziale Medien hinzufügen"
 
 msgid "При активном SEO-плагине предпросмотр ссылок настраивается в нём. Соцсети могут сохранять старый предпросмотр в своём кэше."
 msgstr "Bei aktivem SEO-Plugin wird die Linkvorschau dort eingestellt. Soziale Medien können alte Vorschauen zwischenspeichern."
+
+msgid "Изображение не отправлено. Поддерживаются фотографии и статические стикеры до 4 МБ. Видео и анимированные стикеры не поддерживаются."
+msgstr "Das Bild wurde nicht gesendet. Unterstützt werden Fotos und statische Sticker bis 4 MB. Videos und animierte Sticker werden nicht unterstützt."
+
+msgid "Изображение из Telegram"
+msgstr "Bild aus Telegram"
+
+msgid "Передано почтовой системе. Доставка в ящик не подтверждена."
+msgstr "An das Mailsystem übergeben. Die Zustellung ins Postfach ist nicht bestätigt."
+
+msgid "Можно ответить несколько раз на сообщение бота: каждый ответ сохраняется отдельно и сразу передаётся PHP-почте. Фото с подписью и статический стикер вставляются в письмо. Ответы посетителя по email пока автоматически не принимаются."
+msgstr "Sie können mehrfach auf die Nachricht des Bots antworten: Jede Antwort wird einzeln gespeichert und sofort an PHP-Mail übergeben. Fotos mit Bildunterschrift und statische Sticker werden in die E-Mail eingebettet. Antworten des Besuchers per E-Mail werden noch nicht automatisch empfangen."
+
+msgid "Предпросмотр открывается в новой вкладке и не меняет сайт. Чтобы применить оформление, выберите карточку и сохраните изменения."
+msgstr "Die Vorschau öffnet sich in einem neuen Tab und ändert die Website nicht. Zum Anwenden wählen Sie eine Karte und speichern die Änderungen."
+
+msgid "Скриншоты показывают пример с демо-материалами. Предпросмотр использует ваши страницы, фотографии и настройки; собственные стили редактора сайта имеют приоритет."
+msgstr "Die Screenshots zeigen ein Beispiel mit Demo-Inhalten. Die Vorschau verwendet Ihre Seiten, Fotos und Einstellungen; eigene Stile aus dem Website-Editor haben Vorrang."
+
+msgid "Текущее оформление"
+msgstr "Aktuelles Design"
+
+msgid "Предпросмотр: %s (новая вкладка)"
+msgstr "Vorschau: %s (neuer Tab)"
+
+msgid "Предпросмотр оформления"
+msgstr "Design-Vorschau"
+
+msgid "Предпросмотр: %s"
+msgstr "Vorschau: %s"
+
+msgid "Оформление сайта не изменено."
+msgstr "Das Design der Website wurde nicht geändert."
+
+msgid "Вернуться к оформлениям"
+msgstr "Zurück zu den Designs"
+
+msgid "Предпросмотр"
+msgstr "Vorschau"

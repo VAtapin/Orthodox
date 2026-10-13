@@ -1,0 +1,122 @@
+[
+  {
+    "notice": "Предпросмотр: Классическая золотаяОформление сайта не изменено.Вернуться к оформлениям",
+    "overflow": false,
+    "return": "http://127.0.0.1:9401/wp-admin/admin.php?page=prihod-theme#prihod-option-schemes",
+    "scheme": "home wp-singular page-template page-template-wide page page-id-4 logged-in admin-bar no-customize-support wp-embed-responsive wp-theme-prihod-theme prihod-page-home prihod-scheme-classic",
+    "url": "http://127.0.0.1:9401/?prihod_preview=classic",
+    "width": 390
+  },
+  {
+    "notice": "Предпросмотр: Классическая золотаяОформление сайта не изменено.Вернуться к оформлениям",
+    "overflow": false,
+    "return": "http://127.0.0.1:9401/wp-admin/admin.php?page=prihod-theme#prihod-option-schemes",
+    "scheme": "wp-singular page-template page-template-about page page-id-5 logged-in admin-bar no-customize-support wp-embed-responsive wp-theme-prihod-theme prihod-page-about prihod-scheme-classic",
+    "url": "http://127.0.0.1:9401/%D0%BE-%D0%BF%D1%80%D0%B8%D1%85%D0%BE%D0%B4%D0%B5/?prihod_preview=classic",
+    "width": 390
+  },
+  {
+    "notice": "Предпросмотр: Классическая золотаяОформление сайта не изменено.Вернуться к оформлениям",
+    "overflow": false,
+    "return": "http://127.0.0.1:9401/wp-admin/admin.php?page=prihod-theme#prihod-option-schemes",
+    "scheme": "wp-singular page-template page-template-wide page page-id-7 logged-in admin-bar no-customize-support wp-embed-responsive wp-theme-prihod-theme prihod-page-schedule prihod-scheme-classic",
+    "url": "http://127.0.0.1:9401/%D1%80%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B1%D0%BE%D0%B3%D0%BE%D1%81%D0%BB%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9/?prihod_preview=classic",
+    "width": 390
+  },
+  {
+    "notice": "Предпросмотр: Светлая гостеприимнаяОформление сайта не изменено.Вернуться к оформлениям",
+    "overflow": false,
+    "return": "http://127.0.0.1:9401/wp-admin/admin.php?page=prihod-theme#prihod-option-schemes",
+    "scheme": "home wp-singular page-template page-template-wide page page-id-4 logged-in admin-bar no-customize-support wp-embed-responsive wp-theme-prihod-theme prihod-page-home prihod-scheme-hospitality",
+    "url": "http://127.0.0.1:9401/?prihod_preview=hospitality",
+    "width": 390
+  },
+  {
+    "notice": "Предпросмотр: Светлая гостеприимнаяОформление сайта не изменено.Вернуться к оформлениям",
+    "overflow": false,
+    "return": "http://127.0.0.1:9401/wp-admin/admin.php?page=prihod-theme#prihod-option-schemes",
+    "scheme": "wp-singular page-template page-template-about page page-id-5 logged-in admin-bar no-customize-support wp-embed-responsive wp-theme-prihod-theme prihod-page-about prihod-scheme-hospitality",
+    "url": "http://127.0.0.1:9401/%D0%BE-%D0%BF%D1%80%D0%B8%D1%85%D0%BE%D0%B4%D0%B5/?prihod_preview=hospitality",
+    "width": 390
+  },
+  {
+    "notice": "Предпросмотр: Светлая гостеприимнаяОформление сайта не изменено.Вернуться к оформлениям",
+    "overflow": false,
+    "return": "http://127.0.0.1:9401/wp-admin/admin.php?page=prihod-theme#prihod-option-schemes",
+    "scheme": "wp-singular page-template page-template-wide page page-id-7 logged-in admin-bar no-customize-support wp-embed-responsive wp-theme-prihod-theme prihod-page-schedule prihod-scheme-hospitality",
+    "url": "http://127.0.0.1:9401/%D1%80%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B1%D0%BE%D0%B3%D0%BE%D1%81%D0%BB%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9/?prihod_preview=hospitality",
+    "width": 390
+  },
+  {
+    "notice": "Предпросмотр: ЖурнальнаяОформление сайта не изменено.Вернуться к оформлениям",
+    "overflow": false,
+    "return": "http://127.0.0.1:9401/wp-admin/admin.php?page=prihod-theme#prihod-option-schemes",
+    "scheme": "home wp-singular page-template page-template-wide page page-id-4 logged-in admin-bar no-customize-support wp-embed-responsive wp-theme-prihod-theme prihod-page-home prihod-scheme-editorial",
+    "url": "http://127.0.0.1:9401/?prihod_preview=editorial",
+    "width": 390
+  },
+  {
+    "notice": "Предпросмотр: ЖурнальнаяОформление сайта не изменено.Вернуться к оформлениям",
+    "overflow": false,
+    "return": "http://127.0.0.1:9401/wp-admin/admin.php?page=prihod-theme#prihod-option-schemes",
+    "scheme": "wp-singular page-template page-template-about page page-id-5 logged-in admin-bar no-customize-support wp-embed-responsive wp-theme-prihod-theme prihod-page-about prihod-scheme-editorial",
+    "url": "http://127.0.0.1:9401/%D0%BE-%D0%BF%D1%80%D0%B8%D1%85%D0%BE%D0%B4%D0%B5/?prihod_preview=editorial",
+    "width": 390
+  },
+  {
+    "notice": "Предпросмотр: ЖурнальнаяОформление сайта не изменено.Вернуться к оформлениям",
+    "overflow": false,
+    "return": "http://127.0.0.1:9401/wp-admin/admin.php?page=prihod-theme#prihod-option-schemes",
+    "scheme": "wp-singular page-template page-template-wide page page-id-7 logged-in admin-bar no-customize-support wp-embed-responsive wp-theme-prihod-theme prihod-page-schedule prihod-scheme-editorial",
+    "url": "http://127.0.0.1:9401/%D1%80%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B1%D0%BE%D0%B3%D0%BE%D1%81%D0%BB%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9/?prihod_preview=editorial",
+    "width": 390
+  },
+  {
+    "notice": "Предпросмотр: ТрадиционнаяОформление сайта не изменено.Вернуться к оформлениям",
+    "overflow": false,
+    "return": "http://127.0.0.1:9401/wp-admin/admin.php?page=prihod-theme#prihod-option-schemes",
+    "scheme": "home wp-singular page-template page-template-wide page page-id-4 logged-in admin-bar no-customize-support wp-embed-responsive wp-theme-prihod-theme prihod-page-home prihod-scheme-tradition",
+    "url": "http://127.0.0.1:9401/?prihod_preview=tradition",
+    "width": 390
+  },
+  {
+    "notice": "Предпросмотр: ТрадиционнаяОформление сайта не изменено.Вернуться к оформлениям",
+    "overflow": false,
+    "return": "http://127.0.0.1:9401/wp-admin/admin.php?page=prihod-theme#prihod-option-schemes",
+    "scheme": "wp-singular page-template page-template-about page page-id-5 logged-in admin-bar no-customize-support wp-embed-responsive wp-theme-prihod-theme prihod-page-about prihod-scheme-tradition",
+    "url": "http://127.0.0.1:9401/%D0%BE-%D0%BF%D1%80%D0%B8%D1%85%D0%BE%D0%B4%D0%B5/?prihod_preview=tradition",
+    "width": 390
+  },
+  {
+    "notice": "Предпросмотр: ТрадиционнаяОформление сайта не изменено.Вернуться к оформлениям",
+    "overflow": false,
+    "return": "http://127.0.0.1:9401/wp-admin/admin.php?page=prihod-theme#prihod-option-schemes",
+    "scheme": "wp-singular page-template page-template-wide page page-id-7 logged-in admin-bar no-customize-support wp-embed-responsive wp-theme-prihod-theme prihod-page-schedule prihod-scheme-tradition",
+    "url": "http://127.0.0.1:9401/%D1%80%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B1%D0%BE%D0%B3%D0%BE%D1%81%D0%BB%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9/?prihod_preview=tradition",
+    "width": 390
+  },
+  {
+    "notice": "Предпросмотр: Современная синяяОформление сайта не изменено.Вернуться к оформлениям",
+    "overflow": false,
+    "return": "http://127.0.0.1:9401/wp-admin/admin.php?page=prihod-theme#prihod-option-schemes",
+    "scheme": "home wp-singular page-template page-template-wide page page-id-4 logged-in admin-bar no-customize-support wp-embed-responsive wp-theme-prihod-theme prihod-page-home prihod-scheme-blue",
+    "url": "http://127.0.0.1:9401/?prihod_preview=blue",
+    "width": 390
+  },
+  {
+    "notice": "Предпросмотр: Современная синяяОформление сайта не изменено.Вернуться к оформлениям",
+    "overflow": false,
+    "return": "http://127.0.0.1:9401/wp-admin/admin.php?page=prihod-theme#prihod-option-schemes",
+    "scheme": "wp-singular page-template page-template-about page page-id-5 logged-in admin-bar no-customize-support wp-embed-responsive wp-theme-prihod-theme prihod-page-about prihod-scheme-blue",
+    "url": "http://127.0.0.1:9401/%D0%BE-%D0%BF%D1%80%D0%B8%D1%85%D0%BE%D0%B4%D0%B5/?prihod_preview=blue",
+    "width": 390
+  },
+  {
+    "notice": "Предпросмотр: Современная синяяОформление сайта не изменено.Вернуться к оформлениям",
+    "overflow": false,
+    "return": "http://127.0.0.1:9401/wp-admin/admin.php?page=prihod-theme#prihod-option-schemes",
+    "scheme": "wp-singular page-template page-template-wide page page-id-7 logged-in admin-bar no-customize-support wp-embed-responsive wp-theme-prihod-theme prihod-page-schedule prihod-scheme-blue",
+    "url": "http://127.0.0.1:9401/%D1%80%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B1%D0%BE%D0%B3%D0%BE%D1%81%D0%BB%D1%83%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9/?prihod_preview=blue",
+    "width": 390
+  }
+]

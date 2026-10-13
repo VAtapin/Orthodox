@@ -5,6 +5,12 @@ function prihod_theme_preview_scheme(): string {
     $value = $_GET['prihod_preview'] ?? '';
     return is_string( $value ) && isset( prihod_theme_schemes()[$value] ) && current_user_can( 'edit_theme_options' ) ? $value : '';
 }
+function prihod_theme_preview_notice(): void {
+    $scheme = prihod_theme_preview_scheme();
+    if ( ! $scheme ) { return; }
+    echo '<aside class="prihod-preview-notice" aria-label="' . esc_attr__( 'Предпросмотр оформления', 'prihod-theme' ) . '"><div><strong>' . esc_html( sprintf( __( 'Предпросмотр: %s', 'prihod-theme' ), prihod_theme_schemes()[$scheme] ) ) . '</strong><span>' . esc_html__( 'Оформление сайта не изменено.', 'prihod-theme' ) . '</span></div><a href="' . esc_url( admin_url( 'admin.php?page=prihod-theme' ) . '#prihod-option-schemes' ) . '">' . esc_html__( 'Вернуться к оформлениям', 'prihod-theme' ) . '</a></aside>';
+}
+add_action( 'wp_body_open', 'prihod_theme_preview_notice' );
 add_filter( 'wp_theme_json_data_user', function ( WP_Theme_JSON_Data $data ): WP_Theme_JSON_Data {
     $preview = prihod_theme_preview_scheme();
     if ( 'prihod-theme' === get_template() && $preview ) {

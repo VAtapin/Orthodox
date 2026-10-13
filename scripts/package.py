@@ -44,5 +44,5 @@ for name in (("prihod-telegram", "prihod-whatsapp", "prihod-social") if "connect
 if "core" in selected:
     archive(ROOT / "prihod", "prihod-1.0.0-rc.16.zip")
 if "theme" in selected:
-    archive(ROOT / "prihod-theme", "prihod-theme-0.3.25.zip")
+    archive(ROOT / "prihod-theme", "prihod-theme-0.3.26.zip")
 print("Built: " + ", ".join(selected))

@@ -54,9 +54,9 @@ add_action( 'admin_menu', function () {
 add_action( 'admin_enqueue_scripts', function () {
     if ( 'prihod-theme' !== ( $_GET['page'] ?? '' ) ) { return; }
     wp_enqueue_media();
-    wp_enqueue_style( 'prihod-theme-settings', get_template_directory_uri() . '/assets/settings.css', array(), '0.3.25' );
-    wp_enqueue_script( 'prihod-theme-media', get_template_directory_uri() . '/assets/media.js', array( 'jquery', 'media-views' ), '0.3.25', true );
-    wp_enqueue_script( 'prihod-theme-settings', get_template_directory_uri() . '/assets/settings.js', array(), '0.3.25', true );
+    wp_enqueue_style( 'prihod-theme-settings', get_template_directory_uri() . '/assets/settings.css', array(), '0.3.26' );
+    wp_enqueue_script( 'prihod-theme-media', get_template_directory_uri() . '/assets/media.js', array( 'jquery', 'media-views' ), '0.3.26', true );
+    wp_enqueue_script( 'prihod-theme-settings', get_template_directory_uri() . '/assets/settings.js', array(), '0.3.26', true );
 } );
 function prihod_theme_schemes(): array {
     return array( 'classic' => __( 'Классическая золотая', 'prihod-theme' ), 'hospitality' => __( 'Светлая гостеприимная', 'prihod-theme' ), 'editorial' => __( 'Журнальная', 'prihod-theme' ), 'tradition' => __( 'Традиционная', 'prihod-theme' ), 'blue' => __( 'Современная синяя', 'prihod-theme' ) );
@@ -74,13 +74,12 @@ function prihod_theme_settings_page(): void {
     submit_button( __( 'Сохранить изменения', 'prihod-theme' ), 'primary', 'submit', false );
     echo '<a class="button" href="' . esc_url( home_url( '/' ) ) . '" target="_blank" rel="noopener">' . esc_html__( 'Посмотреть сайт', 'prihod-theme' ) . '</a></div>';
     settings_fields( 'prihod_theme' );
-    echo '<section id="prihod-option-schemes" class="prihod-option-section"><h2>' . esc_html( $sections['schemes'] ) . '</h2><p>' . esc_html__( 'Выберите оформление и сохраните изменения. Собственные стили из редактора сайта имеют приоритет.', 'prihod-theme' ) . '</p><div class="prihod-scheme-cards">';
+    echo '<section id="prihod-option-schemes" class="prihod-option-section"><h2>' . esc_html( $sections['schemes'] ) . '</h2><p>' . esc_html__( 'Предпросмотр открывается в новой вкладке и не меняет сайт. Чтобы применить оформление, выберите карточку и сохраните изменения.', 'prihod-theme' ) . '</p><p>' . esc_html__( 'Скриншоты показывают пример с демо-материалами. Предпросмотр использует ваши страницы, фотографии и настройки; собственные стили редактора сайта имеют приоритет.', 'prihod-theme' ) . '</p><div class="prihod-scheme-cards">';
     $current = $options['scheme'] ?: ( WP_Theme_JSON_Resolver::get_merged_data()->get_settings()['custom']['prihod']['scheme'] ?? 'classic' );
     foreach ( prihod_theme_schemes() as $id => $title ) {
-        $json = json_decode( file_get_contents( get_template_directory() . ( 'classic' === $id ? '/theme.json' : '/styles/' . $id . '.json' ) ), true );
-        echo '<label class="prihod-scheme-card"><input type="radio" name="prihod_theme_options[scheme]" value="' . esc_attr( $id ) . '"' . checked( $current, $id, false ) . '><span class="prihod-scheme-preview" aria-hidden="true">';
-        foreach ( array_slice( $json['settings']['color']['palette'], 0, 5 ) as $color ) { echo '<i style="background:' . esc_attr( $color['color'] ) . '"></i>'; }
-        echo '</span><strong>' . esc_html( $title ) . '</strong><a href="' . esc_url( add_query_arg( 'prihod_preview', $id, home_url( '/' ) ) ) . '" target="_blank" rel="noopener">' . esc_html__( 'Посмотреть сайт', 'prihod-theme' ) . '</a></label>';
+        echo '<article class="prihod-scheme-card"><label><img class="prihod-scheme-preview" src="' . esc_url( get_template_directory_uri() . '/assets/schemes/' . $id . '.jpg' ) . '" width="1425" height="891" alt="' . esc_attr( $title ) . '"><span class="prihod-scheme-choice"><input type="radio" aria-label="' . esc_attr( $title ) . '" name="prihod_theme_options[scheme]" value="' . esc_attr( $id ) . '"' . checked( $current, $id, false ) . '><strong>' . esc_html( $title ) . '</strong></span></label><div class="prihod-scheme-actions">';
+        if ( $current === $id ) { echo '<small>' . esc_html__( 'Текущее оформление', 'prihod-theme' ) . '</small>'; }
+        echo '<a class="button" href="' . esc_url( add_query_arg( 'prihod_preview', $id, home_url( '/' ) ) ) . '" target="_blank" rel="noopener" aria-label="' . esc_attr( sprintf( __( 'Предпросмотр: %s (новая вкладка)', 'prihod-theme' ), $title ) ) . '">' . esc_html__( 'Предпросмотр', 'prihod-theme' ) . '</a></div></article>';
     }
     echo '</div><p><a class="button" href="' . esc_url( admin_url( 'site-editor.php' ) ) . '">' . esc_html__( 'Открыть редактор сайта', 'prihod-theme' ) . '</a></p></section><section id="prihod-option-layout" class="prihod-option-section"><h2>' . esc_html( $sections['layout'] ) . '</h2>';
     foreach ( array( 'width' => array( __( 'Ширина сайта, px', 'prihod-theme' ), 960, 1440 ), 'font_size' => array( __( 'Размер основного текста, px', 'prihod-theme' ), 14, 20 ) ) as $key => $field ) { echo '<p><label>' . esc_html( $field[0] ) . '<br><input type="number" min="' . $field[1] . '" max="' . $field[2] . '" name="prihod_theme_options[' . esc_attr( $key ) . ']" value="' . esc_attr( $options[$key] ) . '"></label></p>'; }
