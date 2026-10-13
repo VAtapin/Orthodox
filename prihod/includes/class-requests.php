@@ -21,6 +21,7 @@ final class Requests {
         add_action( 'admin_menu', array( Request_Admin::class, 'menu' ) );
         add_action( 'admin_post_prihod_request_submit', array( Request_Form::class, 'submit' ) );
         add_action( 'admin_post_nopriv_prihod_request_submit', array( Request_Form::class, 'submit' ) );
+        add_action( 'admin_post_prihod_reply_image', array( Request_Media::class, 'serve' ) );
         add_action( 'admin_post_prihod_request_update', array( Request_Admin::class, 'update' ) );
     }
     public static function register(): void {
@@ -66,13 +67,15 @@ final class Requests {
     public static function assert_request( int $id ): void {
         if ( 'prihod_request' !== get_post_type( $id ) || 'trash' === get_post_status( $id ) ) { throw new \InvalidArgumentException( __( 'Обращение не найдено.', 'prihod' ) ); }
     }
-    public static function message( int $id, string $body, bool $internal, string $source_id = '' ): int {
+    public static function message( int $id, string $body, bool $internal, string $source_id = '', array $media = array() ): int {
         self::assert_request( $id );
         if ( ! current_user_can( 'view_prihod_requests' ) || ! current_user_can( 'reply_prihod_requests' ) ) { throw new \RuntimeException( __( 'Недостаточно прав для ответа.', 'prihod' ) ); }
         if ( $source_id && ! preg_match( '/^[a-f0-9]{64}$/D', $source_id ) ) { throw new \InvalidArgumentException( __( 'Ответ не сохранён.', 'prihod' ) ); }
-        if ( '' === trim( sanitize_textarea_field( $body ) ) || strlen( $body ) > 20000 ) { throw new \InvalidArgumentException( __( 'Введите ответ допустимой длины.', 'prihod' ) ); }
+        $media = Request_Media::validated( $media );
+        if ( ( ! $media && '' === trim( sanitize_textarea_field( $body ) ) ) || strlen( $body ) > 20000 ) { throw new \InvalidArgumentException( __( 'Введите ответ допустимой длины.', 'prihod' ) ); }
         $message = wp_insert_post( array( 'post_type' => 'prihod_message', 'post_parent' => $id, 'post_status' => 'private', 'post_content' => sanitize_textarea_field( $body ), 'post_author' => get_current_user_id(), 'meta_input' => $source_id ? array( '_prihod_reply_source' => $source_id ) : array() ), true );
         if ( is_wp_error( $message ) ) { throw new \RuntimeException( __( 'Ответ не сохранён.', 'prihod' ) ); }
+        if ( $media ) { update_post_meta( $message, '_prihod_reply_media', $media ); }
         update_post_meta( $message, '_prihod_internal', $internal );
         if ( ! $internal ) {
             update_post_meta( $message, '_prihod_delivery', 'pending' );

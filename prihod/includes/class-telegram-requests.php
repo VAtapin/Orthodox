@@ -2,7 +2,7 @@
 namespace Prihod;
 defined( 'ABSPATH' ) || exit;
 
-/** Private Telegram replies reuse the ordinary request history and mail queue. */
+/** Private Telegram replies reuse the ordinary private history and immediate PHP mail. */
 final class Telegram_Requests {
     public const OPTION = 'prihod_telegram_requests';
     public static function connector() {
@@ -67,9 +67,11 @@ final class Telegram_Requests {
         $data = $request->get_json_params(); $message = is_array( $data ) ? ( $data['message'] ?? array() ) : array();
         $o = self::options(); $settings = self::connector()->settings();
         $ok = new \WP_REST_Response( array( 'ok' => true ), 200 );
-        if ( ! is_array( $message ) || ! is_int( $data['update_id'] ?? null ) || $data['update_id'] < 0 || 'private' !== ( $message['chat']['type'] ?? '' ) || (string) ( $message['chat']['id'] ?? '' ) !== $settings['target'] || (string) ( $message['from']['id'] ?? '' ) !== $settings['target'] || ! empty( $message['from']['is_bot'] ) || ! is_string( $message['text'] ?? null ) || ! is_int( $message['reply_to_message']['message_id'] ?? null ) || (string) ( $message['reply_to_message']['from']['id'] ?? '' ) !== $o['bot'] ) { return $ok; }
-        $body = sanitize_textarea_field( $message['text'] );
-        if ( '' === trim( $body ) || strlen( $message['text'] ) > 20000 ) { return $ok; }
+        if ( ! is_array( $message ) || ! is_int( $data['update_id'] ?? null ) || $data['update_id'] < 0 || 'private' !== ( $message['chat']['type'] ?? '' ) || (string) ( $message['chat']['id'] ?? '' ) !== $settings['target'] || (string) ( $message['from']['id'] ?? '' ) !== $settings['target'] || ! empty( $message['from']['is_bot'] ) || ! is_int( $message['reply_to_message']['message_id'] ?? null ) || (string) ( $message['reply_to_message']['from']['id'] ?? '' ) !== $o['bot'] ) { return $ok; }
+        $raw_body = $message['text'] ?? $message['caption'] ?? '';
+        if ( ! is_string( $raw_body ) ) { return $ok; }
+        $body = sanitize_textarea_field( $raw_body );
+        if ( ( '' === trim( $body ) && ! isset( $message['photo'] ) && ! isset( $message['sticker'] ) && ! isset( $message['video'] ) && ! isset( $message['animation'] ) && ! isset( $message['document'] ) ) || strlen( $raw_body ) > 20000 ) { return $ok; }
         $key = hash( 'sha256', $o['configuration'] . '|' . $message['reply_to_message']['message_id'] );
         $posts = get_posts( array( 'post_type' => 'prihod_request', 'post_status' => 'private', 'numberposts' => 2, 'meta_key' => '_prihod_telegram_message', 'meta_value' => $key ) );
         if ( 1 !== count( $posts ) || 'closed' === get_post_meta( $posts[0]->ID, '_prihod_request_status', true ) || get_option( 'prihod_purge_job' ) ) { return $ok; }
@@ -81,7 +83,13 @@ final class Telegram_Requests {
             $existing = get_posts( array( 'post_type' => 'prihod_message', 'post_status' => 'private', 'numberposts' => 1, 'meta_key' => '_prihod_reply_source', 'meta_value' => $receipt ) );
             if ( $existing ) { return $ok; }
             wp_set_current_user( (int) $o['staff'] );
-            $id = Requests::message( $posts[0]->ID, $body, false, $receipt );
+            try { $media = Request_Media::telegram( $message ); }
+            catch ( \InvalidArgumentException $error ) {
+                Requests::message( $posts[0]->ID, Request_Media::unsupported(), true, $receipt );
+                self::connector()->queue( Request_Media::unsupported(), admin_url( 'admin.php?page=prihod-requests&request_id=' . $posts[0]->ID ), 'request', $posts[0]->ID );
+                return $ok;
+            }
+            $id = Requests::message( $posts[0]->ID, $body, false, $receipt, $media );
             $text = 'sent' === get_post_meta( $id, '_prihod_delivery', true ) ? __( 'Ответ сохранён. Письмо передано почтовой системе.', 'prihod' ) : __( 'Ответ сохранён, но письмо не удалось отправить. Проверьте обращение на сайте.', 'prihod' );
             self::connector()->queue( $text, admin_url( 'admin.php?page=prihod-requests&request_id=' . $posts[0]->ID ), 'request', $posts[0]->ID );
             return $ok;

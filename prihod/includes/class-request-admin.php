@@ -21,6 +21,7 @@ final class Request_Admin {
             foreach ( Requests::messages( $id ) as $message ) {
                 $internal = get_post_meta( $message->ID, '_prihod_internal', true );
                 echo '<article><h3>' . esc_html( $internal ? __( 'Внутренняя заметка', 'prihod' ) : __( 'Ответ по email', 'prihod' ) ) . '</h3><p>' . esc_html( $message->post_date ) . '</p><p>' . nl2br( esc_html( $message->post_content ) ) . '</p>';
+                echo Request_Media::admin_markup( $message->ID );
                 if ( ! $internal ) { echo '<p>' . esc_html( self::delivery_label( get_post_meta( $message->ID, '_prihod_delivery', true ) ) ) . '</p>'; }
                 if ( ! $internal && 'failed' === get_post_meta( $message->ID, '_prihod_delivery', true ) && current_user_can( 'reply_prihod_requests' ) ) {
                     echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="prihod_request_update"><input type="hidden" name="request_id" value="' . esc_attr( $id ) . '"><input type="hidden" name="retry_message" value="' . esc_attr( $message->ID ) . '">'; wp_nonce_field( 'prihod_request_update_' . $id ); echo '<button class="button">' . esc_html__( 'Повторить этот ответ после исправления почты', 'prihod' ) . '</button></form>';
@@ -74,7 +75,7 @@ final class Request_Admin {
         echo '</div>';
     }
     private static function delivery_label( string $status ): string {
-        return array( 'pending' => __( 'Отправляется', 'prihod' ), 'sent' => __( 'Почтовая система приняла письмо', 'prihod' ), 'failed' => __( 'Ошибка отправки', 'prihod' ) )[ $status ] ?? __( 'Не отправлено', 'prihod' );
+        return array( 'pending' => __( 'Отправляется', 'prihod' ), 'sent' => __( 'Передано почтовой системе. Доставка в ящик не подтверждена.', 'prihod' ), 'failed' => __( 'Ошибка отправки', 'prihod' ) )[ $status ] ?? __( 'Не отправлено', 'prihod' );
     }
     public static function update(): void {
         self::authorize(); $id = absint( $_POST['request_id'] ?? 0 );

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Приход
  * Description: Сведения о приходе, расписание, обращения и безопасный мастер подготовки православного сайта.
- * Version: 1.0.0-rc.15
+ * Version: 1.0.0-rc.16
  * Requires at least: 6.5
  * Requires PHP: 8.0
  * License: GPL-2.0-or-later
@@ -12,7 +12,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'PRIHOD_VERSION', '1.0.0-rc.15' );
+define( 'PRIHOD_VERSION', '1.0.0-rc.16' );
 define( 'PRIHOD_FILE', __FILE__ );
 
 require_once __DIR__ . '/includes/class-capabilities.php';
@@ -37,6 +37,7 @@ require_once __DIR__ . '/includes/class-calendar-reminders.php';
 require_once __DIR__ . '/includes/class-public-view.php';
 require_once __DIR__ . '/includes/class-telegram-requests.php';
 require_once __DIR__ . '/includes/class-telegram-request-settings.php';
+require_once __DIR__ . '/includes/class-request-media.php';
 require_once __DIR__ . '/includes/class-request-mail.php';
 require_once __DIR__ . '/includes/class-requests.php';
 require_once __DIR__ . '/includes/class-request-form.php';

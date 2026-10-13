@@ -2487,3 +2487,51 @@ msgstr "Integrierte Ikone"
 
 msgid "Икона дня"
 msgstr "Tagesikone"
+
+msgid "Логотип, иконка и соцсети"
+msgstr "Logo, Website-Icon und soziale Medien"
+
+msgid "Иконка должна быть квадратным изображением размером не менее 512 × 512 px. Прежняя иконка сохранена."
+msgstr "Das Icon muss quadratisch und mindestens 512 × 512 px groß sein. Das bisherige Icon wurde beibehalten."
+
+msgid "Квадратный знак или широкий логотип с надписью. Изображение отображается целиком с сохранением пропорций."
+msgstr "Quadratisches Zeichen oder breites Logo mit Schriftzug. Das Bild wird vollständig und proportional angezeigt."
+
+msgid "Иконка сайта"
+msgstr "Website-Icon"
+
+msgid "Квадратное изображение от 512 × 512 px. Используется во вкладках браузера и на мобильных устройствах."
+msgstr "Quadratisches Bild ab 512 × 512 px. Für Browser-Tabs und Mobilgeräte."
+
+msgid "Изображение для соцсетей"
+msgstr "Bild für soziale Medien"
+
+msgid "Рекомендуется 1200 × 630 px. Для статьи используется её главная фотография; это изображение служит запасным для остальных страниц."
+msgstr "Empfohlen: 1200 × 630 px. Artikel verwenden ihr Beitragsbild; dieses Bild dient als Ersatz für andere Seiten."
+
+msgid "Загрузить или выбрать изображение"
+msgstr "Bild hochladen oder auswählen"
+
+msgid "Максимальная ширина логотипа, px"
+msgstr "Maximale Logobreite, px"
+
+msgid "Скрыть название рядом с логотипом"
+msgstr "Namen neben dem Logo ausblenden"
+
+msgid "Добавлять предпросмотр ссылок для соцсетей"
+msgstr "Linkvorschau für soziale Medien hinzufügen"
+
+msgid "При активном SEO-плагине предпросмотр ссылок настраивается в нём. Соцсети могут сохранять старый предпросмотр в своём кэше."
+msgstr "Bei aktivem SEO-Plugin wird die Linkvorschau dort eingestellt. Soziale Medien können alte Vorschauen zwischenspeichern."
+
+msgid "Изображение не отправлено. Поддерживаются фотографии и статические стикеры до 4 МБ. Видео и анимированные стикеры не поддерживаются."
+msgstr "Das Bild wurde nicht gesendet. Unterstützt werden Fotos und statische Sticker bis 4 MB. Videos und animierte Sticker werden nicht unterstützt."
+
+msgid "Изображение из Telegram"
+msgstr "Bild aus Telegram"
+
+msgid "Передано почтовой системе. Доставка в ящик не подтверждена."
+msgstr "An das Mailsystem übergeben. Die Zustellung ins Postfach ist nicht bestätigt."
+
+msgid "Можно ответить несколько раз на сообщение бота: каждый ответ сохраняется отдельно и сразу передаётся PHP-почте. Фото с подписью и статический стикер вставляются в письмо. Ответы посетителя по email пока автоматически не принимаются."
+msgstr "Sie können mehrfach auf die Nachricht des Bots antworten: Jede Antwort wird einzeln gespeichert und sofort an PHP-Mail übergeben. Fotos mit Bildunterschrift und statische Sticker werden in die E-Mail eingebettet. Antworten des Besuchers per E-Mail werden noch nicht automatisch empfangen."

@@ -17,7 +17,11 @@ final class Request_Privacy {
         foreach ( $posts as $post ) {
             $sender = get_post_meta( $post->ID, '_prihod_sender', true );
             $fields = array( array( 'name' => __( 'Имя', 'prihod' ), 'value' => $sender['name'] ?? '' ), array( 'name' => 'Email', 'value' => $sender['email'] ?? '' ), array( 'name' => __( 'Тема', 'prihod' ), 'value' => $post->post_title ), array( 'name' => __( 'Обращение', 'prihod' ), 'value' => $post->post_content ) );
-            foreach ( Requests::messages( $post->ID ) as $message ) { $fields[] = array( 'name' => __( 'Переписка / заметка', 'prihod' ) . ' ' . $message->post_date, 'value' => $message->post_content ); }
+            foreach ( Requests::messages( $post->ID ) as $message ) {
+                $fields[] = array( 'name' => __( 'Переписка / заметка', 'prihod' ) . ' ' . $message->post_date, 'value' => $message->post_content );
+                $media = get_post_meta( $message->ID, '_prihod_reply_media', true );
+                if ( is_array( $media ) && isset( $media['mime'], $media['data'] ) ) { $fields[] = array( 'name' => __( 'Изображение из Telegram', 'prihod' ) . ' ' . $message->post_date, 'value' => 'data:' . $media['mime'] . ';base64,' . $media['data'] ); }
+            }
             $data[] = array( 'group_id' => 'prihod-requests', 'group_label' => __( 'Обращения', 'prihod' ), 'item_id' => 'prihod-' . $post->ID, 'data' => $fields );
         }
         return array( 'data' => $data, 'done' => count( $posts ) < 50 );

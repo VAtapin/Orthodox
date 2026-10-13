@@ -17,19 +17,24 @@ $telegram_transport = static function ( $pre, $args, $url ) use ( &$api_calls, &
     elseif ( 'getChat' === $method ) { $result = array( 'id' => 67890, 'type' => 'private' ); }
     elseif ( 'setWebhook' === $method ) { prihod_assert( str_starts_with( $body['url'], 'https://' ) && strlen( $body['secret_token'] ) >= 32 && array( 'message' ) === $body['allowed_updates'] && false === $body['drop_pending_updates'], 'Webhook uses HTTPS and a header secret, preserves pending updates and accepts only messages.' ); $result = true; }
     elseif ( 'sendMessage' === $method ) { $plain = ( 'HTML' === ( $body['parse_mode'] ?? '' ) ) ? html_entity_decode( strip_tags( $body['text'] ), ENT_QUOTES | ENT_HTML5, 'UTF-8' ) : $body['text']; $characters = preg_split( '//u', $plain, -1, PREG_SPLIT_NO_EMPTY ); $units = count( $characters ) + count( array_filter( $characters, static fn( $character ) => strlen( $character ) > 3 ) ); prihod_assert( $units <= 4096, 'Telegram message respects its parsed UTF-16 length limit, including emoji, headers and link.' ); if ( isset( $body['parse_mode'] ) ) { prihod_assert( 'HTML' === $body['parse_mode'] && str_contains( $body['text'], '<b>') && str_contains( $body['text'], "\n\n" ), 'Full Telegram request preserves paragraphs and uses explicit HTML formatting.' ); } $sent_texts[] = $body['text']; $result = array( 'message_id' => ++$sent_id, 'chat' => array( 'id' => 67890, 'type' => 'private' ), 'from' => array( 'id' => 12345, 'is_bot' => true ) ); }
+    elseif ( 'getFile' === $method ) { return new WP_Error( 'fixture_media', 'Media fixture transport must handle this request.' ); }
     else { throw new RuntimeException( 'Unexpected Telegram method.' ); }
     return array( 'headers' => array(), 'response' => array( 'code' => 200 ), 'body' => wp_json_encode( array( 'ok' => true, 'result' => $result ) ), 'cookies' => array() );
 };
 $rest_https = static fn( $url ) => str_replace( 'http://', 'https://', $url );
-$emails = array(); $mailers = array();
-$capture_mail = static function ( $pre, $attributes ) use ( &$emails, &$mailers ) {
+if ( ! class_exists( '\PHPMailer\PHPMailer\PHPMailer' ) ) { require_once ABSPATH . WPINC . '/PHPMailer/PHPMailer.php'; require_once ABSPATH . WPINC . '/PHPMailer/Exception.php'; }
+$emails = array(); $mailers = array(); $mime_emails = array();
+$capture_mail = static function ( $pre, $attributes ) use ( &$emails, &$mailers, &$mime_emails ) {
     $emails[] = $attributes;
-    $mailer = (object) array( 'Sender' => 'previous@example.org', 'From' => Prihod\Profile::get()['email'], 'Mailer' => 'mail' );
+    $mailer = new \PHPMailer\PHPMailer\PHPMailer( true );
+    $mailer->Sender = 'previous@example.org'; $mailer->From = Prihod\Profile::get()['email']; $mailer->Mailer = 'mail'; $mailer->AltBody = 'Previous unrelated text';
+    $mailer->CharSet = 'UTF-8'; $mailer->Subject = $attributes['subject']; $mailer->Body = $attributes['message']; $mailer->isHTML( true ); $mailer->addAddress( $attributes['to'] );
     do_action( 'phpmailer_init', $mailer );
     prihod_assert( Prihod\Profile::get()['email'] === $mailer->Sender, 'This PHP-mail reply uses the configured parish email as its envelope sender.' );
+    $mailer->preSend(); $mime_emails[] = $mailer->getSentMIMEMessage();
     $mailers[] = $mailer; return true;
 };
-add_filter( 'pre_http_request', $telegram_transport, PHP_INT_MAX, 3 );
+add_filter( 'pre_http_request', $telegram_transport, PHP_INT_MAX - 1, 3 );
 add_filter( 'pre_wp_mail', $capture_mail, PHP_INT_MAX, 2 ); add_filter( 'rest_url', $rest_https );
 $created_requests = array();
 try {
@@ -84,6 +89,7 @@ try {
     prihod_assert( ! str_contains( Prihod\Request_Mail::render( $preview_question, $preview_reply, array( 'name' => '<img>' ) ), '<script>' ), 'Visitor email escapes stored reply and sender markup.' );
     $note = Prihod\Requests::message( $id, 'Internal fixture note', true ); Prihod\Requests::deliver( $id, $note );
     prihod_assert( 1 === count( $emails ) && ! str_contains( implode( "\n", $sent_texts ), 'Internal fixture note' ), 'Internal notes never reach Telegram or visitor mail.' );
+    require __DIR__ . '/telegram-media-smoke.php';
     $preview_id = Prihod\Requests::create( array( 'name' => 'Мария', 'email' => 'visitor@example.org', 'subject' => 'О посещении храма', 'body' => "Здравствуйте! Можно ли приехать на воскресную литургию?\n\nБудем вдвоём. Подскажите, пожалуйста, как подготовиться к посещению." ) ); $created_requests[] = $preview_id;
     $preview_jobs = get_post_meta( $preview_id, '_prihod_jobs_telegram', true ); $preview_job = get_option( 'prihod_job_telegram_' . $preview_jobs[0] );
     file_put_contents( __DIR__ . '/.telegram-message-preview.html', '<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><body style="background:#dcead1;font:15px/1.5 Arial,sans-serif;padding:24px"><p>Образец форматирования · вымышленные данные</p><div style="max-width:520px;background:white;padding:20px;border-radius:14px;white-space:pre-wrap;overflow-wrap:anywhere">' . $preview_job['text'] . '</div></body></html>' );
@@ -94,10 +100,11 @@ try {
     prihod_assert( count( $sent_texts ) === $before_send && 'cancelled' === get_option( 'prihod_job_telegram_' . $pending_jobs[0] )['status'], 'Changing the bot invalidates queued full data before transport, even for the same target Chat ID.' );
     update_option( 'prihod_connect_telegram', $fixture_config );
     foreach ( $created_requests as $request_id ) { Prihod\Requests::delete( $request_id ); }
+    prihod_assert( ! get_post_meta( $photo_reply_id, '_prihod_reply_media', true ), 'Deleting correspondence removes the private image bytes with its child message.' );
     prihod_assert( ! get_post( $id ) && ! get_option( 'prihod_job_telegram_' . $jobs[0] ), 'Deleting a request removes its mappings, reply history and Telegram job payloads.' );
 } finally {
     foreach ( $created_requests as $request_id ) { if ( get_post( $request_id ) ) { Prihod\Requests::delete( $request_id ); } }
-    remove_filter( 'pre_http_request', $telegram_transport, PHP_INT_MAX ); remove_filter( 'pre_wp_mail', $capture_mail, PHP_INT_MAX ); remove_filter( 'rest_url', $rest_https );
+    remove_filter( 'pre_http_request', $telegram_transport, PHP_INT_MAX - 1 ); remove_filter( 'pre_wp_mail', $capture_mail, PHP_INT_MAX ); remove_filter( 'rest_url', $rest_https );
     update_option( 'prihod_connect_telegram', $saved_telegram ); update_option( Prihod\Telegram_Requests::OPTION, $saved_full ?: array() ); update_option( 'prihod_modules', $saved_modules );
     $_POST = $saved_post; $_GET = $saved_get; $_REQUEST = $saved_request; wp_set_current_user( 1 );
 }

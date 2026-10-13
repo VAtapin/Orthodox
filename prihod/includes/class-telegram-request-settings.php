@@ -39,6 +39,7 @@ final class Telegram_Request_Settings {
         foreach ( get_users( array( 'capability' => 'view_prihod_requests' ) ) as $user ) {
             if ( user_can( $user, 'reply_prihod_requests' ) ) { echo '<option value="' . esc_attr( $user->ID ) . '"' . selected( $o['staff'], $user->ID, false ) . '>' . esc_html( $user->display_name ) . '</option>'; }
         }
+        echo '<p>' . esc_html__( 'Можно ответить несколько раз на сообщение бота: каждый ответ сохраняется отдельно и сразу передаётся PHP-почте. Фото с подписью и статический стикер вставляются в письмо. Ответы посетителя по email пока автоматически не принимаются.', 'prihod' ) . '</p>';
         echo '</select></label></p><p>' . esc_html__( 'Сначала сохраните настройки, затем подключите приём ответов. Каналы и группы сохраняют обычные уведомления без персональных данных.', 'prihod' ) . '</p></fieldset>';
     }
     public static function after( string $provider ): void {
@@ -52,7 +53,7 @@ final class Telegram_Request_Settings {
     public static function api( string $method, array $body = array(), array $snapshot = array() ) {
         $connector = Telegram_Requests::connector();
         $settings = $snapshot ?: ( $connector ? $connector->settings() : array() );
-        if ( ! $connector || ! in_array( $method, array( 'getMe', 'getChat', 'getWebhookInfo', 'setWebhook' ), true ) || ! $connector->valid( $settings ) ) { return new \WP_Error( 'telegram_settings', __( 'Сначала сохраните подключение.', 'prihod' ) ); }
+        if ( ! $connector || ! in_array( $method, array( 'getMe', 'getChat', 'getWebhookInfo', 'setWebhook', 'getFile' ), true ) || ! $connector->valid( $settings ) ) { return new \WP_Error( 'telegram_settings', __( 'Сначала сохраните подключение.', 'prihod' ) ); }
         $response = wp_remote_post( 'https://api.telegram.org/bot' . $settings['token'] . '/' . $method, array( 'headers' => array( 'Content-Type' => 'application/json' ), 'body' => wp_json_encode( $body ), 'timeout' => 15, 'redirection' => 0 ) );
         $data = is_wp_error( $response ) ? null : json_decode( wp_remote_retrieve_body( $response ), true );
         if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) || ! is_array( $data ) || empty( $data['ok'] ) ) { return new \WP_Error( 'telegram_api', __( 'Telegram не подтвердил подключение. Проверьте токен, Chat ID и доступность сервиса.', 'prihod' ) ); }

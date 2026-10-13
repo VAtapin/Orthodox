@@ -13,3 +13,4 @@ Thumbs.db
 /tests/.monastery-result.json
 /tests/.telegram-mail-preview.html
 /tests/.telegram-message-preview.html
+/tests/.telegram-media-mail-preview.html
