@@ -42,6 +42,20 @@ final class Calendar_Adapter {
         $feasts = self::feasts( $day );
         return array( 'date' => $date, 'feasts' => $feasts, 'icon' => $icon ?: Calendar_Icons::fallback( $date ), 'recommendation' => Calendar_Colors::day( $day ) );
     }
+    /** One cached provider month; no per-day API calls or saved service colors. */
+    public static function month( string $date ) {
+        if ( ! Occurrences::date( $date ) || '01' !== substr( $date, -2 ) ) { return new \WP_Error( 'date', __( 'Некорректная дата.', 'prihod' ), array( 'status' => 400 ) ); }
+        $data = self::request( 'month', array( 'year' => (int) substr( $date, 0, 4 ), 'month' => (int) substr( $date, 5, 2 ) ) );
+        if ( is_wp_error( $data ) ) { return $data; }
+        if ( ! is_array( $data['days'] ?? null ) ) { return new \WP_Error( 'calendar_schema', __( 'Календарь вернул некорректные данные.', 'prihod' ), array( 'status' => 502 ) ); }
+        $days = array();
+        foreach ( $data['days'] as $day ) {
+            $key = is_array( $day ) ? ( $day['date'] ?? '' ) : '';
+            if ( ! is_string( $key ) || ! Occurrences::date( $key ) || substr( $key, 0, 7 ) !== substr( $date, 0, 7 ) ) { continue; }
+            $days[$key] = array( 'feasts' => self::feasts( $day ), 'color' => Calendar_Colors::day( $day )['color'] ?? '' );
+        }
+        return array( 'date' => $date, 'days' => $days );
+    }
     public static function week( \DateTimeImmutable $from ) {
         $to = $from->modify( '+7 days' ); $months = array(); $result = array();
         for ( $date = $from; $date < $to; $date = $date->modify( '+1 day' ) ) { $months[$date->format( 'Y-m' )] = $date; }

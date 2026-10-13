@@ -12,6 +12,10 @@ final class Schedule_Calendar {
                 $data = Calendar_Adapter::day( $request['date'] );
                 return is_wp_error( $data ) ? $data : array( 'date' => $data['date'], 'feasts' => $data['feasts'], 'color' => $data['recommendation']['color'] ?? '', 'icon' => self::public_date( $request['date'] ) ? $data['icon'] : null );
             } ) );
+            register_rest_route( Plugin::REST_NAMESPACE, '/schedule-month', array( 'methods' => 'GET', 'args' => $args, 'permission_callback' => static fn( $request ) => Modules::enabled( 'schedule' ) && '01' === substr( $request['date'], -2 ), 'callback' => static function ( $request ) {
+                if ( is_callable( array( '\Orthocal_Plugin', 'throttle' ) ) ) { $rate = \Orthocal_Plugin::throttle(); if ( is_wp_error( $rate ) ) { return $rate; } }
+                return Calendar_Adapter::month( $request['date'] );
+            } ) );
             register_rest_route( Plugin::REST_NAMESPACE, '/schedule-icon', array( 'methods' => 'GET', 'args' => $args, 'permission_callback' => static fn( $request ) => self::public_date( $request['date'] ), 'callback' => static function ( $request ) {
                 if ( is_callable( array( '\Orthocal_Plugin', 'throttle' ) ) ) { $rate = \Orthocal_Plugin::throttle(); if ( is_wp_error( $rate ) ) { return $rate; } }
                 $data = Calendar_Adapter::day( $request['date'] );
@@ -23,7 +27,7 @@ final class Schedule_Calendar {
     /** Stable native Image-block source, resolved only when its viewer requests it. */
     public static function image_url( string $date ): string { return add_query_arg( array( 'date' => $date, 'v' => PRIHOD_VERSION ), rest_url( Plugin::REST_NAMESPACE . '/schedule-icon-image' ) ); }
     public static function image( \WP_REST_Request $request ) {
-        if ( is_callable( array( '\Orthocal_Plugin', 'throttle' ) ) ) { $rate = \Orthocal_Plugin::throttle(); if ( is_wp_error( $rate ) ) { return $rate; } }
+                if ( is_callable( array( '\Orthocal_Plugin', 'throttle' ) ) ) { $rate = \Orthocal_Plugin::throttle(); if ( is_wp_error( $rate ) ) { return $rate; } }
         $date = $request['date']; $data = Calendar_Adapter::day( $date );
         $icon = is_wp_error( $data ) ? Calendar_Icons::fallback( $date ) : $data['icon'];
         if ( ! $icon ) { return is_wp_error( $data ) ? $data : new \WP_Error( 'icon_unavailable', __( 'Икона дня недоступна.', 'prihod' ), array( 'status' => 404 ) ); }

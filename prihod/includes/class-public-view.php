@@ -159,8 +159,8 @@ final class Public_View {
     }
     private static function week_sidebar( \DateTimeImmutable $anchor, int $location, \DateTimeImmutable $week_from ): string {
         $from = $anchor->modify( 'first day of this month' ); $to = $from->modify( '+1 month' );
-        $events = Schedule::query( $from, $to, $location ); $days = array();
-        foreach ( $events as $event ) { $key = $event['start']->setTimezone( $from->getTimezone() )->format( 'Y-m-d' ); $days[$key][$event['cancelled'] ? 'has-cancellations' : 'has-services'] = true; }
+        $events = Schedule::query( $from, $to, $location ); $days = array(); $colors = array();
+        foreach ( $events as $event ) { $key = $event['start']->setTimezone( $from->getTimezone() )->format( 'Y-m-d' ); $days[$key][$event['cancelled'] ? 'has-cancellations' : 'has-services'] = true; if ( ! $event['cancelled'] ) { $colors[$key][] = $event['vestment_color'] ?? ''; } }
         foreach ( Schedule::changes( $from, $to, $location ) as $event ) {
             $days[$event['original_date']][$event['cancelled'] ? 'has-cancellations' : 'has-moves'] = true;
             if ( $event['moved'] ) { $days[$event['start']->setTimezone( $from->getTimezone() )->format( 'Y-m-d' )]['has-moves'] = true; }
@@ -168,7 +168,9 @@ final class Public_View {
         $today = ( new \DateTimeImmutable( 'now', $from->getTimezone() ) )->format( 'Y-m-d' );
         $week_to = $week_from->modify( '+7 days' );
         $labels = array( 'has-services' => __( 'Богослужения', 'prihod' ), 'has-cancellations' => __( 'Отмена', 'prihod' ), 'has-moves' => __( 'Перенос / изменение времени', 'prihod' ) );
-        $html = '<aside class="prihod-schedule-aside"><div class="prihod-mini-month"><h3>' . esc_html( wp_date( 'F Y', $from->getTimestamp(), $from->getTimezone() ) ) . '</h3><div class="prihod-mini-grid">';
+        wp_enqueue_script( 'prihod-schedule-icons', plugins_url( 'assets/schedule-icons.js', PRIHOD_FILE ), array(), PRIHOD_VERSION . '.' . filemtime( dirname( PRIHOD_FILE ) . '/assets/schedule-icons.js' ), true );
+        $month_url = add_query_arg( 'date', $from->format( 'Y-m-d' ), rest_url( Plugin::REST_NAMESPACE . '/schedule-month' ) );
+        $html = '<aside class="prihod-schedule-aside"><div class="prihod-mini-month" data-prihod-mini-month="' . esc_url( $month_url ) . '"><h3>' . esc_html( wp_date( 'F Y', $from->getTimestamp(), $from->getTimezone() ) ) . '</h3><div class="prihod-mini-grid">';
         foreach ( self::weekdays() as $day ) { $html .= '<span>' . esc_html( $day ) . '</span>'; }
         for ( $i = 1; $i < (int) $from->format( 'N' ); ++$i ) { $html .= '<span></span>'; }
         for ( $date = $from; $date < $to; $date = $date->modify( '+1 day' ) ) {
@@ -178,7 +180,7 @@ final class Public_View {
             foreach ( $classes as $class ) { $label .= ' · ' . $labels[$class]; }
             if ( $date >= $week_from && $date < $week_to ) { $classes[] = 'is-selected-week'; $label .= ' · ' . __( 'Выбранная неделя', 'prihod' ); }
             if ( $key === $today ) { $classes[] = 'is-today'; $label .= ' · ' . __( 'Сегодня', 'prihod' ); }
-            $html .= '<a class="' . esc_attr( implode( ' ', $classes ) ) . '" aria-label="' . esc_attr( $label ) . '"' . ( $key === $today ? ' aria-current="date"' : '' ) . ' href="' . esc_url( add_query_arg( array( 'prihod_date' => $key, 'prihod_view' => 'week' ) ) ) . '">' . esc_html( $date->format( 'j' ) ) . '</a>';
+            $html .= '<a class="' . esc_attr( implode( ' ', $classes ) ) . '" data-mini-date="' . esc_attr( $key ) . '" data-service-colors="' . esc_attr( wp_json_encode( array_values( array_unique( $colors[$key] ?? array() ) ) ) ) . '" aria-label="' . esc_attr( $label ) . '"' . ( $key === $today ? ' aria-current="date"' : '' ) . ' href="' . esc_url( add_query_arg( array( 'prihod_date' => $key, 'prihod_view' => 'week' ) ) ) . '">' . esc_html( $date->format( 'j' ) ) . '</a>';
         }
         $html .= '</div><div class="prihod-mini-legend"><span class="is-today">' . esc_html__( 'Сегодня', 'prihod' ) . '</span><span class="is-selected-week">' . esc_html__( 'Выбранная неделя', 'prihod' ) . '</span><span class="has-services">' . esc_html__( 'Богослужения', 'prihod' ) . '</span></div></div><div class="prihod-visit-card"><h3>' . esc_html__( 'Перед посещением', 'prihod' ) . '</h3><p>' . esc_html__( 'Проверьте дату, время и место богослужения. Изменения и отмены отмечены в расписании.', 'prihod' ) . '</p>';
         $resources = get_option( 'prihod_resources', array() );

@@ -1,0 +1,392 @@
+[
+  {
+    "scheme": "classic",
+    "days": [
+      {
+        "classes": "has-services is-selected-week has-vestment-frame is-great-feast",
+        "colors": "[\"blue\",\"\"]",
+        "date": "2026-10-14",
+        "feast": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии",
+        "frame": "rgb(52, 155, 213)",
+        "text": "rgb(178, 34, 34)"
+      },
+      {
+        "classes": "has-services is-selected-week has-vestment-frame",
+        "colors": "[\"auto\"]",
+        "date": "2026-10-17",
+        "feast": "",
+        "frame": "rgb(242, 197, 0)",
+        "text": "rgb(164, 109, 37)"
+      },
+      {
+        "classes": "has-services has-vestment-frame",
+        "colors": "[\"red\"]",
+        "date": "2026-10-21",
+        "feast": "",
+        "frame": "rgb(203, 48, 53)",
+        "text": "rgb(164, 109, 37)"
+      },
+      {
+        "classes": "has-services",
+        "colors": "[\"\"]",
+        "date": "2026-10-25",
+        "feast": "",
+        "frame": "rgba(0, 0, 0, 0)",
+        "text": "rgb(164, 109, 37)"
+      }
+    ],
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "scheme": "hospitality",
+    "days": [
+      {
+        "classes": "has-services is-selected-week has-vestment-frame is-great-feast",
+        "colors": "[\"blue\",\"\"]",
+        "date": "2026-10-14",
+        "feast": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии",
+        "frame": "rgb(52, 155, 213)",
+        "text": "rgb(178, 34, 34)"
+      },
+      {
+        "classes": "has-services is-selected-week has-vestment-frame",
+        "colors": "[\"auto\"]",
+        "date": "2026-10-17",
+        "feast": "",
+        "frame": "rgb(242, 197, 0)",
+        "text": "rgb(179, 139, 68)"
+      },
+      {
+        "classes": "has-services has-vestment-frame",
+        "colors": "[\"red\"]",
+        "date": "2026-10-21",
+        "feast": "",
+        "frame": "rgb(203, 48, 53)",
+        "text": "rgb(179, 139, 68)"
+      },
+      {
+        "classes": "has-services",
+        "colors": "[\"\"]",
+        "date": "2026-10-25",
+        "feast": "",
+        "frame": "rgba(0, 0, 0, 0)",
+        "text": "rgb(179, 139, 68)"
+      }
+    ],
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "scheme": "editorial",
+    "days": [
+      {
+        "classes": "has-services is-selected-week has-vestment-frame is-great-feast",
+        "colors": "[\"blue\",\"\"]",
+        "date": "2026-10-14",
+        "feast": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии",
+        "frame": "rgb(52, 155, 213)",
+        "text": "rgb(178, 34, 34)"
+      },
+      {
+        "classes": "has-services is-selected-week has-vestment-frame",
+        "colors": "[\"auto\"]",
+        "date": "2026-10-17",
+        "feast": "",
+        "frame": "rgb(242, 197, 0)",
+        "text": "rgb(152, 78, 50)"
+      },
+      {
+        "classes": "has-services has-vestment-frame",
+        "colors": "[\"red\"]",
+        "date": "2026-10-21",
+        "feast": "",
+        "frame": "rgb(203, 48, 53)",
+        "text": "rgb(152, 78, 50)"
+      },
+      {
+        "classes": "has-services",
+        "colors": "[\"\"]",
+        "date": "2026-10-25",
+        "feast": "",
+        "frame": "rgba(0, 0, 0, 0)",
+        "text": "rgb(152, 78, 50)"
+      }
+    ],
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "scheme": "tradition",
+    "days": [
+      {
+        "classes": "has-services is-selected-week has-vestment-frame is-great-feast",
+        "colors": "[\"blue\",\"\"]",
+        "date": "2026-10-14",
+        "feast": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии",
+        "frame": "rgb(52, 155, 213)",
+        "text": "rgb(178, 34, 34)"
+      },
+      {
+        "classes": "has-services is-selected-week has-vestment-frame",
+        "colors": "[\"auto\"]",
+        "date": "2026-10-17",
+        "feast": "",
+        "frame": "rgb(242, 197, 0)",
+        "text": "rgb(114, 85, 50)"
+      },
+      {
+        "classes": "has-services has-vestment-frame",
+        "colors": "[\"red\"]",
+        "date": "2026-10-21",
+        "feast": "",
+        "frame": "rgb(203, 48, 53)",
+        "text": "rgb(114, 85, 50)"
+      },
+      {
+        "classes": "has-services",
+        "colors": "[\"\"]",
+        "date": "2026-10-25",
+        "feast": "",
+        "frame": "rgba(0, 0, 0, 0)",
+        "text": "rgb(114, 85, 50)"
+      }
+    ],
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "scheme": "blue",
+    "days": [
+      {
+        "classes": "has-services is-selected-week has-vestment-frame is-great-feast",
+        "colors": "[\"blue\",\"\"]",
+        "date": "2026-10-14",
+        "feast": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии",
+        "frame": "rgb(52, 155, 213)",
+        "text": "rgb(178, 34, 34)"
+      },
+      {
+        "classes": "has-services is-selected-week has-vestment-frame",
+        "colors": "[\"auto\"]",
+        "date": "2026-10-17",
+        "feast": "",
+        "frame": "rgb(242, 197, 0)",
+        "text": "rgb(57, 111, 163)"
+      },
+      {
+        "classes": "has-services has-vestment-frame",
+        "colors": "[\"red\"]",
+        "date": "2026-10-21",
+        "feast": "",
+        "frame": "rgb(203, 48, 53)",
+        "text": "rgb(57, 111, 163)"
+      },
+      {
+        "classes": "has-services",
+        "colors": "[\"\"]",
+        "date": "2026-10-25",
+        "feast": "",
+        "frame": "rgba(0, 0, 0, 0)",
+        "text": "rgb(57, 111, 163)"
+      }
+    ],
+    "overflow": false,
+    "width": 1440
+  },
+  {
+    "scheme": "classic",
+    "days": [
+      {
+        "classes": "has-services is-selected-week has-vestment-frame is-great-feast",
+        "colors": "[\"blue\",\"\"]",
+        "date": "2026-10-14",
+        "feast": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии",
+        "frame": "rgb(52, 155, 213)",
+        "text": "rgb(178, 34, 34)"
+      },
+      {
+        "classes": "has-services is-selected-week has-vestment-frame",
+        "colors": "[\"auto\"]",
+        "date": "2026-10-17",
+        "feast": "",
+        "frame": "rgb(242, 197, 0)",
+        "text": "rgb(164, 109, 37)"
+      },
+      {
+        "classes": "has-services has-vestment-frame",
+        "colors": "[\"red\"]",
+        "date": "2026-10-21",
+        "feast": "",
+        "frame": "rgb(203, 48, 53)",
+        "text": "rgb(164, 109, 37)"
+      },
+      {
+        "classes": "has-services",
+        "colors": "[\"\"]",
+        "date": "2026-10-25",
+        "feast": "",
+        "frame": "rgba(0, 0, 0, 0)",
+        "text": "rgb(164, 109, 37)"
+      }
+    ],
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "hospitality",
+    "days": [
+      {
+        "classes": "has-services is-selected-week has-vestment-frame is-great-feast",
+        "colors": "[\"blue\",\"\"]",
+        "date": "2026-10-14",
+        "feast": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии",
+        "frame": "rgb(52, 155, 213)",
+        "text": "rgb(178, 34, 34)"
+      },
+      {
+        "classes": "has-services is-selected-week has-vestment-frame",
+        "colors": "[\"auto\"]",
+        "date": "2026-10-17",
+        "feast": "",
+        "frame": "rgb(242, 197, 0)",
+        "text": "rgb(179, 139, 68)"
+      },
+      {
+        "classes": "has-services has-vestment-frame",
+        "colors": "[\"red\"]",
+        "date": "2026-10-21",
+        "feast": "",
+        "frame": "rgb(203, 48, 53)",
+        "text": "rgb(179, 139, 68)"
+      },
+      {
+        "classes": "has-services",
+        "colors": "[\"\"]",
+        "date": "2026-10-25",
+        "feast": "",
+        "frame": "rgba(0, 0, 0, 0)",
+        "text": "rgb(179, 139, 68)"
+      }
+    ],
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "editorial",
+    "days": [
+      {
+        "classes": "has-services is-selected-week has-vestment-frame is-great-feast",
+        "colors": "[\"blue\",\"\"]",
+        "date": "2026-10-14",
+        "feast": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии",
+        "frame": "rgb(52, 155, 213)",
+        "text": "rgb(178, 34, 34)"
+      },
+      {
+        "classes": "has-services is-selected-week has-vestment-frame",
+        "colors": "[\"auto\"]",
+        "date": "2026-10-17",
+        "feast": "",
+        "frame": "rgb(242, 197, 0)",
+        "text": "rgb(152, 78, 50)"
+      },
+      {
+        "classes": "has-services has-vestment-frame",
+        "colors": "[\"red\"]",
+        "date": "2026-10-21",
+        "feast": "",
+        "frame": "rgb(203, 48, 53)",
+        "text": "rgb(152, 78, 50)"
+      },
+      {
+        "classes": "has-services",
+        "colors": "[\"\"]",
+        "date": "2026-10-25",
+        "feast": "",
+        "frame": "rgba(0, 0, 0, 0)",
+        "text": "rgb(152, 78, 50)"
+      }
+    ],
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "tradition",
+    "days": [
+      {
+        "classes": "has-services is-selected-week has-vestment-frame is-great-feast",
+        "colors": "[\"blue\",\"\"]",
+        "date": "2026-10-14",
+        "feast": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии",
+        "frame": "rgb(52, 155, 213)",
+        "text": "rgb(178, 34, 34)"
+      },
+      {
+        "classes": "has-services is-selected-week has-vestment-frame",
+        "colors": "[\"auto\"]",
+        "date": "2026-10-17",
+        "feast": "",
+        "frame": "rgb(242, 197, 0)",
+        "text": "rgb(114, 85, 50)"
+      },
+      {
+        "classes": "has-services has-vestment-frame",
+        "colors": "[\"red\"]",
+        "date": "2026-10-21",
+        "feast": "",
+        "frame": "rgb(203, 48, 53)",
+        "text": "rgb(114, 85, 50)"
+      },
+      {
+        "classes": "has-services",
+        "colors": "[\"\"]",
+        "date": "2026-10-25",
+        "feast": "",
+        "frame": "rgba(0, 0, 0, 0)",
+        "text": "rgb(114, 85, 50)"
+      }
+    ],
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "scheme": "blue",
+    "days": [
+      {
+        "classes": "has-services is-selected-week has-vestment-frame is-great-feast",
+        "colors": "[\"blue\",\"\"]",
+        "date": "2026-10-14",
+        "feast": "Покров Пресвятой Владычицы нашей Богородицы и Приснодевы Марии",
+        "frame": "rgb(52, 155, 213)",
+        "text": "rgb(178, 34, 34)"
+      },
+      {
+        "classes": "has-services is-selected-week has-vestment-frame",
+        "colors": "[\"auto\"]",
+        "date": "2026-10-17",
+        "feast": "",
+        "frame": "rgb(242, 197, 0)",
+        "text": "rgb(57, 111, 163)"
+      },
+      {
+        "classes": "has-services has-vestment-frame",
+        "colors": "[\"red\"]",
+        "date": "2026-10-21",
+        "feast": "",
+        "frame": "rgb(203, 48, 53)",
+        "text": "rgb(57, 111, 163)"
+      },
+      {
+        "classes": "has-services",
+        "colors": "[\"\"]",
+        "date": "2026-10-25",
+        "feast": "",
+        "frame": "rgba(0, 0, 0, 0)",
+        "text": "rgb(57, 111, 163)"
+      }
+    ],
+    "overflow": false,
+    "width": 390
+  }
+]

@@ -4,6 +4,31 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!requests.has(url)) requests.set(url, fetch(url).then(response => { if (!response.ok) throw Error(); return response.json(); }));
         return requests.get(url);
     }
+    const colors = {white:'#faf8ef',red:'#cb3035',gold:'#f2c500',green:'#159447',blue:'#349bd5',purple:'#8a45b5',black:'#353a40'};
+    document.querySelectorAll('[data-prihod-mini-month]').forEach(async month => {
+        const links = Array.from(month.querySelectorAll('[data-mini-date]'));
+        function frame(link, automatic) {
+            const chosen = JSON.parse(link.dataset.serviceColors || '[]').map(color => color === 'auto' ? automatic : color);
+            const edges = [...new Set(chosen.filter(color => Object.hasOwn(colors, color)))].slice(0, 4);
+            link.classList.toggle('has-vestment-frame', edges.length > 0);
+            link.style.borderColor = edges.map(color => colors[color]).join(' ');
+        }
+        links.forEach(link => frame(link, ''));
+        try {
+            const data = await day(month.dataset.prihodMiniMonth);
+            links.forEach(link => {
+                const info = data.days?.[link.dataset.miniDate];
+                if (!info) return;
+                frame(link, info.color);
+                const feasts = Array.isArray(info.feasts) ? info.feasts.filter(title => typeof title === 'string' && title.trim()) : [];
+                link.classList.toggle('is-great-feast', feasts.length > 0);
+                if (feasts.length) {
+                    link.title = feasts.join('; ');
+                    link.setAttribute('aria-label', link.getAttribute('aria-label') + ' · ' + link.title);
+                }
+            });
+        } catch (_) { /* Keep manual frames and navigation when the provider is unavailable. */ }
+    });
     const normalize = value => value.normalize('NFKC').toLocaleLowerCase().replace(/[\p{P}\p{S}\s]+/gu, ' ').trim();
     document.querySelectorAll('[data-prihod-feast]').forEach(async label => {
         const host = label.closest('.prihod-event,.prihod-upcoming-card,.prihod-service-compact');
