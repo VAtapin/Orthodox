@@ -1,0 +1,252 @@
+[
+  {
+    "scheme": "classic",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide prihod-brand-logo-only",
+        "image": {
+          "complete": true,
+          "height": 72,
+          "width": 240
+        },
+        "title": false
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide prihod-brand-logo-only",
+        "image": {
+          "complete": true,
+          "height": 72,
+          "width": 240
+        },
+        "title": false
+      }
+    ],
+    "overflow": false,
+    "viewport": 1440
+  },
+  {
+    "scheme": "hospitality",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide prihod-brand-logo-only",
+        "image": {
+          "complete": true,
+          "height": 72,
+          "width": 240
+        },
+        "title": false
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide prihod-brand-logo-only",
+        "image": {
+          "complete": true,
+          "height": 72,
+          "width": 240
+        },
+        "title": false
+      }
+    ],
+    "overflow": false,
+    "viewport": 1440
+  },
+  {
+    "scheme": "editorial",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide prihod-brand-logo-only",
+        "image": {
+          "complete": true,
+          "height": 72,
+          "width": 240
+        },
+        "title": false
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide prihod-brand-logo-only",
+        "image": {
+          "complete": true,
+          "height": 72,
+          "width": 240
+        },
+        "title": false
+      }
+    ],
+    "overflow": false,
+    "viewport": 1440
+  },
+  {
+    "scheme": "tradition",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide prihod-brand-logo-only",
+        "image": {
+          "complete": true,
+          "height": 72,
+          "width": 240
+        },
+        "title": false
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide prihod-brand-logo-only",
+        "image": {
+          "complete": true,
+          "height": 72,
+          "width": 240
+        },
+        "title": false
+      }
+    ],
+    "overflow": false,
+    "viewport": 1440
+  },
+  {
+    "scheme": "blue",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide prihod-brand-logo-only",
+        "image": {
+          "complete": true,
+          "height": 72,
+          "width": 240
+        },
+        "title": false
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide prihod-brand-logo-only",
+        "image": {
+          "complete": true,
+          "height": 72,
+          "width": 240
+        },
+        "title": false
+      }
+    ],
+    "overflow": false,
+    "viewport": 1440
+  },
+  {
+    "scheme": "classic",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide prihod-brand-logo-only",
+        "image": {
+          "complete": true,
+          "height": 72,
+          "width": 240
+        },
+        "title": false
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide prihod-brand-logo-only",
+        "image": {
+          "complete": true,
+          "height": 72,
+          "width": 240
+        },
+        "title": false
+      }
+    ],
+    "overflow": false,
+    "viewport": 390
+  },
+  {
+    "scheme": "hospitality",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide prihod-brand-logo-only",
+        "image": {
+          "complete": true,
+          "height": 72,
+          "width": 240
+        },
+        "title": false
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide prihod-brand-logo-only",
+        "image": {
+          "complete": true,
+          "height": 72,
+          "width": 240
+        },
+        "title": false
+      }
+    ],
+    "overflow": false,
+    "viewport": 390
+  },
+  {
+    "scheme": "editorial",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide prihod-brand-logo-only",
+        "image": {
+          "complete": true,
+          "height": 72,
+          "width": 240
+        },
+        "title": false
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide prihod-brand-logo-only",
+        "image": {
+          "complete": true,
+          "height": 72,
+          "width": 240
+        },
+        "title": false
+      }
+    ],
+    "overflow": false,
+    "viewport": 390
+  },
+  {
+    "scheme": "tradition",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide prihod-brand-logo-only",
+        "image": {
+          "complete": true,
+          "height": 72,
+          "width": 240
+        },
+        "title": false
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide prihod-brand-logo-only",
+        "image": {
+          "complete": true,
+          "height": 72,
+          "width": 240
+        },
+        "title": false
+      }
+    ],
+    "overflow": false,
+    "viewport": 390
+  },
+  {
+    "scheme": "blue",
+    "brands": [
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide prihod-brand-logo-only",
+        "image": {
+          "complete": true,
+          "height": 72,
+          "width": 240
+        },
+        "title": false
+      },
+      {
+        "class": "prihod-brand prihod-brand-custom prihod-brand-wide prihod-brand-logo-only",
+        "image": {
+          "complete": true,
+          "height": 72,
+          "width": 240
+        },
+        "title": false
+      }
+    ],
+    "overflow": false,
+    "viewport": 390
+  }
+]

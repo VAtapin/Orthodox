@@ -17,8 +17,24 @@ WP6.5.13/PHP8.0.30 —356/226, theme-alone/connectors-alone прошли.
 пять схем на1440/390px; отдельно широкий логотип без названия.
 Предпросмотр настроек на390px без overflow, пропорции сохранены.
 Снимки/метрики: design-reference/verification-2026-10-13/branding-0327.
-Тема0.3.27 подготовлена локально; установка требует прямого разрешения владельца.
-На сервере Core rc.17/theme0.3.26/Telegram0.1.3; серверная проверка27 ещё не выполнена.
+Тема0.3.27 установлена13октября с прямого разрешения владельца.
+99серверных проверок WP7.1.3/PHP8.5.11 прошли;Core rc.17/Telegram0.1.3 сохранены.
+Живые5схем×1440/390px:240×72px в шапке/подвале, без overflow;
+настройки владельца не пересохранялись, выбранное скрытие названия сохранено.
+Отпечаток служб/профиля/темы/подключений/site_icon/theme_mods до/после совпал:
+ca8f74494dcb98f4d1020da6ad0b90dee3bdea4226e3219576ad84f60995a11c.
+Пакет build/prihod-theme-0.3.27.zip, SHA256:
+0E2280D0462FD6770C7EDEAD7AF42F919D6AE9FAD90E2D78B860BC6DBC366943.
+Выполненная команда;PHP8.5 — фактическое подтверждённое окружение этого сайта:
+
+```bash
+cd /var/www/vhosts/prihod.georg-kloster.ru/httpdocs && \
+export PATH="/opt/plesk/php/8.5/bin:$PATH" && \
+php /usr/local/bin/wp theme install wp-content/prihod-packages/prihod-theme-0.3.27.zip --force && \
+php /usr/local/bin/wp eval-file wp-content/prihod-server-check.php --user=prihod-owner
+```
+
+Composer/npm/migrations/restart не требуются.
 
 ## Предыдущая установленная версия0.3.25
 
