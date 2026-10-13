@@ -76,6 +76,7 @@ foreach ( array( 'classic', 'hospitality', 'editorial', 'tradition', 'blue' ) as
     $_GET['prihod_preview'] = $scheme; WP_Theme_JSON_Resolver::clean_cached_data();
     $heading = prihod_theme_focused_banner();
     $check( str_contains( $heading, 'prihod-request-heading' ) && str_contains( $heading, 'aria-current="page"' ) && str_contains( $heading, esc_url( prihod_theme_url( 'about' ) ) ) && '' === prihod_theme_focused_heading(), 'Question photo banner and real breadcrumb render once, preserving preview: ' . $scheme );
+    $check( str_contains( $heading, 'prihod-request-heading-copy' ) && str_contains( $heading, 'class="prihod-request-photo"' ) && ! str_contains( $heading, '--prihod-hero-image' ), 'Question portrait is actual markup inside the shared title container, not a viewport-edge background: ' . $scheme );
 }
 unset( $_GET['prihod_preview'] ); WP_Theme_JSON_Resolver::clean_cached_data();
 $GLOBALS['post'] = get_post( $first['pages']['donations'] );
