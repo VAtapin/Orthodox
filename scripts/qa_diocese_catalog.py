@@ -10,10 +10,10 @@ for name in ['Prihod_proposal','Prihod_brief','Diocese_sites_appendix']:
     print(name,len(reader.pages),'pages', 'chars per page:',[len(p.extract_text()) for p in reader.pages])
     pages=sorted((base/name).glob('page-*.png'),key=lambda p:int(p.stem.split('-')[1]))[:len(reader.pages)]
     for start in range(0,len(pages),6):
-        sheet=Image.new('RGB',(1560,2040),'#bbbbbb');draw=ImageDraw.Draw(sheet)
+        sheet=Image.new('RGB',(1800,1450),'#bbbbbb');draw=ImageDraw.Draw(sheet)
         for i,path in enumerate(pages[start:start+6]):
-            draw.text(((i%3)*520+8,(i//3)*1020+4),path.stem,fill='black')
-            sheet.paste(ImageOps.contain(Image.open(path),(505,985)),((i%3)*520,(i//3)*1020+25))
+            draw.text(((i%2)*900+8,(i//2)*480+4),path.stem,fill='black')
+            sheet.paste(ImageOps.contain(Image.open(path),(885,450)),((i%2)*900,(i//2)*480+25))
         sheet.save(base/f'{name}-sheet-{start//6+1}.jpg')
 mobile=json.loads((ROOT/'docs/diocese-catalog/research/mobile.json').read_text(encoding='utf-8'))
 for start in range(0,len(mobile),12):
