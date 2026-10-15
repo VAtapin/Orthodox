@@ -11,7 +11,8 @@ tempfile.tempdir=str(ROOT/'tmp/diocese-qa/temp')
 skill=Path('C:/Users/atapi/.codex/plugins/cache/openai-primary-runtime/documents/26.1013.11914/skills/documents/render_docx.py')
 spec=importlib.util.spec_from_file_location('render_docx',skill)
 renderer=importlib.util.module_from_spec(spec);spec.loader.exec_module(renderer)
-for name in ['Prihod_proposal','Prihod_brief','Diocese_sites_appendix']:
+names=sys.argv[1:] or ['Prihod_proposal','Prihod_brief','Diocese_sites_appendix']
+for name in names:
     docx=ROOT/'docs/diocese-catalog'/f'{name}.docx'
     pdf=docx.with_suffix('.pdf')
     def native_pdf(*args,**kwargs):return str(pdf),'Exported by installed Microsoft Word 16.0'

@@ -24,14 +24,15 @@ for s in d['sites']:
         assert any(x['requested']==s['requested'] and 'error' in x for x in d['detail_pages'])
 raw=(OUT/'research/inventory.json').read_text(encoding='utf-8')
 assert not re.search(r'(?i)[?&](?:pwd|password|token|key)=([^\s&"\]]+)',raw)
-for name,count in [('Prihod_proposal',11),('Prihod_brief',2),('Diocese_sites_appendix',28)]:
+for name,count in [('Prihod_proposal',11),('Prihod_brief',2),('Diocese_sites_appendix',6)]:
     pdf=PdfReader(OUT/f'{name}.pdf');doc=Document(OUT/f'{name}.docx')
     assert len(pdf.pages)==count
     assert all(len(p.extract_text())>150 for p in pdf.pages)
     assert doc.paragraphs and all(round(float(p.mediabox.width))==792 and round(float(p.mediabox.height))==612 for p in pdf.pages)
     assert all(s.page_width>s.page_height for s in doc.sections)
 overview=Document(OUT/'Diocese_sites_appendix.docx')
-assert len(overview.inline_shapes)==27
+assert len(overview.inline_shapes)==6
 assert len(overview.tables)==0
-assert all((OUT/'images/visual-report'/f'atlas-{i:02}.png').exists() for i in range(1,18))
-print('PASS: audit counts, 65 mobile records/images, all 3 documents landscape, 27 overview visuals, 3 DOCX/PDF pairs and 41 pages')
+assert sum(p.text.startswith('Что делает приход:') or p.text.startswith('Как исправить:') for p in overview.paragraphs)==5
+assert all((OUT/'images/visual-report'/f'compact-{name}.png').exists() for name in ['mobile','dates','structured','navigation','start'])
+print('PASS: audit counts, 65 archived mobile records/images, landscape format, 5 problem/solution comparisons, 3 DOCX/PDF pairs and 19 pages')
