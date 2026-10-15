@@ -16,3 +16,6 @@ Thumbs.db
 /tests/.telegram-media-mail-preview.html
 
 /tests/.mail-log-preview.html
+/tmp/diocese-qa/
+/scripts/__pycache__/
+/diocese-index.tmp.html

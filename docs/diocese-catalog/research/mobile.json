@@ -1,0 +1,587 @@
+[
+  {
+    "frames": 1,
+    "scroll": 375,
+    "title": "Приход в честь прп. Севастиана Карагандинского, город Бамберг | Russische Orthodoxe Kirche, Gemeinde zu Ehren des Hl. Sebastian von Karaganda in Bamberg",
+    "width": 390,
+    "url": "https://bamberg.cerkov.ru/",
+    "requested": "http://bamberg.cerkov.ru",
+    "image": "mobile-01.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "Приход св. муч. Киприана и Иустины -",
+    "width": 390,
+    "url": "https://orthodoxekirche.org/",
+    "requested": "http://frankfurt.orthodoxy.ru",
+    "image": "mobile-02.png"
+  },
+  {
+    "frames": 1,
+    "scroll": 375,
+    "title": "Русское Православное кладбище в Гамбурге",
+    "width": 390,
+    "url": "https://friedhof.hamburg-hram.de/",
+    "requested": "http://friedhof.hamburg-hram.de/",
+    "image": "mobile-03.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "Hauptseite - Свято-Георгиевский мужской монастырь",
+    "width": 390,
+    "url": "https://georg-kloster.de/",
+    "requested": "http://georg-kloster.de/",
+    "image": "mobile-04.png"
+  },
+  {
+    "frames": 1,
+    "scroll": 477,
+    "title": "Русская Православная Церковь в г. Нойс (Германия) Russisch-orthodoxe Kirche in Neuss",
+    "width": 390,
+    "url": "https://neuss.cerkov.ru/",
+    "requested": "http://neuss.cerkov.ru/",
+    "image": "mobile-05.png"
+  },
+  {
+    "frames": 5,
+    "scroll": 1288,
+    "title": "Церковь во имя святых Царственных Страстотерпцев, г. Бремен. Приход во имя Священномученика Владимира Московского и Преподобной Анастасии Киевской, г. Бремерхафен. | Берлинско-Германская епархия, Московский Патриархат, Русская Православная Церковь.",
+    "width": 390,
+    "url": "https://orthodox-bremen.cerkov.ru/",
+    "requested": "http://orthodox-bremen.cerkov.ru/",
+    "image": "mobile-06.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "Церковь",
+    "width": 390,
+    "url": "https://orthodox-leer.de/RU/index.html",
+    "requested": "http://orthodox-leer.de",
+    "image": "mobile-07.png"
+  },
+  {
+    "frames": 3,
+    "scroll": 390,
+    "title": "Russisch orthodoxe Gemeinde Spandau",
+    "width": 390,
+    "url": "http://orthodox-spandau.bplaced.net/ru/",
+    "requested": "http://orthodox-spandau.bplaced.net/ru/",
+    "image": "mobile-08.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 768,
+    "title": "Orthodoxe Kirche Konstanz",
+    "width": 390,
+    "url": "https://www.orthodoxe-kirche-konstanz.de/",
+    "requested": "http://orthodoxe-kirche-konstanz.de",
+    "image": "mobile-09.png"
+  },
+  {
+    "frames": 1,
+    "scroll": 375,
+    "title": "Приход Сретения Господня, г. Ален (Баден-Вюртемберг) — Русская Православная Церковь • Московский Патриархат • Берлинско-Германская Епархия • Южное благочиние",
+    "width": 390,
+    "url": "https://prihod-aalen.cerkov.ru/",
+    "requested": "http://prihod-aalen.cerkov.ru/",
+    "image": "mobile-10.png"
+  },
+  {
+    "frames": 1,
+    "scroll": 375,
+    "title": "Русская Православная Церковь Вормс. Russisch Orthodoxe Kirche Worms | Русская Православная Церковь — Московский патриархат. Православные Богослужения в городе Вормс.",
+    "width": 390,
+    "url": "https://prihod-worms.cerkov.ru/",
+    "requested": "http://prihod-worms.cerkov.ru/",
+    "image": "mobile-11.png"
+  },
+  {
+    "frames": 2,
+    "scroll": 375,
+    "title": "Russisch-Orthodoxe Kirche zu Potsdam Русская Православная Церковь Потсдам – Alexander-Newski Gemeinde – Община св. бл. кн. Александра Невского",
+    "width": 390,
+    "url": "https://r-o-k.de/",
+    "requested": "http://r-o-k.de",
+    "image": "mobile-12.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "Дорогие братья и сестры! - РУССКАЯ ПРАВОСЛАВНАЯ ОБЩИНА СВЯТЫХ МУЧЕНИКОВ-БЕССРЕБРЕНИКОВ КОСМЫ И ДАМИАНА Г. ЭССЕН",
+    "width": 390,
+    "url": "https://rok-essen.de/",
+    "requested": "http://rok-essen.de",
+    "image": "mobile-13.png"
+  },
+  {
+    "frames": 1,
+    "scroll": 375,
+    "title": "Расписание, контакты | Приход в честь апостола и евангелиста Иоанна Богослова в г.Линдау и иконы Казанской Божией Матери в г.Фридрихсхафен",
+    "width": 390,
+    "url": "https://rokmp-bodensee.de/raspisanie",
+    "requested": "http://rokmp-bodensee.de/raspisanie/",
+    "image": "mobile-14.png"
+  },
+  {
+    "frames": 1,
+    "scroll": 837,
+    "title": "Русская Православная Церковь в Нюрнберге",
+    "width": 390,
+    "url": "https://rus-kirche.de/",
+    "requested": "http://rus-kirche.de",
+    "image": "mobile-15.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "Русский православный приход в Хемнице — Русский православный приход Рождества Пресвятой Богородицы в Хемнице",
+    "width": 390,
+    "url": "http://russische-kirche-c.de/",
+    "requested": "http://russische-kirche-c.de/",
+    "image": "mobile-16.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 1024,
+    "title": "Seraphim von Sarow. Coburg",
+    "width": 390,
+    "url": "https://seraphimcoburg.org/",
+    "requested": "http://seraphimcoburg.org/",
+    "image": "mobile-17.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "VOSKRESENIE.DE - Russische orthodoxe Kirche in München",
+    "width": 390,
+    "url": "https://voskresenie.de/",
+    "requested": "http://voskresenie.de",
+    "image": "mobile-18.png"
+  },
+  {
+    "frames": 2,
+    "scroll": 375,
+    "title": "Приход Святого равноапостольного князя Владимира — Русская православная церковь. Берлинская епархия, Московский патриархат. russische orthodoxe kirche marzahn.",
+    "width": 390,
+    "url": "https://www.berlin-orthodoxe-kirche.de/",
+    "requested": "http://www.berlin-orthodoxe-kirche.de",
+    "image": "mobile-19.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "Blagowest – Gemeinde der hl. Xenia von St. Petersburg",
+    "width": 390,
+    "url": "https://blagowest.de/",
+    "requested": "http://www.blagowest.de/",
+    "image": "mobile-20.png"
+  },
+  {
+    "frames": 3,
+    "scroll": 390,
+    "title": "Russisch orthodoxe Gemeinde Brandenburg an der Havel",
+    "width": 390,
+    "url": "http://www.brandenburg.orthodox.bplaced.de/ru/index.html",
+    "requested": "http://www.brandenburg.orthodox.bplaced.de/ru/index.html",
+    "image": "mobile-21.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "Русский православный приход в честь святителя Луки Крымского в Дибурге - Расписание",
+    "width": 390,
+    "url": "https://www.dieburg-orthodox.de/",
+    "requested": "http://www.dieburg-orthodox.de",
+    "image": "mobile-22.png"
+  },
+  {
+    "frames": 2,
+    "scroll": 375,
+    "title": "Храм cвятителя Николая в Гифхорне | Русская Православная Церковь. Московский Патриархат",
+    "width": 390,
+    "url": "https://gifhornhram.wordpress.com/",
+    "requested": "http://www.gifhornhram.wordpress.com",
+    "image": "mobile-23.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 390,
+    "title": "Православная церковь в Гамбурге. Миссионерский проект.",
+    "width": 390,
+    "url": "https://www.hamburg-hram.de/",
+    "requested": "http://www.hamburg-hram.de/",
+    "image": "mobile-24.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 507,
+    "title": "Startseite",
+    "width": 390,
+    "url": "https://koeln-orthodox.de/",
+    "requested": "http://www.hll-konstantin-helena-koeln.orthodoxy.ru",
+    "image": "mobile-25.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "hram",
+    "width": 390,
+    "url": "https://hram.de/",
+    "requested": "http://www.hram.de/",
+    "image": "mobile-26.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 1024,
+    "title": "Добро пожаловать в приход РПЦ МП города Кобленц",
+    "width": 390,
+    "url": "http://www.koblenz.orthodoxy.ru/",
+    "requested": "http://www.koblenz.orthodoxy.ru/",
+    "image": "mobile-27.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 390,
+    "title": "Приход Святой Троицы г. Дортмунда",
+    "width": 390,
+    "url": "https://nadegda.de/",
+    "requested": "http://www.nadegda.de",
+    "image": "mobile-28.png"
+  },
+  {
+    "frames": 1,
+    "scroll": 375,
+    "title": "Russische Orthodoxe Kirche",
+    "width": 390,
+    "url": "https://www.oberfranken-orthodoxie.de/",
+    "requested": "http://www.oberfranken-orthodoxie.de",
+    "image": "mobile-29.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 414,
+    "title": "Startseite | Hl. Simeon vom Wunderbaren Berge",
+    "width": 390,
+    "url": "https://www.orthodox-dresden.de/stsimeon/de",
+    "requested": "http://www.orthodox-dresden.de/",
+    "image": "mobile-30.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 790,
+    "title": "Orthodoxe Kirchengemeinde Bischofsheim a. d. Rhön",
+    "width": 390,
+    "url": "https://www.orthodoxe-kirche-bischofsheim.de/",
+    "requested": "http://www.orthodoxe-kirche-bischofsheim.de/",
+    "image": "mobile-31.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 652,
+    "title": "Orthodoxe Kirche Hl. Maria von Ägypten in Tuebingen / Gottesdienste",
+    "width": 390,
+    "url": "http://www.orthodoxekirche.de/Tuebingen/",
+    "requested": "http://www.orthodoxekirche.de/Tuebingen/",
+    "image": "mobile-32.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 558,
+    "title": "Православие во Фрейбурге | Новости, информация |",
+    "width": 390,
+    "url": "http://www.orthofr.de/",
+    "requested": "http://www.orthofr.de",
+    "image": "mobile-33.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 981,
+    "title": "Orthodoxie Düsseldorf",
+    "width": 390,
+    "url": "https://www.pokrow.de/de/",
+    "requested": "http://www.pokrow.de",
+    "image": "mobile-34.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "Приход св. пророка Илии в Штутгарте - Kirchengemeinde des heiligen Propheten Elias in Stuttgart",
+    "width": 390,
+    "url": "https://www.prophet-elias.com/ru",
+    "requested": "http://www.prophet-elias.com/ru",
+    "image": "mobile-35.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "Новости — Храм святой благоверной Тамары, царицы Грузинской",
+    "width": 390,
+    "url": "https://rok-aachen.de/category/%d0%bd%d0%be%d0%b2%d0%be%d1%81%d1%82%d0%b8/",
+    "requested": "http://www.rok-aachen.de/",
+    "image": "mobile-36.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 503,
+    "title": "Russische Orthodoxe Kirchengemeinde der Hl. Großmärtyrerin Barbara zu Krefeld - Hl. Barbara",
+    "width": 390,
+    "url": "https://www.rok-krefeld.de/",
+    "requested": "http://www.rok-krefeld.de",
+    "image": "mobile-37.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "Orthodoxe Hl. Antonius Gemeinde Mönchengladbach | Православный приход св. преп. Антония Великого, Мёнхенгладбах",
+    "width": 390,
+    "url": "https://www.rok-mg.de/",
+    "requested": "http://www.rok-mg.de",
+    "image": "mobile-38.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 1024,
+    "title": "Приход во имя св. сорока мучеников Севастийских в граде Трире-Виттлихе.",
+    "width": 390,
+    "url": "https://trierorthodox.net/",
+    "requested": "http://www.rok-trier.de",
+    "image": "mobile-39.png"
+  },
+  {
+    "frames": 1,
+    "scroll": 375,
+    "title": "Russisch-Orthodoxe Kirche in Weimar",
+    "width": 390,
+    "url": "https://www.rok-weimar.de/",
+    "requested": "http://www.rok-weimar.de/",
+    "image": "mobile-40.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "Russisch-Orthodoxe Kirche Würzburg: Gottesdienste, Gemeinde",
+    "width": 390,
+    "url": "https://rok-wuerzburg.de/",
+    "requested": "http://www.rok-wuerzburg.de/",
+    "image": "mobile-41.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 1043,
+    "title": "Русская Православная Церковь Кассель - Актуальные новости",
+    "width": 390,
+    "url": "https://www.rpz-kassel.de/",
+    "requested": "http://www.rpz-kassel.de",
+    "image": "mobile-42.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "Русская Православная Церковь (МП) Баден-Баден | Russisch-Orthodoxe Kirche des Moskauer Patriarchats in Baden-Baden",
+    "width": 390,
+    "url": "https://www.rus-kirche-baden.de/",
+    "requested": "http://www.rus-kirche-baden.de/",
+    "image": "mobile-43.png"
+  },
+  {
+    "frames": 1,
+    "scroll": 375,
+    "title": "Русский Храм-памятник в Лейпциге — Русский приход и храм в Лейпциге",
+    "width": 390,
+    "url": "http://russische-kirche-l.de/",
+    "requested": "http://www.russische-kirche-l.de/",
+    "image": "mobile-44.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 390,
+    "title": "",
+    "width": 390,
+    "url": "http://www.saarbruecken.orthodoxy.ru/",
+    "requested": "http://www.saarbruecken.orthodoxy.ru",
+    "image": "mobile-45.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "Русская православная церковь в г. Ульм Берлинско-Германская Епархия — Русская православная церковь в г. Ульм Берлинско-Германская Епархия",
+    "width": 390,
+    "url": "https://ulm-russische-kirche.eu/",
+    "requested": "http://www.ulm-russische-kirche.de",
+    "image": "mobile-46.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "VOSKRESENIE.DE - Russische orthodoxe Kirche in München",
+    "width": 390,
+    "url": "https://www.voskresenie.de/",
+    "requested": "http://www.voskresenie.de",
+    "image": "mobile-47.png"
+  },
+  {
+    "frames": 1,
+    "scroll": 390,
+    "title": "",
+    "width": 390,
+    "url": "https://celle-pravoslavie.de/",
+    "requested": "https://celle-pravoslavie.de",
+    "image": "mobile-48.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "Храм прп. Сергия Радонежского в Берлин © 2026 — All Rights Reserved — Just another WordPress site",
+    "width": 390,
+    "url": "https://heiliger-sergius-kirche.berlin/",
+    "requested": "https://heiliger-sergius-kirche.berlin",
+    "image": "mobile-49.png"
+  },
+  {
+    "frames": 1,
+    "scroll": 375,
+    "title": "Hof | oberfranken-orthodoxie.de",
+    "width": 390,
+    "url": "https://oberfranken-orthodoxie.de/hof.html",
+    "requested": "https://oberfranken-orthodoxie.de/hof.html",
+    "image": "mobile-50.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "Православная Церковь – г. Липпштадт",
+    "width": 390,
+    "url": "https://orthodox-lippstadt.de/ru/",
+    "requested": "https://orthodox-lippstadt.de/ru/",
+    "image": "mobile-51.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "Willkommen - Kirchengemeinde des hl. Erzengels Michael zu Göttingen",
+    "width": 390,
+    "url": "https://orthodoxia-goettingen.de/",
+    "requested": "https://orthodoxia-goettingen.de",
+    "image": "mobile-52.png"
+  },
+  {
+    "frames": 1,
+    "scroll": 375,
+    "title": "Православная oбщина в Штаде",
+    "width": 390,
+    "url": "https://pravoslavie-stade.de/",
+    "requested": "https://pravoslavie-stade.de/",
+    "image": "mobile-53.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "Церковь Свт. Николая Чудотворца",
+    "width": 390,
+    "url": "https://ro-kempten.com/",
+    "requested": "https://ro-kempten.com/",
+    "image": "mobile-54.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 920,
+    "title": "Hl.-Lazarus-Kirchengemeinde Nienburg – Orthodoxe Kirche in Nienburg – Berliner Diözese der Russisch-Orthodoxen Kirche",
+    "width": 390,
+    "url": "https://rok-nb.de/de/",
+    "requested": "https://rok-nb.de",
+    "image": "mobile-55.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 1188,
+    "title": "Russisch-orthodoxe Kirche in Bonn",
+    "width": 390,
+    "url": "https://rokbonn.de/",
+    "requested": "https://rokbonn.de/",
+    "image": "mobile-56.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "Русская православная церковь в Хузуме — Берлинско-Германская епархия Русской Православной Церкви Московского Патриархата",
+    "width": 390,
+    "url": "https://rokih.de/",
+    "requested": "https://rokih.de",
+    "image": "mobile-57.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "Home | rokil",
+    "width": 390,
+    "url": "https://rokil.jimdosite.com/",
+    "requested": "https://rokil.jimdosite.com",
+    "image": "mobile-58.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "Russische-Orthodoxe Kirche in Schwerin — des Hl. Gross Märtyrers Dimitrios von Thessaloniki",
+    "width": 390,
+    "url": "https://russisch-orthodoxe-kirche-in-schwerin.de/",
+    "requested": "https://russisch-orthodoxe-kirche-in-schwerin.de/",
+    "image": "mobile-59.png"
+  },
+  {
+    "frames": 1,
+    "scroll": 375,
+    "title": "- Russisch-Orthodoxe Kirche Passau - Lamberg-Kapelle",
+    "width": 390,
+    "url": "https://russische-kirche-passau.de/de/",
+    "requested": "https://russische-kirche-passau.de/",
+    "image": "mobile-60.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "Воскресенский собор",
+    "width": 390,
+    "url": "https://soborberlin.com/",
+    "requested": "https://soborberlin.com/",
+    "image": "mobile-61.png"
+  },
+  {
+    "frames": 1,
+    "scroll": 1117,
+    "title": "Gemeinde des Heiligen Isidor | Home",
+    "width": 390,
+    "url": "https://www.heiliger-isidor.de/",
+    "requested": "https://www.heiliger-isidor.de/",
+    "image": "mobile-62.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 981,
+    "title": "Orthodoxie Düsseldorf",
+    "width": 390,
+    "url": "https://www.pokrow.de/de/",
+    "requested": "https://www.rok-leverkusen.de",
+    "image": "mobile-63.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 375,
+    "title": "Главная - Русская Православная Церковь",
+    "width": 390,
+    "url": "https://www.rokmp-bielefeld.de/",
+    "requested": "https://www.rokmp-bielefeld.de/",
+    "image": "mobile-64.png"
+  },
+  {
+    "frames": 0,
+    "scroll": 980,
+    "title": "храм святых Константина и Елены в Берлине",
+    "width": 390,
+    "url": "https://xpam-tegel.wixsite.com/xpam",
+    "requested": "https://xpam-tegel.wixsite.com/xpam",
+    "image": "mobile-65.png"
+  }
+]
