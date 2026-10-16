@@ -11,10 +11,12 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--only', nargs='+', choices=['core', 'theme', 'connectors', 'telegram'], default=['core', 'theme', 'connectors'])
 selected = parser.parse_args().only
 
-def archive(folder: Path, filename: str) -> None:
+def archive(folder: Path, filename: str, excluded: tuple[tuple[str, str], ...] = ()) -> None:
     with zipfile.ZipFile(BUILD / filename, "w", zipfile.ZIP_DEFLATED) as output:
         for path in sorted(folder.rglob("*")):
             if path.is_file():
+                if path.relative_to(folder).parts[:2] in excluded:
+                    continue
                 output.write(path, Path(folder.name) / path.relative_to(folder))
 
 for name in (("prihod-telegram", "prihod-whatsapp", "prihod-social") if "connectors" in selected else (("prihod-telegram",) if "telegram" in selected else ())):
@@ -44,5 +46,5 @@ for name in (("prihod-telegram", "prihod-whatsapp", "prihod-social") if "connect
 if "core" in selected:
     archive(ROOT / "prihod", "prihod-1.0.0-rc.20.zip")
 if "theme" in selected:
-    archive(ROOT / "prihod-theme", "prihod-theme-0.3.28.zip")
+    archive(ROOT / "georg-kloster-prihod", "georg-kloster-prihod-0.4.0.zip", (("assets", "schemes"),))
 print("Built: " + ", ".join(selected))

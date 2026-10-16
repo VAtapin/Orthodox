@@ -1,0 +1,7 @@
+{
+  "preferredVersions": {"wp": "7.1", "php": "8.4"},
+  "steps": [
+    {"step": "activateTheme", "themeFolderName": "georg-kloster-prihod"},
+    {"step": "runPHP", "code": "<?php require '/wordpress/wp-content/plugins/prihod-tests/theme-core-release.php';"}
+  ]
+}

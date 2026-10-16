@@ -117,14 +117,14 @@ final class Wizard_View {
         }
         echo '</div><details class="prihod-wizard-details"><summary>' . esc_html__( 'Оформление', 'prihod' ) . '</summary>';
         $choices = array( 'current' => __( 'Текущая тема', 'prihod' ) . ' — ' . wp_get_theme()->get( 'Name' ) );
-        if ( wp_get_theme( 'prihod-theme' )->exists() && current_user_can( 'switch_themes' ) ) { $choices['prihod-theme'] = wp_get_theme( 'prihod-theme' )->get( 'Name' ); }
+        if ( wp_get_theme( 'georg-kloster-prihod' )->exists() && current_user_can( 'switch_themes' ) ) { $choices['georg-kloster-prihod'] = wp_get_theme( 'georg-kloster-prihod' )->get( 'Name' ); }
         self::select( 'theme_choice', __( 'Использовать тему', 'prihod' ), $choices, $answers['theme_choice'] ?? 'current' );
         $schemes = array( 'classic' => __( 'Классическая золотая', 'prihod' ), 'hospitality' => __( 'Светлая гостеприимная', 'prihod' ), 'editorial' => __( 'Журнальная', 'prihod' ), 'tradition' => __( 'Традиционная', 'prihod' ), 'blue' => __( 'Современная синяя', 'prihod' ) );
-        if ( wp_get_theme( 'prihod-theme' )->exists() && current_user_can( 'manage_options' ) ) { self::select( 'scheme_choice', __( 'Оформление темы «Приход»', 'prihod' ), array( 'inherit' => __( 'Сохранить текущее оформление', 'prihod' ) ) + $schemes, $answers['scheme_choice'] ?? 'inherit' ); }
+        if ( wp_get_theme( 'georg-kloster-prihod' )->exists() && current_user_can( 'manage_options' ) ) { self::select( 'scheme_choice', __( 'Оформление темы «Приход»', 'prihod' ), array( 'inherit' => __( 'Сохранить текущее оформление', 'prihod' ) ) + $schemes, $answers['scheme_choice'] ?? 'inherit' ); }
         echo '<div class="prihod-scheme-grid">';
         foreach ( $schemes as $scheme => $label ) { echo '<div class="prihod-scheme-preview ' . esc_attr( $scheme ) . '"><span aria-hidden="true"></span><strong>' . esc_html( $label ) . '</strong></div>'; }
         echo '</div><p>' . esc_html__( 'Выбор установленной темы и оформления применяется только после подтверждения плана. Установка новых тем выполняется вручную.', 'prihod' ) . '</p>';
-        if ( wp_get_theme( 'prihod-theme' )->exists() && current_user_can( 'switch_themes' ) ) { echo '<a href="' . esc_url( add_query_arg( 'wp_theme_preview', 'prihod-theme', admin_url( 'site-editor.php' ) ) ) . '" target="_blank" rel="noopener">' . esc_html__( 'Предварительный просмотр темы', 'prihod' ) . '</a>'; }
+        if ( wp_get_theme( 'georg-kloster-prihod' )->exists() && current_user_can( 'switch_themes' ) ) { echo '<a href="' . esc_url( add_query_arg( 'theme', 'georg-kloster-prihod', admin_url( 'customize.php' ) ) ) . '" target="_blank" rel="noopener">' . esc_html__( 'Предварительный просмотр темы', 'prihod' ) . '</a>'; }
         echo '</details>';
     }
     private static function plan( array $state ): void {
@@ -136,7 +136,7 @@ final class Wizard_View {
         if ( ! empty( $answers['publications'] ) ) { echo '<li>' . esc_html__( 'Рубрики новостей, объявлений и проповедей', 'prihod' ) . '</li>'; }
         foreach ( array( 'locations', 'clergy' ) as $group ) { foreach ( $answers[$group] ?? array() as $input ) { if ( is_string( $input['name'] ?? null ) && trim( $input['name'] ) ) { echo '<li>' . esc_html( $input['name'] ) . ' — ' . esc_html__( 'новый черновик', 'prihod' ) . '</li>'; } } }
         if ( ! empty( $answers['modules']['schedule'] ) && ! empty( $answers['service']['title'] ) ) { echo '<li>' . esc_html( $answers['service']['title'] ) . ' — ' . esc_html__( 'черновик первой службы', 'prihod' ) . '</li>'; }
-        $planned_theme = 'prihod-theme' === ( $answers['theme_choice'] ?? '' ) ? 'prihod-theme' : $plan['site']['theme'];
+        $planned_theme = 'georg-kloster-prihod' === ( $answers['theme_choice'] ?? '' ) ? 'georg-kloster-prihod' : $plan['site']['theme'];
         echo '</ul></div></article><article><span class="dashicons dashicons-admin-appearance" aria-hidden="true"></span><div><h3>' . esc_html__( 'Оформление', 'prihod' ) . '</h3><p>' . esc_html( wp_get_theme( $planned_theme )->get( 'Name' ) );
         $scheme_names = array( 'classic' => __( 'Классическая золотая', 'prihod' ), 'hospitality' => __( 'Светлая гостеприимная', 'prihod' ), 'editorial' => __( 'Журнальная', 'prihod' ), 'tradition' => __( 'Традиционная', 'prihod' ), 'blue' => __( 'Современная синяя', 'prihod' ) );
         if ( isset( $scheme_names[$answers['scheme_choice'] ?? ''] ) ) { echo ' · ' . esc_html( $scheme_names[$answers['scheme_choice']] ); }
@@ -158,7 +158,7 @@ final class Wizard_View {
         echo '<section class="prihod-wizard-welcome"><div><h2>' . esc_html__( 'Добро пожаловать!', 'prihod' ) . '</h2><p class="prihod-wizard-lead">' . esc_html__( 'Этот мастер поможет подготовить сайт вашего прихода.', 'prihod' ) . '</p><ul>';
         foreach ( array( 'admin-generic' => array( __( 'Пошаговая настройка', 'prihod' ), __( 'Ответьте на несколько вопросов', 'prihod' ) ), 'media-document' => array( __( 'Подготовка страниц', 'prihod' ), __( 'Страницы создаются черновиками после подтверждения', 'prihod' ) ), 'screenoptions' => array( __( 'Только то, что нужно', 'prihod' ), __( 'Вы выбираете нужные возможности', 'prihod' ) ), 'backup' => array( __( 'Можно настроить позже', 'prihod' ), __( 'Вернитесь к любому шагу, сохранив ресурсы', 'prihod' ) ) ) as $icon => $text ) { echo '<li><span class="dashicons dashicons-' . esc_attr( $icon ) . '" aria-hidden="true"></span><div><strong>' . esc_html( $text[0] ) . '</strong><p>' . esc_html( $text[1] ) . '</p></div></li>'; }
         echo '</ul>'; self::form( $state ); echo '<button class="button button-primary" name="operation" value="start">' . esc_html__( 'Начать настройку', 'prihod' ) . ' →</button> <button class="button button-link" name="operation" value="dismiss">' . esc_html__( 'Настроить позже', 'prihod' ) . '</button></form></div><aside>';
-        $options = get_option( 'prihod_theme_options', array() ); $photo = absint( $options['hero_image'] ?? 0 );
+        $options = get_option( 'georg_kloster_prihod_options', array() ); $photo = absint( $options['hero_image'] ?? 0 );
         if ( $photo ) { echo wp_get_attachment_image( $photo, 'large', false, array( 'alt' => '' ) ); }
         else { echo Admin_Navigation::symbol( 'church' ) . '<h3>' . esc_html__( 'Сайт прихода', 'prihod' ) . '</h3>'; }
         echo '</aside></section>';

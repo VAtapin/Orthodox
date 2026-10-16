@@ -5,12 +5,12 @@ import re
 
 ROOT = Path(__file__).resolve().parent.parent
 count = 0
-for folder, domain in [('prihod', 'prihod'), ('prihod-theme', 'prihod-theme'), ('extensions/prihod-telegram', 'prihod-telegram')]:
+for folder, domain in [('prihod', 'prihod'), ('georg-kloster-prihod', 'georg-kloster-prihod'), ('extensions/prihod-telegram', 'prihod-telegram')]:
     files = list((ROOT / folder).rglob('*.php')) + list((ROOT / folder).rglob('*.js'))
     if folder == 'extensions/prihod-telegram': files.append(ROOT / 'extensions/common/class-connector.php')
     messages = {match[1] for path in files for match in re.findall(r"(?:__|esc_html__|esc_attr__)\(\s*(['\"])(.*?)\1\s*,\s*'[^']+'", path.read_text(encoding='utf-8'))}
     for locale in ['de_DE', 'pl_PL', 'uk']:
-        name = locale if folder == 'prihod-theme' else f'{domain}-{locale}'
+        name = locale if folder == 'georg-kloster-prihod' else f'{domain}-{locale}'
         with (ROOT / folder / 'languages' / f'{name}.mo').open('rb') as stream:
             catalog = gettext.GNUTranslations(stream)
         for message in messages:

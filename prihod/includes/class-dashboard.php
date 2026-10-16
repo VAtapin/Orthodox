@@ -25,7 +25,7 @@ final class Dashboard {
     }
     public static function organize_menu(): void {
         global $submenu;
-        $hidden = array( 'prihod-profile', 'prihod-integrations', 'prihod-settings', 'prihod-check', 'prihod-access', 'prihod-data', 'prihod-theme', 'prihod-connect-telegram', 'prihod-connect-whatsapp', 'prihod-connect-facebook', 'edit.php?post_type=prihod_location', 'edit.php?post_type=prihod_clergy' );
+        $hidden = array( 'prihod-profile', 'prihod-integrations', 'prihod-settings', 'prihod-check', 'prihod-access', 'prihod-data', 'georg-kloster-prihod', 'prihod-connect-telegram', 'prihod-connect-whatsapp', 'prihod-connect-facebook', 'edit.php?post_type=prihod_location', 'edit.php?post_type=prihod_clergy' );
         foreach ( $hidden as $slug ) {
             $original_hook = get_plugin_page_hookname( $slug, 'prihod' );
             $item = remove_submenu_page( 'prihod', $slug );
@@ -137,8 +137,8 @@ final class Dashboard {
         echo '<div class="wrap prihod-dashboard"><h1>' . esc_html__( 'Наши плагины', 'prihod' ) . '</h1><div class="prihod-dash-grid">';
         $installed = get_plugins();
         echo '<section class="prihod-dash-card"><h2>' . esc_html__( 'Приход', 'prihod' ) . '</h2><p>Core · ' . esc_html( PRIHOD_VERSION ) . '</p>'; self::button( __( 'Настройки модулей', 'prihod' ), 'admin.php?page=prihod-settings' ); echo '</section>';
-        $theme = wp_get_theme( 'prihod-theme' );
-        if ( $theme->exists() ) { echo '<section class="prihod-dash-card"><h2>' . esc_html__( 'Оформление прихода', 'prihod' ) . '</h2><p>' . esc_html( $theme->get( 'Name' ) ) . ' · ' . esc_html( $theme->get( 'Version' ) ) . '</p>'; if ( current_user_can( 'manage_options' ) && function_exists( 'prihod_theme_settings_page' ) ) { self::button( __( 'Настройки', 'prihod' ), 'admin.php?page=prihod-theme' ); } echo '</section>'; }
+        $theme = wp_get_theme( 'georg-kloster-prihod' );
+        if ( $theme->exists() ) { echo '<section class="prihod-dash-card"><h2>' . esc_html__( 'Оформление прихода', 'prihod' ) . '</h2><p>' . esc_html( $theme->get( 'Name' ) ) . ' · ' . esc_html( $theme->get( 'Version' ) ) . '</p>'; if ( current_user_can( 'manage_options' ) && function_exists( 'prihod_theme_settings_page' ) ) { self::button( __( 'Настройки', 'prihod' ), 'themes.php?page=georg-kloster-prihod' ); } echo '</section>'; }
         foreach ( Plugin::boot()->integrations()->all() as $integration ) {
             $report = Plugin::boot()->integrations()->report( $integration );
             $paths = array( 'calendar' => 'orthocal/orthocal.php', 'prayer-notes' => 'georg-kloster-orthodox-donate/georg-kloster-orthodox-donate.php', 'telegram' => 'prihod-telegram/prihod-telegram.php', 'whatsapp' => 'prihod-whatsapp/prihod-whatsapp.php', 'facebook' => 'prihod-social/prihod-social.php' );
@@ -156,7 +156,7 @@ final class Dashboard {
         self::require_capability( 'manage_prihod_settings' );
         echo '<div class="wrap prihod-dashboard"><h1>' . esc_html__( 'Настройки', 'prihod' ) . '</h1><p class="prihod-dash-actions">';
         foreach ( array( 'prihod-settings' => __( 'Настройки модулей', 'prihod' ), 'prihod-plugins' => __( 'Наши плагины', 'prihod' ), 'prihod-check' => __( 'Проверка сайта', 'prihod' ), 'prihod-access' => __( 'Права сотрудников', 'prihod' ), 'prihod-data' => __( 'Удаление данных', 'prihod' ) ) as $page => $title ) { self::button( $title, 'admin.php?page=' . $page ); }
-        if ( current_user_can( 'manage_options' ) && function_exists( 'prihod_theme_settings_page' ) ) { self::button( __( 'Оформление прихода', 'prihod' ), 'admin.php?page=prihod-theme' ); }
+        if ( current_user_can( 'manage_options' ) && function_exists( 'prihod_theme_settings_page' ) ) { self::button( __( 'Оформление прихода', 'prihod' ), 'themes.php?page=georg-kloster-prihod' ); }
         echo '</p><div class="prihod-dash-grid">';
         foreach ( Plugin::boot()->integrations()->all() as $integration ) {
             $report = Plugin::boot()->integrations()->report( $integration );
