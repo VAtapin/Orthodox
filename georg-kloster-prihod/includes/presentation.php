@@ -30,7 +30,7 @@ function prihod_theme_preview_url( string $url ): string {
     return $preview && wp_parse_url( $url, PHP_URL_HOST ) === wp_parse_url( home_url(), PHP_URL_HOST ) ? add_query_arg( 'prihod_preview', $preview, $url ) : $url;
 }
 function prihod_theme_compact_services( int $limit = 1 ): string {
-    if ( ! class_exists( '\Prihod\Schedule' ) || ! \Prihod\Modules::enabled( 'schedule' ) ) { return ''; }
+    if ( ! class_exists( '\Prihod\Schedule' ) || ! is_callable( array( '\Prihod\Modules', 'enabled' ) ) || ! \Prihod\Modules::enabled( 'schedule' ) ) { return ''; }
     $events = \Prihod\Schedule::next( 0, $limit ); $html = '';
     foreach ( $events as $event ) {
         $date = $event['start'];
@@ -57,6 +57,7 @@ function prihod_theme_section_title( string $title, string $url = '', string $li
 }
 function prihod_theme_contact_panel(): string {
     $profile = prihod_theme_profile(); $options = georg_kloster_prihod_options();
+    if ( ! $profile['address'] && ! $profile['phone'] && ! $profile['email'] ) { return ''; }
     $html = '<section class="prihod-home-contacts">' . prihod_theme_section_title( __( 'Как нас найти', 'georg-kloster-prihod' ) ) . '<div class="prihod-contact-layout"><div class="prihod-contact-list">';
     foreach ( array( 'address' => array( 'contacts', __( 'Адрес', 'georg-kloster-prihod' ) ), 'phone' => array( 'phone', __( 'Телефон', 'georg-kloster-prihod' ) ), 'email' => array( 'email', __( 'Email', 'georg-kloster-prihod' ) ) ) as $key => $item ) {
         if ( empty( $profile[$key] ) ) { continue; }
@@ -66,25 +67,13 @@ function prihod_theme_contact_panel(): string {
         $html .= '<div>' . prihod_theme_icon( $item[0] ) . '<div><h3>' . esc_html( $item[1] ) . '</h3><p>' . $text . '</p></div></div>';
     }
     $html .= '</div>';
-    $html .= prihod_theme_contact_map();
     if ( 'hospitality' === prihod_theme_scheme() ) { $html .= '<aside class="prihod-contact-quote">' . prihod_theme_verse() . '</aside>'; }
     elseif ( 'editorial' === prihod_theme_scheme() ) {
         $html .= '<aside class="prihod-contact-welcome"><div><h3>' . esc_html__( 'Мы рядом', 'georg-kloster-prihod' ) . '</h3><p>' . esc_html( $profile['description'] ) . '</p>';
         $contact = prihod_theme_url( 'contacts' );
         if ( $contact ) { $html .= '<a href="' . esc_url( $contact ) . '">' . esc_html__( 'Связаться с нами', 'georg-kloster-prihod' ) . ' →</a>'; }
-        $html .= '</div>' . prihod_theme_photo( $options['about_image'] ?: $options['hero_image'], 'medium' ) . '</aside>';
+        $html .= '</div>' . prihod_theme_photo( $options['hero_image'], 'medium' ) . '</aside>';
     }
     elseif ( 'tradition' === prihod_theme_scheme() ) { $html .= '<aside class="prihod-contact-motto">' . prihod_theme_verse() . prihod_theme_icon( 'cross' ) . '</aside>'; }
     return $html . '</div></section>';
-}
-
-function prihod_theme_contact_map(): string {
-    $profile = prihod_theme_profile(); $options = georg_kloster_prihod_options(); $html = '';
-    if ( $options['map_url'] ) {
-        $html .= '<div class="prihod-contact-map">';
-        if ( ! empty( $options['map_embed'] ) ) { $html .= '<iframe loading="eager" title="' . esc_attr__( 'Как нас найти', 'georg-kloster-prihod' ) . '" referrerpolicy="no-referrer" src="' . esc_url( $options['map_embed'] ) . '"></iframe>'; }
-        else { $html .= '<div class="prihod-map-address">' . prihod_theme_icon( 'contacts' ) . '<p>' . esc_html( $profile['address'] ) . '</p></div>'; }
-        $html .= '<a class="prihod-button is-outline" href="' . esc_url( $options['map_url'] ) . '" target="_blank" rel="noopener">' . esc_html__( 'Открыть карту', 'georg-kloster-prihod' ) . ' →</a></div>';
-    }
-    return $html;
 }

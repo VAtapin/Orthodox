@@ -16,7 +16,7 @@ The theme does not create pages or send data to external services. Optional pari
 
 == Installation ==
 
-Upload the theme ZIP under Appearance > Themes, activate it, then choose a visual style under Appearance > Parish Appearance. Add your own pages, navigation, logo, and photographs in WordPress. An optional OpenStreetMap iframe loads only when its HTTPS embed URL is saved in the theme settings. This sends the visitor's browser request to OpenStreetMap; see https://osmfoundation.org/wiki/Privacy_Policy. No other remote service is contacted by the theme.
+Upload the theme ZIP under Appearance > Themes, activate it, then choose a visual style under Appearance > Parish Appearance. Add your own pages, navigation, logo, and photographs in WordPress. The theme does not load an external map or contact service. Add those features through page content or optional plugins.
 
 == Frequently Asked Questions ==
 

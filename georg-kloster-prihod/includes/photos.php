@@ -66,8 +66,12 @@ add_action( 'wp_enqueue_scripts', function () {
 
 // Register each asynchronous icon with the existing native Image viewer before hydration.
 add_filter( 'prihod_schedule_icon_markup', static function ( string $html, array $event, ?array $fallback ): string {
-    $seed = $fallback['url'] ?? plugins_url( 'assets/icons/christ.jpg', PRIHOD_FILE );
+    if ( ! is_callable( array( '\\Prihod\\Schedule_Calendar', 'image_url' ) ) || ! isset( $event['start'] ) || ! $event['start'] instanceof DateTimeInterface ) {
+        return $html;
+    }
     $full_url = \Prihod\Schedule_Calendar::image_url( $event['start']->format( 'Y-m-d' ) );
+    if ( ! $full_url ) { return $html; }
+    $seed = $fallback['url'] ?? $full_url;
     $image = '<img src="' . esc_url( $full_url ) . '" alt="' . esc_attr__( 'Икона дня', 'georg-kloster-prihod' ) . '" decoding="async">';
     $html = str_replace( '</figure>', $image . '</figure>', $html );
     $html = prihod_theme_photo_html( $html, 0, '', true );

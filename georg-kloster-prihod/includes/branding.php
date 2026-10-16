@@ -19,6 +19,7 @@ function prihod_theme_branding_panel( array $options ): void {
     $fields = array(
         'logo' => array( __( 'Логотип', 'georg-kloster-prihod' ), $options['logo_removed'] ? 0 : ( $options['logo'] ?: get_theme_mod( 'custom_logo' ) ), 'georg_kloster_prihod_options[logo]' ),
         'icon' => array( __( 'Иконка сайта', 'georg-kloster-prihod' ), get_option( 'site_icon' ), 'site_icon' ),
+        'hero_image' => array( __( 'Главное фото', 'georg-kloster-prihod' ), $options['hero_image'], 'georg_kloster_prihod_options[hero_image]' ),
     );
     foreach ( $fields as $kind => $field ) {
         echo '<div class="prihod-media-field prihod-branding-field" data-branding="' . esc_attr( $kind ) . '"><h3>' . esc_html( $field[0] ) . '</h3><input type="hidden" name="' . esc_attr( $field[2] ) . '" value="' . absint( 'logo' === $kind ? $options['logo'] : $field[1] ) . '"><div class="prihod-media-preview">';
@@ -31,7 +32,7 @@ function prihod_theme_branding_panel( array $options ): void {
                 echo '<input type="hidden" name="georg_kloster_prihod_options[' . esc_attr( $key ) . ']" value="0"><p><label><input type="checkbox" name="georg_kloster_prihod_options[' . esc_attr( $key ) . ']" value="1"' . checked( $control[1], true, false ) . '> ' . esc_html( $control[0] ) . '</label></p>';
             }
             echo '<div class="prihod-logo-example"><span class="prihod-logo-example-image">' . ( $field[1] ? wp_get_attachment_image( absint( $field[1] ), 'full' ) : '' ) . '</span><strong>' . esc_html( prihod_theme_profile()['short_name'] ?? prihod_theme_profile()['name'] ) . '</strong></div><p class="prihod-brand-empty" hidden>' . esc_html__( 'Логотип и название отключены. На сайте останется ссылка на главную страницу.', 'georg-kloster-prihod' ) . '</p>';
-        } else {
+        } elseif ( 'icon' === $kind ) {
             echo '<p>' . esc_html__( 'Иконка должна быть квадратной, не менее 512 × 512 px.', 'georg-kloster-prihod' ) . '</p>';
             echo '<div class="prihod-icon-example"><span>' . ( $field[1] ? wp_get_attachment_image( absint( $field[1] ), array( 32, 32 ) ) : '' ) . '</span>' . esc_html( get_bloginfo( 'name' ) ) . '</div>';
         }

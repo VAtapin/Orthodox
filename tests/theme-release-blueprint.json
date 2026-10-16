@@ -2,6 +2,6 @@
   "preferredVersions": {"wp": "7.1", "php": "8.4"},
   "steps": [
     {"step": "activateTheme", "themeFolderName": "georg-kloster-prihod"},
-    {"step": "runPHP", "code": "<?php require '/wordpress/wp-content/plugins/prihod-tests/theme-release.php';"}
+    {"step": "runPHP", "code": "<?php define('WP_DISABLE_FATAL_ERROR_HANDLER', true); try { require '/wordpress/wp-content/plugins/prihod-tests/theme-release.php'; } catch (Throwable $error) { echo get_class($error) . ': ' . $error->getMessage() . '\\n' . $error->getTraceAsString(); throw $error; }"}
   ]
 }

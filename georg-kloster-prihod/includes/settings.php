@@ -3,8 +3,8 @@ defined( 'ABSPATH' ) || exit;
 
 function georg_kloster_prihod_options(): array {
     $saved = get_option( 'georg_kloster_prihod_options', array() );
-    $saved = array_merge( array( 'logo_show' => true ), is_array( $saved ) ? $saved : array() );
-    return array_merge( array( 'feature_schedule' => 0, 'feature_news' => 0, 'feature_about' => 0, 'feature_requests' => 0, 'feature_donations' => 0, 'hero_image' => 0, 'about_image' => 0, 'request_image' => 0, 'pilgrim_image' => 0, 'pilgrim_photos' => '', 'logo' => 0, 'logo_width' => 240, 'logo_removed' => false, 'logo_hide_title' => false, 'gallery' => '', 'about_history_photos' => '', 'about_life_photos' => '', 'map_url' => '', 'map_embed' => '', 'languages' => array(), 'scheme' => '', 'width' => 1200, 'font' => 'sans', 'font_size' => 16, 'sticky_header' => false, 'header_contacts' => true, 'footer_text' => '', 'header_motto' => __( 'С любовью к Богу и людям', 'georg-kloster-prihod' ), 'hero_motto' => __( 'Вера объединяет сердца', 'georg-kloster-prihod' ), 'hero_quote_text' => __( 'Где двое или трое собраны во имя Моё, там Я посреди них', 'georg-kloster-prihod' ), 'hero_quote_source' => __( 'Мф. 18:20', 'georg-kloster-prihod' ), 'quote_text' => __( 'Где двое или трое собраны во имя Моё, там Я посреди них', 'georg-kloster-prihod' ), 'quote_source' => __( 'Мф. 18:20', 'georg-kloster-prihod' ) ), is_array( $saved ) ? $saved : array() );
+    $defaults = array( 'hero_image' => 0, 'logo' => 0, 'logo_show' => true, 'logo_width' => 240, 'logo_removed' => false, 'logo_hide_title' => false, 'languages' => array(), 'scheme' => '', 'width' => 1200, 'font' => 'sans', 'font_size' => 16, 'sticky_header' => false, 'header_contacts' => true, 'footer_text' => '', 'header_motto' => __( 'С любовью к Богу и людям', 'georg-kloster-prihod' ), 'hero_motto' => __( 'Вера объединяет сердца', 'georg-kloster-prihod' ), 'hero_quote_text' => __( 'Где двое или трое собраны во имя Моё, там Я посреди них', 'georg-kloster-prihod' ), 'hero_quote_source' => __( 'Мф. 18:20', 'georg-kloster-prihod' ), 'quote_text' => __( 'Где двое или трое собраны во имя Моё, там Я посреди них', 'georg-kloster-prihod' ), 'quote_source' => __( 'Мф. 18:20', 'georg-kloster-prihod' ) );
+    return array_merge( $defaults, is_array( $saved ) ? array_intersect_key( $saved, $defaults ) : array() );
 }
 function prihod_theme_sanitize( $input ): array {
     $out = georg_kloster_prihod_options();
@@ -20,22 +20,10 @@ function prihod_theme_sanitize( $input ): array {
     $out['font_size'] = max( 14, min( 20, is_scalar( $input['font_size'] ?? null ) ? absint( $input['font_size'] ) : 16 ) );
     $out['font'] = in_array( $input['font'] ?? null, array( 'sans', 'serif' ), true ) ? $input['font'] : 'sans';
     $out['footer_text'] = is_string( $input['footer_text'] ?? null ) ? sanitize_textarea_field( $input['footer_text'] ) : '';
-    foreach ( array( 'hero_image', 'about_image', 'request_image', 'pilgrim_image', 'logo', 'feature_schedule', 'feature_news', 'feature_about', 'feature_requests', 'feature_donations' ) as $key ) {
-        if ( in_array( $key, array( 'pilgrim_image', 'logo' ), true ) && ! array_key_exists( $key, $input ) ) { continue; }
+    foreach ( array( 'hero_image', 'logo' ) as $key ) {
+        if ( ! array_key_exists( $key, $input ) ) { continue; }
         $id = is_scalar( $input[ $key ] ?? null ) ? absint( $input[ $key ] ) : 0;
         $out[ $key ] = $id && wp_attachment_is_image( $id ) ? $id : 0;
-    }
-    $ids = is_string( $input['gallery'] ?? null ) ? array_slice( array_filter( array_map( 'absint', explode( ',', $input['gallery'] ) ) ), 0, 12 ) : array();
-    $out['gallery'] = implode( ',', array_filter( $ids, 'wp_attachment_is_image' ) );
-    foreach ( array( 'about_history_photos' => 2, 'about_life_photos' => 3, 'pilgrim_photos' => 4 ) as $key => $limit ) {
-        if ( ! array_key_exists( $key, $input ) ) { continue; }
-        $ids = is_string( $input[$key] ) ? array_slice( array_unique( array_map( 'absint', explode( ',', $input[$key] ) ) ), 0, $limit ) : array();
-        $out[$key] = implode( ',', array_filter( $ids, 'wp_attachment_is_image' ) );
-    }
-    $out['map_url'] = is_string( $input['map_url'] ?? null ) ? esc_url_raw( $input['map_url'], array( 'https' ) ) : '';
-    if ( array_key_exists( 'map_embed', $input ) ) {
-        $embed = is_string( $input['map_embed'] ) ? esc_url_raw( $input['map_embed'], array( 'https' ) ) : '';
-        $out['map_embed'] = 'https' === wp_parse_url( $embed, PHP_URL_SCHEME ) && 'www.openstreetmap.org' === wp_parse_url( $embed, PHP_URL_HOST ) && '/export/embed.html' === wp_parse_url( $embed, PHP_URL_PATH ) ? $embed : '';
     }
     foreach ( array( 'quote_text', 'quote_source', 'header_motto', 'hero_motto', 'hero_quote_text', 'hero_quote_source' ) as $key ) { if ( array_key_exists( $key, $input ) ) { $out[$key] = is_string( $input[$key] ) ? sanitize_textarea_field( $input[$key] ) : ''; } }
     $out['languages'] = array();
@@ -65,7 +53,7 @@ function prihod_theme_schemes(): array {
 function prihod_theme_settings_page(): void {
     if ( ! current_user_can( 'edit_theme_options' ) ) { wp_die( esc_html__( 'Недостаточно прав.', 'georg-kloster-prihod' ) ); }
     $options = georg_kloster_prihod_options();
-    $sections = array( 'schemes' => __( 'Оформление', 'georg-kloster-prihod' ), 'layout' => __( 'Макет и шрифты', 'georg-kloster-prihod' ), 'branding' => __( 'Логотип и иконка', 'georg-kloster-prihod' ), 'photos' => __( 'Фотографии', 'georg-kloster-prihod' ), 'header' => __( 'Шапка и подвал', 'georg-kloster-prihod' ), 'languages' => __( 'Языки', 'georg-kloster-prihod' ) );
+    $sections = array( 'schemes' => __( 'Оформление', 'georg-kloster-prihod' ), 'layout' => __( 'Макет и шрифты', 'georg-kloster-prihod' ), 'branding' => __( 'Логотип и иконка', 'georg-kloster-prihod' ), 'header' => __( 'Шапка и подвал', 'georg-kloster-prihod' ), 'languages' => __( 'Языки', 'georg-kloster-prihod' ) );
     echo '<div class="wrap georg-kloster-prihod-settings"><h1>' . esc_html__( 'Оформление прихода', 'georg-kloster-prihod' ) . ' <small>' . esc_html( wp_get_theme()->get( 'Version' ) ) . '</small></h1>';
     settings_errors();
     echo '<div class="prihod-options-shell"><nav class="prihod-options-nav" aria-label="' . esc_attr__( 'Разделы настроек', 'georg-kloster-prihod' ) . '">';
@@ -85,15 +73,7 @@ function prihod_theme_settings_page(): void {
     foreach ( array( 'width' => array( __( 'Ширина сайта, px', 'georg-kloster-prihod' ), 960, 1440 ), 'font_size' => array( __( 'Размер основного текста, px', 'georg-kloster-prihod' ), 14, 20 ) ) as $key => $field ) { echo '<p><label>' . esc_html( $field[0] ) . '<br><input type="number" min="' . $field[1] . '" max="' . $field[2] . '" name="georg_kloster_prihod_options[' . esc_attr( $key ) . ']" value="' . esc_attr( $options[$key] ) . '"></label></p>'; }
     echo '<p><label>' . esc_html__( 'Основной шрифт', 'georg-kloster-prihod' ) . '<br><select name="georg_kloster_prihod_options[font]">';
     foreach ( array( 'sans' => __( 'Простой', 'georg-kloster-prihod' ), 'serif' => __( 'Книжный', 'georg-kloster-prihod' ) ) as $id => $title ) { echo '<option value="' . $id . '"' . selected( $options['font'], $id, false ) . '>' . esc_html( $title ) . '</option>'; }
-    echo '</select></label></p></section>'; prihod_theme_branding_panel( $options ); echo '<section id="prihod-option-photos" class="prihod-option-section"><h2>' . esc_html( $sections['photos'] ) . '</h2>';
-    foreach ( array( 'hero_image' => __( 'Главное фото', 'georg-kloster-prihod' ), 'about_image' => __( 'Фото прихода', 'georg-kloster-prihod' ), 'request_image' => __( 'Фото страницы вопроса', 'georg-kloster-prihod' ), 'pilgrim_image' => __( 'Фото заголовка паломникам', 'georg-kloster-prihod' ), 'pilgrim_photos' => __( 'Фото страницы паломникам', 'georg-kloster-prihod' ), 'gallery' => __( 'Фотогалерея', 'georg-kloster-prihod' ), 'about_history_photos' => __( 'Фото после истории', 'georg-kloster-prihod' ), 'about_life_photos' => __( 'Фото жизни общины', 'georg-kloster-prihod' ), 'feature_schedule' => __( 'Карточка расписания', 'georg-kloster-prihod' ), 'feature_news' => __( 'Карточка новостей', 'georg-kloster-prihod' ), 'feature_about' => __( 'Карточка общины', 'georg-kloster-prihod' ), 'feature_requests' => __( 'Карточка вопроса священнику', 'georg-kloster-prihod' ), 'feature_donations' => __( 'Карточка помощи', 'georg-kloster-prihod' ) ) as $key => $label ) {
-        echo '<div class="prihod-media-field"><h2>' . esc_html( $label ) . '</h2><input type="hidden" name="georg_kloster_prihod_options[' . esc_attr( $key ) . ']" value="' . esc_attr( $options[ $key ] ) . '"><div class="prihod-media-preview">';
-        foreach ( explode( ',', (string) $options[ $key ] ) as $id ) { echo wp_get_attachment_image( absint( $id ), 'thumbnail' ); }
-        echo '</div><button class="button prihod-media-select" type="button" data-multiple="' . ( in_array( $key, array( 'gallery', 'about_history_photos', 'about_life_photos', 'pilgrim_photos' ), true ) ? '1' : '0' ) . '">' . esc_html__( 'Выбрать фотографии', 'georg-kloster-prihod' ) . '</button> <button class="button prihod-media-clear" type="button">' . esc_html__( 'Убрать', 'georg-kloster-prihod' ) . '</button></div>';
-    }
-    echo '<p><label>' . esc_html__( 'Ссылка на карту (HTTPS)', 'georg-kloster-prihod' ) . '<br><input type="url" class="regular-text" name="georg_kloster_prihod_options[map_url]" value="' . esc_attr( $options['map_url'] ) . '"></label></p>';
-    echo '<p><label>' . esc_html__( 'Встраиваемая карта OpenStreetMap (HTTPS)', 'georg-kloster-prihod' ) . '<br><input type="url" class="regular-text" name="georg_kloster_prihod_options[map_embed]" value="' . esc_attr( $options['map_embed'] ?? '' ) . '"></label></p>';
-    echo '<p>' . esc_html__( 'Выберите собственные фотографии из медиатеки. Без фото отображается спокойный фон. Скриншоты макетов не используются как контент.', 'georg-kloster-prihod' ) . '</p></section><section id="prihod-option-header" class="prihod-option-section"><h2>' . esc_html( $sections['header'] ) . '</h2>';
+    echo '</select></label></p></section>'; prihod_theme_branding_panel( $options ); echo '<section id="prihod-option-header" class="prihod-option-section"><h2>' . esc_html( $sections['header'] ) . '</h2>';
     foreach ( array( 'sticky_header' => __( 'Закрепить шапку при прокрутке', 'georg-kloster-prihod' ), 'header_contacts' => __( 'Показывать контакты в шапке', 'georg-kloster-prihod' ) ) as $key => $title ) { echo '<p><label><input type="checkbox" name="georg_kloster_prihod_options[' . esc_attr( $key ) . ']" value="1"' . checked( $options[$key], true, false ) . '> ' . esc_html( $title ) . '</label></p>'; }
     echo '<p><label>' . esc_html__( 'Текст цитаты', 'georg-kloster-prihod' ) . '<br><textarea class="large-text" rows="3" name="georg_kloster_prihod_options[quote_text]">' . esc_textarea( $options['quote_text'] ) . '</textarea></label></p><p><label>' . esc_html__( 'Источник цитаты', 'georg-kloster-prihod' ) . '<br><input class="regular-text" name="georg_kloster_prihod_options[quote_source]" value="' . esc_attr( $options['quote_source'] ) . '"></label></p>';
     foreach ( array( 'header_motto' => __( 'Девиз в шапке классической схемы', 'georg-kloster-prihod' ), 'hero_motto' => __( 'Надпись первого экрана классической схемы', 'georg-kloster-prihod' ), 'hero_quote_text' => __( 'Цитата под кнопками синей схемы', 'georg-kloster-prihod' ), 'hero_quote_source' => __( 'Источник цитаты синей схемы', 'georg-kloster-prihod' ) ) as $key => $label ) { echo '<p><label>' . esc_html( $label ) . '<br><textarea class="large-text" rows="2" name="georg_kloster_prihod_options[' . esc_attr( $key ) . ']">' . esc_textarea( $options[$key] ) . '</textarea></label></p>'; }
