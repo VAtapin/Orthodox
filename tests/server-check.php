@@ -175,7 +175,7 @@ $check( is_bool( $reminders['enabled'] ) && ( '' === $reminders['time'] || Priho
 echo "CALENDAR_FEATURES_CHECK_OK: {$checked} total checks.\n";
 
 $check( 9 === count( Prihod\Calendar_Colors::labels() ) && 'blue' === Prihod\Calendar_Colors::recommendation( array( 'Покров Пресвятой Богородицы' ) )['color'], 'Automatic choice, seven vestment colors plus neutral and Pokrov recommendation must be available.' );
-$check( is_readable( WP_PLUGIN_DIR . '/prihod/assets/calendar-colors.js' ) && ( ! Prihod\Schedule::next() || str_contains( prihod_theme_compact_services(), 'data-prihod-feast' ) ), 'Homepage uses real calendar feast hooks and color editor is installed.' );
+$check( is_readable( WP_PLUGIN_DIR . '/prihod/assets/calendar-colors.js' ) && ( ! Prihod\Schedule::next() || ( 1 === substr_count( prihod_theme_compact_services(), 'class="prihod-icon"' ) && ! str_contains( prihod_theme_compact_services(), 'data-prihod-feast' ) ) ), 'Homepage compact service shows one location icon and color editor is installed.' );
 echo 'CALENDAR_COLORS_CHECK_OK: ' . $checked . ' total checks.' . PHP_EOL;
 
 $check( '1.0.0-rc.20' === get_plugin_data( WP_PLUGIN_DIR . '/prihod/prihod.php', false, false )['Version'], 'Calendar release requires Core rc.20.' );

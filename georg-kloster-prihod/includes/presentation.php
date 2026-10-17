@@ -46,10 +46,8 @@ function prihod_theme_compact_services( int $limit = 1 ): string {
     if ( ! $events ) { return ''; }
     foreach ( $events as $event ) {
         $date = $event['start'];
-        $calendar = class_exists( '\GeorgKlosterPrihodSchedule\Schedule_Calendar' ) ? '\GeorgKlosterPrihodSchedule\Schedule_Calendar' : '\Prihod\Schedule_Calendar';
-        $feast = is_callable( array( $calendar, 'feast_placeholder' ) ) ? $calendar::feast_placeholder( $event ) : '';
         $place_title = class_exists( '\GeorgKlosterPrihodSchedule\Directory' ) ? \GeorgKlosterPrihodSchedule\Directory::title( $event['location_id'] ) : get_the_title( $event['location_id'] );
-        $html .= '<article class="prihod-service-compact"><div class="prihod-service-date"><strong>' . esc_html( $date->format( 'j' ) ) . '</strong><span>' . esc_html( wp_date( 'M', $date->getTimestamp(), $date->getTimezone() ) ) . '</span></div><div class="prihod-service-details"><h3>' . esc_html( $event['title'] ) . '</h3>' . $feast . '<div class="prihod-service-when"><span>' . esc_html( wp_date( 'editorial' === prihod_theme_scheme() ? 'l' : 'l, j F Y', $date->getTimestamp(), $date->getTimezone() ) ) . '</span><time datetime="' . esc_attr( $date->format( DATE_ATOM ) ) . '">' . esc_html( $date->format( 'H:i' ) ) . '</time></div><p>' . prihod_theme_icon( 'contacts' ) . esc_html( $place_title ) . '</p></div></article>';
+        $html .= '<article class="prihod-service-compact"><div class="prihod-service-date"><strong>' . esc_html( $date->format( 'j' ) ) . '</strong><span>' . esc_html( wp_date( 'M', $date->getTimestamp(), $date->getTimezone() ) ) . '</span></div><div class="prihod-service-details"><h3>' . esc_html( $event['title'] ) . '</h3><div class="prihod-service-when"><span>' . esc_html( wp_date( 'editorial' === prihod_theme_scheme() ? 'l' : 'l, j F Y', $date->getTimestamp(), $date->getTimezone() ) ) . '</span><time datetime="' . esc_attr( $date->format( DATE_ATOM ) ) . '">' . esc_html( $date->format( 'H:i' ) ) . '</time></div><p>' . prihod_theme_icon( 'contacts' ) . esc_html( $place_title ) . '</p></div></article>';
     }
     return $html;
 }

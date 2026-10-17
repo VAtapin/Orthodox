@@ -35,7 +35,9 @@ $rule = GeorgKlosterPrihodSchedule\Schedule::validate( array( 'kind' => 'single'
 $service = wp_insert_post( array( 'post_type' => 'gkpsch_service', 'post_status' => 'publish', 'post_title' => 'Morning service' ), true );
 gkp_stack_assert( ! is_wp_error( $service ), 'Service creation failed.' );
 update_post_meta( $service, '_gkpsch_service', $rule );
-gkp_stack_assert( str_contains( prihod_theme_compact_services(), 'Morning service' ), 'Theme did not render Schedule service.' );
+$compact_service = prihod_theme_compact_services();
+gkp_stack_assert( str_contains( $compact_service, 'Morning service' ), 'Theme did not render Schedule service.' );
+gkp_stack_assert( 1 === substr_count( $compact_service, 'class="prihod-icon"' ) && ! str_contains( $compact_service, 'service-feast' ), 'Compact service must show only the location icon.' );
 add_filter( 'wpml_translate_single_string', static function ( $value, $context, $name ) use ( $service ) {
     return 'georg-kloster-prihod-schedule' === $context && 'service-' . $service === $name ? 'Morgengottesdienst' : $value;
 }, 10, 3 );
