@@ -22,6 +22,9 @@ $from = new DateTimeImmutable( 'today', wp_timezone() );
 $events = GeorgKlosterPrihodSchedule\Schedule::query( $from, $from->modify( '+7 days' ) );
 gkpsch_assert( 1 === count( $events ) && 'Morning service' === $events[0]['title'], 'Service query failed.' );
 gkpsch_assert( str_contains( do_shortcode( '[gkpsch_next_service]' ), 'Morning service' ), 'Service shortcode failed.' );
+gkpsch_assert( '' === GeorgKlosterPrihodSchedule\Directory::public_title( $place ), 'The only published place must stay hidden in public views.' );
+$second_place = wp_insert_post( array( 'post_type' => 'gkpsch_location', 'post_status' => 'publish', 'post_title' => 'Second church' ), true );
+gkpsch_assert( ! is_wp_error( $second_place ) && 'Main church' === GeorgKlosterPrihodSchedule\Directory::public_title( $place ), 'Multiple published places must remain distinguishable.' );
 gkpsch_assert( is_wp_error( GeorgKlosterPrihodSchedule\Calendar_Adapter::day( $date ) ), 'Missing calendar must fail safely.' );
 
 echo 'GKPSCH_RELEASE_OK ' . get_bloginfo( 'version' ) . ' PHP ' . PHP_VERSION;

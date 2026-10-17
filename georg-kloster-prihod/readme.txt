@@ -30,6 +30,9 @@ The theme uses images selected from your WordPress media library. It does not do
 
 == Changelog ==
 
+= 0.4.18 =
+Hide the place label and its icon in compact service cards when only one service place is published.
+
 = 0.4.17 =
 Fix category filters on catalog pages whose Query block covers all posts.
 

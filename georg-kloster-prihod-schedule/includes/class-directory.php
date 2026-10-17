@@ -20,6 +20,10 @@ final class Directory {
         $translated = apply_filters( 'wpml_translate_single_string', false, 'georg-kloster-prihod-schedule', 'location-' . $id );
         return is_string( $translated ) && '' !== $translated ? $translated : $title;
     }
+    public static function public_title( int $id ): string {
+        $places = get_posts( array( 'post_type' => 'gkpsch_location', 'post_status' => 'publish', 'numberposts' => 2, 'fields' => 'ids' ) );
+        return count( $places ) > 1 ? self::title( $id ) : '';
+    }
     public static function meta_boxes(): void {
         add_meta_box( 'gkpsch_place', __( 'Service place', 'georg-kloster-prihod-schedule' ), array( self::class, 'render' ), 'gkpsch_location' );
     }

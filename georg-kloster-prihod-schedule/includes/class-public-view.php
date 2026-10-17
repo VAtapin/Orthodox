@@ -73,8 +73,7 @@ final class Public_View {
         return 0 === $fixed_location && $published_places > 1;
     }
     private static function location_title( int $id ): string {
-        $places = get_posts( array( 'post_type' => 'gkpsch_location', 'post_status' => 'publish', 'numberposts' => 2, 'fields' => 'ids' ) );
-        return 1 === count( $places ) ? '' : Directory::title( $id );
+        return Directory::public_title( $id );
     }
     private static function event_html( array $event, bool $show_date = true, bool $compact = false ): string {
         $html = '<article class="gkpsch-event' . ( $event['cancelled'] ? ' is-cancelled' : ( $event['moved'] ? ' is-moved' : '' ) ) . '"><div class="gkpsch-event-time"><time datetime="' . esc_attr( $event['start']->format( DATE_ATOM ) ) . '">' . esc_html( $event['start']->format( 'H:i' ) ) . '</time>';

@@ -37,11 +37,16 @@ gkp_stack_assert( ! is_wp_error( $service ), 'Service creation failed.' );
 update_post_meta( $service, '_gkpsch_service', $rule );
 $compact_service = prihod_theme_compact_services();
 gkp_stack_assert( str_contains( $compact_service, 'Morning service' ), 'Theme did not render Schedule service.' );
-gkp_stack_assert( 1 === substr_count( $compact_service, 'class="prihod-icon"' ) && ! str_contains( $compact_service, 'service-feast' ), 'Compact service must show only the location icon.' );
+gkp_stack_assert( ! str_contains( $compact_service, 'Main church' ) && ! str_contains( $compact_service, 'class="prihod-icon"' ) && ! str_contains( $compact_service, 'service-feast' ), 'Compact service must hide the only place and its icon.' );
+gkp_stack_assert( ! str_contains( do_shortcode( '[gkpsch_next_service]' ), 'Main church' ), 'Schedule block must hide the only place.' );
 add_filter( 'wpml_translate_single_string', static function ( $value, $context, $name ) use ( $service ) {
     return 'georg-kloster-prihod-schedule' === $context && 'service-' . $service === $name ? 'Morgengottesdienst' : $value;
 }, 10, 3 );
 gkp_stack_assert( str_contains( prihod_theme_compact_services(), 'Morgengottesdienst' ), 'Schedule title translation was ignored.' );
+$second_place = wp_insert_post( array( 'post_type' => 'gkpsch_location', 'post_status' => 'publish', 'post_title' => 'Second church' ), true );
+gkp_stack_assert( ! is_wp_error( $second_place ), 'Second service place failed.' );
+gkp_stack_assert( str_contains( prihod_theme_compact_services(), 'Main church' ) && 1 === substr_count( prihod_theme_compact_services(), 'class="prihod-icon"' ), 'Compact service must distinguish multiple places.' );
+gkp_stack_assert( str_contains( do_shortcode( '[gkpsch_next_service]' ), 'Main church' ), 'Schedule block must distinguish multiple places.' );
 
 update_option( 'gkps_form', array( 'enabled' => true, 'title' => 'Contact', 'submit' => 'Send' ) );
 gkp_stack_assert( str_contains( do_shortcode( '[gkps_contact_form title="Write to us"]' ), 'Write to us' ), 'Social form did not render.' );
