@@ -30,6 +30,9 @@ The theme uses images selected from your WordPress media library. It does not do
 
 == Changelog ==
 
+= 0.4.16 =
+Restore the angled classic hero motto and avoid repeating schedule links around the nearby service panel.
+
 = 0.4.15 =
 Show configured visitor and sermons pages on the homepage and in the footer, and support accessible classic menu submenus.
 

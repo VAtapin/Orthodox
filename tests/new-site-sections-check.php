@@ -29,6 +29,11 @@ foreach ( array( 'ru' => array( 44, $pilgrim, $sermons, 718, 721, 724, 722 ), 'd
     $assert( isset( $by_page[$ids[1]], $by_page[$ids[2]] ), "{$lang} menu is missing a restored page." );
     $topics = prihod_theme_home_topic_links();
     $assert( str_contains( $topics, get_permalink( $ids[1] ) ) && str_contains( $topics, get_permalink( $ids[2] ) ), "{$lang} homepage section links are missing." );
+    $schedule_url = prihod_theme_url( 'schedule' );
+    $features_with_panel = prihod_theme_home_features( 'classic', 'About', true, true );
+    $features_without_panel = prihod_theme_home_features( 'classic', 'About', true, false );
+    $assert( $schedule_url && ! str_contains( $features_with_panel, 'href="' . esc_url( $schedule_url ) . '"' ), "{$lang} schedule card duplicates the nearby service panel." );
+    $assert( str_contains( $features_without_panel, 'href="' . esc_url( $schedule_url ) . '"' ), "{$lang} schedule card must remain when the service panel is absent." );
     $photo = get_post( $ids[4] ); $request = get_post( $ids[6] );
     $assert( (int) get_post_meta( $photo->ID, '_menu_item_menu_item_parent', true ) === $ids[3], "{$lang} photos submenu is missing." );
     $assert( (int) get_post_meta( $request->ID, '_menu_item_menu_item_parent', true ) === $ids[5], "{$lang} contact submenu is missing." );

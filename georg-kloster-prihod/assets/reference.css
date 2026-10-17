@@ -159,22 +159,22 @@
 .prihod-brand{min-width:0}.prihod-brand>a:not(.prihod-mark){display:flex;flex:0 1 auto;min-width:0;max-width:min(var(--prihod-logo-width,240px),100%)}.prihod-brand .custom-logo{display:block;width:auto;height:auto;max-width:100%;max-height:72px;object-fit:contain}.prihod-brand>div{min-width:0;overflow-wrap:anywhere}
 @media(max-width:600px){.prihod-brand .custom-logo{max-height:60px}.prihod-brand>a:not(.prihod-mark){max-width:min(var(--prihod-logo-width,240px),65vw)}}
 
-/* Keep the classic hero motto legible over both light walls and dark roofs. */
+/* Keep the handwritten classic motto legible without a rectangular label. */
 .prihod-scheme-classic .prihod-classic-motto{
     box-sizing:border-box;
     right:0;
     top:24px;
     width:220px;
     max-width:none;
-    padding:16px 18px;
-    border:1px solid #fff;
-    border-radius:8px;
-    background:#fffffff0;
-    box-shadow:0 8px 28px #23304430;
-    color:var(--wp--preset--color--ink);
-    font-size:27px;
-    line-height:1.15;
-    transform:none;
+    padding:10px 14px;
+    border:0;
+    border-radius:0;
+    background:none;
+    box-shadow:none;
+    color:var(--wp--preset--color--forest);
+    font:italic 30px/1.16 Georgia,serif;
+    text-shadow:0 1px 5px #fff,0 1px 16px #fff;
+    transform:rotate(-8deg);
 }
 @media(max-width:900px){
     .prihod-scheme-classic .prihod-classic-motto{
@@ -183,8 +183,15 @@
         max-width:100%;
         margin-top:4px;
         font-size:22px;
+        transform:rotate(-4deg);
     }
 }
+
+/* The nearby service already links to the schedule; keep the remaining cards balanced. */
+.prihod-feature-grid.has-schedule-panel{grid-template-columns:repeat(4,minmax(0,1fr))}
+.prihod-scheme-classic .prihod-feature-grid.has-schedule-panel{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:900px){.prihod-feature-grid.has-schedule-panel,.prihod-scheme-classic .prihod-feature-grid.has-schedule-panel{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.prihod-feature-grid.has-schedule-panel,.prihod-scheme-classic .prihod-feature-grid.has-schedule-panel{grid-template-columns:minmax(0,1fr)}}
 
 /* Owner-only preview: stays in document flow, including narrow screens. */
 .prihod-brand.prihod-brand-custom.prihod-brand-logo-only{flex:0 0 auto;width:min(var(--prihod-logo-width,240px),100%)}

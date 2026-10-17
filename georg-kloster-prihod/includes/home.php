@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-function prihod_theme_home_features( string $scheme, string $about_label, bool $monastery ): string {
+function prihod_theme_home_features( string $scheme, string $about_label, bool $monastery, bool $has_schedule = false ): string {
     $cards = array(
         'schedule' => array( __( 'Расписание', 'georg-kloster-prihod' ), __( 'Богослужения и особые события', 'georg-kloster-prihod' ), __( 'Смотреть расписание', 'georg-kloster-prihod' ) ),
         'about' => array( $about_label, __( 'История и жизнь общины', 'georg-kloster-prihod' ), __( 'Узнать больше', 'georg-kloster-prihod' ) ),
@@ -12,8 +12,9 @@ function prihod_theme_home_features( string $scheme, string $about_label, bool $
     );
     $order = 'classic' === $scheme ? array( 'schedule', 'news', 'requests', 'donations' ) : ( in_array( $scheme, array( 'hospitality', 'blue' ), true ) ? array( 'schedule', 'about', 'news', 'requests', 'contacts' ) : array( 'schedule', 'news', 'about', 'requests', 'donations' ) );
     $photo_cards = in_array( $scheme, array( 'classic', 'editorial', 'tradition' ), true );
-    $html = '<nav class="prihod-feature-grid" aria-label="' . esc_attr__( 'Разделы сайта', 'georg-kloster-prihod' ) . '">'; $has_cards = false;
+    $html = '<nav class="prihod-feature-grid' . ( $has_schedule ? ' has-schedule-panel' : '' ) . '" aria-label="' . esc_attr__( 'Разделы сайта', 'georg-kloster-prihod' ) . '">'; $has_cards = false;
     foreach ( $order as $key ) {
+        if ( $has_schedule && 'schedule' === $key ) { continue; }
         $url = prihod_theme_url( $key ); if ( ! $url ) { continue; } $has_cards = true;
         $card = $cards[$key]; $photo = prihod_theme_resource_image( $key );
         $support = ( 'editorial' === $scheme && 'donations' === $key || 'tradition' === $scheme && in_array( $key, array( 'requests', 'donations' ), true ) ) && ! $photo;
@@ -62,7 +63,10 @@ function prihod_theme_home(): string {
     if ( 'hospitality' === $scheme ) { $html .= prihod_theme_verse(); }
     if ( 'tradition' !== $scheme ) {
         $html .= '<div class="prihod-actions">';
-        foreach ( array( $schedule => __( 'Расписание богослужений', 'georg-kloster-prihod' ), ( 'classic' === $scheme ? $contact : $about ) => ( 'classic' === $scheme ? __( 'Как добраться', 'georg-kloster-prihod' ) : $about_label ) ) as $url => $label ) { if ( $url ) { $html .= '<a class="prihod-button" href="' . esc_url( $url ) . '">' . esc_html( $label ) . ' →</a>'; } }
+        $actions = array();
+        if ( ! $has_schedule ) { $actions[$schedule] = __( 'Расписание богослужений', 'georg-kloster-prihod' ); }
+        $actions['classic' === $scheme ? $contact : $about] = 'classic' === $scheme ? __( 'Как добраться', 'georg-kloster-prihod' ) : $about_label;
+        foreach ( $actions as $url => $label ) { if ( $url ) { $html .= '<a class="prihod-button" href="' . esc_url( $url ) . '">' . esc_html( $label ) . ' →</a>'; } }
         $html .= '</div>';
     }
     if ( 'blue' === $scheme ) { $html .= prihod_theme_verse( 'hero_quote_text', 'hero_quote_source' ); }
@@ -72,7 +76,7 @@ function prihod_theme_home(): string {
     if ( 'tradition' === $scheme ) { $html .= '<aside class="prihod-tradition-motto">' . prihod_theme_icon( 'cross' ) . '<p>' . esc_html__( 'Вера объединяет людей', 'georg-kloster-prihod' ) . '</p></aside>'; }
     $html .= '</div></section><div class="prihod-container">';
     if ( $has_schedule && in_array( $scheme, array( 'classic', 'tradition' ), true ) ) { $html .= prihod_theme_home_service_panel( $scheme, $schedule ); }
-    $html .= prihod_theme_home_features( $scheme, $about_label, $monastery ) . prihod_theme_home_topic_links();
+    $html .= prihod_theme_home_features( $scheme, $about_label, $monastery, $has_schedule ) . prihod_theme_home_topic_links();
     if ( 'editorial' !== $scheme ) {
         $html .= '<section class="prihod-about-section"><div class="prihod-about-copy">' . ( 'tradition' === $scheme ? '<p class="prihod-section-eyebrow">' . esc_html( $monastery ? __( 'Наша обитель', 'georg-kloster-prihod' ) : __( 'Наш приход', 'georg-kloster-prihod' ) ) . '</p>' : '' ) . prihod_theme_section_title( $about_label ) . '<p>' . nl2br( esc_html( $profile['description'] ) ) . '</p>' . ( $about ? '<a class="prihod-button is-outline" href="' . esc_url( $about ) . '">' . esc_html( $monastery ? __( 'Подробнее об обители', 'georg-kloster-prihod' ) : __( 'Подробнее о приходе', 'georg-kloster-prihod' ) ) . ' →</a>' : '' ) . '</div><div class="prihod-about-photo">' . prihod_theme_photo( prihod_theme_resource_image( 'about' ) ?: $options['hero_image'], 'large' ) . '</div>' . ( 'blue' === $scheme ? '' : prihod_theme_verse() ) . '</section>';
     }
