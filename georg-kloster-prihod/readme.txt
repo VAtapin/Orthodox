@@ -28,7 +28,14 @@ No. It displays ordinary WordPress pages and posts on its own.
 
 The theme uses images selected from your WordPress media library. It does not download or import photographs.
 
+= How do I add images to the menu? =
+
+Create and assign a menu under Appearance > Menus. Open a menu item and choose its image from the media library; without a chosen image, the linked page or post featured image is used. The theme's Appearance > Parish Appearance > Header and Footer section switches between the visual menu and a standard link row and sets the number of visual columns. Menu item descriptions can be enabled under Screen Options on the Menus screen.
+
 == Changelog ==
+
+= 0.4.20 =
+Add a responsive visual navigation panel with optional images on standard WordPress menu items and theme controls for its layout.
 
 = 0.4.19 =
 Style editable core blocks for the monastery story, chronology and related people on both language pages.

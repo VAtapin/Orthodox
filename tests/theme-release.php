@@ -63,19 +63,34 @@ ob_start();
 prihod_theme_settings_page();
 $settings_markup = ob_get_clean();
 georg_theme_release_assert( str_contains( $settings_markup, 'georg_kloster_prihod_options[hero_image]' ), 'Generic hero image control is missing.' );
+georg_theme_release_assert( str_contains( $settings_markup, 'georg_kloster_prihod_options[menu_style]' ) && str_contains( $settings_markup, 'georg_kloster_prihod_options[menu_columns]' ), 'Visual menu settings are missing.' );
 foreach ( array( 'prihod-option-photos', 'georg_kloster_prihod_options[feature_schedule]', 'georg_kloster_prihod_options[map_url]', 'georg_kloster_prihod_options[request_image]' ) as $plugin_control ) {
     georg_theme_release_assert( ! str_contains( $settings_markup, $plugin_control ), 'Plugin content control remains in theme settings: ' . $plugin_control );
 }
 $sanitized = prihod_theme_sanitize( array( 'scheme' => 'classic', 'hero_image' => 0, 'feature_schedule' => 123, 'map_embed' => 'https://www.openstreetmap.org/export/embed.html' ) );
 georg_theme_release_assert( ! array_key_exists( 'feature_schedule', $sanitized ) && ! array_key_exists( 'map_embed', $sanitized ), 'Theme still stores plugin content settings.' );
+georg_theme_release_assert( 'visual' === prihod_theme_sanitize( array( 'menu_style' => 'invalid', 'menu_columns' => 99 ) )['menu_style'] && 4 === prihod_theme_sanitize( array( 'menu_style' => 'visual', 'menu_columns' => 99 ) )['menu_columns'], 'Visual menu options must be bounded.' );
 wp_set_current_user( 0 );
 
 $menu = wp_create_nav_menu( 'Release check menu' );
 georg_theme_release_assert( ! is_wp_error( $menu ), 'Could not create a standard WordPress menu.' );
-wp_update_nav_menu_item( $menu, 0, array( 'menu-item-title' => 'Standard menu link', 'menu-item-url' => home_url( '/' ), 'menu-item-status' => 'publish' ) );
+$item_id = wp_update_nav_menu_item( $menu, 0, array( 'menu-item-title' => 'Standard menu link', 'menu-item-url' => home_url( '/' ), 'menu-item-status' => 'publish' ) );
 set_theme_mod( 'nav_menu_locations', array( 'primary' => $menu ) );
 $header = prihod_theme_header();
-georg_theme_release_assert( 2 === substr_count( $header, 'Standard menu link' ), 'Standard menu must be available in desktop and mobile navigation.' );
+georg_theme_release_assert( 1 === substr_count( $header, 'Standard menu link' ) && str_contains( $header, 'prihod-visual-menu' ) && str_contains( $header, 'id="prihod-visual-menu"' ), 'Visual menu must use the standard WordPress menu and a single accessible panel.' );
+wp_set_current_user( 1 );
+$menu_item = wp_setup_nav_menu_item( get_post( $item_id ) );
+ob_start(); do_action( 'wp_nav_menu_item_custom_fields', $item_id, $menu_item, 0, new stdClass() ); $menu_fields = ob_get_clean();
+georg_theme_release_assert( str_contains( $menu_fields, 'name="prihod_menu_image[' . $item_id . ']"' ) && str_contains( $menu_fields, 'prihod_menu_image_nonce[' . $item_id . ']' ), 'Menu image field and nonce are missing.' );
+$image_id = wp_insert_attachment( array( 'post_title' => 'Menu image', 'post_mime_type' => 'image/jpeg', 'post_status' => 'inherit' ) );
+update_post_meta( $item_id, '_prihod_menu_image', $image_id );
+georg_theme_release_assert( $image_id === prihod_theme_menu_image_id( $menu_item ), 'Chosen menu image must override the linked content thumbnail.' );
+update_post_meta( $item_id, '_prihod_menu_image', 999999 );
+georg_theme_release_assert( 0 === prihod_theme_menu_image_id( $menu_item ), 'A missing attachment must not appear as a menu image.' );
+delete_post_meta( $item_id, '_prihod_menu_image' );
+update_option( 'georg_kloster_prihod_options', array( 'menu_style' => 'classic' ) );
+$header = prihod_theme_header();
+georg_theme_release_assert( 2 === substr_count( $header, 'Standard menu link' ), 'Classic menu must be available in desktop and mobile navigation.' );
 georg_theme_release_assert( str_contains( $header, 'prihod-mobile-menu' ) && str_contains( $header, 'prihod-mobile-panel' ) && str_contains( $header, 'prihod-desktop-navigation' ), 'Compact mobile navigation is missing.' );
 georg_theme_release_assert( str_contains( $header, 'id="prihod-desktop-menu"' ) && str_contains( $header, 'id="prihod-mobile-menu"' ), 'Navigation lists need distinct IDs.' );
 georg_theme_release_assert( 1 === preg_match_all( '/id="menu-item-\d+"/', $header ), 'Duplicated menu item IDs are invalid HTML.' );

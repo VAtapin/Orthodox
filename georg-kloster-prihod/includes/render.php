@@ -81,7 +81,11 @@ function prihod_theme_header(): string {
     $resources = prihod_theme_resources(); $id = absint( $resources['_navigation']['id'] ?? 0 );
     if ( $id && 'wp_navigation' === get_post_type( $id ) && 'publish' === get_post_status( $id ) ) { $navigation['ref'] = $id; }
     $classic_menu = has_nav_menu( 'primary' );
-    if ( $classic_menu ) {
+    $visual_menu = $classic_menu && 'visual' === $options['menu_style'];
+    if ( $visual_menu ) {
+        $menu = wp_nav_menu( array( 'theme_location' => 'primary', 'container' => 'nav', 'container_class' => 'prihod-visual-navigation', 'container_aria_label' => __( 'Разделы сайта', 'georg-kloster-prihod' ), 'menu_id' => 'prihod-visual-menu', 'menu_class' => 'prihod-visual-list', 'prihod_visual' => true, 'echo' => false ) );
+        $navigation_html = '<details class="prihod-visual-menu" style="--prihod-menu-columns:' . absint( $options['menu_columns'] ) . '"><summary aria-label="' . esc_attr__( 'Разделы сайта', 'georg-kloster-prihod' ) . '"><span class="prihod-menu-icon" aria-hidden="true"></span><span>' . esc_html__( 'Разделы сайта', 'georg-kloster-prihod' ) . '</span><span class="prihod-menu-chevron" aria-hidden="true">⌄</span></summary><div class="prihod-visual-panel"><div class="prihod-visual-panel-head"><strong>' . esc_html__( 'Разделы сайта', 'georg-kloster-prihod' ) . '</strong><button type="button" class="prihod-visual-close" aria-label="' . esc_attr__( 'Закрыть меню', 'georg-kloster-prihod' ) . '">×</button></div>' . $menu . '</div></details>';
+    } elseif ( $classic_menu ) {
         $navigation_html = wp_nav_menu( array( 'theme_location' => 'primary', 'container' => 'nav', 'container_class' => 'wp-block-navigation prihod-classic-navigation prihod-desktop-navigation', 'menu_id' => 'prihod-desktop-menu', 'menu_class' => 'wp-block-navigation__container', 'echo' => false ) );
         $mobile_navigation = wp_nav_menu( array( 'theme_location' => 'primary', 'container' => 'nav', 'container_class' => 'wp-block-navigation prihod-classic-navigation prihod-mobile-navigation', 'container_aria_label' => __( 'Меню', 'georg-kloster-prihod' ), 'menu_id' => 'prihod-mobile-menu', 'menu_class' => 'wp-block-navigation__container', 'echo' => false ) );
         $mobile_navigation = preg_replace( '/\s+id="menu-item-\d+"/', '', $mobile_navigation );
@@ -93,7 +97,9 @@ function prihod_theme_header(): string {
     if ( prihod_theme_preview_scheme() ) {
         $search_form = str_replace( '</form>', '<input type="hidden" name="prihod_preview" value="' . esc_attr( prihod_theme_preview_scheme() ) . '"></form>', $search_form );
     }
-    return '<div class="prihod-header' . ( $classic_menu ? ' prihod-has-classic-menu' : '' ) . '" id="prihod-header"><div class="prihod-container prihod-header-top">' . prihod_theme_brand() . '<div class="prihod-header-right"><div class="prihod-contact-strip">' . $contacts . prihod_theme_languages() . '</div>' . $navigation_html . '<details class="prihod-header-search"><summary aria-label="' . esc_attr__( 'Поиск', 'georg-kloster-prihod' ) . '">' . prihod_theme_icon( 'search' ) . '</summary>' . $search_form . '</details></div></div></div>';
+    $search_html = '<details class="prihod-header-search"><summary aria-label="' . esc_attr__( 'Поиск', 'georg-kloster-prihod' ) . '">' . prihod_theme_icon( 'search' ) . '</summary>' . $search_form . '</details>';
+    $navigation_html = $visual_menu ? '<div class="prihod-menu-tools">' . $navigation_html . $search_html . '</div>' : $navigation_html . $search_html;
+    return '<div class="prihod-header' . ( $classic_menu ? ' prihod-has-classic-menu' : '' ) . ( $visual_menu ? ' prihod-has-visual-menu' : '' ) . '" id="prihod-header"><div class="prihod-container prihod-header-top">' . prihod_theme_brand() . '<div class="prihod-header-right"><div class="prihod-contact-strip">' . $contacts . prihod_theme_languages() . '</div>' . $navigation_html . '</div></div></div>';
 }
 function prihod_theme_footer(): string {
     $policy = get_privacy_policy_url(); $links = '';
