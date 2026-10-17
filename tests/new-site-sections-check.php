@@ -34,6 +34,11 @@ foreach ( array( 'ru' => array( 44, $pilgrim, $sermons, 718, 721, 724, 722 ), 'd
     $features_without_panel = prihod_theme_home_features( 'classic', 'About', true, false );
     $assert( $schedule_url && ! str_contains( $features_with_panel, 'href="' . esc_url( $schedule_url ) . '"' ), "{$lang} schedule card duplicates the nearby service panel." );
     $assert( str_contains( $features_without_panel, 'href="' . esc_url( $schedule_url ) . '"' ), "{$lang} schedule card must remain when the service panel is absent." );
+    $home = prihod_theme_home();
+    preg_match( '~<div class="prihod-actions">(.*?)</div>~s', $home, $hero_actions );
+    $assert( ! empty( $hero_actions[1] ) && str_contains( $hero_actions[1], 'href="' . esc_url( $schedule_url ) . '"' ), "{$lang} schedule button is missing from the homepage hero." );
+    $assert( str_contains( $hero_actions[1], 'href="' . esc_url( prihod_theme_url( 'contacts' ) ) . '"' ), "{$lang} directions button is missing from the homepage hero." );
+    $assert( str_contains( $home, 'class="prihod-service-all" href="' . esc_url( $schedule_url ) . '"' ), "{$lang} nearby service link must remain in place." );
     $photo = get_post( $ids[4] ); $request = get_post( $ids[6] );
     $assert( (int) get_post_meta( $photo->ID, '_menu_item_menu_item_parent', true ) === $ids[3], "{$lang} photos submenu is missing." );
     $assert( (int) get_post_meta( $request->ID, '_menu_item_menu_item_parent', true ) === $ids[5], "{$lang} contact submenu is missing." );

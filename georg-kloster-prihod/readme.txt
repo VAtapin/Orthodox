@@ -34,6 +34,9 @@ Create and assign a menu under Appearance > Menus. Open a menu item and choose i
 
 == Changelog ==
 
+= 0.4.21 =
+Keep the schedule button in the homepage hero beside the directions button when the nearby service panel is visible.
+
 = 0.4.20 =
 Add a responsive visual navigation panel with optional images on standard WordPress menu items and theme controls for its layout.
 

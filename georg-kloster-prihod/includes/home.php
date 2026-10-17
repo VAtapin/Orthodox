@@ -64,7 +64,7 @@ function prihod_theme_home(): string {
     if ( 'tradition' !== $scheme ) {
         $html .= '<div class="prihod-actions">';
         $actions = array();
-        if ( ! $has_schedule ) { $actions[$schedule] = __( 'Расписание богослужений', 'georg-kloster-prihod' ); }
+        $actions[$schedule] = __( 'Расписание богослужений', 'georg-kloster-prihod' );
         $actions['classic' === $scheme ? $contact : $about] = 'classic' === $scheme ? __( 'Как добраться', 'georg-kloster-prihod' ) : $about_label;
         foreach ( $actions as $url => $label ) { if ( $url ) { $html .= '<a class="prihod-button" href="' . esc_url( $url ) . '">' . esc_html( $label ) . ' →</a>'; } }
         $html .= '</div>';
