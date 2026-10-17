@@ -197,3 +197,58 @@
   .prihod-hero-grid,.prihod-hero-copy{min-width:0}
   .prihod-hero-copy h1{max-width:100%;font-size:32px;overflow-wrap:anywhere}
 }
+
+/* A compact, keyboard-accessible navigation replaces the desktop link row. */
+.prihod-mobile-menu{display:none}
+@media(max-width:900px){
+  .prihod-header{position:relative;z-index:50}
+  .prihod-header .prihod-header-top,.prihod-scheme-tradition .prihod-header .prihod-header-top{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:10px;min-height:0;padding-block:10px;position:relative}
+  .prihod-header .prihod-brand,.prihod-brand.prihod-brand-custom{flex:1 1 auto;min-width:0;width:auto;max-width:none;gap:8px}
+  .prihod-header .prihod-brand-custom{flex-wrap:nowrap}
+  .prihod-header .prihod-brand-custom>div{flex:1 1 auto;min-width:0}
+  .prihod-header .prihod-brand-title{font-size:clamp(14px,3.8vw,19px);line-height:1.1}
+  .prihod-header .prihod-brand p{display:none}
+  .prihod-header .prihod-mark svg{width:40px;height:48px}
+  .prihod-header .prihod-brand .custom-logo,.prihod-header .prihod-brand-square .custom-logo{max-height:48px}
+  .prihod-header .prihod-header-right,.prihod-scheme-tradition .prihod-header .prihod-header-right{position:static;display:flex;flex:0 0 auto;align-items:center;gap:4px;width:auto;min-width:0;padding:0;border:0}
+  .prihod-header .prihod-contact-strip{margin:0;gap:0;align-items:center}
+  .prihod-header .prihod-contact-strip>:not(.prihod-languages){display:none}
+  .prihod-has-classic-menu .prihod-contact-strip,.prihod-header .prihod-desktop-navigation{display:none}
+  .prihod-header .prihod-mobile-menu{display:block}
+  .prihod-mobile-menu>summary,.prihod-header-search>summary{display:flex;align-items:center;justify-content:center;gap:7px;min-height:44px;cursor:pointer;list-style:none}
+  .prihod-mobile-menu>summary{padding:0 10px;border:1px solid var(--prihod-line);border-radius:6px;font:14px/1.2 system-ui,sans-serif}
+  .prihod-mobile-menu>summary::-webkit-details-marker{display:none}
+  .prihod-menu-icon{display:block;width:18px;height:14px;border-block:2px solid currentColor;position:relative;box-sizing:border-box}
+  .prihod-menu-icon:after{content:"";position:absolute;top:5px;left:0;width:100%;border-top:2px solid currentColor}
+  .prihod-mobile-panel{position:absolute;top:100%;left:0;right:0;z-index:60;max-height:calc(100dvh - 90px);overflow-y:auto;padding:12px 16px;background:var(--wp--preset--color--white);border:1px solid var(--prihod-line);border-radius:8px;box-shadow:0 15px 25px #1a253022}
+  .prihod-header .prihod-mobile-navigation{display:block;width:auto;margin:0;padding:0;background:transparent}
+  .prihod-scheme-tradition .prihod-header .prihod-mobile-navigation{display:block;width:auto;margin:0;padding:0;border:0;background:transparent;text-transform:none}
+  .prihod-header .prihod-mobile-navigation .wp-block-navigation__container{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px;width:100%}
+  .prihod-header .prihod-mobile-navigation li{min-width:0;white-space:normal;border-bottom:1px solid var(--prihod-line)}
+  .prihod-header .prihod-mobile-navigation a{display:flex;align-items:center;min-height:48px;padding:8px 0;overflow-wrap:anywhere}
+  .prihod-mobile-panel>.prihod-languages{padding-top:10px}
+  .prihod-mobile-panel>.prihod-languages a{display:inline-flex;align-items:center;min-height:36px;margin-right:12px}
+  .prihod-header .prihod-header-search{position:relative;right:auto;bottom:auto;flex:none}
+  .prihod-header-search>summary{width:44px}
+  .prihod-header-search form{right:0;top:44px;max-width:min(280px,calc(100vw - 32px))}
+  .prihod-scheme-classic .prihod-hero-copy{box-sizing:border-box;padding:18px;background:#fffffff0;border-radius:8px;box-shadow:0 4px 20px #23304420}
+  .prihod-scheme-classic .prihod-classic-motto{margin-top:12px}
+}
+@media(max-width:480px){
+  .prihod-header .prihod-brand-title{font-size:15px}
+  .prihod-header .prihod-brand .custom-logo,.prihod-header .prihod-brand-square .custom-logo{max-height:42px}
+  .prihod-header .prihod-mark svg{width:34px;height:42px}
+  .prihod-mobile-menu>summary{padding-inline:8px}
+  .prihod-header .prihod-mobile-navigation .wp-block-navigation__container{grid-template-columns:1fr}
+  .prihod-scheme-classic .prihod-hero-grid{padding-block:16px}
+  .prihod-scheme-classic .prihod-hero-copy h1{font-size:30px}
+  .prihod-scheme-classic .prihod-hero-copy>.prihod-verse{font-size:14px}
+  .prihod-scheme-classic .prihod-hero-description{font-size:14px}
+  .prihod-feature-grid,.prihod-scheme-classic .prihod-feature-grid,.prihod-scheme-hospitality .prihod-feature-grid,.prihod-scheme-tradition .prihod-feature-grid{grid-template-columns:minmax(0,1fr)}
+  .prihod-feature-photo{height:135px}
+}
+@media(max-width:360px){
+  .prihod-mobile-menu>summary{width:44px;padding:0}
+  .prihod-mobile-menu .prihod-menu-label{display:none}
+  .prihod-header .prihod-brand-title{font-size:14px}
+}

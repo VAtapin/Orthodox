@@ -74,6 +74,10 @@ $menu = wp_create_nav_menu( 'Release check menu' );
 georg_theme_release_assert( ! is_wp_error( $menu ), 'Could not create a standard WordPress menu.' );
 wp_update_nav_menu_item( $menu, 0, array( 'menu-item-title' => 'Standard menu link', 'menu-item-url' => home_url( '/' ), 'menu-item-status' => 'publish' ) );
 set_theme_mod( 'nav_menu_locations', array( 'primary' => $menu ) );
-georg_theme_release_assert( str_contains( prihod_theme_header(), 'Standard menu link' ), 'Standard WordPress menu did not render.' );
+$header = prihod_theme_header();
+georg_theme_release_assert( 2 === substr_count( $header, 'Standard menu link' ), 'Standard menu must be available in desktop and mobile navigation.' );
+georg_theme_release_assert( str_contains( $header, 'prihod-mobile-menu' ) && str_contains( $header, 'prihod-mobile-panel' ) && str_contains( $header, 'prihod-desktop-navigation' ), 'Compact mobile navigation is missing.' );
+georg_theme_release_assert( str_contains( $header, 'id="prihod-desktop-menu"' ) && str_contains( $header, 'id="prihod-mobile-menu"' ), 'Navigation lists need distinct IDs.' );
+georg_theme_release_assert( 1 === preg_match_all( '/id="menu-item-\d+"/', $header ), 'Duplicated menu item IDs are invalid HTML.' );
 
 echo 'THEME_RELEASE_OK ' . esc_html( get_bloginfo( 'version' ) ) . ' PHP ' . esc_html( PHP_VERSION );

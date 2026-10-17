@@ -30,6 +30,9 @@ The theme uses images selected from your WordPress media library. It does not do
 
 == Changelog ==
 
+= 0.4.14 =
+Add a compact mobile menu for classic WordPress navigation and improve the mobile header and hero readability.
+
 = 0.4.13 =
 Style the standard WordPress comment form, threaded replies and pagination.
 
