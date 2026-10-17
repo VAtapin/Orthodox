@@ -144,6 +144,10 @@ try { Prihod\Calendar_Colors::validate( 'javascript:red' ); check( false, 'Inval
 require dirname( __DIR__ ) . '/georg-kloster-prihod-schedule/includes/class-occurrences.php';
 require dirname( __DIR__ ) . '/georg-kloster-prihod-schedule/includes/class-calendar-colors.php';
 require dirname( __DIR__ ) . '/georg-kloster-prihod-schedule/includes/class-calendar-adapter.php';
+require dirname( __DIR__ ) . '/georg-kloster-prihod-schedule/includes/class-public-view.php';
+$location_filter = new ReflectionMethod( GeorgKlosterPrihodSchedule\Public_View::class, 'location_filter_visible' );
+check( ! $location_filter->invoke( null, 0, 0 ) && ! $location_filter->invoke( null, 1, 0 ), 'Schedule hides the place filter with zero or one published service place.' );
+check( $location_filter->invoke( null, 2, 0 ) && ! $location_filter->invoke( null, 2, 617 ), 'Schedule shows the place filter only for multiple places and an unfixed block.' );
 $weekend_rule = array( 'id' => 617, 'title' => 'Божественная литургия', 'description' => '', 'kind' => 'regular', 'date' => '2026-10-17', 'until' => '', 'weekdays' => array( 6, 7 ), 'time' => '10:00', 'end' => '', 'timezone' => 'Europe/Berlin', 'location_id' => 616, 'day_icon' => true, 'vestment_color' => 'auto', 'exceptions' => array() );
 $weekend = GeorgKlosterPrihodSchedule\Occurrences::expand( $weekend_rule, new DateTimeImmutable( '2026-10-12 Europe/Berlin' ), new DateTimeImmutable( '2026-10-26 Europe/Berlin' ) );
 check( array( '2026-10-17 10:00', '2026-10-18 10:00', '2026-10-24 10:00', '2026-10-25 10:00' ) === array_map( static fn( $event ) => $event['start']->format( 'Y-m-d H:i' ), $weekend ), 'Standalone Schedule expands only Saturday and Sunday liturgies at 10:00.' );

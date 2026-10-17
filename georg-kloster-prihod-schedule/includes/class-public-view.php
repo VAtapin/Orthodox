@@ -28,8 +28,11 @@ final class Public_View {
         $html = '';
         {
             if ( ! Modules::enabled( 'schedule' ) ) { return ''; }
-            $location = absint( $attributes['location'] ?? 0 );
+            $fixed_location = absint( $attributes['location'] ?? 0 );
+            $location = $fixed_location;
             if ( 'schedule' === $key ) {
+                $places = $fixed_location ? array() : get_posts( array( 'post_type' => 'gkpsch_location', 'post_status' => 'publish', 'numberposts' => -1 ) );
+                $show_location_filter = self::location_filter_visible( count( $places ), $fixed_location );
                 $requested_view = isset( $_GET['gkpsch_view'] ) && is_string( $_GET['gkpsch_view'] ) ? sanitize_key( $_GET['gkpsch_view'] ) : ( $attributes['view'] ?? 'week' );
                 $view = in_array( $requested_view, array( 'week', 'month', 'list' ), true ) ? $requested_view : 'week';
                 $now = new \DateTimeImmutable( 'now', new \DateTimeZone( $profile['timezone'] ) );
@@ -39,16 +42,19 @@ final class Public_View {
                 $from = 'month' === $view ? $anchor->modify( 'first day of this month' ) : $anchor->modify( '-' . ( (int) $anchor->format( 'N' ) - 1 ) . ' days' );
                 $to = $from->modify( 'month' === $view ? '+1 month' : '+7 days' );
                 $period = '<nav class="gkpsch-period-nav" aria-label="' . esc_attr__( 'Период расписания', 'georg-kloster-prihod-schedule' ) . '"><a href="' . esc_url( add_query_arg( array( 'gkpsch_date' => $from->modify( 'month' === $view ? '-1 month' : '-7 days' )->format( 'Y-m-d' ), 'gkpsch_view' => $view ) ) ) . '">' . esc_html__( 'Предыдущий период', 'georg-kloster-prihod-schedule' ) . '</a> · <a href="' . esc_url( add_query_arg( array( 'gkpsch_date' => $now->format( 'Y-m-d' ), 'gkpsch_view' => $view ) ) ) . '">' . esc_html__( 'Сегодня', 'georg-kloster-prihod-schedule' ) . '</a> · <a href="' . esc_url( add_query_arg( array( 'gkpsch_date' => $to->format( 'Y-m-d' ), 'gkpsch_view' => $view ) ) ) . '">' . esc_html__( 'Следующий период', 'georg-kloster-prihod-schedule' ) . '</a></nav>';
-                if ( ! $location && isset( $_GET['gkpsch_place'] ) && is_scalar( $_GET['gkpsch_place'] ) ) { $location = absint( $_GET['gkpsch_place'] ); }
+                if ( $show_location_filter && isset( $_GET['gkpsch_place'] ) && is_scalar( $_GET['gkpsch_place'] ) ) {
+                    $requested_place = absint( $_GET['gkpsch_place'] );
+                    foreach ( $places as $place ) { if ( (int) $place->ID === $requested_place ) { $location = $requested_place; break; } }
+                }
                 $html .= self::schedule_overview( $location, $from, $to ) . '<div class="gkpsch-schedule-body"><div class="gkpsch-schedule-toolbar"><nav class="gkpsch-view-switch" aria-label="' . esc_attr__( 'Вид расписания', 'georg-kloster-prihod-schedule' ) . '">';
                 foreach ( array( 'week' => __( 'Неделя', 'georg-kloster-prihod-schedule' ), 'month' => __( 'Месяц', 'georg-kloster-prihod-schedule' ), 'list' => __( 'Список', 'georg-kloster-prihod-schedule' ) ) as $mode => $label ) { $html .= '<a href="' . esc_url( add_query_arg( 'gkpsch_view', $mode ) ) . '"' . ( $mode === $view ? ' aria-current="true"' : '' ) . '>' . esc_html( $label ) . '</a>'; }
                 $html .= '</nav><form method="get" class="gkpsch-controls"><input type="hidden" name="gkpsch_view" value="' . esc_attr( $view ) . '"><label>' . esc_html__( 'Дата', 'georg-kloster-prihod-schedule' ) . ' <input type="date" name="gkpsch_date" value="' . esc_attr( $date ) . '"></label> ';
                 // Preserve WordPress plain-permalink routing without copying arbitrary input.
                 foreach ( array( 'page_id', 'p' ) as $query_key ) { if ( isset( $_GET[ $query_key ] ) && is_scalar( $_GET[ $query_key ] ) ) { $html .= '<input type="hidden" name="' . esc_attr( $query_key ) . '" value="' . esc_attr( absint( $_GET[ $query_key ] ) ) . '">'; } }
                 if ( function_exists( 'gkpsch_theme_preview_scheme' ) && gkpsch_theme_preview_scheme() ) { $html .= '<input type="hidden" name="gkpsch_preview" value="' . esc_attr( gkpsch_theme_preview_scheme() ) . '">'; }
-                if ( ! absint( $attributes['location'] ?? 0 ) ) {
+                if ( $show_location_filter ) {
                     $html .= '<label>' . esc_html__( 'Место', 'georg-kloster-prihod-schedule' ) . ' <select name="gkpsch_place"><option value="0">' . esc_html__( 'Все места', 'georg-kloster-prihod-schedule' ) . '</option>';
-                    foreach ( get_posts( array( 'post_type' => 'gkpsch_location', 'post_status' => 'publish', 'numberposts' => -1 ) ) as $place ) { $html .= '<option value="' . esc_attr( $place->ID ) . '"' . selected( $location, $place->ID, false ) . '>' . esc_html( $place->post_title ) . '</option>'; }
+                    foreach ( $places as $place ) { $html .= '<option value="' . esc_attr( $place->ID ) . '"' . selected( $location, $place->ID, false ) . '>' . esc_html( $place->post_title ) . '</option>'; }
                     $html .= '</select></label> ';
                 }
                 $html .= '<button type="submit">' . esc_html__( 'Показать', 'georg-kloster-prihod-schedule' ) . '</button> <button type="button" class="gkpsch-print">' . esc_html__( 'Печать', 'georg-kloster-prihod-schedule' ) . '</button></form></div>' . $period . '<h3 class="gkpsch-range-title">' . esc_html( $from->format( 'd.m.Y' ) . ' — ' . $to->modify( '-1 day' )->format( 'd.m.Y' ) ) . '</h3>';
@@ -62,6 +68,9 @@ final class Public_View {
             if ( 'schedule' === $key ) { $html .= '</div>'; }
         }
         return '<section class="gkpsch-block gkpsch-' . esc_attr( $key ) . '">' . $html . '</section>';
+    }
+    private static function location_filter_visible( int $published_places, int $fixed_location ): bool {
+        return 0 === $fixed_location && $published_places > 1;
     }
     private static function location_title( int $id ): string {
         $places = get_posts( array( 'post_type' => 'gkpsch_location', 'post_status' => 'publish', 'numberposts' => 2, 'fields' => 'ids' ) );

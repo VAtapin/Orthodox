@@ -3,7 +3,7 @@ Contributors: vatapin
 Tags: church, schedule, calendar, services
 Requires at least: 6.5
 Requires PHP: 8.0
-Stable tag: 0.1.6
+Stable tag: 0.1.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -24,6 +24,9 @@ Calendar hints contact https://bible-desktop.com by default. Dates, language and
 Upload and activate the ZIP. Open Services, add a service place, then add services. Insert the Schedule, Next service or Upcoming services block in a page. The public calendar API is preconfigured; it can be changed in Services > Settings.
 
 == Changelog ==
+
+= 0.1.7 =
+Show the public place filter only when more than one service place is published.
 
 = 0.1.6 =
 Show a complete monthly calendar with commemorations, fasting rules, Typikon marks and compact services. Show schedule icons at a readable size in a bounded native WordPress lightbox and clarify the configured fallback image.
