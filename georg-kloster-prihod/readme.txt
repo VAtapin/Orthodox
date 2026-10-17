@@ -34,6 +34,9 @@ Create and assign a menu under Appearance > Menus. Open a menu item and choose i
 
 == Changelog ==
 
+= 0.4.22 =
+Apply the responsive archive cards to tags and other WordPress archives; show a clean term title instead of escaped markup.
+
 = 0.4.21 =
 Keep the schedule button in the homepage hero beside the directions button when the nearby service panel is visible.
 
