@@ -109,6 +109,9 @@ msgstr "Kalendarz prawosławny"
 msgid "Публикаций пока нет."
 msgstr "Brak publikacji."
 
+msgid "В этой рубрике пока нет записей."
+msgstr "W tej kategorii nie ma jeszcze wpisów."
+
 msgid "Пять схем в редакторе сайта → Стили"
 msgstr "Pięć schematów w edytorze witryny → Style"
 

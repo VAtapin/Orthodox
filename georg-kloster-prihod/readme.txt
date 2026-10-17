@@ -30,6 +30,9 @@ The theme uses images selected from your WordPress media library. It does not do
 
 == Changelog ==
 
+= 0.4.12 =
+Style WordPress category archives with responsive cards and a useful empty state.
+
 = 0.4.11 =
 Keep featured images within the article column beside the sidebar.
 

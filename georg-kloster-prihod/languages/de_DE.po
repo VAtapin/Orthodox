@@ -109,6 +109,9 @@ msgstr "Orthodoxer Kalender"
 msgid "Публикаций пока нет."
 msgstr "Noch keine Beiträge vorhanden."
 
+msgid "В этой рубрике пока нет записей."
+msgstr "In dieser Kategorie gibt es noch keine Beiträge."
+
 msgid "Пять схем в редакторе сайта → Стили"
 msgstr "Fünf Designs im Website-Editor → Stile"
 
