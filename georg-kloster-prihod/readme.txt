@@ -30,6 +30,9 @@ The theme uses images selected from your WordPress media library. It does not do
 
 == Changelog ==
 
+= 0.4.19 =
+Style editable core blocks for the monastery story, chronology and related people on both language pages.
+
 = 0.4.18 =
 Hide the place label and its icon in compact service cards when only one service place is published.
 
