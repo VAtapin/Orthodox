@@ -1,12 +1,9 @@
 .prihod-photo-item{margin:0;position:relative;min-width:0;max-width:100%}
-.prihod-photo-item>a{display:block}.prihod-photo-item img{display:block;max-width:100%}
-.prihod-photo-item .lightbox-trigger{z-index:2}
+.prihod-photo-item>a{display:block}
+.prihod-photo-item img{display:block;max-width:100%}
 .prihod-about-clergy>.prihod-photo-item img{width:130px;height:155px;object-fit:cover;object-position:center 25%}
 @media(max-width:600px){.prihod-about-clergy>.prihod-photo-item img{width:90px;height:115px}}
-@media(max-width:600px){body .wp-lightbox-container button.lightbox-trigger{opacity:1;width:44px;height:44px;padding:0;display:flex;align-items:center;justify-content:center;border-radius:50%}}
-.wp-lightbox-container[aria-busy=true] .lightbox-trigger{cursor:progress}
-.prihod-feature-copy{text-decoration:none;color:inherit}
-.prihod-feature-support-symbol{text-decoration:none;color:inherit}
+.prihod-feature-copy,.prihod-feature-support-symbol{text-decoration:none;color:inherit}
 .prihod-photo-strip>.prihod-photo-item{scroll-snap-align:start}
 .prihod-news-card .prihod-photo-item>a,.prihod-news-card>a.prihod-news-copy{display:block}
 .prihod-scheme-hospitality .prihod-news-card{display:grid;grid-template-columns:85px minmax(0,1fr)}
@@ -17,33 +14,8 @@
 @media(min-width:901px){.prihod-tradition-stories .prihod-photo-strip>.prihod-photo-item:nth-child(n+5){display:none}.prihod-scheme-blue .prihod-news-card{grid-template-columns:110px minmax(0,1fr)}}
 @media(max-width:900px){.prihod-photo-strip>.prihod-photo-item{flex:0 0 160px}.prihod-photo-strip .prihod-photo-item img{width:100%}.prihod-tradition-stories .prihod-news-card{grid-template-columns:65px minmax(0,1fr);gap:8px}}
 @media(max-width:600px){.prihod-scheme-blue .prihod-photo-strip>.prihod-photo-item{flex-basis:calc(25% - 7px)}}
-.wp-lightbox-overlay .lightbox-image-container{max-width:calc(100% - 48px);max-height:calc(100% - 160px);z-index:2000001!important}
-.wp-lightbox-overlay .lightbox-image-container figure{max-width:100%;max-height:100%}
-.wp-lightbox-overlay .lightbox-image-container img{object-fit:contain!important;width:100%!important;height:100%!important;min-width:0;max-width:100%;max-height:100%}
-.wp-lightbox-overlay .prihod-photo-caption{position:absolute;bottom:12px;left:64px;right:64px;max-height:70px;overflow:auto;padding:10px 16px;margin:0;background:#ffffffed;color:#24354b;text-align:center;font:14px/1.5 system-ui;border-radius:6px;z-index:2000003}
-.wp-lightbox-overlay .prihod-photo-caption:empty{display:none}
-.wp-lightbox-overlay .prihod-photo-navigation{position:absolute;top:50%;z-index:2000004;background:#ffffffed;color:#24354b;border:1px solid #ccd6e4;border-radius:50%;width:44px;height:44px;cursor:pointer;font-size:24px;padding:0;display:grid;place-items:center;line-height:1;box-sizing:border-box}
-.wp-lightbox-overlay .prihod-photo-navigation.is-previous{left:12px}.wp-lightbox-overlay .prihod-photo-navigation.is-next{right:12px}.wp-lightbox-overlay .prihod-photo-navigation[hidden]{display:none}
-.wp-lightbox-overlay .prihod-photo-navigation:focus-visible{outline:3px solid #096dcc;outline-offset:3px}
-@media(max-width:600px){.wp-lightbox-overlay .prihod-photo-caption{left:52px;right:52px;bottom:8px;font-size:12px;max-height:64px}.wp-lightbox-overlay .prihod-photo-navigation{width:44px;height:44px}}
 .prihod-scheme-classic .prihod-feature .prihod-photo-item.is-portrait,.prihod-scheme-editorial .prihod-feature .prihod-photo-item.is-portrait,.prihod-scheme-classic .prihod-photo-strip>.prihod-photo-item.is-portrait,.prihod-scheme-hospitality .prihod-photo-strip>.prihod-photo-item.is-portrait{overflow:hidden;isolation:isolate}
 .prihod-scheme-classic .prihod-feature .prihod-photo-item.is-portrait:before,.prihod-scheme-editorial .prihod-feature .prihod-photo-item.is-portrait:before,.prihod-scheme-classic .prihod-photo-strip>.prihod-photo-item.is-portrait:before,.prihod-scheme-hospitality .prihod-photo-strip>.prihod-photo-item.is-portrait:before{content:"";position:absolute;inset:-12px;background:var(--prihod-portrait-background) center 25%/cover no-repeat;filter:blur(12px) brightness(.72);pointer-events:none;z-index:0}
 .prihod-scheme-classic .prihod-feature .prihod-photo-item.is-portrait img,.prihod-scheme-editorial .prihod-feature .prihod-photo-item.is-portrait img,.prihod-scheme-classic .prihod-photo-strip>.prihod-photo-item.is-portrait img,.prihod-scheme-hospitality .prihod-photo-strip>.prihod-photo-item.is-portrait img{position:relative;z-index:1;background:transparent}
-/* A gallery's old flex basis belongs to its figures, never to their nested images. */
 .prihod-scheme-blue .prihod-photo-strip>.prihod-photo-item{height:85px;align-self:start;display:block}
 .prihod-scheme-blue .prihod-photo-strip>.prihod-photo-item img{flex:none;height:85px;width:100%;max-height:none}
-/* Keep the native controls/focus lifecycle; the visible window has its own geometry. */
-body .wp-lightbox-overlay{--prihod-viewer-width:min(1040px,calc(100vw - 48px));--prihod-viewer-height:min(760px,calc(100dvh - 80px))}
-body .wp-lightbox-overlay .scrim{background:#101820b8!important;opacity:1!important;z-index:0!important}
-body .wp-lightbox-overlay:before{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:var(--prihod-viewer-width);height:var(--prihod-viewer-height);background:#f8fafc;border-radius:10px;box-shadow:0 12px 60px #0008;z-index:2000000;pointer-events:none}
-body .wp-lightbox-overlay .lightbox-image-container{position:absolute!important;left:50%!important;top:50%!important;right:auto!important;bottom:auto!important;margin:0!important;transform:translate(-50%,-50%)!important;animation:none!important;width:calc(var(--prihod-viewer-width) - 112px)!important;height:calc(var(--prihod-viewer-height) - 132px)!important;max-width:none!important;max-height:none!important;overflow:visible!important;opacity:1!important}
-body .wp-lightbox-overlay .lightbox-image-container:first-of-type{display:none!important}
-body .wp-lightbox-overlay .lightbox-image-container figure{display:block!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;overflow:visible!important;aspect-ratio:auto!important;transform:none!important;animation:none!important;position:static!important}
-body .wp-lightbox-overlay .lightbox-image-container img{display:block!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;object-fit:contain!important;object-position:center!important;aspect-ratio:auto!important;transform:none!important;animation:none!important;position:static!important}
-body .wp-lightbox-overlay .wp-lightbox-close-button{top:calc((100% - var(--prihod-viewer-height))/2 + 8px);right:calc((100% - var(--prihod-viewer-width))/2 + 8px);z-index:2000004;background:#f8fafc;color:#24354b;fill:#24354b!important;border-radius:50%;width:44px;height:44px}
-body .wp-lightbox-overlay .prihod-photo-caption{left:calc((100% - var(--prihod-viewer-width))/2 + 56px);right:calc((100% - var(--prihod-viewer-width))/2 + 56px);bottom:calc((100% - var(--prihod-viewer-height))/2 + 12px)}
-body .wp-lightbox-overlay .wp-lightbox-navigation-button,body .wp-lightbox-overlay .prihod-photo-navigation{width:44px;height:44px;top:calc(50% - 22px);background:#fff;color:#24354b;fill:#24354b!important;border-radius:50%;z-index:2000004}
-body .wp-lightbox-overlay .wp-lightbox-navigation-button-prev,body .wp-lightbox-overlay .prihod-photo-navigation.is-previous{left:calc((100% - var(--prihod-viewer-width))/2 + 8px)}
-body .wp-lightbox-overlay .wp-lightbox-navigation-button-next,body .wp-lightbox-overlay .prihod-photo-navigation.is-next{right:calc((100% - var(--prihod-viewer-width))/2 + 8px)}
-body .wp-lightbox-overlay .lightbox-image-container,body .wp-lightbox-overlay .lightbox-image-container figure,body .wp-lightbox-overlay .lightbox-image-container img{min-height:0!important;min-width:0!important}
-@media(max-width:600px){body .wp-lightbox-overlay{--prihod-viewer-width:calc(100vw - 24px);--prihod-viewer-height:calc(100dvh - 48px)}body .wp-lightbox-overlay .lightbox-image-container{width:calc(var(--prihod-viewer-width) - 16px)!important}body .wp-lightbox-overlay .wp-lightbox-navigation-button,body .wp-lightbox-overlay .prihod-photo-navigation{top:auto;bottom:calc((100% - var(--prihod-viewer-height))/2 + 16px)}}

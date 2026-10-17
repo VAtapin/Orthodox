@@ -1,0 +1,11 @@
+/* Author-owned homepage galleries use the same layout as the theme's photo strip. */
+.prihod-home-content:has(.prihod-home-gallery){border:0;padding:8px 0 22px}
+.prihod-home-gallery{margin:0}
+.prihod-home-gallery h2{font:26px/1.2 Georgia,serif;margin:0 0 15px;color:var(--wp--preset--color--ink)}
+.prihod-home-gallery .wp-block-gallery.prihod-photo-strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin:0}
+.prihod-home-gallery .prihod-photo-strip>.wp-block-image{width:100%!important;min-width:0;margin:0}
+.prihod-home-gallery .prihod-photo-strip img{display:block;width:100%!important;height:135px!important;object-fit:cover}
+.prihod-home-gallery .prihod-gallery-more{text-align:right;margin:10px 0 0;font-size:13px}
+.prihod-home-gallery .prihod-gallery-more a{color:var(--wp--preset--color--forest)}
+@media(max-width:760px){.prihod-home-gallery .wp-block-gallery.prihod-photo-strip{grid-template-columns:repeat(3,minmax(0,1fr))}.prihod-home-gallery .prihod-photo-strip img{height:120px!important}}
+@media(max-width:480px){.prihod-home-gallery .wp-block-gallery.prihod-photo-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.prihod-home-gallery .prihod-photo-strip img{height:115px!important}}

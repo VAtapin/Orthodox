@@ -43,7 +43,7 @@ add_action( 'admin_menu', function () {
 add_action( 'admin_enqueue_scripts', function () {
     if ( 'georg-kloster-prihod' !== ( $_GET['page'] ?? '' ) ) { return; }
     wp_enqueue_media();
-    wp_enqueue_style( 'georg-kloster-prihod-settings', get_template_directory_uri() . '/assets/settings.css', array(), '0.3.28' );
+    wp_enqueue_style( 'georg-kloster-prihod-settings', get_template_directory_uri() . '/assets/settings.css', array(), wp_get_theme()->get( 'Version' ) );
     wp_enqueue_script( 'georg-kloster-prihod-media', get_template_directory_uri() . '/assets/media.js', array( 'jquery', 'media-views' ), '0.3.28', true );
     wp_enqueue_script( 'georg-kloster-prihod-settings', get_template_directory_uri() . '/assets/settings.js', array(), '0.3.28', true );
 } );
@@ -62,10 +62,10 @@ function prihod_theme_settings_page(): void {
     submit_button( __( 'Сохранить изменения', 'georg-kloster-prihod' ), 'primary', 'submit', false );
     echo '<a class="button" href="' . esc_url( home_url( '/' ) ) . '" target="_blank" rel="noopener">' . esc_html__( 'Посмотреть сайт', 'georg-kloster-prihod' ) . '</a></div>';
     settings_fields( 'prihod_theme' );
-    echo '<section id="prihod-option-schemes" class="prihod-option-section"><h2>' . esc_html( $sections['schemes'] ) . '</h2><p>' . esc_html__( 'Предпросмотр открывается в новой вкладке и не меняет сайт. Чтобы применить оформление, выберите карточку и сохраните изменения.', 'georg-kloster-prihod' ) . '</p><p>' . esc_html__( 'Цветные карточки показывают палитру. Живой предпросмотр использует ваши страницы, фотографии и настройки.', 'georg-kloster-prihod' ) . '</p><div class="prihod-scheme-cards">';
+    echo '<section id="prihod-option-schemes" class="prihod-option-section"><h2>' . esc_html( $sections['schemes'] ) . '</h2><p>' . esc_html__( 'Предпросмотр открывается в новой вкладке и не меняет сайт. Чтобы применить оформление, выберите карточку и сохраните изменения.', 'georg-kloster-prihod' ) . '</p><p>' . esc_html__( 'Карточки показывают примеры оформления. Живой предпросмотр использует ваши страницы, фотографии и настройки.', 'georg-kloster-prihod' ) . '</p><div class="prihod-scheme-cards">';
     $current = $options['scheme'] ?: ( WP_Theme_JSON_Resolver::get_merged_data()->get_settings()['custom']['prihod']['scheme'] ?? 'classic' );
     foreach ( prihod_theme_schemes() as $id => $title ) {
-        echo '<article class="prihod-scheme-card"><label><span class="prihod-scheme-preview is-' . esc_attr( $id ) . '" aria-hidden="true"><span></span><span></span><span></span></span><span class="prihod-scheme-choice"><input type="radio" aria-label="' . esc_attr( $title ) . '" name="georg_kloster_prihod_options[scheme]" value="' . esc_attr( $id ) . '"' . checked( $current, $id, false ) . '><strong>' . esc_html( $title ) . '</strong></span></label><div class="prihod-scheme-actions">';
+        echo '<article class="prihod-scheme-card"><label><img class="prihod-scheme-preview" src="' . esc_url( get_template_directory_uri() . '/assets/schemes/' . $id . '.jpg' ) . '" alt="" loading="lazy"><span class="prihod-scheme-choice"><input type="radio" aria-label="' . esc_attr( $title ) . '" name="georg_kloster_prihod_options[scheme]" value="' . esc_attr( $id ) . '"' . checked( $current, $id, false ) . '><strong>' . esc_html( $title ) . '</strong></span></label><div class="prihod-scheme-actions">';
         if ( $current === $id ) { echo '<small>' . esc_html__( 'Текущее оформление', 'georg-kloster-prihod' ) . '</small>'; }
         echo '<a class="button" href="' . esc_url( add_query_arg( 'prihod_preview', $id, home_url( '/' ) ) ) . '" target="_blank" rel="noopener" aria-label="' . esc_attr( sprintf( __( 'Предпросмотр: %s (новая вкладка)', 'georg-kloster-prihod' ), $title ) ) . '">' . esc_html__( 'Предпросмотр', 'georg-kloster-prihod' ) . '</a></div></article>';
     }

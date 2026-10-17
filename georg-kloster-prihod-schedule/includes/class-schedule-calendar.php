@@ -8,16 +8,13 @@ final class Schedule_Calendar {
             $args = array( 'date' => array( 'required' => true, 'type' => 'string', 'validate_callback' => static fn( $date ) => is_string( $date ) && Occurrences::date( $date ) ) );
             register_rest_route( Plugin::REST_NAMESPACE, '/calendar-day', array( 'methods' => 'GET', 'args' => $args, 'permission_callback' => static fn() => Modules::enabled( 'schedule' ) && current_user_can( 'manage_gkpsch_schedule' ), 'callback' => static fn( $request ) => Calendar_Adapter::day( $request['date'] ) ) );
             register_rest_route( Plugin::REST_NAMESPACE, '/schedule-feast', array( 'methods' => 'GET', 'args' => $args, 'permission_callback' => static fn( $request ) => self::public_date( $request['date'], false ), 'callback' => static function ( $request ) {
-                if ( is_callable( array( '\Orthocal_Plugin', 'throttle' ) ) ) { $rate = \Orthocal_Plugin::throttle(); if ( is_wp_error( $rate ) ) { return $rate; } }
                 $data = Calendar_Adapter::day( $request['date'] );
                 return is_wp_error( $data ) ? $data : array( 'date' => $data['date'], 'feasts' => $data['feasts'], 'color' => $data['recommendation']['color'] ?? '', 'icon' => self::public_date( $request['date'] ) ? $data['icon'] : null );
             } ) );
             register_rest_route( Plugin::REST_NAMESPACE, '/schedule-month', array( 'methods' => 'GET', 'args' => $args, 'permission_callback' => static fn( $request ) => Modules::enabled( 'schedule' ) && '01' === substr( $request['date'], -2 ), 'callback' => static function ( $request ) {
-                if ( is_callable( array( '\Orthocal_Plugin', 'throttle' ) ) ) { $rate = \Orthocal_Plugin::throttle(); if ( is_wp_error( $rate ) ) { return $rate; } }
                 return Calendar_Adapter::month( $request['date'] );
             } ) );
             register_rest_route( Plugin::REST_NAMESPACE, '/schedule-icon', array( 'methods' => 'GET', 'args' => $args, 'permission_callback' => static fn( $request ) => self::public_date( $request['date'] ), 'callback' => static function ( $request ) {
-                if ( is_callable( array( '\Orthocal_Plugin', 'throttle' ) ) ) { $rate = \Orthocal_Plugin::throttle(); if ( is_wp_error( $rate ) ) { return $rate; } }
                 $data = Calendar_Adapter::day( $request['date'] );
                 return is_wp_error( $data ) ? $data : array( 'date' => $data['date'], 'icon' => $data['icon'] );
             } ) );
@@ -27,19 +24,10 @@ final class Schedule_Calendar {
     /** Stable native Image-block source, resolved only when its viewer requests it. */
     public static function image_url( string $date ): string { return add_query_arg( array( 'date' => $date, 'v' => GKPSCH_VERSION ), rest_url( Plugin::REST_NAMESPACE . '/schedule-icon-image' ) ); }
     public static function image( \WP_REST_Request $request ) {
-                if ( is_callable( array( '\Orthocal_Plugin', 'throttle' ) ) ) { $rate = \Orthocal_Plugin::throttle(); if ( is_wp_error( $rate ) ) { return $rate; } }
         $date = $request['date']; $data = Calendar_Adapter::day( $date );
         $icon = is_wp_error( $data ) ? Calendar_Icons::fallback( $date ) : $data['icon'];
         if ( ! $icon ) { return is_wp_error( $data ) ? $data : new \WP_Error( 'icon_unavailable', __( 'Икона дня недоступна.', 'georg-kloster-prihod-schedule' ), array( 'status' => 404 ) ); }
         $url = ! empty( $icon['fallback'] ) ? $icon['fullUrl'] : $icon['url'];
-        if ( ! empty( $icon['fullMedia'] ) ) {
-            parse_str( wp_parse_url( $icon['fullMedia'], PHP_URL_QUERY ) ?? '', $params );
-            $media_request = new \WP_REST_Request( 'GET', '/orthocal/v1/media' ); $media_request->set_query_params( $params );
-            $media = rest_do_request( $media_request );
-            $body = $media->get_data();
-            if ( $media->get_status() >= 400 || ! is_string( $body['url'] ?? null ) ) { return new \WP_Error( 'icon_unavailable', __( 'Икона дня недоступна.', 'georg-kloster-prihod-schedule' ), array( 'status' => 503 ) ); }
-            $url = $body['url'];
-        }
         if ( ! is_string( $url ) || ! preg_match( '~^https?://~i', $url ) ) { return new \WP_Error( 'icon_unavailable', __( 'Икона дня недоступна.', 'georg-kloster-prihod-schedule' ), array( 'status' => 503 ) ); }
         return new \WP_REST_Response( null, 302, array( 'Location' => esc_url_raw( $url ), 'Cache-Control' => 'public, max-age=60' ) );
     }

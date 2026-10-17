@@ -126,6 +126,9 @@ function prihod_theme_heading(): string {
         return $html . '<h1>' . esc_html( get_the_title() ) . '</h1></div></div>';
     }
     $image = get_the_post_thumbnail_url( get_the_ID(), 'full' ) ?: wp_get_attachment_image_url( georg_kloster_prihod_options()['hero_image'], 'full' );
+    if ( get_the_ID() === prihod_theme_resource_id( 'schedule' ) ) {
+        $image = wp_get_attachment_image_url( georg_kloster_prihod_options()['hero_image'], 'full' ) ?: $image;
+    }
     if ( prihod_theme_request_page() ) {
         $image = get_the_post_thumbnail_url( get_the_ID(), 'full' ) ?: wp_get_attachment_image_url( georg_kloster_prihod_options()['hero_image'], 'full' );
         $about = prihod_theme_url( 'about' );

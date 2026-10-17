@@ -40,3 +40,67 @@ body .gkpsch-service-icon.wp-lightbox-container button.lightbox-trigger{inset:0!
 /* Shared mini-month styling for every theme; feast text and service frames are independent. */
 .gkpsch-mini-grid a.has-vestment-frame{border-style:solid;border-width:2px;color:var(--gkpsch-day-ink)}.gkpsch-mini-grid a.is-great-feast,.gkpsch-mini-grid a.is-great-feast.is-today{color:#b22222;font-weight:700}
 .gkpsch-service-feast .gkpsch-typikon{display:inline-block;width:20px;height:20px;vertical-align:middle;margin-inline-end:6px;object-fit:contain}.gkpsch-mini-grid a .gkpsch-typikon{position:absolute;top:1px;right:1px;width:9px;height:9px;object-fit:contain}.gkpsch-month td>.gkpsch-service-feast{margin:4px 0}
+
+/* The schedule layout follows the original Prihod design, with plugin-owned selectors. */
+.gkpsch-schedule{--gkpsch-line:var(--prihod-line,#e2d9cc);--gkpsch-accent:var(--wp--preset--color--forest,#a66d24);--gkpsch-muted:var(--prihod-muted,#687181);padding:0;background:transparent;border:0}
+.gkpsch-schedule-body{padding:20px;background:#fff;border:1px solid var(--gkpsch-line);border-radius:5px}
+.gkpsch-schedule-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.gkpsch-view-switch{display:flex;gap:0}
+.gkpsch-view-switch a{padding:8px 16px;border:1px solid var(--gkpsch-line);font-size:14px;text-decoration:none;color:var(--gkpsch-accent)}
+.gkpsch-view-switch a+a{border-left:0}
+.gkpsch-view-switch a[aria-current]{background:var(--gkpsch-accent);color:#fff}
+.gkpsch-controls{display:flex;gap:10px;align-items:end;flex-wrap:wrap;font-size:12px}
+.gkpsch-controls label{display:flex;flex-direction:column;gap:4px}
+.gkpsch-block .gkpsch-controls input,.gkpsch-block .gkpsch-controls select{max-width:230px;font-size:12px;padding:7px;border:1px solid var(--gkpsch-line);border-radius:3px;background:#fff;color:inherit}
+.gkpsch-controls button{font-size:12px;padding:8px 12px;border:1px solid var(--gkpsch-accent);border-radius:3px;background:var(--gkpsch-accent);color:#fff;cursor:pointer}
+.gkpsch-controls button:hover,.gkpsch-controls button:focus-visible{filter:brightness(.9)}
+.gkpsch-period-nav{display:flex;justify-content:space-between;gap:10px;font-size:0;margin:20px 0 12px}
+.gkpsch-period-nav a{font-size:13px;color:var(--gkpsch-accent)}
+.gkpsch-range-title{font:24px/1.3 Georgia,serif;text-align:center;margin:12px 0 20px}
+.gkpsch-schedule-columns{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:24px}
+.gkpsch-week-day{display:grid;grid-template-columns:66px minmax(0,1fr);margin-bottom:12px;border:1px solid var(--gkpsch-line);border-radius:5px;overflow:hidden;background:#fff}
+.gkpsch-week-day>h4{margin:0;padding:18px 10px;text-align:center;background:#f5f1e8;font-size:14px}
+.gkpsch-week-day>h4 strong{display:block;font:30px/1.3 Georgia,serif}
+.gkpsch-block article.gkpsch-event{display:flex;gap:16px;padding:16px;margin:0;border:0;border-bottom:1px solid var(--gkpsch-line);border-radius:0}
+.gkpsch-week-day .gkpsch-event:last-child{border-bottom:0}
+.gkpsch-event-time{flex:none;width:60px;font:21px/1.2 Georgia,serif;color:var(--gkpsch-accent)}
+.gkpsch-event-time small{display:block;font-size:13px;margin-top:6px}
+.gkpsch-event-copy{min-width:0;flex:1}
+.gkpsch-event-copy h3{font:21px/1.25 Georgia,serif;margin:0 0 6px}
+.gkpsch-event-copy p{font-size:12px;margin:4px 0}
+.gkpsch-event-meta{color:var(--gkpsch-muted)}
+.gkpsch-event-description{font-size:12px;margin-top:10px}
+.gkpsch-event-description summary{cursor:pointer;color:var(--gkpsch-accent)}
+.gkpsch-event.is-cancelled{background:#fff5f2}
+.gkpsch-event.is-moved{background:#fff9e9}
+.gkpsch-schedule-aside{display:grid;gap:20px;align-content:start}
+.gkpsch-mini-month,.gkpsch-visit-card{padding:18px;border:1px solid var(--gkpsch-line);border-radius:5px}
+.gkpsch-schedule-aside h3{font:22px/1.3 Georgia,serif;margin:0 0 16px}
+.gkpsch-mini-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));text-align:center;gap:5px;font-size:12px}
+.gkpsch-mini-grid a{padding:6px 2px;text-decoration:none}
+.gkpsch-mini-grid .has-services{background:#f1e8d7;border-radius:3px;font-weight:bold}
+.gkpsch-visit-card p{font-size:13px;line-height:1.6}
+.gkpsch-visit-card a{display:block;font-size:13px;margin-top:10px;color:var(--gkpsch-accent)}
+.gkpsch-month .gkpsch-event{display:block;padding:6px}
+.gkpsch-month .gkpsch-event h3{font-size:13px}
+.gkpsch-month .gkpsch-event-time{font-size:14px}
+.gkpsch-month .gkpsch-event-copy p{font-size:10px}
+.gkpsch-schedule-overview{grid-template-columns:1.28fr 1fr;gap:16px;margin-bottom:24px}
+.gkpsch-schedule-overview>div{position:relative;padding:18px 20px 18px 94px;background:#fff;border:1px solid var(--gkpsch-line)}
+.gkpsch-schedule-overview h3{font:23px/1.25 Georgia,serif;border:0;padding:0;margin:0 0 5px}
+.gkpsch-upcoming-card:before{content:"";position:absolute;left:18px;top:20px;width:56px;height:56px;border-radius:50%;background:#faf5e9 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 24 24' fill='none' stroke='%23b77d20' stroke-width='1.6'%3E%3Crect x='3' y='5' width='18' height='16' rx='1'/%3E%3Cpath d='M7 2v6m10-6v6M3 10h18m-13 4h2m4 0h2m-8 4h2m4 0h2'/%3E%3C/svg%3E") center no-repeat}
+.gkpsch-schedule-overview .gkpsch-changes-card{padding-left:65px;background:#fdf6e8}
+.gkpsch-changes-card:before{content:"!";position:absolute;left:20px;top:20px;width:28px;height:28px;border:2px solid #b77d20;border-radius:50%;text-align:center;font:22px/28px Georgia,serif;color:#b77d20}
+.gkpsch-changes-card h3{color:#955b13}
+.gkpsch-schedule-overview .gkpsch-overview-date{font-size:20px;margin:3px 0;font-weight:bold;color:var(--gkpsch-accent)}
+.gkpsch-upcoming-card>strong{font:20px/1.25 Georgia,serif}
+.gkpsch-upcoming-card>p:not(.gkpsch-overview-date){margin:5px 0;max-width:calc(100% - 130px)}
+.gkpsch-upcoming-card>a{position:absolute;right:18px;bottom:20px;padding:7px 10px;border:1px solid var(--gkpsch-line);border-radius:4px;font-size:12px;text-decoration:none;color:var(--gkpsch-accent)}
+.gkpsch-schedule-overview p:not(.gkpsch-overview-date),.gkpsch-schedule-overview li{font-size:13px}
+.gkpsch-schedule-overview small{font-size:11px;color:var(--gkpsch-muted);margin-top:4px}
+.gkpsch-mini-grid .has-services{background:transparent}
+.gkpsch-mini-grid .is-selected-week{background:#f1e8d7}
+.gkpsch-mini-grid .is-today{border-color:var(--gkpsch-accent);color:var(--gkpsch-accent)}
+@media(max-width:800px){.gkpsch-schedule-columns{grid-template-columns:1fr}.gkpsch-schedule-aside{grid-template-columns:1fr 1fr}.gkpsch-schedule-toolbar{display:block}.gkpsch-controls{margin-top:15px}}
+@media(max-width:760px){.gkpsch-schedule-overview{grid-template-columns:1fr}}
+@media(max-width:600px){.gkpsch-schedule-body{padding:12px}.gkpsch-schedule-overview{gap:12px}.gkpsch-schedule-overview>div,.gkpsch-schedule-overview .gkpsch-changes-card{padding:16px}.gkpsch-upcoming-card:before,.gkpsch-changes-card:before{display:none}.gkpsch-upcoming-card>p:not(.gkpsch-overview-date){max-width:none}.gkpsch-upcoming-card>a{position:static;display:inline-block;margin-top:8px}.gkpsch-schedule-aside{grid-template-columns:1fr}.gkpsch-week-day{grid-template-columns:48px minmax(0,1fr)}.gkpsch-block article.gkpsch-event{gap:8px;padding:10px}.gkpsch-event-time{width:46px;font-size:18px}.gkpsch-event-copy h3{font-size:18px}.gkpsch-period-nav a{font-size:11px}}

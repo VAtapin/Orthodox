@@ -9,12 +9,7 @@ final class Calendar_Adapter {
         return in_array( $lang, array( 'ru', 'de', 'pl', 'uk' ), true ) ? $lang : 'ru';
     }
     public static function request( string $path, array $query ) {
-        if ( ! is_callable( array( '\Orthocal_Plugin', 'request' ) ) ) { return new \WP_Error( 'calendar_unavailable', __( 'Календарный плагин недоступен.', 'georg-kloster-prihod-schedule' ), array( 'status' => 503 ) ); }
-        $options = is_callable( array( '\\Orthocal_Plugin', 'options' ) ) ? \Orthocal_Plugin::options() : array();
-        if ( ! is_array( $options ) || ! is_string( $options['profile'] ?? null ) || '' === $options['profile'] ) {
-            return new \WP_Error( 'calendar_settings', __( 'Calendar settings are unavailable.', 'georg-kloster-prihod-schedule' ), array( 'status' => 503 ) );
-        }
-        return \Orthocal_Plugin::request( 'calendar', $path, $query + array( 'lang' => self::language(), 'profile' => $options['profile'] ) );
+        return Calendar_Provider::request( $path, $query );
     }
     public static function feasts( array $day ): array {
         $result = array();
@@ -31,16 +26,13 @@ final class Calendar_Adapter {
         if ( is_wp_error( $data ) ) { return $data; }
         if ( ! is_array( $data['day'] ?? null ) || ( $data['day']['date'] ?? '' ) !== $date || ! is_array( $data['day']['events'] ?? null ) ) { return new \WP_Error( 'calendar_schema', __( 'Календарь вернул некорректные данные.', 'georg-kloster-prihod-schedule' ), array( 'status' => 502 ) ); }
         $day = $data['day']; $icon = null;
-        if ( is_callable( array( '\Orthocal_Plugin', 'icon_items' ) ) && class_exists( '\Orthocal_Media_Cache' ) ) {
-            $item = \Orthocal_Plugin::icon_items( $day )[0] ?? null;
-            if ( $item ) {
-                $source = $item['images'][0] ?? '';
-                $icon = array( 'url' => $item['localUrl'] ?? '', 'fullUrl' => Schedule_Calendar::image_url( $date ), 'alt' => sanitize_text_field( $item['alt'] ?? '' ), 'attribution' => sanitize_text_field( $item['attribution'] ?? '' ), 'media' => '', 'fullMedia' => '' );
-                if ( $source ) {
-                    $icon['fullMedia'] = add_query_arg( array( 'source' => $source, 'token' => \Orthocal_Media_Cache::token( $source ) ), rest_url( 'orthocal/v1/media' ) );
-                    if ( ! $icon['url'] ) { $icon['media'] = add_query_arg( 'thumbnail', '1', $icon['fullMedia'] ); }
-                }
-            }
+        foreach ( $day['icons'] ?? array() as $item ) {
+            if ( ! is_array( $item ) ) { continue; }
+            $source = $item['images'][0]['url'] ?? $item['imageUrl'] ?? '';
+            $url = Calendar_Provider::icon_url( $source );
+            if ( ! $url ) { continue; }
+            $icon = array( 'url' => $url, 'fullUrl' => Schedule_Calendar::image_url( $date ), 'alt' => sanitize_text_field( $item['title'] ?? '' ), 'attribution' => sanitize_text_field( $item['attribution'] ?? '' ), 'media' => '', 'fullMedia' => '' );
+            break;
         }
         $feasts = self::feasts( $day );
         return array( 'date' => $date, 'feasts' => $feasts, 'icon' => $icon ?: Calendar_Icons::fallback( $date ), 'recommendation' => Calendar_Colors::day( $day ) );
@@ -69,12 +61,13 @@ final class Calendar_Adapter {
             $title = sanitize_text_field( $event['title'] ?? '' );
             if ( $code <= 3 && $title ) { $memories[] = $title; }
             $mark = $event['typikonMark'] ?? null;
-            if ( ! is_array( $mark ) || ! is_string( $mark['label'] ?? null ) || ! is_string( $mark['svgSource'] ?? null ) || ! class_exists( '\Orthocal_Media_Cache' ) ) { continue; }
+            if ( ! is_array( $mark ) || ! is_string( $mark['label'] ?? null ) || ! is_string( $mark['svgSource'] ?? null ) ) { continue; }
             $source = $mark['svgSource'];
-            if ( ! preg_match( '~^/assets/typikon/(great|vigil|polyeleos|doxology|six-stichera)\.svg$~D', $source ) || ! \Orthocal_Media_Cache::token( $source ) ) { continue; }
+            $url = Calendar_Provider::mark_url( $source );
+            if ( ! $url ) { continue; }
             if ( $code < $rank ) {
                 $rank = $code;
-                $primary = array( 'label' => sanitize_text_field( $mark['label'] ), 'url' => \Orthocal_Media_Cache::url( $source ), 'media' => add_query_arg( array( 'source' => $source, 'token' => \Orthocal_Media_Cache::token( $source ) ), rest_url( 'orthocal/v1/media' ) ) );
+                $primary = array( 'label' => sanitize_text_field( $mark['label'] ), 'url' => $url, 'media' => $url );
             }
         }
         return array( 'memories' => array_values( array_unique( $memories ) ), 'typikon' => $primary );

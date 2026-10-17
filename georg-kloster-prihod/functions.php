@@ -43,6 +43,7 @@ add_action( 'wp_enqueue_scripts', function () {
     wp_enqueue_style( 'georg-kloster-prihod', get_stylesheet_uri(), array(), $version );
     wp_enqueue_style( 'georg-kloster-prihod-design', $uri . '/assets/theme.css', array( 'georg-kloster-prihod' ), $version );
     wp_enqueue_style( 'georg-kloster-prihod-reference', $uri . '/assets/reference.css', array( 'georg-kloster-prihod-design' ), $version . '.' . filemtime( get_template_directory() . '/assets/reference.css' ) );
+    wp_enqueue_style( 'georg-kloster-prihod-home-content', $uri . '/assets/home-content.css', array( 'georg-kloster-prihod-reference' ), $version );
     wp_enqueue_script( 'georg-kloster-prihod-gallery', $uri . '/assets/gallery.js', array(), $version, true );
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );

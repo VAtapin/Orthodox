@@ -453,10 +453,10 @@ function gkm_gallery(): void {
                 ++$image_count;
             }
             $url = wp_get_attachment_url( $id );
-            $gallery_blocks[] = '<!-- wp:image {"id":' . (int) $id . ',"sizeSlug":"large","linkDestination":"media"} --><figure class="wp-block-image size-large"><a href="' . esc_url( $url ) . '"><img src="' . esc_url( $url ) . '" alt="' . esc_attr( $image['alt'] ) . '" class="wp-image-' . (int) $id . '"/></a></figure><!-- /wp:image -->';
+            $gallery_blocks[] = '<!-- wp:image {"id":' . (int) $id . ',"sizeSlug":"large","lightbox":{"enabled":true}} --><figure class="wp-block-image size-large"><img src="' . esc_url( $url ) . '" alt="' . esc_attr( $image['alt'] ) . '" class="wp-image-' . (int) $id . '"/></figure><!-- /wp:image -->';
         }
         if ( $gallery_blocks ) {
-            $parts[] = '<!-- wp:gallery {"linkTo":"media"} --><figure class="wp-block-gallery has-nested-images columns-default is-cropped">' . implode( '', $gallery_blocks ) . '</figure><!-- /wp:gallery -->';
+            $parts[] = '<!-- wp:gallery --><figure class="wp-block-gallery has-nested-images columns-default is-cropped">' . implode( '', $gallery_blocks ) . '</figure><!-- /wp:gallery -->';
         }
     }
     wp_update_post( wp_slash( array( 'ID' => $index_id, 'post_content' => implode( "\n\n", $parts ), 'post_status' => 'publish' ) ) );

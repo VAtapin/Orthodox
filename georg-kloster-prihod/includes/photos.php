@@ -59,9 +59,7 @@ add_filter( 'render_block_core/post-featured-image', static function ( string $h
 }, 20, 3 );
 
 add_action( 'wp_enqueue_scripts', function () {
-    wp_enqueue_script( 'georg-kloster-prihod-photos', get_template_directory_uri() . '/assets/photos.js', array(), '0.3.23.' . filemtime( get_template_directory() . '/assets/photos.js' ), true );
     wp_enqueue_style( 'georg-kloster-prihod-photos', get_template_directory_uri() . '/assets/photos.css', array( 'georg-kloster-prihod-reference' ), '0.3.20.' . filemtime( get_template_directory() . '/assets/photos.css' ) );
-    wp_localize_script( 'georg-kloster-prihod-photos', 'prihodPhotoLabels', array( 'previous' => __( 'Предыдущее фото', 'georg-kloster-prihod' ), 'next' => __( 'Следующее фото', 'georg-kloster-prihod' ) ) );
 } );
 
 // Register each asynchronous icon with the existing native Image viewer before hydration.

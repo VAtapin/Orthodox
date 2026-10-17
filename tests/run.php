@@ -141,4 +141,12 @@ check( 'green' === Prihod\Calendar_Colors::recommendation( array( 'Pfingsten' ) 
 check( null === Prihod\Calendar_Colors::recommendation( array( 'Unknown feast' ) ) && null === Prihod\Calendar_Colors::recommendation( array( 'Покров', 'Троица' ) ), 'Unknown and conflicting feasts never invent a color.' );
 try { Prihod\Calendar_Colors::validate( 'javascript:red' ); check( false, 'Invalid color rejected.' ); } catch ( InvalidArgumentException $e ) { check( true, 'Invalid color rejected.' ); }
 
+require dirname( __DIR__ ) . '/georg-kloster-prihod-schedule/includes/class-occurrences.php';
+require dirname( __DIR__ ) . '/georg-kloster-prihod-schedule/includes/class-calendar-colors.php';
+$weekend_rule = array( 'id' => 617, 'title' => 'Божественная литургия', 'description' => '', 'kind' => 'regular', 'date' => '2026-10-17', 'until' => '', 'weekdays' => array( 6, 7 ), 'time' => '10:00', 'end' => '', 'timezone' => 'Europe/Berlin', 'location_id' => 616, 'day_icon' => true, 'vestment_color' => 'auto', 'exceptions' => array() );
+$weekend = GeorgKlosterPrihodSchedule\Occurrences::expand( $weekend_rule, new DateTimeImmutable( '2026-10-12 Europe/Berlin' ), new DateTimeImmutable( '2026-10-26 Europe/Berlin' ) );
+check( array( '2026-10-17 10:00', '2026-10-18 10:00', '2026-10-24 10:00', '2026-10-25 10:00' ) === array_map( static fn( $event ) => $event['start']->format( 'Y-m-d H:i' ), $weekend ), 'Standalone Schedule expands only Saturday and Sunday liturgies at 10:00.' );
+check( array( 'auto' ) === array_values( array_unique( array_column( $weekend, 'vestment_color' ) ) ), 'Calendar vestment color mode survives recurrence expansion.' );
+check( 'blue' === GeorgKlosterPrihodSchedule\Calendar_Colors::day( array( 'date' => '2026-10-14', 'events' => array( array( 'category' => 'commemoration', 'typeCode' => 1, 'title' => 'Покров Пресвятой Богородицы' ) ) ) )['color'], 'Standalone calendar recommends blue for Pokrov.' );
+
 echo "Passed {$count} assertions (isolated unit tests).\n";

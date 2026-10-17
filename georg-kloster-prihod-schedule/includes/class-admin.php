@@ -18,6 +18,7 @@ final class Admin {
     public static function settings_page(): void {
         if ( ! current_user_can( 'manage_gkpsch_settings' ) ) { wp_die( esc_html__( 'Access denied.', 'georg-kloster-prihod-schedule' ) ); }
         echo '<div class="wrap"><h1>' . esc_html__( 'Schedule settings', 'georg-kloster-prihod-schedule' ) . '</h1>';
+        Calendar_Provider::render();
         Calendar_Icons::render();
         Calendar_Reminders::render();
         echo '</div>';
