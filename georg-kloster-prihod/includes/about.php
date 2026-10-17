@@ -3,9 +3,9 @@ defined( 'ABSPATH' ) || exit;
 
 /** Presentation is opt-in for the unchanged generated about page. Never save content. */
 function prihod_theme_about_page(): ?WP_Post {
-    $resources = get_option( 'prihod_resources', array() ); $post = get_post();
+    $post = get_post();
     $headings = $post ? array_filter( parse_blocks( $post->post_content ), static fn( $block ) => 'core/heading' === $block['blockName'] ) : array();
-    return count( $headings ) >= 2 && $post && in_array( get_page_template_slug( $post->ID ), array( '', 'default', 'about', 'about.php' ), true ) && $post->ID === absint( $resources['about']['id'] ?? 0 ) && get_post_meta( $post->ID, '_prihod_theme_demo', true ) && hash_equals( (string) get_post_meta( $post->ID, '_prihod_generated_hash', true ), hash( 'sha256', $post->post_title . '|' . $post->post_content ) ) ? $post : null;
+    return count( $headings ) >= 2 && $post && in_array( get_page_template_slug( $post->ID ), array( '', 'default', 'about', 'about.php' ), true ) && $post->ID === prihod_theme_resource_id( 'about' ) && get_post_meta( $post->ID, '_prihod_theme_demo', true ) && hash_equals( (string) get_post_meta( $post->ID, '_prihod_generated_hash', true ), hash( 'sha256', $post->post_title . '|' . $post->post_content ) ) ? $post : null;
 }
 function prihod_theme_about_intro(): string {
     $post = prihod_theme_about_page();
@@ -14,9 +14,9 @@ function prihod_theme_about_intro(): string {
     return '';
 }
 function prihod_theme_about_directions(): string {
-    $resources = get_option( 'prihod_resources', array() ); $html = '';
+    $html = '';
     foreach ( array( 'first-visit' => 'about', 'news' => 'news', 'donations' => 'support' ) as $key => $icon ) {
-        $url = prihod_theme_url( $key ); $page = get_post( absint( $resources[$key]['id'] ?? 0 ) );
+        $url = prihod_theme_url( $key ); $page = get_post( prihod_theme_resource_id( $key ) );
         if ( ! $url || ! $page ) { continue; }
         $intro = '';
         foreach ( parse_blocks( $page->post_content ) as $block ) { if ( 'core/paragraph' === $block['blockName'] ) { $intro = wp_strip_all_tags( $block['innerHTML'] ); break; } }

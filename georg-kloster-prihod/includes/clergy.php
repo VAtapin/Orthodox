@@ -3,8 +3,8 @@ defined( 'ABSPATH' ) || exit;
 
 /** Merge an exact generated biography duplicate into the existing live directory. */
 function prihod_theme_clergy_content( string $html ): string {
-    $post = get_post(); $resources = get_option( 'prihod_resources', array() );
-    if ( ! $post || ! is_singular( 'page' ) || $post->ID !== get_queried_object_id() || $post->ID !== absint( $resources['clergy']['id'] ?? 0 )
+    $post = get_post();
+    if ( ! $post || ! is_singular( 'page' ) || $post->ID !== get_queried_object_id() || $post->ID !== prihod_theme_resource_id( 'clergy' )
         || ! in_array( get_page_template_slug( $post->ID ), array( '', 'default' ), true ) || ! get_post_meta( $post->ID, '_prihod_theme_demo', true )
         || ! hash_equals( (string) get_post_meta( $post->ID, '_prihod_generated_hash', true ), hash( 'sha256', $post->post_title . '|' . $post->post_content ) ) ) { return $html; }
     $people = get_posts( array( 'post_type' => 'prihod_clergy', 'post_status' => 'publish', 'numberposts' => 2 ) );

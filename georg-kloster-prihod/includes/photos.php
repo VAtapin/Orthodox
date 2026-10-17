@@ -65,11 +65,12 @@ add_action( 'wp_enqueue_scripts', function () {
 } );
 
 // Register each asynchronous icon with the existing native Image viewer before hydration.
-add_filter( 'prihod_schedule_icon_markup', static function ( string $html, array $event, ?array $fallback ): string {
-    if ( ! is_callable( array( '\\Prihod\\Schedule_Calendar', 'image_url' ) ) || ! isset( $event['start'] ) || ! $event['start'] instanceof DateTimeInterface ) {
+function prihod_theme_schedule_icon_markup( string $html, array $event, ?array $fallback ): string {
+    $calendar = class_exists( '\GeorgKlosterPrihodSchedule\Schedule_Calendar' ) ? '\GeorgKlosterPrihodSchedule\Schedule_Calendar' : '\Prihod\Schedule_Calendar';
+    if ( ! is_callable( array( $calendar, 'image_url' ) ) || ! isset( $event['start'] ) || ! $event['start'] instanceof DateTimeInterface ) {
         return $html;
     }
-    $full_url = \Prihod\Schedule_Calendar::image_url( $event['start']->format( 'Y-m-d' ) );
+    $full_url = $calendar::image_url( $event['start']->format( 'Y-m-d' ) );
     if ( ! $full_url ) { return $html; }
     $seed = $fallback['url'] ?? $full_url;
     $image = '<img src="' . esc_url( $full_url ) . '" alt="' . esc_attr__( 'Икона дня', 'georg-kloster-prihod' ) . '" decoding="async">';
@@ -79,4 +80,6 @@ add_filter( 'prihod_schedule_icon_markup', static function ( string $html, array
     $tags = new WP_HTML_Tag_Processor( $html );
     if ( $tags->next_tag( 'IMG' ) ) { $tags->set_attribute( 'src', $seed ); }
     return $tags->get_updated_html();
-}, 10, 3 );
+}
+add_filter( 'prihod_schedule_icon_markup', 'prihod_theme_schedule_icon_markup', 10, 3 );
+add_filter( 'gkpsch_schedule_icon_markup', 'prihod_theme_schedule_icon_markup', 10, 3 );

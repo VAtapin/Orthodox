@@ -13,9 +13,28 @@ final class Profile {
         );
     }
 
-    public static function get(): array {
+    public static function raw(): array {
         $saved = get_option( self::OPTION, array() );
         return array_merge( self::defaults(), is_array( $saved ) ? $saved : array() );
+    }
+
+    public static function get(): array {
+        $profile = self::raw();
+        foreach ( array( 'name', 'short_name', 'description', 'address' ) as $key ) {
+            if ( '' !== $profile[ $key ] ) {
+                $translated = apply_filters( 'wpml_translate_single_string', false, 'georg-kloster-prihod-core', 'profile-' . $key );
+                if ( is_string( $translated ) && '' !== $translated ) { $profile[ $key ] = $translated; }
+            }
+        }
+        return $profile;
+    }
+
+    public static function register_strings( array $profile ): void {
+        foreach ( array( 'name', 'short_name', 'description', 'address' ) as $key ) {
+            if ( ! empty( $profile[ $key ] ) && is_string( $profile[ $key ] ) ) {
+                do_action( 'wpml_register_single_string', 'georg-kloster-prihod-core', 'profile-' . $key, $profile[ $key ] );
+            }
+        }
     }
 
     public static function fields(): array {
@@ -32,7 +51,7 @@ final class Profile {
     }
 
     public static function sanitize( $input ): array {
-        $result = self::get();
+        $result = self::raw();
         if ( ! is_array( $input ) ) {
             add_settings_error( self::OPTION, 'invalid', __( 'Invalid profile.', 'georg-kloster-prihod-core' ) );
             return $result;

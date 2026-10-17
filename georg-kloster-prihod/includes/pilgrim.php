@@ -3,8 +3,8 @@ defined( 'ABSPATH' ) || exit;
 
 /** Presentation of the unchanged generated visitor page; never persist page data. */
 function prihod_theme_pilgrim_data(): ?array {
-    $page = is_singular( 'page' ) ? get_post( get_queried_object_id() ) : null; $resources = get_option( 'prihod_resources', array() );
-    if ( ! is_singular( 'page' ) || ! $page instanceof WP_Post || $page->ID !== absint( $resources['first-visit']['id'] ?? 0 )
+    $page = is_singular( 'page' ) ? get_post( get_queried_object_id() ) : null;
+    if ( ! is_singular( 'page' ) || ! $page instanceof WP_Post || $page->ID !== prihod_theme_resource_id( 'first-visit' )
         || ! in_array( get_page_template_slug( $page->ID ), array( '', 'default', 'pilgrim.php' ), true ) || ! get_post_meta( $page->ID, '_prihod_theme_demo', true )
         || ! hash_equals( (string) get_post_meta( $page->ID, '_prihod_generated_hash', true ), hash( 'sha256', $page->post_title . '|' . $page->post_content ) ) ) { return null; }
     // Saved site-editor templates and page-specific files take precedence.

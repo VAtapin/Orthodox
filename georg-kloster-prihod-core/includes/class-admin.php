@@ -15,12 +15,14 @@ final class Admin {
 
     public static function settings(): void {
         register_setting( 'gkpc_profile', Profile::OPTION, array( 'type' => 'array', 'sanitize_callback' => array( Profile::class, 'sanitize' ), 'show_in_rest' => false ) );
+        register_setting( 'gkpc_pages', Page_Links::OPTION, array( 'type' => 'array', 'sanitize_callback' => array( Page_Links::class, 'sanitize' ), 'show_in_rest' => false ) );
         add_filter( 'option_page_capability_gkpc_profile', static function () { return 'manage_gkpc_profile'; } );
+        add_filter( 'option_page_capability_gkpc_pages', static function () { return 'manage_gkpc_profile'; } );
     }
 
     public static function page(): void {
         if ( ! current_user_can( 'manage_gkpc_profile' ) ) { wp_die( esc_html__( 'Access denied.', 'georg-kloster-prihod-core' ) ); }
-        $profile = Profile::get();
+        $profile = Profile::raw();
         echo '<div class="wrap"><h1>' . esc_html__( 'Parish profile', 'georg-kloster-prihod-core' ) . '</h1>';
         settings_errors( Profile::OPTION );
         echo '<form method="post" action="' . esc_url( admin_url( 'options.php' ) ) . '">';
@@ -44,6 +46,8 @@ final class Admin {
         }
         echo '</tbody></table>';
         submit_button();
-        echo '</form></div>';
+        echo '</form>';
+        Page_Links::render();
+        echo '</div>';
     }
 }

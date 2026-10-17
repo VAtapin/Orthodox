@@ -11,8 +11,8 @@ add_filter( 'render_block_prihod/contacts', function ( string $html ): string {
 } );
 
 function prihod_theme_contacts_data(): ?array {
-    $page = is_singular( 'page' ) ? get_post( get_queried_object_id() ) : null; $resources = get_option( 'prihod_resources', array() );
-    if ( ! $page instanceof WP_Post || $page->ID !== absint( $resources['contacts']['id'] ?? 0 )
+    $page = is_singular( 'page' ) ? get_post( get_queried_object_id() ) : null;
+    if ( ! $page instanceof WP_Post || $page->ID !== prihod_theme_resource_id( 'contacts' )
         || ! in_array( get_page_template_slug( $page->ID ), array( '', 'default', 'contacts.php' ), true ) || ! get_post_meta( $page->ID, '_prihod_theme_demo', true )
         || ! hash_equals( (string) get_post_meta( $page->ID, '_prihod_generated_hash', true ), hash( 'sha256', $page->post_title . '|' . $page->post_content ) ) ) { return null; }
     foreach ( array( 'page', 'page-' . $page->post_name, 'page-' . $page->ID, 'contacts' ) as $slug ) {

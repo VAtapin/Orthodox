@@ -29,15 +29,29 @@ function prihod_theme_preview_url( string $url ): string {
     $preview = prihod_theme_preview_scheme();
     return $preview && wp_parse_url( $url, PHP_URL_HOST ) === wp_parse_url( home_url(), PHP_URL_HOST ) ? add_query_arg( 'prihod_preview', $preview, $url ) : $url;
 }
+function prihod_theme_schedule_class(): string {
+    if ( class_exists( '\GeorgKlosterPrihodSchedule\Schedule' ) ) {
+        return '\GeorgKlosterPrihodSchedule\Schedule';
+    }
+    if ( class_exists( '\Prihod\Schedule' ) && is_callable( array( '\Prihod\Modules', 'enabled' ) ) && \Prihod\Modules::enabled( 'schedule' ) ) {
+        return '\Prihod\Schedule';
+    }
+    return '';
+}
+
 function prihod_theme_compact_services( int $limit = 1 ): string {
-    if ( ! class_exists( '\Prihod\Schedule' ) || ! is_callable( array( '\Prihod\Modules', 'enabled' ) ) || ! \Prihod\Modules::enabled( 'schedule' ) ) { return ''; }
-    $events = \Prihod\Schedule::next( 0, $limit ); $html = '';
+    $schedule = prihod_theme_schedule_class();
+    if ( ! $schedule ) { return ''; }
+    $events = $schedule::next( 0, $limit ); $html = '';
+    if ( ! $events ) { return ''; }
     foreach ( $events as $event ) {
         $date = $event['start'];
-        $feast = is_callable( array( '\Prihod\Schedule_Calendar', 'feast_placeholder' ) ) ? \Prihod\Schedule_Calendar::feast_placeholder( $event ) : '';
-        $html .= '<article class="prihod-service-compact"><div class="prihod-service-date"><strong>' . esc_html( $date->format( 'j' ) ) . '</strong><span>' . esc_html( wp_date( 'M', $date->getTimestamp(), $date->getTimezone() ) ) . '</span></div><div class="prihod-service-details"><h3>' . esc_html( $event['title'] ) . '</h3>' . $feast . '<div class="prihod-service-when"><span>' . esc_html( wp_date( 'editorial' === prihod_theme_scheme() ? 'l' : 'l, j F Y', $date->getTimestamp(), $date->getTimezone() ) ) . '</span><time datetime="' . esc_attr( $date->format( DATE_ATOM ) ) . '">' . esc_html( $date->format( 'H:i' ) ) . '</time></div><p>' . prihod_theme_icon( 'contacts' ) . esc_html( get_the_title( $event['location_id'] ) ) . '</p></div></article>';
+        $calendar = class_exists( '\GeorgKlosterPrihodSchedule\Schedule_Calendar' ) ? '\GeorgKlosterPrihodSchedule\Schedule_Calendar' : '\Prihod\Schedule_Calendar';
+        $feast = is_callable( array( $calendar, 'feast_placeholder' ) ) ? $calendar::feast_placeholder( $event ) : '';
+        $place_title = class_exists( '\GeorgKlosterPrihodSchedule\Directory' ) ? \GeorgKlosterPrihodSchedule\Directory::title( $event['location_id'] ) : get_the_title( $event['location_id'] );
+        $html .= '<article class="prihod-service-compact"><div class="prihod-service-date"><strong>' . esc_html( $date->format( 'j' ) ) . '</strong><span>' . esc_html( wp_date( 'M', $date->getTimestamp(), $date->getTimezone() ) ) . '</span></div><div class="prihod-service-details"><h3>' . esc_html( $event['title'] ) . '</h3>' . $feast . '<div class="prihod-service-when"><span>' . esc_html( wp_date( 'editorial' === prihod_theme_scheme() ? 'l' : 'l, j F Y', $date->getTimestamp(), $date->getTimezone() ) ) . '</span><time datetime="' . esc_attr( $date->format( DATE_ATOM ) ) . '">' . esc_html( $date->format( 'H:i' ) ) . '</time></div><p>' . prihod_theme_icon( 'contacts' ) . esc_html( $place_title ) . '</p></div></article>';
     }
-    return $html ?: '<p class="prihod-service-empty">' . esc_html__( 'Богослужения на выбранный период не указаны.', 'georg-kloster-prihod' ) . '</p>';
+    return $html;
 }
 function prihod_theme_verse( string $text_key = 'quote_text', string $source_key = 'quote_source' ): string {
     $options = georg_kloster_prihod_options();

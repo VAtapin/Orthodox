@@ -1,0 +1,42 @@
+.gkpsch-block {margin-block: 1.5rem; line-height: 1.6;}
+.gkpsch-block article {border-block-end: 1px solid currentColor; padding-block: 1rem;}
+.gkpsch-controls {display: flex; flex-wrap: wrap; gap: .75rem; align-items: end;}
+.gkpsch-block input, .gkpsch-block select, .gkpsch-block textarea {max-width: 100%; font: inherit;}
+.gkpsch-block .is-cancelled h3 {text-decoration: line-through;}
+@media print {
+    .gkpsch-printing .gkpsch-controls, .gkpsch-printing header, .gkpsch-printing footer, .gkpsch-printing nav, .gkpsch-printing aside, .gkpsch-printing #wpadminbar {display: none !important;}
+    .gkpsch-event {break-inside: avoid;}
+    .gkpsch-block {color: black; background: white;}
+}
+
+.gkpsch-schedule-toolbar{display:flex;gap:1rem;flex-wrap:wrap;justify-content:space-between;align-items:center}.gkpsch-schedule-columns{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:1.5rem}.gkpsch-schedule-columns>.gkpsch-week{min-width:0}.gkpsch-schedule-aside{display:grid;gap:1rem;align-content:start}.gkpsch-mini-month,.gkpsch-visit-card{padding:1rem;border:1px solid #ddd;border-radius:4px}.gkpsch-mini-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;text-align:center}.gkpsch-mini-grid a{padding:5px;text-decoration:none}.gkpsch-mini-grid .has-services{background:#f1eadb;font-weight:bold}.gkpsch-visit-card a{display:block;margin-top:.6rem}.gkpsch-event{display:flex;gap:1rem}.gkpsch-event-time{flex:none;min-width:55px;font-size:1.2em}.gkpsch-event-time small{display:block;font-size:.75em}.gkpsch-event-copy{min-width:0}.gkpsch-event-copy h3{margin-top:0}.gkpsch-event-description summary{cursor:pointer}.gkpsch-month .gkpsch-event{display:block}.gkpsch-month .gkpsch-event-time{font-size:1em}@media(max-width:760px){.gkpsch-schedule-columns{grid-template-columns:1fr}}
+
+.gkpsch-schedule-overview{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem}.gkpsch-schedule-overview>div{padding:1.2rem;border:1px solid #ddd;border-radius:5px}.gkpsch-schedule-overview h3{margin:0 0 1rem}.gkpsch-schedule-overview small{display:block}.gkpsch-schedule-overview ul{padding-left:1.2rem}.gkpsch-schedule-overview li{margin-bottom:.75rem}.gkpsch-mini-grid a{position:relative;border:1px solid transparent;border-radius:3px}.gkpsch-mini-grid .is-selected-week{background:#f1eadb}.gkpsch-mini-grid .is-today{border-color:currentColor;font-weight:bold}.gkpsch-mini-grid .has-services:after{content:"";position:absolute;width:4px;height:4px;border-radius:50%;background:currentColor;bottom:1px;left:calc(50% - 2px)}.gkpsch-mini-grid .has-cancellations{text-decoration:line-through;color:#9d2d1f}.gkpsch-mini-grid .has-moves{box-shadow:inset 0 -2px #b58334}.gkpsch-mini-legend{display:flex;flex-wrap:wrap;gap:8px;font-size:10px;margin-top:12px}.gkpsch-mini-legend span{padding:2px 5px;border:1px solid transparent}.gkpsch-mini-legend .is-today{border-color:currentColor}.gkpsch-mini-legend .is-selected-week{background:#f1eadb}.gkpsch-mini-legend .has-services:before{content:"● ";font-size:8px}@media(max-width:600px){.gkpsch-schedule-overview{grid-template-columns:1fr}}
+
+.gkpsch-required{color:#a12c27}.gkpsch-required-help,.gkpsch-topic-help{font-size:.85em}.gkpsch-requests select{max-width:100%;width:100%;padding:.6em;font:inherit}.gkpsch-requests [hidden]{display:none!important}
+.gkpsch-service-icon{margin:10px 0 0;max-width:100%;width:60px}.gkpsch-service-icon[hidden]{display:none}.gkpsch-service-icon img{display:block;width:100%;height:auto;max-height:110px;object-fit:contain}.gkpsch-service-icon figcaption{font:9px/1.3 system-ui;overflow-wrap:anywhere}.gkpsch-month .gkpsch-service-icon{width:44px}@media(max-width:600px){.gkpsch-service-icon{width:44px}}
+/* The native lightbox button covers the icon without painting over its small thumbnail. */
+body .gkpsch-service-icon.wp-lightbox-container button.lightbox-trigger{inset:0!important;transform:none!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;opacity:0!important;cursor:zoom-in}
+.gkpsch-service-icon.wp-lightbox-container:focus-within{outline:2px solid currentColor;outline-offset:2px}
+.gkpsch-month-day-choice,.gkpsch-month-panels{display:none}
+@media(max-width:600px){.gkpsch-month td>.gkpsch-event,.gkpsch-month td>time{display:none}.gkpsch-month-day-choice{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:44px;min-width:0;text-decoration:none;gap:2px}.gkpsch-month-day-choice small{font:10px/1.2 system-ui;background:#e7dcc7;border-radius:50%;min-width:15px;padding:2px}.gkpsch-month-day-choice[aria-current]{outline:2px solid currentColor;outline-offset:-2px;border-radius:4px}.gkpsch-month-panels{display:block;margin-top:16px}.gkpsch-month-panels.is-enhanced>.gkpsch-month-day-panel:not([open]){display:none}.gkpsch-month-day-panel{margin-bottom:8px;border:1px solid #ddd;border-radius:4px;padding:8px;min-width:0}.gkpsch-month-day-panel>summary{cursor:pointer;padding:8px;font-size:13px}.gkpsch-month-day-panel .gkpsch-event-copy h3{font-size:18px;overflow-wrap:normal;word-break:normal}.gkpsch-month-day-panel .gkpsch-event-copy p{font-size:12px}}
+@media(max-width:600px){.gkpsch-schedule .gkpsch-month td{height:auto;padding:0;vertical-align:middle}}
+@media print{.gkpsch-month td>.gkpsch-event{display:block}.gkpsch-month td>time{display:inline}.gkpsch-month-day-choice,.gkpsch-month-panels{display:none!important}}
+
+/* A soft edge marks vestments without lowering text contrast. */
+.gkpsch-service-feast{font-weight:600;font-size:.95em;line-height:1.45;margin-block:8px}.gkpsch-vestment-label{display:block;font-size:.8em;margin-block:5px}.gkpsch-service-compact[data-vestment-color],.gkpsch-event[data-vestment-color],.gkpsch-upcoming-card[data-vestment-color]{box-shadow:inset 6px 0 0 var(--gkpsch-vestment-edge)}.gkpsch-service-compact[data-vestment-color],.gkpsch-event[data-vestment-color]{padding-inline-start:12px}
+[data-vestment-color="white"]{--gkpsch-vestment-edge:#faf8ef}
+[data-vestment-color="red"]{--gkpsch-vestment-edge:#cb3035}
+[data-vestment-color="gold"]{--gkpsch-vestment-edge:#f2c500}
+[data-vestment-color="green"]{--gkpsch-vestment-edge:#159447}
+[data-vestment-color="blue"]{--gkpsch-vestment-edge:#349bd5}
+[data-vestment-color="purple"]{--gkpsch-vestment-edge:#8a45b5}
+[data-vestment-color="black"]{--gkpsch-vestment-edge:#353a40}
+
+.gkpsch-schedule-overview>.gkpsch-upcoming-card:only-child{grid-column:1/-1}
+
+.gkpsch-month .gkpsch-event[data-vestment-color]{padding-inline-start:12px}
+
+/* Shared mini-month styling for every theme; feast text and service frames are independent. */
+.gkpsch-mini-grid a.has-vestment-frame{border-style:solid;border-width:2px;color:var(--gkpsch-day-ink)}.gkpsch-mini-grid a.is-great-feast,.gkpsch-mini-grid a.is-great-feast.is-today{color:#b22222;font-weight:700}
+.gkpsch-service-feast .gkpsch-typikon{display:inline-block;width:20px;height:20px;vertical-align:middle;margin-inline-end:6px;object-fit:contain}.gkpsch-mini-grid a .gkpsch-typikon{position:absolute;top:1px;right:1px;width:9px;height:9px;object-fit:contain}.gkpsch-month td>.gkpsch-service-feast{margin:4px 0}

@@ -5,10 +5,9 @@ function prihod_theme_article_section(): array {
     $categories = get_the_category();
     if ( ! $categories ) { return array(); }
     $category = $categories[0]; $url = get_category_link( $category );
-    $resources = get_option( 'prihod_resources', array() );
     foreach ( array( 'news', 'sermons' ) as $key ) {
         if ( 'prihod-' . $key !== $category->slug ) { continue; }
-        $id = absint( $resources[$key]['id'] ?? 0 );
+        $id = prihod_theme_resource_id( $key );
         if ( $id && 'publish' === get_post_status( $id ) ) { $url = get_permalink( $id ); }
     }
     return array( 'name' => $category->name, 'url' => is_wp_error( $url ) ? '' : prihod_theme_preview_url( $url ) );

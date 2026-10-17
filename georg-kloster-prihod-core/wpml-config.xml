@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wpml-config>
+  <admin-texts>
+    <key name="gkpc_profile">
+      <key name="name"/>
+      <key name="short_name"/>
+      <key name="description"/>
+      <key name="address"/>
+    </key>
+  </admin-texts>
+</wpml-config>

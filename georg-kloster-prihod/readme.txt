@@ -30,6 +30,15 @@ The theme uses images selected from your WordPress media library. It does not do
 
 == Changelog ==
 
+= 0.4.4 =
+Read section links from Parish Core when present, resolve their translations, and display authored front-page blocks after the news section. Allow WPML to translate the site tagline.
+
+= 0.4.2 =
+Uses the correct post type when WPML resolves a linked page or post.
+
+= 0.4.1 =
+Connects the service preview and calendar icons to the standalone Schedule plugin.
+
 = 0.4.0 =
 
 * Separated theme presentation from plugin features and added five style choices.

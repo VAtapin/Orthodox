@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wpml-config>
+  <admin-texts>
+    <key name="georg_kloster_prihod_options">
+      <key name="header_motto"/>
+      <key name="hero_motto"/>
+      <key name="hero_quote_text"/>
+      <key name="quote_text"/>
+      <key name="footer_text"/>
+    </key>
+  </admin-texts>
+</wpml-config>

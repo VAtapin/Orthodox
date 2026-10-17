@@ -30,6 +30,13 @@ add_action( 'after_setup_theme', function () {
     register_nav_menus( array( 'primary' => __( 'Основное меню', 'georg-kloster-prihod' ) ) );
 } );
 
+add_action( 'init', function () {
+    $tagline = get_option( 'blogdescription' );
+    if ( is_string( $tagline ) && '' !== $tagline ) {
+        do_action( 'wpml_register_single_string', 'georg-kloster-prihod', 'site-tagline', $tagline );
+    }
+} );
+
 add_action( 'wp_enqueue_scripts', function () {
     $uri = get_template_directory_uri();
     $version = wp_get_theme()->get( 'Version' );
@@ -48,8 +55,8 @@ add_filter( 'body_class', function ( array $classes ): array {
     if ( georg_kloster_prihod_options()['sticky_header'] ) {
         $classes[] = 'prihod-sticky-header';
     }
-    foreach ( get_option( 'prihod_resources', array() ) as $key => $resource ) {
-        if ( ! empty( $resource['id'] ) && is_page( absint( $resource['id'] ) ) ) {
+    foreach ( prihod_theme_resources() as $key => $resource ) {
+        if ( ! empty( $resource['id'] ) && is_page( prihod_theme_resource_id( $key ) ) ) {
             $classes[] = 'prihod-page-' . sanitize_html_class( $key );
         }
     }
@@ -80,10 +87,9 @@ add_filter( 'template_include', function ( string $template ): string {
     if ( ! in_array( $assigned, array( '', 'default', 'about', 'catalog', 'wide', 'focused', 'pilgrim', 'contacts' ), true ) ) {
         return $template;
     }
-    $resources = get_option( 'prihod_resources', array() );
     $templates = array( 'about' => 'about', 'first-visit' => 'pilgrim', 'news' => 'catalog', 'sermons' => 'catalog', 'contacts' => 'contacts', 'requests' => 'focused', 'schedule' => 'wide' );
     foreach ( $templates as $key => $name ) {
-        if ( $id === absint( $resources[ $key ]['id'] ?? 0 ) ) {
+        if ( $id === prihod_theme_resource_id( $key ) ) {
             return get_template_directory() . '/' . $name . '.php';
         }
     }

@@ -5,11 +5,30 @@ function prihod_theme_profile(): array {
     $profile = class_exists( '\GeorgKlosterPrihodCore\Profile' ) ? \GeorgKlosterPrihodCore\Profile::get() : ( class_exists( '\Prihod\Profile' ) ? \Prihod\Profile::get() : array() );
     return array_merge( array( 'name' => get_bloginfo( 'name' ), 'description' => get_bloginfo( 'description' ), 'address' => '', 'phone' => '', 'email' => '' ), array_filter( $profile, fn( $value ) => '' !== $value ) );
 }
-function prihod_theme_url( string $key ): string {
-    $resources = get_option( 'prihod_resources', array() );
+function prihod_theme_tagline(): string {
+    $tagline = get_bloginfo( 'description' );
+    $translated = apply_filters( 'wpml_translate_single_string', false, 'georg-kloster-prihod', 'site-tagline' );
+    return is_string( $translated ) && '' !== $translated ? $translated : $tagline;
+}
+function prihod_theme_resources(): array {
+    $resources = apply_filters( 'georg_kloster_prihod_resources', array() );
+    return is_array( $resources ) ? $resources : array();
+}
+function prihod_theme_resource_id( string $key ): int {
+    $resources = prihod_theme_resources();
     $id = absint( $resources[ $key ]['id'] ?? 0 );
-    if ( function_exists( 'pll_get_post' ) && $id ) { $translated = pll_get_post( $id ); if ( $translated ) { $id = $translated; } }
-    elseif ( has_filter( 'wpml_object_id' ) && $id ) { $id = (int) apply_filters( 'wpml_object_id', $id, 'page', true ); }
+    if ( ! $id ) { return 0; }
+    if ( function_exists( 'pll_get_post' ) ) {
+        $translated = pll_get_post( $id );
+        return $translated ? (int) $translated : $id;
+    }
+    if ( has_filter( 'wpml_object_id' ) ) {
+        return (int) apply_filters( 'wpml_object_id', $id, get_post_type( $id ) ?: 'page', true );
+    }
+    return $id;
+}
+function prihod_theme_url( string $key ): string {
+    $id = prihod_theme_resource_id( $key );
     return $id && 'publish' === get_post_status( $id ) ? prihod_theme_preview_url( get_permalink( $id ) ) : '';
 }
 function prihod_theme_languages(): string {
@@ -30,7 +49,7 @@ function prihod_theme_brand(): string {
     $logo = '<a class="prihod-mark" href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '" aria-label="' . esc_attr( $profile['name'] ) . '"><svg viewBox="0 0 64 76" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M32 2v14M27 7h10M32 14c-13 11-11 17 0 19 11-2 13-8 0-19ZM23 33v37h18V33M13 70V44h10M41 44h10v26M7 70h50M28 70V52h8v18M29 41h6"/></g></svg></a>';
     $logo_id = $options['logo_removed'] ? 0 : ( $options['logo'] ?: get_theme_mod( 'custom_logo' ) );
     if ( $logo_id ) { $logo = '<a href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '">' . wp_get_attachment_image( $logo_id, 'full', false, array( 'class' => 'custom-logo', 'alt' => $profile['name'] ) ) . '</a>'; }
-    $text = '<div><a class="prihod-brand-title" href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '">' . esc_html( ! empty( $profile['short_name'] ) ? $profile['short_name'] : $profile['name'] ) . '</a><p>' . esc_html( get_bloginfo( 'description' ) ) . '</p></div>';
+    $text = '<div><a class="prihod-brand-title" href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '">' . esc_html( ! empty( $profile['short_name'] ) ? $profile['short_name'] : $profile['name'] ) . '</a><p>' . esc_html( prihod_theme_tagline() ) . '</p></div>';
     $hide = $options['logo_hide_title'] && ( $logo_id || ! $options['logo_show'] );
     $visible_logo = $options['logo_show'] ? $logo : '';
     // Keep an accessible home link even when both display controls are disabled.
@@ -59,7 +78,7 @@ function prihod_theme_header(): string {
         $contacts .= '<a class="prihod-header-support prihod-button" href="' . esc_url( $donation ) . '">' . esc_html( $label ) . '</a>';
     }
     $navigation = array( 'overlayMenu' => 'mobile', 'layout' => array( 'type' => 'flex', 'justifyContent' => 'right' ) );
-    $resources = get_option( 'prihod_resources', array() ); $id = absint( $resources['_navigation']['id'] ?? 0 );
+    $resources = prihod_theme_resources(); $id = absint( $resources['_navigation']['id'] ?? 0 );
     if ( $id && 'wp_navigation' === get_post_type( $id ) && 'publish' === get_post_status( $id ) ) { $navigation['ref'] = $id; }
     if ( has_nav_menu( 'primary' ) ) {
         $navigation_html = wp_nav_menu( array( 'theme_location' => 'primary', 'container' => 'nav', 'container_class' => 'wp-block-navigation prihod-classic-navigation', 'menu_class' => 'wp-block-navigation__container', 'echo' => false ) );
@@ -74,7 +93,8 @@ function prihod_theme_header(): string {
 }
 function prihod_theme_footer(): string {
     $policy = get_privacy_policy_url(); $links = '';
-    foreach ( array( 'home' => __( 'Главная', 'georg-kloster-prihod' ), 'schedule' => __( 'Расписание', 'georg-kloster-prihod' ), 'about' => __( 'О приходе', 'georg-kloster-prihod' ), 'news' => __( 'Новости', 'georg-kloster-prihod' ), 'requests' => __( 'Вопрос священнику', 'georg-kloster-prihod' ), 'contacts' => __( 'Контакты', 'georg-kloster-prihod' ) ) as $key => $label ) { $url = prihod_theme_url( $key ); if ( $url ) { $links .= '<a href="' . esc_url( $url ) . '">' . esc_html( $label ) . '</a>'; } }
+    $about_label = 'monastery' === ( prihod_theme_profile()['type'] ?? '' ) ? __( 'О монастыре', 'georg-kloster-prihod' ) : __( 'О приходе', 'georg-kloster-prihod' );
+    foreach ( array( 'home' => __( 'Главная', 'georg-kloster-prihod' ), 'schedule' => __( 'Расписание', 'georg-kloster-prihod' ), 'about' => $about_label, 'news' => __( 'Новости', 'georg-kloster-prihod' ), 'requests' => __( 'Вопрос священнику', 'georg-kloster-prihod' ), 'contacts' => __( 'Контакты', 'georg-kloster-prihod' ) ) as $key => $label ) { $url = prihod_theme_url( $key ); if ( $url ) { $links .= '<a href="' . esc_url( $url ) . '">' . esc_html( $label ) . '</a>'; } }
     return '<div class="prihod-footer"><div class="prihod-container">' . prihod_theme_brand() . '<nav class="prihod-footer-links" aria-label="' . esc_attr__( 'Разделы сайта', 'georg-kloster-prihod' ) . '">' . $links . '</nav><div>' . ( $policy ? '<a href="' . esc_url( $policy ) . '">' . esc_html__( 'Политика конфиденциальности', 'georg-kloster-prihod' ) . '</a>' : '' ) . '<p>© ' . esc_html( wp_date( 'Y' ) ) . ' ' . esc_html( prihod_theme_profile()['name'] ) . '</p><p>' . nl2br( esc_html( georg_kloster_prihod_options()['footer_text'] ) ) . '</p></div><a class="prihod-top" href="#prihod-header" aria-label="' . esc_attr__( 'Наверх', 'georg-kloster-prihod' ) . '">↑</a></div></div>';
 }
 function prihod_theme_sidebar(): string {
@@ -82,9 +102,8 @@ function prihod_theme_sidebar(): string {
     $content = (string) get_post_field( 'post_content', get_the_ID() );
     $has_calendar = has_block( 'orthocal/calendar', $content ) || has_block( 'orthocal/today', $content ) || has_shortcode( $content, 'orthocal_calendar' ) || has_shortcode( $content, 'orthocal_today' );
     if ( ! $has_calendar && shortcode_exists( 'orthocal_today' ) ) {
-        $resources = get_option( 'prihod_resources', array() );
         $calendar = prihod_theme_url( 'calendar' );
-        $html .= '<section class="prihod-panel"><h2>' . esc_html__( 'Православный календарь', 'georg-kloster-prihod' ) . '</h2>' . do_shortcode( '[orthocal_today compact="1" sections="fasting,icons" icon_limit="1" images="1" icons="1" show_nav="0" show_picker="0" show_copy="0" show_font_size="0" show_section_titles="0" heading="0" image_size="90" open="page" day_page="' . absint( $resources['calendar']['id'] ?? 0 ) . '"]' );
+        $html .= '<section class="prihod-panel"><h2>' . esc_html__( 'Православный календарь', 'georg-kloster-prihod' ) . '</h2>' . do_shortcode( '[orthocal_today compact="1" sections="fasting,icons" icon_limit="1" images="1" icons="1" show_nav="0" show_picker="0" show_copy="0" show_font_size="0" show_section_titles="0" heading="0" image_size="90" open="page" day_page="' . prihod_theme_resource_id( 'calendar' ) . '"]' );
         if ( $calendar ) { $html .= '<a class="prihod-service-all" href="' . esc_url( $calendar ) . '">' . esc_html__( 'Все праздники дня', 'georg-kloster-prihod' ) . ' →</a>'; }
         $html .= '<nav class="prihod-sidebar-links">';
         foreach ( array( 'schedule' => __( 'Расписание богослужений', 'georg-kloster-prihod' ), 'prayer-notes' => __( 'Подать записку', 'georg-kloster-prihod' ), 'requests' => __( 'Вопрос священнику', 'georg-kloster-prihod' ) ) as $key => $label ) { $url = prihod_theme_url( $key ); if ( $url ) { $html .= '<a href="' . esc_url( $url ) . '">' . prihod_theme_icon( 'prayer-notes' === $key ? 'about' : $key ) . esc_html( $label ) . '</a>'; } }
@@ -110,7 +129,7 @@ function prihod_theme_heading(): string {
     if ( prihod_theme_request_page() ) {
         $image = get_the_post_thumbnail_url( get_the_ID(), 'full' ) ?: wp_get_attachment_image_url( georg_kloster_prihod_options()['hero_image'], 'full' );
         $about = prihod_theme_url( 'about' );
-        return '<div class="prihod-page-heading prihod-request-heading"><div class="prihod-container"><div class="prihod-request-heading-copy"><h1>' . esc_html( get_the_title() ) . '</h1><nav aria-label="' . esc_attr__( 'Путь к странице', 'georg-kloster-prihod' ) . '"><a href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '">' . esc_html__( 'Главная', 'georg-kloster-prihod' ) . '</a>' . ( $about ? '<span aria-hidden="true"> → </span><a href="' . esc_url( $about ) . '">' . esc_html( get_the_title( get_option( 'prihod_resources', array() )['about']['id'] ) ) . '</a>' : '' ) . '<span aria-hidden="true"> → </span><span aria-current="page">' . esc_html( get_the_title() ) . '</span></nav></div>' . ( $image ? '<img class="prihod-request-photo" src="' . esc_url( $image ) . '" alt="" width="320" height="180" decoding="async">' : '' ) . '</div></div>';
+        return '<div class="prihod-page-heading prihod-request-heading"><div class="prihod-container"><div class="prihod-request-heading-copy"><h1>' . esc_html( get_the_title() ) . '</h1><nav aria-label="' . esc_attr__( 'Путь к странице', 'georg-kloster-prihod' ) . '"><a href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '">' . esc_html__( 'Главная', 'georg-kloster-prihod' ) . '</a>' . ( $about ? '<span aria-hidden="true"> → </span><a href="' . esc_url( $about ) . '">' . esc_html( get_the_title( prihod_theme_resource_id( 'about' ) ) ) . '</a>' : '' ) . '<span aria-hidden="true"> → </span><span aria-current="page">' . esc_html( get_the_title() ) . '</span></nav></div>' . ( $image ? '<img class="prihod-request-photo" src="' . esc_url( $image ) . '" alt="" width="320" height="180" decoding="async">' : '' ) . '</div></div>';
     }
     if ( prihod_theme_about_page() ) {
         $visit = prihod_theme_url( 'first-visit' ) ?: prihod_theme_url( 'contacts' );
@@ -119,8 +138,8 @@ function prihod_theme_heading(): string {
     return '<div class="prihod-page-heading"' . ( $image ? ' style="--prihod-hero-image:url(' . esc_url( $image ) . ')"' : '' ) . '><div class="prihod-container"><a class="prihod-breadcrumb" href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '">' . esc_html__( 'Главная', 'georg-kloster-prihod' ) . '</a><h1>' . esc_html( get_the_title() ) . '</h1></div></div>';
 }
 function prihod_theme_request_page(): bool {
-    $post = get_post(); $resources = get_option( 'prihod_resources', array() );
-    return $post && $post->ID === absint( $resources['requests']['id'] ?? 0 );
+    $post = get_post();
+    return $post && $post->ID === prihod_theme_resource_id( 'requests' );
 }
 function prihod_theme_focused_banner(): string { return prihod_theme_request_page() ? prihod_theme_heading() : ''; }
 function prihod_theme_focused_heading(): string { return prihod_theme_request_page() ? '' : prihod_theme_heading(); }

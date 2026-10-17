@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wpml-config>
+  <admin-texts>
+    <key name="gkps_form">
+      <key name="title"/>
+      <key name="intro"/>
+      <key name="submit"/>
+      <key name="topics"/>
+    </key>
+  </admin-texts>
+</wpml-config>
