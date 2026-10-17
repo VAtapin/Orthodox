@@ -18,10 +18,14 @@
 /* The native lightbox button covers the icon without painting over its small thumbnail. */
 body .gkpsch-service-icon.wp-lightbox-container button.lightbox-trigger{inset:0!important;transform:none!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;opacity:0!important;cursor:zoom-in}
 .gkpsch-service-icon.wp-lightbox-container:focus-within{outline:2px solid currentColor;outline-offset:2px}
-.gkpsch-month-day-choice,.gkpsch-month-panels{display:none}
-@media(max-width:600px){.gkpsch-month td>.gkpsch-event,.gkpsch-month td>time{display:none}.gkpsch-month-day-choice{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:44px;min-width:0;text-decoration:none;gap:2px}.gkpsch-month-day-choice small{font:10px/1.2 system-ui;background:#e7dcc7;border-radius:50%;min-width:15px;padding:2px}.gkpsch-month-day-choice[aria-current]{outline:2px solid currentColor;outline-offset:-2px;border-radius:4px}.gkpsch-month-panels{display:block;margin-top:16px}.gkpsch-month-panels.is-enhanced>.gkpsch-month-day-panel:not([open]){display:none}.gkpsch-month-day-panel{margin-bottom:8px;border:1px solid #ddd;border-radius:4px;padding:8px;min-width:0}.gkpsch-month-day-panel>summary{cursor:pointer;padding:8px;font-size:13px}.gkpsch-month-day-panel .gkpsch-event-copy h3{font-size:18px;overflow-wrap:normal;word-break:normal}.gkpsch-month-day-panel .gkpsch-event-copy p{font-size:12px}}
-@media(max-width:600px){.gkpsch-schedule .gkpsch-month td{height:auto;padding:0;vertical-align:middle}}
-@media print{.gkpsch-month td>.gkpsch-event{display:block}.gkpsch-month td>time{display:inline}.gkpsch-month-day-choice,.gkpsch-month-panels{display:none!important}}
+/* Keep WordPress's native viewer, but give the icon a bounded, readable panel. */
+.wp-lightbox-overlay:has(.gkpsch-service-icon) .scrim{background:rgba(17,24,35,.76)!important}
+.wp-lightbox-overlay:has(.gkpsch-service-icon) .lightbox-image-container{top:50%!important;left:50%!important;transform:translate(-50%,-50%)!important;width:min(440px,calc(100vw - 32px))!important;height:min(560px,calc(100vh - 32px))!important}
+.wp-lightbox-overlay .lightbox-image-container .gkpsch-service-icon{box-sizing:border-box;display:flex;align-items:center;justify-content:center;width:100%;height:100%;max-width:none;margin:0;padding:16px;overflow:hidden;background:#fff;border-radius:8px;box-shadow:0 16px 48px rgba(0,0,0,.28)}
+.wp-lightbox-overlay .lightbox-image-container .gkpsch-service-icon img{width:auto!important;height:auto!important;max-width:min(408px,calc(100vw - 64px))!important;max-height:min(528px,calc(100vh - 64px))!important;object-fit:contain!important}
+.wp-lightbox-overlay:has(.gkpsch-service-icon) .wp-lightbox-close-button{top:12px;right:12px;background:#fff;border-radius:50%}
+.gkpsch-month-panels{display:block;margin-top:18px}.gkpsch-month-panels.is-enhanced>.gkpsch-month-day-panel:not([open]){display:none}.gkpsch-month-day-panel{margin-bottom:8px;border:1px solid #ddd;border-radius:4px;padding:12px;min-width:0}.gkpsch-month-day-panel>summary{cursor:pointer;padding:8px;font-size:16px}.gkpsch-month-day-panel .gkpsch-month-saint:empty{display:none}.gkpsch-month-day-panel .gkpsch-month-saint{font-size:14px;margin:6px 8px 12px;color:#5f6876}
+@media print{.gkpsch-month-panels{display:none!important}}
 
 /* A soft edge marks vestments without lowering text contrast. */
 .gkpsch-service-feast{font-weight:600;font-size:.95em;line-height:1.45;margin-block:8px}.gkpsch-vestment-label{display:block;font-size:.8em;margin-block:5px}.gkpsch-service-compact[data-vestment-color],.gkpsch-event[data-vestment-color],.gkpsch-upcoming-card[data-vestment-color]{box-shadow:inset 6px 0 0 var(--gkpsch-vestment-edge)}.gkpsch-service-compact[data-vestment-color],.gkpsch-event[data-vestment-color]{padding-inline-start:12px}
@@ -104,3 +108,26 @@ body .gkpsch-service-icon.wp-lightbox-container button.lightbox-trigger{inset:0!
 @media(max-width:800px){.gkpsch-schedule-columns{grid-template-columns:1fr}.gkpsch-schedule-aside{grid-template-columns:1fr 1fr}.gkpsch-schedule-toolbar{display:block}.gkpsch-controls{margin-top:15px}}
 @media(max-width:760px){.gkpsch-schedule-overview{grid-template-columns:1fr}}
 @media(max-width:600px){.gkpsch-schedule-body{padding:12px}.gkpsch-schedule-overview{gap:12px}.gkpsch-schedule-overview>div,.gkpsch-schedule-overview .gkpsch-changes-card{padding:16px}.gkpsch-upcoming-card:before,.gkpsch-changes-card:before{display:none}.gkpsch-upcoming-card>p:not(.gkpsch-overview-date){max-width:none}.gkpsch-upcoming-card>a{position:static;display:inline-block;margin-top:8px}.gkpsch-schedule-aside{grid-template-columns:1fr}.gkpsch-week-day{grid-template-columns:48px minmax(0,1fr)}.gkpsch-block article.gkpsch-event{gap:8px;padding:10px}.gkpsch-event-time{width:46px;font-size:18px}.gkpsch-event-copy h3{font-size:18px}.gkpsch-period-nav a{font-size:11px}}
+
+/* One balanced seven-column month, with calendar commemorations and compact services. */
+.gkpsch-schedule .gkpsch-month{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:5px;margin:0;background:transparent}
+.gkpsch-month caption{caption-side:top;text-align:left;font:23px/1.3 Georgia,serif;padding:0 0 12px;color:#20293a}
+.gkpsch-month th{padding:7px 2px;text-align:center;border:0;background:transparent;color:#687181;font:12px/1.4 system-ui}
+.gkpsch-schedule .gkpsch-month td{width:14.285%;height:145px;padding:0;vertical-align:top;border:0;background:transparent}
+.gkpsch-month td.is-adjacent span{box-sizing:border-box;display:block;min-height:145px;padding:10px;border:1px solid #ece9e4;border-radius:6px;background:#f8f7f5;color:#a5a6a8;font:22px/1 Georgia,serif}
+.gkpsch-month-day-choice{box-sizing:border-box;position:relative;display:flex;flex-direction:column;gap:5px;width:100%;height:100%;min-height:145px;padding:10px;border:1px solid var(--gkpsch-line,#e2d9cc);border-radius:6px;background:#fff;color:#20293a;text-decoration:none!important;overflow:hidden}
+.gkpsch-month-day-choice:hover,.gkpsch-month-day-choice:focus-visible{border-color:var(--gkpsch-accent,#a66d24);box-shadow:0 2px 10px rgba(32,41,58,.08)}
+.gkpsch-month-day-choice[aria-current]{outline:2px solid var(--gkpsch-accent,#a66d24);outline-offset:-2px}
+.gkpsch-month td.is-today .gkpsch-month-day-choice{background:#fbf7ee}
+.gkpsch-month-date{display:flex;align-items:baseline;gap:4px;min-height:26px}
+.gkpsch-month-date time{font:22px/1 Georgia,serif}.gkpsch-month-date small{font:10px/1 system-ui;color:#8b929c}
+.gkpsch-month-day-choice.is-great-feast .gkpsch-month-date time,.gkpsch-month tr td:last-child .gkpsch-month-date time{color:#a12b2b}
+.gkpsch-month-saint{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;font:11px/1.3 system-ui;color:#3d4655;overflow-wrap:anywhere}
+.gkpsch-month-saint:empty,.gkpsch-month-food:empty{display:none}
+.gkpsch-month-food{margin-top:auto;color:#687181;font:10px/1.2 system-ui}
+.gkpsch-month-service{display:flex;flex-direction:column;gap:2px;margin-top:auto;padding:4px 5px;border-left:3px solid var(--gkpsch-service-edge,#bf972c);background:#f7f1e6;color:#283345;font:10px/1.2 system-ui}
+.gkpsch-month-service strong{font-weight:700;color:#946019}.gkpsch-month-service span{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.gkpsch-month-day-choice>.gkpsch-typikon{position:absolute;width:15px;height:15px;object-fit:contain;align-self:flex-end}
+.gkpsch-month-calendar-detail{padding:4px 8px 14px;font:13px/1.5 system-ui}.gkpsch-month-calendar-detail p{margin:7px 0}.gkpsch-month-calendar-detail .gkpsch-month-saint{display:block;font:18px/1.35 Georgia,serif;color:#20293a}.gkpsch-month-calendar-detail h4{font:16px/1.3 Georgia,serif;margin:16px 0 6px}.gkpsch-month-calendar-detail ul{margin:0;padding-left:20px}.gkpsch-month-calendar-detail li{margin:4px 0}.gkpsch-month-calendar-detail [hidden]{display:none}
+@media(max-width:760px){.gkpsch-schedule .gkpsch-month{border-spacing:3px}.gkpsch-schedule .gkpsch-month td{height:65px}.gkpsch-month td.is-adjacent span{min-height:65px;padding:5px;font-size:17px}.gkpsch-month-day-choice{min-height:65px;padding:5px;gap:2px}.gkpsch-month-date{min-height:20px}.gkpsch-month-date time{font-size:17px}.gkpsch-month-date small{font-size:9px}.gkpsch-month-day-choice>.gkpsch-month-saint,.gkpsch-month-food,.gkpsch-month-service span{display:none}.gkpsch-month-service{padding:2px;margin-top:auto}.gkpsch-month-service strong{font-size:9px}.gkpsch-month-day-choice>.gkpsch-typikon{width:10px;height:10px}}
+@media print{.gkpsch-month-day-choice{color:#000!important;min-height:130px}.gkpsch-month-panels{display:none!important}}

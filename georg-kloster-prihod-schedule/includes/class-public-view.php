@@ -80,29 +80,39 @@ final class Public_View {
         return $html;
     }
     private static function month( array $events, \DateTimeImmutable $from, \DateTimeImmutable $to, string $selected = '' ): string {
+        wp_enqueue_script( 'gkpsch-schedule-icons', plugins_url( 'assets/schedule-icons.js', GKPSCH_FILE ), array(), GKPSCH_VERSION . '.' . filemtime( dirname( GKPSCH_FILE ) . '/assets/schedule-icons.js' ), true );
         $by_day = array();
         foreach ( $events as $event ) { $by_day[ $event['start']->setTimezone( $from->getTimezone() )->format( 'Y-m-d' ) ][] = $event; }
         $months = array( __( 'Январь', 'georg-kloster-prihod-schedule' ), __( 'Февраль', 'georg-kloster-prihod-schedule' ), __( 'Март', 'georg-kloster-prihod-schedule' ), __( 'Апрель', 'georg-kloster-prihod-schedule' ), __( 'Май', 'georg-kloster-prihod-schedule' ), __( 'Июнь', 'georg-kloster-prihod-schedule' ), __( 'Июль', 'georg-kloster-prihod-schedule' ), __( 'Август', 'georg-kloster-prihod-schedule' ), __( 'Сентябрь', 'georg-kloster-prihod-schedule' ), __( 'Октябрь', 'georg-kloster-prihod-schedule' ), __( 'Ноябрь', 'georg-kloster-prihod-schedule' ), __( 'Декабрь', 'georg-kloster-prihod-schedule' ) );
-        $html = '<table class="gkpsch-month"><caption>' . esc_html( $months[ (int) $from->format( 'n' ) - 1 ] . ' ' . $from->format( 'Y' ) ) . '</caption><thead><tr>';
+        $calendar_url = add_query_arg( 'date', $from->format( 'Y-m-d' ), rest_url( Plugin::REST_NAMESPACE . '/schedule-month' ) );
+        $html = '<table class="gkpsch-month" data-gkpsch-calendar-month="' . esc_url( $calendar_url ) . '"><caption>' . esc_html( $months[ (int) $from->format( 'n' ) - 1 ] . ' ' . $from->format( 'Y' ) ) . '</caption><thead><tr>';
         foreach ( self::weekdays() as $label ) { $html .= '<th scope="col">' . esc_html( $label ) . '</th>'; }
         $html .= '</tr></thead><tbody><tr>'; $offset = (int) $from->format( 'N' ) - 1;
         $panels = '<div class="gkpsch-month-panels">'; $prefix = wp_unique_id( 'gkpsch-month-' );
-        for ( $blank = 0; $blank < $offset; $blank++ ) { $html .= '<td></td>'; }
+        for ( $blank = 0; $blank < $offset; $blank++ ) {
+            $adjacent = $from->modify( '-' . ( $offset - $blank ) . ' days' );
+            $html .= '<td class="is-adjacent"><span aria-hidden="true">' . esc_html( $adjacent->format( 'j' ) ) . '</span></td>';
+        }
         $today = ( new \DateTimeImmutable( 'now', $from->getTimezone() ) )->format( 'Y-m-d' );
         for ( $date = $from; $date < $to; $date = $date->modify( '+1 day' ) ) {
             $key = $date->format( 'Y-m-d' ); $items = $by_day[$key] ?? array(); $target = $prefix . $key;
             $count = sprintf( __( 'Богослужений: %d', 'georg-kloster-prihod-schedule' ), count( $items ) );
-            $html .= '<td' . ( $key === $today ? ' class="is-today"' : '' ) . '><time datetime="' . esc_attr( $key ) . '">' . esc_html( $date->format( 'j' ) ) . '</time><a class="gkpsch-month-day-choice' . ( $items ? ' has-services' : '' ) . '" href="#' . esc_attr( $target ) . '" data-gkpsch-month-day="' . esc_attr( $key ) . '" aria-label="' . esc_attr( $date->format( 'd.m.Y' ) . ' · ' . $count ) . '"' . ( $key === $selected ? ' aria-current="date"' : '' ) . '>' . esc_html( $date->format( 'j' ) ) . ( $items ? '<small>' . esc_html( count( $items ) ) . '</small>' : '' ) . '</a>';
-            $panels .= '<details class="gkpsch-month-day-panel" id="' . esc_attr( $target ) . '"' . ( $key === $selected ? ' open' : '' ) . '><summary>' . esc_html( $date->format( 'd.m.Y' ) . ' · ' . self::weekdays()[ (int) $date->format( 'N' ) - 1 ] . ' · ' . $count ) . '</summary>';
+            $html .= '<td' . ( $key === $today ? ' class="is-today"' : '' ) . '><a class="gkpsch-month-day-choice' . ( $items ? ' has-services' : '' ) . '" href="#' . esc_attr( $target ) . '" data-gkpsch-month-day="' . esc_attr( $key ) . '" aria-label="' . esc_attr( $date->format( 'd.m.Y' ) . ' · ' . $count ) . '"' . ( $key === $selected ? ' aria-current="date"' : '' ) . '><span class="gkpsch-month-date"><time datetime="' . esc_attr( $key ) . '">' . esc_html( $date->format( 'j' ) ) . '</time><small data-gkpsch-old-day></small></span><span class="gkpsch-month-saint" data-gkpsch-month-saint="' . esc_attr( $key ) . '"></span>';
+            foreach ( $items as $event ) { $html .= '<span class="gkpsch-month-service"><strong>' . esc_html( $event['start']->format( 'H:i' ) ) . '</strong><span>' . esc_html( $event['title'] ) . '</span></span>'; }
+            $html .= '<span class="gkpsch-month-food" data-gkpsch-month-food></span></a>';
+            $panels .= '<details class="gkpsch-month-day-panel" id="' . esc_attr( $target ) . '"' . ( $key === $selected ? ' open' : '' ) . '><summary>' . esc_html( $date->format( 'd.m.Y' ) . ' · ' . self::weekdays()[ (int) $date->format( 'N' ) - 1 ] . ' · ' . $count ) . '</summary><div class="gkpsch-month-calendar-detail"><p class="gkpsch-month-saint" data-gkpsch-month-saint="' . esc_attr( $key ) . '"></p><p data-gkpsch-month-description></p><p data-gkpsch-month-fast hidden><strong>' . esc_html__( 'Пост:', 'georg-kloster-prihod-schedule' ) . '</strong> <span></span></p><h4 data-gkpsch-month-heading hidden>' . esc_html__( 'Памятования дня', 'georg-kloster-prihod-schedule' ) . '</h4><ul data-gkpsch-month-commemorations></ul></div>';
             foreach ( $items as $event ) { $panels .= self::event_html( $event, true, true ); }
             if ( ! $items ) { $panels .= '<p>' . esc_html__( 'Богослужения на эту дату не указаны.', 'georg-kloster-prihod-schedule' ) . '</p>'; }
             $panels .= '</details>';
-            if ( ! $items ) { $html .= Schedule_Calendar::feast_placeholder( array( 'start' => $date, 'cancelled' => false, 'title' => '', 'vestment_color' => '' ), true ); }
-            foreach ( $by_day[ $key ] ?? array() as $event ) { $html .= self::event_html( $event, false, true ); }
             $html .= '</td>'; ++$offset;
             if ( 0 === $offset % 7 && $date->modify( '+1 day' ) < $to ) { $html .= '</tr><tr>'; }
         }
-        while ( 0 !== $offset % 7 ) { $html .= '<td></td>'; ++$offset; }
+        $blank = 0;
+        while ( 0 !== $offset % 7 ) {
+            $adjacent = $to->modify( '+' . $blank . ' days' );
+            $html .= '<td class="is-adjacent"><span aria-hidden="true">' . esc_html( $adjacent->format( 'j' ) ) . '</span></td>';
+            ++$offset; ++$blank;
+        }
         return $html . '</tr></tbody></table>' . $panels . '</div>';
     }
     private static function week( array $events, \DateTimeImmutable $from, \DateTimeImmutable $to ): string {

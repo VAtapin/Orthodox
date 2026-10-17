@@ -20,6 +20,28 @@ final class Calendar_Adapter {
         }
         return array_values( array_unique( $result ) );
     }
+    /** The provider orders commemorations by precedence; skip generated weekday labels. */
+    public static function primary_commemoration( array $day ): array {
+        foreach ( $day['events'] ?? array() as $event ) {
+            if ( ! is_array( $event ) || 'commemoration' !== ( $event['category'] ?? '' ) || ! is_numeric( $event['typeCode'] ?? null ) || (int) $event['typeCode'] < 0 ) { continue; }
+            $title = is_string( $event['title'] ?? null ) ? sanitize_text_field( $event['title'] ) : '';
+            if ( ! $title ) { continue; }
+            $short = is_string( $event['veryShortTitle'] ?? null ) ? sanitize_text_field( $event['veryShortTitle'] ) : '';
+            $description = is_string( $event['description'] ?? null ) ? sanitize_text_field( $event['description'] ) : '';
+            return array( 'title' => $title, 'short' => $short ?: $title, 'description' => $description );
+        }
+        return array( 'title' => '', 'short' => '', 'description' => '' );
+    }
+    public static function commemorations( array $day ): array {
+        $titles = array();
+        foreach ( $day['events'] ?? array() as $event ) {
+            if ( ! is_array( $event ) || 'commemoration' !== ( $event['category'] ?? '' ) || ! is_numeric( $event['typeCode'] ?? null ) || (int) $event['typeCode'] < 0 || ! is_string( $event['title'] ?? null ) ) { continue; }
+            $title = sanitize_text_field( is_string( $event['veryShortTitle'] ?? null ) && '' !== trim( $event['veryShortTitle'] ) ? $event['veryShortTitle'] : $event['title'] );
+            if ( $title && ! in_array( $title, $titles, true ) ) { $titles[] = $title; }
+            if ( count( $titles ) >= 5 ) { break; }
+        }
+        return $titles;
+    }
     public static function day( string $date ) {
         if ( ! Occurrences::date( $date ) ) { return new \WP_Error( 'date', __( 'Некорректная дата.', 'georg-kloster-prihod-schedule' ), array( 'status' => 400 ) ); }
         $data = self::request( 'day', array( 'date' => $date ) );
@@ -47,7 +69,7 @@ final class Calendar_Adapter {
         foreach ( $data['days'] as $day ) {
             $key = is_array( $day ) ? ( $day['date'] ?? '' ) : '';
             if ( ! is_string( $key ) || ! Occurrences::date( $key ) || substr( $key, 0, 7 ) !== substr( $date, 0, 7 ) ) { continue; }
-            $days[$key] = array( 'feasts' => self::feasts( $day ), 'color' => Calendar_Colors::day( $day )['color'] ?? '' ) + self::liturgical( $day );
+            $days[$key] = array( 'feasts' => self::feasts( $day ), 'color' => Calendar_Colors::day( $day )['color'] ?? '', 'primary' => self::primary_commemoration( $day ), 'commemorations' => self::commemorations( $day ), 'oldDay' => is_string( $day['oldStyleDate'] ?? null ) ? (int) substr( $day['oldStyleDate'], -2 ) : 0, 'food' => is_string( $day['foodLabel'] ?? null ) ? sanitize_text_field( $day['foodLabel'] ) : '' ) + self::liturgical( $day );
         }
         return array( 'date' => $date, 'days' => $days );
     }

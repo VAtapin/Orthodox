@@ -18,6 +18,47 @@ document.addEventListener('DOMContentLoaded', () => {
             image.src = url; host.prepend(image); host.hidden = false;
         } catch (_) { /* No substitute mark when authoritative media is unavailable. */ }
     }
+    document.querySelectorAll('[data-gkpsch-calendar-month]').forEach(async calendar => {
+        try {
+            const data = await day(calendar.dataset.gkpschCalendarMonth);
+            const block = calendar.closest('.gkpsch-schedule');
+            if (!block) return;
+            block.querySelectorAll('[data-gkpsch-month-saint]').forEach(label => {
+                const info = data.days?.[label.dataset.gkpschMonthSaint];
+                const primary = info?.primary;
+                if (!primary || typeof primary.title !== 'string') return;
+                label.textContent = label.closest('td') ? primary.short || primary.title : primary.title;
+                label.title = primary.title;
+                const choice = label.closest('[data-gkpsch-month-day]');
+                if (choice) {
+                    choice.setAttribute('aria-label', `${choice.getAttribute('aria-label')} · ${primary.title}`);
+                    choice.classList.toggle('is-great-feast', Array.isArray(info.feasts) && info.feasts.length > 0);
+                    const oldDay = choice.querySelector('[data-gkpsch-old-day]');
+                    if (oldDay && Number.isInteger(info.oldDay) && info.oldDay > 0) oldDay.textContent = info.oldDay;
+                    const food = choice.querySelector('[data-gkpsch-month-food]');
+                    if (food && typeof info.food === 'string') food.textContent = info.food;
+                    if (Object.hasOwn(colors, info.color)) choice.style.setProperty('--gkpsch-service-edge', colors[info.color]);
+                    marker(choice, info);
+                } else {
+                    const panel = label.closest('.gkpsch-month-day-panel');
+                    if (!panel) return;
+                    const description = panel.querySelector('[data-gkpsch-month-description]');
+                    if (description && typeof primary.description === 'string') description.textContent = primary.description;
+                    const fast = panel.querySelector('[data-gkpsch-month-fast]');
+                    if (fast && typeof info.food === 'string' && info.food) {
+                        fast.querySelector('span').textContent = info.food;
+                        fast.hidden = false;
+                    }
+                    const list = panel.querySelector('[data-gkpsch-month-commemorations]');
+                    const others = Array.isArray(info.commemorations) ? info.commemorations.filter(title => typeof title === 'string' && title !== primary.title && title !== primary.short) : [];
+                    if (list && others.length) {
+                        others.forEach(title => { const item = document.createElement('li'); item.textContent = title; list.append(item); });
+                        panel.querySelector('[data-gkpsch-month-heading]').hidden = false;
+                    }
+                }
+            });
+        } catch (_) { /* Dates and services still work if the calendar is unavailable. */ }
+    });
     document.querySelectorAll('[data-gkpsch-mini-month]').forEach(async month => {
         const links = Array.from(month.querySelectorAll('[data-mini-date]'));
         function frame(link, automatic) {

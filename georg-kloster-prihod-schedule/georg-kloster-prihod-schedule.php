@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Georg-Kloster Parish Schedule
  * Description: Service schedule, recurring events and Orthodox calendar hints.
- * Version: 0.1.5
+ * Version: 0.1.6
  * Requires at least: 6.5
  * Requires PHP: 8.0
  * License: GPL-2.0-or-later
@@ -12,7 +12,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'GKPSCH_VERSION', '0.1.5' );
+define( 'GKPSCH_VERSION', '0.1.6' );
 define( 'GKPSCH_FILE', __FILE__ );
 
 foreach ( array(
