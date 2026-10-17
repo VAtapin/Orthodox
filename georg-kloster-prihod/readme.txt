@@ -30,6 +30,9 @@ The theme uses images selected from your WordPress media library. It does not do
 
 == Changelog ==
 
+= 0.4.15 =
+Show configured visitor and sermons pages on the homepage and in the footer, and support accessible classic menu submenus.
+
 = 0.4.14 =
 Add a compact mobile menu for classic WordPress navigation and improve the mobile header and hero readability.
 

@@ -252,3 +252,25 @@
   .prihod-mobile-menu .prihod-menu-label{display:none}
   .prihod-header .prihod-brand-title{font-size:14px}
 }
+
+/* Nested links keep the main menu compact without hiding existing sections. */
+.prihod-classic-navigation .sub-menu{list-style:none;margin:0;padding:0}
+.prihod-classic-navigation .menu-item-has-children>a:after{content:"⌄";font-family:system-ui,sans-serif;font-size:14px;margin-left:5px}
+@media(min-width:901px){
+  .prihod-desktop-navigation .menu-item-has-children{position:relative}
+  .prihod-desktop-navigation .sub-menu{display:none;position:absolute;top:100%;left:0;z-index:70;min-width:210px;padding:8px 14px;background:var(--wp--preset--color--white);border:1px solid var(--prihod-line);border-radius:6px;box-shadow:0 10px 24px #1a253022}
+  .prihod-desktop-navigation .menu-item-has-children:hover>.sub-menu,.prihod-desktop-navigation .menu-item-has-children:focus-within>.sub-menu{display:block}
+  .prihod-desktop-navigation .sub-menu li+li{border-top:1px solid var(--prihod-line)}
+  .prihod-desktop-navigation .sub-menu a{display:block;padding:11px 0;white-space:normal}
+}
+@media(max-width:900px){
+  .prihod-header .prihod-mobile-navigation .sub-menu{display:block;padding:0 0 8px 14px}
+  .prihod-header .prihod-mobile-navigation .sub-menu li{border-bottom:0}
+  .prihod-header .prihod-mobile-navigation .sub-menu a{min-height:42px;font-size:.92em}
+}
+.prihod-home-topic-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 0 26px}
+.prihod-home-topic-links a{display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0;padding:16px 20px;border:1px solid var(--prihod-line);border-radius:var(--prihod-radius);background:var(--wp--preset--color--white);color:var(--wp--preset--color--ink);font:20px/1.2 Georgia,serif;text-decoration:none}
+.prihod-home-topic-links a:hover,.prihod-home-topic-links a:focus-visible{border-color:var(--wp--preset--color--forest);color:var(--wp--preset--color--forest)}
+.prihod-home-topic-links a span:first-child{overflow-wrap:anywhere}
+.prihod-home-topic-links a span:last-child{color:var(--wp--preset--color--forest)}
+@media(max-width:600px){.prihod-home-topic-links{grid-template-columns:1fr}.prihod-home-topic-links a{font-size:18px;padding:14px 16px}}
