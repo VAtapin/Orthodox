@@ -10,6 +10,7 @@
 if ( ! defined( 'ABSPATH' ) || ! defined( 'WP_CLI' ) || ! WP_CLI ) {
     exit( 1 );
 }
+require_once __DIR__ . '/legacy-youtube.php';
 
 global $wpdb;
 
@@ -68,6 +69,7 @@ function gkm_replace_urls( $value ) {
 function gkm_clean_content( string $content, string $type, int $source_id ): string {
     $content = gkm_replace_urls( $content );
     $content = preg_replace( '/\[fusion_form\b[^\]]*\]/iu', '[gkps_contact_form]', $content );
+    $content = gkm_convert_legacy_youtube( $content );
     $content = preg_replace( '/\[\/?fusion_[^\]]*\]/iu', "\n\n", $content );
     $content = preg_replace( '/\[\/?bwg[^\]]*\]/iu', "\n\n", $content );
     $content = preg_replace( '/\[\/?avada_[^\]]*\]/iu', "\n\n", $content );
