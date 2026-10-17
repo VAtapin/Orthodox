@@ -2,7 +2,7 @@
 defined( 'ABSPATH' ) || exit;
 
 function prihod_theme_profile(): array {
-    $profile = class_exists( '\Prihod\Profile' ) ? \Prihod\Profile::get() : array();
+    $profile = class_exists( '\GeorgKlosterPrihodCore\Profile' ) ? \GeorgKlosterPrihodCore\Profile::get() : ( class_exists( '\Prihod\Profile' ) ? \Prihod\Profile::get() : array() );
     return array_merge( array( 'name' => get_bloginfo( 'name' ), 'description' => get_bloginfo( 'description' ), 'address' => '', 'phone' => '', 'email' => '' ), array_filter( $profile, fn( $value ) => '' !== $value ) );
 }
 function prihod_theme_url( string $key ): string {
