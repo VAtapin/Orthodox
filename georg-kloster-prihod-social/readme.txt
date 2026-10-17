@@ -3,7 +3,7 @@ Contributors: vatapin
 Tags: contact form, email, telegram, whatsapp, facebook
 Requires at least: 6.5
 Requires PHP: 8.0
-Stable tag: 0.1.1
+Stable tag: 0.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -32,6 +32,9 @@ Upload and activate the ZIP. Open Contacts to configure the form. Insert the Con
 Messages remain in the WordPress database and are visible only to staff with the designated capabilities. The plugin adds WordPress privacy exporter and eraser support. Ordinary uninstall retains saved messages and settings.
 
 == Changelog ==
+
+= 0.1.2 =
+Give the contact form its own public styles across themes.
 
 = 0.1.1 =
 Add the editor block, per-page form text and German form translations.

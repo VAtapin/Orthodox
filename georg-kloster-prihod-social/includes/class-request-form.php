@@ -3,6 +3,11 @@ namespace GeorgKlosterPrihodSocial;
 defined( 'ABSPATH' ) || exit;
 
 final class Request_Form {
+    public static function enqueue_styles(): void {
+        if ( Modules::enabled( 'requests' ) ) {
+            wp_enqueue_style( 'gkps-request-form', plugins_url( 'assets/request-form.css', GKPS_FILE ), array(), GKPS_VERSION );
+        }
+    }
     public static function topics(): array {
         $lines = preg_split( '/\r\n|\r|\n/', Admin::get()['topics'] );
         return array_slice( array_values( array_filter( array_map( 'trim', $lines ?: array() ), static fn( $topic ) => '' !== $topic ) ), 0, 20 );

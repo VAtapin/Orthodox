@@ -128,6 +128,7 @@ function gkm_content(): void {
     $attachments = $source->get_results( "SELECT * FROM {$source->posts} WHERE post_type='attachment' AND post_status='inherit' ORDER BY ID", ARRAY_A );
     $posts = array_merge( $posts, $attachments );
     $map = array();
+    $new_post_ids = array();
     $created = 0;
     foreach ( $posts as $old ) {
         $old_id = (int) $old['ID'];
@@ -165,6 +166,7 @@ function gkm_content(): void {
             WP_CLI::error( 'Could not import source post ' . $old_id . ': ' . $new_id->get_error_message() );
         }
         $map[ $old_id ] = (int) $new_id;
+        if ( 'post' === $type ) { $new_post_ids[ (int) $new_id ] = true; }
         add_post_meta( $new_id, '_gkm_source_id', $old_id, true );
         ++$created;
     }
@@ -223,12 +225,27 @@ function gkm_content(): void {
         "SELECT object_id,term_taxonomy_id FROM {$source->term_relationships} ORDER BY object_id,term_taxonomy_id",
         ARRAY_A
     );
+    $new_post_categories = array();
     foreach ( $relationships as $row ) {
         $old_post = (int) $row['object_id'];
         $old_tt = (int) $row['term_taxonomy_id'];
         if ( isset( $map[ $old_post ], $term_map[ $old_tt ] ) ) {
             $taxonomy = $wpdb->get_var( $wpdb->prepare( "SELECT taxonomy FROM {$wpdb->term_taxonomy} WHERE term_taxonomy_id=%d", $term_map[ $old_tt ]['term_taxonomy_id'] ) );
-            wp_set_object_terms( $map[ $old_post ], $term_map[ $old_tt ]['term_id'], $taxonomy, true );
+            $term_id = $term_map[ $old_tt ]['term_id'];
+            wp_set_object_terms( $map[ $old_post ], $term_id, $taxonomy, true );
+            if ( 'category' === $taxonomy && isset( $new_post_ids[ $map[ $old_post ] ] ) ) {
+                $new_post_categories[ $map[ $old_post ] ][] = $term_id;
+            }
+        }
+    }
+    // wp_insert_post assigns WordPress's default category before the source terms arrive.
+    $default_category = (int) get_option( 'default_category' );
+    foreach ( $new_post_categories as $post_id => $category_ids ) {
+        if ( ! in_array( $default_category, $category_ids, true ) ) {
+            $removed = wp_remove_object_terms( $post_id, $default_category, 'category' );
+            if ( is_wp_error( $removed ) ) {
+                WP_CLI::error( 'Could not remove default category from imported post ' . $post_id . ': ' . $removed->get_error_message() );
+            }
         }
     }
 

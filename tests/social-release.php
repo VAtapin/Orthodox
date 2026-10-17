@@ -16,6 +16,8 @@ $html = do_shortcode( '[gkps_contact_form]' );
 gkps_assert( str_contains( $html, 'Ask a stylist' ) && str_contains( $html, 'Haircut' ) && str_contains( $html, 'Send request' ), 'Configurable form was not rendered.' );
 gkps_assert( str_contains( do_shortcode( '[gkps_contact_form title="Schreiben Sie uns" submit="Senden"]' ), 'Schreiben Sie uns' ), 'Per-page form title was not rendered.' );
 gkps_assert( ! str_contains( $html, 'Обращения к священнику' ), 'The form is parish-specific.' );
+GeorgKlosterPrihodSocial\Request_Form::enqueue_styles();
+gkps_assert( wp_style_is( 'gkps-request-form', 'enqueued' ), 'Standalone form stylesheet missing.' );
 
 $request = GeorgKlosterPrihodSocial\Requests::create( array( 'name' => 'Visitor', 'email' => 'visitor@example.org', 'subject' => 'Haircut', 'body' => 'Please contact me.' ) );
 gkps_assert( $request > 0 && 'gkps_request' === get_post_type( $request ), 'Message was not stored.' );

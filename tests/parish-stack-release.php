@@ -45,5 +45,7 @@ gkp_stack_assert( str_contains( prihod_theme_compact_services(), 'Morgengottesdi
 
 update_option( 'gkps_form', array( 'enabled' => true, 'title' => 'Contact', 'submit' => 'Send' ) );
 gkp_stack_assert( str_contains( do_shortcode( '[gkps_contact_form title="Write to us"]' ), 'Write to us' ), 'Social form did not render.' );
+GeorgKlosterPrihodSocial\Request_Form::enqueue_styles();
+gkp_stack_assert( wp_style_is( 'gkps-request-form', 'enqueued' ), 'Social form did not load its public stylesheet.' );
 
 echo 'GKPS_STACK_OK ' . get_bloginfo( 'version' ) . ' PHP ' . PHP_VERSION;

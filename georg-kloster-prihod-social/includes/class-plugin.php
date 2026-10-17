@@ -11,6 +11,7 @@ final class Plugin {
         Capabilities::maybe_upgrade();
         Requests::hooks();
         Telegram_Requests::hooks();
+        add_action( 'wp_enqueue_scripts', array( Request_Form::class, 'enqueue_styles' ) );
         add_action( 'gkps_request_created', array( self::class, 'notify_by_email' ) );
         add_action( 'init', array( Blocks::class, 'register' ) );
         add_action( 'admin_menu', array( Admin::class, 'menu' ), 5 );
