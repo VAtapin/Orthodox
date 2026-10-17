@@ -112,7 +112,10 @@ add_filter( 'query_loop_block_query_vars', function ( array $args, WP_Block $blo
     $search = prihod_theme_catalog_search();
     if ( $search ) { $args['s'] = trim( ( $args['s'] ?? '' ) . ' ' . $search ); }
     $category = prihod_theme_catalog_category( $query );
-    if ( $category ) { $args['tax_query'] = array( 'relation' => 'AND', $args['tax_query'] ?? array(), array( 'taxonomy' => 'category', 'terms' => array( $category ), 'include_children' => false ) ); }
+    if ( $category ) {
+        $selected = array( 'taxonomy' => 'category', 'terms' => array( $category ), 'include_children' => false );
+        $args['tax_query'] = ! empty( $args['tax_query'] ) ? array( 'relation' => 'AND', $args['tax_query'], $selected ) : array( $selected );
+    }
     return $args;
 }, 10, 2 );
 add_filter( 'render_block_core/query', function ( string $html, array $block ): string {

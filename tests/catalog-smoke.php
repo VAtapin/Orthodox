@@ -26,6 +26,14 @@ $catalog_html = $catalog_render();
 $check( ! $catalog_cards( $catalog_html ) && str_contains( $catalog_html, 'prihod-catalog-empty' ) && str_contains( $catalog_html, esc_url( prihod_theme_catalog_url() ) ), 'Empty searches show a native no-results state with a working reset target.' );
 $_GET = array( 'prihod_preview' => 'classic', 'prihod_catalog_category' => $sermon_category->term_id );
 $check( 3 === count( $catalog_cards( $catalog_render() ) ), 'An out-of-scope category cannot expand the news catalog into sermons.' );
+$unscoped_blocks = parse_blocks( $catalog_content_before );
+foreach ( $unscoped_blocks as &$block ) { if ( 'core/query' === $block['blockName'] ) { unset( $block['attrs']['query']['taxQuery'] ); } }
+unset( $block );
+wp_update_post( wp_slash( array( 'ID' => $catalog_page, 'post_content' => serialize_blocks( $unscoped_blocks ) ) ) );
+$unscoped_ids = $catalog_cards( $catalog_render() );
+$check( $unscoped_ids && ! str_contains( $catalog_render(), 'prihod-catalog-empty' ), 'A selected category returns posts when the catalog base query covers all categories.' );
+foreach ( $unscoped_ids as $id ) { $check( has_category( $sermon_category->term_id, $id ), 'Unscoped category results belong to the selected term.' ); }
+wp_update_post( wp_slash( array( 'ID' => $catalog_page, 'post_content' => $catalog_content_before ) ) );
 $_GET['prihod_catalog_search'] = array( 'bad' ); $_GET['prihod_catalog_category'] = array( 'bad' );
 $check( 3 === count( $catalog_cards( $catalog_render() ) ), 'Malformed search/category parameters are ignored without breaking the native query.' );
 

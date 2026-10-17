@@ -31,14 +31,15 @@ foreach ( array(
         throw new RuntimeException( 'Unexpected news page: ' . $id );
     }
     $intro = '<!-- wp:paragraph --><p>' . esc_html( $details[1] ) . '</p><!-- /wp:paragraph -->';
-    $content = $intro . gk_news_query( $details[2] );
+    // The category buttons cover the whole publication archive, so the base query must too.
+    $content = $intro . gk_news_query();
     if ( $page->post_content === $content ) {
         echo 'Already repaired: ' . $id . PHP_EOL;
         continue;
     }
-    $first_repair = $intro . gk_news_query();
-    $is_first_repair = $page->post_content === $first_repair;
-    if ( ! $is_first_repair && ( ! str_contains( $page->post_content, 'newsletter-icon-1.png' ) || ! str_contains( $page->post_content, '[gkps_contact_form]' ) ) ) {
+    $previous_repair = $intro . gk_news_query( $details[2] );
+    $is_previous_repair = $page->post_content === $previous_repair;
+    if ( ! $is_previous_repair && ( ! str_contains( $page->post_content, 'newsletter-icon-1.png' ) || ! str_contains( $page->post_content, '[gkps_contact_form]' ) ) ) {
         throw new RuntimeException( 'News page was edited since import: ' . $id );
     }
     $result = wp_update_post( wp_slash( array( 'ID' => $id, 'post_content' => $content ) ), true );

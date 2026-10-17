@@ -30,6 +30,9 @@ The theme uses images selected from your WordPress media library. It does not do
 
 == Changelog ==
 
+= 0.4.17 =
+Fix category filters on catalog pages whose Query block covers all posts.
+
 = 0.4.16 =
 Restore the angled classic hero motto and avoid repeating schedule links around the nearby service panel.
 
