@@ -30,6 +30,9 @@ The theme uses images selected from your WordPress media library. It does not do
 
 == Changelog ==
 
+= 0.4.11 =
+Keep featured images within the article column beside the sidebar.
+
 = 0.4.4 =
 Read section links from Parish Core when present, resolve their translations, and display authored front-page blocks after the news section. Allow WPML to translate the site tagline.
 
