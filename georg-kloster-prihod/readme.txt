@@ -34,6 +34,9 @@ Create and assign a menu under Appearance > Menus. Open a menu item and choose i
 
 == Changelog ==
 
+= 0.4.25 =
+Set classic homepage section-card and news-card photographs to 200px high at every viewport width.
+
 = 0.4.24 =
 Restore the next service vestment colour from Schedule and center its title when the place label is hidden.
 

@@ -283,4 +283,6 @@
 .prihod-home-topic-links a:hover,.prihod-home-topic-links a:focus-visible{border-color:var(--wp--preset--color--forest);color:var(--wp--preset--color--forest)}
 .prihod-home-topic-links a span:first-child{overflow-wrap:anywhere}
 .prihod-home-topic-links a span:last-child{color:var(--wp--preset--color--forest)}
+.prihod-scheme-classic .prihod-feature-grid .prihod-feature-photo,
+.prihod-scheme-classic .prihod-news-section .prihod-news-card img{height:200px;width:100%;max-width:100%}
 @media(max-width:600px){.prihod-home-topic-links{grid-template-columns:1fr}.prihod-home-topic-links a{font-size:18px;padding:14px 16px}}
