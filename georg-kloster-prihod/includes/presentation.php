@@ -44,6 +44,8 @@ function prihod_theme_compact_services( int $limit = 1 ): string {
     if ( ! $schedule ) { return ''; }
     $events = $schedule::next( 0, $limit ); $html = '';
     if ( ! $events ) { return ''; }
+    $calendar = substr( $schedule, 0, strrpos( $schedule, '\\' ) ) . '\\Schedule_Calendar';
+    $service_class = '\\GeorgKlosterPrihodSchedule\\Schedule' === $schedule ? ' gkpsch-service-compact' : '';
     foreach ( $events as $event ) {
         $date = $event['start'];
         if ( class_exists( '\GeorgKlosterPrihodSchedule\Directory' ) ) {
@@ -57,7 +59,9 @@ function prihod_theme_compact_services( int $limit = 1 ): string {
             $places = get_posts( array( 'post_type' => 'prihod_location', 'post_status' => 'publish', 'numberposts' => 2, 'fields' => 'ids' ) );
             $place_title = count( $places ) > 1 ? get_the_title( $event['location_id'] ) : '';
         }
-        $html .= '<article class="prihod-service-compact"><div class="prihod-service-date"><strong>' . esc_html( $date->format( 'j' ) ) . '</strong><span>' . esc_html( wp_date( 'M', $date->getTimestamp(), $date->getTimezone() ) ) . '</span></div><div class="prihod-service-details"><h3>' . esc_html( $event['title'] ) . '</h3><div class="prihod-service-when"><span>' . esc_html( wp_date( 'editorial' === prihod_theme_scheme() ? 'l' : 'l, j F Y', $date->getTimestamp(), $date->getTimezone() ) ) . '</span><time datetime="' . esc_attr( $date->format( DATE_ATOM ) ) . '">' . esc_html( $date->format( 'H:i' ) ) . '</time></div>' . ( $place_title ? '<p>' . prihod_theme_icon( 'contacts' ) . esc_html( $place_title ) . '</p>' : '' ) . '</div></article>';
+        $color = $event['vestment_color'] ?? '';
+        $color_data = is_callable( array( $calendar, 'feast_placeholder' ) ) ? $calendar::feast_placeholder( $event, true, true ) : '';
+        $html .= '<article class="prihod-service-compact' . $service_class . '"' . ( $color && 'auto' !== $color ? ' data-vestment-color="' . esc_attr( $color ) . '"' : '' ) . '><div class="prihod-service-date"><strong>' . esc_html( $date->format( 'j' ) ) . '</strong><span>' . esc_html( wp_date( 'M', $date->getTimestamp(), $date->getTimezone() ) ) . '</span></div><div class="prihod-service-details' . ( $place_title ? ' has-place' : '' ) . '"><h3>' . esc_html( $event['title'] ) . '</h3><div class="prihod-service-when"><span>' . esc_html( wp_date( 'editorial' === prihod_theme_scheme() ? 'l' : 'l, j F Y', $date->getTimestamp(), $date->getTimezone() ) ) . '</span><time datetime="' . esc_attr( $date->format( DATE_ATOM ) ) . '">' . esc_html( $date->format( 'H:i' ) ) . '</time></div>' . ( $place_title ? '<p>' . prihod_theme_icon( 'contacts' ) . esc_html( $place_title ) . '</p>' : '' ) . '</div>' . ( $color_data ? '<div class="prihod-service-color-data" hidden>' . $color_data . '</div>' : '' ) . '</article>';
     }
     return $html;
 }

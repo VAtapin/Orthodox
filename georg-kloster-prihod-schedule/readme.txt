@@ -3,7 +3,7 @@ Contributors: vatapin
 Tags: church, schedule, calendar, services
 Requires at least: 6.5
 Requires PHP: 8.0
-Stable tag: 0.1.8
+Stable tag: 0.1.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -24,6 +24,9 @@ Calendar hints contact https://bible-desktop.com by default. Dates, language and
 Upload and activate the ZIP. Open Services, add a service place, then add services. Insert the Schedule, Next service or Upcoming services block in a page. The public calendar API is preconfigured; it can be changed in Services > Settings.
 
 == Changelog ==
+
+= 0.1.9 =
+Allow compact theme cards to resolve automatic vestment colours without displaying extra feast text or marks.
 
 = 0.1.8 =
 Use one public place-label rule across schedule views and theme cards: show place names only when multiple places are published.

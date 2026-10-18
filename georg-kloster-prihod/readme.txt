@@ -34,6 +34,9 @@ Create and assign a menu under Appearance > Menus. Open a menu item and choose i
 
 == Changelog ==
 
+= 0.4.24 =
+Restore the next service vestment colour from Schedule and center its title when the place label is hidden.
+
 = 0.4.23 =
 Keep simple desktop navigation beside the optional image menu, simplify its trigger and align submenu indicators.
 

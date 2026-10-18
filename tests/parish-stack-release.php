@@ -31,13 +31,19 @@ gkp_stack_assert( array() === GeorgKlosterPrihodCore\Page_Links::sanitize( array
 $place = wp_insert_post( array( 'post_type' => 'gkpsch_location', 'post_status' => 'publish', 'post_title' => 'Main church' ), true );
 gkp_stack_assert( ! is_wp_error( $place ), 'Service place failed.' );
 $date = ( new DateTimeImmutable( 'now', wp_timezone() ) )->modify( '+1 day' )->format( 'Y-m-d' );
-$rule = GeorgKlosterPrihodSchedule\Schedule::validate( array( 'kind' => 'single', 'date' => $date, 'time' => '09:00', 'location_id' => $place ) );
+$rule = GeorgKlosterPrihodSchedule\Schedule::validate( array( 'kind' => 'single', 'date' => $date, 'time' => '09:00', 'location_id' => $place, 'vestment_color' => 'auto' ) );
 $service = wp_insert_post( array( 'post_type' => 'gkpsch_service', 'post_status' => 'publish', 'post_title' => 'Morning service' ), true );
 gkp_stack_assert( ! is_wp_error( $service ), 'Service creation failed.' );
 update_post_meta( $service, '_gkpsch_service', $rule );
 $compact_service = prihod_theme_compact_services();
 gkp_stack_assert( str_contains( $compact_service, 'Morning service' ), 'Theme did not render Schedule service.' );
-gkp_stack_assert( ! str_contains( $compact_service, 'Main church' ) && ! str_contains( $compact_service, 'class="prihod-icon"' ) && ! str_contains( $compact_service, 'service-feast' ), 'Compact service must hide the only place and its icon.' );
+gkp_stack_assert( ! str_contains( $compact_service, 'Main church' ) && ! str_contains( $compact_service, 'class="prihod-icon"' ) && ! str_contains( $compact_service, 'has-place' ), 'Compact service must hide the only place and mark the title for centering.' );
+gkp_stack_assert( str_contains( $compact_service, 'gkpsch-service-compact' ) && str_contains( $compact_service, 'class="prihod-service-color-data" hidden' ) && str_contains( $compact_service, 'data-color="auto"' ) && str_contains( $compact_service, 'data-color-only="1"' ), 'Compact service must use the schedule colour resolver without extra visible details.' );
+$rule['vestment_color'] = 'blue'; update_post_meta( $service, '_gkpsch_service', $rule );
+gkp_stack_assert( str_contains( prihod_theme_compact_services(), 'data-vestment-color="blue"' ), 'Manual compact service colours must render without JavaScript.' );
+$rule['vestment_color'] = ''; update_post_meta( $service, '_gkpsch_service', $rule );
+gkp_stack_assert( ! str_contains( prihod_theme_compact_services(), 'data-vestment-color=' ), 'Neutral compact services must not invent a colour.' );
+$rule['vestment_color'] = 'auto'; update_post_meta( $service, '_gkpsch_service', $rule );
 gkp_stack_assert( ! str_contains( do_shortcode( '[gkpsch_next_service]' ), 'Main church' ), 'Schedule block must hide the only place.' );
 add_filter( 'wpml_translate_single_string', static function ( $value, $context, $name ) use ( $service ) {
     return 'georg-kloster-prihod-schedule' === $context && 'service-' . $service === $name ? 'Morgengottesdienst' : $value;
@@ -45,7 +51,7 @@ add_filter( 'wpml_translate_single_string', static function ( $value, $context, 
 gkp_stack_assert( str_contains( prihod_theme_compact_services(), 'Morgengottesdienst' ), 'Schedule title translation was ignored.' );
 $second_place = wp_insert_post( array( 'post_type' => 'gkpsch_location', 'post_status' => 'publish', 'post_title' => 'Second church' ), true );
 gkp_stack_assert( ! is_wp_error( $second_place ), 'Second service place failed.' );
-gkp_stack_assert( str_contains( prihod_theme_compact_services(), 'Main church' ) && 1 === substr_count( prihod_theme_compact_services(), 'class="prihod-icon"' ), 'Compact service must distinguish multiple places.' );
+gkp_stack_assert( str_contains( prihod_theme_compact_services(), 'Main church' ) && str_contains( prihod_theme_compact_services(), 'has-place' ) && 1 === substr_count( prihod_theme_compact_services(), 'class="prihod-icon"' ), 'Compact service must distinguish multiple places and keep room below the title.' );
 gkp_stack_assert( str_contains( do_shortcode( '[gkpsch_next_service]' ), 'Main church' ), 'Schedule block must distinguish multiple places.' );
 
 update_option( 'gkps_form', array( 'enabled' => true, 'title' => 'Contact', 'submit' => 'Send' ) );

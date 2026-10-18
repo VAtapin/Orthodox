@@ -89,12 +89,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-gkpsch-feast]').forEach(async label => {
         const host = label.closest('.gkpsch-event,.gkpsch-upcoming-card,.gkpsch-service-compact');
         if (host && label.dataset.color && label.dataset.color !== 'auto') host.dataset.vestmentColor = label.dataset.color;
+        if (label.dataset.colorOnly === '1' && label.dataset.color !== 'auto') return;
         try {
             const url = label.dataset.gkpschFeast;
             const month = await day(url);
             const data = month.days?.[label.dataset.calendarDate];
             if (!data) return;
             if (host && label.dataset.color === 'auto' && ['white','red','gold','green','blue','purple','black'].includes(data.color)) host.dataset.vestmentColor = data.color;
+            if (label.dataset.colorOnly === '1') return;
             const feasts = Array.isArray(data.memories) ? data.memories.filter(title => typeof title === 'string' && title.trim()) : [];
             const manual = normalize(label.dataset.serviceTitle || '');
             const unique = feasts.filter(title => !manual.includes(normalize(title)));
