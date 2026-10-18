@@ -3,17 +3,22 @@
 .prihod-has-visual-menu .prihod-header-top{position:relative}
 .prihod-has-visual-menu .prihod-header-right{position:static;padding-right:0}
 .prihod-menu-tools{display:flex;align-items:center;justify-content:flex-end;gap:12px}
+.prihod-menu-tools>.prihod-desktop-navigation{flex:1;min-width:0;justify-content:flex-end}
+.prihod-menu-tools .prihod-desktop-navigation>.wp-block-navigation__container{justify-content:flex-end;flex-wrap:wrap;gap:4px 14px}
+.prihod-menu-tools .prihod-desktop-navigation li{white-space:nowrap}
+.prihod-menu-tools .prihod-desktop-navigation a{text-decoration:none}
+.prihod-menu-tools .prihod-desktop-navigation a:hover,.prihod-menu-tools .prihod-desktop-navigation .current-menu-item>a{color:var(--wp--preset--color--forest)}
+.prihod-menu-tools>.prihod-visual-menu{flex:none}
 .prihod-has-visual-menu .prihod-header-search{position:relative;right:auto;bottom:auto;flex:none}
 .prihod-has-visual-menu .prihod-header-search>summary{display:flex;align-items:center;justify-content:center;width:44px;min-height:44px}
 .prihod-has-visual-menu .prihod-header-search form{top:calc(100% + 8px);right:0}
-.prihod-visual-menu>summary{display:inline-flex;align-items:center;justify-content:center;gap:11px;min-height:44px;padding:9px 18px;border:1px solid var(--prihod-line);border-radius:var(--prihod-radius);background:var(--wp--preset--color--white);color:var(--wp--preset--color--ink);font:600 14px/1.2 system-ui,sans-serif;cursor:pointer;list-style:none}
+.prihod-visual-menu>summary{display:flex;align-items:center;justify-content:center;width:40px;height:40px;padding:0;border:1px solid transparent;border-radius:var(--prihod-radius);background:transparent;color:var(--wp--preset--color--ink);cursor:pointer;list-style:none}
 .prihod-visual-menu>summary::-webkit-details-marker{display:none}
 .prihod-visual-menu[open]>summary,.prihod-visual-menu>summary:hover{border-color:var(--wp--preset--color--gold);background:var(--wp--preset--color--paper)}
 .prihod-visual-menu>summary:focus-visible,.prihod-visual-close:focus-visible,.prihod-visual-navigation a:focus-visible{outline:2px solid var(--wp--preset--color--forest);outline-offset:3px}
 .prihod-visual-menu .prihod-menu-icon{display:block;width:17px;height:13px;border-block:2px solid currentColor;position:relative;box-sizing:border-box}
 .prihod-visual-menu .prihod-menu-icon:after{content:"";position:absolute;top:4px;left:0;width:100%;border-top:2px solid currentColor}
-.prihod-menu-chevron{font-size:18px;line-height:1;transition:transform .2s}
-.prihod-visual-menu[open] .prihod-menu-chevron{transform:rotate(180deg)}
+.prihod-menu-languages{display:none}
 .prihod-visual-panel{position:absolute;top:calc(100% - 1px);left:0;right:0;z-index:80;max-height:min(760px,calc(100dvh - 100px));overflow-y:auto;padding:22px;background:var(--wp--preset--color--white);border:1px solid var(--prihod-line);border-radius:0 0 12px 12px;box-shadow:0 20px 42px #17243c29}
 .prihod-visual-panel-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 16px;padding:0 0 12px;border-bottom:1px solid var(--prihod-line);font:24px/1.2 Georgia,serif}
 .prihod-visual-close{width:36px;height:36px;border:1px solid var(--prihod-line);border-radius:50%;background:transparent;color:inherit;font:26px/1 system-ui,sans-serif;cursor:pointer}
@@ -36,12 +41,19 @@
 .prihod-visual-list .sub-menu .prihod-menu-title{font:inherit}
 .prihod-visual-list .sub-menu .prihod-menu-picture{flex-basis:34px;width:34px;height:34px}
 .prihod-visual-list .sub-menu .prihod-menu-description{display:none}
+@media(min-width:901px){
+  .prihod-has-visual-menu .prihod-brand{flex:0 1 350px;max-width:350px}
+  .prihod-scheme-tradition .prihod-menu-tools{grid-column:1/-1}
+  .prihod-menu-tools>.prihod-desktop-navigation{width:auto;margin:0;padding:0;border:0;background:none}
+}
 @media(max-width:900px){
   .prihod-has-visual-menu .prihod-header-top{position:relative}
   .prihod-has-visual-menu .prihod-header-right{display:flex;position:static;flex:0 0 auto;padding:0}
   .prihod-has-visual-menu .prihod-contact-strip{display:none}
   .prihod-menu-tools{gap:3px}
-  .prihod-visual-menu>summary{padding:9px 12px}
+  .prihod-visual-menu>summary{width:44px;height:44px}
+  .prihod-menu-languages{display:block;padding-top:14px;margin-top:14px;border-top:1px solid var(--prihod-line)}
+  .prihod-menu-languages a{display:inline-flex;align-items:center;min-height:36px}
   .prihod-visual-panel{left:50%;right:auto;width:calc(100vw - 24px);max-height:calc(100dvh - 82px);padding:16px;transform:translateX(-50%)}
   .prihod-visual-list{grid-template-columns:repeat(2,minmax(0,1fr))}
 }

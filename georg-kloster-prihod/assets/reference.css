@@ -262,7 +262,7 @@
 
 /* Nested links keep the main menu compact without hiding existing sections. */
 .prihod-classic-navigation .sub-menu{list-style:none;margin:0;padding:0}
-.prihod-classic-navigation .menu-item-has-children>a:after{content:"⌄";font-family:system-ui,sans-serif;font-size:14px;margin-left:5px}
+.prihod-classic-navigation .menu-item-has-children>a:after{content:"";display:inline-block;width:5px;height:5px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg);vertical-align:.18em;margin-left:7px}
 @media(min-width:901px){
   .prihod-desktop-navigation .menu-item-has-children{position:relative}
   .prihod-desktop-navigation .sub-menu{display:none;position:absolute;top:100%;left:0;z-index:70;min-width:210px;padding:8px 14px;background:var(--wp--preset--color--white);border:1px solid var(--prihod-line);border-radius:6px;box-shadow:0 10px 24px #1a253022}

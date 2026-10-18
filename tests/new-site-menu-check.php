@@ -17,6 +17,13 @@ foreach ( array( 'ru', 'de' ) as $language ) {
     if ( str_contains( $html, 'id="prihod-mobile-menu"' ) || ! str_contains( $html, 'prihod-menu-title' ) ) {
         throw new RuntimeException( 'Duplicate legacy menu or missing visual items: ' . $language );
     }
+    if ( ! str_contains( $html, 'id="prihod-desktop-menu"' ) || str_contains( $html, 'prihod-menu-chevron' ) || str_contains( $html, '⌄' ) ) {
+        throw new RuntimeException( 'Simple desktop links or clean visual-menu trigger are missing: ' . $language );
+    }
+    preg_match_all( '/\bid="([^"]+)"/', $html, $ids );
+    if ( count( $ids[1] ) !== count( array_unique( $ids[1] ) ) ) {
+        throw new RuntimeException( 'Header has duplicate element IDs: ' . $language );
+    }
     $locations = get_nav_menu_locations();
     $items = wp_get_nav_menu_items( $locations['primary'] );
     if ( ! is_array( $items ) || count( $items ) < 3 ) {
@@ -29,6 +36,20 @@ foreach ( array( 'ru', 'de' ) as $language ) {
     }
     echo 'Visual menu OK: ' . $language . ' (' . count( $items ) . ' items)' . PHP_EOL;
 }
+
+$classic_options = georg_kloster_prihod_options();
+$classic_options['menu_style'] = 'classic';
+$classic_filter = static fn() => $classic_options;
+add_filter( 'pre_option_georg_kloster_prihod_options', $classic_filter );
+try {
+    $classic_html = prihod_theme_header();
+    if ( ! str_contains( $classic_html, 'id="prihod-desktop-menu"' ) || ! str_contains( $classic_html, 'id="prihod-mobile-menu"' ) || str_contains( $classic_html, 'class="prihod-visual-menu"' ) ) {
+        throw new RuntimeException( 'The simple-menu-only setting must retain desktop and mobile links.' );
+    }
+} finally {
+    remove_filter( 'pre_option_georg_kloster_prihod_options', $classic_filter );
+}
+echo 'Simple-menu-only setting OK' . PHP_EOL;
 
 require_once ABSPATH . 'wp-admin/includes/admin.php';
 wp_set_current_user( 1 );

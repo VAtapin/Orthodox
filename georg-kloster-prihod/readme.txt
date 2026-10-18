@@ -30,9 +30,12 @@ The theme uses images selected from your WordPress media library. It does not do
 
 = How do I add images to the menu? =
 
-Create and assign a menu under Appearance > Menus. Open a menu item and choose its image from the media library; without a chosen image, the linked page or post featured image is used. The theme's Appearance > Parish Appearance > Header and Footer section switches between the visual menu and a standard link row and sets the number of visual columns. Menu item descriptions can be enabled under Screen Options on the Menus screen.
+Create and assign a menu under Appearance > Menus. Open a menu item and choose its image from the media library; without a chosen image, the linked page or post featured image is used. The theme's Appearance > Parish Appearance > Header and Footer section enables an image menu alongside the standard desktop link row and sets the number of visual columns. The link-row-only option remains available. Menu item descriptions can be enabled under Screen Options on the Menus screen.
 
 == Changelog ==
+
+= 0.4.23 =
+Keep simple desktop navigation beside the optional image menu, simplify its trigger and align submenu indicators.
 
 = 0.4.22 =
 Apply the responsive archive cards to tags and other WordPress archives; show a clean term title instead of escaped markup.

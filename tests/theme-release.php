@@ -77,7 +77,8 @@ georg_theme_release_assert( ! is_wp_error( $menu ), 'Could not create a standard
 $item_id = wp_update_nav_menu_item( $menu, 0, array( 'menu-item-title' => 'Standard menu link', 'menu-item-url' => home_url( '/' ), 'menu-item-status' => 'publish' ) );
 set_theme_mod( 'nav_menu_locations', array( 'primary' => $menu ) );
 $header = prihod_theme_header();
-georg_theme_release_assert( 1 === substr_count( $header, 'Standard menu link' ) && str_contains( $header, 'prihod-visual-menu' ) && str_contains( $header, 'id="prihod-visual-menu"' ), 'Visual menu must use the standard WordPress menu and a single accessible panel.' );
+georg_theme_release_assert( 2 === substr_count( $header, 'Standard menu link' ) && str_contains( $header, 'id="prihod-desktop-menu"' ) && str_contains( $header, 'id="prihod-visual-menu"' ), 'Visual menu must supplement the simple desktop links.' );
+georg_theme_release_assert( ! str_contains( $header, 'prihod-menu-chevron' ) && 1 === preg_match_all( '/id="menu-item-\d+"/', $header ), 'Menu trigger and duplicate item IDs must be cleaned up.' );
 wp_set_current_user( 1 );
 $menu_item = wp_setup_nav_menu_item( get_post( $item_id ) );
 ob_start(); do_action( 'wp_nav_menu_item_custom_fields', $item_id, $menu_item, 0, new stdClass() ); $menu_fields = ob_get_clean();
