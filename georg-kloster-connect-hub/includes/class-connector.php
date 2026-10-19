@@ -32,12 +32,22 @@ final class Connector {
     }
     public function __get( string $key ) { return in_array( $key, array( 'id', 'title' ), true ) ? $this->$key : null; }
     public function settings(): array { $saved = get_option( 'gkps_connect_' . $this->id, array() ); return array_merge( array( 'enabled' => false, 'token' => '', 'target' => '', 'api_version' => '', 'recipient' => '', 'template' => '', 'language' => 'ru', 'recipient_consent' => false, 'application_key' => '', 'application_secret' => '', 'notify_requests' => false, 'notify_schedule' => false ), is_array( $saved ) ? $saved : array() ); }
-    public function settings_url(): string { return in_array( $this->id, array( 'telegram', 'whatsapp' ), true ) ? admin_url( 'admin.php?page=gkps-connect-' . $this->id ) : add_query_arg( array( 'page' => 'gkch-settings', 'network' => $this->id ), admin_url( 'admin.php' ) ); }
+    public function settings_url(): string { return add_query_arg( array( 'page' => 'gkch-settings', 'network' => $this->id ), admin_url( 'admin.php' ) ); }
     private function authorize(): void { if ( ! current_user_can( 'manage_options' ) && ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Недостаточно прав.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); } }
     public function menu(): void {
         if ( ! in_array( $this->id, array( 'telegram', 'whatsapp' ), true ) ) { return; }
         $capability = current_user_can( 'manage_options' ) ? 'manage_options' : 'manage_gkps_settings';
-        add_submenu_page( 'gkps', $this->title, $this->title, $capability, 'gkps-connect-' . $this->id, array( $this, 'render' ) );
+        $hook = add_submenu_page( null, $this->title, $this->title, $capability, 'gkps-connect-' . $this->id, array( $this, 'render' ) );
+        add_action( 'load-' . $hook, array( $this, 'legacy_settings' ) );
+    }
+    public function legacy_settings(): void {
+        $this->authorize();
+        $url = $this->settings_url();
+        if ( 'telegram' === $this->id && isset( $_GET['gkps_connect_error'] ) && is_string( $_GET['gkps_connect_error'] ) ) {
+            $codes = array_intersect( explode( ',', $_GET['gkps_connect_error'] ), array_keys( self::telegram_error_messages() ) );
+            if ( $codes ) { $url = add_query_arg( 'gkps_connect_error', implode( ',', $codes ), $url ); }
+        }
+        wp_safe_redirect( $url ); exit;
     }
     public function health(): array {
         $ready = $this->valid( $this->settings() );

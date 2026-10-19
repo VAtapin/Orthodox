@@ -18,7 +18,7 @@ $throws = static function ( callable $operation, string $message ) use ( $check 
 };
 $admin_id = get_users( array( 'role' => 'administrator', 'number' => 1 ) )[0]->ID;
 wp_set_current_user( $admin_id ); set_current_screen( 'dashboard' );
-$check( '0.3.0' === GKPS_VERSION, 'Wrong Connect Hub version.' );
+$check( '0.3.1' === GKPS_VERSION, 'Wrong Connect Hub version.' );
 $check( ! is_plugin_active( 'georg-kloster-prihod-social/georg-kloster-prihod-social.php' ), 'Old development package remains active.' );
 $check( 'Existing development form' === Admin::get()['title'], 'Development form settings were lost.' );
 $check( '12345' === Connector::instance( 'telegram' )->settings()['target'], 'Channel settings were lost.' );
@@ -54,8 +54,8 @@ foreach ( array( 'ru_RU' => array( 'Коммуникации', 'Формы', 'С
     global $menu, $submenu; $menu = array(); $submenu = array(); do_action( 'admin_menu' );
     $main = array_values( array_filter( $menu, static fn( $item ) => 'gkps' === $item[2] ) );
     $check( 1 === count( $main ) && $labels[0] === $main[0][0], 'Main menu locale: ' . $test_locale . ' ' . wp_json_encode( array( $switched, get_locale(), determine_locale(), $main ) ) );
-    $check( array( 'gkps', 'gkps-requests', 'gkch-publications', 'gkps-connect-telegram', 'gkps-connect-whatsapp', 'gkch-settings' ) === array_column( $submenu['gkps'], 2 ), 'Six menu sections/order: ' . $test_locale );
-    $check( array( $labels[1], $labels[2], $labels[3], 'Telegram', 'WhatsApp', $labels[5] ) === array_column( $submenu['gkps'], 0 ), 'Submenu locale: ' . $test_locale );
+    $check( array( 'gkps', 'gkps-requests', 'gkch-publications', 'gkch-settings' ) === array_column( $submenu['gkps'], 2 ), 'Four menu sections/order: ' . $test_locale );
+    $check( array( $labels[1], $labels[2], $labels[3], $labels[5] ) === array_column( $submenu['gkps'], 0 ), 'Submenu locale: ' . $test_locale );
     if ( $switched ) { restore_previous_locale(); }
 }
 
@@ -143,11 +143,36 @@ $check( 'cancelled' === get_option( 'gkps_job_ok_' . $uncertain )['status'], 'Pu
 $check( '' === Connector::instance( 'vk' )->queue( 'Private message', '', 'request', $request ), 'Private messages could be sent to a public social network.' );
 $draft = wp_insert_post( array( 'post_type' => 'post', 'post_status' => 'draft', 'post_title' => 'Synthetic draft' ) );
 $throws( static fn() => Publications::enqueue( $draft, array( 'vk' ) ), 'Draft publication accepted.' );
-foreach ( array( 'facebook', 'instagram', 'vk', 'ok' ) as $network ) {
+foreach ( array_keys( Publications::titles() ) as $network ) {
     $_GET['network'] = $network; ob_start(); Hub_Settings::render(); $screen = ob_get_clean();
     $check( str_contains( $screen, Publications::titles()[$network] ) && ! str_contains( $screen, 'development_token' ) && ! str_contains( $screen, 'secret123' ), 'Network screen leaked secrets or omitted provider.' );
     $check( str_contains( Connector::instance( $network )->settings_url(), 'page=gkch-settings' ) && str_contains( $screen, 'name="action" value="gkps_connect_' . $network . '"' ), 'Network moved without its save handler.' );
+    $check( 7 === preg_match_all( '/<a class="nav-tab(?: nav-tab-active)?"/', $screen ), 'Settings must show General and all six channel tabs.' );
+    if ( 'telegram' === $network ) { $check( str_contains( $screen, 'name="telegram_full_requests"' ) && str_contains( $screen, 'value="gkps_telegram_receive"' ), 'Telegram reply controls lost in the Settings tab.' ); }
+    if ( 'whatsapp' === $network ) { $check( str_contains( $screen, 'name="template"' ) && str_contains( $screen, 'name="recipient_consent"' ), 'WhatsApp template/consent controls lost in the Settings tab.' ); }
 }
+// Intercept redirects before exit so the real save/legacy handlers can be exercised.
+$redirect = static function ( callable $action ): string {
+    $url = '';
+    $capture = static function ( $target ) use ( &$url ) { $url = $target; throw new RuntimeException( 'fixture_redirect' ); };
+    add_filter( 'wp_redirect', $capture );
+    try { $action(); } catch ( RuntimeException $error ) { if ( 'fixture_redirect' !== $error->getMessage() ) { throw $error; } }
+    finally { remove_filter( 'wp_redirect', $capture ); }
+    return $url;
+};
+foreach ( array( 'telegram', 'whatsapp' ) as $provider ) {
+    $connector = Connector::instance( $provider ); $saved = $connector->settings();
+    $_POST = array_merge( $saved, array( 'token' => '', 'application_secret' => '' ) );
+    $_REQUEST = array( '_wpnonce' => wp_create_nonce( 'gkps_connect_' . $provider ) );
+    $check( $connector->settings_url() === $redirect( array( $connector, 'save' ) ) && $saved === $connector->settings(), 'Saving a moved channel lost credentials/settings or returned to the old page.' );
+    $_GET = array( 'gkps_connect_error' => 'token_missing,unknown' );
+    $target = $redirect( array( $connector, 'legacy_settings' ) );
+    $check( $target === ( 'telegram' === $provider ? add_query_arg( 'gkps_connect_error', 'token_missing', $connector->settings_url() ) : $connector->settings_url() ), 'Old channel URL does not redirect to the Settings tab with safe error codes.' );
+    $check( (bool) has_action( 'load-admin_page_gkps-connect-' . $provider, array( $connector, 'legacy_settings' ) ), 'Old page is not registered as a hidden redirect.' );
+}
+$_REQUEST = array( '_wpnonce' => wp_create_nonce( 'gkps_telegram_receive' ) );
+$check( Connector::instance( 'telegram' )->settings_url() === $redirect( array( GeorgKlosterPrihodSocial\Telegram_Request_Settings::class, 'connect' ) ), 'Telegram receive/reply setup returns to the old page.' );
+$_POST = $_REQUEST = array();
 $_GET = array();
 GeorgKlosterPrihodSocial\Blocks::register();
 $editor = wp_scripts()->get_data( 'gkps-blocks', 'data' );

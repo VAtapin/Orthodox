@@ -83,7 +83,7 @@ final class Telegram_Request_Settings {
         if ( ! current_user_can( 'manage_options' ) && ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Недостаточно прав.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); }
         check_admin_referer( 'gkps_telegram_receive' ); $result = self::queue_registration( get_current_user_id() );
         set_transient( 'gkps_telegram_notice_' . get_current_user_id(), is_wp_error( $result ) ? $result->get_error_message() : __( 'Проверка подключения поставлена в очередь. Обновите эту страницу через некоторое время.', 'georg-kloster-connect-hub' ), 120 );
-        wp_safe_redirect( admin_url( 'admin.php?page=gkps-connect-telegram' ) ); exit;
+        wp_safe_redirect( Connector::instance( 'telegram' )->settings_url() ); exit;
     }
     public static function queue_registration( int $user ) {
         $connector = Telegram_Requests::connector(); $o = Telegram_Requests::options();

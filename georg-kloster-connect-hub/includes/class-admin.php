@@ -14,7 +14,7 @@ final class Admin {
     public static function order_menu(): void {
         global $submenu;
         if ( empty( $submenu['gkps'] ) ) { return; }
-        $order = array_flip( array( 'gkps', 'gkps-requests', 'gkch-publications', 'gkps-connect-telegram', 'gkps-connect-whatsapp', 'gkch-settings' ) );
+        $order = array_flip( array( 'gkps', 'gkps-requests', 'gkch-publications', 'gkch-settings' ) );
         usort( $submenu['gkps'], static fn( $a, $b ) => ( $order[$a[2]] ?? 99 ) <=> ( $order[$b[2]] ?? 99 ) );
     }
 

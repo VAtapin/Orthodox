@@ -16,7 +16,7 @@ final class Hub_Settings {
     public static function render(): void {
         if ( ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Access denied.', 'georg-kloster-connect-hub' ) ); }
         $network = isset( $_GET['network'] ) && is_string( $_GET['network'] ) ? sanitize_key( $_GET['network'] ) : '';
-        $networks = array_intersect_key( Publications::titles(), array_flip( array( 'facebook', 'instagram', 'vk', 'ok' ) ) );
+        $networks = Publications::titles();
         if ( ! isset( $networks[$network] ) ) { $network = ''; }
         echo '<div class="wrap"><h1>' . esc_html__( 'Settings', 'georg-kloster-connect-hub' ) . '</h1><nav class="nav-tab-wrapper" aria-label="' . esc_attr__( 'Settings sections', 'georg-kloster-connect-hub' ) . '">';
         echo '<a class="nav-tab' . ( '' === $network ? ' nav-tab-active' : '' ) . '" href="' . esc_url( admin_url( 'admin.php?page=gkch-settings' ) ) . '">' . esc_html__( 'General', 'georg-kloster-connect-hub' ) . '</a>';

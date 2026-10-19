@@ -3,7 +3,7 @@ Contributors: vatapin
 Tags: contact form, messages, social, publishing, telegram
 Requires at least: 6.5
 Requires PHP: 8.0
-Stable tag: 0.3.0
+Stable tag: 0.3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -19,8 +19,8 @@ status filters. Staff can reply by email. Telegram supports the existing opt-in
 private-chat reply workflow. WhatsApp sends approved outbound templates only;
 WhatsApp replies are not imported.
 
-The menu has Forms, Messages, Publications, Telegram, WhatsApp and Settings.
-Facebook, Instagram, VK and OK connections are tabs in Settings.
+The menu has Forms, Messages, Publications and Settings. All six channel connections
+(Telegram, WhatsApp, Facebook, Instagram, VK and OK) are tabs in Settings.
 Its title is Connect Hub in English, Kommunikation in German and
 Коммуникации in Russian. Russian and German PHP/editor catalogs are bundled.
 Forms can concern church matters, deliveries, appointments or any other topic.
@@ -44,7 +44,7 @@ No channel is enabled automatically and no account credentials are bundled.
 
 == Installation ==
 
-Upload georg-kloster-connect-hub-0.3.0.zip. Replace an existing Connect Hub version,
+Upload georg-kloster-connect-hub-0.3.1.zip. Replace an existing Connect Hub version,
 or install as a new plugin and activate it.
 Activation deactivates the previous georg-kloster-prihod-social development plugin
 without deleting its settings. Keep only Connect Hub active. Network-active old
@@ -52,7 +52,7 @@ installations require network-wide activation. The internal gkps data, capabilit
 cron hooks and Telegram REST paths remain compatible; no database migration is needed.
 
 Configure forms under Forms, global reception/retention under Settings and each
-channel under Telegram, WhatsApp or the network tabs in Settings. Configure
+channel under its tab in Settings. Configure
 automatic rules under Publications. Insert the Form block and select a saved form, or use its
 listed shortcode. Exclude pages containing forms from full-page caching: tokens
 are single-use and expire after one hour. Ensure WordPress Cron runs.
@@ -104,6 +104,10 @@ included in public markup or the block selector. Ordinary uninstall retains
 saved messages/settings and does not delete posts in external services.
 
 == Changelog ==
+
+= 0.3.1 =
+Move Telegram and WhatsApp into the shared Settings tabs. Retain saved credentials,
+message/reply controls, existing save actions and redirects from old settings URLs.
 
 = 0.3.0 =
 Replace the single-post publication picker with automatic rules for new posts,

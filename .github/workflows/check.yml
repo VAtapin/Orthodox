@@ -49,7 +49,7 @@ jobs:
       - run: node --check georg-kloster-connect-hub/assets/blocks.js
       - run: node --check georg-kloster-connect-hub/assets/publications.js
       - run: python scripts/package.py --only connect-hub
-      - run: unzip -q build/georg-kloster-connect-hub-0.3.0.zip -d "$RUNNER_TEMP/connect-hub-package"
+      - run: unzip -q build/georg-kloster-connect-hub-0.3.1.zip -d "$RUNNER_TEMP/connect-hub-package"
       - name: Set Connect Hub test versions
         env:
           TEST_WP: ${{ matrix.wp }}
