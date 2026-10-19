@@ -76,3 +76,9 @@ Its request/support tiles and the Editorial support tile use large symbols.
 Turning card images off retains compact icon cards. Displayed homepage card
 photographs are 200px high and remain inside their columns. Empty text fields
 stay empty; no reference-site content is inserted.
+
+Authored homepage gallery groups use full-width native WordPress galleries.
+Their photographs have 200px frames with five, three or two columns according
+to the viewport; the native image viewer remains available. Gallery blocks
+are not placed in the narrow navigation column of the blue style. The theme
+does not rewrite their text, image selection or page content.

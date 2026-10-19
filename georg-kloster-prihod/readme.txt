@@ -36,6 +36,9 @@ Create and assign a menu under Appearance > Menus. Open a menu item and choose i
 
 == Changelog ==
 
+= 0.4.33 =
+Keep authored homepage galleries full width in every style, with responsive columns, 200px image frames and the native WordPress image viewer. Prevent the blue layout from squeezing a gallery into its old narrow navigation column. Page content is not changed.
+
 = 0.4.32 =
 Add an Optional Plugins section with real screenshots, descriptions, installed states and settings links. Offer standard WordPress installation only for directory-confirmed plugins, after an explicit directory check. Keep the theme independent and all content unchanged.
 
