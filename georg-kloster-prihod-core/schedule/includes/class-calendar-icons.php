@@ -16,11 +16,11 @@ final class Calendar_Icons {
     }
     public static function options(): array { return wp_parse_args( get_option( self::OPTION, array() ), array( 'enabled' => true, 'weekday' => 0, 'sunday' => 0 ) ); }
     public static function sanitize( $input ): array {
-        if ( ! is_array( $input ) ) { add_settings_error( self::OPTION, 'calendar_icon', __( 'Выберите изображение из медиатеки.', 'georg-kloster-prihod-schedule' ) ); return self::options(); }
+        if ( ! is_array( $input ) ) { add_settings_error( self::OPTION, 'calendar_icon', __( 'Select an image from the media library.', 'georg-kloster-prihod-schedule' ) ); return self::options(); }
         $result = array( 'enabled' => ! empty( $input['enabled'] ), 'weekday' => 0, 'sunday' => 0 );
         foreach ( array( 'weekday', 'sunday' ) as $slot ) {
             if ( ! is_array( $input ) || ! is_scalar( $input[$slot] ?? null ) || ! preg_match( '/^\d+$/D', (string) $input[$slot] ) || ( $input[$slot] && ! wp_attachment_is_image( (int) $input[$slot] ) ) ) {
-                add_settings_error( self::OPTION, 'calendar_icon', __( 'Выберите изображение из медиатеки.', 'georg-kloster-prihod-schedule' ) ); return self::options();
+                add_settings_error( self::OPTION, 'calendar_icon', __( 'Select an image from the media library.', 'georg-kloster-prihod-schedule' ) ); return self::options();
             }
             $result[$slot] = (int) $input[$slot];
         }
@@ -31,7 +31,7 @@ final class Calendar_Icons {
         $sunday = '7' === ( new \DateTimeImmutable( $date, new \DateTimeZone( 'UTC' ) ) )->format( 'N' );
         $id = absint( self::options()[$sunday ? 'sunday' : 'weekday'] );
         $url = $id && wp_attachment_is_image( $id ) ? wp_get_attachment_image_url( $id, 'medium' ) : false;
-        $alt = $url ? ( get_post_meta( $id, '_wp_attachment_image_alt', true ) ?: get_the_title( $id ) ) : ( $sunday ? __( 'Воскресение Христово — Сошествие во ад', 'georg-kloster-prihod-schedule' ) : __( 'Спаситель — Христос Вседержитель', 'georg-kloster-prihod-schedule' ) );
+        $alt = $url ? ( get_post_meta( $id, '_wp_attachment_image_alt', true ) ?: get_the_title( $id ) ) : ( $sunday ? __( 'Resurrection of Christ — Descent into Hades', 'georg-kloster-prihod-schedule' ) : __( 'The Savior — Christ Pantocrator', 'georg-kloster-prihod-schedule' ) );
         $builtin = plugins_url( 'assets/icons/' . ( $sunday ? 'resurrection.jpg' : 'christ.jpg' ), GKPSCH_FILE );
         $full = plugins_url( 'assets/icons/' . ( $sunday ? 'resurrection-full.jpg' : 'christ-full.jpg' ), GKPSCH_FILE );
         return array( 'url' => $url ?: $builtin, 'fullUrl' => $url ? wp_get_attachment_image_url( $id, 'full' ) : $full, 'alt' => sanitize_text_field( $alt ), 'attribution' => '', 'media' => '', 'fallback' => true );
@@ -39,14 +39,14 @@ final class Calendar_Icons {
     public static function render(): void {
         if ( ! current_user_can( 'manage_gkpsch_settings' ) ) { return; }
         $options = self::options();
-        echo '<h2>' . esc_html__( 'Запасные иконы расписания', 'georg-kloster-prihod-schedule' ) . '</h2><p>' . esc_html__( 'Подтверждённая икона дня из календарного API имеет приоритет. Если API не связывает образ с датой, используется запасной воскресный или будничный образ. Встроенный будничный образ — Спаситель; для конкретного храма можно выбрать другую икону из медиатеки.', 'georg-kloster-prihod-schedule' ) . '</p>';
+        echo '<h2>' . esc_html__( 'Fallback schedule icons', 'georg-kloster-prihod-schedule' ) . '</h2><p>' . esc_html__( 'A confirmed day icon from the calendar API takes priority. If the API does not link an icon to the date, the Sunday or weekday fallback is used. The built-in weekday icon depicts the Savior; select another image from the media library for your church.', 'georg-kloster-prihod-schedule' ) . '</p>';
         settings_errors( self::OPTION );
         echo '<form action="' . esc_url( admin_url( 'options.php' ) ) . '" method="post">'; settings_fields( self::OPTION );
-        echo '<p><label><input type="checkbox" name="' . self::OPTION . '[enabled]" value="1"' . checked( $options['enabled'], true, false ) . '> ' . esc_html__( 'Показывать запасной образ, если иконы дня нет', 'georg-kloster-prihod-schedule' ) . '</label></p>';
-        foreach ( array( 'sunday' => __( 'Воскресенье: Воскресение Христово', 'georg-kloster-prihod-schedule' ), 'weekday' => __( 'Будни: выбранный запасной образ (встроенный — Спаситель)', 'georg-kloster-prihod-schedule' ) ) as $slot => $label ) {
+        echo '<p><label><input type="checkbox" name="' . self::OPTION . '[enabled]" value="1"' . checked( $options['enabled'], true, false ) . '> ' . esc_html__( 'Show a fallback image when the day icon is unavailable', 'georg-kloster-prihod-schedule' ) . '</label></p>';
+        foreach ( array( 'sunday' => __( 'Sunday: Resurrection of Christ', 'georg-kloster-prihod-schedule' ), 'weekday' => __( 'Weekdays: selected fallback image (built-in: the Savior)', 'georg-kloster-prihod-schedule' ) ) as $slot => $label ) {
             $builtin = plugins_url( 'assets/icons/' . ( 'sunday' === $slot ? 'resurrection.jpg' : 'christ.jpg' ), GKPSCH_FILE );
             $url = wp_get_attachment_image_url( absint( $options[$slot] ), 'medium' ) ?: $builtin;
-            echo '<fieldset class="gkpsch-service-section" data-gkpsch-icon-choice><legend>' . esc_html( $label ) . '</legend><input type="hidden" name="' . self::OPTION . '[' . $slot . ']" value="' . absint( $options[$slot] ) . '"><img src="' . esc_url( $url ) . '" alt="' . esc_attr( $label ) . '" data-default="' . esc_url( $builtin ) . '" style="display:block;width:90px;height:130px;object-fit:contain;margin-bottom:12px"><button type="button" class="button" data-gkpsch-icon-select>' . esc_html__( 'Выбрать икону', 'georg-kloster-prihod-schedule' ) . '</button> <button type="button" class="button" data-gkpsch-icon-reset>' . esc_html__( 'Встроенный образ', 'georg-kloster-prihod-schedule' ) . '</button></fieldset>';
+            echo '<fieldset class="gkpsch-service-section" data-gkpsch-icon-choice><legend>' . esc_html( $label ) . '</legend><input type="hidden" name="' . self::OPTION . '[' . $slot . ']" value="' . absint( $options[$slot] ) . '"><img src="' . esc_url( $url ) . '" alt="' . esc_attr( $label ) . '" data-default="' . esc_url( $builtin ) . '" style="display:block;width:90px;height:130px;object-fit:contain;margin-bottom:12px"><button type="button" class="button" data-gkpsch-icon-select>' . esc_html__( 'Choose an icon', 'georg-kloster-prihod-schedule' ) . '</button> <button type="button" class="button" data-gkpsch-icon-reset>' . esc_html__( 'Built-in image', 'georg-kloster-prihod-schedule' ) . '</button></fieldset>';
         }
         submit_button(); echo '</form>';
     }

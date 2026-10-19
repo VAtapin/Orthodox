@@ -5,6 +5,10 @@ msgstr "Content-Type: text/plain; charset=UTF-8\nX-Domain: georg-kloster-prihod-
 msgid "A demo import is already running. Please try again later."
 msgstr ""
 
+#: includes/class-blocks.php
+msgid "A list of upcoming services."
+msgstr ""
+
 #: includes/class-page-links.php
 msgid "About"
 msgstr ""
@@ -97,7 +101,7 @@ msgstr ""
 msgid "Demo content language"
 msgstr ""
 
-#: includes/class-profile.php
+#: includes/class-blocks.php includes/class-profile.php
 msgid "Description"
 msgstr ""
 
@@ -121,6 +125,10 @@ msgstr ""
 msgid "English"
 msgstr ""
 
+#: includes/class-blocks.php
+msgid "Example"
+msgstr ""
+
 #: includes/class-page-links.php
 msgid "First visit"
 msgstr ""
@@ -139,6 +147,10 @@ msgstr ""
 
 #: includes/class-demo-admin.php
 msgid "Import demo content"
+msgstr ""
+
+#: includes/class-blocks.php
+msgid "Insert a Shortcode block on a page and paste an example. Replace 123 with the ID shown in the service place edit URL (post=123). Omit location to include all places. The editor also provides equivalent Parish and Schedule blocks."
 msgstr ""
 
 #: includes/class-profile.php
@@ -165,6 +177,10 @@ msgstr ""
 msgid "News"
 msgstr ""
 
+#: includes/class-blocks.php
+msgid "No parameters."
+msgstr ""
+
 #: includes/class-profile.php
 msgid "Organisation type"
 msgstr ""
@@ -173,12 +189,24 @@ msgstr ""
 msgid "Pages included in the demo"
 msgstr ""
 
+#: includes/class-blocks.php
+msgid "Parameters"
+msgstr ""
+
 #: includes/class-admin.php
 msgid "Parish"
 msgstr ""
 
+#: includes/class-blocks.php
+msgid "Parish address, phone, email and website."
+msgstr ""
+
 #: assets/blocks.js includes/class-blocks.php
 msgid "Parish contacts"
+msgstr ""
+
+#: includes/class-blocks.php
+msgid "Parish name and description."
 msgstr ""
 
 #: assets/blocks.js includes/class-admin.php includes/class-blocks.php
@@ -207,6 +235,14 @@ msgstr ""
 
 #: assets/blocks.js
 msgid "Places"
+msgstr ""
+
+#: includes/class-blocks.php
+msgid "Published clergy profiles."
+msgstr ""
+
+#: includes/class-blocks.php
+msgid "Published service places with logos and photos."
 msgstr ""
 
 #: includes/class-place-media.php
@@ -245,8 +281,20 @@ msgstr ""
 msgid "Service schedule"
 msgstr ""
 
+#: includes/class-blocks.php
+msgid "Service schedule with week, month and list views."
+msgstr ""
+
 #: includes/class-profile.php
 msgid "Short name"
+msgstr ""
+
+#: includes/class-blocks.php
+msgid "Shortcode"
+msgstr ""
+
+#: includes/class-blocks.php
+msgid "Shortcodes and blocks"
 msgstr ""
 
 #: includes/class-demo-admin.php
@@ -263,6 +311,10 @@ msgstr ""
 
 #: includes/class-demo-admin.php
 msgid "The import did not finish. Saved demo items remain; repeat the import to resume without duplicating them."
+msgstr ""
+
+#: includes/class-blocks.php
+msgid "The next upcoming service."
 msgstr ""
 
 #: includes/class-place-media.php
@@ -303,4 +355,16 @@ msgstr ""
 
 #: includes/class-demo-admin.php includes/class-demo-importer.php
 msgid "You do not have permission to import this demo."
+msgstr ""
+
+#: includes/class-blocks.php
+msgid "limit: number of services, 1–50; default 5."
+msgstr ""
+
+#: includes/class-blocks.php
+msgid "location: service place ID; 0 (default) includes all published places."
+msgstr ""
+
+#: includes/class-blocks.php
+msgid "view: week (default), month or list."
 msgstr ""

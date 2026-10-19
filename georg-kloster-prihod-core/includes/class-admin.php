@@ -50,6 +50,7 @@ final class Admin {
         submit_button();
         echo '</form>';
         Page_Links::render();
+        Blocks::help();
         echo '</div>';
     }
 }

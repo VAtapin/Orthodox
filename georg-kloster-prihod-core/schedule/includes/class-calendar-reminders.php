@@ -19,7 +19,7 @@ final class Calendar_Reminders {
     public static function options(): array { return wp_parse_args( get_option( self::OPTION, array() ), array( 'enabled' => false, 'weekday' => 0, 'time' => '' ) ); }
     public static function sanitize( $input ): array {
         if ( ! is_array( $input ) || ! is_scalar( $input['weekday'] ?? null ) || ! preg_match( '/^[0-6]$/D', (string) $input['weekday'] ) || ! is_string( $input['time'] ?? null ) || ( $input['time'] && ! Occurrences::time( $input['time'] ) ) || ( ! empty( $input['enabled'] ) && ! $input['time'] ) ) {
-            add_settings_error( self::OPTION, 'calendar_settings', __( 'Выберите день и время недельного напоминания.', 'georg-kloster-prihod-schedule' ) ); return self::options();
+            add_settings_error( self::OPTION, 'calendar_settings', __( 'Select the day and time for the weekly reminder.', 'georg-kloster-prihod-schedule' ) ); return self::options();
         }
         return array( 'enabled' => ! empty( $input['enabled'] ), 'weekday' => (int) $input['weekday'], 'time' => $input['time'] );
     }
@@ -56,13 +56,13 @@ final class Calendar_Reminders {
             }
             $feasts = array_filter( $feasts, static fn( $day ) => $day >= $now->format( 'Y-m-d' ), ARRAY_FILTER_USE_KEY );
             if ( ! $feasts ) { update_option( 'gkpsch_calendar_last_sent', $date, false ); update_option( 'gkpsch_calendar_reminder_status', 'no_feasts', false ); return; }
-            $body = __( 'Праздники на ближайшие семь дней. Откройте редактор, выберите время и место и подтвердите богослужение.', 'georg-kloster-prihod-schedule' ) . "\n\n";
+            $body = __( 'Feasts for the next seven days. Open the editor, select a time and place, and confirm the service.', 'georg-kloster-prihod-schedule' ) . "\n\n";
             foreach ( $feasts as $day => $titles ) {
                 $link = add_query_arg( array( 'post_type' => 'gkpsch_service', 'gkpsch_calendar_date' => $day ), admin_url( 'post-new.php' ) );
                 $body .= ( new \DateTimeImmutable( $day ) )->format( 'd.m.Y' ) . ': ' . implode( '; ', $titles ) . "\n" . $link . "\n\n";
             }
             update_option( 'gkpsch_calendar_last_attempt', $date, false );
-            $sent = wp_mail( get_option( 'admin_email' ), __( 'Приход: праздники недели', 'georg-kloster-prihod-schedule' ), $body );
+            $sent = wp_mail( get_option( 'admin_email' ), __( 'Parish: this week\'s feasts', 'georg-kloster-prihod-schedule' ), $body );
             update_option( 'gkpsch_calendar_reminder_status', $sent ? 'sent' : 'mail_failed', false );
             if ( $sent ) { update_option( 'gkpsch_calendar_last_sent', $date, false ); }
             // Do not automatically resend after an uncertain transport failure.
@@ -70,13 +70,13 @@ final class Calendar_Reminders {
     }
     public static function render(): void {
         $options = self::options();
-        echo '<section class="gkpsch-dash-card"><h2>' . esc_html__( 'Недельное напоминание о праздниках', 'georg-kloster-prihod-schedule' ) . '</h2><p>' . esc_html__( 'Отправляется на email администратора WordPress. До выбора времени и включения письма не отправляются.', 'georg-kloster-prihod-schedule' ) . '</p>';
+        echo '<section class="gkpsch-dash-card"><h2>' . esc_html__( 'Weekly feast reminder', 'georg-kloster-prihod-schedule' ) . '</h2><p>' . esc_html__( 'Sent to the WordPress administrator email. No email is sent until you select a time and enable reminders.', 'georg-kloster-prihod-schedule' ) . '</p>';
         settings_errors( self::OPTION );
         echo '<form action="' . esc_url( admin_url( 'options.php' ) ) . '" method="post">'; settings_fields( 'gkpsch_calendar' );
-        echo '<p><label><input type="checkbox" name="' . esc_attr( self::OPTION ) . '[enabled]" value="1"' . checked( $options['enabled'], true, false ) . '> ' . esc_html__( 'Включить недельное напоминание', 'georg-kloster-prihod-schedule' ) . '</label></p><p><label>' . esc_html__( 'День отправки', 'georg-kloster-prihod-schedule' ) . ' <select name="' . esc_attr( self::OPTION ) . '[weekday]">';
-        foreach ( array( __( 'Воскресенье', 'georg-kloster-prihod-schedule' ), __( 'Понедельник', 'georg-kloster-prihod-schedule' ), __( 'Вторник', 'georg-kloster-prihod-schedule' ), __( 'Среда', 'georg-kloster-prihod-schedule' ), __( 'Четверг', 'georg-kloster-prihod-schedule' ), __( 'Пятница', 'georg-kloster-prihod-schedule' ), __( 'Суббота', 'georg-kloster-prihod-schedule' ) ) as $day => $label ) { echo '<option value="' . esc_attr( $day ) . '"' . selected( $options['weekday'], $day, false ) . '>' . esc_html( $label ) . '</option>'; }
-        echo '</select></label></p><p><label>' . esc_html__( 'Время отправки', 'georg-kloster-prihod-schedule' ) . ' <input type="time" name="' . esc_attr( self::OPTION ) . '[time]" value="' . esc_attr( $options['time'] ) . '"></label> ' . esc_html( Profile::get()['timezone'] ) . '</p>';
-        $labels = array( 'calendar_unavailable' => __( 'Календарь временно недоступен.', 'georg-kloster-prihod-schedule' ), 'no_feasts' => __( 'На ближайшую неделю великих праздников нет.', 'georg-kloster-prihod-schedule' ), 'sent' => __( 'Напоминание передано почтовой службе WordPress.', 'georg-kloster-prihod-schedule' ), 'mail_failed' => __( 'Почтовая служба не подтвердила отправку.', 'georg-kloster-prihod-schedule' ) );
+        echo '<p><label><input type="checkbox" name="' . esc_attr( self::OPTION ) . '[enabled]" value="1"' . checked( $options['enabled'], true, false ) . '> ' . esc_html__( 'Enable the weekly reminder', 'georg-kloster-prihod-schedule' ) . '</label></p><p><label>' . esc_html__( 'Send on', 'georg-kloster-prihod-schedule' ) . ' <select name="' . esc_attr( self::OPTION ) . '[weekday]">';
+        foreach ( array( __( 'Sunday', 'georg-kloster-prihod-schedule' ), __( 'Monday', 'georg-kloster-prihod-schedule' ), __( 'Tuesday', 'georg-kloster-prihod-schedule' ), __( 'Wednesday', 'georg-kloster-prihod-schedule' ), __( 'Thursday', 'georg-kloster-prihod-schedule' ), __( 'Friday', 'georg-kloster-prihod-schedule' ), __( 'Saturday', 'georg-kloster-prihod-schedule' ) ) as $day => $label ) { echo '<option value="' . esc_attr( $day ) . '"' . selected( $options['weekday'], $day, false ) . '>' . esc_html( $label ) . '</option>'; }
+        echo '</select></label></p><p><label>' . esc_html__( 'Send at', 'georg-kloster-prihod-schedule' ) . ' <input type="time" name="' . esc_attr( self::OPTION ) . '[time]" value="' . esc_attr( $options['time'] ) . '"></label> ' . esc_html( Profile::get()['timezone'] ) . '</p>';
+        $labels = array( 'calendar_unavailable' => __( 'The calendar is temporarily unavailable.', 'georg-kloster-prihod-schedule' ), 'no_feasts' => __( 'There are no great feasts in the coming week.', 'georg-kloster-prihod-schedule' ), 'sent' => __( 'The reminder was passed to the WordPress mail system.', 'georg-kloster-prihod-schedule' ), 'mail_failed' => __( 'The mail system did not confirm sending.', 'georg-kloster-prihod-schedule' ) );
         $status = get_option( 'gkpsch_calendar_reminder_status', '' );
         if ( isset( $labels[$status] ) ) { echo '<p>' . esc_html( $labels[$status] ) . '</p>'; }
         submit_button(); echo '</form></section>';

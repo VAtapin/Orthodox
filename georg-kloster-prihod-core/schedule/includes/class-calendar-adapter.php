@@ -43,10 +43,10 @@ final class Calendar_Adapter {
         return $titles;
     }
     public static function day( string $date ) {
-        if ( ! Occurrences::date( $date ) ) { return new \WP_Error( 'date', __( 'Некорректная дата.', 'georg-kloster-prihod-schedule' ), array( 'status' => 400 ) ); }
+        if ( ! Occurrences::date( $date ) ) { return new \WP_Error( 'date', __( 'Invalid date.', 'georg-kloster-prihod-schedule' ), array( 'status' => 400 ) ); }
         $data = self::request( 'day', array( 'date' => $date ) );
         if ( is_wp_error( $data ) ) { return $data; }
-        if ( ! is_array( $data['day'] ?? null ) || ( $data['day']['date'] ?? '' ) !== $date || ! is_array( $data['day']['events'] ?? null ) ) { return new \WP_Error( 'calendar_schema', __( 'Календарь вернул некорректные данные.', 'georg-kloster-prihod-schedule' ), array( 'status' => 502 ) ); }
+        if ( ! is_array( $data['day'] ?? null ) || ( $data['day']['date'] ?? '' ) !== $date || ! is_array( $data['day']['events'] ?? null ) ) { return new \WP_Error( 'calendar_schema', __( 'The calendar returned invalid data.', 'georg-kloster-prihod-schedule' ), array( 'status' => 502 ) ); }
         $day = $data['day']; $icon = null;
         foreach ( $day['icons'] ?? array() as $item ) {
             if ( ! is_array( $item ) ) { continue; }
@@ -61,10 +61,10 @@ final class Calendar_Adapter {
     }
     /** One cached provider month; no per-day API calls or saved service colors. */
     public static function month( string $date ) {
-        if ( ! Occurrences::date( $date ) || '01' !== substr( $date, -2 ) ) { return new \WP_Error( 'date', __( 'Некорректная дата.', 'georg-kloster-prihod-schedule' ), array( 'status' => 400 ) ); }
+        if ( ! Occurrences::date( $date ) || '01' !== substr( $date, -2 ) ) { return new \WP_Error( 'date', __( 'Invalid date.', 'georg-kloster-prihod-schedule' ), array( 'status' => 400 ) ); }
         $data = self::request( 'month', array( 'year' => (int) substr( $date, 0, 4 ), 'month' => (int) substr( $date, 5, 2 ) ) );
         if ( is_wp_error( $data ) ) { return $data; }
-        if ( ! is_array( $data['days'] ?? null ) ) { return new \WP_Error( 'calendar_schema', __( 'Календарь вернул некорректные данные.', 'georg-kloster-prihod-schedule' ), array( 'status' => 502 ) ); }
+        if ( ! is_array( $data['days'] ?? null ) ) { return new \WP_Error( 'calendar_schema', __( 'The calendar returned invalid data.', 'georg-kloster-prihod-schedule' ), array( 'status' => 502 ) ); }
         $days = array();
         foreach ( $data['days'] as $day ) {
             $key = is_array( $day ) ? ( $day['date'] ?? '' ) : '';
@@ -100,7 +100,7 @@ final class Calendar_Adapter {
         foreach ( $months as $month ) {
             $data = self::request( 'month', array( 'year' => (int) $month->format( 'Y' ), 'month' => (int) $month->format( 'n' ) ) );
             if ( is_wp_error( $data ) ) { return $data; }
-            if ( ! is_array( $data['days'] ?? null ) ) { return new \WP_Error( 'calendar_schema', __( 'Календарь вернул некорректные данные.', 'georg-kloster-prihod-schedule' ) ); }
+            if ( ! is_array( $data['days'] ?? null ) ) { return new \WP_Error( 'calendar_schema', __( 'The calendar returned invalid data.', 'georg-kloster-prihod-schedule' ) ); }
             foreach ( $data['days'] as $day ) {
                 if ( ! is_array( $day ) || ! is_string( $day['date'] ?? null ) || ! Occurrences::date( $day['date'] ) || $day['date'] < $from->format( 'Y-m-d' ) || $day['date'] >= $to->format( 'Y-m-d' ) ) { continue; }
                 $feasts = self::feasts( $day );

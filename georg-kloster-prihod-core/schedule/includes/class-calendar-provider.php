@@ -18,7 +18,7 @@ final class Calendar_Provider {
         if ( ! is_array( $input ) ) { return $previous; }
         $profile = isset( $input['profile'] ) && is_string( $input['profile'] ) ? sanitize_key( $input['profile'] ) : '';
         if ( ! in_array( $profile, array( 'typikon-strict', 'parish' ), true ) ) {
-            add_settings_error( self::OPTION, 'profile', __( 'Некорректный профиль календаря.', 'georg-kloster-prihod-schedule' ) );
+            add_settings_error( self::OPTION, 'profile', __( 'Invalid calendar profile.', 'georg-kloster-prihod-schedule' ) );
             return $previous;
         }
         return array( 'origin' => self::DEFAULT_ORIGIN, 'profile' => $profile );
@@ -26,38 +26,38 @@ final class Calendar_Provider {
 
     public static function render(): void {
         $options = self::options();
-        echo '<h2>' . esc_html__( 'Календарный сервис', 'georg-kloster-prihod-schedule' ) . '</h2>';
-        echo '<p>' . esc_html__( 'Даты служб остаются в WordPress. Праздники, уставные знаки и иконы загружаются из публичного календарного API и временно сохраняются на сайте.', 'georg-kloster-prihod-schedule' ) . '</p>';
+        echo '<h2>' . esc_html__( 'Calendar service', 'georg-kloster-prihod-schedule' ) . '</h2>';
+        echo '<p>' . esc_html__( 'Service dates remain in WordPress. Feasts, liturgical marks and icons are loaded from the public calendar API and cached temporarily on this site.', 'georg-kloster-prihod-schedule' ) . '</p>';
         settings_errors( self::OPTION );
         echo '<form action="' . esc_url( admin_url( 'options.php' ) ) . '" method="post">';
         settings_fields( self::OPTION );
-        echo '<p><label>' . esc_html__( 'Календарный профиль', 'georg-kloster-prihod-schedule' ) . ' <input type="text" required name="' . esc_attr( self::OPTION ) . '[profile]" value="' . esc_attr( $options['profile'] ) . '"></label></p>';
-        submit_button( __( 'Сохранить календарный сервис', 'georg-kloster-prihod-schedule' ) );
+        echo '<p><label>' . esc_html__( 'Calendar profile', 'georg-kloster-prihod-schedule' ) . ' <input type="text" required name="' . esc_attr( self::OPTION ) . '[profile]" value="' . esc_attr( $options['profile'] ) . '"></label></p>';
+        submit_button( __( 'Save calendar service', 'georg-kloster-prihod-schedule' ) );
         echo '</form>';
     }
 
     public static function request( string $path, array $query ) {
-        if ( ! in_array( $path, array( 'day', 'month' ), true ) ) { return new \WP_Error( 'calendar_path', __( 'Неизвестный календарный запрос.', 'georg-kloster-prihod-schedule' ) ); }
+        if ( ! in_array( $path, array( 'day', 'month' ), true ) ) { return new \WP_Error( 'calendar_path', __( 'Unknown calendar request.', 'georg-kloster-prihod-schedule' ) ); }
         $options = self::options();
         $url = add_query_arg( $query + array( 'lang' => Calendar_Adapter::language(), 'profile' => $options['profile'] ), $options['origin'] . '/api/v1/calendar/' . $path );
         $key = 'gkpsch_cal_' . md5( $url );
         $cached = get_transient( $key );
         if ( is_array( $cached ) ) { return $cached; }
-        if ( get_transient( 'gkpsch_calendar_cooldown' ) ) { return new \WP_Error( 'calendar_busy', __( 'Календарный сервис временно недоступен.', 'georg-kloster-prihod-schedule' ) ); }
+        if ( get_transient( 'gkpsch_calendar_cooldown' ) ) { return new \WP_Error( 'calendar_busy', __( 'The calendar service is temporarily unavailable.', 'georg-kloster-prihod-schedule' ) ); }
         // The provider asks clients to leave at least 2.1 seconds between calls.
         $last = (float) get_option( 'gkpsch_calendar_last_request', 0 );
         $wait = 2.1 - ( microtime( true ) - $last );
         if ( $wait > 0 && $wait <= 2.1 ) { usleep( (int) ( $wait * 1000000 ) ); }
         update_option( 'gkpsch_calendar_last_request', microtime( true ), false );
         $response = wp_safe_remote_get( $url, array( 'timeout' => 25, 'redirection' => 0, 'limit_response_size' => 12 * 1024 * 1024, 'headers' => array( 'Accept' => 'application/json', 'X-Calendar-Client' => 'georg-kloster-prihod-schedule' ) ) );
-        if ( is_wp_error( $response ) ) { return new \WP_Error( 'calendar_connection', __( 'Не удалось подключиться к календарному сервису.', 'georg-kloster-prihod-schedule' ) ); }
+        if ( is_wp_error( $response ) ) { return new \WP_Error( 'calendar_connection', __( 'Could not connect to the calendar service.', 'georg-kloster-prihod-schedule' ) ); }
         $status = wp_remote_retrieve_response_code( $response );
         if ( 200 !== $status ) {
             if ( in_array( $status, array( 429, 503 ), true ) ) { set_transient( 'gkpsch_calendar_cooldown', 1, min( 3600, max( 2, (int) wp_remote_retrieve_header( $response, 'retry-after' ) ) ) ); }
-            return new \WP_Error( 'calendar_upstream', __( 'Календарный сервис не ответил успешно.', 'georg-kloster-prihod-schedule' ), array( 'status' => 503 ) );
+            return new \WP_Error( 'calendar_upstream', __( 'The calendar service did not return a successful response.', 'georg-kloster-prihod-schedule' ), array( 'status' => 503 ) );
         }
         $data = json_decode( wp_remote_retrieve_body( $response ), true );
-        if ( ! is_array( $data ) ) { return new \WP_Error( 'calendar_schema', __( 'Календарь вернул некорректные данные.', 'georg-kloster-prihod-schedule' ) ); }
+        if ( ! is_array( $data ) ) { return new \WP_Error( 'calendar_schema', __( 'The calendar returned invalid data.', 'georg-kloster-prihod-schedule' ) ); }
         $ttl = min( 300, max( 0, (int) wp_remote_retrieve_header( $response, 'x-calendar-application-cache-ttl' ) ) );
         if ( $ttl ) { set_transient( $key, $data, $ttl ); }
         return $data;

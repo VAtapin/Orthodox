@@ -93,6 +93,8 @@ final class Forms {
             else { echo '<input class="regular-text" type="' . ( 'recipient' === $key ? 'email' : 'text' ) . '" name="' . esc_attr( $key ) . '" value="' . esc_attr( $form[$key] ) . '">'; }
             echo '</label></p>';
         }
-        submit_button(); echo '</form></div>';
+        submit_button(); echo '</form>';
+        Blocks::help();
+        echo '</div>';
     }
 }

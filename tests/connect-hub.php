@@ -18,7 +18,7 @@ $throws = static function ( callable $operation, string $message ) use ( $check 
 };
 $admin_id = get_users( array( 'role' => 'administrator', 'number' => 1 ) )[0]->ID;
 wp_set_current_user( $admin_id ); set_current_screen( 'dashboard' );
-$check( '0.3.1' === GKPS_VERSION, 'Wrong Connect Hub version.' );
+$check( '0.3.2' === GKPS_VERSION, 'Wrong Connect Hub version.' );
 $check( ! is_plugin_active( 'georg-kloster-prihod-social/georg-kloster-prihod-social.php' ), 'Old development package remains active.' );
 $check( 'Existing development form' === Admin::get()['title'], 'Development form settings were lost.' );
 $check( '12345' === Connector::instance( 'telegram' )->settings()['target'], 'Channel settings were lost.' );
@@ -169,6 +169,13 @@ foreach ( array( 'telegram', 'whatsapp' ) as $provider ) {
     $target = $redirect( array( $connector, 'legacy_settings' ) );
     $check( $target === ( 'telegram' === $provider ? add_query_arg( 'gkps_connect_error', 'token_missing', $connector->settings_url() ) : $connector->settings_url() ), 'Old channel URL does not redirect to the Settings tab with safe error codes.' );
     $check( (bool) has_action( 'load-admin_page_gkps-connect-' . $provider, array( $connector, 'legacy_settings' ) ), 'Old page is not registered as a hidden redirect.' );
+}
+foreach ( array( 'en_US' => 'Shortcodes and blocks', 'ru_RU' => 'Шорткоды и блоки', 'de_DE' => 'Shortcodes und Blöcke' ) as $help_locale => $heading ) {
+    switch_to_locale( $help_locale );
+    $_GET = array();
+    ob_start(); Hub_Settings::render(); $help = ob_get_clean();
+    $check( str_contains( $help, $heading ) && str_contains( $help, '[gkch_form id=' ) && str_contains( $help, '[gkps_contact_form id=' ), 'Localized form shortcode help is missing: ' . $help_locale );
+    restore_previous_locale();
 }
 $_REQUEST = array( '_wpnonce' => wp_create_nonce( 'gkps_telegram_receive' ) );
 $check( Connector::instance( 'telegram' )->settings_url() === $redirect( array( GeorgKlosterPrihodSocial\Telegram_Request_Settings::class, 'connect' ) ), 'Telegram receive/reply setup returns to the old page.' );

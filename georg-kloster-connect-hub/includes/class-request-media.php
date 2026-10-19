@@ -5,7 +5,7 @@ defined( 'ABSPATH' ) || exit;
 /** Reply images live in private message metadata, never in public uploads. */
 final class Request_Media {
     public const MAX_BYTES = 4194304;
-    public static function unsupported(): string { return __( 'Изображение не отправлено. Поддерживаются фотографии и статические стикеры до 4 МБ. Видео и анимированные стикеры не поддерживаются.', 'georg-kloster-connect-hub' ); }
+    public static function unsupported(): string { return __( 'The image was not sent. Photos and static stickers up to 4 MB are supported. Videos and animated stickers are not supported.', 'georg-kloster-connect-hub' ); }
     public static function telegram( array $message ): array {
         $file = null;
         if ( isset( $message['sticker'] ) ) {
@@ -52,7 +52,7 @@ final class Request_Media {
     public static function admin_markup( int $id ): string {
         if ( ! get_post_meta( $id, '_gkps_reply_media', true ) ) { return ''; }
         $url = wp_nonce_url( admin_url( 'admin-post.php?action=gkps_reply_image&message_id=' . $id ), 'gkps_reply_image_' . $id );
-        return '<p><img src="' . esc_url( $url ) . '" alt="' . esc_attr__( 'Изображение из Telegram', 'georg-kloster-connect-hub' ) . '" style="display:block;max-width:100%;width:auto;height:auto;max-height:420px"></p>';
+        return '<p><img src="' . esc_url( $url ) . '" alt="' . esc_attr__( 'Image from Telegram', 'georg-kloster-connect-hub' ) . '" style="display:block;max-width:100%;width:auto;height:auto;max-height:420px"></p>';
     }
     public static function can_view( int $id, $nonce ): bool {
         $message = get_post( $id );
@@ -60,7 +60,7 @@ final class Request_Media {
     }
     public static function serve(): void {
         $id = is_scalar( $_GET['message_id'] ?? null ) ? absint( $_GET['message_id'] ) : 0;
-        if ( ! self::can_view( $id, $_GET['_wpnonce'] ?? '' ) ) { wp_die( esc_html__( 'Недостаточно прав.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); }
+        if ( ! self::can_view( $id, $_GET['_wpnonce'] ?? '' ) ) { wp_die( esc_html__( 'Insufficient permissions.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); }
         try { $media = self::validated( (array) get_post_meta( $id, '_gkps_reply_media', true ) ); } catch ( \Throwable $error ) { $media = array(); }
         if ( ! $media ) { status_header( 404 ); exit; }
         nocache_headers(); header( 'Content-Type: ' . $media['mime'] ); header( 'X-Content-Type-Options: nosniff' ); header( 'Content-Disposition: inline; filename="reply-image.' . ( 'image/png' === $media['mime'] ? 'png' : 'jpg' ) . '"' );

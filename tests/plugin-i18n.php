@@ -87,8 +87,28 @@ $check( switch_to_locale( 'en_US' ), 'Cannot switch to English.' );
 $check( 'Name' === GeorgKlosterPrihodCore\Profile::fields()['name'], 'Core English fallback failed.' );
 $check( 'Contact us' === GeorgKlosterPrihodSocial\Admin::defaults()['title'], 'Social English fallback failed.' );
 $check( 'Service schedule' === GeorgKlosterPrihodSchedule\Public_View::blocks()['schedule'], 'Schedule English fallback failed.' );
+foreach ( $screens as $screen ) {
+    ob_start(); call_user_func( $screen[0] ); $english_screen = ob_get_clean();
+    // Saved form titles/button labels are authored settings, even when they
+    // were first saved under Russian. Locale changes must not translate them.
+    $english_ui = wp_strip_all_tags( preg_replace( '/<textarea\b[^>]*>.*?<\/textarea>/s', '', $english_screen ) );
+    preg_match_all( '/[А-Яа-яЁё][^<>]*/u', $english_ui, $unexpected );
+    $check( ! $unexpected[0], 'Russian source text leaked into English ' . wp_json_encode( $screen[0] ) . ': ' . implode( ' | ', $unexpected[0] ) );
+}
+$check( 'Email reply' === translate( 'Email reply', 'georg-kloster-connect-hub' ) && 'Week' === translate( 'Week', 'georg-kloster-prihod-schedule' ), 'English source fallback missing.' );
+foreach ( array( 'GeorgKlosterPrihodCore\\Blocks', 'GeorgKlosterPrihodSocial\\Blocks' ) as $help_class ) {
+    ob_start(); $help_class::help(); $help = ob_get_clean();
+    $check( str_contains( $help, 'Shortcodes and blocks' ) && ! preg_match( '/[А-Яа-яЁё]/u', $help ), 'English shortcode help is missing or contains Russian source text.' );
+    $tags = str_contains( $help_class, 'Core' ) ? array( 'gkpc_profile', 'gkpc_contacts', 'gkpc_clergy', 'gkpc_places', 'gkpsch_schedule', 'gkpsch_next_service', 'gkpsch_next_services' ) : array( 'gkch_form', 'gkps_contact_form' );
+    foreach ( $tags as $tag ) { $check( shortcode_exists( $tag ) && str_contains( $help, '[' . $tag ), 'Shortcode documentation differs from registration: ' . $tag ); }
+}
 restore_previous_locale();
+$check( $saved === array( get_option( 'gkpc_profile' ), get_option( 'gkps_form' ) ), 'Changing the interface language rewrote authored settings.' );
 $check( 'Название' === GeorgKlosterPrihodCore\Profile::fields()['name'], 'Russian locale was not restored.' );
+foreach ( array( array( 'GeorgKlosterPrihodCore\\Admin', 'page' ), array( 'GeorgKlosterPrihodSchedule\\Admin', 'settings_page' ), array( 'GeorgKlosterPrihodSocial\\Forms', 'render' ), array( 'GeorgKlosterPrihodSocial\\Hub_Settings', 'render' ) ) as $help_screen ) {
+    ob_start(); call_user_func( $help_screen ); $help = ob_get_clean();
+    $check( str_contains( $help, 'Шорткоды и блоки' ), 'Shortcode help is missing from the Russian settings/forms screen.' );
+}
 restore_error_handler();
 file_put_contents( __DIR__ . '/.plugin-i18n-result.json', wp_json_encode( array( 'checks' => $checks, 'wordpress' => get_bloginfo( 'version' ), 'php' => PHP_VERSION, 'result' => 'PLUGIN_I18N_OK' ) ) );
 echo 'PLUGIN_I18N_OK ' . $checks . ' WP ' . get_bloginfo( 'version' ) . ' PHP ' . PHP_VERSION;

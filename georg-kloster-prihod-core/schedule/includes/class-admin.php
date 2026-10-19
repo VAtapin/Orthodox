@@ -21,6 +21,7 @@ final class Admin {
         Calendar_Provider::render();
         Calendar_Icons::render();
         Calendar_Reminders::render();
+        \GeorgKlosterPrihodCore\Blocks::help();
         echo '</div>';
     }
 }

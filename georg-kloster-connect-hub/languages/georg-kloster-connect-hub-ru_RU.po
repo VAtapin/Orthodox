@@ -78,11 +78,11 @@ msgid "Channels"
 msgstr "Каналы"
 
 #: includes/class-connector.php
-msgid "Chat ID / @канал"
+msgid "Chat ID / @channel"
 msgstr "Идентификатор чата / @канал"
 
 #: includes/class-connector.php
-msgid "Chat ID должен быть числом (для группы может начинаться с минуса) или @именем канала. Подключение не сохранено."
+msgid "Chat ID must be a number (groups may use a leading minus sign) or @channel_name. The connection was not saved."
 msgstr "Идентификатор чата должен быть числом (для группы может начинаться с минуса) или @именем канала. Подключение не сохранено."
 
 #: includes/class-publications.php
@@ -266,7 +266,7 @@ msgid "I checked the account: no post was published"
 msgstr "Я проверил аккаунт: запись не опубликована"
 
 #: includes/class-request-mail-log.php
-msgid "ID попытки"
+msgid "Attempt ID"
 msgstr "Идентификатор попытки"
 
 #: includes/class-publication-rules-admin.php
@@ -506,15 +506,15 @@ msgid "Telegram"
 msgstr "Telegram"
 
 #: includes/class-telegram-request-settings.php
-msgid "Telegram не подтвердил личный чат с этим ботом."
+msgid "Telegram did not confirm a private chat with this bot."
 msgstr "Telegram не подтвердил личный чат с этим ботом."
 
 #: includes/class-telegram-request-settings.php
-msgid "Telegram не подтвердил подключение. Проверьте токен, Chat ID и доступность сервиса."
+msgid "Telegram did not confirm the connection. Check the token, Chat ID and service availability."
 msgstr "Telegram не подтвердил подключение. Проверьте токен, идентификатор чата и доступность сервиса."
 
 #: includes/class-telegram-request-settings.php
-msgid "Telegram не подтвердил приём ответов."
+msgid "Telegram did not confirm incoming replies."
 msgstr "Telegram не подтвердил приём ответов."
 
 #: includes/class-social-providers.php
@@ -534,7 +534,7 @@ msgid "Timezone:"
 msgstr "Часовой пояс:"
 
 #: includes/class-connector.php
-msgid "Token (пусто — сохранить прежний)"
+msgid "Token (leave empty to keep the existing token)"
 msgstr "Токен (оставьте пустым, чтобы сохранить прежний)"
 
 #: includes/class-publications.php
@@ -578,601 +578,619 @@ msgid "WordPress Cron runs on site visits or the server scheduler. Late runs sen
 msgstr "WordPress Cron запускается при посещениях сайта или серверным планировщиком. При задержке выполняется одна отправка без повторения всех пропущенных интервалов. Изменение или приостановка правила отменяет ожидающие отправки."
 
 #: includes/class-telegram-request-settings.php
-msgid "В Telegram будут переданы имя, email, тема и полный текст обращения. Ответьте кнопкой «Ответить» на сообщение бота: сайт сохранит ответ и отправит посетителю оформленное письмо. Внутренние заметки не передаются."
+msgid "The sender name, email, subject and complete message will be sent to Telegram. Use Reply on the bot's message: the site saves the reply and sends a formatted email to the visitor. Internal notes are not transmitted."
 msgstr "В Telegram будут переданы имя, адрес электронной почты, тема и полный текст обращения. Ответьте кнопкой «Ответить» на сообщение бота: сайт сохранит ответ и отправит посетителю оформленное письмо. Внутренние заметки не передаются."
 
 #: includes/class-requests.php
-msgid "В работе"
+msgid "In progress"
 msgstr "В работе"
 
 #: includes/class-request-form.php
-msgid "Ваш email"
+msgid "Your email"
 msgstr "Ваша электронная почта"
 
 #: includes/class-request-form.php
-msgid "Ваше имя"
+msgid "Your name"
 msgstr "Ваше имя"
 
 #: includes/class-request-mail.php
-msgid "Ваше обращение"
+msgid "Your message"
 msgstr "Ваше обращение"
 
 #: includes/class-request-form.php
-msgid "Введите ваше имя"
+msgid "Enter your name"
 msgstr "Введите ваше имя"
 
 #: includes/class-requests.php
-msgid "Введите ответ допустимой длины."
+msgid "Enter a reply of an allowed length."
 msgstr "Введите ответ допустимой длины."
 
 #: includes/class-request-form.php
-msgid "Введите свою тему вопроса"
+msgid "Enter your question subject"
 msgstr "Введите тему сообщения"
 
 #: includes/class-request-form.php
-msgid "Введите свою тему вопроса."
+msgid "Enter your own subject."
 msgstr "Введите свою тему вопроса."
 
 #: includes/class-connector.php
-msgid "Введите токен бота. Подключение не сохранено."
+msgid "Enter the bot token. The connection was not saved."
 msgstr "Введите токен бота. Подключение не сохранено."
 
 #: includes/class-telegram-request-settings.php
-msgid "Включите отправки и уведомления о новых обращениях."
+msgid "Enable sending and notifications about new messages."
 msgstr "Включите отправки и уведомления о новых обращениях."
 
 #: includes/class-request-admin.php
-msgid "Внутренняя заметка"
+msgid "Internal note"
 msgstr "Внутренняя заметка"
 
 #: includes/class-request-admin.php
-msgid "Внутренняя заметка (не отправлять посетителю)"
+msgid "Internal note (do not send to the visitor)"
 msgstr "Внутренняя заметка (не отправлять посетителю)"
 
 #: includes/class-request-admin.php
-msgid "Все статусы"
+msgid "All statuses"
 msgstr "Все статусы"
 
 #: includes/class-telegram-request-settings.php
-msgid "Выберите сотрудника"
+msgid "Select a staff member"
 msgstr "Выберите сотрудника"
 
 #: includes/class-telegram-request-settings.php
-msgid "Выберите сотрудника с правами просмотра и ответа на обращения."
+msgid "Select a staff member with permission to view and reply to messages."
 msgstr "Выберите сотрудника с правами просмотра и ответа на обращения."
 
 #: includes/class-request-form.php
-msgid "Выберите тему"
+msgid "Select a subject"
 msgstr "Выберите тему"
 
 #: includes/class-telegram-requests.php
-msgid "Дата"
+msgid "Message date"
 msgstr "Дата"
 
 #: includes/class-request-form.php
-msgid "Для другой темы укажите своё название в поле ниже."
+msgid "For another subject, enter your own title in the field below."
 msgstr "Для другой темы укажите своё название в поле ниже."
 
 #: includes/class-telegram-request-settings.php
-msgid "Для ответа на обращения нужен числовой Chat ID вашего личного чата с ботом."
+msgid "A numeric Chat ID for your private chat with the bot is required to reply to messages."
 msgstr "Для ответа на обращения нужен числовой идентификатор чата вашего личного чата с ботом."
 
 #: includes/class-connector.php
-msgid "Для отправки обязательны токен бота и Chat ID получателя. Для личного чата укажите числовой Chat ID; для канала — @имя_канала. Имя самого бота сюда не подходит."
+msgid "A bot token and recipient Chat ID are required. For a private chat, enter its numeric Chat ID; for a channel, enter @channel_name. Do not enter the bot's own username here."
 msgstr "Для отправки обязательны токен бота и идентификатор чата получателя. Для личного чата укажите числовой идентификатор чата; для канала — @имя_канала. Имя самого бота сюда не подходит."
 
 #: includes/class-telegram-request-settings.php
-msgid "Для приёма ответов Telegram нужен адрес сайта с HTTPS."
+msgid "An HTTPS site address is required to receive Telegram replies."
 msgstr "Для приёма ответов Telegram нужен адрес сайта с HTTPS."
 
 #: includes/class-request-mail-log.php
-msgid "Для этого ответа технический журнал отсутствует. Старые отправки не восстанавливаются задним числом."
+msgid "There is no technical log for this reply. Past delivery attempts cannot be reconstructed retroactively."
 msgstr "Для этого ответа технический журнал отсутствует. Старые отправки не восстанавливаются задним числом."
 
 #: includes/class-request-form.php
-msgid "Другая тема"
+msgid "Other subject"
 msgstr "Другая тема"
 
 #: includes/class-connector.php
-msgid "Задача недоступна или получатель изменился. Создайте новую публикацию."
+msgid "The job is unavailable or the recipient has changed. Create a new publication."
 msgstr "Задача недоступна или получатель изменился. Создайте новую публикацию."
 
 #: includes/class-requests.php
-msgid "Закрыто"
+msgid "Closed"
 msgstr "Закрыто"
 
 #: includes/class-requests.php
-msgid "Заполните все поля и укажите корректный email."
+msgid "Fill in all fields and enter a valid email address."
 msgstr "Заполните все поля и укажите корректный адрес электронной почты."
 
 #: includes/class-connector.php
-msgid "Заполните подключение и явно включите отправки."
+msgid "Configure the connection and explicitly enable sending."
 msgstr "Заполните подключение и явно включите отправки."
 
 #: includes/class-request-admin.php
-msgid "Изменения сохранены."
+msgid "Changes saved."
 msgstr "Изменения сохранены."
 
 #: includes/class-connector.php
-msgid "Изменено расписание:"
+msgid "Schedule updated:"
 msgstr "Изменено расписание:"
 
 #: includes/class-request-mail.php includes/class-request-media.php includes/class-request-privacy.php
-msgid "Изображение из Telegram"
+msgid "Image from Telegram"
 msgstr "Изображение из Telegram"
 
 #: includes/class-request-media.php
-msgid "Изображение не отправлено. Поддерживаются фотографии и статические стикеры до 4 МБ. Видео и анимированные стикеры не поддерживаются."
+msgid "The image was not sent. Photos and static stickers up to 4 MB are supported. Videos and animated stickers are not supported."
 msgstr "Изображение не отправлено. Поддерживаются фотографии и статические стикеры до 4 МБ. Видео и анимированные стикеры не поддерживаются."
 
 #: includes/class-request-privacy.php includes/class-telegram-requests.php
-msgid "Имя"
+msgid "Sender name"
 msgstr "Имя"
 
 #: includes/class-request-mail-log.php
-msgid "Код SMTP"
+msgid "SMTP code"
 msgstr "Код SMTP"
 
 #: includes/class-request-mail-log.php
-msgid "Код исключения"
+msgid "Exception code"
 msgstr "Код исключения"
 
 #: includes/class-request-mail-log.php
-msgid "Код ошибки"
+msgid "Error code"
 msgstr "Код ошибки"
 
 #: includes/class-telegram-request-settings.php
-msgid "Можно ответить несколько раз на сообщение бота: каждый ответ сохраняется отдельно и сразу передаётся PHP-почте. Фото с подписью и статический стикер вставляются в письмо. Ответы посетителя по email пока автоматически не принимаются."
+msgid "You can reply to a bot message multiple times: each reply is saved separately and immediately passed to PHP mail. Captioned photos and static stickers are included in the email. Visitor replies by email are not received automatically yet."
 msgstr "Можно ответить несколько раз на сообщение бота: каждый ответ сохраняется отдельно и сразу передаётся PHP-почте. Фото с подписью и статический стикер вставляются в письмо. Ответы посетителя по электронной почте пока автоматически не принимаются."
 
 #: includes/class-request-admin.php
-msgid "На этой странице обращений нет."
+msgid "There are no messages on this page."
 msgstr "На этой странице обращений нет."
 
 #: includes/class-request-mail-log.php
-msgid "Назначенный Message-ID"
+msgid "Assigned Message-ID"
 msgstr "Назначенный Message-ID"
 
 #: includes/class-connector.php
-msgid "Настройки заполнены; успешная живая отправка ещё не подтверждена."
+msgid "Settings are complete; a successful live delivery has not been confirmed yet."
 msgstr "Настройки заполнены; успешная живая отправка ещё не подтверждена."
 
 #: includes/class-telegram-request-settings.php
-msgid "Настройки изменились во время проверки. Подключите приём ответов заново."
+msgid "Settings changed during the check. Reconnect incoming replies."
 msgstr "Настройки изменились во время проверки. Подключите приём ответов заново."
 
 #: includes/class-request-mail-log.php
-msgid "Начало"
+msgid "Started"
 msgstr "Начало"
 
 #: includes/class-request-mail-log.php
-msgid "Начало (UTC)"
+msgid "Started (UTC)"
 msgstr "Начало (UTC)"
 
 #: includes/class-request-admin.php
-msgid "Не назначен"
+msgid "Unassigned"
 msgstr "Не назначен"
 
 #: includes/class-request-admin.php
-msgid "Не отправлено"
+msgid "Not sent"
 msgstr "Не отправлено"
 
 #: includes/class-request-admin.php
-msgid "Не удалось применить все изменения. Проверьте права и поля."
+msgid "Some changes could not be applied. Check permissions and fields."
 msgstr "Не удалось применить все изменения. Проверьте права и поля."
 
 #: includes/class-requests.php
-msgid "Недостаточно прав для ответа."
+msgid "Insufficient permissions to reply."
 msgstr "Недостаточно прав для ответа."
 
 #: includes/class-connector.php includes/class-request-admin.php includes/class-request-media.php includes/class-requests.php includes/class-telegram-request-settings.php includes/class-telegram-requests.php
-msgid "Недостаточно прав."
+msgid "Insufficient permissions."
 msgstr "Недостаточно прав."
 
 #: includes/class-connector.php
-msgid "Некорректное поле."
+msgid "Invalid field."
 msgstr "Некорректное поле."
 
 #: includes/class-request-admin.php
-msgid "Некорректный ответ."
+msgid "Invalid reply."
 msgstr "Некорректный ответ."
 
 #: includes/class-request-admin.php
-msgid "Некорректный статус."
+msgid "Invalid status."
 msgstr "Некорректный статус."
 
 #: includes/class-requests.php
-msgid "Новое"
+msgid "New"
 msgstr "Новое"
 
 #: includes/class-telegram-requests.php
-msgid "Новое обращение"
+msgid "New incoming message"
 msgstr "Новое обращение"
 
 #: includes/class-connector.php
-msgid "Новое обращение. Откройте закрытый раздел прихода."
+msgid "New message. Open the private parish dashboard."
 msgstr "Новое обращение. Откройте закрытый раздел прихода."
 
 #: includes/class-request-privacy.php
-msgid "Обращение"
+msgid "Incoming message"
 msgstr "Обращение"
 
 #: includes/class-request-mail-log.php
-msgid "Обращение #%1$d · ответ #%2$d · попытка %3$d"
+msgid "Message #%1$d · reply #%2$d · attempt %3$d"
 msgstr "Обращение #%1$d · ответ #%2$d · попытка %3$d"
 
 #: includes/class-request-admin.php includes/class-requests.php
-msgid "Обращение не найдено."
+msgid "Message not found."
 msgstr "Обращение не найдено."
 
 #: includes/class-request-form.php
-msgid "Обращение не отправлено. Проверьте поля или повторите позже."
+msgid "Your message was not sent. Check the fields or try again later."
 msgstr "Обращение не отправлено. Проверьте поля или повторите позже."
 
 #: includes/class-requests.php
-msgid "Обращение не сохранено. Попробуйте позже."
+msgid "Your message could not be saved. Try again later."
 msgstr "Обращение не сохранено. Попробуйте позже."
 
 #: includes/class-request-form.php
-msgid "Обращение принято. Ответ придёт по email."
+msgid "Your message has been received. A reply will be sent by email."
 msgstr "Обращение принято. Ответ придёт по электронной почте."
 
 #: includes/class-request-admin.php
-msgid "Обращений пока нет."
+msgid "No messages yet."
 msgstr "Обращений пока нет."
 
 #: includes/class-request-privacy.php
-msgid "Обращения"
+msgid "Incoming messages"
 msgstr "Обращения"
 
 #: includes/class-request-privacy.php
-msgid "Обращения «Прихода»"
+msgid "Parish messages"
 msgstr "Обращения «Прихода»"
 
 #: includes/class-telegram-request-settings.php
-msgid "Обращения и ответы в Telegram"
+msgid "Messages and replies in Telegram"
 msgstr "Обращения и ответы в Telegram"
 
 #: includes/class-connector.php
-msgid "Одобренный шаблон с одним текстовым параметром в body"
+msgid "Approved template with one text parameter in the body"
 msgstr "Одобренный шаблон с одним текстовым параметром в теле сообщения"
 
 #: includes/class-requests.php
-msgid "Ожидает ответа"
+msgid "Awaiting reply"
 msgstr "Ожидает ответа"
 
 #: includes/class-request-mail-log.php
-msgid "Окончание (UTC)"
+msgid "Finished (UTC)"
 msgstr "Окончание (UTC)"
 
 #: includes/class-request-form.php
-msgid "Опишите ваш вопрос…"
+msgid "Describe your question…"
 msgstr "Введите сообщение…"
 
 #: includes/class-request-form.php
-msgid "Оставьте поле пустым"
+msgid "Leave this field empty"
 msgstr "Оставьте поле пустым"
 
 #: includes/class-telegram-request-settings.php
-msgid "От имени какого сотрудника сохранять ответы"
+msgid "Save replies on behalf of this staff member"
 msgstr "От имени какого сотрудника сохранять ответы"
 
 #: includes/class-request-admin.php
-msgid "Ответ или заметка"
+msgid "Reply or note"
 msgstr "Ответ или заметка"
 
 #: includes/class-request-mail.php
-msgid "Ответ на ваше обращение"
+msgid "Reply to your message"
 msgstr "Ответ на ваше обращение"
 
 #: includes/class-request-mail.php
-msgid "Ответ на обращение:"
+msgid "Reply to message:"
 msgstr "Ответ на обращение:"
 
 #: includes/class-requests.php includes/class-telegram-requests.php
-msgid "Ответ не сохранён."
+msgid "The reply was not saved."
 msgstr "Ответ не сохранён."
 
 #: includes/class-requests.php
-msgid "Ответ недоступен для повторной отправки."
+msgid "This reply cannot be resent."
 msgstr "Ответ недоступен для повторной отправки."
 
 #: includes/class-request-admin.php
-msgid "Ответ по email"
+msgid "Email reply"
 msgstr "Ответ по электронной почте"
 
 #: includes/class-telegram-requests.php
-msgid "Ответ сохранён, но письмо не удалось отправить. Проверьте обращение на сайте."
+msgid "The reply was saved, but the email could not be sent. Check the message on the site."
 msgstr "Ответ сохранён, но письмо не удалось отправить. Проверьте обращение на сайте."
 
 #: includes/class-telegram-requests.php
-msgid "Ответ сохранён. Письмо передано почтовой системе."
+msgid "The reply was saved. The email was passed to the mail system."
 msgstr "Ответ сохранён. Письмо передано почтовой системе."
 
 #: includes/class-request-admin.php
-msgid "Ответственный"
+msgid "Assigned staff member"
 msgstr "Ответственный"
 
 #: includes/class-request-admin.php
-msgid "Ответственный не имеет необходимых прав."
+msgid "The assigned staff member does not have the required permissions."
 msgstr "Ответственный не имеет необходимых прав."
 
 #: includes/class-telegram-requests.php
-msgid "Ответьте на это сообщение кнопкой «Ответить» в Telegram."
+msgid "Use Reply on this message in Telegram."
 msgstr "Ответьте на это сообщение кнопкой «Ответить» в Telegram."
 
 #: includes/class-requests.php
-msgid "Отвечено"
+msgid "Answered"
 msgstr "Отвечено"
 
 #: includes/class-telegram-request-settings.php
-msgid "Отправить полное обращение в Telegram"
+msgid "Send the complete message to Telegram"
 msgstr "Отправить полное обращение в Telegram"
 
 #: includes/class-connector.php
-msgid "Отправить эту опубликованную запись в сервис"
+msgid "Send this published post to the service"
 msgstr "Отправить эту опубликованную запись в сервис"
 
 #: includes/class-request-admin.php
-msgid "Отправляется"
+msgid "Sending"
 msgstr "Отправляется"
 
 #: includes/class-request-admin.php includes/class-request-mail-log.php
-msgid "Ошибка отправки"
+msgid "Sending error"
 msgstr "Ошибка отправки"
 
 #: includes/class-request-admin.php
-msgid "Первая страница"
+msgid "First page"
 msgstr "Первая страница"
 
 #: includes/class-telegram-request-settings.php
-msgid "Передавать полное обращение и принимать ответы в личном чате"
+msgid "Send complete messages and receive replies in a private chat"
 msgstr "Передавать полное обращение и принимать ответы в личном чате"
 
 #: includes/class-request-admin.php includes/class-request-mail-log.php
-msgid "Передано почтовой системе. Доставка в ящик не подтверждена."
+msgid "Passed to the mail system. Inbox delivery is not confirmed."
 msgstr "Передано почтовой системе. Доставка в ящик не подтверждена."
 
 #: includes/class-request-mail.php
-msgid "Перейти на сайт"
+msgid "Visit the website"
 msgstr "Перейти на сайт"
 
 #: includes/class-request-privacy.php
-msgid "Переписка / заметка"
+msgid "Conversation / note"
 msgstr "Переписка / заметка"
 
 #: includes/class-request-mail-log.php
-msgid "Письмо обработано перехватчиком WordPress; фактический транспорт не зафиксирован."
+msgid "The email was handled by a WordPress interceptor; the actual transport was not recorded."
 msgstr "Письмо обработано перехватчиком WordPress; фактический транспорт не зафиксирован."
 
 #: includes/class-request-mail-log.php
-msgid "Письмо подготовлено"
+msgid "Email prepared"
 msgstr "Письмо подготовлено"
 
 #: includes/class-request-admin.php
-msgid "По выбранному статусу обращений не найдено."
+msgid "No messages match the selected status."
 msgstr "По выбранному статусу обращений не найдено."
 
 #: includes/class-connector.php
-msgid "Повторить последнюю отправку после исправления настроек"
+msgid "Retry the last delivery after correcting the settings"
 msgstr "Повторить последнюю отправку после исправления настроек"
 
 #: includes/class-request-admin.php
-msgid "Повторить этот ответ после исправления почты"
+msgid "Retry this reply after correcting the mail configuration"
 msgstr "Повторить этот ответ после исправления почты"
 
 #: includes/class-telegram-request-settings.php
-msgid "Подключить / проверить приём ответов"
+msgid "Connect / check incoming replies"
 msgstr "Подключить / проверить приём ответов"
 
 #: includes/class-request-admin.php
-msgid "Подтвердите удаление."
+msgid "Confirm deletion."
 msgstr "Подтвердите удаление."
 
 #: includes/class-request-admin.php
-msgid "Подтверждаю полное удаление обращения и переписки"
+msgid "I confirm permanent deletion of the message and conversation"
 msgstr "Подтверждаю полное удаление обращения и переписки"
 
 #: includes/class-request-admin.php
-msgid "Показать"
+msgid "Show"
 msgstr "Показать"
 
 #: includes/class-requests.php
-msgid "Поле не может состоять только из разметки."
+msgid "A field cannot contain markup only."
 msgstr "Поле не может состоять только из разметки."
 
 #: includes/class-request-form.php
-msgid "Политика конфиденциальности"
+msgid "Privacy policy"
 msgstr "Политика конфиденциальности"
 
 #: includes/class-connector.php
-msgid "Получатель согласился получать эти сообщения"
+msgid "The recipient has consented to receive these messages"
 msgstr "Получатель согласился получать эти сообщения"
 
 #: includes/class-connector.php
-msgid "Получатель: международный номер без +"
+msgid "Recipient: international phone number without +"
 msgstr "Получатель: международный номер без +"
 
 #: includes/class-request-form.php
-msgid "Поля со звёздочкой обязательны для заполнения."
+msgid "Fields marked with an asterisk are required."
 msgstr "Поля со звёздочкой обязательны для заполнения."
 
 #: includes/class-telegram-requests.php
-msgid "Попробуйте позже."
+msgid "Try again later."
 msgstr "Попробуйте позже."
 
 #: includes/class-request-mail-log.php
-msgid "Попытка начата, результат не получен"
+msgid "Attempt started, no result received"
 msgstr "Попытка начата, результат не получен"
 
 #: includes/class-request-mail-log.php
-msgid "Попытки отправки письма"
+msgid "Email delivery attempts"
 msgstr "Попытки отправки письма"
 
 #: includes/class-connector.php
-msgid "Последняя отправка завершилась ошибкой. Код HTTP:"
+msgid "The last delivery failed. HTTP code:"
 msgstr "Последняя отправка завершилась ошибкой. Код HTTP:"
 
 #: includes/class-connector.php
-msgid "Последняя отправка принята сервисом."
+msgid "The last delivery was accepted by the service."
 msgstr "Последняя отправка принята сервисом."
 
 #: includes/class-request-admin.php includes/class-request-mail-log.php
-msgid "Принято WordPress; результат транспорта неизвестен."
+msgid "Accepted by WordPress; the transport result is unknown."
 msgstr "Принято WordPress; результат транспорта неизвестен."
 
 #: includes/class-request-mail-log.php
-msgid "Принято транспортом"
+msgid "Accepted by transport"
 msgstr "Принято транспортом"
 
 #: includes/class-requests.php
-msgid "Приём обращений отключён."
+msgid "Incoming messages are disabled."
 msgstr "Приём обращений отключён."
 
 #: includes/class-telegram-request-settings.php
-msgid "Приём ответов настроен. Новые обращения поступают полностью."
+msgid "Incoming replies are configured. New messages are sent in full."
 msgstr "Приём ответов настроен. Новые обращения поступают полностью."
 
 #: includes/class-telegram-request-settings.php
-msgid "Приём ответов подключён. Обращения отправляются полностью."
+msgid "Incoming replies are connected. Messages are sent in full."
 msgstr "Приём ответов подключён. Обращения отправляются полностью."
 
 #: includes/class-telegram-request-settings.php
-msgid "Приём ответов пока не подключён; обычные уведомления сохраняют прежний режим."
+msgid "Incoming replies are not connected yet; ordinary notifications keep their previous behavior."
 msgstr "Приём ответов пока не подключён; обычные уведомления сохраняют прежний режим."
 
 #: includes/class-telegram-request-settings.php
-msgid "Проверка подключения ещё в очереди. Обновите страницу позже."
+msgid "The connection check is still queued. Refresh this page later."
 msgstr "Проверка подключения ещё в очереди. Обновите страницу позже."
 
 #: includes/class-telegram-request-settings.php
-msgid "Проверка подключения поставлена в очередь. Обновите эту страницу через некоторое время."
+msgid "The connection check has been queued. Refresh this page in a while."
 msgstr "Проверка подключения поставлена в очередь. Обновите эту страницу через некоторое время."
 
 #: includes/class-telegram-request-settings.php
-msgid "Проверку не удалось поставить в очередь. Попробуйте позже."
+msgid "The check could not be queued. Try again later."
 msgstr "Проверку не удалось поставить в очередь. Попробуйте позже."
 
 #: includes/class-connector.php
-msgid "Проверьте token, идентификаторы и настройки API. Подключение не сохранено."
+msgid "Check the token, identifiers and API settings. The connection was not saved."
 msgstr "Проверьте токен, идентификаторы и настройки API. Подключение не сохранено."
 
 #: includes/class-requests.php
-msgid "Проверьте обязательные поля и длину текста."
+msgid "Check the required fields and text length."
 msgstr "Проверьте обязательные поля и длину текста."
 
 #: includes/class-connector.php
-msgid "Публикации отправляются только по отдельному выбору в редакторе записи. Для WhatsApp получатель должен согласиться на сообщения; шаблон утверждается в Meta. Отправки выполняются через WP-Cron."
+msgid "Publications are sent only when explicitly selected in the post editor. WhatsApp requires recipient consent and a Meta-approved template. Sending runs through WP-Cron."
 msgstr "Публикации отправляются только по отдельному выбору в редакторе записи. Для WhatsApp получатель должен согласиться на сообщения; шаблон утверждается в Meta. Отправки выполняются через WP-Cron."
 
 #: includes/class-connector.php
-msgid "Разрешить отправки во внешний сервис"
+msgid "Allow sending to the external service"
 msgstr "Разрешить отправки во внешний сервис"
 
 #: includes/class-request-admin.php
-msgid "Сбросить фильтр"
+msgid "Reset filter"
 msgstr "Сбросить фильтр"
 
 #: includes/class-request-form.php
-msgid "Своя тема вопроса"
+msgid "Custom question subject"
 msgstr "Своя тема сообщения"
 
 #: includes/class-connector.php
-msgid "Сначала исправьте подключение."
+msgid "Correct the connection first."
 msgstr "Сначала исправьте подключение."
 
 #: includes/class-telegram-request-settings.php
-msgid "Сначала сохраните настройки, затем подключите приём ответов. Каналы и группы сохраняют обычные уведомления без персональных данных."
+msgid "Save settings first, then connect incoming replies. Channels and groups retain ordinary notifications without personal data."
 msgstr "Сначала сохраните настройки, затем подключите приём ответов. Каналы и группы сохраняют обычные уведомления без персональных данных."
 
 #: includes/class-telegram-request-settings.php
-msgid "Сначала сохраните подключение."
+msgid "Save the connection first."
 msgstr "Сначала сохраните подключение."
 
 #: includes/class-request-form.php
-msgid "Согласен на обработку данных для ответа на обращение."
+msgid "I consent to processing my data to receive a reply to this message."
 msgstr "Согласен на обработку данных для ответа на обращение."
 
 #: includes/class-telegram-requests.php
-msgid "Сообщение"
+msgid "Message"
 msgstr "Сообщение"
 
 #: includes/class-telegram-request-settings.php
-msgid "Сохраните полные обращения, личный Chat ID и сотрудника с правами ответа."
+msgid "Save complete-message delivery, a private Chat ID and a staff member with reply permissions."
 msgstr "Сохраните полные обращения, идентификатор личного чата и сотрудника с правами ответа."
 
 #: includes/class-request-admin.php
-msgid "Сохранить и отправить ответ"
+msgid "Save and send reply"
 msgstr "Сохранить и отправить ответ"
 
 #: includes/class-request-admin.php includes/class-telegram-requests.php
-msgid "Статус"
+msgid "Message status"
 msgstr "Статус"
 
 #: includes/class-request-form.php
-msgid "Текст обращения"
+msgid "Message text"
 msgstr "Текст обращения"
 
 #: includes/class-request-admin.php includes/class-request-privacy.php includes/class-telegram-requests.php
-msgid "Тема"
+msgid "Message subject"
 msgstr "Тема"
 
 #: includes/class-request-form.php
-msgid "Тема вопроса"
+msgid "Question subject"
 msgstr "Тема сообщения"
 
 #: includes/class-request-mail-log.php
-msgid "Технический журнал хранится 30 дней. Принятие письма транспортом не подтверждает доставку в ящик."
+msgid "The technical log is kept for 30 days. Transport acceptance does not confirm inbox delivery."
 msgstr "Технический журнал хранится 30 дней. Принятие письма транспортом не подтверждает доставку в ящик."
 
 #: includes/class-request-mail-log.php
-msgid "Тип исключения"
+msgid "Exception type"
 msgstr "Тип исключения"
 
 #: includes/class-connector.php
-msgid "Токен бота имеет неверный формат. Скопируйте токен из BotFather. Подключение не сохранено."
+msgid "The bot token format is invalid. Copy the token from BotFather. The connection was not saved."
 msgstr "Токен бота имеет неверный формат. Скопируйте токен из BotFather. Подключение не сохранено."
 
 #: includes/class-request-mail-log.php
-msgid "Транспорт"
+msgid "Transport"
 msgstr "Транспорт"
 
 #: includes/class-request-mail-log.php
-msgid "Транспорт подготовлен"
+msgid "Transport prepared"
 msgstr "Транспорт подготовлен"
 
 #: includes/class-connector.php
-msgid "Уведомлять о новых обращениях"
+msgid "Notify about new messages"
 msgstr "Уведомлять о новых обращениях"
 
 #: includes/class-connector.php
-msgid "Уведомлять о новых обращениях (без имени, email и текста)"
+msgid "Notify about new messages (without name, email or message text)"
 msgstr "Уведомлять о новых обращениях (без имени, адреса электронной почты и текста)"
 
 #: includes/class-connector.php
-msgid "Уведомлять об изменениях опубликованного расписания"
+msgid "Notify about changes to published schedules"
 msgstr "Уведомлять об изменениях опубликованного расписания"
 
 #: includes/class-request-admin.php
-msgid "Удалить"
+msgid "Delete"
 msgstr "Удалить"
 
 #: includes/class-connector.php
-msgid "Удалить token"
+msgid "Delete token"
 msgstr "Удалить токен"
 
 #: includes/class-connector.php
-msgid "Укажите Chat ID получателя или @имя_канала. Подключение не сохранено."
+msgid "Enter the recipient Chat ID or @channel_name. The connection was not saved."
 msgstr "Укажите идентификатор чата получателя или @имя_канала. Подключение не сохранено."
 
 #: includes/class-request-mail-log.php
-msgid "Этапы:"
+msgid "Stages:"
 msgstr "Этапы:"
 
 #: includes/class-telegram-request-settings.php
-msgid "Этот бот уже принимает сообщения в другом приложении. Его подключение не изменено."
+msgid "This bot already receives messages in another application. Its connection was not changed."
 msgstr "Этот бот уже принимает сообщения в другом приложении. Его подключение не изменено."
 
 #: includes/class-connector.php
-msgid "Язык шаблона"
+msgid "Template language"
 msgstr "Язык шаблона"
+
+msgid "Add a Form block and select a form, or insert a Shortcode block with one of these examples. Copy the form ID from the Forms table. A form must be enabled, and incoming messages must be enabled in Settings."
+msgstr "Добавьте блок «Форма» и выберите форму или вставьте один из примеров в блок «Шорткод». Идентификатор формы указан в таблице раздела «Формы». Форма должна быть включена; приём сообщений также должен быть включён в настройках."
+
+msgid "Compatible alias for the same form shortcode. Existing pages can keep using it."
+msgstr "Совместимое имя того же шорткода формы. Его можно оставить на существующих страницах."
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Optional title, intro and submit parameters override only the displayed heading, introduction and button label. They do not change saved form settings, topics or recipients."
+msgstr "Необязательные параметры title, intro и submit меняют только отображаемые заголовок, вступление и подпись кнопки. Сохранённые настройки, темы и получатели формы не меняются."
+
+msgid "Shortcodes and blocks"
+msgstr "Шорткоды и блоки"
+
+msgid "Show the selected form. Replace 123 with its ID; id=\"0\" or an omitted id uses the default form."
+msgstr "Вывод выбранной формы. Замените 123 её идентификатором; id=\"0\" или отсутствие id означает форму по умолчанию."

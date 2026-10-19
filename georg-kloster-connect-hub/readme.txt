@@ -3,7 +3,7 @@ Contributors: vatapin
 Tags: contact form, messages, social, publishing, telegram
 Requires at least: 6.5
 Requires PHP: 8.0
-Stable tag: 0.3.1
+Stable tag: 0.3.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -44,7 +44,7 @@ No channel is enabled automatically and no account credentials are bundled.
 
 == Installation ==
 
-Upload georg-kloster-connect-hub-0.3.1.zip. Replace an existing Connect Hub version,
+Upload georg-kloster-connect-hub-0.3.2.zip. Replace an existing Connect Hub version,
 or install as a new plugin and activate it.
 Activation deactivates the previous georg-kloster-prihod-social development plugin
 without deleting its settings. Keep only Connect Hub active. Network-active old
@@ -103,7 +103,20 @@ The source form ID/name is stored with each message. Form recipients are never
 included in public markup or the block selector. Ordinary uninstall retains
 saved messages/settings and does not delete posts in external services.
 
+== Shortcodes ==
+
+Dashboard help appears under Connect Hub > Forms and Settings > General, in the Shortcodes and blocks section. Insert a Form block and select a form, or paste an example into a Shortcode block.
+
+* [gkch_form id="123"] — display the selected form. Copy its ID from the Forms table; id="0" or no id displays the default form.
+* [gkps_contact_form id="123"] — compatible alias with the same attributes, retained for existing pages.
+* Optional title, intro and submit attributes override only the displayed heading, introduction and button label: [gkch_form id="123" title="Contact us" intro="Send a message" submit="Send"]. They do not change saved topics, recipients or settings.
+
+Enable the selected form and incoming messages in Settings. Disabled or missing forms render no public form. Submitted messages retain their selected form's topics and recipient.
+
 == Changelog ==
+
+= 0.3.2 =
+Use English source UI strings while retaining Russian and German catalogs. Add form shortcode and block help with parameters, examples and the compatible alias.
 
 = 0.3.1 =
 Move Telegram and WhatsApp into the shared Settings tabs. Retain saved credentials,

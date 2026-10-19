@@ -19,21 +19,21 @@ final class Connector {
         add_action( 'admin_post_gkps_connect_' . $id, array( $this, 'save' ) );
         add_action( 'admin_post_gkps_retry_' . $id, array( $this, 'retry' ) );
         add_action( 'gkps_' . $id . '_worker', array( $this, 'worker' ) );
-        add_action( 'gkps_request_created', function ( $request ) { if ( ! empty( $this->settings()['notify_requests'] ) && apply_filters( 'gkps_connector_request_notification', true, $this->id ) ) { $this->queue( __( 'Новое обращение. Откройте закрытый раздел прихода.', 'georg-kloster-connect-hub' ), admin_url( 'admin.php?page=gkps-requests&request_id=' . absint( $request ) ), 'request', (int) $request ); } } );
+        add_action( 'gkps_request_created', function ( $request ) { if ( ! empty( $this->settings()['notify_requests'] ) && apply_filters( 'gkps_connector_request_notification', true, $this->id ) ) { $this->queue( __( 'New message. Open the private parish dashboard.', 'georg-kloster-connect-hub' ), admin_url( 'admin.php?page=gkps-requests&request_id=' . absint( $request ) ), 'request', (int) $request ); } } );
         add_action( 'gkps_request_deleted', function ( $request ) {
             foreach ( get_post_meta( $request, '_gkps_jobs_' . $this->id, true ) ?: array() as $id ) { delete_option( 'gkps_job_' . $this->id . '_' . $id ); wp_clear_scheduled_hook( 'gkps_' . $this->id . '_worker', array( $id ) ); }
         } );
         add_action( 'gkpsch_schedule_changed', function ( $service ) {
             if ( ! empty( $this->settings()['notify_schedule'] ) && 'publish' === get_post_status( $service ) ) {
                 $url = home_url( '/' );
-                $this->queue( __( 'Изменено расписание:', 'georg-kloster-connect-hub' ) . ' ' . get_the_title( $service ), $url, 'schedule', (int) $service );
+                $this->queue( __( 'Schedule updated:', 'georg-kloster-connect-hub' ) . ' ' . get_the_title( $service ), $url, 'schedule', (int) $service );
             }
         } );
     }
     public function __get( string $key ) { return in_array( $key, array( 'id', 'title' ), true ) ? $this->$key : null; }
     public function settings(): array { $saved = get_option( 'gkps_connect_' . $this->id, array() ); return array_merge( array( 'enabled' => false, 'token' => '', 'target' => '', 'api_version' => '', 'recipient' => '', 'template' => '', 'language' => 'ru', 'recipient_consent' => false, 'application_key' => '', 'application_secret' => '', 'notify_requests' => false, 'notify_schedule' => false ), is_array( $saved ) ? $saved : array() ); }
     public function settings_url(): string { return add_query_arg( array( 'page' => 'gkch-settings', 'network' => $this->id ), admin_url( 'admin.php' ) ); }
-    private function authorize(): void { if ( ! current_user_can( 'manage_options' ) && ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Недостаточно прав.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); } }
+    private function authorize(): void { if ( ! current_user_can( 'manage_options' ) && ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Insufficient permissions.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); } }
     public function menu(): void {
         if ( ! in_array( $this->id, array( 'telegram', 'whatsapp' ), true ) ) { return; }
         $capability = current_user_can( 'manage_options' ) ? 'manage_options' : 'manage_gkps_settings';
@@ -53,7 +53,7 @@ final class Connector {
         $ready = $this->valid( $this->settings() );
         $last = get_option( 'gkps_connect_last_' . $this->id, array() );
         return array( 'status' => $ready ? ( 'failed' === ( $last['status'] ?? '' ) ? 'needs_setup' : 'ready' ) : 'needs_setup',
-            'message' => $ready ? ( 'sent' === ( $last['status'] ?? '' ) ? __( 'Последняя отправка принята сервисом.', 'georg-kloster-connect-hub' ) : __( 'Настройки заполнены; успешная живая отправка ещё не подтверждена.', 'georg-kloster-connect-hub' ) ) : __( 'Заполните подключение и явно включите отправки.', 'georg-kloster-connect-hub' ) );
+            'message' => $ready ? ( 'sent' === ( $last['status'] ?? '' ) ? __( 'The last delivery was accepted by the service.', 'georg-kloster-connect-hub' ) : __( 'Settings are complete; a successful live delivery has not been confirmed yet.', 'georg-kloster-connect-hub' ) ) : __( 'Configure the connection and explicitly enable sending.', 'georg-kloster-connect-hub' ) );
     }
     public function valid( array $settings ): bool {
         if ( Social_Providers::supports( $this->id ) ) { return Social_Providers::valid( $this->id, $settings ); }
@@ -70,30 +70,30 @@ final class Connector {
         if ( 'telegram' === $this->id ) {
             $error_codes = isset( $_GET['gkps_connect_error'] ) && is_string( $_GET['gkps_connect_error'] ) ? explode( ',', $_GET['gkps_connect_error'] ) : array();
             foreach ( self::telegram_error_messages() as $code => $message ) { if ( in_array( $code, $error_codes, true ) ) { echo '<div class="notice notice-error"><p>' . esc_html( $message ) . '</p></div>'; } }
-            echo '<p>' . esc_html__( 'Для отправки обязательны токен бота и Chat ID получателя. Для личного чата укажите числовой Chat ID; для канала — @имя_канала. Имя самого бота сюда не подходит.', 'georg-kloster-connect-hub' ) . '</p>';
+            echo '<p>' . esc_html__( 'A bot token and recipient Chat ID are required. For a private chat, enter its numeric Chat ID; for a channel, enter @channel_name. Do not enter the bot\'s own username here.', 'georg-kloster-connect-hub' ) . '</p>';
         }
         echo '<div class="wrap"><h1>' . esc_html( $this->title ) . '</h1><p>' . esc_html( $this->health()['message'] ) . '</p><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="gkps_connect_' . esc_attr( $this->id ) . '">'; wp_nonce_field( 'gkps_connect_' . $this->id );
-        echo '<p><label><input type="checkbox" name="enabled" value="1"' . checked( $settings['enabled'], true, false ) . '> ' . esc_html__( 'Разрешить отправки во внешний сервис', 'georg-kloster-connect-hub' ) . '</label></p><p><label>' . esc_html__( 'Token (пусто — сохранить прежний)', 'georg-kloster-connect-hub' ) . ' <input type="password" name="token" autocomplete="new-password" value=""></label> <label><input type="checkbox" name="clear_token" value="1"> ' . esc_html__( 'Удалить token', 'georg-kloster-connect-hub' ) . '</label></p>';
-        $fields = array( 'target' => 'telegram' === $this->id ? __( 'Chat ID / @канал', 'georg-kloster-connect-hub' ) : ( 'whatsapp' === $this->id ? __( 'Phone number ID', 'georg-kloster-connect-hub' ) : __( 'Facebook Page ID', 'georg-kloster-connect-hub' ) ) );
+        echo '<p><label><input type="checkbox" name="enabled" value="1"' . checked( $settings['enabled'], true, false ) . '> ' . esc_html__( 'Allow sending to the external service', 'georg-kloster-connect-hub' ) . '</label></p><p><label>' . esc_html__( 'Token (leave empty to keep the existing token)', 'georg-kloster-connect-hub' ) . ' <input type="password" name="token" autocomplete="new-password" value=""></label> <label><input type="checkbox" name="clear_token" value="1"> ' . esc_html__( 'Delete token', 'georg-kloster-connect-hub' ) . '</label></p>';
+        $fields = array( 'target' => 'telegram' === $this->id ? __( 'Chat ID / @channel', 'georg-kloster-connect-hub' ) : ( 'whatsapp' === $this->id ? __( 'Phone number ID', 'georg-kloster-connect-hub' ) : __( 'Facebook Page ID', 'georg-kloster-connect-hub' ) ) );
         if ( in_array( $this->id, array( 'instagram', 'vk', 'ok' ), true ) ) { $fields['target'] = 'vk' === $this->id ? __( 'VK owner ID', 'georg-kloster-connect-hub' ) : ( 'ok' === $this->id ? __( 'OK group ID', 'georg-kloster-connect-hub' ) : __( 'Instagram account ID', 'georg-kloster-connect-hub' ) ); }
         if ( 'telegram' !== $this->id && 'ok' !== $this->id ) { $fields['api_version'] = __( 'API version from your application', 'georg-kloster-connect-hub' ); }
-        if ( 'whatsapp' === $this->id ) { $fields += array( 'recipient' => __( 'Получатель: международный номер без +', 'georg-kloster-connect-hub' ), 'template' => __( 'Одобренный шаблон с одним текстовым параметром в body', 'georg-kloster-connect-hub' ), 'language' => __( 'Язык шаблона', 'georg-kloster-connect-hub' ) ); }
+        if ( 'whatsapp' === $this->id ) { $fields += array( 'recipient' => __( 'Recipient: international phone number without +', 'georg-kloster-connect-hub' ), 'template' => __( 'Approved template with one text parameter in the body', 'georg-kloster-connect-hub' ), 'language' => __( 'Template language', 'georg-kloster-connect-hub' ) ); }
         foreach ( $fields as $key => $label ) { echo '<p><label>' . esc_html( $label ) . '<br><input class="regular-text" name="' . esc_attr( $key ) . '" value="' . esc_attr( $settings[ $key ] ) . '"></label></p>'; }
-        if ( 'whatsapp' === $this->id ) { echo '<p><label><input type="checkbox" name="recipient_consent" value="1"' . checked( $settings['recipient_consent'], true, false ) . '> ' . esc_html__( 'Получатель согласился получать эти сообщения', 'georg-kloster-connect-hub' ) . '</label></p>'; }
+        if ( 'whatsapp' === $this->id ) { echo '<p><label><input type="checkbox" name="recipient_consent" value="1"' . checked( $settings['recipient_consent'], true, false ) . '> ' . esc_html__( 'The recipient has consented to receive these messages', 'georg-kloster-connect-hub' ) . '</label></p>'; }
         if ( in_array( $this->id, array( 'telegram', 'whatsapp' ), true ) ) {
-            foreach ( array( 'notify_requests' => 'telegram' === $this->id ? __( 'Уведомлять о новых обращениях', 'georg-kloster-connect-hub' ) : __( 'Уведомлять о новых обращениях (без имени, email и текста)', 'georg-kloster-connect-hub' ), 'notify_schedule' => __( 'Уведомлять об изменениях опубликованного расписания', 'georg-kloster-connect-hub' ) ) as $key => $label ) { echo '<p><label><input type="checkbox" name="' . esc_attr( $key ) . '" value="1"' . checked( $settings[ $key ], true, false ) . '> ' . esc_html( $label ) . '</label></p>'; }
+            foreach ( array( 'notify_requests' => 'telegram' === $this->id ? __( 'Notify about new messages', 'georg-kloster-connect-hub' ) : __( 'Notify about new messages (without name, email or message text)', 'georg-kloster-connect-hub' ), 'notify_schedule' => __( 'Notify about changes to published schedules', 'georg-kloster-connect-hub' ) ) as $key => $label ) { echo '<p><label><input type="checkbox" name="' . esc_attr( $key ) . '" value="1"' . checked( $settings[ $key ], true, false ) . '> ' . esc_html( $label ) . '</label></p>'; }
         }
         if ( Social_Providers::supports( $this->id ) ) { echo '<p>' . esc_html( Social_Providers::help( $this->id ) ) . '</p>'; }
         if ( 'ok' === $this->id ) {
             echo '<p><label>' . esc_html__( 'Application public key', 'georg-kloster-connect-hub' ) . '<br><input name="application_key" value="' . esc_attr( $settings['application_key'] ) . '"></label></p><p><label>' . esc_html__( 'Application secret (leave empty to keep)', 'georg-kloster-connect-hub' ) . '<br><input type="password" name="application_secret" autocomplete="new-password" value=""></label><label><input type="checkbox" name="clear_application_secret" value="1"> ' . esc_html__( 'Delete application secret', 'georg-kloster-connect-hub' ) . '</label></p>';
         }
         do_action( 'gkps_connector_settings_fields', $this->id, $settings );
-        echo '<p>' . esc_html__( 'Публикации отправляются только по отдельному выбору в редакторе записи. Для WhatsApp получатель должен согласиться на сообщения; шаблон утверждается в Meta. Отправки выполняются через WP-Cron.', 'georg-kloster-connect-hub' ) . '</p>'; submit_button(); echo '</form>';
+        echo '<p>' . esc_html__( 'Publications are sent only when explicitly selected in the post editor. WhatsApp requires recipient consent and a Meta-approved template. Sending runs through WP-Cron.', 'georg-kloster-connect-hub' ) . '</p>'; submit_button(); echo '</form>';
         if ( 'telegram' === $this->id ) { wp_enqueue_script( 'gkps-telegram-settings', plugins_url( 'assets/settings.js', $this->file ), array(), '0.1.3', true ); wp_localize_script( 'gkps-telegram-settings', 'prihodTelegramSettings', array( 'hasToken' => '' !== $settings['token'] ) ); }
         $last = get_option( 'gkps_connect_last_' . $this->id, array() );
         if ( 'failed' === ( $last['status'] ?? '' ) ) {
-            echo '<p>' . esc_html__( 'Последняя отправка завершилась ошибкой. Код HTTP:', 'georg-kloster-connect-hub' ) . ' ' . esc_html( $last['http_code'] ) . '</p><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="gkps_retry_' . esc_attr( $this->id ) . '">'; wp_nonce_field( 'gkps_retry_' . $this->id );
-            echo '<button class="button">' . esc_html__( 'Повторить последнюю отправку после исправления настроек', 'georg-kloster-connect-hub' ) . '</button></form>';
+            echo '<p>' . esc_html__( 'The last delivery failed. HTTP code:', 'georg-kloster-connect-hub' ) . ' ' . esc_html( $last['http_code'] ) . '</p><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="gkps_retry_' . esc_attr( $this->id ) . '">'; wp_nonce_field( 'gkps_retry_' . $this->id );
+            echo '<button class="button">' . esc_html__( 'Retry the last delivery after correcting the settings', 'georg-kloster-connect-hub' ) . '</button></form>';
         }
         do_action( 'gkps_connector_settings_after', $this->id );
         echo '</div>';
@@ -101,7 +101,7 @@ final class Connector {
     public function save(): void {
         $this->authorize(); check_admin_referer( 'gkps_connect_' . $this->id ); $settings = $this->settings();
         foreach ( array( 'token', 'target', 'api_version', 'recipient', 'template', 'language', 'application_key', 'application_secret' ) as $key ) {
-            if ( ! isset( $_POST[ $key ] ) ) { continue; } if ( ! is_string( $_POST[ $key ] ) ) { wp_die( esc_html__( 'Некорректное поле.', 'georg-kloster-connect-hub' ) ); }
+            if ( ! isset( $_POST[ $key ] ) ) { continue; } if ( ! is_string( $_POST[ $key ] ) ) { wp_die( esc_html__( 'Invalid field.', 'georg-kloster-connect-hub' ) ); }
             $value = sanitize_text_field( wp_unslash( $_POST[ $key ] ) ); if ( ! in_array( $key, array( 'token', 'application_secret' ), true ) || '' !== $value ) { $settings[ $key ] = $value; }
         }
         if ( ! empty( $_POST['clear_application_secret'] ) ) { $settings['application_secret'] = ''; }
@@ -111,13 +111,13 @@ final class Connector {
             $errors = $this->telegram_errors( $settings );
             if ( $errors ) { wp_safe_redirect( add_query_arg( 'gkps_connect_error', implode( ',', $errors ), $this->settings_url() ) ); exit; }
         }
-        if ( $settings['enabled'] && ! $this->valid( $settings ) ) { wp_die( esc_html__( 'Проверьте token, идентификаторы и настройки API. Подключение не сохранено.', 'georg-kloster-connect-hub' ) ); }
+        if ( $settings['enabled'] && ! $this->valid( $settings ) ) { wp_die( esc_html__( 'Check the token, identifiers and API settings. The connection was not saved.', 'georg-kloster-connect-hub' ) ); }
         $extra_errors = apply_filters( 'gkps_connector_settings_errors', array(), $this->id, $settings );
         if ( $extra_errors ) { set_transient( 'gkps_connector_error_' . $this->id . '_' . get_current_user_id(), $extra_errors, 120 ); wp_safe_redirect( $this->settings_url() ); exit; }
         update_option( 'gkps_connect_' . $this->id, $settings, false ); do_action( 'gkps_connector_saved', $this->id, $settings ); wp_safe_redirect( $this->settings_url() ); exit;
     }
     public static function telegram_error_messages(): array {
-        return array( 'token_missing' => __( 'Введите токен бота. Подключение не сохранено.', 'georg-kloster-connect-hub' ), 'token_invalid' => __( 'Токен бота имеет неверный формат. Скопируйте токен из BotFather. Подключение не сохранено.', 'georg-kloster-connect-hub' ), 'target_missing' => __( 'Укажите Chat ID получателя или @имя_канала. Подключение не сохранено.', 'georg-kloster-connect-hub' ), 'target_invalid' => __( 'Chat ID должен быть числом (для группы может начинаться с минуса) или @именем канала. Подключение не сохранено.', 'georg-kloster-connect-hub' ) );
+        return array( 'token_missing' => __( 'Enter the bot token. The connection was not saved.', 'georg-kloster-connect-hub' ), 'token_invalid' => __( 'The bot token format is invalid. Copy the token from BotFather. The connection was not saved.', 'georg-kloster-connect-hub' ), 'target_missing' => __( 'Enter the recipient Chat ID or @channel_name. The connection was not saved.', 'georg-kloster-connect-hub' ), 'target_invalid' => __( 'Chat ID must be a number (groups may use a leading minus sign) or @channel_name. The connection was not saved.', 'georg-kloster-connect-hub' ) );
     }
     public function telegram_errors( array $settings ): array {
         $errors = array();
@@ -131,7 +131,7 @@ final class Connector {
         if ( ! $this->valid( $this->settings() ) ) { return; }
         add_meta_box( 'gkps-connect-' . $this->id, $this->title, function () {
             wp_nonce_field( 'gkps_publish_' . $this->id, 'gkps_publish_nonce_' . $this->id );
-            echo '<label><input type="checkbox" name="gkps_publish[' . esc_attr( $this->id ) . ']" value="1"> ' . esc_html__( 'Отправить эту опубликованную запись в сервис', 'georg-kloster-connect-hub' ) . '</label>';
+            echo '<label><input type="checkbox" name="gkps_publish[' . esc_attr( $this->id ) . ']" value="1"> ' . esc_html__( 'Send this published post to the service', 'georg-kloster-connect-hub' ) . '</label>';
         }, 'post', 'side' );
     }
     public function publish_post( int $id ): void {
@@ -214,9 +214,9 @@ final class Connector {
     public function retry_last(): void {
         $this->authorize();
         $last = get_option( 'gkps_connect_last_' . $this->id, array() ); $id = $last['id'] ?? '';
-        if ( ! is_string( $id ) || ! preg_match( '/^[a-f0-9]{64}$/D', $id ) || ! $this->valid( $this->settings() ) ) { wp_die( esc_html__( 'Сначала исправьте подключение.', 'georg-kloster-connect-hub' ) ); }
+        if ( ! is_string( $id ) || ! preg_match( '/^[a-f0-9]{64}$/D', $id ) || ! $this->valid( $this->settings() ) ) { wp_die( esc_html__( 'Correct the connection first.', 'georg-kloster-connect-hub' ) ); }
         $key = 'gkps_job_' . $this->id . '_' . $id; $job = get_option( $key ); $settings = $this->settings();
-        if ( ! is_array( $job ) || 'failed' !== $job['status'] || ! hash_equals( $job['target'], hash( 'sha256', $settings['target'] . '|' . $settings['recipient'] ) ) ) { wp_die( esc_html__( 'Задача недоступна или получатель изменился. Создайте новую публикацию.', 'georg-kloster-connect-hub' ) ); }
+        if ( ! is_array( $job ) || 'failed' !== $job['status'] || ! hash_equals( $job['target'], hash( 'sha256', $settings['target'] . '|' . $settings['recipient'] ) ) ) { wp_die( esc_html__( 'The job is unavailable or the recipient has changed. Create a new publication.', 'georg-kloster-connect-hub' ) ); }
         if ( ! empty( $job['container_terminal'] ) ) { unset( $job['container_id'], $job['container_terminal'] ); }
         $job['attempts'] = 0; $job['status'] = 'pending'; update_option( $key, $job, false );
         wp_clear_scheduled_hook( 'gkps_' . $this->id . '_worker', array( $id ) ); wp_schedule_single_event( time() + 1, 'gkps_' . $this->id . '_worker', array( $id ) );

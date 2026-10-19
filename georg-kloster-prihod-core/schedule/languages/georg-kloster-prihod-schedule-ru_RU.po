@@ -6,7 +6,7 @@ msgid "Access denied."
 msgstr "Доступ запрещён."
 
 #: assets/blocks.js
-msgid "ID места (0 — все)"
+msgid "Place ID (0 for all)"
 msgstr "Идентификатор места (0 — все)"
 
 #: includes/class-admin.php
@@ -38,739 +38,735 @@ msgid "Upcoming services"
 msgstr "Ближайшие богослужения"
 
 #: includes/class-public-view.php
-msgid "Август"
+msgid "August"
 msgstr "Август"
 
 #: includes/class-calendar-colors.php
-msgid "Автоматически по календарю"
+msgid "Automatic calendar color"
 msgstr "Автоматически по календарю"
 
 #: includes/class-schedule-admin.php
-msgid "Автоматический цвет определяется по календарю для каждой даты. Исключение на дату имеет приоритет."
+msgid "The automatic color follows the calendar for each date. A date-specific exception takes priority."
 msgstr "Автоматический цвет определяется по календарю для каждой даты. Исключение на дату имеет приоритет."
 
 #: includes/class-public-view.php
-msgid "Апрель"
+msgid "April"
 msgstr "Апрель"
 
 #: includes/class-calendar-colors.php
-msgid "Без выделения"
+msgid "No highlighting"
 msgstr "Без выделения"
 
 #: includes/class-calendar-colors.php
-msgid "Белый"
+msgid "White"
 msgstr "Белый"
 
 #: includes/class-public-view.php
-msgid "Ближайшая служба"
+msgid "Upcoming service"
 msgstr "Ближайшая служба"
 
 #: includes/class-public-view.php
-msgid "Ближайшая служба пока не указана."
+msgid "No upcoming service is listed yet."
 msgstr "Ближайшая служба пока не указана."
 
 #: includes/class-schedule.php
-msgid "Богослужение"
+msgid "Service"
 msgstr "Богослужение"
 
 #: includes/class-public-view.php
-msgid "Богослужений: %d"
+msgid "Services: %d"
 msgstr "Богослужений: %d"
 
 #: includes/class-public-view.php
-msgid "Богослужения"
-msgstr "Богослужения"
-
-#: includes/class-public-view.php
-msgid "Богослужения на выбранный период не указаны."
+msgid "No services are listed for the selected period."
 msgstr "Богослужения на выбранный период не указаны."
 
 #: includes/class-public-view.php
-msgid "Богослужения на эту дату не указаны."
+msgid "No services are listed for this date."
 msgstr "Богослужения на эту дату не указаны."
 
 #: includes/class-calendar-icons.php
-msgid "Будни: выбранный запасной образ (встроенный — Спаситель)"
+msgid "Weekdays: selected fallback image (built-in: the Savior)"
 msgstr "Будни: выбранный запасной образ (встроенный — Спаситель)"
 
 #: includes/class-schedule-admin.php
-msgid "Великих праздников на эту дату нет."
+msgid "There are no great feasts on this date."
 msgstr "Великих праздников на эту дату нет."
 
 #: includes/class-public-view.php
-msgid "Вид расписания"
+msgid "Schedule view"
 msgstr "Вид расписания"
 
 #: includes/class-calendar-reminders.php
-msgid "Включить недельное напоминание"
+msgid "Enable the weekly reminder"
 msgstr "Включить недельное напоминание"
 
 #: includes/class-calendar-icons.php
-msgid "Воскресение Христово — Сошествие во ад"
+msgid "Resurrection of Christ — Descent into Hades"
 msgstr "Воскресение Христово — Сошествие во ад"
 
 #: includes/class-calendar-reminders.php
-msgid "Воскресенье"
+msgid "Sunday"
 msgstr "Воскресенье"
 
 #: includes/class-calendar-icons.php
-msgid "Воскресенье: Воскресение Христово"
+msgid "Sunday: Resurrection of Christ"
 msgstr "Воскресенье: Воскресение Христово"
 
 #: includes/class-schedule.php
-msgid "Время окончания не существует из-за перевода часов."
+msgid "The end time does not exist because of a clock change."
 msgstr "Время окончания не существует из-за перевода часов."
 
 #: includes/class-calendar-reminders.php
-msgid "Время отправки"
+msgid "Send at"
 msgstr "Время отправки"
 
 #: includes/class-public-view.php includes/class-schedule-admin.php
-msgid "Вс"
+msgid "Sun"
 msgstr "Вс"
 
 #: includes/class-public-view.php
-msgid "Все места"
+msgid "All places"
 msgstr "Все места"
 
 #: includes/class-calendar-icons.php
-msgid "Встроенный образ"
+msgid "Built-in image"
 msgstr "Встроенный образ"
 
 #: includes/class-public-view.php includes/class-schedule-admin.php
-msgid "Вт"
+msgid "Tue"
 msgstr "Вт"
 
 #: includes/class-calendar-reminders.php
-msgid "Вторник"
+msgid "Tuesday"
 msgstr "Вторник"
 
 #: includes/class-calendar-reminders.php
-msgid "Выберите день и время недельного напоминания."
+msgid "Select the day and time for the weekly reminder."
 msgstr "Выберите день и время недельного напоминания."
 
 #: includes/class-schedule.php
-msgid "Выберите дни повторения."
+msgid "Select the recurrence days."
 msgstr "Выберите дни повторения."
 
 #: includes/class-calendar-icons.php
-msgid "Выберите изображение из медиатеки."
+msgid "Select an image from the media library."
 msgstr "Выберите изображение из медиатеки."
 
 #: includes/class-schedule-admin.php
-msgid "Выберите место"
+msgid "Select a place"
 msgstr "Выберите место"
 
 #: includes/class-schedule.php
-msgid "Выберите отмену или перенос."
+msgid "Select cancellation or rescheduling."
 msgstr "Выберите отмену или перенос."
 
 #: includes/class-schedule.php
-msgid "Выберите существующее место служения."
+msgid "Select an existing service place."
 msgstr "Выберите существующее место служения."
 
 #: includes/class-calendar-colors.php
-msgid "Выберите цвет облачения из списка."
+msgid "Select a vestment color from the list."
 msgstr "Выберите цвет облачения из списка."
 
 #: includes/class-public-view.php
-msgid "Выбранная неделя"
+msgid "Selected week"
 msgstr "Выбранная неделя"
 
 #: includes/class-calendar-icons.php
-msgid "Выбрать икону"
+msgid "Choose an icon"
 msgstr "Выбрать икону"
 
 #: includes/class-calendar-colors.php
-msgid "Голубой"
+msgid "Blue"
 msgstr "Голубой"
 
 #: includes/class-schedule-admin.php
-msgid "Дат с отдельным цветом: %d."
+msgid "Dates with a separate color: %d."
 msgstr "Дат с отдельным цветом: %d."
 
 #: includes/class-public-view.php
-msgid "Дата"
+msgid "Date"
 msgstr "Дата"
 
 #: includes/class-schedule-admin.php
-msgid "Дата / начало повторений"
+msgid "Date / recurrence start"
 msgstr "Дата / начало повторений"
 
 #: includes/class-schedule-admin.php
-msgid "Дата и время службы"
+msgid "Service date and time"
 msgstr "Дата и время службы"
 
 #: includes/class-schedule-admin.php
-msgid "Дата публикации"
+msgid "Publication date"
 msgstr "Дата публикации"
 
 #: includes/class-calendar-provider.php
-msgid "Даты служб остаются в WordPress. Праздники, уставные знаки и иконы загружаются из публичного календарного API и временно сохраняются на сайте."
+msgid "Service dates remain in WordPress. Feasts, liturgical marks and icons are loaded from the public calendar API and cached temporarily on this site."
 msgstr "Даты служб остаются в WordPress. Праздники, уставные знаки и иконы загружаются из публичного календарного API и временно сохраняются на сайте."
 
 #: includes/class-schedule-admin.php
-msgid "Действие"
+msgid "Action"
 msgstr "Действие"
 
 #: includes/class-public-view.php
-msgid "Декабрь"
+msgid "December"
 msgstr "Декабрь"
 
 #: includes/class-calendar-reminders.php
-msgid "День отправки"
+msgid "Send on"
 msgstr "День отправки"
 
 #: includes/class-schedule.php
-msgid "Добавить богослужение"
+msgid "Add a service"
 msgstr "Добавить богослужение"
 
 #: includes/class-schedule-admin.php
-msgid "Добавить исключение"
+msgid "Add an exception"
 msgstr "Добавить исключение"
 
 #: includes/class-public-view.php
-msgid "Задать вопрос"
+msgid "Ask a question"
 msgstr "Задать вопрос"
 
 #: includes/class-calendar-icons.php
-msgid "Запасные иконы расписания"
+msgid "Fallback schedule icons"
 msgstr "Запасные иконы расписания"
 
 #: includes/class-calendar-colors.php
-msgid "Зелёный"
+msgid "Green"
 msgstr "Зелёный"
 
 #: includes/class-calendar-colors.php
-msgid "Золотой / жёлтый"
+msgid "Gold / yellow"
 msgstr "Золотой / жёлтый"
 
 #: includes/class-public-view.php
-msgid "Изменение службы за"
+msgid "Service change for"
 msgstr "Изменение службы за"
 
 #: includes/class-schedule-admin.php
-msgid "Изменения"
+msgid "Changes"
 msgstr "Изменения"
 
 #: includes/class-public-view.php
-msgid "Изменения в расписании"
+msgid "Schedule changes"
 msgstr "Изменения в расписании"
 
 #: includes/class-schedule-calendar.php
-msgid "Икона дня недоступна."
+msgid "The day icon is unavailable."
 msgstr "Икона дня недоступна."
 
 #: includes/class-schedule-calendar.php
-msgid "Икона определяется автоматически для каждой даты службы. Время и место выбираете вы."
+msgid "The icon is determined automatically for each service date. You choose the time and place."
 msgstr "Икона определяется автоматически для каждой даты службы. Время и место выбираете вы."
 
 #: includes/class-schedule-admin.php
-msgid "Исключение"
+msgid "Exception"
 msgstr "Исключение"
 
 #: includes/class-schedule.php
-msgid "Исключение должно относиться к существующей дате службы."
+msgid "An exception must refer to an existing service date."
 msgstr "Исключение должно относиться к существующей дате службы."
 
 #: includes/class-schedule-admin.php
-msgid "Исключения отдельных дат"
+msgid "Date-specific exceptions"
 msgstr "Исключения отдельных дат"
 
 #: includes/class-schedule-calendar.php
-msgid "Использовать название праздника"
+msgid "Use the feast name"
 msgstr "Использовать название праздника"
 
 #: includes/class-calendar-colors.php
-msgid "Использовать рекомендованный"
+msgid "Use recommended color"
 msgstr "Использовать рекомендованный"
 
 #: includes/class-schedule-admin.php
-msgid "Исходная дата"
+msgid "Original date"
 msgstr "Исходная дата"
 
 #: includes/class-schedule-admin.php
-msgid "Исходная дата исключения повторяется."
+msgid "The original exception date is duplicated."
 msgstr "Исходная дата исключения повторяется."
 
 #: includes/class-public-view.php
-msgid "Июль"
+msgid "July"
 msgstr "Июль"
 
 #: includes/class-public-view.php
-msgid "Июнь"
+msgid "June"
 msgstr "Июнь"
 
 #: includes/class-public-view.php
-msgid "Как добраться"
+msgid "Directions"
 msgstr "Как добраться"
 
 #: includes/class-calendar-provider.php
-msgid "Календарный профиль"
+msgid "Calendar profile"
 msgstr "Календарный профиль"
 
 #: includes/class-calendar-provider.php
-msgid "Календарный сервис"
+msgid "Calendar service"
 msgstr "Календарный сервис"
 
 #: includes/class-calendar-provider.php
-msgid "Календарный сервис временно недоступен."
+msgid "The calendar service is temporarily unavailable."
 msgstr "Календарный сервис временно недоступен."
 
 #: includes/class-calendar-provider.php
-msgid "Календарный сервис не ответил успешно."
+msgid "The calendar service did not return a successful response."
 msgstr "Календарный сервис не ответил успешно."
 
 #: includes/class-calendar-adapter.php includes/class-calendar-provider.php
-msgid "Календарь вернул некорректные данные."
+msgid "The calendar returned invalid data."
 msgstr "Календарь вернул некорректные данные."
 
 #: includes/class-calendar-reminders.php
-msgid "Календарь временно недоступен."
+msgid "The calendar is temporarily unavailable."
 msgstr "Календарь временно недоступен."
 
 #: includes/class-schedule-admin.php
-msgid "Календарь временно недоступен. Расписание можно заполнить вручную."
+msgid "The calendar is temporarily unavailable. You can fill in the schedule manually."
 msgstr "Календарь временно недоступен. Расписание можно заполнить вручную."
 
 #: includes/class-schedule-admin.php
-msgid "Когда и где состоится богослужение"
+msgid "When and where the service takes place"
 msgstr "Когда и где состоится богослужение"
 
 #: assets/blocks.js
-msgid "Количество"
+msgid "Count"
 msgstr "Количество"
 
 #: includes/class-calendar-colors.php
-msgid "Красный"
+msgid "Red"
 msgstr "Красный"
 
 #: includes/class-schedule-admin.php
-msgid "Литургия"
+msgid "Liturgy"
 msgstr "Литургия"
 
 #: includes/class-public-view.php
-msgid "Май"
+msgid "May"
 msgstr "Май"
 
 #: includes/class-public-view.php
-msgid "Март"
+msgid "March"
 msgstr "Март"
 
 #: includes/class-public-view.php
-msgid "Место"
+msgid "Place"
 msgstr "Место"
 
 #: includes/class-schedule-admin.php
-msgid "Место после переноса"
+msgid "Place after rescheduling"
 msgstr "Место после переноса"
 
 #: includes/class-schedule-admin.php
-msgid "Место служения"
+msgid "Service place"
 msgstr "Место служения"
 
 #: assets/blocks.js includes/class-public-view.php
-msgid "Месяц"
+msgid "Month"
 msgstr "Месяц"
 
 #: includes/class-calendar-reminders.php
-msgid "На ближайшую неделю великих праздников нет."
+msgid "There are no great feasts in the coming week."
 msgstr "На ближайшую неделю великих праздников нет."
 
 #: includes/class-schedule-admin.php
-msgid "Название уже заполнено. Чтобы использовать подсказку, сначала очистите его."
+msgid "The title is already filled in. Clear it first to use the suggestion."
 msgstr "Название уже заполнено. Чтобы использовать подсказку, сначала очистите его."
 
 #: includes/class-calendar-reminders.php
-msgid "Напоминание передано почтовой службе WordPress."
+msgid "The reminder was passed to the WordPress mail system."
 msgstr "Напоминание передано почтовой службе WordPress."
 
 #: assets/blocks.js
-msgid "Настройки"
+msgid "Settings"
 msgstr "Настройки"
 
 #: includes/class-schedule-admin.php
-msgid "Начало"
+msgid "Start time"
 msgstr "Начало"
 
 #: includes/class-schedule-admin.php
-msgid "Не настроено"
+msgid "Not configured"
 msgstr "Не настроено"
 
 #: includes/class-calendar-provider.php
-msgid "Не удалось подключиться к календарному сервису."
+msgid "Could not connect to the calendar service."
 msgstr "Не удалось подключиться к календарному сервису."
 
 #: includes/class-calendar-reminders.php
-msgid "Недельное напоминание о праздниках"
+msgid "Weekly feast reminder"
 msgstr "Недельное напоминание о праздниках"
 
 #: assets/blocks.js includes/class-public-view.php
-msgid "Неделя"
+msgid "Week"
 msgstr "Неделя"
 
 #: includes/class-calendar-provider.php
-msgid "Неизвестный календарный запрос."
+msgid "Unknown calendar request."
 msgstr "Неизвестный календарный запрос."
 
 #: includes/class-schedule.php
-msgid "Некорректная дата или несуществующее местное время переноса."
+msgid "Invalid date or nonexistent local rescheduling time."
 msgstr "Некорректная дата или несуществующее местное время переноса."
 
 #: includes/class-calendar-adapter.php
-msgid "Некорректная дата."
+msgid "Invalid date."
 msgstr "Некорректная дата."
 
 #: includes/class-schedule-admin.php
-msgid "Некорректная исходная дата."
+msgid "Invalid original date."
 msgstr "Некорректная исходная дата."
 
 #: includes/class-schedule.php
-msgid "Некорректное исключение."
+msgid "Invalid exception."
 msgstr "Некорректное исключение."
 
 #: includes/class-schedule-admin.php
-msgid "Некорректные исключения."
+msgid "Invalid exceptions."
 msgstr "Некорректные исключения."
 
 #: includes/class-schedule.php
-msgid "Некорректные поля расписания."
+msgid "Invalid schedule fields."
 msgstr "Некорректные поля расписания."
 
 #: includes/class-schedule.php
-msgid "Некорректный день недели."
+msgid "Invalid weekday."
 msgstr "Некорректный день недели."
 
 #: includes/class-calendar-provider.php
-msgid "Некорректный профиль календаря."
+msgid "Invalid calendar profile."
 msgstr "Некорректный профиль календаря."
 
 #: includes/class-schedule.php
-msgid "Некорректный часовой пояс переноса."
+msgid "Invalid rescheduling time zone."
 msgstr "Некорректный часовой пояс переноса."
 
 #: includes/class-schedule-admin.php
-msgid "Новая дата"
+msgid "New date"
 msgstr "Новая дата"
 
 #: includes/class-schedule-admin.php
-msgid "Новое начало"
+msgid "New start time"
 msgstr "Новое начало"
 
 #: includes/class-schedule-admin.php
-msgid "Новое окончание"
+msgid "New end time"
 msgstr "Новое окончание"
 
 #: includes/class-public-view.php
-msgid "Ноябрь"
+msgid "November"
 msgstr "Ноябрь"
 
 #: includes/class-calendar-colors.php
-msgid "Образцы цветов"
+msgid "Color samples"
 msgstr "Образцы цветов"
 
 #: includes/class-schedule-admin.php
-msgid "Однозначной рекомендации нет. Выберите цвет вручную."
+msgid "There is no clear recommendation. Select a color manually."
 msgstr "Однозначной рекомендации нет. Выберите цвет вручную."
 
 #: includes/class-schedule-admin.php
-msgid "Окончание (необязательно)"
+msgid "End time (optional)"
 msgstr "Окончание (необязательно)"
 
 #: includes/class-schedule-admin.php
-msgid "Окончание раньше или равное началу означает следующий день. При весеннем переводе часов несуществующее время регулярной службы пропускается; осенью используется первое вхождение времени."
+msgid "An end time earlier than or equal to the start time means the following day. Recurring services at nonexistent local times are skipped during the spring clock change; the first occurrence is used during the autumn clock change."
 msgstr "Окончание раньше или равное началу означает следующий день. При весеннем переводе часов несуществующее время регулярной службы пропускается; осенью используется первое вхождение времени."
 
 #: includes/class-public-view.php
-msgid "Октябрь"
+msgid "October"
 msgstr "Октябрь"
 
 #: includes/class-schedule-admin.php
-msgid "Описание богослужения"
+msgid "Service description"
 msgstr "Описание богослужения"
 
 #: includes/class-schedule-admin.php
-msgid "Основные сведения"
+msgid "Basic details"
 msgstr "Основные сведения"
 
 #: includes/class-public-view.php includes/class-schedule-admin.php
-msgid "Отмена"
+msgid "Cancellation"
 msgstr "Отмена"
 
 #: includes/class-public-view.php includes/class-schedule-admin.php
-msgid "Отменено"
+msgid "Cancelled"
 msgstr "Отменено"
 
 #: includes/class-schedule-admin.php
-msgid "Отменённых дат: %1$d. Переносов: %2$d."
+msgid "Cancelled dates: %1$d. Rescheduled: %2$d."
 msgstr "Отменённых дат: %1$d. Переносов: %2$d."
 
 #: includes/class-calendar-reminders.php
-msgid "Отправляется на email администратора WordPress. До выбора времени и включения письма не отправляются."
+msgid "Sent to the WordPress administrator email. No email is sent until you select a time and enable reminders."
 msgstr "Отправляется на электронную почту администратора WordPress. До выбора времени и включения письма не отправляются."
 
 #: includes/class-public-view.php
-msgid "Памятования дня"
+msgid "Commemorations of the day"
 msgstr "Памятования дня"
 
 #: includes/class-public-view.php
-msgid "Первый визит"
+msgid "First visit"
 msgstr "Первый визит"
 
 #: includes/class-public-view.php
-msgid "Перед посещением"
+msgid "Before your visit"
 msgstr "Перед посещением"
 
 #: includes/class-schedule-admin.php
-msgid "Перенесено с %s"
+msgid "Rescheduled from %s"
 msgstr "Перенесено с %s"
 
 #: includes/class-public-view.php includes/class-schedule-admin.php
-msgid "Перенос / изменение времени"
+msgid "Reschedule / change time"
 msgstr "Перенос / изменение времени"
 
 #: assets/blocks.js
-msgid "Период"
+msgid "Period"
 msgstr "Период"
 
 #: includes/class-public-view.php
-msgid "Период расписания"
+msgid "Schedule period"
 msgstr "Период расписания"
 
 #: includes/class-public-view.php
-msgid "Печать"
+msgid "Print"
 msgstr "Печать"
 
 #: includes/class-public-view.php includes/class-schedule-admin.php
-msgid "Пн"
+msgid "Mon"
 msgstr "Пн"
 
 #: includes/class-schedule-admin.php
-msgid "Повторение"
+msgid "Recurrence"
 msgstr "Повторение"
 
 #: includes/class-public-view.php
-msgid "Подробнее о богослужении"
+msgid "Service details"
 msgstr "Подробнее о богослужении"
 
 #: includes/class-calendar-icons.php
-msgid "Подтверждённая икона дня из календарного API имеет приоритет. Если API не связывает образ с датой, используется запасной воскресный или будничный образ. Встроенный будничный образ — Спаситель; для конкретного храма можно выбрать другую икону из медиатеки."
+msgid "A confirmed day icon from the calendar API takes priority. If the API does not link an icon to the date, the Sunday or weekday fallback is used. The built-in weekday icon depicts the Savior; select another image from the media library for your church."
 msgstr "Подтверждённая икона дня из календарного API имеет приоритет. Если API не связывает образ с датой, используется запасной воскресный или будничный образ. Встроенный будничный образ — Спаситель; для конкретного храма можно выбрать другую икону из медиатеки."
 
 #: includes/class-public-view.php
-msgid "Показать"
+msgid "Show"
 msgstr "Показать"
 
 #: includes/class-calendar-icons.php
-msgid "Показывать запасной образ, если иконы дня нет"
+msgid "Show a fallback image when the day icon is unavailable"
 msgstr "Показывать запасной образ, если иконы дня нет"
 
 #: includes/class-schedule-calendar.php
-msgid "Показывать икону дня из календаря"
+msgid "Show the calendar day icon"
 msgstr "Показывать икону дня из календаря"
 
 #: includes/class-calendar-reminders.php
-msgid "Понедельник"
+msgid "Monday"
 msgstr "Понедельник"
 
 #: includes/class-schedule-admin.php
-msgid "Последняя дата повторений (необязательно)"
+msgid "Last recurrence date (optional)"
 msgstr "Последняя дата повторений (необязательно)"
 
 #: includes/class-public-view.php
-msgid "Пост:"
+msgid "Fasting:"
 msgstr "Пост:"
 
 #: includes/class-calendar-reminders.php
-msgid "Почтовая служба не подтвердила отправку."
+msgid "The mail system did not confirm sending."
 msgstr "Почтовая служба не подтвердила отправку."
 
 #: includes/class-schedule-calendar.php
-msgid "Праздник и икона дня"
+msgid "Feast and day icon"
 msgstr "Праздник и икона дня"
 
 #: includes/class-calendar-reminders.php
-msgid "Праздники на ближайшие семь дней. Откройте редактор, выберите время и место и подтвердите богослужение."
+msgid "Feasts for the next seven days. Open the editor, select a time and place, and confirm the service."
 msgstr "Праздники на ближайшие семь дней. Откройте редактор, выберите время и место и подтвердите богослужение."
 
 #: includes/class-schedule-admin.php
-msgid "Праздничная"
+msgid "Feast day"
 msgstr "Праздничная"
 
 #: includes/class-schedule-admin.php
-msgid "Предыдущее расписание сохранено."
+msgid "The previous schedule has been retained."
 msgstr "Предыдущее расписание сохранено."
 
 #: includes/class-public-view.php
-msgid "Предыдущий период"
+msgid "Previous period"
 msgstr "Предыдущий период"
 
 #: includes/class-calendar-reminders.php
-msgid "Приход: праздники недели"
+msgid "Parish: this week's feasts"
 msgstr "Приход: праздники недели"
 
 #: includes/class-public-view.php
-msgid "Проверьте дату, время и место богослужения. Изменения и отмены отмечены в расписании."
+msgid "Check the service date, time and place. Changes and cancellations are marked in the schedule."
 msgstr "Проверьте дату, время и место богослужения. Изменения и отмены отмечены в расписании."
 
 #: includes/class-schedule.php
-msgid "Проверьте повторение и исключения."
+msgid "Check the recurrence and exceptions."
 msgstr "Проверьте повторение и исключения."
 
 #: includes/class-schedule.php
-msgid "Проверьте тип, даты и время службы."
+msgid "Check the service type, dates and times."
 msgstr "Проверьте тип, даты и время службы."
 
 #: includes/class-schedule-admin.php
-msgid "Проверяем календарь…"
+msgid "Checking the calendar…"
 msgstr "Проверяем календарь…"
 
 #: includes/class-public-view.php includes/class-schedule-admin.php
-msgid "Пт"
+msgid "Fri"
 msgstr "Пт"
 
 #: includes/class-calendar-reminders.php
-msgid "Пятница"
+msgid "Friday"
 msgstr "Пятница"
 
 #: includes/class-schedule-admin.php
-msgid "Разовая"
+msgid "One-time"
 msgstr "Разовая"
 
 #: includes/class-schedule.php
-msgid "Расписание"
+msgid "Schedule"
 msgstr "Расписание"
 
 #: includes/class-schedule.php
-msgid "Расписание службы"
+msgid "Service scheduling"
 msgstr "Расписание службы"
 
 #: includes/class-schedule-admin.php
-msgid "Регулярная"
+msgid "Recurring"
 msgstr "Регулярная"
 
 #: includes/class-schedule-admin.php
-msgid "Рекомендация: %1$s — %2$s. Цвет можно изменить."
+msgid "Recommendation: %1$s — %2$s. You can change the color."
 msgstr "Рекомендация: %1$s — %2$s. Цвет можно изменить."
 
 #: includes/class-schedule-admin.php
-msgid "С %1$s по %2$s"
+msgid "From %1$s to %2$s"
 msgstr "С %1$s по %2$s"
 
 #: includes/class-schedule-admin.php
-msgid "С %s, без конечной даты"
+msgid "From %s, without an end date"
 msgstr "С %s, без конечной даты"
 
 #: includes/class-public-view.php includes/class-schedule-admin.php
-msgid "Сб"
+msgid "Sat"
 msgstr "Сб"
 
 #: includes/class-public-view.php
-msgid "Сегодня"
+msgid "Today"
 msgstr "Сегодня"
 
 #: includes/class-public-view.php
-msgid "Сентябрь"
+msgid "September"
 msgstr "Сентябрь"
 
 #: includes/class-public-view.php
-msgid "Следующий период"
+msgid "Next period"
 msgstr "Следующий период"
 
 #: includes/class-schedule.php
-msgid "Слишком много исключений."
+msgid "Too many exceptions."
 msgstr "Слишком много исключений."
 
 #: includes/class-schedule-admin.php
-msgid "Сначала добавьте место служения"
+msgid "Add a service place first"
 msgstr "Сначала добавьте место служения"
 
 #: includes/class-calendar-provider.php
-msgid "Сохранить календарный сервис"
+msgid "Save calendar service"
 msgstr "Сохранить календарный сервис"
 
 #: includes/class-calendar-icons.php
-msgid "Спаситель — Христос Вседержитель"
+msgid "The Savior — Christ Pantocrator"
 msgstr "Спаситель — Христос Вседержитель"
 
 #: assets/blocks.js includes/class-public-view.php
-msgid "Список"
+msgid "List"
 msgstr "Список"
 
 #: includes/class-public-view.php includes/class-schedule-admin.php
-msgid "Ср"
+msgid "Wed"
 msgstr "Ср"
 
 #: includes/class-calendar-reminders.php
-msgid "Среда"
+msgid "Wednesday"
 msgstr "Среда"
 
 #: includes/class-calendar-reminders.php
-msgid "Суббота"
+msgid "Saturday"
 msgstr "Суббота"
 
 #: includes/class-schedule-admin.php
-msgid "Тип / повторение"
+msgid "Type / recurrence"
 msgstr "Тип / повторение"
 
 #: includes/class-schedule-admin.php
-msgid "Тип службы"
+msgid "Service type"
 msgstr "Тип службы"
 
 #: includes/class-schedule-admin.php
-msgid "Удалить исключение"
+msgid "Remove exception"
 msgstr "Удалить исключение"
 
 #: includes/class-schedule-admin.php
-msgid "Укажите дату, время и место. Для регулярной службы выберите дни недели."
+msgid "Enter a date, time and place. For a recurring service, select the weekdays."
 msgstr "Укажите дату, время и место. Для регулярной службы выберите дни недели."
 
 #: includes/class-schedule.php
-msgid "Укажите именованный часовой пояс."
+msgid "Enter a named time zone."
 msgstr "Укажите именованный часовой пояс."
 
 #: includes/class-public-view.php
-msgid "Февраль"
+msgid "February"
 msgstr "Февраль"
 
 #: includes/class-calendar-colors.php
-msgid "Фиолетовый"
+msgid "Violet"
 msgstr "Фиолетовый"
 
 #: includes/class-calendar-colors.php
-msgid "Цвет облачения"
+msgid "Vestment color"
 msgstr "Цвет облачения"
 
 #: includes/class-schedule-admin.php
-msgid "Цвет облачения на эту дату"
+msgid "Vestment color for this date"
 msgstr "Цвет облачения на эту дату"
 
 #: includes/class-schedule-admin.php
-msgid "Часовой пояс (пусто — пояс места или прихода)"
+msgid "Time zone (leave empty to use the place or parish time zone)"
 msgstr "Часовой пояс (пусто — пояс места или прихода)"
 
 #: includes/class-schedule-admin.php
-msgid "Часовой пояс и особенности времени"
+msgid "Time zone and time details"
 msgstr "Часовой пояс и особенности времени"
 
 #: includes/class-calendar-reminders.php
-msgid "Четверг"
+msgid "Thursday"
 msgstr "Четверг"
 
 #: includes/class-public-view.php includes/class-schedule-admin.php
-msgid "Чт"
+msgid "Thu"
 msgstr "Чт"
 
 #: includes/class-calendar-colors.php
-msgid "Чёрный"
+msgid "Black"
 msgstr "Чёрный"
 
 #: includes/class-schedule.php
-msgid "Это местное время не существует из-за перевода часов."
+msgid "This local time does not exist because of a clock change."
 msgstr "Это местное время не существует из-за перевода часов."
 
 #: includes/class-public-view.php
-msgid "Январь"
+msgid "January"
 msgstr "Январь"
 
 msgid "Select a service place before saving."

@@ -15,7 +15,7 @@ $throws = static function ( callable $fn, string $message ) use ( $check ): void
 $http = array();
 add_filter( 'pre_http_request', static function ( $pre, $args, $url ) use ( &$http ) { $http[] = $url; return new WP_Error( 'fixture', 'No external network in fixture.' ); }, 10, 3 );
 wp_set_current_user( 1 ); set_current_screen( 'dashboard' );
-$check( '0.2.1' === GKPC_VERSION && GKPC_VERSION === GKPSCH_VERSION, 'Merged package version or module missing.' );
+$check( '0.2.2' === GKPC_VERSION && GKPC_VERSION === GKPSCH_VERSION, 'Merged package version or module missing.' );
 $check( ! is_plugin_active( 'georg-kloster-prihod-schedule/georg-kloster-prihod-schedule.php' ), 'Old Schedule remains active.' );
 $check( str_contains( GKPSCH_FILE, '/georg-kloster-prihod-core/schedule/' ), 'Schedule still runs from the old package.' );
 $check( array() === GeorgKlosterPrihodCore\Demo_Importer::state(), 'Merge implicitly imported demo data.' );
@@ -38,6 +38,11 @@ $check( $fixture['place'] === $new_rule['location_id'], 'New schedule rules cann
 $bad_place = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Not a service place' ) );
 $throws( static fn() => Schedule::validate( array_merge( $new_rule, array( 'location_id' => $bad_place ) ) ), 'Schedule accepted a page as a place.' );
 require __DIR__ . '/schedule-admin-validation.php';
+foreach ( array( 'Покров Пресвятой Богородицы' => 'blue', 'Благовещение' => 'blue', 'Троица' => 'green', 'Преображение' => 'white', 'Рождество Христово' => 'white', 'Воздвижение Креста' => 'purple', 'Пасха' => 'red', 'Преподобный Сергий' => 'green', 'Святитель Николай' => 'gold', 'Pfingsten' => 'green', 'Unknown feast' => null ) as $title => $color ) {
+    $recommendation = GeorgKlosterPrihodSchedule\Calendar_Colors::recommendation( array( $title ) );
+    $check( $color === ( $recommendation['color'] ?? null ), 'Moving calendar language data changed a color recommendation: ' . $title );
+}
+$check( 'black' === GeorgKlosterPrihodSchedule\Calendar_Colors::day( array( 'date' => '2026-03-02', 'events' => array( array( 'category' => 'commemoration', 'typeCode' => 7, 'title' => 'Великий пост' ) ) ) )['color'], 'Calendar period matching data was lost.' );
 
 do_action( 'admin_menu' ); global $menu, $submenu;
 $check( 1 === count( array_filter( $menu, static fn( $row ) => 'gkpc' === $row[2] ) ) && ! array_filter( $menu, static fn( $row ) => 'gkpsch' === $row[2] ), 'Separate Schedule top-level menu remains.' );

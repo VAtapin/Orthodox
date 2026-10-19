@@ -26,9 +26,9 @@ final class Schedule_Calendar {
     public static function image( \WP_REST_Request $request ) {
         $date = $request['date']; $data = Calendar_Adapter::day( $date );
         $icon = is_wp_error( $data ) ? Calendar_Icons::fallback( $date ) : $data['icon'];
-        if ( ! $icon ) { return is_wp_error( $data ) ? $data : new \WP_Error( 'icon_unavailable', __( 'Икона дня недоступна.', 'georg-kloster-prihod-schedule' ), array( 'status' => 404 ) ); }
+        if ( ! $icon ) { return is_wp_error( $data ) ? $data : new \WP_Error( 'icon_unavailable', __( 'The day icon is unavailable.', 'georg-kloster-prihod-schedule' ), array( 'status' => 404 ) ); }
         $url = ! empty( $icon['fallback'] ) ? $icon['fullUrl'] : $icon['url'];
-        if ( ! is_string( $url ) || ! preg_match( '~^https?://~i', $url ) ) { return new \WP_Error( 'icon_unavailable', __( 'Икона дня недоступна.', 'georg-kloster-prihod-schedule' ), array( 'status' => 503 ) ); }
+        if ( ! is_string( $url ) || ! preg_match( '~^https?://~i', $url ) ) { return new \WP_Error( 'icon_unavailable', __( 'The day icon is unavailable.', 'georg-kloster-prihod-schedule' ), array( 'status' => 503 ) ); }
         return new \WP_REST_Response( null, 302, array( 'Location' => esc_url_raw( $url ), 'Cache-Control' => 'public, max-age=60' ) );
     }
     public static function public_date( string $date, bool $icon_only = true ): bool {
@@ -56,6 +56,6 @@ final class Schedule_Calendar {
     }
     public static function editor( array $rule ): void {
         echo Calendar_Colors::field( 'gkpsch_service[vestment_color]', $rule['vestment_color'] ?? '', ! empty( $rule['_color_persisted'] ) );
-        echo '<fieldset class="gkpsch-service-section"><legend>' . esc_html__( 'Праздник и икона дня', 'georg-kloster-prihod-schedule' ) . '</legend><p data-gkpsch-calendar-status role="status" aria-live="polite"></p><button type="button" class="button" data-gkpsch-use-feast hidden>' . esc_html__( 'Использовать название праздника', 'georg-kloster-prihod-schedule' ) . '</button><p><label><input type="checkbox" name="gkpsch_service[day_icon]" value="1"' . checked( ! empty( $rule['day_icon'] ), true, false ) . '> ' . esc_html__( 'Показывать икону дня из календаря', 'georg-kloster-prihod-schedule' ) . '</label></p><p class="gkpsch-service-help">' . esc_html__( 'Икона определяется автоматически для каждой даты службы. Время и место выбираете вы.', 'georg-kloster-prihod-schedule' ) . '</p><p data-gkpsch-icon-status role="status" hidden>' . esc_html__( 'Икона дня недоступна.', 'georg-kloster-prihod-schedule' ) . '</p><figure class="gkpsch-service-icon" data-gkpsch-icon-preview hidden></figure></fieldset>';
+        echo '<fieldset class="gkpsch-service-section"><legend>' . esc_html__( 'Feast and day icon', 'georg-kloster-prihod-schedule' ) . '</legend><p data-gkpsch-calendar-status role="status" aria-live="polite"></p><button type="button" class="button" data-gkpsch-use-feast hidden>' . esc_html__( 'Use the feast name', 'georg-kloster-prihod-schedule' ) . '</button><p><label><input type="checkbox" name="gkpsch_service[day_icon]" value="1"' . checked( ! empty( $rule['day_icon'] ), true, false ) . '> ' . esc_html__( 'Show the calendar day icon', 'georg-kloster-prihod-schedule' ) . '</label></p><p class="gkpsch-service-help">' . esc_html__( 'The icon is determined automatically for each service date. You choose the time and place.', 'georg-kloster-prihod-schedule' ) . '</p><p data-gkpsch-icon-status role="status" hidden>' . esc_html__( 'The day icon is unavailable.', 'georg-kloster-prihod-schedule' ) . '</p><figure class="gkpsch-service-icon" data-gkpsch-icon-preview hidden></figure></fieldset>';
     }
 }

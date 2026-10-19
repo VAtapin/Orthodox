@@ -27,6 +27,8 @@ final class Hub_Settings {
         settings_fields( 'gkch_settings' );
         echo '<p><label><input type="checkbox" name="gkch_settings[enabled]" value="1"' . checked( self::get()['enabled'], true, false ) . '> ' . esc_html__( 'Accept incoming form messages', 'georg-kloster-connect-hub' ) . '</label></p><p><label>' . esc_html__( 'Keep closed messages for days', 'georg-kloster-connect-hub' ) . '<br><input type="number" name="gkps_retention_days" min="30" max="3650" value="' . esc_attr( get_option( 'gkps_retention_days', 365 ) ) . '"></label></p>';
         submit_button();
-        echo '</form><p>' . esc_html__( 'Each form has its own topics, text, recipient and enabled state. Channel credentials are configured in their respective sections.', 'georg-kloster-connect-hub' ) . '</p></div>';
+        echo '</form><p>' . esc_html__( 'Each form has its own topics, text, recipient and enabled state. Channel credentials are configured in their respective sections.', 'georg-kloster-connect-hub' ) . '</p>';
+        Blocks::help();
+        echo '</div>';
     }
 }

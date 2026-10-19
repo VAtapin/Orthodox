@@ -1,0 +1,13 @@
+{
+  "afterfeast": "/попразднств|отдание|віддання|nachfeier|festabschluss|poprazdn|zakończeni.*święta/iu",
+  "lent": "/велик.*пост|велик.*піст|große.*fastenzeit|wielki.*post|страстн.*седмиц|страсн.*тиж|karwoche|wielki.*tydzień/iu",
+  "marian": "/покров|покрова|schutz.*(gottes|mutter)|opieki.*(bog|matki)|рождеств.*богород|різдв.*богород|geburt.*(gottes|maria)|narodzeni.*(bog|mary)|введени.*(богород|храм)|введенн.*(богород|храм)|tempel.*(maria|gottes)|(maria|gottes).*tempel|wprowadzeni.*(bog|mary)|успени.*богород|успінн.*богород|entschlaf.*(gottes|maria)|zaśnięci.*(bog|mary)/iu",
+  "annunciation": "/благовещени|благовіщенн|verkündigung|zwiastowani/iu",
+  "pentecost": "/троиц|трійц|пятидесятниц|п.?ятдесятниц|pfingsten|pięćdziesiątnic|zesłani.*ducha|вход.*иерусалим|вхід.*єрусалим|palmsonntag|niedziela.*palmow/iu",
+  "transfiguration": "/преображени|преображенн|verklärung|przemienieni/iu",
+  "nativity_theophany_ascension": "/рождеств.*христ|різдв.*христ|weihnacht|boż.*narodzeni|богоявлен|богоявлен|крещени.*господ|хрещенн.*господ|theophani|taufe.*herr|chrzest.*pańsk|вознесени|вознесінн|himmelfahrt|wniebowstąpieni/iu",
+  "cross": "/воздвижени|воздвиженн|крестопоклон|хрестопоклон|kreuzerhöhung|podwyższeni.*krzyża/iu",
+  "pascha_martyrs": "/пасх|великдень|ostern|wielkanoc|мучен|мч[цч]*\\.|страстотерп|märtyr|męczenn/iu",
+  "monastics": "/преподоб|прп[п]*\\.|юродив|ehrwürdig|świątobliw/iu",
+  "hierarchs_apostles": "/святител|свт[т]*\\.|апостол|ап[п]*\\.|hierarch|apostel|apostoł/iu"
+}

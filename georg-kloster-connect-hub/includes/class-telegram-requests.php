@@ -41,11 +41,11 @@ final class Telegram_Requests {
         $post = get_post( $id );
         if ( ! $post || 'gkps_request' !== $post->post_type || 'private' !== $post->post_status ) { return; }
         $sender = (array) get_post_meta( $id, '_gkps_sender', true );
-        $header = '<b>' . esc_html__( 'Новое обращение', 'georg-kloster-connect-hub' ) . ' #' . $id . "</b>\n\n";
-        foreach ( array( __( 'Имя', 'georg-kloster-connect-hub' ) => $sender['name'] ?? '', __( 'Email', 'georg-kloster-connect-hub' ) => $sender['email'] ?? '', __( 'Тема', 'georg-kloster-connect-hub' ) => $post->post_title, __( 'Дата', 'georg-kloster-connect-hub' ) => get_post_time( 'd.m.Y H:i', false, $post ), __( 'Статус', 'georg-kloster-connect-hub' ) => Requests::statuses()[get_post_meta( $id, '_gkps_request_status', true )] ?? '' ) as $label => $value ) { $header .= '<b>' . esc_html( $label ) . ':</b> ' . esc_html( $value ) . "\n"; }
+        $header = '<b>' . esc_html__( 'New incoming message', 'georg-kloster-connect-hub' ) . ' #' . $id . "</b>\n\n";
+        foreach ( array( __( 'Sender name', 'georg-kloster-connect-hub' ) => $sender['name'] ?? '', __( 'Email', 'georg-kloster-connect-hub' ) => $sender['email'] ?? '', __( 'Message subject', 'georg-kloster-connect-hub' ) => $post->post_title, __( 'Message date', 'georg-kloster-connect-hub' ) => get_post_time( 'd.m.Y H:i', false, $post ), __( 'Message status', 'georg-kloster-connect-hub' ) => Requests::statuses()[get_post_meta( $id, '_gkps_request_status', true )] ?? '' ) as $label => $value ) { $header .= '<b>' . esc_html( $label ) . ':</b> ' . esc_html( $value ) . "\n"; }
         $parts = self::chunks( $post->post_content ); $url = admin_url( 'admin.php?page=gkps-requests&request_id=' . $id );
         foreach ( $parts as $index => $part ) {
-            $text = $header . "\n<b>" . esc_html__( 'Сообщение', 'georg-kloster-connect-hub' ) . '</b> · ' . ( $index + 1 ) . '/' . count( $parts ) . "\n" . esc_html( $part ) . "\n\n" . esc_html__( 'Ответьте на это сообщение кнопкой «Ответить» в Telegram.', 'georg-kloster-connect-hub' );
+            $text = $header . "\n<b>" . esc_html__( 'Message', 'georg-kloster-connect-hub' ) . '</b> · ' . ( $index + 1 ) . '/' . count( $parts ) . "\n" . esc_html( $part ) . "\n\n" . esc_html__( 'Use Reply on this message in Telegram.', 'georg-kloster-connect-hub' );
             self::connector()->queue( $text, $url, 'request', $id, array( 'request_id' => $id, 'configuration' => self::options()['configuration'], 'telegram_html' => true ) );
         }
     }
@@ -59,7 +59,7 @@ final class Telegram_Requests {
     }
     public static function authorize( \WP_REST_Request $request ) {
         $o = self::options(); $provided = $request->get_header( 'X-Telegram-Bot-Api-Secret-Token' );
-        return self::ready() && is_string( $o['secret'] ) && strlen( $o['secret'] ) >= 32 && is_string( $provided ) && hash_equals( $o['secret'], $provided ) ? true : new \WP_Error( 'telegram_unauthorized', __( 'Недостаточно прав.', 'georg-kloster-connect-hub' ), array( 'status' => 403 ) );
+        return self::ready() && is_string( $o['secret'] ) && strlen( $o['secret'] ) >= 32 && is_string( $provided ) && hash_equals( $o['secret'], $provided ) ? true : new \WP_Error( 'telegram_unauthorized', __( 'Insufficient permissions.', 'georg-kloster-connect-hub' ), array( 'status' => 403 ) );
     }
     public static function receive( \WP_REST_Request $request ) {
         // Also enforce the secret for direct callers, not only REST dispatch.
@@ -77,7 +77,7 @@ final class Telegram_Requests {
         if ( 1 !== count( $posts ) || 'closed' === get_post_meta( $posts[0]->ID, '_gkps_request_status', true ) || get_option( 'gkps_purge_job' ) ) { return $ok; }
         $receipt = hash( 'sha256', $o['configuration'] . '|update|' . $data['update_id'] );
         $lock = 'gkps_telegram_reply_' . $receipt; $owner = Lock::acquire( $lock, 60 );
-        if ( ! $owner ) { return new \WP_Error( 'telegram_busy', __( 'Попробуйте позже.', 'georg-kloster-connect-hub' ), array( 'status' => 503 ) ); }
+        if ( ! $owner ) { return new \WP_Error( 'telegram_busy', __( 'Try again later.', 'georg-kloster-connect-hub' ), array( 'status' => 503 ) ); }
         $previous = get_current_user_id();
         try {
             $existing = get_posts( array( 'post_type' => 'gkps_message', 'post_status' => 'private', 'numberposts' => 1, 'meta_key' => '_gkps_reply_source', 'meta_value' => $receipt ) );
@@ -90,11 +90,11 @@ final class Telegram_Requests {
                 return $ok;
             }
             $id = Requests::message( $posts[0]->ID, $body, false, $receipt, $media );
-            $text = 'sent' === get_post_meta( $id, '_gkps_delivery', true ) ? __( 'Ответ сохранён. Письмо передано почтовой системе.', 'georg-kloster-connect-hub' ) : __( 'Ответ сохранён, но письмо не удалось отправить. Проверьте обращение на сайте.', 'georg-kloster-connect-hub' );
+            $text = 'sent' === get_post_meta( $id, '_gkps_delivery', true ) ? __( 'The reply was saved. The email was passed to the mail system.', 'georg-kloster-connect-hub' ) : __( 'The reply was saved, but the email could not be sent. Check the message on the site.', 'georg-kloster-connect-hub' );
             self::connector()->queue( $text, admin_url( 'admin.php?page=gkps-requests&request_id=' . $posts[0]->ID ), 'request', $posts[0]->ID );
             return $ok;
         } catch ( \Throwable $error ) {
-            return new \WP_Error( 'telegram_reply_failed', __( 'Ответ не сохранён.', 'georg-kloster-connect-hub' ), array( 'status' => 503 ) );
+            return new \WP_Error( 'telegram_reply_failed', __( 'The reply was not saved.', 'georg-kloster-connect-hub' ), array( 'status' => 503 ) );
         } finally { wp_set_current_user( $previous ); Lock::release( $lock, $owner ); }
     }
 }

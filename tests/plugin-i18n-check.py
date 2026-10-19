@@ -19,6 +19,11 @@ count = 0
 for domain, handle in PLUGINS.items():
     if selected and domain != selected:
         continue
+    # Executable UI sources must use English gettext keys. Authored demo text
+    # and multilingual calendar input patterns live in separate data files.
+    for path in plugin_folder(domain).rglob('*'):
+        if path.suffix in ('.php', '.js', '.css'):
+            assert not re.search('[А-Яа-яЁё]', path.read_text(encoding='utf-8')), (domain, path, 'Non-English executable source')
     folder = plugin_folder(domain) / 'languages'
     for locale in (['ru_RU', 'de_DE'] if domain == 'georg-kloster-connect-hub' else ['ru_RU']):
         path = folder / f'{domain}-{locale}.po'

@@ -22,7 +22,7 @@ jobs:
       - run: node --check georg-kloster-prihod-core/assets/place-media.js
       - run: node tests/schedule-admin-validation.js
       - run: python scripts/package.py --only parish-core
-      - run: unzip -q build/georg-kloster-prihod-core-0.2.1.zip -d "$RUNNER_TEMP/parish-package"
+      - run: unzip -q build/georg-kloster-prihod-core-0.2.2.zip -d "$RUNNER_TEMP/parish-package"
       - name: Set Parish test versions
         env:
           TEST_WP: ${{ matrix.wp }}
@@ -50,7 +50,7 @@ jobs:
       - run: node --check georg-kloster-connect-hub/assets/blocks.js
       - run: node --check georg-kloster-connect-hub/assets/publications.js
       - run: python scripts/package.py --only connect-hub
-      - run: unzip -q build/georg-kloster-connect-hub-0.3.1.zip -d "$RUNNER_TEMP/connect-hub-package"
+      - run: unzip -q build/georg-kloster-connect-hub-0.3.2.zip -d "$RUNNER_TEMP/connect-hub-package"
       - name: Set Connect Hub test versions
         env:
           TEST_WP: ${{ matrix.wp }}

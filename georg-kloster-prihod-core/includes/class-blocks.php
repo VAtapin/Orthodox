@@ -4,6 +4,25 @@ namespace GeorgKlosterPrihodCore;
 defined( 'ABSPATH' ) || exit;
 
 final class Blocks {
+    public static function help(): void {
+        $none = __( 'No parameters.', 'georg-kloster-prihod-core' );
+        $place = __( 'location: service place ID; 0 (default) includes all published places.', 'georg-kloster-prihod-core' );
+        $rows = array(
+            array( '[gkpc_profile]', __( 'Parish name and description.', 'georg-kloster-prihod-core' ), $none, '[gkpc_profile]' ),
+            array( '[gkpc_contacts]', __( 'Parish address, phone, email and website.', 'georg-kloster-prihod-core' ), $none, '[gkpc_contacts]' ),
+            array( '[gkpc_clergy]', __( 'Published clergy profiles.', 'georg-kloster-prihod-core' ), $none, '[gkpc_clergy]' ),
+            array( '[gkpc_places]', __( 'Published service places with logos and photos.', 'georg-kloster-prihod-core' ), $none, '[gkpc_places]' ),
+            array( '[gkpsch_schedule]', __( 'Service schedule with week, month and list views.', 'georg-kloster-prihod-core' ), __( 'view: week (default), month or list.', 'georg-kloster-prihod-core' ) . ' ' . $place, '[gkpsch_schedule view="month" location="123"]' ),
+            array( '[gkpsch_next_service]', __( 'The next upcoming service.', 'georg-kloster-prihod-core' ), $place, '[gkpsch_next_service location="123"]' ),
+            array( '[gkpsch_next_services]', __( 'A list of upcoming services.', 'georg-kloster-prihod-core' ), $place . ' ' . __( 'limit: number of services, 1–50; default 5.', 'georg-kloster-prihod-core' ), '[gkpsch_next_services location="123" limit="5"]' ),
+        );
+        echo '<section id="gkpc-shortcodes"><h2>' . esc_html__( 'Shortcodes and blocks', 'georg-kloster-prihod-core' ) . '</h2><p>' . esc_html__( 'Insert a Shortcode block on a page and paste an example. Replace 123 with the ID shown in the service place edit URL (post=123). Omit location to include all places. The editor also provides equivalent Parish and Schedule blocks.', 'georg-kloster-prihod-core' ) . '</p><table class="widefat striped"><thead><tr>';
+        foreach ( array( __( 'Shortcode', 'georg-kloster-prihod-core' ), __( 'Description', 'georg-kloster-prihod-core' ), __( 'Parameters', 'georg-kloster-prihod-core' ), __( 'Example', 'georg-kloster-prihod-core' ) ) as $label ) { echo '<th scope="col">' . esc_html( $label ) . '</th>'; }
+        echo '</tr></thead><tbody>';
+        foreach ( $rows as $row ) { echo '<tr><td><code>' . esc_html( $row[0] ) . '</code></td><td>' . esc_html( $row[1] ) . '</td><td>' . esc_html( $row[2] ) . '</td><td><code>' . esc_html( $row[3] ) . '</code></td></tr>'; }
+        echo '</tbody></table></section>';
+    }
+
     public static function register(): void {
         wp_register_style( 'gkpc-directory', plugins_url( 'assets/directory.css', GKPC_FILE ), array(), GKPC_VERSION );
         add_action( 'wp_enqueue_scripts', static function () { wp_enqueue_style( 'gkpc-directory' ); } );

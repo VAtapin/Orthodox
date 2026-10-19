@@ -1,17 +1,18 @@
 # Проверки
 
-## Объединённый «Приход» 0.2.1
+## Объединённый «Приход» 0.2.2
 
-`parish-merge-blueprint.json` выполняет 70 проверок: один каталог мест и меню,
+`parish-merge-blueprint.json` выполняет 82 проверки: один каталог мест и меню,
 сохранность прежних ID/типов/служб/духовенства, совместимость демо-мест,
 изображения из настоящей медиатеки без поддержки миниатюр в теме, валидация,
-права/nonce, публичный вывод и фиксированный API. Нужны только mounts Core и tests:
+права/nonce, публичный вывод и фиксированный API. Дополнительно проверено
+распознавание календарных названий после переноса многоязычных шаблонов в JSON. Нужны только mounts Core и tests:
 
 ```powershell
 npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-prihod-core /wordpress/wp-content/plugins/georg-kloster-prihod-core --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/parish-merge-blueprint.json
 ```
 
-Для проверки ZIP распаковать `georg-kloster-prihod-core-0.2.1.zip` и монтировать
+Для проверки ZIP распаковать `georg-kloster-prihod-core-0.2.2.zip` и монтировать
 его каталог вместо исходника. Для минимальной платформы использовать копию
 Blueprint с WP6.5.13/PHP8.0. Результат: `tests/.parish-merge-result.json`.
 
@@ -29,7 +30,7 @@ Blueprint с WP6.5.13/PHP8.0. Результат: `tests/.parish-merge-result.js
 проверяет отключение Schedule и переход на следующий запрос без redeclare.
 Перед повтором распаковать старые ZIP заново: тест заменяет их в смонтированной копии.
 
-## Импорт демо «Приход» 0.2.0 / тема 0.4.35
+## Импорт демо (проверен в «Приход» 0.2.0 / теме 0.4.35)
 
 `demo-import-blueprint.json` запускается только в одноразовом WordPress с
 монтированием темы, Core и `tests` в `prihod-tests` (Schedule встроен):
@@ -56,9 +57,9 @@ npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloste
 карточек имеют высоту 200 px. На новом сайте проверяется только кнопка и
 предпросмотр; импорт не запускался, поля темы и текст главной до/после совпали.
 
-## Connect Hub 0.3.1
+## Connect Hub 0.3.2
 
-`connect-hub-blueprint.json` выполняет 144 проверки на изолированных данных:
+`connect-hub-blueprint.json` выполняет 147 проверок на изолированных данных:
 четыре раздела RU/DE/EN, несколько форм, права, одноразовый токен с привязкой
 к форме, собственный получатель, очередь шести каналов, API-контракты,
 ошибки и повторы. `connect-hub-automation.php` дополнительно проверяет новые
@@ -66,6 +67,7 @@ npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloste
 дедупликацию, самостоятельные напоминания во всех шести каналах, разные GUID
 повторов VK, разовые/еженедельные/ежедневные расписания, DST, отмену устаревших
 версий, удаление, отзыв прав, восстановление cron и локализованный редактор.
+Справка по формам проверяется в EN/RU/DE.
 Подключения всех шести каналов проверяются во вкладках настроек без выдачи
 секретов. Проверяются настоящие обработчики сохранения Telegram/WhatsApp с
 пустыми полями секретов, переходы со старых адресов и возврат из настройки
@@ -85,10 +87,10 @@ npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloste
 ZIP, распакованный в `build/connect-legacy`, и mount
 `./build/connect-legacy/georg-kloster-prihod-social` в
 `/wordpress/wp-content/plugins/georg-kloster-prihod-social`.
-Окончательный ZIP (40 файлов) прошёл по 144 проверки на WP7.1.3/PHP8.4.25 и
+Окончательный ZIP (40 файлов) прошёл по 147 проверок на WP7.1.3/PHP8.4.25 и
 WP6.5.13/PHP8.0.30 самостоятельно.
 Результат — `tests/.connect-hub-result.json`.
-588 строк RU/DE проверены на покрытие, placeholders и соответствие PO/MO/JSON.
+600 строк RU/DE проверены на покрытие, placeholders и соответствие PO/MO/JSON.
 Браузерная QA недоступна: локальный адрес блокируется встроенным браузером.
 Реальные социальные аккаунты этим тестом не проверяются.
 
@@ -125,11 +127,13 @@ npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloste
 после публикации: API WordPress.org сейчас возвращает `Plugin not found` для
 всех трёх slug. Подставной пакет за готовую установку не выдаётся.
 
-## Русский интерфейс самостоятельных плагинов
+## Английские исходники и локализация текущих плагинов
 
-Core 0.1.4, Connect Hub 0.3.1 и Schedule 0.1.10 содержат русские PO/MO и JSON
-для блоков редактора. Каталоги не зависят от старого «Прихода» или WPML.
-Собственные тексты владельца и содержимое страниц не переписываются.
+«Приход» 0.2.2 и Connect Hub 0.3.2 используют английские gettext-ключи.
+`plugin-i18n-check.py` запрещает кириллицу в PHP/JS/CSS обоих пакетов, сверяет
+PO/MO/JSON, покрытие и placeholders. 887 сообщений: Core 92, Schedule 195,
+Connect Hub по 300 в RU и DE. Демо и многоязычные входные шаблоны календаря —
+отдельные JSON-данные, не UI-строки.
 
 ```powershell
 python scripts/compile-translations.py --only plugins
@@ -137,17 +141,13 @@ python tests/plugin-i18n-check.py
 npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-prihod-core /wordpress/wp-content/plugins/georg-kloster-prihod-core --mount-dir ./georg-kloster-connect-hub /wordpress/wp-content/plugins/georg-kloster-connect-hub --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/plugin-i18n-blueprint.json
 ```
 
-Статическая проверка сверяет все gettext-строки с PO/MO, русским текстом,
-placeholders и JSON редактора. Blueprint предназначен только для одноразового
-WordPress: проверяет автоматическую загрузку русского языка, настоящие меню,
-экраны настроек и каналов, названия блоков, JSON через WordPress, форму,
-переключение на английский и сохранность содержимого/настроек. Для минимальной
-платформы использовать копию Blueprint с `wp: 6.5`, `php: 8.0`.
-Окончательные ZIP прошли по 107 проверок на WP7.1.3/PHP8.4.25 и
-WP6.5.13/PHP8.0.30; каталог проверен на 421 строку. Результат сценария —
-`tests/.plugin-i18n-result.json`. Языковой пакет WordPress загружается штатным
-шагом `setSiteLanguage`; отсутствие отдельных пакетов этих плагинов в
-WordPress.org не мешает загрузке их собственных каталогов из ZIP.
+129 проверок прошли на WP7.1.3/PHP8.4.25 и WP6.5.13/PHP8.0.30. Проверены
+RU-меню/настройки/блоки, английские экраны без русского UI, справка по всем
+девяти зарегистрированным шорткодам (включая совместимое имя формы), параметры
+и размещение справки в четырёх экранах. Переключение языка сохраняет настройки
+и содержимое владельца. Отчёт — `tests/.plugin-i18n-result.json`.
+Для минимальной платформы использовать копию Blueprint с WP6.5/PHP8.0.
+Для проверки ZIP монтировать распакованные пакеты вместо исходников.
 
 ## Самостоятельная тема и управление главной, версия 0.4.30
 

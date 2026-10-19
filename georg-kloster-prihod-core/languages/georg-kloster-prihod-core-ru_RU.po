@@ -304,3 +304,51 @@ msgstr "Без плагина расписания демо содержит о�
 #: includes/class-demo-admin.php includes/class-demo-importer.php
 msgid "You do not have permission to import this demo."
 msgstr "У вас нет прав для импорта этих демо-данных."
+
+msgid "A list of upcoming services."
+msgstr "Список ближайших богослужений."
+
+msgid "Example"
+msgstr "Пример"
+
+msgid "Insert a Shortcode block on a page and paste an example. Replace 123 with the ID shown in the service place edit URL (post=123). Omit location to include all places. The editor also provides equivalent Parish and Schedule blocks."
+msgstr "Добавьте на страницу блок «Шорткод» и вставьте пример. Замените 123 идентификатором места из адреса его редактирования (post=123). Для всех мест уберите параметр location. В редакторе также доступны соответствующие блоки прихода и расписания."
+
+msgid "No parameters."
+msgstr "Без параметров."
+
+msgid "Parameters"
+msgstr "Параметры"
+
+msgid "Parish address, phone, email and website."
+msgstr "Адрес, телефон, электронная почта и сайт прихода."
+
+msgid "Parish name and description."
+msgstr "Название и описание прихода."
+
+msgid "Published clergy profiles."
+msgstr "Опубликованные сведения о духовенстве."
+
+msgid "Published service places with logos and photos."
+msgstr "Опубликованные места служения с логотипами и фотографиями."
+
+msgid "Service schedule with week, month and list views."
+msgstr "Расписание богослужений: неделя, месяц или список."
+
+msgid "Shortcode"
+msgstr "Шорткод"
+
+msgid "Shortcodes and blocks"
+msgstr "Шорткоды и блоки"
+
+msgid "The next upcoming service."
+msgstr "Ближайшее предстоящее богослужение."
+
+msgid "limit: number of services, 1–50; default 5."
+msgstr "limit: количество богослужений от 1 до 50; по умолчанию 5."
+
+msgid "location: service place ID; 0 (default) includes all published places."
+msgstr "location: идентификатор места служения; 0 (по умолчанию) — все опубликованные места."
+
+msgid "view: week (default), month or list."
+msgstr "view: week (неделя, по умолчанию), month (месяц) или list (список)."
