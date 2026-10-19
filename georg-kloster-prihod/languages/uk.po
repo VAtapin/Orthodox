@@ -129,10 +129,6 @@ msgstr "Перевірити WordPress.org"
 msgid "Choose image"
 msgstr "Вибрати зображення"
 
-#: includes/home-settings.php
-msgid "Choose standard WordPress pages. These links are used on the homepage, in the header, footer and sidebar; featured images become card images. No plugins are required. An empty selection allows optional page bindings from active plugins."
-msgstr "Виберіть звичайні сторінки WordPress. Ці посилання використовуються на головній, у шапці, підвалі та бічній колонці; зображення записів — як фотографії карток. Плагіни не потрібні. Без вибору можна використовувати необов’язкові прив’язки підключених плагінів."
-
 #: includes/settings.php
 msgid "Classic gold"
 msgstr "Класична золота"
@@ -693,10 +689,6 @@ msgstr "Текст другої кнопки"
 #: includes/home-settings.php
 msgid "Section cards"
 msgstr "Картки розділів"
-
-#: includes/home-settings.php
-msgid "Section pages"
-msgstr "Сторінки розділів"
 
 #: includes/home-settings.php
 msgid "Section settings"

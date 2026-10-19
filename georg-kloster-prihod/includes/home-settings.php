@@ -91,6 +91,11 @@ function prihod_theme_home_number( string $key, string $label, int $value, int $
     for ( $i = 1; $i <= $max; ++$i ) { echo '<option value="' . $i . '"' . selected( $value, $i, false ) . '>' . $i . '</option>'; }
     echo '</select></label></p>';
 }
+function prihod_theme_home_page_field( string $key, string $label, int $selected ): void {
+    echo '<p><label>' . esc_html( $label ) . '<br>';
+    wp_dropdown_pages( array( 'name' => 'georg_kloster_prihod_options[home][pages][' . $key . ']', 'id' => 'prihod-home-page-' . $key, 'selected' => $selected, 'show_option_none' => __( 'Automatic', 'georg-kloster-prihod' ), 'option_none_value' => '0', 'post_status' => 'publish' ) );
+    echo '</label></p>';
+}
 function prihod_theme_home_move_buttons( string $label ): void {
     echo '<span class="prihod-home-move"><button class="button" type="button" data-home-move="up" aria-label="' . esc_attr( sprintf( __( 'Move up: %s', 'georg-kloster-prihod' ), $label ) ) . '">↑</button> <button class="button" type="button" data-home-move="down" aria-label="' . esc_attr( sprintf( __( 'Move down: %s', 'georg-kloster-prihod' ), $label ) ) . '">↓</button></span>';
 }
@@ -112,7 +117,17 @@ function prihod_theme_home_settings_panel( array $options ): void {
         $buttons = array( 'hero' => array( 'hero_schedule_button' => __( 'Schedule button label', 'georg-kloster-prihod' ), 'hero_secondary_button' => __( 'Secondary button label', 'georg-kloster-prihod' ) ), 'about' => array( 'about_button' => __( 'Link label', 'georg-kloster-prihod' ) ), 'services' => array( 'services_button' => __( 'Link label', 'georg-kloster-prihod' ) ), 'news' => array( 'news_button' => __( 'Link label', 'georg-kloster-prihod' ), 'news_read_button' => __( 'Post link label', 'georg-kloster-prihod' ) ), 'contacts' => array( 'contacts_button' => __( 'Link label', 'georg-kloster-prihod' ) ) );
         foreach ( $buttons[$key] ?? array() as $field => $label ) { prihod_theme_home_field( '[' . $field . ']', $label, $home[$field] ); }
         if ( in_array( $key, array( 'hero', 'about' ), true ) ) { prihod_theme_home_field( '[' . $key . '_description]', __( 'Description', 'georg-kloster-prihod' ), $home[$key . '_description'], 'textarea' ); }
-        if ( 'services' === $key ) { prihod_theme_home_number( 'services_count', __( 'Number of services', 'georg-kloster-prihod' ), $home['services_count'], 6 ); echo '<p class="description">' . esc_html__( 'This section appears when a schedule plugin supplies upcoming services.', 'georg-kloster-prihod' ) . '</p>'; }
+        if ( 'services' === $key ) {
+            prihod_theme_home_page_field( 'schedule', $pages['schedule'], $home['pages']['schedule'] );
+            prihod_theme_home_number( 'services_count', __( 'Number of services', 'georg-kloster-prihod' ), $home['services_count'], 6 );
+            echo '<p class="description">' . esc_html__( 'This section appears when a schedule plugin supplies upcoming services.', 'georg-kloster-prihod' ) . '</p>';
+        }
+        if ( 'about' === $key ) { prihod_theme_home_page_field( 'about', $pages['about'], $home['pages']['about'] ); }
+        if ( 'news' === $key ) { prihod_theme_home_page_field( 'news', $pages['news'], $home['pages']['news'] ); }
+        if ( 'contacts' === $key ) { prihod_theme_home_page_field( 'contacts', $pages['contacts'], $home['pages']['contacts'] ); }
+        if ( 'topics' === $key ) {
+            foreach ( array( 'first-visit', 'sermons' ) as $page_key ) { prihod_theme_home_page_field( $page_key, $pages[$page_key], $home['pages'][$page_key] ); }
+        }
         if ( 'features' === $key ) {
             prihod_theme_home_field( '[cards_show_images]', __( 'Show card images', 'georg-kloster-prihod' ), $home['cards_show_images'], 'checkbox' );
             prihod_theme_home_field( '[hide_schedule_card]', __( 'Hide the schedule card when upcoming services are displayed', 'georg-kloster-prihod' ), $home['hide_schedule_card'], 'checkbox' );
@@ -123,6 +138,7 @@ function prihod_theme_home_settings_panel( array $options ): void {
                 prihod_theme_home_field( '[cards][' . $card_key . '][enabled]', $pages[$card_key], $card['enabled'], 'checkbox' ); prihod_theme_home_move_buttons( $pages[$card_key] );
                 echo '</header>';
                 foreach ( array( 'title' => __( 'Card title', 'georg-kloster-prihod' ), 'description' => __( 'Card description', 'georg-kloster-prihod' ), 'button' => __( 'Link label', 'georg-kloster-prihod' ) ) as $field => $label ) { prihod_theme_home_field( '[cards][' . $card_key . '][' . $field . ']', $label, $card[$field] ); }
+                if ( in_array( $card_key, array( 'requests', 'donations' ), true ) ) { prihod_theme_home_page_field( $card_key, $pages[$card_key], $home['pages'][$card_key] ); }
                 echo '</div>';
             }
             echo '</div>';
@@ -138,12 +154,6 @@ function prihod_theme_home_settings_panel( array $options ): void {
         }
         if ( 'content' === $key ) { echo '<p class="description">' . esc_html__( 'Only the content of the page selected as the homepage in Reading settings is displayed.', 'georg-kloster-prihod' ) . '</p>'; }
         echo '</details></article>';
-    }
-    echo '</div><h3>' . esc_html__( 'Section pages', 'georg-kloster-prihod' ) . '</h3><p>' . esc_html__( 'Choose standard WordPress pages. These links are used on the homepage, in the header, footer and sidebar; featured images become card images. No plugins are required. An empty selection allows optional page bindings from active plugins.', 'georg-kloster-prihod' ) . '</p>';
-    foreach ( $pages as $key => $label ) {
-        echo '<p><label>' . esc_html( $label ) . '<br>';
-        wp_dropdown_pages( array( 'name' => 'georg_kloster_prihod_options[home][pages][' . $key . ']', 'id' => 'prihod-home-page-' . $key, 'selected' => $home['pages'][$key], 'show_option_none' => __( 'Automatic', 'georg-kloster-prihod' ), 'option_none_value' => '0', 'post_status' => 'publish' ) );
-        echo '</label></p>';
     }
     echo '<p class="description">' . esc_html__( 'Custom labels can be translated in WPML String Translation under georg-kloster-prihod.', 'georg-kloster-prihod' ) . '</p>';
     echo '</section>';

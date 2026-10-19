@@ -129,10 +129,6 @@ msgstr "WordPress.org prüfen"
 msgid "Choose image"
 msgstr "Bild auswählen"
 
-#: includes/home-settings.php
-msgid "Choose standard WordPress pages. These links are used on the homepage, in the header, footer and sidebar; featured images become card images. No plugins are required. An empty selection allows optional page bindings from active plugins."
-msgstr "Wählen Sie normale WordPress-Seiten. Diese Links werden auf der Startseite, im Kopf- und Fußbereich sowie in der Seitenleiste verwendet; Beitragsbilder dienen als Kartenfotos. Plugins sind nicht erforderlich. Ohne Auswahl können optionale Seitenzuordnungen aktivierter Plugins verwendet werden."
-
 #: includes/settings.php
 msgid "Classic gold"
 msgstr "Klassisch in Gold"
@@ -693,10 +689,6 @@ msgstr "Text der zweiten Schaltfläche"
 #: includes/home-settings.php
 msgid "Section cards"
 msgstr "Bereichskarten"
-
-#: includes/home-settings.php
-msgid "Section pages"
-msgstr "Seitenzuordnungen"
 
 #: includes/home-settings.php
 msgid "Section settings"

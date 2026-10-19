@@ -129,10 +129,6 @@ msgstr ""
 msgid "Choose image"
 msgstr ""
 
-#: includes/home-settings.php
-msgid "Choose standard WordPress pages. These links are used on the homepage, in the header, footer and sidebar; featured images become card images. No plugins are required. An empty selection allows optional page bindings from active plugins."
-msgstr ""
-
 #: includes/settings.php
 msgid "Classic gold"
 msgstr ""
@@ -692,10 +688,6 @@ msgstr ""
 
 #: includes/home-settings.php
 msgid "Section cards"
-msgstr ""
-
-#: includes/home-settings.php
-msgid "Section pages"
 msgstr ""
 
 #: includes/home-settings.php
