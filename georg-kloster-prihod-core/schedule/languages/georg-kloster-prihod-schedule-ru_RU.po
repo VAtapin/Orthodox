@@ -772,3 +772,12 @@ msgstr "Это местное время не существует из-за п�
 #: includes/class-public-view.php
 msgid "Январь"
 msgstr "Январь"
+
+msgid "Select a service place before saving."
+msgstr "Выберите место служения перед сохранением."
+
+msgid "The service was not saved. Return to the form and correct the error."
+msgstr "Богослужение не сохранено. Вернитесь к форме и исправьте ошибку."
+
+msgid "Cannot save the service"
+msgstr "Не удалось сохранить богослужение"

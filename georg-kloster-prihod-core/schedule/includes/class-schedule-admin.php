@@ -65,8 +65,8 @@ final class Schedule_Admin {
     public static function input( string $name, string $value, string $type = 'text' ): string {
         return '<input type="' . esc_attr( $type ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '">';
     }
-    public static function locations( string $name, int $selected_id ): string {
-        $html = '<select name="' . esc_attr( $name ) . '"><option value="0">' . esc_html__( 'Выберите место', 'georg-kloster-prihod-schedule' ) . '</option>';
+    public static function locations( string $name, int $selected_id, bool $required = false ): string {
+        $html = '<select name="' . esc_attr( $name ) . '"' . ( $required ? ' required aria-required="true" data-required-message="' . esc_attr__( 'Select a service place before saving.', 'georg-kloster-prihod-schedule' ) . '"' : '' ) . '><option value="' . ( $required ? '' : '0' ) . '">' . esc_html__( 'Выберите место', 'georg-kloster-prihod-schedule' ) . '</option>';
         foreach ( get_posts( array( 'post_type' => \GeorgKlosterPrihodCore\Directory::location_types(), 'post_status' => array( 'publish', 'draft', 'private' ), 'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC' ) ) as $post ) {
             $html .= '<option value="' . esc_attr( $post->ID ) . '"' . selected( $selected_id, $post->ID, false ) . '>' . esc_html( $post->post_title ) . '</option>';
         }
@@ -87,7 +87,7 @@ final class Schedule_Admin {
         foreach ( array( 'date' => __( 'Дата / начало повторений', 'georg-kloster-prihod-schedule' ), 'time' => __( 'Начало', 'georg-kloster-prihod-schedule' ), 'end' => __( 'Окончание (необязательно)', 'georg-kloster-prihod-schedule' ) ) as $key => $label ) {
             echo '<label class="gkpsch-service-field">' . esc_html( $label ) . self::input( 'gkpsch_service[' . $key . ']', $rule[ $key ], 'date' === $key ? 'date' : 'time' ) . '</label>';
         }
-        echo '<label class="gkpsch-service-field gkpsch-service-wide">' . esc_html__( 'Место служения', 'georg-kloster-prihod-schedule' ) . self::locations( 'gkpsch_service[location_id]', (int) $rule['location_id'] ) . '</label></div>';
+        echo '<label class="gkpsch-service-field gkpsch-service-wide">' . esc_html__( 'Место служения', 'georg-kloster-prihod-schedule' ) . ' *' . self::locations( 'gkpsch_service[location_id]', (int) $rule['location_id'], true ) . '<span class="description">' . esc_html__( 'Select a service place before saving.', 'georg-kloster-prihod-schedule' ) . '</span></label></div>';
         if ( ! get_posts( array( 'post_type' => \GeorgKlosterPrihodCore\Directory::location_types(), 'post_status' => array( 'publish', 'draft', 'private' ), 'numberposts' => 1, 'fields' => 'ids' ) ) && current_user_can( 'manage_gkpc_profile' ) ) { echo '<p class="gkpsch-service-help"><a href="' . esc_url( admin_url( 'post-new.php?post_type=gkpc_location' ) ) . '">' . esc_html__( 'Сначала добавьте место служения', 'georg-kloster-prihod-schedule' ) . '</a></p>'; }
         echo '</fieldset>';
         Schedule_Calendar::editor( $rule );
@@ -116,24 +116,41 @@ final class Schedule_Admin {
         $html .= '<label class="gkpsch-service-field">' . esc_html__( 'Место после переноса', 'georg-kloster-prihod-schedule' ) . self::locations( $prefix . '[location_id]', (int) ( $change['location_id'] ?? $rule['location_id'] ) ) . '</label></div>';
         return $html . Calendar_Colors::field( $prefix . '[vestment_color]', $change['vestment_color'] ?? ( $rule['vestment_color'] ?? '' ), array_key_exists( 'vestment_color', $change ) ) . '<label class="gkpsch-exception-remove"><input type="checkbox" name="' . esc_attr( $prefix . '[remove]' ) . '" value="1"> ' . esc_html__( 'Удалить исключение', 'georg-kloster-prihod-schedule' ) . '</label></fieldset>';
     }
-    public static function save( int $id ): void {
-        if ( ! Modules::enabled( 'schedule' ) || ! current_user_can( 'manage_gkpsch_schedule' ) || ! current_user_can( 'edit_post', $id ) || wp_is_post_autosave( $id ) || wp_is_post_revision( $id ) || ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) ) { return; }
+    private static function can_save( int $id ): bool {
+        if ( ! Modules::enabled( 'schedule' ) || ! current_user_can( 'manage_gkpsch_schedule' ) || ! current_user_can( 'edit_post', $id ) || wp_is_post_autosave( $id ) || wp_is_post_revision( $id ) || ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) ) { return false; }
         $nonce = $_POST['gkpsch_service_nonce'] ?? '';
-        if ( ! is_string( $nonce ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $nonce ) ), 'gkpsch_service_' . $id ) || ! is_array( $_POST['gkpsch_service'] ?? null ) ) { return; }
+        return is_string( $nonce ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $nonce ) ), 'gkpsch_service_' . $id ) && is_array( $_POST['gkpsch_service'] ?? null );
+    }
+    /** Reject the classic editor submission before WordPress writes its title/status. */
+    public static function before_save( array $data, array $postarr ): array {
+        $id = (int) ( $postarr['ID'] ?? 0 );
+        if ( 'gkpsch_service' !== $data['post_type'] || ! $id || ! self::can_save( $id ) ) { return $data; }
+        try { self::submitted_rule(); }
+        catch ( \InvalidArgumentException $error ) {
+            wp_die( esc_html( $error->getMessage() ) . '<br>' . esc_html__( 'The service was not saved. Return to the form and correct the error.', 'georg-kloster-prihod-schedule' ), esc_html__( 'Cannot save the service', 'georg-kloster-prihod-schedule' ), array( 'response' => 400, 'back_link' => true ) );
+        }
+        return $data;
+    }
+    private static function submitted_rule(): array {
+        $input = wp_unslash( $_POST['gkpsch_service'] );
+        $input['exceptions'] = array();
+        $rows = wp_unslash( $_POST['gkpsch_exceptions'] ?? array() );
+        if ( ! is_array( $rows ) ) { throw new \InvalidArgumentException( __( 'Некорректные исключения.', 'georg-kloster-prihod-schedule' ) ); }
+        foreach ( $rows as $row ) {
+            if ( ! is_array( $row ) || ! is_string( $row['original'] ?? '' ) ) { throw new \InvalidArgumentException( __( 'Некорректная исходная дата.', 'georg-kloster-prihod-schedule' ) ); }
+            $date = $row['original'] ?? '';
+            if ( '' === $date || ! empty( $row['remove'] ) ) { continue; }
+            if ( isset( $input['exceptions'][ $date ] ) ) { throw new \InvalidArgumentException( __( 'Исходная дата исключения повторяется.', 'georg-kloster-prihod-schedule' ) ); }
+            unset( $row['original'], $row['remove'] );
+            $input['exceptions'][ $date ] = $row;
+        }
+        return Schedule::validate( $input );
+    }
+    public static function save( int $id ): void {
+        if ( ! self::can_save( $id ) ) { return; }
         try {
-            $input = wp_unslash( $_POST['gkpsch_service'] );
-            $input['exceptions'] = array();
-            $rows = wp_unslash( $_POST['gkpsch_exceptions'] ?? array() );
-            if ( ! is_array( $rows ) ) { throw new \InvalidArgumentException( __( 'Некорректные исключения.', 'georg-kloster-prihod-schedule' ) ); }
-            foreach ( $rows as $row ) {
-                if ( ! is_array( $row ) || ! is_string( $row['original'] ?? '' ) ) { throw new \InvalidArgumentException( __( 'Некорректная исходная дата.', 'georg-kloster-prihod-schedule' ) ); }
-                $date = $row['original'] ?? '';
-                if ( '' === $date || ! empty( $row['remove'] ) ) { continue; }
-                if ( isset( $input['exceptions'][ $date ] ) ) { throw new \InvalidArgumentException( __( 'Исходная дата исключения повторяется.', 'georg-kloster-prihod-schedule' ) ); }
-                unset( $row['original'], $row['remove'] );
-                $input['exceptions'][ $date ] = $row;
-            }
-            update_post_meta( $id, '_gkpsch_service', Schedule::validate( $input ) );
+            update_post_meta( $id, '_gkpsch_service', self::submitted_rule() );
+            delete_transient( 'gkpsch_schedule_error_' . get_current_user_id() );
             do_action( 'gkpsch_schedule_changed', $id );
         } catch ( \InvalidArgumentException $error ) {
             set_transient( 'gkpsch_schedule_error_' . get_current_user_id(), $error->getMessage(), 60 );

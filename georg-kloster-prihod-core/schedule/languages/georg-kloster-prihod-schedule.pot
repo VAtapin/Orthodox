@@ -5,6 +5,10 @@ msgstr "Content-Type: text/plain; charset=UTF-8\nX-Domain: georg-kloster-prihod-
 msgid "Access denied."
 msgstr ""
 
+#: includes/class-schedule-admin.php
+msgid "Cannot save the service"
+msgstr ""
+
 #: assets/blocks.js
 msgid "ID места (0 — все)"
 msgstr ""
@@ -25,12 +29,20 @@ msgstr ""
 msgid "Schedule settings"
 msgstr ""
 
+#: includes/class-schedule-admin.php includes/class-schedule.php
+msgid "Select a service place before saving."
+msgstr ""
+
 #: includes/class-admin.php includes/class-public-view.php
 msgid "Service schedule"
 msgstr ""
 
 #: includes/class-admin.php
 msgid "Services"
+msgstr ""
+
+#: includes/class-schedule-admin.php
+msgid "The service was not saved. Return to the form and correct the error."
 msgstr ""
 
 #: includes/class-public-view.php

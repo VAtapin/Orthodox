@@ -3,7 +3,7 @@ Contributors: vatapin
 Tags: parish, church, clergy, contacts
 Requires at least: 6.5
 Requires PHP: 8.0
-Stable tag: 0.2.0
+Stable tag: 0.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -21,7 +21,7 @@ The previously separate Schedule implementation is bundled here. Existing gkpsch
 
 Upload the ZIP to Plugins, activate it, and open Parish in the dashboard. Add your profile, places, and clergy. Insert the Parish profile, Parish contacts, Clergy, or Places block in a page. The matching shortcodes are [gkpc_profile], [gkpc_contacts], [gkpc_clergy], and [gkpc_places].
 
-For an installed Parish Core, upload georg-kloster-prihod-core-0.2.0.zip and replace the installed version. Keep the existing georg-kloster-prihod-core folder/slug. No manual database migration is needed. Create services under Parish and configure calendar display under Parish > Schedule settings. Schedule blocks and [gkpsch_schedule], [gkpsch_next_service], [gkpsch_next_services] remain available. No separate Schedule ZIP is required.
+For an installed Parish Core, upload georg-kloster-prihod-core-0.2.1.zip and replace the installed version. Keep the existing georg-kloster-prihod-core folder/slug. No manual database migration is needed. Create services under Parish and configure calendar display under Parish > Schedule settings. Schedule blocks and [gkpsch_schedule], [gkpsch_next_service], [gkpsch_next_services] remain available. No separate Schedule ZIP is required.
 
 == External services ==
 
@@ -44,6 +44,9 @@ Interrupted imports can be resumed. The importer identifies its own items, does 
 Demo texts and media: copyright 2026 Vladimir Atapin, GPLv2 or later. The parish, diocese, address and events are fictional. The photographs and illustrations are provided by Saint George Monastery in Gotschendorf and are not images of the fictional parish. Sources and individual credits are in demo/resources.json. Files are included locally; import does not contact their original sites. Photographs of real people are not assigned to fictional persons.
 
 == Changelog ==
+
+= 0.2.1 =
+Require a service place before saving in the classic editor. Show a localized validation message without clearing the form. Reject invalid editor submissions before WordPress writes a partial service post; preserve existing services on validation failure. Connect fallback error notices.
 
 = 0.2.0 =
 Merge Schedule into Parish while retaining its public identifiers, existing data and optional demo workflow. Unify places without rewriting IDs. Add separate place logos/photos and public display. Fix the calendar API origin in code and remove its settings field. Retire the separate Schedule package.

@@ -14,6 +14,31 @@
     details.appendChild(editor);
 })();
 document.addEventListener('DOMContentLoaded', function () {
+    var form = document.getElementById('post');
+    var place = document.querySelector('[name="gkpsch_service[location_id]"]');
+    if (form && place) {
+        function updatePlaceValidity() {
+            place.setCustomValidity(!place.value || place.value === '0' ? place.dataset.requiredMessage : '');
+        }
+        function validatePlace(event) {
+            updatePlaceValidity();
+            if (place.checkValidity()) return;
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            var box = place.closest('.postbox');
+            if (box) box.classList.remove('closed');
+            place.focus();
+            place.reportValidity();
+        }
+        place.addEventListener('change', updatePlaceValidity);
+        updatePlaceValidity();
+        // Validate before WordPress disables its publish/save buttons, including
+        // classic-editor forms with novalidate and submission via the keyboard.
+        form.addEventListener('click', function (event) {
+            if (event.target.closest('#publish, #save-post')) validatePlace(event);
+        }, true);
+        form.addEventListener('submit', validatePlace, true);
+    }
     var button = document.getElementById('gkpsch-add-exception');
     if (!button) return;
     var kind = document.querySelector('[name="gkpsch_service[kind]"]');

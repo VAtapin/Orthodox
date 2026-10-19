@@ -10,6 +10,8 @@ final class Schedule {
             add_meta_box( 'gkpsch-service', __( 'Расписание службы', 'georg-kloster-prihod-schedule' ), array( Schedule_Admin::class, 'render' ), 'gkpsch_service' );
         } );
         add_action( 'save_post_gkpsch_service', array( Schedule_Admin::class, 'save' ) );
+        add_filter( 'wp_insert_post_data', array( Schedule_Admin::class, 'before_save' ), 10, 2 );
+        add_action( 'admin_notices', array( Schedule_Admin::class, 'notice' ) );
         add_action( 'save_post_gkpsch_service', static function ( int $id ) {
             if ( 'publish' === get_post_status( $id ) ) {
                 do_action( 'wpml_register_single_string', 'georg-kloster-prihod-schedule', 'service-' . $id, get_the_title( $id ) );
@@ -95,6 +97,9 @@ final class Schedule {
         if ( ! Occurrences::instant( $end_date, $end, $zone ) ) { throw new \InvalidArgumentException( __( 'Время окончания не существует из-за перевода часов.', 'georg-kloster-prihod-schedule' ) ); }
     }
     private static function location( $id ): int {
+        if ( '' === $id || 0 === $id || '0' === $id ) {
+            throw new \InvalidArgumentException( __( 'Select a service place before saving.', 'georg-kloster-prihod-schedule' ) );
+        }
         if ( ! is_scalar( $id ) || ! ctype_digit( (string) $id ) || (int) $id < 1 || ! in_array( get_post_type( (int) $id ), \GeorgKlosterPrihodCore\Directory::location_types(), true ) || in_array( get_post_status( (int) $id ), array( 'trash', 'auto-draft' ), true ) ) {
             throw new \InvalidArgumentException( __( 'Выберите существующее место служения.', 'georg-kloster-prihod-schedule' ) );
         }

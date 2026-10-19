@@ -1,8 +1,8 @@
 # Проверки
 
-## Объединённый «Приход» 0.2.0
+## Объединённый «Приход» 0.2.1
 
-`parish-merge-blueprint.json` выполняет 50 проверок: один каталог мест и меню,
+`parish-merge-blueprint.json` выполняет 70 проверок: один каталог мест и меню,
 сохранность прежних ID/типов/служб/духовенства, совместимость демо-мест,
 изображения из настоящей медиатеки без поддержки миниатюр в теме, валидация,
 права/nonce, публичный вывод и фиксированный API. Нужны только mounts Core и tests:
@@ -11,9 +11,16 @@
 npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-prihod-core /wordpress/wp-content/plugins/georg-kloster-prihod-core --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/parish-merge-blueprint.json
 ```
 
-Для проверки ZIP распаковать `georg-kloster-prihod-core-0.2.0.zip` и монтировать
+Для проверки ZIP распаковать `georg-kloster-prihod-core-0.2.1.zip` и монтировать
 его каталог вместо исходника. Для минимальной платформы использовать копию
 Blueprint с WP6.5.13/PHP8.0. Результат: `tests/.parish-merge-result.json`.
+
+`schedule-admin-validation.php` входит в этот сценарий: настоящая запись через
+`wp_update_post`, запрет частичной публикации без места, сохранность прежней
+записи/расписания/редакций, исправление места, другие ошибки и русские сообщения.
+`node tests/schedule-admin-validation.js` проверяет остановку нажатия
+«Опубликовать»/«Сохранить» и отправки с клавиатуры до обработчиков WordPress,
+раскрытие/фокус поля, выбор места и свободную работу остальных кнопок.
 
 `parish-upgrade-blueprint.json` требует старые ZIP Core 0.1.5 и Schedule 0.1.10,
 распакованные отдельно в `build/parish-upgrade-old`. Монтировать их под прежними
