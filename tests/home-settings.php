@@ -61,6 +61,35 @@ add_filter( 'wpml_translate_single_string', $translation, 10, 3 );
 $check( str_contains( prihod_theme_home(), 'Translated owner heading' ), 'Custom headings do not use WPML string translation.' );
 remove_filter( 'wpml_translate_single_string', $translation, 10 );
 
+// All site presentation data must also work with no active plugins.
+$check( get_option( 'active_plugins', array() ) === array(), 'Standalone phase unexpectedly loads a plugin.' );
+$set( array( 'pages' => array( 'contacts' => $page_id, 'about' => $page_id, 'requests' => $page_id, 'donations' => $page_id, 'schedule' => $page_id ) ) );
+$check( prihod_theme_resource_id( 'contacts' ) === $page_id && prihod_theme_home_resource_id( 'contacts' ) === $page_id, 'Theme page links are restricted to the homepage.' );
+$check( prihod_theme_resource_id( 'home' ) === $home_id, 'Standalone footer loses the native WordPress homepage.' );
+$check( str_contains( prihod_theme_footer(), get_permalink( $page_id ) ) && str_contains( prihod_theme_sidebar(), get_permalink( $page_id ) ), 'Standalone footer/sidebar cannot use selected pages.' );
+$own_profile = array( 'name' => 'Owner community', 'short_name' => 'Owner short name', 'description' => 'Owner description', 'type' => 'monastery', 'address' => "Owner street\nOwner town", 'phone' => '+49 123 456', 'email' => 'owner@example.org' );
+$options = prihod_theme_sanitize( array( 'profile' => $own_profile, 'header_contacts' => true ) ); update_option( 'georg_kloster_prihod_options', $options );
+$check( prihod_theme_profile() == $own_profile, 'Theme profile requires Core or loses owner fields.' );
+$check( str_contains( prihod_theme_header(), 'tel:+49123456' ) && str_contains( prihod_theme_header(), 'mailto:owner@example.org' ) && str_contains( prihod_theme_brand(), 'Owner short name' ), 'Standalone header ignores theme contacts/name.' );
+foreach ( array_keys( prihod_theme_schemes() ) as $scheme ) {
+    $options['scheme'] = $scheme; update_option( 'georg_kloster_prihod_options', $options ); WP_Theme_JSON_Resolver::clean_cached_data();
+    $html = prihod_theme_home();
+    $check( str_contains( $html, 'Owner street' ) && str_contains( $html, 'mailto:owner@example.org' ) && str_contains( $html, 'Owner description' ), 'Standalone data missing in scheme: ' . $scheme );
+    $check( ! str_contains( $html, 'prihod-hero-service' ) && str_contains( $html, get_permalink( $page_id ) ), 'Optional Schedule hides ordinary page links or creates an empty panel: ' . $scheme );
+}
+$invalid_profile = prihod_theme_profile_sanitize( array( 'name' => '<b>Safe name</b>', 'phone' => array(), 'email' => 'invalid', 'address' => '<script>x</script>Street', 'type' => '../../invalid', 'unknown' => 'discard' ) );
+$check( $invalid_profile['name'] === 'Safe name' && $invalid_profile['email'] === '' && $invalid_profile['phone'] === '' && $invalid_profile['type'] === '' && ! isset( $invalid_profile['unknown'] ) && ! str_contains( $invalid_profile['address'], '<' ), 'Profile validation accepts invalid fields/markup.' );
+$check( prihod_theme_sanitize( array( 'home' => array() ) )['profile'] === $options['profile'], 'Partial settings discard the owner profile.' );
+$translate_profile = static fn( $value, $context, $name ) => 'profile-description' === $name ? 'Translated owner description' : $value;
+add_filter( 'wpml_translate_single_string', $translate_profile, 10, 3 );
+$check( prihod_theme_profile()['description'] === 'Translated owner description', 'Theme profile text ignores optional translations.' );
+remove_filter( 'wpml_translate_single_string', $translate_profile, 10 );
+ob_start(); prihod_theme_settings_page(); $panel = ob_get_clean();
+$check( str_contains( $panel, 'prihod-option-profile' ) && str_contains( $panel, '[profile][address]' ) && str_contains( $panel, '[profile][type]' ), 'Theme has no standalone profile controls.' );
+$check( $post_snapshot === hash( 'sha256', serialize( $wpdb->get_results( "SELECT ID,post_content,post_title,post_status FROM {$wpdb->posts} ORDER BY ID", ARRAY_A ) ) ), 'Standalone theme settings rewrote content.' );
+$set( array() );
+$check( prihod_theme_profile()['name'] === get_bloginfo( 'name' ) && prihod_theme_profile()['description'] === get_bloginfo( 'description' ), 'Empty theme settings lose standard WordPress identity.' );
+
 // Second phase: real standalone Schedule plugin, without Core or external API calls.
 $activated = activate_plugin( 'georg-kloster-prihod-schedule/georg-kloster-prihod-schedule.php' );
 if ( is_wp_error( $activated ) ) { throw new RuntimeException( $activated->get_error_message() ); }

@@ -2745,3 +2745,48 @@ msgstr "Strony działów"
 
 msgid "Текст ссылки"
 msgstr "Tekst odnośnika"
+
+msgid "Название"
+msgstr "Nazwa"
+
+msgid "Тип общины"
+msgstr "Rodzaj wspólnoty"
+
+msgid "Данные сайта"
+msgstr "Dane witryny"
+
+msgid "Выбрать изображение"
+msgstr "Wybierz obraz"
+
+msgid "Закрыть меню"
+msgstr "Zamknij menu"
+
+msgid "Изображение пункта меню"
+msgstr "Obraz pozycji menu"
+
+msgid "Использовать изображение"
+msgstr "Użyj obrazu"
+
+msgid "Карточек в строке"
+msgstr "Kart w wierszu"
+
+msgid "Карточки показывают примеры оформления. Живой предпросмотр использует ваши страницы, фотографии и настройки."
+msgstr "Karty przedstawiają przykłady wyglądu. Podgląd na żywo korzysta z Twoich stron, zdjęć i ustawień."
+
+msgid "Меню с карточками и изображениями"
+msgstr "Menu z kartami i obrazami"
+
+msgid "Оформление меню"
+msgstr "Wygląd menu"
+
+msgid "Состав и порядок пунктов меняются в «Внешний вид → Меню». Там же можно выбрать изображение для каждого пункта. Если оно не выбрано, показывается миниатюра связанной страницы или записи."
+msgstr "Pozycje menu i ich kolejność zmienisz w „Wygląd → Menu”. Tam też wybierzesz obraz dla każdej pozycji. Jeśli go nie wybrano, wyświetlany jest obrazek wyróżniający powiązanej strony lub wpisu."
+
+msgid "Строка ссылок"
+msgstr "Pasek odnośników"
+
+msgid "Название, описание и контакты можно задать здесь без плагинов. Заполненные поля имеют приоритет. Если название или описание не заданы, используются общие настройки WordPress; подключённый Core может дополнить пустые поля."
+msgstr "Nazwę, opis i dane kontaktowe można podać tutaj bez wtyczek. Wypełnione pola mają pierwszeństwo. Bez własnej nazwy lub opisu używane są ustawienia ogólne WordPress; opcjonalna wtyczka Core może uzupełnić puste pola."
+
+msgid "Выберите обычные страницы WordPress. Эти ссылки используются на главной, в шапке, подвале и боковой колонке; изображения записей — как фотографии карточек. Плагины не требуются. Пустой выбор позволяет использовать необязательные привязки подключённых плагинов."
+msgstr "Wybierz zwykłe strony WordPress. Te odnośniki są używane na stronie głównej, w nagłówku, stopce i panelu bocznym; obrazki wyróżniające służą jako zdjęcia kart. Wtyczki nie są wymagane. Brak wyboru pozwala używać opcjonalnych powiązań stron z aktywnych wtyczek."

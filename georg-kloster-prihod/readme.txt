@@ -12,7 +12,7 @@ A parish theme with five visual styles for standard WordPress pages and posts.
 
 Georg-Kloster Prihod provides five visual styles: Classic, Hospitality, Editorial, Tradition, and Blue. The theme works on a standard WordPress installation without a companion plugin. Choose a style and your own images under Appearance > Parish Appearance. Standard pages and posts remain editable in WordPress.
 
-The theme does not create pages or send data to external services. Optional parish plugins can provide contact, calendar, and schedule content. The theme only displays content available on the site. No bundled photographs appear on the public site.
+The theme does not create pages or send data to external services. Set your own name, description, community type and contacts under Appearance > Parish Appearance > Site Details. Choose ordinary WordPress pages for links throughout the theme under Homepage. Optional plugins can supply calendar and automatic schedule data, or fill empty contact fields. No bundled photographs appear on the public site.
 
 == Installation ==
 
@@ -33,6 +33,9 @@ The theme uses images selected from your WordPress media library. It does not do
 Create and assign a menu under Appearance > Menus. Open a menu item and choose its image from the media library; without a chosen image, the linked page or post featured image is used. The theme's Appearance > Parish Appearance > Header and Footer section enables an image menu alongside the standard desktop link row and sets the number of visual columns. The link-row-only option remains available. Menu item descriptions can be enabled under Screen Options on the Menus screen.
 
 == Changelog ==
+
+= 0.4.28 =
+Add independent site identity and contact settings. Use theme page selections throughout the header, footer, sidebar and page templates. Companion plugins remain optional; existing plugin data is retained as a fallback for empty settings.
 
 = 0.4.27 =
 Add homepage section visibility, ordering, custom headings, page links, card order and labels, service count and news appearance controls under Appearance > Parish Appearance > Homepage. Keep the hero and section layouts in theme templates; no page content is created or changed. Custom text supports WPML String Translation.

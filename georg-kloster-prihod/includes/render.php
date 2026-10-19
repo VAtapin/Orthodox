@@ -3,7 +3,13 @@ defined( 'ABSPATH' ) || exit;
 
 function prihod_theme_profile(): array {
     $profile = class_exists( '\GeorgKlosterPrihodCore\Profile' ) ? \GeorgKlosterPrihodCore\Profile::get() : ( class_exists( '\Prihod\Profile' ) ? \Prihod\Profile::get() : array() );
-    return array_merge( array( 'name' => get_bloginfo( 'name' ), 'description' => get_bloginfo( 'description' ), 'address' => '', 'phone' => '', 'email' => '' ), array_filter( $profile, fn( $value ) => '' !== $value ) );
+    $own = prihod_theme_profile_sanitize( georg_kloster_prihod_options()['profile'] );
+    foreach ( $own as $key => $value ) {
+        if ( '' === $value || 'type' === $key ) { continue; }
+        $translated = apply_filters( 'wpml_translate_single_string', false, 'georg-kloster-prihod', 'profile-' . $key );
+        if ( is_string( $translated ) && '' !== $translated ) { $own[$key] = $translated; }
+    }
+    return array_merge( array( 'name' => get_bloginfo( 'name' ), 'description' => get_bloginfo( 'description' ), 'address' => '', 'phone' => '', 'email' => '' ), array_filter( $profile, fn( $value ) => '' !== $value ), array_filter( $own, fn( $value ) => '' !== $value ) );
 }
 function prihod_theme_tagline(): string {
     $tagline = get_bloginfo( 'description' );
@@ -12,7 +18,14 @@ function prihod_theme_tagline(): string {
 }
 function prihod_theme_resources(): array {
     $resources = apply_filters( 'georg_kloster_prihod_resources', array() );
-    return is_array( $resources ) ? $resources : array();
+    $resources = is_array( $resources ) ? $resources : array();
+    foreach ( prihod_theme_home_options()['pages'] as $key => $id ) {
+        if ( $id && 'page' === get_post_type( $id ) && 'publish' === get_post_status( $id ) ) {
+            $resources[$key] = array_merge( is_array( $resources[$key] ?? null ) ? $resources[$key] : array(), array( 'id' => $id ) );
+        }
+    }
+    if ( empty( $resources['home']['id'] ) ) { $resources['home'] = array( 'id' => (int) get_option( 'page_on_front' ) ); }
+    return $resources;
 }
 function prihod_theme_resource_id( string $key ): int {
     $resources = prihod_theme_resources();

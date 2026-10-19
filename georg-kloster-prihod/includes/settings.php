@@ -5,6 +5,7 @@ function georg_kloster_prihod_options(): array {
     $saved = get_option( 'georg_kloster_prihod_options', array() );
     $defaults = array( 'hero_image' => 0, 'logo' => 0, 'logo_show' => true, 'logo_width' => 240, 'logo_removed' => false, 'logo_hide_title' => false, 'languages' => array(), 'scheme' => '', 'width' => 1200, 'font' => 'sans', 'font_size' => 16, 'sticky_header' => false, 'header_contacts' => true, 'menu_style' => 'visual', 'menu_columns' => 3, 'footer_text' => '', 'header_motto' => __( 'С любовью к Богу и людям', 'georg-kloster-prihod' ), 'hero_motto' => __( 'Вера объединяет сердца', 'georg-kloster-prihod' ), 'hero_quote_text' => __( 'Где двое или трое собраны во имя Моё, там Я посреди них', 'georg-kloster-prihod' ), 'hero_quote_source' => __( 'Мф. 18:20', 'georg-kloster-prihod' ), 'quote_text' => __( 'Где двое или трое собраны во имя Моё, там Я посреди них', 'georg-kloster-prihod' ), 'quote_source' => __( 'Мф. 18:20', 'georg-kloster-prihod' ) );
     $defaults['home'] = array();
+    $defaults['profile'] = array();
     return array_merge( $defaults, is_array( $saved ) ? array_intersect_key( $saved, $defaults ) : array() );
 }
 function prihod_theme_sanitize( $input ): array {
@@ -37,6 +38,10 @@ function prihod_theme_sanitize( $input ): array {
         }
     }
     if ( array_key_exists( 'home', $input ) && is_array( $input['home'] ) ) { $out['home'] = prihod_theme_home_sanitize( $input['home'], $out['scheme'] ?: prihod_theme_scheme() ); }
+    if ( array_key_exists( 'profile', $input ) ) {
+        $out['profile'] = prihod_theme_profile_sanitize( $input['profile'] );
+        foreach ( $out['profile'] as $key => $value ) { if ( '' !== $value && 'type' !== $key ) { do_action( 'wpml_register_single_string', 'georg-kloster-prihod', 'profile-' . $key, $value ); } }
+    }
     return $out;
 }
 add_action( 'admin_init', function () { register_setting( 'prihod_theme', 'georg_kloster_prihod_options', array( 'type' => 'array', 'sanitize_callback' => 'prihod_theme_sanitize' ) ); } );
@@ -58,7 +63,7 @@ function prihod_theme_settings_page(): void {
     if ( ! current_user_can( 'edit_theme_options' ) ) { wp_die( esc_html__( 'Недостаточно прав.', 'georg-kloster-prihod' ) ); }
     $options = georg_kloster_prihod_options();
     $sections = array( 'schemes' => __( 'Оформление', 'georg-kloster-prihod' ), 'layout' => __( 'Макет и шрифты', 'georg-kloster-prihod' ), 'branding' => __( 'Логотип и иконка', 'georg-kloster-prihod' ), 'header' => __( 'Шапка и подвал', 'georg-kloster-prihod' ), 'languages' => __( 'Языки', 'georg-kloster-prihod' ) );
-    $sections = array_slice( $sections, 0, 1, true ) + array( 'home' => __( 'Главная страница', 'georg-kloster-prihod' ) ) + array_slice( $sections, 1, null, true );
+    $sections = array_slice( $sections, 0, 1, true ) + array( 'home' => __( 'Главная страница', 'georg-kloster-prihod' ), 'profile' => __( 'Данные сайта', 'georg-kloster-prihod' ) ) + array_slice( $sections, 1, null, true );
     echo '<div class="wrap georg-kloster-prihod-settings"><h1>' . esc_html__( 'Оформление прихода', 'georg-kloster-prihod' ) . ' <small>' . esc_html( wp_get_theme()->get( 'Version' ) ) . '</small></h1>';
     settings_errors();
     echo '<div class="prihod-options-shell"><nav class="prihod-options-nav" aria-label="' . esc_attr__( 'Разделы настроек', 'georg-kloster-prihod' ) . '">';
@@ -76,6 +81,7 @@ function prihod_theme_settings_page(): void {
     }
     echo '</div></section>';
     prihod_theme_home_settings_panel( $options );
+    prihod_theme_profile_settings_panel( $options );
     echo '<section id="prihod-option-layout" class="prihod-option-section"><h2>' . esc_html( $sections['layout'] ) . '</h2>';
     foreach ( array( 'width' => array( __( 'Ширина сайта, px', 'georg-kloster-prihod' ), 960, 1440 ), 'font_size' => array( __( 'Размер основного текста, px', 'georg-kloster-prihod' ), 14, 20 ) ) as $key => $field ) { echo '<p><label>' . esc_html( $field[0] ) . '<br><input type="number" min="' . $field[1] . '" max="' . $field[2] . '" name="georg_kloster_prihod_options[' . esc_attr( $key ) . ']" value="' . esc_attr( $options[$key] ) . '"></label></p>'; }
     echo '<p><label>' . esc_html__( 'Основной шрифт', 'georg-kloster-prihod' ) . '<br><select name="georg_kloster_prihod_options[font]">';

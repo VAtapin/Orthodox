@@ -49,11 +49,7 @@ function prihod_theme_home_title( string $key, string $fallback = '' ): string {
     return prihod_theme_home_text( prihod_theme_home_options()['sections'][$key]['title'], $key . '-title', $fallback );
 }
 function prihod_theme_home_resource_id( string $key ): int {
-    $id = prihod_theme_home_options()['pages'][$key] ?? 0;
-    if ( ! $id ) { return prihod_theme_resource_id( $key ); }
-    if ( function_exists( 'pll_get_post' ) ) { $id = pll_get_post( $id ) ?: $id; }
-    $id = (int) apply_filters( 'wpml_object_id', $id, get_post_type( $id ) ?: 'page', true );
-    return 'page' === get_post_type( $id ) && 'publish' === get_post_status( $id ) ? $id : 0;
+    return prihod_theme_resource_id( $key );
 }
 function prihod_theme_home_url( string $key ): string {
     $id = prihod_theme_home_resource_id( $key );
@@ -127,7 +123,7 @@ function prihod_theme_home_settings_panel( array $options ): void {
         if ( 'content' === $key ) { echo '<p class="description">' . esc_html__( 'Выводится только собственное содержимое страницы, выбранной главной в настройках чтения.', 'georg-kloster-prihod' ) . '</p>'; }
         echo '</details></article>';
     }
-    echo '</div><h3>' . esc_html__( 'Страницы разделов', 'georg-kloster-prihod' ) . '</h3><p>' . esc_html__( 'Выберите страницы для ссылок и карточек. Их изображения записей используются как фотографии карточек. Автоматический выбор использует привязки плагинов, если они установлены.', 'georg-kloster-prihod' ) . '</p>';
+    echo '</div><h3>' . esc_html__( 'Страницы разделов', 'georg-kloster-prihod' ) . '</h3><p>' . esc_html__( 'Выберите обычные страницы WordPress. Эти ссылки используются на главной, в шапке, подвале и боковой колонке; изображения записей — как фотографии карточек. Плагины не требуются. Пустой выбор позволяет использовать необязательные привязки подключённых плагинов.', 'georg-kloster-prihod' ) . '</p>';
     foreach ( $pages as $key => $label ) {
         echo '<p><label>' . esc_html( $label ) . '<br>';
         wp_dropdown_pages( array( 'name' => 'georg_kloster_prihod_options[home][pages][' . $key . ']', 'id' => 'prihod-home-page-' . $key, 'selected' => $home['pages'][$key], 'show_option_none' => __( 'Автоматически', 'georg-kloster-prihod' ), 'option_none_value' => '0', 'post_status' => 'publish' ) );

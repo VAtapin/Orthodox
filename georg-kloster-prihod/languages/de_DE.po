@@ -2745,3 +2745,48 @@ msgstr "Seitenzuordnungen"
 
 msgid "Текст ссылки"
 msgstr "Linktext"
+
+msgid "Название"
+msgstr "Name"
+
+msgid "Тип общины"
+msgstr "Art der Gemeinde"
+
+msgid "Данные сайта"
+msgstr "Website-Daten"
+
+msgid "Выбрать изображение"
+msgstr "Bild auswählen"
+
+msgid "Закрыть меню"
+msgstr "Menü schließen"
+
+msgid "Изображение пункта меню"
+msgstr "Bild des Menüpunkts"
+
+msgid "Использовать изображение"
+msgstr "Bild verwenden"
+
+msgid "Карточек в строке"
+msgstr "Karten pro Zeile"
+
+msgid "Карточки показывают примеры оформления. Живой предпросмотр использует ваши страницы, фотографии и настройки."
+msgstr "Die Karten zeigen Gestaltungsbeispiele. Die Live-Vorschau verwendet Ihre Seiten, Fotos und Einstellungen."
+
+msgid "Меню с карточками и изображениями"
+msgstr "Menü mit Karten und Bildern"
+
+msgid "Оформление меню"
+msgstr "Menügestaltung"
+
+msgid "Состав и порядок пунктов меняются в «Внешний вид → Меню». Там же можно выбрать изображение для каждого пункта. Если оно не выбрано, показывается миниатюра связанной страницы или записи."
+msgstr "Die Menüpunkte und ihre Reihenfolge ändern Sie unter „Design → Menüs“. Dort können Sie auch für jeden Punkt ein Bild wählen. Ohne Auswahl wird das Beitragsbild der verknüpften Seite oder des Beitrags angezeigt."
+
+msgid "Строка ссылок"
+msgstr "Linkleiste"
+
+msgid "Название, описание и контакты можно задать здесь без плагинов. Заполненные поля имеют приоритет. Если название или описание не заданы, используются общие настройки WordPress; подключённый Core может дополнить пустые поля."
+msgstr "Name, Beschreibung und Kontaktdaten können hier ohne Plugins angegeben werden. Ausgefüllte Felder haben Vorrang. Ohne eigene Angaben gelten die allgemeinen WordPress-Einstellungen für Name und Beschreibung; ein aktiviertes Core-Plugin kann leere Felder ergänzen."
+
+msgid "Выберите обычные страницы WordPress. Эти ссылки используются на главной, в шапке, подвале и боковой колонке; изображения записей — как фотографии карточек. Плагины не требуются. Пустой выбор позволяет использовать необязательные привязки подключённых плагинов."
+msgstr "Wählen Sie normale WordPress-Seiten. Diese Links werden auf der Startseite, im Kopf- und Fußbereich sowie in der Seitenleiste verwendet; Beitragsbilder dienen als Kartenfotos. Plugins sind nicht erforderlich. Ohne Auswahl können optionale Seitenzuordnungen aktivierter Plugins verwendet werden."
