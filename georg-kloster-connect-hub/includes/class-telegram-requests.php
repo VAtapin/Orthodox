@@ -23,7 +23,7 @@ final class Telegram_Requests {
         add_filter( 'gkps_connector_request_notification', static fn( $ordinary, $provider ) => 'telegram' === $provider && self::ready() ? false : $ordinary, 10, 2 );
         add_filter( 'gkps_connector_text_limit', static fn( $limit, $provider, $kind ) => 'telegram' === $provider && 'request' === $kind && self::ready() ? 2000 : $limit, 10, 3 );
         add_filter( 'gkps_connector_job_allowed', static function ( $allowed, $provider, $job ) {
-            if ( 'telegram' !== $provider || empty( $job['reply_context'] ) ) { return $allowed; }
+            if ( 'telegram' !== $provider || 'request' !== ( $job['kind'] ?? '' ) || empty( $job['reply_context'] ) ) { return $allowed; }
             return $allowed && self::ready() && hash_equals( self::options()['configuration'], $job['reply_context']['configuration'] ?? '' );
         }, 10, 3 );
         add_action( 'gkps_request_created', array( self::class, 'notify' ) );

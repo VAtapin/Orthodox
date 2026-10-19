@@ -19,8 +19,6 @@ final class Connector {
         add_action( 'admin_post_gkps_connect_' . $id, array( $this, 'save' ) );
         add_action( 'admin_post_gkps_retry_' . $id, array( $this, 'retry' ) );
         add_action( 'gkps_' . $id . '_worker', array( $this, 'worker' ) );
-        add_action( 'add_meta_boxes_post', array( $this, 'meta_box' ) );
-        add_action( 'save_post_post', array( $this, 'publish_post' ), 20 );
         add_action( 'gkps_request_created', function ( $request ) { if ( ! empty( $this->settings()['notify_requests'] ) && apply_filters( 'gkps_connector_request_notification', true, $this->id ) ) { $this->queue( __( 'Новое обращение. Откройте закрытый раздел прихода.', 'georg-kloster-connect-hub' ), admin_url( 'admin.php?page=gkps-requests&request_id=' . absint( $request ) ), 'request', (int) $request ); } } );
         add_action( 'gkps_request_deleted', function ( $request ) {
             foreach ( get_post_meta( $request, '_gkps_jobs_' . $this->id, true ) ?: array() as $id ) { delete_option( 'gkps_job_' . $this->id . '_' . $id ); wp_clear_scheduled_hook( 'gkps_' . $this->id . '_worker', array( $id ) ); }
@@ -34,7 +32,7 @@ final class Connector {
     }
     public function __get( string $key ) { return in_array( $key, array( 'id', 'title' ), true ) ? $this->$key : null; }
     public function settings(): array { $saved = get_option( 'gkps_connect_' . $this->id, array() ); return array_merge( array( 'enabled' => false, 'token' => '', 'target' => '', 'api_version' => '', 'recipient' => '', 'template' => '', 'language' => 'ru', 'recipient_consent' => false, 'application_key' => '', 'application_secret' => '', 'notify_requests' => false, 'notify_schedule' => false ), is_array( $saved ) ? $saved : array() ); }
-    public function settings_url(): string { return in_array( $this->id, array( 'telegram', 'whatsapp' ), true ) ? admin_url( 'admin.php?page=gkps-connect-' . $this->id ) : add_query_arg( array( 'page' => 'gkch-networks', 'network' => $this->id ), admin_url( 'admin.php' ) ); }
+    public function settings_url(): string { return in_array( $this->id, array( 'telegram', 'whatsapp' ), true ) ? admin_url( 'admin.php?page=gkps-connect-' . $this->id ) : add_query_arg( array( 'page' => 'gkch-settings', 'network' => $this->id ), admin_url( 'admin.php' ) ); }
     private function authorize(): void { if ( ! current_user_can( 'manage_options' ) && ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Недостаточно прав.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); } }
     public function menu(): void {
         if ( ! in_array( $this->id, array( 'telegram', 'whatsapp' ), true ) ) { return; }
@@ -134,14 +132,16 @@ final class Connector {
     }
     public function queue( string $text, string $url, string $kind, int $source, array $reply_context = array() ): string {
         if ( ! $this->valid( $this->settings() ) ) { return ''; }
-        if ( ! in_array( $kind, array( 'post', 'request', 'schedule' ), true ) || ( ! in_array( $this->id, array( 'telegram', 'whatsapp' ), true ) && 'post' !== $kind ) ) { return ''; }
-        if ( 'instagram' === $this->id && ! Social_Providers::image( $source ) ) { return ''; }
+        if ( ! in_array( $kind, array( 'post', 'request', 'schedule', 'automation' ), true ) || ( ! in_array( $this->id, array( 'telegram', 'whatsapp' ), true ) && ! in_array( $kind, array( 'post', 'automation' ), true ) ) ) { return ''; }
+        if ( 'automation' === $kind && ! Publication_Rules::allows( array( 'kind' => $kind, 'source' => $source, 'reply_context' => $reply_context ) ) ) { return ''; }
+        $image = 'automation' === $kind ? Publication_Rules::image( $source ) : Social_Providers::image( $source );
+        if ( 'instagram' === $this->id && ! $image ) { return ''; }
         $settings = $this->settings(); $limit = max( 1, min( 3000, (int) apply_filters( 'gkps_connector_text_limit', 900, $this->id, $kind ) ) );
         $html = 'telegram' === $this->id && 'request' === $kind && ! empty( $reply_context['telegram_html'] ) && ! empty( $reply_context['request_id'] );
         $text = $html ? wp_kses( $text, array( 'b' => array() ) ) : wp_html_excerpt( wp_strip_all_tags( $text ), $limit, '…' ); $url = esc_url_raw( $url );
         $id = hash( 'sha256', $this->id . $kind . $source . $text . $url . $settings['target'] . $settings['recipient'] . ( $reply_context['configuration'] ?? '' ) ); $key = 'gkps_job_' . $this->id . '_' . $id;
         $target = hash( 'sha256', $settings['target'] . '|' . $settings['recipient'] );
-        if ( add_option( $key, array( 'text' => $text, 'url' => $url, 'kind' => $kind, 'source' => $source, 'target' => $target, 'status' => 'pending', 'attempts' => 0, 'reply_context' => $reply_context, 'image_url' => 'instagram' === $this->id ? Social_Providers::image( $source ) : '' ), '', false ) ) {
+        if ( add_option( $key, array( 'text' => $text, 'url' => $url, 'kind' => $kind, 'source' => $source, 'target' => $target, 'status' => 'pending', 'attempts' => 0, 'reply_context' => $reply_context, 'image_url' => 'instagram' === $this->id ? $image : '' ), '', false ) ) {
             $scheduled = wp_schedule_single_event( time() + 1, 'gkps_' . $this->id . '_worker', array( $id ), true );
             if ( is_wp_error( $scheduled ) || ! $scheduled ) { delete_option( $key ); return ''; }
             if ( 'request' === $kind ) { $jobs = get_post_meta( $source, '_gkps_jobs_' . $this->id, true ) ?: array(); $jobs[] = $id; update_post_meta( $source, '_gkps_jobs_' . $this->id, $jobs ); }
@@ -159,6 +159,7 @@ final class Connector {
             $body = 'whatsapp' === $this->id ? array( 'messaging_product' => 'whatsapp', 'to' => $settings['recipient'], 'type' => 'template', 'template' => array( 'name' => $settings['template'], 'language' => array( 'code' => $settings['language'] ), 'components' => array( array( 'type' => 'body', 'parameters' => array( array( 'type' => 'text', 'text' => wp_html_excerpt( $text, 1000, '…' ) ) ) ) ) ) ) : array( 'message' => $job['text'], 'link' => $job['url'] );
         }
         if ( $html ) { $body['parse_mode'] = 'HTML'; }
+        if ( 'facebook' === $this->id && '' === $job['url'] ) { unset( $body['link'] ); }
         return array( 'url' => $url, 'args' => array( 'headers' => $headers, 'body' => wp_json_encode( $body ), 'timeout' => 15, 'redirection' => 0 ) );
     }
     public function worker( string $id ): void {
@@ -167,12 +168,13 @@ final class Connector {
         if ( ! is_array( $job ) || in_array( $job['status'], array( 'sent', 'cancelled', 'uncertain' ), true ) || $job['attempts'] >= ( 'instagram' === $this->id ? 16 : 3 ) || ! $this->valid( $this->settings() ) ) { return; }
         if ( ! apply_filters( 'gkps_connector_job_allowed', true, $this->id, $job ) ) { $job['status'] = 'cancelled'; update_option( $key, $job, false ); return; }
         $settings = $this->settings(); if ( ! hash_equals( $job['target'], hash( 'sha256', $settings['target'] . '|' . $settings['recipient'] ) ) ) { $job['status'] = 'cancelled'; update_option( $key, $job, false ); return; }
-        if ( ( 'request' === $job['kind'] && ( ! get_post( $job['source'] ) || get_option( 'gkps_purge_job' ) ) ) || ( 'request' !== $job['kind'] && 'publish' !== get_post_status( $job['source'] ) ) ) { $job['status'] = 'cancelled'; update_option( $key, $job, false ); return; }
+        if ( ! Publication_Rules::allows( $job ) || ( 'request' === $job['kind'] && ( ! get_post( $job['source'] ) || get_option( 'gkps_purge_job' ) ) ) || ( ! in_array( $job['kind'], array( 'request', 'automation' ), true ) && 'publish' !== get_post_status( $job['source'] ) ) ) { $job['status'] = 'cancelled'; update_option( $key, $job, false ); return; }
         $lock = $key . '_lock'; $owner = Lock::acquire( $lock, 60 );
         if ( ! $owner ) { return; }
         try {
             $job = get_option( $key );
             if ( ! is_array( $job ) || in_array( $job['status'], array( 'sent', 'cancelled', 'uncertain' ), true ) || $job['attempts'] >= ( 'instagram' === $this->id ? 16 : 3 ) ) { return; }
+            if ( ! Publication_Rules::allows( $job ) ) { $job['status'] = 'cancelled'; update_option( $key, $job, false ); return; }
             if ( Social_Providers::supports( $this->id ) ) {
                 try { $result = Social_Providers::send( $this->id, $settings, $job ); }
                 catch ( \Throwable $error ) { $result = array( 'http_code' => 0, 'accepted' => false, 'pending' => false, 'retry' => false, 'response' => array(), 'uncertain' => 'ok' === $this->id ); }

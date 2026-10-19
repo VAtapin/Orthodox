@@ -40,7 +40,7 @@ final class Publications {
         $jobs = array();
         foreach ( $rows as $row ) {
             $job = maybe_unserialize( $row['option_value'] );
-            if ( ! is_array( $job ) || 'post' !== ( $job['kind'] ?? '' ) ) { continue; }
+            if ( ! is_array( $job ) || ! in_array( $job['kind'] ?? '', array( 'post', 'automation' ), true ) ) { continue; }
             foreach ( self::titles() as $channel => $title ) {
                 if ( preg_match( '/^gkps_job_' . preg_quote( $channel, '/' ) . '_([a-f0-9]{64})$/D', $row['option_name'], $match ) ) { $jobs[] = array_merge( $job, array( 'channel' => $title, 'provider' => $channel, 'id' => $match[1] ) ); break; }
             }
@@ -55,12 +55,12 @@ final class Publications {
         if ( ! $owner ) { throw new \RuntimeException( __( 'Publication is busy. Try again shortly.', 'georg-kloster-connect-hub' ) ); }
         try {
             $job = get_option( $key );
-            if ( ! is_array( $job ) || 'post' !== ( $job['kind'] ?? '' ) || ! current_user_can( 'publish_posts' ) || ! current_user_can( 'edit_post', $job['source'] ) ) { throw new \RuntimeException( __( 'Access denied.', 'georg-kloster-connect-hub' ) ); }
+            if ( ! is_array( $job ) || ! self::can_edit_job( $job ) ) { throw new \RuntimeException( __( 'Access denied.', 'georg-kloster-connect-hub' ) ); }
             if ( ! in_array( $job['status'], array( 'failed', 'pending', 'processing', 'uncertain' ), true ) || ( 'retry' === $action && ! in_array( $job['status'], array( 'failed', 'uncertain' ), true ) ) ) { throw new \RuntimeException( __( 'This publication cannot be changed.', 'georg-kloster-connect-hub' ) ); }
             if ( 'retry' === $action ) {
                 if ( 'uncertain' === $job['status'] && ! $confirmed ) { throw new \RuntimeException( __( 'Check the remote account and confirm that no post was published before retrying.', 'georg-kloster-connect-hub' ) ); }
                 $settings = Connector::instance( $provider )->settings();
-                if ( ! Connector::instance( $provider )->valid( $settings ) || ! hash_equals( $job['target'], hash( 'sha256', $settings['target'] . '|' . $settings['recipient'] ) ) || 'publish' !== get_post_status( $job['source'] ) ) { throw new \RuntimeException( __( 'Configure the original channel and keep the source post published.', 'georg-kloster-connect-hub' ) ); }
+                if ( ! Connector::instance( $provider )->valid( $settings ) || ! hash_equals( $job['target'], hash( 'sha256', $settings['target'] . '|' . $settings['recipient'] ) ) || ! Publication_Rules::allows( $job ) || ( 'post' === $job['kind'] && 'publish' !== get_post_status( $job['source'] ) ) ) { throw new \RuntimeException( __( 'Check the original channel, source post and active rule before retrying.', 'georg-kloster-connect-hub' ) ); }
                 if ( ! empty( $job['container_terminal'] ) ) { unset( $job['container_id'], $job['container_terminal'] ); }
                 $job['attempts'] = 0; $job['status'] = 'pending'; $job['error'] = '';
                 wp_clear_scheduled_hook( 'gkps_' . $provider . '_worker', array( $id ) );
@@ -87,22 +87,13 @@ final class Publications {
         echo '<div class="wrap"><h1>' . esc_html__( 'Publications', 'georg-kloster-connect-hub' ) . '</h1>';
         $key = 'gkch_publication_notice_' . get_current_user_id();
         if ( $notice = get_transient( $key ) ) { echo '<p role="status">' . esc_html( $notice ) . '</p>'; delete_transient( $key ); }
-        echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="gkch_publish">'; wp_nonce_field( 'gkch_publish' );
-        echo '<p><label>' . esc_html__( 'Published post', 'georg-kloster-connect-hub' ) . ' <select name="post_id" required><option value="">' . esc_html__( 'Select a post', 'georg-kloster-connect-hub' ) . '</option>';
-        foreach ( get_posts( array( 'post_type' => 'post', 'post_status' => 'publish', 'numberposts' => 100 ) ) as $post ) {
-            if ( current_user_can( 'edit_post', $post->ID ) ) { echo '<option value="' . esc_attr( $post->ID ) . '">' . esc_html( $post->post_title ) . '</option>'; }
-        }
-        echo '</select></label></p>';
-        foreach ( self::titles() as $id => $title ) {
-            $connector = Connector::instance( $id ); $ready = $connector && $connector->valid( $connector->settings() );
-            echo '<p><label><input type="checkbox" name="channels[]" value="' . esc_attr( $id ) . '"' . disabled( ! $ready, true, false ) . '> ' . esc_html( $title ) . '</label></p>';
-        }
-        submit_button( __( 'Queue publication', 'georg-kloster-connect-hub' ) ); echo '</form>';
+        Publication_Rules_Admin::render();
         $statuses = array( 'pending' => __( 'Queued', 'georg-kloster-connect-hub' ), 'processing' => __( 'Processing', 'georg-kloster-connect-hub' ), 'sent' => __( 'Sent', 'georg-kloster-connect-hub' ), 'failed' => __( 'Failed', 'georg-kloster-connect-hub' ), 'cancelled' => __( 'Cancelled', 'georg-kloster-connect-hub' ), 'uncertain' => __( 'Check the remote account before retrying', 'georg-kloster-connect-hub' ) );
-        echo '<h2>' . esc_html__( 'Publication history', 'georg-kloster-connect-hub' ) . '</h2><table class="widefat striped"><thead><tr><th>' . esc_html__( 'Published post', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Channel', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Status', 'georg-kloster-connect-hub' ) . '</th></tr></thead><tbody>';
+        echo '<h2>' . esc_html__( 'Publication history', 'georg-kloster-connect-hub' ) . '</h2><table class="widefat striped"><thead><tr><th>' . esc_html__( 'Publication or reminder', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Channel', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Status', 'georg-kloster-connect-hub' ) . '</th></tr></thead><tbody>';
         foreach ( self::history() as $job ) {
-            if ( ! current_user_can( 'edit_post', $job['source'] ) ) { continue; }
-            echo '<tr><td>' . esc_html( get_the_title( $job['source'] ) ) . '</td><td>' . esc_html( $job['channel'] ) . '</td><td>' . esc_html( $statuses[$job['status']] ?? __( 'Unknown', 'georg-kloster-connect-hub' ) ) . ( ! empty( $job['error'] ) ? '<br>' . esc_html( $job['error'] ) : '' );
+            if ( ! self::can_edit_job( $job ) ) { continue; }
+            $title = 'automation' === $job['kind'] ? ( $job['reply_context']['rule_name'] ?? $job['text'] ) : get_the_title( $job['source'] );
+            echo '<tr><td>' . esc_html( $title ) . '</td><td>' . esc_html( $job['channel'] ) . '</td><td>' . esc_html( $statuses[$job['status']] ?? __( 'Unknown', 'georg-kloster-connect-hub' ) ) . ( ! empty( $job['error'] ) ? '<br>' . esc_html( $job['error'] ) : '' );
             if ( in_array( $job['status'], array( 'pending', 'processing', 'failed', 'uncertain' ), true ) ) {
                 echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="gkch_publication_action"><input type="hidden" name="provider" value="' . esc_attr( $job['provider'] ) . '"><input type="hidden" name="job" value="' . esc_attr( $job['id'] ) . '">';
                 wp_nonce_field( 'gkch_publication_action' );
@@ -113,5 +104,9 @@ final class Publications {
             echo '</td></tr>';
         }
         echo '</tbody></table></div>';
+    }
+
+    private static function can_edit_job( array $job ): bool {
+        return current_user_can( 'publish_posts' ) && ( 'automation' === ( $job['kind'] ?? '' ) ? Publication_Rules::can_manage() : 'post' === ( $job['kind'] ?? '' ) && current_user_can( 'edit_post', $job['source'] ) );
     }
 }

@@ -18,7 +18,7 @@ $throws = static function ( callable $operation, string $message ) use ( $check 
 };
 $admin_id = get_users( array( 'role' => 'administrator', 'number' => 1 ) )[0]->ID;
 wp_set_current_user( $admin_id ); set_current_screen( 'dashboard' );
-$check( '0.2.0' === GKPS_VERSION, 'Wrong Connect Hub version.' );
+$check( '0.3.0' === GKPS_VERSION, 'Wrong Connect Hub version.' );
 $check( ! is_plugin_active( 'georg-kloster-prihod-social/georg-kloster-prihod-social.php' ), 'Old development package remains active.' );
 $check( 'Existing development form' === Admin::get()['title'], 'Development form settings were lost.' );
 $check( '12345' === Connector::instance( 'telegram' )->settings()['target'], 'Channel settings were lost.' );
@@ -54,8 +54,8 @@ foreach ( array( 'ru_RU' => array( 'Коммуникации', 'Формы', 'С
     global $menu, $submenu; $menu = array(); $submenu = array(); do_action( 'admin_menu' );
     $main = array_values( array_filter( $menu, static fn( $item ) => 'gkps' === $item[2] ) );
     $check( 1 === count( $main ) && $labels[0] === $main[0][0], 'Main menu locale: ' . $test_locale . ' ' . wp_json_encode( array( $switched, get_locale(), determine_locale(), $main ) ) );
-    $check( array( 'gkps', 'gkps-requests', 'gkch-publications', 'gkps-connect-telegram', 'gkps-connect-whatsapp', 'gkch-networks', 'gkch-settings' ) === array_column( $submenu['gkps'], 2 ), 'Seven menu sections/order: ' . $test_locale );
-    $check( array( $labels[1], $labels[2], $labels[3], 'Telegram', 'WhatsApp', $labels[4], $labels[5] ) === array_column( $submenu['gkps'], 0 ), 'Submenu locale: ' . $test_locale );
+    $check( array( 'gkps', 'gkps-requests', 'gkch-publications', 'gkps-connect-telegram', 'gkps-connect-whatsapp', 'gkch-settings' ) === array_column( $submenu['gkps'], 2 ), 'Six menu sections/order: ' . $test_locale );
+    $check( array( $labels[1], $labels[2], $labels[3], 'Telegram', 'WhatsApp', $labels[5] ) === array_column( $submenu['gkps'], 0 ), 'Submenu locale: ' . $test_locale );
     if ( $switched ) { restore_previous_locale(); }
 }
 
@@ -144,13 +144,15 @@ $check( '' === Connector::instance( 'vk' )->queue( 'Private message', '', 'reque
 $draft = wp_insert_post( array( 'post_type' => 'post', 'post_status' => 'draft', 'post_title' => 'Synthetic draft' ) );
 $throws( static fn() => Publications::enqueue( $draft, array( 'vk' ) ), 'Draft publication accepted.' );
 foreach ( array( 'facebook', 'instagram', 'vk', 'ok' ) as $network ) {
-    $_GET['network'] = $network; ob_start(); Admin::networks(); $screen = ob_get_clean();
+    $_GET['network'] = $network; ob_start(); Hub_Settings::render(); $screen = ob_get_clean();
     $check( str_contains( $screen, Publications::titles()[$network] ) && ! str_contains( $screen, 'development_token' ) && ! str_contains( $screen, 'secret123' ), 'Network screen leaked secrets or omitted provider.' );
+    $check( str_contains( Connector::instance( $network )->settings_url(), 'page=gkch-settings' ) && str_contains( $screen, 'name="action" value="gkps_connect_' . $network . '"' ), 'Network moved without its save handler.' );
 }
 $_GET = array();
 GeorgKlosterPrihodSocial\Blocks::register();
 $editor = wp_scripts()->get_data( 'gkps-blocks', 'data' );
 $check( str_contains( $editor, 'Milk supply' ) && str_contains( $editor, 'Coal supply' ) && ! str_contains( $editor, 'milk@example.org' ), 'Editor form selector leaks settings or omits forms.' );
 $check( 6 <= count( Publications::history() ), 'Publication history missing.' );
+require __DIR__ . '/connect-hub-automation.php';
 file_put_contents( __DIR__ . '/.connect-hub-result.json', wp_json_encode( array( 'checks' => $checks, 'wordpress' => get_bloginfo( 'version' ), 'php' => PHP_VERSION, 'result' => 'CONNECT_HUB_OK' ) ) );
 echo 'CONNECT_HUB_OK ' . $checks;

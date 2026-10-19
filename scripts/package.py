@@ -48,7 +48,7 @@ if "core" in selected:
 if "parish-core" in selected:
     archive(ROOT / "georg-kloster-prihod-core", "georg-kloster-prihod-core-0.1.5.zip")
 if "parish-social" in selected or "connect-hub" in selected:
-    archive(ROOT / "georg-kloster-connect-hub", "georg-kloster-connect-hub-0.2.0.zip")
+    archive(ROOT / "georg-kloster-connect-hub", "georg-kloster-connect-hub-0.3.0.zip")
 if "parish-schedule" in selected:
     archive(ROOT / "georg-kloster-prihod-schedule", "georg-kloster-prihod-schedule-0.1.10.zip")
 if "theme" in selected:

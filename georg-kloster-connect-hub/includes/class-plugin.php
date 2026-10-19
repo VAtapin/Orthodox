@@ -23,6 +23,7 @@ final class Plugin {
         add_action( 'admin_post_gkch_publish', array( Publications::class, 'submit' ) );
         add_action( 'admin_post_gkch_publication_action', array( Publications::class, 'action' ) );
         foreach ( Publications::titles() as $id => $title ) { Connector::boot( $id, $title, GKPS_FILE ); }
+        Publication_Rules::boot();
     }
 
     public static function notify_by_email( int $id ): void {

@@ -3,7 +3,7 @@ Contributors: vatapin
 Tags: contact form, messages, social, publishing, telegram
 Requires at least: 6.5
 Requires PHP: 8.0
-Stable tag: 0.2.0
+Stable tag: 0.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -19,14 +19,23 @@ status filters. Staff can reply by email. Telegram supports the existing opt-in
 private-chat reply workflow. WhatsApp sends approved outbound templates only;
 WhatsApp replies are not imported.
 
-The menu has Forms, Messages, Publications, Telegram, WhatsApp, Social networks,
-and Settings. Its title is Connect Hub in English, Kommunikation in German and
+The menu has Forms, Messages, Publications, Telegram, WhatsApp and Settings.
+Facebook, Instagram, VK and OK connections are tabs in Settings.
+Its title is Connect Hub in English, Kommunikation in German and
 Коммуникации in Russian. Russian and German PHP/editor catalogs are bundled.
 Forms can concern church matters, deliveries, appointments or any other topic.
 They do not require Parish Core or a particular theme.
 
-Select a published WordPress post and the channels to publish to. Publications
-run via WordPress Cron and have a private status history, cancellation and retry.
+Set up opt-in automatic publication rules, each with its own channels. Send new
+WordPress posts on first publication, optionally filtered by category; scheduled
+WordPress posts are supported. Editing existing posts does not resend them.
+Create standalone messages/reminders with optional links and a one-time, daily
+or weekly schedule in the WordPress timezone. Instagram reminders use a JPEG
+selected from the media library. Late Cron runs send once, without a missed-slot
+backlog. Editing, pausing or removing a rule prevents its pending deliveries.
+Rules require communication-settings and publication capabilities; the stored
+owner's permissions are checked again at execution. Sending stays asynchronous,
+with a private status history, cancellation and retry.
 Facebook, VK and OK publish text/link posts. Instagram publishes a JPEG featured
 image with a caption via container creation, background status polling and publish.
 This release does not implement carousels, videos or reels. An ambiguous OK
@@ -35,14 +44,16 @@ No channel is enabled automatically and no account credentials are bundled.
 
 == Installation ==
 
-Upload georg-kloster-connect-hub-0.2.0.zip as a new plugin and activate it.
+Upload georg-kloster-connect-hub-0.3.0.zip. Replace an existing Connect Hub version,
+or install as a new plugin and activate it.
 Activation deactivates the previous georg-kloster-prihod-social development plugin
 without deleting its settings. Keep only Connect Hub active. Network-active old
 installations require network-wide activation. The internal gkps data, capabilities,
 cron hooks and Telegram REST paths remain compatible; no database migration is needed.
 
 Configure forms under Forms, global reception/retention under Settings and each
-channel in its section. Insert the Form block and select a saved form, or use its
+channel under Telegram, WhatsApp or the network tabs in Settings. Configure
+automatic rules under Publications. Insert the Form block and select a saved form, or use its
 listed shortcode. Exclude pages containing forms from full-page caching: tokens
 are single-use and expire after one hour. Ensure WordPress Cron runs.
 
@@ -93,6 +104,13 @@ included in public markup or the block selector. Ordinary uninstall retains
 saved messages/settings and does not delete posts in external services.
 
 == Changelog ==
+
+= 0.3.0 =
+Replace the single-post publication picker with automatic rules for new posts,
+category filters, scheduled messages and one-time/daily/weekly reminders.
+Move social-network connections into Settings and hide the Social networks menu.
+Keep existing settings and history; add rule revision/owner checks and local-time
+scheduling across DST. Bundle updated Russian and German translations.
 
 = 0.2.0 =
 Rename the development package to Connect Hub. Add independent forms, a unified

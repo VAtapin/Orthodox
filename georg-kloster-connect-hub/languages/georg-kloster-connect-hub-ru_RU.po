@@ -13,7 +13,7 @@ msgstr "Принимать сообщения из форм"
 msgid "Accept messages"
 msgstr "Принимать сообщения"
 
-#: includes/class-admin.php includes/class-forms.php includes/class-hub-settings.php includes/class-publications.php
+#: includes/class-forms.php includes/class-hub-settings.php includes/class-publication-rules.php includes/class-publications.php
 msgid "Access denied."
 msgstr "Доступ запрещён."
 
@@ -24,6 +24,14 @@ msgstr "Чтобы заменить сетевой Parish Social, активир
 #: includes/class-forms.php
 msgid "Add form"
 msgstr "Добавить форму"
+
+#: includes/class-publication-rules-admin.php
+msgid "Add or edit a rule"
+msgstr "Добавить или изменить правило"
+
+#: includes/class-publication-rules-admin.php
+msgid "All categories"
+msgstr "Все рубрики"
 
 #: includes/class-request-admin.php
 msgid "All forms"
@@ -37,6 +45,14 @@ msgstr "Публичный ключ приложения"
 msgid "Application secret (leave empty to keep)"
 msgstr "Секрет приложения (пусто — сохранить прежний)"
 
+#: includes/class-publication-rules-admin.php
+msgid "Ask a communication settings administrator to manage automatic publication rules."
+msgstr "Управлять автоматическими публикациями может сотрудник с правами настройки коммуникаций."
+
+#: includes/class-publication-rules-admin.php
+msgid "Automatic publication rules"
+msgstr "Правила автоматических публикаций"
+
 #: includes/class-forms.php
 msgid "Button label"
 msgstr "Текст кнопки"
@@ -49,9 +65,17 @@ msgstr "Отменить"
 msgid "Cancelled"
 msgstr "Отменено"
 
+#: includes/class-publication-rules-admin.php
+msgid "Category"
+msgstr "Рубрика"
+
 #: includes/class-publications.php
 msgid "Channel"
 msgstr "Канал"
+
+#: includes/class-publication-rules-admin.php
+msgid "Channels"
+msgstr "Каналы"
 
 #: includes/class-connector.php
 msgid "Chat ID / @канал"
@@ -62,6 +86,10 @@ msgid "Chat ID должен быть числом (для группы може�
 msgstr "Идентификатор чата должен быть числом (для группы может начинаться с минуса) или @именем канала. Подключение не сохранено."
 
 #: includes/class-publications.php
+msgid "Check the original channel, source post and active rule before retrying."
+msgstr "Перед повтором проверьте исходный канал, запись и действующее правило."
+
+#: includes/class-publications.php
 msgid "Check the remote account and confirm that no post was published before retrying."
 msgstr "Перед повтором проверьте аккаунт и подтвердите, что запись не была опубликована."
 
@@ -69,17 +97,33 @@ msgstr "Перед повтором проверьте аккаунт и под�
 msgid "Check the remote account before retrying"
 msgstr "Перед повтором проверьте аккаунт сервиса"
 
+#: includes/class-publication-rules-admin.php
+msgid "Choose a JPEG image"
+msgstr "Выбрать изображение JPEG"
+
 #: includes/class-publications.php
 msgid "Choose a channel. If scheduling failed, check WordPress Cron."
 msgstr "Выберите канал. Если очередь не создана, проверьте работу WordPress Cron."
 
-#: includes/class-publications.php
+#: includes/class-publication-rules.php
+msgid "Choose a future reminder date and time."
+msgstr "Укажите будущую дату и время напоминания."
+
+#: includes/class-publication-rules.php
+msgid "Choose a valid reminder date."
+msgstr "Укажите правильную дату напоминания."
+
+#: includes/class-publication-rules.php
+msgid "Choose an existing category."
+msgstr "Выберите существующую рубрику."
+
+#: includes/class-publication-rules.php includes/class-publications.php
 msgid "Configure and enable each selected channel first."
 msgstr "Сначала настройте и включите каждый выбранный канал."
 
-#: includes/class-publications.php
-msgid "Configure the original channel and keep the source post published."
-msgstr "Настройте исходный канал. Запись WordPress должна оставаться опубликованной."
+#: includes/class-publication-rules-admin.php
+msgid "Configure channel"
+msgstr "Настроить канал"
 
 #: includes/class-admin.php
 msgid "Connect Hub"
@@ -89,9 +133,25 @@ msgstr "Коммуникации"
 msgid "Contact us"
 msgstr "Напишите нам"
 
+#: includes/class-publication-rules.php
+msgid "Could not save the publication rule."
+msgstr "Не удалось сохранить правило публикации."
+
 #: includes/class-publications.php
 msgid "Could not schedule publication."
 msgstr "Не удалось поставить публикацию в очередь."
+
+#: includes/class-publication-rules.php
+msgid "Could not schedule publication. Check WordPress Cron."
+msgstr "Не удалось запланировать публикацию. Проверьте WordPress Cron."
+
+#: includes/class-publication-rules-admin.php
+msgid "Date (for a one-time reminder)"
+msgstr "Дата (для разового напоминания)"
+
+#: includes/class-publication-rules-admin.php
+msgid "Day (for weekly messages)"
+msgstr "День недели (для еженедельных сообщений)"
 
 #: georg-kloster-connect-hub.php
 msgid "Deactivate Parish Social to use Connect Hub. Your saved data will be retained."
@@ -117,7 +177,11 @@ msgstr "У каждой формы свои темы, тексты, получа
 msgid "Email"
 msgstr "Электронная почта"
 
-#: includes/class-forms.php
+#: includes/class-publication-rules-admin.php
+msgid "Enable automatic sending for this rule"
+msgstr "Включить автоматическую отправку по этому правилу"
+
+#: includes/class-forms.php includes/class-publication-rules-admin.php
 msgid "Enabled"
 msgstr "Включено"
 
@@ -125,9 +189,29 @@ msgstr "Включено"
 msgid "Enter a form name."
 msgstr "Укажите название формы."
 
+#: includes/class-publication-rules.php
+msgid "Enter a message of up to 900 characters and a valid schedule."
+msgstr "Введите текст до 900 символов и укажите правильное расписание."
+
+#: includes/class-publication-rules.php
+msgid "Enter a public HTTP or HTTPS link."
+msgstr "Укажите общедоступную ссылку HTTP или HTTPS."
+
+#: includes/class-publication-rules.php
+msgid "Enter a rule name and choose at least one channel."
+msgstr "Введите название правила и выберите хотя бы один канал."
+
 #: includes/class-forms.php
 msgid "Enter a valid notification email."
 msgstr "Укажите корректную почту для уведомлений."
+
+#: includes/class-publication-rules-admin.php
+msgid "Every day"
+msgstr "Ежедневно"
+
+#: includes/class-publication-rules-admin.php
+msgid "Every week"
+msgstr "Еженедельно"
 
 #: includes/class-publications.php
 msgid "Facebook"
@@ -140,6 +224,10 @@ msgstr "Идентификатор страницы Facebook"
 #: includes/class-publications.php
 msgid "Failed"
 msgstr "Ошибка"
+
+#: includes/class-publication-rules-admin.php
+msgid "For Instagram, each new post must have a public HTTPS JPEG featured image."
+msgstr "Для Instagram у каждой новой записи должна быть миниатюра JPEG, доступная по открытой ссылке HTTPS."
 
 #: assets/blocks.js includes/class-blocks.php includes/class-request-admin.php
 msgid "Form"
@@ -165,6 +253,10 @@ msgstr "Заголовок формы"
 msgid "Forms"
 msgstr "Формы"
 
+#: includes/class-hub-settings.php
+msgid "General"
+msgstr "Общие"
+
 #: georg-kloster-connect-hub.php
 msgid "Georg-Kloster Connect Hub"
 msgstr "Georg-Kloster — Коммуникации"
@@ -176,6 +268,10 @@ msgstr "Я проверил аккаунт: запись не опубликов
 #: includes/class-request-mail-log.php
 msgid "ID попытки"
 msgstr "Идентификатор попытки"
+
+#: includes/class-publication-rules-admin.php
+msgid "Image (required for Instagram; public HTTPS JPEG)"
+msgstr "Изображение (обязательно для Instagram; JPEG с открытым доступом по HTTPS)"
 
 #: georg-kloster-connect-hub.php
 msgid "Independent forms, messages and publications across communication channels."
@@ -189,6 +285,10 @@ msgstr "Instagram"
 msgid "Instagram account ID"
 msgstr "Идентификатор аккаунта Instagram"
 
+#: includes/class-publication-rules.php
+msgid "Instagram requires a public HTTPS JPEG from the media library."
+msgstr "Для Instagram выберите JPEG из медиатеки, доступный по открытой ссылке HTTPS."
+
 #: includes/class-publications.php includes/class-social-providers.php
 msgid "Instagram requires a public JPEG featured image."
 msgstr "Для Instagram нужна общедоступная миниатюра записи в формате JPEG."
@@ -201,17 +301,49 @@ msgstr "Вступительный текст"
 msgid "Invalid publication action."
 msgstr "Некорректное действие с публикацией."
 
+#: includes/class-publication-rules-admin.php includes/class-publication-rules.php
+msgid "Invalid publication rule."
+msgstr "Неверное правило публикации."
+
 #: includes/class-hub-settings.php
 msgid "Keep closed messages for days"
 msgstr "Хранить закрытые сообщения, дней"
+
+#: includes/class-publication-rules-admin.php
+msgid "Link (optional)"
+msgstr "Ссылка (необязательно)"
+
+#: includes/class-publication-rules-admin.php
+msgid "Message or reminder text"
+msgstr "Текст сообщения или напоминания"
 
 #: includes/class-request-admin.php
 msgid "Messages"
 msgstr "Сообщения"
 
+#: includes/class-publication-rules-admin.php
+msgid "New WordPress posts"
+msgstr "Новые записи WordPress"
+
 #: includes/class-plugin.php
 msgid "New contact message"
 msgstr "Новое сообщение"
+
+#: includes/class-publication-rules-admin.php
+msgid "Next:"
+msgstr "Следующая отправка:"
+
+#: includes/class-publication-rules-admin.php
+msgid "No rules yet. Add a rule below; automatic sending is off by default."
+msgstr "Правил пока нет. Добавьте правило ниже; по умолчанию автоматическая отправка выключена."
+
+#: includes/class-publication-rules-admin.php
+msgid "No scheduled delivery"
+msgstr "Запланированной отправки нет"
+
+#: includes/class-publication-rules.php
+msgid "Not queued. Check the connection, required image and WordPress Cron:"
+msgstr "Не поставлено в очередь. Проверьте подключение, необходимое изображение и WordPress Cron:"
 
 #: includes/class-forms.php
 msgid "Notification email"
@@ -225,6 +357,14 @@ msgstr "OK"
 msgid "OK group ID"
 msgstr "Идентификатор группы OK"
 
+#: includes/class-publication-rules-admin.php
+msgid "Once"
+msgstr "Один раз"
+
+#: includes/class-publication-rules-admin.php
+msgid "Paused"
+msgstr "Приостановлено"
+
 #: includes/class-connector.php
 msgid "Phone number ID"
 msgstr "Идентификатор номера телефона"
@@ -237,13 +377,25 @@ msgstr "Обрабатывается"
 msgid "Publication history"
 msgstr "История публикаций"
 
-#: includes/class-publications.php
+#: includes/class-publication-rules.php includes/class-publications.php
 msgid "Publication is busy. Try again shortly."
 msgstr "Публикация сейчас обрабатывается. Повторите позже."
 
 #: includes/class-publications.php
+msgid "Publication or reminder"
+msgstr "Публикация или напоминание"
+
+#: includes/class-publications.php
 msgid "Publication queued. Delivery status appears below."
 msgstr "Публикация поставлена в очередь. Состояние отправки появится ниже."
+
+#: includes/class-publication-rules-admin.php
+msgid "Publication rule removed. History was retained."
+msgstr "Правило удалено. История сохранена."
+
+#: includes/class-publication-rules-admin.php
+msgid "Publication rule saved."
+msgstr "Правило публикации сохранено."
 
 #: includes/class-publications.php
 msgid "Publication updated."
@@ -254,28 +406,56 @@ msgid "Publications"
 msgstr "Публикации"
 
 #: includes/class-publications.php
-msgid "Published post"
-msgstr "Опубликованная запись"
-
-#: includes/class-publications.php
-msgid "Queue publication"
-msgstr "Поставить публикацию в очередь"
-
-#: includes/class-publications.php
 msgid "Queued"
 msgstr "В очереди"
+
+#: includes/class-publication-rules-admin.php
+msgid "Remove image"
+msgstr "Убрать изображение"
+
+#: includes/class-publication-rules-admin.php
+msgid "Remove rule"
+msgstr "Удалить правило"
+
+#: includes/class-publication-rules-admin.php
+msgid "Repeat"
+msgstr "Повторение"
 
 #: includes/class-publications.php
 msgid "Retry"
 msgstr "Повторить"
 
+#: includes/class-publication-rules-admin.php
+msgid "Rule"
+msgstr "Правило"
+
+#: includes/class-publication-rules-admin.php
+msgid "Rule name"
+msgstr "Название правила"
+
+#: includes/class-publication-rules.php
+msgid "Rule not found or rule limit reached."
+msgstr "Правило не найдено или достигнут предел количества правил."
+
+#: includes/class-publication-rules.php
+msgid "Rule paused: its owner no longer has publication and settings permissions."
+msgstr "Отправка приостановлена: у владельца правила больше нет прав публикации и изменения настроек."
+
+#: includes/class-publication-rules-admin.php
+msgid "Save rule"
+msgstr "Сохранить правило"
+
+#: includes/class-publication-rules-admin.php
+msgid "Schedule and status"
+msgstr "Расписание и состояние"
+
+#: includes/class-publication-rules-admin.php
+msgid "Scheduled messages and reminders"
+msgstr "Запланированные сообщения и напоминания"
+
 #: assets/blocks.js
 msgid "Select a form"
 msgstr "Выберите форму"
-
-#: includes/class-publications.php
-msgid "Select a post"
-msgstr "Выберите запись"
 
 #: includes/class-publications.php
 msgid "Select a published WordPress post."
@@ -285,21 +465,33 @@ msgstr "Выберите опубликованную запись WordPress."
 msgid "Send message"
 msgstr "Отправить обращение"
 
+#: includes/class-publication-rules-admin.php
+msgid "Send the title, excerpt and link when a post is first published, including scheduled WordPress posts. Existing posts and later edits are not sent."
+msgstr "Отправлять заголовок, анонс и ссылку при первой публикации записи, в том числе отложенной в WordPress. Существующие записи и последующие правки не отправляются."
+
+#: includes/class-publication-rules-admin.php
+msgid "Send to channels"
+msgstr "Отправлять в каналы"
+
 #: includes/class-publications.php
 msgid "Sent"
 msgstr "Отправлено"
+
+#: includes/class-publication-rules-admin.php
+msgid "Set what to send, when and to which channels. Channel connections alone do not enable automatic publications."
+msgstr "Настройте, что отправлять, когда и в какие каналы. Само подключение канала не включает автоматические публикации."
 
 #: includes/class-admin.php includes/class-hub-settings.php
 msgid "Settings"
 msgstr "Настройки"
 
+#: includes/class-hub-settings.php
+msgid "Settings sections"
+msgstr "Разделы настроек"
+
 #: includes/class-forms.php
 msgid "Shortcode"
 msgstr "Шорткод"
-
-#: includes/class-admin.php
-msgid "Social networks"
-msgstr "Соцсети"
 
 #: includes/class-forms.php includes/class-publications.php
 msgid "Status"
@@ -333,6 +525,14 @@ msgstr "API сервиса не подтвердил публикацию. Пр�
 msgid "This publication cannot be changed."
 msgstr "Состояние этой публикации не допускает изменение."
 
+#: includes/class-publication-rules-admin.php
+msgid "Time"
+msgstr "Время"
+
+#: includes/class-publication-rules-admin.php
+msgid "Timezone:"
+msgstr "Часовой пояс:"
+
 #: includes/class-connector.php
 msgid "Token (пусто — сохранить прежний)"
 msgstr "Токен (оставьте пустым, чтобы сохранить прежний)"
@@ -353,6 +553,10 @@ msgstr "Используйте профессиональный аккаунт I
 msgid "Use an OK application with GROUP_CONTENT permission, an access token, application public key and application secret. Only publication to the configured group is enabled."
 msgstr "Используйте приложение OK с правом GROUP_CONTENT, токен доступа, публичный и секретный ключи приложения. Публикации отправляются только в указанную группу."
 
+#: includes/class-publication-rules-admin.php
+msgid "Use this image"
+msgstr "Использовать изображение"
+
 #: includes/class-publications.php
 msgid "VK"
 msgstr "VK"
@@ -361,9 +565,17 @@ msgstr "VK"
 msgid "VK owner ID"
 msgstr "Идентификатор пользователя или сообщества VK"
 
+#: includes/class-publication-rules-admin.php
+msgid "What to send"
+msgstr "Что отправлять"
+
 #: includes/class-publications.php
 msgid "WhatsApp"
 msgstr "WhatsApp"
+
+#: includes/class-publication-rules-admin.php
+msgid "WordPress Cron runs on site visits or the server scheduler. Late runs send once, without repeating every missed interval. Editing or pausing a rule cancels its pending deliveries."
+msgstr "WordPress Cron запускается при посещениях сайта или серверным планировщиком. При задержке выполняется одна отправка без повторения всех пропущенных интервалов. Изменение или приостановка правила отменяет ожидающие отправки."
 
 #: includes/class-telegram-request-settings.php
 msgid "В Telegram будут переданы имя, email, тема и полный текст обращения. Ответьте кнопкой «Ответить» на сообщение бота: сайт сохранит ответ и отправит посетителю оформленное письмо. Внутренние заметки не передаются."

@@ -17,7 +17,10 @@ final class Social_Providers {
     }
 
     public static function image( int $post_id ): string {
-        $id = get_post_thumbnail_id( $post_id );
+        return self::attachment_image( (int) get_post_thumbnail_id( $post_id ) );
+    }
+
+    public static function attachment_image( int $id ): string {
         $url = $id && 'image/jpeg' === get_post_mime_type( $id ) ? wp_get_attachment_url( $id ) : '';
         return is_string( $url ) && wp_http_validate_url( $url ) && 'https' === wp_parse_url( $url, PHP_URL_SCHEME ) ? $url : '';
     }
@@ -46,7 +49,7 @@ final class Social_Providers {
         if ( 'instagram' === $id ) { return self::instagram( $settings, $job ); }
         $text = $job['text'] . "\n" . $job['url'];
         if ( 'vk' === $id ) {
-            $body = array( 'access_token' => $settings['token'], 'v' => $settings['api_version'], 'owner_id' => $settings['target'], 'from_group' => str_starts_with( $settings['target'], '-' ) ? 1 : 0, 'message' => $text, 'guid' => substr( hash( 'sha256', $settings['target'] . $job['source'] . $text ), 0, 32 ) );
+            $body = array( 'access_token' => $settings['token'], 'v' => $settings['api_version'], 'owner_id' => $settings['target'], 'from_group' => str_starts_with( $settings['target'], '-' ) ? 1 : 0, 'message' => $text, 'guid' => substr( hash( 'sha256', $settings['target'] . $job['source'] . $text . ( $job['reply_context']['configuration'] ?? '' ) ), 0, 32 ) );
             list( $code, $data ) = self::call( 'POST', 'https://api.vk.com/method/wall.post', $body );
             $remote_id = is_array( $data ) ? ( $data['response']['post_id'] ?? null ) : null;
             $accepted = 200 === $code && is_array( $data ) && ! isset( $data['error'] ) && is_scalar( $remote_id ) && preg_match( '/^[1-9][0-9]*$/D', (string) $remote_id );
@@ -54,7 +57,9 @@ final class Social_Providers {
             return self::result( $code, $accepted, false, $accepted ? array( 'id' => (string) $data['response']['post_id'] ) : array(), $retry );
         }
         if ( 'ok' !== $id ) { return self::result( 0, false ); }
-        $body = array( 'method' => 'mediatopic.post', 'application_key' => $settings['application_key'], 'format' => 'json', 'type' => 'GROUP_THEME', 'gid' => $settings['target'], 'attachment' => wp_json_encode( array( 'media' => array( array( 'type' => 'text', 'text' => $job['text'] ), array( 'type' => 'link', 'url' => $job['url'] ) ), 'onBehalfOfGroup' => 'true' ) ) );
+        $media = array( array( 'type' => 'text', 'text' => $job['text'] ) );
+        if ( '' !== $job['url'] ) { $media[] = array( 'type' => 'link', 'url' => $job['url'] ); }
+        $body = array( 'method' => 'mediatopic.post', 'application_key' => $settings['application_key'], 'format' => 'json', 'type' => 'GROUP_THEME', 'gid' => $settings['target'], 'attachment' => wp_json_encode( array( 'media' => $media, 'onBehalfOfGroup' => 'true' ) ) );
         ksort( $body, SORT_STRING ); $signature = '';
         foreach ( $body as $key => $value ) { $signature .= $key . '=' . $value; }
         $body['sig'] = md5( $signature . md5( $settings['token'] . $settings['application_secret'] ) );
