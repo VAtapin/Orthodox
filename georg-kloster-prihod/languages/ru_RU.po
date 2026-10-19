@@ -635,3 +635,75 @@ msgstr "Рады встрече с вами"
 
 msgid "Wide"
 msgstr "Широкая страница"
+
+msgid "Optional plugins"
+msgstr "Дополнительные плагины"
+
+msgid "Georg-Kloster Parish Core"
+msgstr "Georg-Kloster — Приход"
+
+msgid "Georg-Kloster Parish Social"
+msgstr "Georg-Kloster — Связь"
+
+msgid "Georg-Kloster Parish Schedule"
+msgstr "Georg-Kloster — Расписание богослужений"
+
+msgid "Parish profile, places and clergy. Publish these details with blocks or shortcodes, using any theme."
+msgstr "Сведения о приходе, места служения и духовенство. Публикуйте их с помощью блоков или шорткодов в любой теме."
+
+msgid "Configurable contact forms and private correspondence. Email replies and optional Telegram, WhatsApp and Facebook channels are configured separately."
+msgstr "Настраиваемые формы обращения и закрытая переписка. Ответы по электронной почте и дополнительные каналы Telegram, WhatsApp и Facebook настраиваются отдельно."
+
+msgid "Service schedules, recurring events, cancellations and changes. Calendar views, upcoming services and vestment colours work without Parish Core."
+msgstr "Расписание богослужений, повторения, отмены и переносы. Виды календаря, ближайшие службы и цвета облачений работают без плагина «Приход»."
+
+msgid "Activate"
+msgstr "Активировать"
+
+msgid "Install from WordPress.org"
+msgstr "Установить из WordPress.org"
+
+msgid "Active"
+msgstr "Активен"
+
+msgid "Installed, inactive"
+msgstr "Установлен, неактивен"
+
+msgid "Available on WordPress.org"
+msgstr "Доступен в WordPress.org"
+
+msgid "Requires a newer WordPress or PHP version"
+msgstr "Требуется более новая версия WordPress или PHP"
+
+msgid "The theme works on its own. Add plugins only for the features you need; each plugin is independent."
+msgstr "Тема работает самостоятельно. Устанавливайте плагины только для нужных вам функций; каждый плагин независим."
+
+msgid "Installed integrations appear below. New recommendations and installation buttons appear only after WordPress.org confirms that a plugin is available in its directory."
+msgstr "Ниже показаны установленные модули. Рекомендации и кнопки установки появляются только после подтверждения доступности плагина в каталоге WordPress.org."
+
+msgid "Check WordPress.org"
+msgstr "Проверить WordPress.org"
+
+msgid "This contacts the WordPress.org plugin directory. Nothing is installed or activated by the check."
+msgstr "Будет выполнен запрос к каталогу плагинов WordPress.org. Проверка ничего не устанавливает и не активирует."
+
+msgid "Ask an administrator with plugin installation permissions to check the directory or install plugins."
+msgstr "Для проверки каталога или установки плагинов обратитесь к администратору с правом установки плагинов."
+
+msgid "Directory check complete. Plugins that could not be confirmed are not offered for installation. You can check again if a plugin has just been published or the directory was unavailable."
+msgstr "Проверка каталога завершена. Плагины, доступность которых не подтверждена, не предлагаются для установки. Повторите проверку, если плагин только что опубликован или каталог был недоступен."
+
+msgid "Screenshot: %s (new tab)"
+msgstr "Скриншот: %s (новая вкладка)"
+
+msgid "Version: %s"
+msgstr "Версия: %s"
+
+msgid "Open settings"
+msgstr "Открыть настройки"
+
+msgid "Details on WordPress.org"
+msgstr "Подробности в WordPress.org"
+
+msgid "No installed integrations or confirmed directory recommendations are available yet."
+msgstr "Пока нет установленных модулей или подтверждённых рекомендаций из каталога."

@@ -28,6 +28,23 @@ with WPML String Translation.
 Menu items, nesting and images are managed under **Appearance → Menus**.
 The image menu is optional; the standard link row remains available.
 
+## Optional plugins
+
+The settings sidebar includes **Optional plugins**. Installed Core, Social and
+Schedule integrations have descriptions, actual settings screenshots and links
+to their configuration. The screenshots use empty settings on a disposable site;
+no owner content is included or imported.
+
+**Check WordPress.org** explicitly queries the official plugin information API
+for the three integration slugs and caches confirmed entries for one hour.
+Opening settings or the public site never triggers that lookup. Missing plugins
+are recommended only when the directory confirms an installable entry. An
+unpublished plugin is not advertised or installed from an external ZIP source.
+Installation and activation use standard WordPress screens, nonces, capabilities
+and platform checks. Administrators without installation rights see instructions
+to contact a permitted administrator. See readme.txt for the request disclosure.
+The theme is fully usable without these plugins and never installs them itself.
+
 ## Translation and packaging
 
 Source interface strings are English and use WordPress gettext. Russian,

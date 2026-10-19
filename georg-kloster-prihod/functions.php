@@ -4,6 +4,7 @@ defined( 'ABSPATH' ) || exit;
 require_once __DIR__ . '/includes/site-settings.php';
 require_once __DIR__ . '/includes/home-settings.php';
 require_once __DIR__ . '/includes/settings.php';
+require_once __DIR__ . '/includes/plugins.php';
 require_once __DIR__ . '/includes/branding.php';
 require_once __DIR__ . '/includes/design.php';
 require_once __DIR__ . '/includes/render.php';

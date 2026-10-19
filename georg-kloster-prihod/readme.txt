@@ -12,7 +12,9 @@ A parish theme with five visual styles for standard WordPress pages and posts.
 
 Georg-Kloster Prihod provides five visual styles: Classic, Hospitality, Editorial, Tradition, and Blue. The theme works on a standard WordPress installation without a companion plugin. Choose a style and your own images under Appearance > Parish Appearance. Standard pages and posts remain editable in WordPress.
 
-The theme does not create pages or send data to external services. Set your own name, description, community type and contacts under Appearance > Parish Appearance > Site Details. Choose ordinary WordPress pages for links throughout the theme under Homepage. Optional plugins can supply calendar and automatic schedule data, or fill empty contact fields. No bundled photographs appear on the public site.
+The theme does not create pages. Set your own name, description, community type and contacts under Appearance > Parish Appearance > Site Details. Choose ordinary WordPress pages for links throughout the theme under Homepage. Optional plugins can supply calendar and automatic schedule data, or fill empty contact fields. No bundled photographs appear on the public site.
+
+Under Optional Plugins, installed integrations have descriptions, screenshots and links to their settings. The theme contacts the WordPress.org plugin information API only when an administrator clicks Check WordPress.org. The request contains the plugin slugs and WordPress locale, with standard WordPress HTTP request metadata. Directory results are cached locally for one hour. No site content or contact-form messages are sent. Only confirmed WordPress.org entries are recommended for installation; unavailable or unpublished plugins are not advertised to new installations. Installation and activation require an explicit click and use WordPress core screens, capabilities, nonces and compatibility checks. The theme never bundles, downloads or activates plugins automatically. WordPress.org privacy policy: https://wordpress.org/about/privacy/.
 
 == Installation ==
 
@@ -33,6 +35,9 @@ The theme uses images selected from your WordPress media library. It does not do
 Create and assign a menu under Appearance > Menus. Open a menu item and choose its image from the media library; without a chosen image, the linked page or post featured image is used. The theme's Appearance > Parish Appearance > Header and Footer section enables an image menu alongside the standard desktop link row and sets the number of visual columns. The link-row-only option remains available. Menu item descriptions can be enabled under Screen Options on the Menus screen.
 
 == Changelog ==
+
+= 0.4.32 =
+Add an Optional Plugins section with real screenshots, descriptions, installed states and settings links. Offer standard WordPress installation only for directory-confirmed plugins, after an explicit directory check. Keep the theme independent and all content unchanged.
 
 = 0.4.31 =
 Restore the five style layouts with card grids based on visible items, optional hero panels and headings, traditional quotation and cross, and style-specific symbol cards. Keep homepage card photographs 200px high. Align classic navigation, preserve mobile contrast and support missing plugin data without empty columns.
@@ -111,4 +116,5 @@ Connects the service preview and calendar icons to the standalone Schedule plugi
 
 Theme PHP, CSS, JavaScript, and SVG assets: © 2026 Vladimir Atapin, GPLv2 or later, included in this package.
 Theme screenshot and style previews, captured from the theme demonstration: © 2026 Vladimir Atapin, GPLv2 or later, included in this package.
+Plugin settings screenshots in assets/plugins, captured from the standalone GPLv2-or-later Georg-Kloster Parish plugins on a disposable WordPress installation with empty settings: © 2026 Vladimir Atapin, GPLv2 or later. WordPress admin interface: WordPress contributors, GPLv2 or later, https://wordpress.org/about/license/. Screenshots are documentation only and are never inserted into public pages.
 WordPress core blocks and APIs are provided by WordPress, GPLv2 or later, https://wordpress.org/about/license/.

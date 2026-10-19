@@ -64,6 +64,7 @@ function prihod_theme_settings_page(): void {
     $options = georg_kloster_prihod_options();
     $sections = array( 'schemes' => __( 'Styles', 'georg-kloster-prihod' ), 'layout' => __( 'Layout and fonts', 'georg-kloster-prihod' ), 'branding' => __( 'Logo and icon', 'georg-kloster-prihod' ), 'header' => __( 'Header and footer', 'georg-kloster-prihod' ), 'languages' => __( 'Languages', 'georg-kloster-prihod' ) );
     $sections = array_slice( $sections, 0, 1, true ) + array( 'home' => __( 'Homepage', 'georg-kloster-prihod' ), 'profile' => __( 'Site details', 'georg-kloster-prihod' ) ) + array_slice( $sections, 1, null, true );
+    $sections['plugins'] = __( 'Optional plugins', 'georg-kloster-prihod' );
     echo '<div class="wrap georg-kloster-prihod-settings"><h1>' . esc_html__( 'Parish Appearance', 'georg-kloster-prihod' ) . ' <small>' . esc_html( wp_get_theme()->get( 'Version' ) ) . '</small></h1>';
     settings_errors();
     echo '<div class="prihod-options-shell"><nav class="prihod-options-nav" aria-label="' . esc_attr__( 'Settings sections', 'georg-kloster-prihod' ) . '">';
@@ -97,5 +98,7 @@ function prihod_theme_settings_page(): void {
     foreach ( array( 'header_motto' => __( 'Classic header motto', 'georg-kloster-prihod' ), 'hero_motto' => __( 'Classic hero motto', 'georg-kloster-prihod' ), 'hero_quote_text' => __( 'Quotation below the buttons in the blue style', 'georg-kloster-prihod' ), 'hero_quote_source' => __( 'Blue style quotation source', 'georg-kloster-prihod' ) ) as $key => $label ) { echo '<p><label>' . esc_html( $label ) . '<br><textarea class="large-text" rows="2" name="georg_kloster_prihod_options[' . esc_attr( $key ) . ']">' . esc_textarea( $options[$key] ) . '</textarea></label></p>'; }
     echo '<p><label>' . esc_html__( 'Additional footer text', 'georg-kloster-prihod' ) . '<br><textarea class="large-text" rows="3" name="georg_kloster_prihod_options[footer_text]">' . esc_textarea( $options['footer_text'] ) . '</textarea></label></p></section><section id="prihod-option-languages" class="prihod-option-section"><h2>' . esc_html__( 'Page language versions', 'georg-kloster-prihod' ) . '</h2><p>' . esc_html__( 'Enter the URLs of existing language versions. Content translations are created separately; the theme does not translate text automatically.', 'georg-kloster-prihod' ) . '</p>';
     foreach ( array( 'ru' => __( 'Russian', 'georg-kloster-prihod' ), 'de' => __( 'German', 'georg-kloster-prihod' ), 'pl' => __( 'Polish', 'georg-kloster-prihod' ), 'uk' => __( 'Ukrainian', 'georg-kloster-prihod' ) ) as $code => $name ) { echo '<p><label>' . esc_html( $name ) . '<br><input type="url" class="regular-text" name="georg_kloster_prihod_options[languages][' . esc_attr( $code ) . ']" value="' . esc_attr( $options['languages'][ $code ] ?? '' ) . '"></label></p>'; }
-    echo '</section></form></div></div></div>';
+    echo '</section></form>';
+    prihod_theme_plugins_panel();
+    echo '</div></div></div>';
 }

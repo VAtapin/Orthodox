@@ -1,5 +1,25 @@
 # Проверки
 
+## Рекомендации плагинов в теме
+
+`theme-plugins-blueprint.json` проверяет раздел дополнительных плагинов в
+одноразовом WordPress, без скачивания плагинов или внешних HTTP-запросов.
+Проверяются установленные/активные/отсутствующие модули, подтверждённая запись
+каталога и ошибки API, штатные URL установки/активации и nonce, совместимость
+WordPress/PHP, права редактора темы, отдельная форма проверки и сохранность
+страниц, настроек и списка активных плагинов. Скриншоты сняты с настоящих
+экранов трёх самостоятельных плагинов с пустыми настройками.
+
+```powershell
+npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-prihod /wordpress/wp-content/themes/georg-kloster-prihod --mount-dir ./georg-kloster-prihod-core /wordpress/wp-content/plugins/georg-kloster-prihod-core --mount-dir ./georg-kloster-prihod-schedule /wordpress/wp-content/plugins/georg-kloster-prihod-schedule --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/theme-plugins-blueprint.json
+```
+
+Результат — `tests/.theme-plugins-result.json`. Для минимальной платформы
+использовать копию Blueprint с `wp: 6.5`, `php: 8.0`. Проверка успешной
+установки опубликованного плагина через каталог остаётся отдельной проверкой
+после публикации: API WordPress.org сейчас возвращает `Plugin not found` для
+всех трёх slug. Подставной пакет за готовую установку не выдаётся.
+
 ## Русский интерфейс самостоятельных плагинов
 
 Core 0.1.4, Social 0.1.3 и Schedule 0.1.10 содержат русские PO/MO и JSON

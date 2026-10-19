@@ -635,3 +635,75 @@ msgstr "Wir freuen uns auf Ihren Besuch"
 
 msgid "Wide"
 msgstr "Breite Seite"
+
+msgid "Optional plugins"
+msgstr "Optionale Plugins"
+
+msgid "Georg-Kloster Parish Core"
+msgstr "Georg-Kloster — Gemeinde"
+
+msgid "Georg-Kloster Parish Social"
+msgstr "Georg-Kloster — Kontakt"
+
+msgid "Georg-Kloster Parish Schedule"
+msgstr "Georg-Kloster — Gottesdienstplan"
+
+msgid "Parish profile, places and clergy. Publish these details with blocks or shortcodes, using any theme."
+msgstr "Gemeindeprofil, Gottesdienstorte und Geistliche. Veröffentlichen Sie diese Angaben mit Blöcken oder Shortcodes in jedem Theme."
+
+msgid "Configurable contact forms and private correspondence. Email replies and optional Telegram, WhatsApp and Facebook channels are configured separately."
+msgstr "Konfigurierbare Kontaktformulare und private Korrespondenz. E-Mail-Antworten und optionale Telegram-, WhatsApp- und Facebook-Kanäle werden separat eingerichtet."
+
+msgid "Service schedules, recurring events, cancellations and changes. Calendar views, upcoming services and vestment colours work without Parish Core."
+msgstr "Gottesdienstpläne, wiederkehrende Termine, Absagen und Änderungen. Kalenderansichten, nächste Gottesdienste und Gewandfarben funktionieren ohne Parish Core."
+
+msgid "Activate"
+msgstr "Aktivieren"
+
+msgid "Install from WordPress.org"
+msgstr "Von WordPress.org installieren"
+
+msgid "Active"
+msgstr "Aktiv"
+
+msgid "Installed, inactive"
+msgstr "Installiert, inaktiv"
+
+msgid "Available on WordPress.org"
+msgstr "Auf WordPress.org verfügbar"
+
+msgid "Requires a newer WordPress or PHP version"
+msgstr "Erfordert eine neuere WordPress- oder PHP-Version"
+
+msgid "The theme works on its own. Add plugins only for the features you need; each plugin is independent."
+msgstr "Das Theme funktioniert eigenständig. Ergänzen Sie nur Plugins für benötigte Funktionen; jedes Plugin ist unabhängig."
+
+msgid "Installed integrations appear below. New recommendations and installation buttons appear only after WordPress.org confirms that a plugin is available in its directory."
+msgstr "Installierte Integrationen erscheinen unten. Neue Empfehlungen und Installationsschaltflächen erscheinen erst, wenn WordPress.org die Verfügbarkeit im Verzeichnis bestätigt."
+
+msgid "Check WordPress.org"
+msgstr "WordPress.org prüfen"
+
+msgid "This contacts the WordPress.org plugin directory. Nothing is installed or activated by the check."
+msgstr "Dabei wird das Plugin-Verzeichnis von WordPress.org kontaktiert. Die Prüfung installiert oder aktiviert nichts."
+
+msgid "Ask an administrator with plugin installation permissions to check the directory or install plugins."
+msgstr "Bitten Sie einen Administrator mit Installationsrechten, das Verzeichnis zu prüfen oder Plugins zu installieren."
+
+msgid "Directory check complete. Plugins that could not be confirmed are not offered for installation. You can check again if a plugin has just been published or the directory was unavailable."
+msgstr "Verzeichnisprüfung abgeschlossen. Nicht bestätigte Plugins werden nicht zur Installation angeboten. Prüfen Sie erneut, wenn ein Plugin gerade veröffentlicht wurde oder das Verzeichnis nicht erreichbar war."
+
+msgid "Screenshot: %s (new tab)"
+msgstr "Screenshot: %s (neuer Tab)"
+
+msgid "Version: %s"
+msgstr "Version: %s"
+
+msgid "Open settings"
+msgstr "Einstellungen öffnen"
+
+msgid "Details on WordPress.org"
+msgstr "Details auf WordPress.org"
+
+msgid "No installed integrations or confirmed directory recommendations are available yet."
+msgstr "Noch keine installierten Integrationen oder bestätigten Verzeichnisempfehlungen verfügbar."

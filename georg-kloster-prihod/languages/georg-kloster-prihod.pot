@@ -17,6 +17,14 @@ msgstr ""
 msgid "About the parish / monastery"
 msgstr ""
 
+#: includes/plugins.php
+msgid "Activate"
+msgstr ""
+
+#: includes/plugins.php
+msgid "Active"
+msgstr ""
+
 #: includes/about.php
 msgid "Activities"
 msgstr ""
@@ -61,8 +69,16 @@ msgstr ""
 msgid "Ask a priest"
 msgstr ""
 
+#: includes/plugins.php
+msgid "Ask an administrator with plugin installation permissions to check the directory or install plugins."
+msgstr ""
+
 #: includes/home-settings.php includes/site-settings.php
 msgid "Automatic"
+msgstr ""
+
+#: includes/plugins.php
+msgid "Available on WordPress.org"
 msgstr ""
 
 #: includes/design.php
@@ -103,6 +119,10 @@ msgstr ""
 
 #: catalog.php
 msgid "Catalog"
+msgstr ""
+
+#: includes/plugins.php
+msgid "Check WordPress.org"
 msgstr ""
 
 #: includes/menu.php
@@ -176,6 +196,10 @@ msgstr ""
 msgid "Community type"
 msgstr ""
 
+#: includes/plugins.php
+msgid "Configurable contact forms and private correspondence. Email replies and optional Telegram, WhatsApp and Facebook channels are configured separately."
+msgstr ""
+
 #: includes/render.php
 msgid "Contact us"
 msgstr ""
@@ -228,8 +252,16 @@ msgstr ""
 msgid "Desktop columns"
 msgstr ""
 
+#: includes/plugins.php
+msgid "Details on WordPress.org"
+msgstr ""
+
 #: includes/contacts.php includes/pilgrim.php
 msgid "Directions"
+msgstr ""
+
+#: includes/plugins.php
+msgid "Directory check complete. Plugins that could not be confirmed are not offered for installation. You can check again if a plugin has just been published or the directory was unavailable."
 msgstr ""
 
 #: includes/home-settings.php
@@ -310,6 +342,18 @@ msgstr ""
 msgid "For visitors"
 msgstr ""
 
+#: includes/plugins.php
+msgid "Georg-Kloster Parish Core"
+msgstr ""
+
+#: includes/plugins.php
+msgid "Georg-Kloster Parish Schedule"
+msgstr ""
+
+#: includes/plugins.php
+msgid "Georg-Kloster Parish Social"
+msgstr ""
+
 #: includes/settings.php
 msgid "German"
 msgstr ""
@@ -366,7 +410,19 @@ msgstr ""
 msgid "Icon of the day"
 msgstr ""
 
-#: includes/settings.php
+#: includes/plugins.php
+msgid "Install from WordPress.org"
+msgstr ""
+
+#: includes/plugins.php
+msgid "Installed integrations appear below. New recommendations and installation buttons appear only after WordPress.org confirms that a plugin is available in its directory."
+msgstr ""
+
+#: includes/plugins.php
+msgid "Installed, inactive"
+msgstr ""
+
+#: includes/plugins.php includes/settings.php
 msgid "Insufficient permissions."
 msgstr ""
 
@@ -458,6 +514,10 @@ msgstr ""
 msgid "No content found. Change your search or reset the filters."
 msgstr ""
 
+#: includes/plugins.php
+msgid "No installed integrations or confirmed directory recommendations are available yet."
+msgstr ""
+
 #: includes/home-settings.php
 msgid "Number of posts"
 msgstr ""
@@ -468,6 +528,14 @@ msgstr ""
 
 #: includes/home-settings.php
 msgid "Only the content of the page selected as the homepage in Reading settings is displayed."
+msgstr ""
+
+#: includes/plugins.php
+msgid "Open settings"
+msgstr ""
+
+#: includes/plugins.php includes/settings.php
+msgid "Optional plugins"
 msgstr ""
 
 #: includes/render.php
@@ -492,6 +560,10 @@ msgstr ""
 
 #: includes/settings.php
 msgid "Parish Appearance"
+msgstr ""
+
+#: includes/plugins.php
+msgid "Parish profile, places and clergy. Publish these details with blocks or shortcodes, using any theme."
 msgstr ""
 
 #: includes/presentation.php includes/site-settings.php
@@ -574,6 +646,10 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
+#: includes/plugins.php
+msgid "Requires a newer WordPress or PHP version"
+msgstr ""
+
 #: includes/catalog.php
 msgid "Reset filters"
 msgstr ""
@@ -596,6 +672,10 @@ msgstr ""
 
 #: includes/home-settings.php
 msgid "Schedule button label"
+msgstr ""
+
+#: includes/plugins.php
+msgid "Screenshot: %s (new tab)"
 msgstr ""
 
 #: includes/render.php
@@ -636,6 +716,10 @@ msgstr ""
 
 #: includes/pilgrim.php includes/render.php
 msgid "Service schedule"
+msgstr ""
+
+#: includes/plugins.php
+msgid "Service schedules, recurring events, cancellations and changes. Calendar views, upcoming services and vestment colours work without Parish Core."
 msgstr ""
 
 #: includes/site-settings.php
@@ -784,6 +868,10 @@ msgstr ""
 msgid "The site style has not been changed."
 msgstr ""
 
+#: includes/plugins.php
+msgid "The theme works on its own. Add plugins only for the features you need; each plugin is independent."
+msgstr ""
+
 #: includes/settings.php
 msgid "Theme settings"
 msgstr ""
@@ -794,6 +882,10 @@ msgstr ""
 
 #: archive.php includes/home.php
 msgid "There are no posts yet."
+msgstr ""
+
+#: includes/plugins.php
+msgid "This contacts the WordPress.org plugin directory. Nothing is installed or activated by the check."
 msgstr ""
 
 #: includes/home-settings.php
@@ -822,6 +914,10 @@ msgstr ""
 
 #: includes/home-settings.php
 msgid "Use style default"
+msgstr ""
+
+#: includes/plugins.php
+msgid "Version: %s"
 msgstr ""
 
 #: includes/settings.php

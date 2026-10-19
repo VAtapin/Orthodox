@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (link.dataset.section === id) link.setAttribute('aria-current', 'page');
             else link.removeAttribute('aria-current');
         });
-        shell.querySelector('.prihod-options-toolbar').hidden = false;
+        shell.querySelector('.prihod-options-toolbar').hidden = id === 'plugins';
     }
     window.addEventListener('hashchange', show);
     show();

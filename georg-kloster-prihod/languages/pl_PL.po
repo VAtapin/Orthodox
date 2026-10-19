@@ -635,3 +635,75 @@ msgstr "Cieszymy się na spotkanie z Państwem"
 
 msgid "Wide"
 msgstr "Szeroka strona"
+
+msgid "Optional plugins"
+msgstr "Opcjonalne wtyczki"
+
+msgid "Georg-Kloster Parish Core"
+msgstr "Georg-Kloster — Parafia"
+
+msgid "Georg-Kloster Parish Social"
+msgstr "Georg-Kloster — Kontakt"
+
+msgid "Georg-Kloster Parish Schedule"
+msgstr "Georg-Kloster — Plan nabożeństw"
+
+msgid "Parish profile, places and clergy. Publish these details with blocks or shortcodes, using any theme."
+msgstr "Profil parafii, miejsca nabożeństw i duchowieństwo. Publikuj te informacje za pomocą bloków lub krótkich kodów w dowolnym motywie."
+
+msgid "Configurable contact forms and private correspondence. Email replies and optional Telegram, WhatsApp and Facebook channels are configured separately."
+msgstr "Konfigurowalne formularze kontaktowe i prywatna korespondencja. Odpowiedzi e-mail oraz opcjonalne kanały Telegram, WhatsApp i Facebook konfiguruje się osobno."
+
+msgid "Service schedules, recurring events, cancellations and changes. Calendar views, upcoming services and vestment colours work without Parish Core."
+msgstr "Plany nabożeństw, wydarzenia cykliczne, odwołania i zmiany. Widoki kalendarza, najbliższe nabożeństwa i kolory szat działają bez Parish Core."
+
+msgid "Activate"
+msgstr "Włącz"
+
+msgid "Install from WordPress.org"
+msgstr "Zainstaluj z WordPress.org"
+
+msgid "Active"
+msgstr "Włączona"
+
+msgid "Installed, inactive"
+msgstr "Zainstalowana, wyłączona"
+
+msgid "Available on WordPress.org"
+msgstr "Dostępna na WordPress.org"
+
+msgid "Requires a newer WordPress or PHP version"
+msgstr "Wymaga nowszej wersji WordPress lub PHP"
+
+msgid "The theme works on its own. Add plugins only for the features you need; each plugin is independent."
+msgstr "Motyw działa samodzielnie. Dodawaj wtyczki tylko do potrzebnych funkcji; każda wtyczka jest niezależna."
+
+msgid "Installed integrations appear below. New recommendations and installation buttons appear only after WordPress.org confirms that a plugin is available in its directory."
+msgstr "Poniżej znajdują się zainstalowane moduły. Nowe rekomendacje i przyciski instalacji pojawią się dopiero po potwierdzeniu dostępności w katalogu WordPress.org."
+
+msgid "Check WordPress.org"
+msgstr "Sprawdź WordPress.org"
+
+msgid "This contacts the WordPress.org plugin directory. Nothing is installed or activated by the check."
+msgstr "Spowoduje to połączenie z katalogiem wtyczek WordPress.org. Sprawdzenie niczego nie instaluje ani nie włącza."
+
+msgid "Ask an administrator with plugin installation permissions to check the directory or install plugins."
+msgstr "Poproś administratora z uprawnieniami do instalacji wtyczek o sprawdzenie katalogu lub instalację."
+
+msgid "Directory check complete. Plugins that could not be confirmed are not offered for installation. You can check again if a plugin has just been published or the directory was unavailable."
+msgstr "Sprawdzanie katalogu zakończone. Wtyczki bez potwierdzonej dostępności nie są oferowane do instalacji. Sprawdź ponownie, jeśli wtyczka została właśnie opublikowana lub katalog był niedostępny."
+
+msgid "Screenshot: %s (new tab)"
+msgstr "Zrzut ekranu: %s (nowa karta)"
+
+msgid "Version: %s"
+msgstr "Wersja: %s"
+
+msgid "Open settings"
+msgstr "Otwórz ustawienia"
+
+msgid "Details on WordPress.org"
+msgstr "Szczegóły na WordPress.org"
+
+msgid "No installed integrations or confirmed directory recommendations are available yet."
+msgstr "Brak zainstalowanych modułów i potwierdzonych rekomendacji z katalogu."
