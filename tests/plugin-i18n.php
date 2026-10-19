@@ -25,7 +25,7 @@ foreach ( array(
 ) as $domain => $pair ) {
     $check( $pair[1] === translate( $pair[0], $domain ), 'Bundled catalog did not load automatically: ' . $domain );
 }
-foreach ( array( GKPC_FILE => 'Georg-Kloster — Приход', GKPS_FILE => 'Georg-Kloster — Коммуникации', GKPSCH_FILE => 'Georg-Kloster — Расписание богослужений' ) as $file => $title ) {
+foreach ( array( GKPC_FILE => 'Georg-Kloster — Приход', GKPS_FILE => 'Georg-Kloster — Коммуникации' ) as $file => $title ) {
     $data = get_plugin_data( $file );
     $check( $title === $data['Name'], 'Untranslated plugin name.' );
     $check( (bool) preg_match( '/[А-Яа-яЁё]/u', $data['Description'] ), 'Untranslated plugin description.' );
@@ -34,7 +34,7 @@ global $menu, $submenu;
 $menu = array(); $submenu = array();
 do_action( 'admin_init' );
 do_action( 'admin_menu' );
-foreach ( array( 'gkpc' => 'Приход', 'gkps' => 'Коммуникации', 'gkpsch' => 'Богослужения' ) as $slug => $title ) {
+foreach ( array( 'gkpc' => 'Приход', 'gkps' => 'Коммуникации' ) as $slug => $title ) {
     $found = array_filter( $menu, static fn( $item ) => $slug === $item[2] && $title === $item[0] );
     $check( 1 === count( $found ), 'Untranslated admin menu: ' . $slug );
 }

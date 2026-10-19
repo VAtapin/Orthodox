@@ -1,17 +1,33 @@
 msgid ""
 msgstr "Project-Id-Version: georg-kloster-prihod-core\nLanguage: ru_RU\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 
+#: includes/class-demo-importer.php
+msgid "A demo import is already running. Please try again later."
+msgstr "Импорт демо уже выполняется. Повторите попытку позже."
+
 #: includes/class-page-links.php
 msgid "About"
 msgstr "О нас"
 
-#: includes/class-admin.php
+#: includes/class-admin.php includes/class-place-media.php
 msgid "Access denied."
 msgstr "Доступ запрещён."
+
+#: includes/class-schedule-module.php
+msgid "Activate Parish network-wide to replace a network-active Parish Schedule."
+msgstr "Активируйте «Приход» для всей сети, чтобы заменить сетевой плагин богослужений."
+
+#: includes/class-demo-admin.php
+msgid "Add three example services to Parish. Dates are illustrative and do not represent a real parish schedule."
+msgstr "Добавить три примерных богослужения в «Приход». Даты демонстрационные и не являются расписанием настоящего прихода."
 
 #: includes/class-directory.php includes/class-profile.php
 msgid "Address"
 msgstr "Адрес"
+
+#: includes/class-demo-admin.php
+msgid "Apply selected demo options"
+msgstr "Применить выбранные параметры демо"
 
 #: includes/class-page-links.php
 msgid "Calendar"
@@ -20,6 +36,22 @@ msgstr "Календарь"
 #: includes/class-admin.php
 msgid "Chapel"
 msgstr "Часовня"
+
+#: includes/class-place-media.php
+msgid "Choose a logo and up to 24 photos from the media library."
+msgstr "Выберите логотип и не более 24 фотографий из медиатеки."
+
+#: includes/class-place-media.php
+msgid "Choose a place logo"
+msgstr "Выбрать логотип места служения"
+
+#: includes/class-place-media.php
+msgid "Choose images"
+msgstr "Выбрать изображения"
+
+#: includes/class-place-media.php
+msgid "Choose place photos"
+msgstr "Выбрать фотографии места служения"
 
 #: includes/class-page-links.php
 msgid "Choose the content shown in the theme navigation and home page. Each language uses its linked WordPress translation."
@@ -41,6 +73,10 @@ msgstr "Священнослужитель"
 msgid "Clergy page"
 msgstr "Страница духовенства"
 
+#: includes/class-demo-admin.php
+msgid "Confirm the demo import first."
+msgstr "Сначала подтвердите импорт демо."
+
 #: includes/class-page-links.php
 msgid "Contact requests"
 msgstr "Обращения"
@@ -48,6 +84,18 @@ msgstr "Обращения"
 #: includes/class-page-links.php
 msgid "Contacts"
 msgstr "Контакты"
+
+#: includes/class-demo-admin.php
+msgid "Demo content"
+msgstr "Демо-данные"
+
+#: includes/class-demo-admin.php
+msgid "Demo content has been imported. Repeating the action will not duplicate items or overwrite your edits."
+msgstr "Демо-данные импортированы. Повторный запуск не создаст копии материалов и не перезапишет ваши правки."
+
+#: includes/class-demo-admin.php
+msgid "Demo content language"
+msgstr "Язык демо-данных"
 
 #: includes/class-profile.php
 msgid "Description"
@@ -61,21 +109,49 @@ msgstr "Дополнительные сведения"
 msgid "Donations"
 msgstr "Пожертвования"
 
+#: includes/class-demo-admin.php
+msgid "Edit demo page"
+msgstr "Редактировать демо-страницу"
+
 #: includes/class-directory.php includes/class-profile.php
 msgid "Email"
 msgstr "Электронная почта"
+
+#: includes/class-demo-admin.php
+msgid "English"
+msgstr "Английский"
 
 #: includes/class-page-links.php
 msgid "First visit"
 msgstr "Первое посещение"
 
 #: georg-kloster-prihod-core.php
-msgid "Georg-Kloster Parish Core"
+msgid "Georg-Kloster Parish"
 msgstr "Georg-Kloster — Приход"
+
+#: includes/class-demo-admin.php
+msgid "I understand that this creates fictional demonstration content on this site."
+msgstr "Я понимаю, что на этом сайте будут созданы вымышленные демонстрационные материалы."
+
+#: includes/class-demo-admin.php
+msgid "Import an editable fictional parish and diocese. Photographs of Saint George Monastery are illustrations, not photographs of the fictional parish."
+msgstr "Импорт редактируемого примера вымышленного прихода и епархии. Снимки Свято-Георгиевского монастыря используются как иллюстрации и не изображают вымышленный приход."
+
+#: includes/class-demo-admin.php
+msgid "Import demo content"
+msgstr "Импортировать демо-данные"
 
 #: includes/class-profile.php
 msgid "Invalid profile."
 msgstr "Некорректные данные прихода."
+
+#: includes/class-demo-admin.php
+msgid "Items to create: %1$d pages, %2$d posts, %3$d images. Existing content is kept."
+msgstr "Будет создано: страниц — %1$d, записей — %2$d, изображений — %3$d. Существующие материалы сохраняются."
+
+#: includes/class-place-media.php
+msgid "Logo"
+msgstr "Логотип"
 
 #: includes/class-admin.php
 msgid "Monastery"
@@ -93,6 +169,10 @@ msgstr "Новости"
 msgid "Organisation type"
 msgstr "Тип общины"
 
+#: includes/class-demo-admin.php
+msgid "Pages included in the demo"
+msgstr "Страницы в составе демо"
+
 #: includes/class-admin.php
 msgid "Parish"
 msgstr "Приход"
@@ -106,8 +186,8 @@ msgid "Parish profile"
 msgstr "Сведения о приходе"
 
 #: georg-kloster-prihod-core.php
-msgid "Parish profile, places and clergy for WordPress."
-msgstr "Сведения о приходе, места служения и духовенство для WordPress."
+msgid "Parish profile, clergy, service places and service schedules for WordPress."
+msgstr "Профиль прихода, духовенство, места служения и расписание богослужений для WordPress."
 
 #: includes/class-directory.php includes/class-profile.php
 msgid "Phone"
@@ -117,13 +197,25 @@ msgstr "Телефон"
 msgid "Photo gallery"
 msgstr "Фотогалерея"
 
-#: includes/class-directory.php
-msgid "Place"
-msgstr "Место служения"
+#: includes/class-place-media.php
+msgid "Photos"
+msgstr "Фотографии"
 
-#: assets/blocks.js includes/class-blocks.php includes/class-directory.php
+#: includes/class-directory.php
+msgid "Place logo and photos"
+msgstr "Логотип и фотографии места служения"
+
+#: assets/blocks.js
 msgid "Places"
 msgstr "Места служения"
+
+#: includes/class-place-media.php
+msgid "Remove images"
+msgstr "Убрать изображения"
+
+#: includes/class-demo-admin.php
+msgid "Russian"
+msgstr "Русский"
 
 #: includes/class-page-links.php
 msgid "Save sections"
@@ -133,9 +225,21 @@ msgstr "Сохранить разделы"
 msgid "Select content"
 msgstr "Выбрать страницу"
 
+#: includes/class-place-media.php
+msgid "Select image attachments only."
+msgstr "Выбирайте только изображения из медиатеки."
+
 #: includes/class-page-links.php
 msgid "Sermons"
 msgstr "Проповеди"
+
+#: includes/class-directory.php
+msgid "Service place"
+msgstr "Место служения"
+
+#: includes/class-blocks.php includes/class-directory.php
+msgid "Service places"
+msgstr "Места служения"
 
 #: includes/class-page-links.php
 msgid "Service schedule"
@@ -145,83 +249,58 @@ msgstr "Расписание богослужений"
 msgid "Short name"
 msgstr "Краткое название"
 
+#: includes/class-demo-admin.php
+msgid "Show demo preview"
+msgstr "Показать состав демо"
+
 #: includes/class-page-links.php
 msgid "Site sections"
 msgstr "Разделы сайта"
+
+#: includes/class-demo-admin.php
+msgid "The import creates published demo pages, posts, images and a separate menu. It does not send messages, enable payment services, install plugins or contact an external service."
+msgstr "Импорт создаёт опубликованные демо-страницы, записи, изображения и отдельное меню. Он не отправляет сообщения, не включает платёжные сервисы, не устанавливает плагины и не обращается к внешним сервисам."
+
+#: includes/class-demo-admin.php
+msgid "The import did not finish. Saved demo items remain; repeat the import to resume without duplicating them."
+msgstr "Импорт не завершился. Созданные демо-материалы сохранены; повторите импорт, чтобы продолжить без дубликатов."
+
+#: includes/class-place-media.php
+msgid "These images are displayed separately from the description, in the Places block and the schedule for this place."
+msgstr "Эти изображения выводятся отдельно от описания: в блоке «Места служения» и расписании этого места."
+
+#: includes/class-demo-admin.php
+msgid "This changes the front-page selection, not the content of your current homepage. Filled fields and assigned menus remain unchanged. You can restore the previous front page under Settings > Reading."
+msgstr "Будет изменён выбор главной страницы. Содержимое вашей текущей главной, заполненные поля и назначенные меню сохранятся. Прежнюю главную можно вернуть в разделе «Настройки → Чтение»."
+
+#: includes/class-directory.php
+msgid "Time zone (leave empty to use WordPress time zone)"
+msgstr "Часовой пояс (оставьте пустым, чтобы использовать часовой пояс WordPress)"
 
 #: includes/class-directory.php
 msgid "Title"
 msgstr "Сан"
 
+#: includes/class-place-media.php
+msgid "Use selected images"
+msgstr "Использовать выбранные изображения"
+
+#: includes/class-demo-admin.php
+msgid "Use the demo homepage. Fill empty parish/theme fields and page links; assign the demo menu only if the primary menu is unassigned."
+msgstr "Использовать демо как главную. Заполнить пустые поля прихода/темы и ссылки на страницы; назначить демо-меню, только если основное меню не назначено."
+
+#: includes/class-demo-admin.php
+msgid "View created homepage"
+msgstr "Посмотреть созданную главную"
+
 #: includes/class-profile.php
 msgid "Website"
 msgstr "Сайт"
 
-msgid "Items to create: %1$d pages, %2$d posts, %3$d images. Existing content is kept."
-msgstr "Будет создано: страниц — %1$d, записей — %2$d, изображений — %3$d. Существующие материалы сохраняются."
-
-msgid "A demo import is already running. Please try again later."
-msgstr "Импорт демо уже выполняется. Повторите попытку позже."
-
-msgid "Add three example services to the active Schedule plugin. Dates are illustrative and do not represent a real parish schedule."
-msgstr "Добавить три примерные службы в активный плагин расписания. Даты учебные и не отражают реальное расписание прихода."
-
-msgid "Apply selected demo options"
-msgstr "Применить выбранные параметры демо"
-
-msgid "Confirm the demo import first."
-msgstr "Сначала подтвердите импорт демо."
-
-msgid "Demo content"
-msgstr "Демо-данные"
-
-msgid "Demo content has been imported. Repeating the action will not duplicate items or overwrite your edits."
-msgstr "Демо-данные импортированы. Повторный запуск не создаст копии материалов и не перезапишет ваши правки."
-
-msgid "Demo content language"
-msgstr "Язык демо-данных"
-
-msgid "Edit demo page"
-msgstr "Редактировать демо-страницу"
-
-msgid "English"
-msgstr "Английский"
-
-msgid "I understand that this creates fictional demonstration content on this site."
-msgstr "Я понимаю, что на этом сайте будут созданы вымышленные демонстрационные материалы."
-
-msgid "Import an editable fictional parish and diocese. Photographs of Saint George Monastery are illustrations, not photographs of the fictional parish."
-msgstr "Импорт редактируемого примера вымышленного прихода и епархии. Снимки Свято-Георгиевского монастыря используются как иллюстрации и не изображают вымышленный приход."
-
-msgid "Import demo content"
-msgstr "Импортировать демо-данные"
-
-msgid "Pages included in the demo"
-msgstr "Страницы в составе демо"
-
-msgid "Russian"
-msgstr "Русский"
-
-msgid "Show demo preview"
-msgstr "Показать состав демо"
-
-msgid "The import creates published demo pages, posts, images and a separate menu. It does not send messages, enable payment services, install plugins or contact an external service."
-msgstr "Импорт создаёт опубликованные демо-страницы, записи, изображения и отдельное меню. Он не отправляет сообщения, не включает платёжные сервисы, не устанавливает плагины и не обращается к внешним сервисам."
-
-msgid "The import did not finish. Saved demo items remain; repeat the import to resume without duplicating them."
-msgstr "Импорт не завершился. Созданные демо-материалы сохранены; повторите импорт, чтобы продолжить без дубликатов."
-
-msgid "This changes the front-page selection, not the content of your current homepage. Filled fields and assigned menus remain unchanged. You can restore the previous front page under Settings > Reading."
-msgstr "Будет изменён выбор главной страницы. Содержимое вашей текущей главной, заполненные поля и назначенные меню сохранятся. Прежнюю главную можно вернуть в разделе «Настройки → Чтение»."
-
-msgid "Use the demo homepage. Fill empty parish/theme fields and page links; assign the demo menu only if the primary menu is unassigned."
-msgstr "Использовать демо как главную. Заполнить пустые поля прихода/темы и ссылки на страницы; назначить демо-меню, только если основное меню не назначено."
-
-msgid "View created homepage"
-msgstr "Посмотреть созданную главную"
-
+#: includes/class-demo-admin.php
 msgid "Without Schedule, the demo includes an ordinary editable schedule page. No plugin is required for the page content."
 msgstr "Без плагина расписания демо содержит обычную редактируемую страницу с расписанием. Для её содержимого плагины не нужны."
 
+#: includes/class-demo-admin.php includes/class-demo-importer.php
 msgid "You do not have permission to import this demo."
 msgstr "У вас нет прав для импорта этих демо-данных."

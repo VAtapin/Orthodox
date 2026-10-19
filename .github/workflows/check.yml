@@ -1,6 +1,33 @@
 name: Check
 on: [push, pull_request]
 jobs:
+  parish:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - wp: '6.5'
+            php: '8.0'
+          - wp: 'latest'
+            php: '8.4'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python tests/plugin-i18n-check.py
+      - run: node --check georg-kloster-prihod-core/assets/place-media.js
+      - run: python scripts/package.py --only parish-core
+      - run: unzip -q build/georg-kloster-prihod-core-0.2.0.zip -d "$RUNNER_TEMP/parish-package"
+      - name: Set Parish test versions
+        env:
+          TEST_WP: ${{ matrix.wp }}
+          TEST_PHP: ${{ matrix.php }}
+        run: node -e "const fs=require('fs'); const b=JSON.parse(fs.readFileSync('tests/parish-merge-blueprint.json')); b.preferredVersions={wp:process.env.TEST_WP,php:process.env.TEST_PHP}; fs.writeFileSync(process.env.RUNNER_TEMP+'/parish-blueprint.json',JSON.stringify(b));"
+      - run: npx --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir "$RUNNER_TEMP/parish-package/georg-kloster-prihod-core" /wordpress/wp-content/plugins/georg-kloster-prihod-core --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint "$RUNNER_TEMP/parish-blueprint.json"
   connect-hub:
     runs-on: ubuntu-latest
     strategy:
@@ -66,7 +93,7 @@ jobs:
           TEST_WP: ${{ matrix.wp }}
           TEST_PHP: ${{ matrix.php }}
         run: node -e "const fs=require('fs'); for (const name of ['theme-release','theme-core-release']) { const b=JSON.parse(fs.readFileSync('tests/'+name+'-blueprint.json')); b.preferredVersions={wp:process.env.TEST_WP,php:process.env.TEST_PHP}; fs.writeFileSync(process.env.RUNNER_TEMP+'/'+name+'-blueprint.json',JSON.stringify(b)); }"
-      - run: unzip -q build/georg-kloster-prihod-0.4.0.zip -d "$RUNNER_TEMP/theme-package"
+      - run: unzip -q build/georg-kloster-prihod-0.4.35.zip -d "$RUNNER_TEMP/theme-package"
       - run: npx --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir "$RUNNER_TEMP/theme-package/georg-kloster-prihod" /wordpress/wp-content/themes/georg-kloster-prihod --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint "$RUNNER_TEMP/theme-release-blueprint.json"
       - if: matrix.wp == 'latest' && matrix.php == '8.4'
         run: npx --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir "$RUNNER_TEMP/theme-package/georg-kloster-prihod" /wordpress/wp-content/themes/georg-kloster-prihod --mount-dir ./prihod /wordpress/wp-content/plugins/prihod --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint "$RUNNER_TEMP/theme-core-release-blueprint.json"

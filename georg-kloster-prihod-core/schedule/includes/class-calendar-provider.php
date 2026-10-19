@@ -8,24 +8,20 @@ final class Calendar_Provider {
     private const DEFAULT_ORIGIN = 'https://bible-desktop.com';
 
     public static function options(): array {
-        return wp_parse_args( get_option( self::OPTION, array() ), array( 'origin' => self::DEFAULT_ORIGIN, 'profile' => 'typikon-strict' ) );
+        $saved = get_option( self::OPTION, array() );
+        $profile = is_array( $saved ) && in_array( $saved['profile'] ?? '', array( 'typikon-strict', 'parish' ), true ) ? $saved['profile'] : 'typikon-strict';
+        return array( 'origin' => self::DEFAULT_ORIGIN, 'profile' => $profile );
     }
 
     public static function sanitize( $input ): array {
         $previous = self::options();
         if ( ! is_array( $input ) ) { return $previous; }
-        $origin = untrailingslashit( trim( (string) ( $input['origin'] ?? '' ) ) );
-        $parts = wp_parse_url( $origin );
-        if ( ! is_array( $parts ) || 'https' !== ( $parts['scheme'] ?? '' ) || empty( $parts['host'] ) || isset( $parts['port'] ) || isset( $parts['user'] ) || isset( $parts['pass'] ) || isset( $parts['query'] ) || isset( $parts['fragment'] ) || ! empty( $parts['path'] ) ) {
-            add_settings_error( self::OPTION, 'origin', __( 'Укажите адрес календарного сервиса HTTPS без пути.', 'georg-kloster-prihod-schedule' ) );
-            return $previous;
-        }
-        $profile = sanitize_key( $input['profile'] ?? '' );
+        $profile = isset( $input['profile'] ) && is_string( $input['profile'] ) ? sanitize_key( $input['profile'] ) : '';
         if ( ! in_array( $profile, array( 'typikon-strict', 'parish' ), true ) ) {
             add_settings_error( self::OPTION, 'profile', __( 'Некорректный профиль календаря.', 'georg-kloster-prihod-schedule' ) );
             return $previous;
         }
-        return array( 'origin' => $origin, 'profile' => $profile );
+        return array( 'origin' => self::DEFAULT_ORIGIN, 'profile' => $profile );
     }
 
     public static function render(): void {
@@ -35,7 +31,6 @@ final class Calendar_Provider {
         settings_errors( self::OPTION );
         echo '<form action="' . esc_url( admin_url( 'options.php' ) ) . '" method="post">';
         settings_fields( self::OPTION );
-        echo '<p><label>' . esc_html__( 'Адрес API', 'georg-kloster-prihod-schedule' ) . ' <input class="regular-text" type="url" required name="' . esc_attr( self::OPTION ) . '[origin]" value="' . esc_attr( $options['origin'] ) . '"></label></p>';
         echo '<p><label>' . esc_html__( 'Календарный профиль', 'georg-kloster-prihod-schedule' ) . ' <input type="text" required name="' . esc_attr( self::OPTION ) . '[profile]" value="' . esc_attr( $options['profile'] ) . '"></label></p>';
         submit_button( __( 'Сохранить календарный сервис', 'georg-kloster-prihod-schedule' ) );
         echo '</form>';

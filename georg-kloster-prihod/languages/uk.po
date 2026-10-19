@@ -1,709 +1,929 @@
 msgid ""
 msgstr "Project-Id-Version: Georg-Kloster Prihod 0.4.30\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nX-Domain: georg-kloster-prihod\nLanguage: uk\n"
 
+#: about.php
 msgid "About"
 msgstr "Історія та громада"
 
+#: includes/render.php
 msgid "About the monastery"
 msgstr "Про монастир"
 
+#: includes/render.php
 msgid "About the parish"
 msgstr "Про парафію"
 
+#: includes/home-settings.php
 msgid "About the parish / monastery"
 msgstr "Про парафію / монастир"
 
+#: includes/plugins.php
+msgid "Activate"
+msgstr "Активувати"
+
+#: includes/plugins.php
+msgid "Active"
+msgstr "Активний"
+
+#: includes/about.php
 msgid "Activities"
 msgstr "Напрями діяльності"
 
+#: includes/settings.php
 msgid "Additional footer text"
 msgstr "Додатковий текст підвалу"
 
+#: includes/home-settings.php
 msgid "Additional links"
 msgstr "Додаткові посилання"
 
+#: includes/presentation.php includes/site-settings.php
 msgid "Address"
 msgstr "Адреса"
 
+#: includes/catalog.php
 msgid "All"
 msgstr "Усі"
 
+#: includes/home-settings.php
 msgid "All categories"
 msgstr "Усі категорії"
 
+#: includes/render.php
 msgid "All commemorations for the day"
 msgstr "Усі свята дня"
 
+#: includes/render.php
 msgid "All services"
 msgstr "Усі богослужіння"
 
+#: includes/render.php
 msgid "Any questions?"
 msgstr "Маєте запитання?"
 
+#: includes/pilgrim.php
 msgid "Arrange a visit"
 msgstr "Узгодити приїзд"
 
+#: includes/clergy.php includes/contacts.php includes/home-settings.php includes/render.php
 msgid "Ask a priest"
 msgstr "Запитання священнику"
 
+#: includes/plugins.php
+msgid "Ask an administrator with plugin installation permissions to check the directory or install plugins."
+msgstr "Для перевірки каталогу або встановлення плагінів зверніться до адміністратора з відповідним правом."
+
+#: includes/home-settings.php includes/site-settings.php
 msgid "Automatic"
 msgstr "Автоматично"
 
+#: includes/plugins.php
+msgid "Available on WordPress.org"
+msgstr "Доступний у WordPress.org"
+
+#: includes/design.php
 msgid "Back to styles"
 msgstr "Повернутися до оформлень"
 
+#: includes/render.php
 msgid "Back to top"
 msgstr "Угору"
 
+#: includes/settings.php
 msgid "Base font"
 msgstr "Основний шрифт"
 
+#: includes/settings.php
 msgid "Base text size in px"
 msgstr "Розмір основного тексту, px"
 
+#: includes/settings.php
 msgid "Blue style quotation source"
 msgstr "Джерело цитати синього оформлення"
 
+#: includes/pilgrim.php
 msgid "Call the monastery"
 msgstr "Зателефонувати до обителі"
 
+#: includes/home-settings.php
 msgid "Card description"
 msgstr "Підпис картки"
 
+#: includes/home-settings.php
 msgid "Card title"
 msgstr "Назва картки"
 
+#: includes/settings.php
 msgid "Cards per row"
 msgstr "Карток у рядку"
 
+#: catalog.php
 msgid "Catalog"
 msgstr "Каталог матеріалів"
 
+#: includes/plugins.php
+msgid "Check WordPress.org"
+msgstr "Перевірити WordPress.org"
+
+#: includes/menu.php
 msgid "Choose image"
 msgstr "Вибрати зображення"
 
+#: includes/home-settings.php
 msgid "Choose standard WordPress pages. These links are used on the homepage, in the header, footer and sidebar; featured images become card images. No plugins are required. An empty selection allows optional page bindings from active plugins."
 msgstr "Виберіть звичайні сторінки WordPress. Ці посилання використовуються на головній, у шапці, підвалі та бічній колонці; зображення записів — як фотографії карток. Плагіни не потрібні. Без вибору можна використовувати необов’язкові прив’язки підключених плагінів."
 
+#: includes/settings.php
 msgid "Classic gold"
 msgstr "Класична золота"
 
+#: includes/settings.php
 msgid "Classic header motto"
 msgstr "Девіз у шапці класичного оформлення"
 
+#: includes/settings.php
 msgid "Classic hero motto"
 msgstr "Напис першого екрана класичного оформлення"
 
+#: includes/about.php
 msgid "Clergy"
 msgstr "Духовенство"
 
+#: includes/render.php
 msgid "Close menu"
 msgstr "Закрити меню"
 
+#: styles/blue.json styles/editorial.json styles/hospitality.json styles/tradition.json theme.json
 msgctxt "Color name"
 msgid "Accent"
 msgstr "Акцент"
 
+#: styles/blue.json styles/editorial.json styles/hospitality.json styles/tradition.json theme.json
 msgctxt "Color name"
 msgid "Background"
 msgstr "Тло"
 
+#: styles/blue.json styles/editorial.json styles/hospitality.json styles/tradition.json theme.json
 msgctxt "Color name"
 msgid "Borders"
 msgstr "Межі"
 
+#: styles/blue.json styles/editorial.json styles/hospitality.json styles/tradition.json theme.json
 msgctxt "Color name"
 msgid "Cards"
 msgstr "Картки"
 
+#: styles/blue.json styles/editorial.json styles/hospitality.json styles/tradition.json theme.json
 msgctxt "Color name"
 msgid "Gold"
 msgstr "Золото"
 
+#: styles/blue.json styles/editorial.json styles/hospitality.json styles/tradition.json theme.json
 msgctxt "Color name"
 msgid "Secondary text"
 msgstr "Другорядний текст"
 
+#: styles/blue.json styles/editorial.json styles/hospitality.json styles/tradition.json theme.json
 msgctxt "Color name"
 msgid "Text"
 msgstr "Текст"
 
+#: includes/about.php
 msgid "Community life"
 msgstr "Життя громади"
 
+#: includes/site-settings.php
 msgid "Community type"
 msgstr "Тип громади"
 
+#: includes/render.php
 msgid "Contact us"
 msgstr "Зв’язатися з нами"
 
+#: contacts.php includes/contacts.php includes/home-settings.php includes/render.php
 msgid "Contacts"
 msgstr "Контакти"
 
+#: includes/settings.php
 msgid "Current style"
 msgstr "Поточне оформлення"
 
+#: includes/home-settings.php
 msgid "Custom labels can be translated in WPML String Translation under georg-kloster-prihod."
 msgstr "Власні підписи можна перекладати у WPML String Translation, розділ georg-kloster-prihod."
 
+#: theme.json
 msgctxt "Custom template name"
 msgid "Content catalog"
 msgstr "Каталог матеріалів"
 
+#: theme.json
 msgctxt "Custom template name"
 msgid "Form and confirmation"
 msgstr "Форма й підтвердження"
 
+#: theme.json
 msgctxt "Custom template name"
 msgid "History and community"
 msgstr "Історія та громада"
 
+#: theme.json
 msgctxt "Custom template name"
 msgid "Wide page"
 msgstr "Широка сторінка"
 
+#: includes/home-settings.php
 msgid "Default"
 msgstr "За замовчуванням"
 
+#: includes/menu.php
 msgid "Delete"
 msgstr "Видалити"
 
+#: includes/home-settings.php includes/site-settings.php
 msgid "Description"
 msgstr "Опис"
 
+#: includes/home-settings.php
 msgid "Desktop columns"
 msgstr "Колонок на комп’ютері"
 
+#: includes/plugins.php
+msgid "Details on WordPress.org"
+msgstr "Докладніше у WordPress.org"
+
+#: includes/contacts.php includes/pilgrim.php
 msgid "Directions"
 msgstr "Як дістатися"
 
+#: includes/plugins.php
+msgid "Directory check complete. Plugins that could not be confirmed are not offered for installation. You can check again if a plugin has just been published or the directory was unavailable."
+msgstr "Перевірку каталогу завершено. Плагіни без підтвердженої доступності не пропонуються для встановлення. Повторіть перевірку, якщо плагін щойно опублікований або каталог був недоступний."
+
+#: includes/home-settings.php
 msgid "Donations"
 msgstr "Пожертви"
 
+#: includes/settings.php
 msgid "Edit menu items and their order under Appearance → Menus. You can also choose an image for each item there. Without a chosen image, the linked page or post featured image is used."
 msgstr "Склад і порядок пунктів змінюються в «Вигляд → Меню». Там само можна вибрати зображення для кожного пункту. Якщо його не вибрано, показується мініатюра пов’язаної сторінки або запису."
 
+#: includes/settings.php
 msgid "Editorial"
 msgstr "Журнальна"
 
+#: includes/presentation.php includes/site-settings.php
 msgid "Email"
 msgstr "Електронна пошта"
 
+#: includes/settings.php
 msgid "Enter the URLs of existing language versions. Content translations are created separately; the theme does not translate text automatically."
 msgstr "Укажіть адреси наявних версій сайту. Переклади матеріалів створюються окремо; тема не перекладає тексти автоматично."
 
+#: includes/home-settings.php
 msgid "Excerpt length in words"
 msgstr "Довжина анонсу, слів"
 
+#: includes/home-settings.php
 msgid "Eyebrow"
 msgstr "Надзаголовок"
 
+#: includes/catalog.php
 msgid "Find"
 msgstr "Знайти"
 
+#: includes/render.php
 msgid "First time at church?"
 msgstr "Вперше у храмі?"
 
+#: includes/contacts.php includes/pilgrim.php
 msgid "First visit"
 msgstr "Перше відвідування"
 
+#: focused.php
 msgid "Focused"
 msgstr "Форма й підтвердження"
 
+#: theme.json
 msgctxt "Font family name"
 msgid "Sans serif"
 msgstr "Простий"
 
+#: theme.json
 msgctxt "Font family name"
 msgid "Serif"
 msgstr "Книжковий"
 
+#: theme.json
 msgctxt "Font size name"
 msgid "Base"
 msgstr "Основний"
 
+#: theme.json
 msgctxt "Font size name"
 msgid "Heading"
 msgstr "Заголовок"
 
+#: theme.json
 msgctxt "Font size name"
 msgid "Large"
 msgstr "Великий"
 
+#: theme.json
 msgctxt "Font size name"
 msgid "Small"
 msgstr "Малий"
 
+#: includes/home-settings.php
 msgid "For visitors"
 msgstr "Паломнику"
 
+#: includes/plugins.php
+msgid "Georg-Kloster Connect Hub"
+msgstr "Georg-Kloster — Комунікації"
+
+#: includes/plugins.php
+msgid "Georg-Kloster Parish"
+msgstr "Georg-Kloster — Парафія"
+
+#: includes/settings.php
 msgid "German"
 msgstr "Німецька"
 
+#: includes/about.php
 msgid "Get involved"
 msgstr "Як долучитися"
 
+#: includes/pilgrim.php
 msgid "Group visit"
 msgstr "Груповий візит"
 
+#: includes/pilgrim.php
 msgid "Group visits and accommodation"
 msgstr "Груповий візит і перебування"
 
+#: includes/settings.php
 msgid "Header and footer"
 msgstr "Шапка й підвал"
 
+#: includes/home-settings.php
 msgid "Heading"
 msgstr "Заголовок"
 
+#: includes/home-settings.php
 msgid "Hero"
 msgstr "Перший екран"
 
+#: includes/branding.php
 msgid "Hero image"
 msgstr "Головне фото"
 
+#: includes/home-settings.php
 msgid "Hide the schedule card when upcoming services are displayed"
 msgstr "Приховувати картку розкладу, якщо показано найближчі богослужіння"
 
+#: includes/about.php
 msgid "History"
 msgstr "Історія"
 
+#: archive.php includes/pilgrim.php includes/render.php
 msgid "Home"
 msgstr "Головна"
 
+#: includes/home-settings.php includes/settings.php
 msgid "Homepage"
 msgstr "Головна сторінка"
 
+#: includes/home-settings.php
 msgid "Homepage content"
 msgstr "Вміст головної сторінки"
 
+#: includes/photos.php
 msgid "Icon of the day"
 msgstr "Ікона дня"
 
+#: includes/plugins.php
+msgid "Independent forms, private messages and queued publications. Connect Telegram, WhatsApp, Facebook, Instagram, VK and OK separately."
+msgstr "Незалежні форми, приватні повідомлення та черга публікацій. Telegram, WhatsApp, Facebook, Instagram, VK і OK підключаються окремо."
+
+#: includes/plugins.php
+msgid "Install from WordPress.org"
+msgstr "Установити з WordPress.org"
+
+#: includes/plugins.php
+msgid "Installed integrations appear below. New recommendations and installation buttons appear only after WordPress.org confirms that a plugin is available in its directory."
+msgstr "Нижче показані встановлені модулі. Рекомендації та кнопки встановлення з’являються лише після підтвердження доступності плагіна в каталозі WordPress.org."
+
+#: includes/plugins.php
+msgid "Installed, inactive"
+msgstr "Установлений, неактивний"
+
+#: includes/plugins.php includes/settings.php
 msgid "Insufficient permissions."
 msgstr "Недостатньо прав."
 
+#: includes/settings.php
 msgid "Keep the header visible while scrolling"
 msgstr "Закріпити шапку під час прокручування"
 
+#: includes/render.php
 msgid "Language"
 msgstr "Мова"
 
+#: includes/settings.php
 msgid "Languages"
 msgstr "Мови"
 
+#: includes/settings.php
 msgid "Layout and fonts"
 msgstr "Макет і шрифти"
 
+#: includes/about.php
 msgid "Learn more"
 msgstr "Дізнатися більше"
 
+#: includes/settings.php
 msgid "Light hospitality"
 msgstr "Світла гостинна"
 
+#: includes/home-settings.php
 msgid "Link label"
 msgstr "Текст посилання"
 
+#: includes/settings.php
 msgid "Link row"
 msgstr "Рядок посилань"
 
+#: includes/branding.php
 msgid "Logo"
 msgstr "Логотип"
 
+#: includes/branding.php includes/settings.php
 msgid "Logo and icon"
 msgstr "Логотип та іконка"
 
+#: includes/branding.php
 msgid "Maximum logo width in px"
 msgstr "Максимальна ширина логотипа, px"
 
+#: includes/render.php
 msgid "Menu"
 msgstr "Меню"
 
+#: includes/menu.php
 msgid "Menu item image"
 msgstr "Зображення пункту меню"
 
+#: includes/settings.php
 msgid "Menu style"
 msgstr "Оформлення меню"
 
+#: includes/settings.php
 msgid "Menu with cards and images"
 msgstr "Меню з картками та зображеннями"
 
+#: includes/settings.php
 msgid "Modern blue"
 msgstr "Сучасна синя"
 
+#: includes/site-settings.php
 msgid "Monastery"
 msgstr "Монастир"
 
+#: includes/home-settings.php
 msgid "Move down: %s"
 msgstr "Нижче: %s"
 
+#: includes/home-settings.php
 msgid "Move up: %s"
 msgstr "Вище: %s"
 
+#: includes/site-settings.php
 msgid "Name"
 msgstr "Назва"
 
+#: archive.php includes/home-settings.php includes/render.php
 msgid "News"
 msgstr "Новини"
 
+#: includes/catalog.php
 msgid "No content found. Change your search or reset the filters."
 msgstr "Матеріалів не знайдено. Змініть запит або скиньте фільтри."
 
+#: includes/plugins.php
+msgid "No installed integrations or confirmed directory recommendations are available yet."
+msgstr "Поки немає встановлених модулів або підтверджених рекомендацій із каталогу."
+
+#: includes/home-settings.php
 msgid "Number of posts"
 msgstr "Кількість публікацій"
 
+#: includes/home-settings.php
 msgid "Number of services"
 msgstr "Кількість богослужінь"
 
+#: includes/home-settings.php
 msgid "Only the content of the page selected as the homepage in Reading settings is displayed."
 msgstr "Виводиться лише власний вміст сторінки, вибраної головною в налаштуваннях читання."
 
+#: includes/plugins.php
+msgid "Open settings"
+msgstr "Відкрити налаштування"
+
+#: includes/plugins.php includes/settings.php
+msgid "Optional plugins"
+msgstr "Додаткові плагіни"
+
+#: includes/render.php
 msgid "Orthodox calendar"
 msgstr "Православний календар"
 
+#: includes/render.php
 msgid "Page breadcrumb"
 msgstr "Шлях до сторінки"
 
+#: includes/settings.php
 msgid "Page language versions"
 msgstr "Мовні версії сторінок"
 
+#: includes/about.php
 msgid "Page sections"
 msgstr "Розділи сторінки"
 
+#: includes/site-settings.php
 msgid "Parish"
 msgstr "Парафія"
 
+#: includes/settings.php
 msgid "Parish Appearance"
 msgstr "Оформлення парафії"
 
+#: includes/plugins.php
+msgid "Parish profile, clergy, service places with logos and photos, service schedules and calendar. Publish with blocks or shortcodes using any theme."
+msgstr "Профіль парафії, духовенство, місця богослужінь із логотипами та фотографіями, богослужіння й календар. Виведення блоками або шорткодами з будь-якою темою."
+
+#: includes/presentation.php includes/site-settings.php
 msgid "Phone"
 msgstr "Телефон"
 
+#: pilgrim.php
 msgid "Pilgrim"
 msgstr "Паломнику"
 
+#: includes/pilgrim.php
 msgid "Please arrange accommodation and group visits with the monastery in advance."
 msgstr "Можливість перебування та умови групового візиту узгодьте з обителлю заздалегідь."
 
+#: includes/settings.php
 msgid "Polish"
 msgstr "Польська"
 
+#: includes/render.php
 msgid "Post breadcrumb"
 msgstr "Шлях до статті"
 
+#: includes/catalog.php
 msgid "Post categories"
 msgstr "Рубрики публікацій"
 
+#: includes/home-settings.php
 msgid "Post category"
 msgstr "Категорія публікацій"
 
+#: includes/home-settings.php
 msgid "Post link label"
 msgstr "Текст посилання публікації"
 
+#: includes/settings.php
 msgid "Preview"
 msgstr "Попередній перегляд"
 
+#: includes/design.php
 msgid "Preview: %s"
 msgstr "Попередній перегляд: %s"
 
+#: includes/settings.php
 msgid "Preview: %s (new tab)"
 msgstr "Попередній перегляд: %s (нова вкладка)"
 
+#: functions.php includes/render.php includes/settings.php
 msgid "Primary menu"
 msgstr "Головне меню"
 
+#: includes/render.php
 msgid "Privacy policy"
 msgstr "Політика конфіденційності"
 
+#: includes/settings.php
 msgid "Quotation below the buttons in the blue style"
 msgstr "Цитата під кнопками синього оформлення"
 
+#: includes/settings.php
 msgid "Quotation source"
 msgstr "Джерело цитати"
 
+#: includes/settings.php
 msgid "Quotation text"
 msgstr "Текст цитати"
 
+#: includes/article.php
 msgid "Read more"
 msgstr "Читати далі"
 
+#: archive.php includes/catalog.php
 msgid "Read more →"
 msgstr "Читати далі →"
 
+#: includes/article.php
 msgid "Related posts"
 msgstr "Читайте також"
 
+#: includes/branding.php
 msgid "Remove"
 msgstr "Прибрати"
 
+#: includes/plugins.php
+msgid "Requires a newer WordPress or PHP version"
+msgstr "Потрібна новіша версія WordPress або PHP"
+
+#: includes/catalog.php
 msgid "Reset filters"
 msgstr "Скинути фільтри"
 
+#: includes/settings.php
 msgid "Russian"
 msgstr "Російська"
 
+#: includes/settings.php
 msgid "Sans serif"
 msgstr "Простий"
 
+#: includes/settings.php
 msgid "Save changes"
 msgstr "Зберегти зміни"
 
+#: includes/about.php includes/home-settings.php includes/render.php
 msgid "Schedule"
 msgstr "Розклад"
 
+#: includes/home-settings.php
 msgid "Schedule button label"
 msgstr "Текст кнопки розкладу"
 
+#: includes/plugins.php
+msgid "Screenshot: %s (new tab)"
+msgstr "Знімок екрана: %s (нова вкладка)"
+
+#: includes/render.php
 msgid "Search"
 msgstr "Пошук"
 
+#: includes/catalog.php
 msgid "Search posts"
 msgstr "Пошук публікацій"
 
+#: includes/catalog.php
 msgid "Search posts…"
 msgstr "Пошук публікацій…"
 
+#: includes/home-settings.php
 msgid "Secondary button label"
 msgstr "Текст другої кнопки"
 
+#: includes/home-settings.php
 msgid "Section cards"
 msgstr "Картки розділів"
 
+#: includes/home-settings.php
 msgid "Section pages"
 msgstr "Сторінки розділів"
 
+#: includes/home-settings.php
 msgid "Section settings"
 msgstr "Налаштування секції"
 
+#: includes/settings.php
 msgid "Serif"
 msgstr "Книжковий"
 
+#: includes/home-settings.php
 msgid "Sermons and talks"
 msgstr "Проповіді та бесіди"
 
+#: includes/pilgrim.php includes/render.php
 msgid "Service schedule"
 msgstr "Розклад богослужінь"
 
+#: includes/site-settings.php
 msgid "Set the name, description and contact details here without plugins. Filled fields take priority. Empty name or description fields use the WordPress general settings; an active Core plugin can supply other empty fields."
 msgstr "Назву, опис і контакти можна вказати тут без плагінів. Заповнені поля мають пріоритет. Якщо назву або опис не вказано, використовуються загальні налаштування WordPress; підключений Core може доповнити порожні поля."
 
+#: includes/settings.php
 msgid "Settings sections"
 msgstr "Розділи налаштувань"
 
+#: includes/site-settings.php
 msgid "Short name"
 msgstr "Коротка назва"
 
+#: includes/home-settings.php
 msgid "Show card images"
 msgstr "Показувати фотографії карток"
 
+#: includes/settings.php
 msgid "Show contact details in the header"
 msgstr "Показувати контакти в шапці"
 
+#: includes/home-settings.php
 msgid "Show date"
 msgstr "Показувати дату"
 
+#: includes/home-settings.php
 msgid "Show excerpt"
 msgstr "Показувати анонс"
 
+#: includes/home-settings.php
 msgid "Show images"
 msgstr "Показувати фотографії"
 
+#: includes/branding.php
 msgid "Show logo"
 msgstr "Показувати логотип"
 
+#: includes/branding.php
 msgid "Show name"
 msgstr "Показувати назву"
 
+#: includes/settings.php includes/site-settings.php
 msgid "Site details"
 msgstr "Дані сайту"
 
+#: includes/branding.php
 msgid "Site icon"
 msgstr "Іконка сайту"
 
+#: includes/home.php includes/render.php
 msgid "Site sections"
 msgstr "Розділи сайту"
 
+#: includes/settings.php
 msgid "Site width in px"
 msgstr "Ширина сайту, px"
 
+#: header.php
 msgid "Skip to content"
 msgstr "Перейти до вмісту"
 
+#: includes/pilgrim.php
 msgid "Staying at the monastery"
 msgstr "Перебування в обителі"
 
+#: includes/design.php
 msgid "Style preview"
 msgstr "Попередній перегляд оформлення"
 
+#: styles/hospitality.json
 msgctxt "Style variation name"
 msgid "Light hospitality"
 msgstr "Світла гостинна"
 
+#: styles/blue.json
 msgctxt "Style variation name"
 msgid "Modern blue"
 msgstr "Сучасна синя"
 
+#: styles/editorial.json
 msgctxt "Style variation name"
 msgid "Modern editorial"
 msgstr "Стримана сучасна"
 
+#: styles/tradition.json
 msgctxt "Style variation name"
 msgid "Traditional"
 msgstr "Традиційна"
 
+#: includes/settings.php
 msgid "Styles"
 msgstr "Оформлення"
 
+#: includes/render.php
 msgid "Submit a prayer request"
 msgstr "Подати записку"
 
+#: includes/render.php
 msgid "Support the church"
 msgstr "Підтримати храм"
 
+#: includes/render.php
 msgid "Support the monastery"
 msgstr "Допомогти обителі"
 
+#: includes/render.php
 msgid "Support the parish"
 msgstr "Допомогти парафії"
 
+#: theme.json
 msgctxt "Template part name"
 msgid "Footer"
 msgstr "Нижня частина"
 
+#: theme.json
 msgctxt "Template part name"
 msgid "Header"
 msgstr "Шапка"
 
+#: includes/home-settings.php
 msgid "Text is stored in WordPress settings. Empty fields do not insert preset content. Enable sections and change their order with the arrows. Pages and posts are not modified."
 msgstr "Тексти зберігаються в налаштуваннях WordPress. Порожні поля не підставляють готовий вміст. Вмикайте секції та змінюйте їхній порядок стрілками. Сторінки й записи не змінюються."
 
+#: includes/settings.php
 msgid "The cards show example layouts. The live preview uses your pages, images and settings."
 msgstr "Картки показують приклади оформлення. Живий попередній перегляд використовує ваші сторінки, фотографії та налаштування."
 
+#: includes/branding.php
 msgid "The logo and name are disabled. A homepage link will remain on the site."
 msgstr "Логотип і назву вимкнено. На сайті залишиться посилання на головну сторінку."
 
+#: includes/settings.php
 msgid "The preview opens in a new tab without changing the site. To apply a style, select its card and save your changes."
 msgstr "Попередній перегляд відкривається в новій вкладці й не змінює сайт. Щоб застосувати оформлення, виберіть картку та збережіть зміни."
 
+#: includes/branding.php
 msgid "The site icon must be a square image of at least 512 × 512 px. The previous icon has been kept."
 msgstr "Іконка має бути квадратною, розміром щонайменше 512 × 512 px. Попередню іконку збережено."
 
+#: includes/branding.php
 msgid "The site icon must be square and at least 512 × 512 px."
 msgstr "Іконка має бути квадратною, не менш ніж 512 × 512 px."
 
+#: includes/design.php
 msgid "The site style has not been changed."
 msgstr "Оформлення сайту не змінено."
 
-msgid "Theme settings"
-msgstr "Налаштування теми"
-
-msgid "There are no posts in this category yet."
-msgstr "У цій рубриці поки немає записів."
-
-msgid "There are no posts yet."
-msgstr "Публікацій поки немає."
-
-msgid "This section appears when a schedule plugin supplies upcoming services."
-msgstr "Секція з’являється, коли плагін розкладу надає найближчі богослужіння."
-
-msgid "Traditional"
-msgstr "Традиційна"
-
-msgid "Ukrainian"
-msgstr "Українська"
-
-msgid "Upcoming services"
-msgstr "Найближчі служби"
-
-msgid "Upload or choose an image"
-msgstr "Завантажити або вибрати зображення"
-
-msgid "Use image"
-msgstr "Використати зображення"
-
-msgid "Use style default"
-msgstr "За оформленням"
-
-msgid "View site"
-msgstr "Переглянути сайт"
-
-msgid "Visitor information"
-msgstr "Інформація для паломника"
-
-msgid "Welcome"
-msgstr "Раді зустрічі з вами"
-
-msgid "Wide"
-msgstr "Широка сторінка"
-
-msgid "Optional plugins"
-msgstr "Додаткові плагіни"
-
-msgid "Georg-Kloster Parish Core"
-msgstr "Georg-Kloster — Парафія"
-
-msgid "Georg-Kloster Connect Hub"
-msgstr "Georg-Kloster — Комунікації"
-
-msgid "Georg-Kloster Parish Schedule"
-msgstr "Georg-Kloster — Розклад богослужінь"
-
-msgid "Parish profile, places and clergy. Publish these details with blocks or shortcodes, using any theme."
-msgstr "Відомості про парафію, місця служіння та духовенство. Публікуйте їх за допомогою блоків або шорткодів у будь-якій темі."
-
-msgid "Independent forms, private messages and queued publications. Connect Telegram, WhatsApp, Facebook, Instagram, VK and OK separately."
-msgstr "Незалежні форми, приватні повідомлення та черга публікацій. Telegram, WhatsApp, Facebook, Instagram, VK і OK підключаються окремо."
-
-msgid "Service schedules, recurring events, cancellations and changes. Calendar views, upcoming services and vestment colours work without Parish Core."
-msgstr "Розклад богослужінь, повторення, скасування та перенесення. Види календаря, найближчі служби й кольори облачення працюють без плагіна «Парафія»."
-
-msgid "Activate"
-msgstr "Активувати"
-
-msgid "Install from WordPress.org"
-msgstr "Установити з WordPress.org"
-
-msgid "Active"
-msgstr "Активний"
-
-msgid "Installed, inactive"
-msgstr "Установлений, неактивний"
-
-msgid "Available on WordPress.org"
-msgstr "Доступний у WordPress.org"
-
-msgid "Requires a newer WordPress or PHP version"
-msgstr "Потрібна новіша версія WordPress або PHP"
-
+#: includes/plugins.php
 msgid "The theme works on its own. Add plugins only for the features you need; each plugin is independent."
 msgstr "Тема працює самостійно. Установлюйте плагіни лише для потрібних функцій; кожен плагін незалежний."
 
-msgid "Installed integrations appear below. New recommendations and installation buttons appear only after WordPress.org confirms that a plugin is available in its directory."
-msgstr "Нижче показані встановлені модулі. Рекомендації та кнопки встановлення з’являються лише після підтвердження доступності плагіна в каталозі WordPress.org."
+#: includes/settings.php
+msgid "Theme settings"
+msgstr "Налаштування теми"
 
-msgid "Check WordPress.org"
-msgstr "Перевірити WordPress.org"
+#: archive.php
+msgid "There are no posts in this category yet."
+msgstr "У цій рубриці поки немає записів."
 
+#: archive.php includes/home.php
+msgid "There are no posts yet."
+msgstr "Публікацій поки немає."
+
+#: includes/plugins.php
 msgid "This contacts the WordPress.org plugin directory. Nothing is installed or activated by the check."
 msgstr "Буде виконано запит до каталогу плагінів WordPress.org. Перевірка нічого не встановлює та не активує."
 
-msgid "Ask an administrator with plugin installation permissions to check the directory or install plugins."
-msgstr "Для перевірки каталогу або встановлення плагінів зверніться до адміністратора з відповідним правом."
+#: includes/home-settings.php
+msgid "This section appears when a schedule plugin supplies upcoming services."
+msgstr "Секція з’являється, коли плагін розкладу надає найближчі богослужіння."
 
-msgid "Directory check complete. Plugins that could not be confirmed are not offered for installation. You can check again if a plugin has just been published or the directory was unavailable."
-msgstr "Перевірку каталогу завершено. Плагіни без підтвердженої доступності не пропонуються для встановлення. Повторіть перевірку, якщо плагін щойно опублікований або каталог був недоступний."
+#: includes/settings.php
+msgid "Traditional"
+msgstr "Традиційна"
 
-msgid "Screenshot: %s (new tab)"
-msgstr "Знімок екрана: %s (нова вкладка)"
+#: includes/settings.php
+msgid "Ukrainian"
+msgstr "Українська"
 
+#: includes/home-settings.php includes/render.php
+msgid "Upcoming services"
+msgstr "Найближчі служби"
+
+#: includes/branding.php
+msgid "Upload or choose an image"
+msgstr "Завантажити або вибрати зображення"
+
+#: includes/menu.php
+msgid "Use image"
+msgstr "Використати зображення"
+
+#: includes/home-settings.php
+msgid "Use style default"
+msgstr "За оформленням"
+
+#: includes/plugins.php
 msgid "Version: %s"
 msgstr "Версія: %s"
 
-msgid "Open settings"
-msgstr "Відкрити налаштування"
+#: includes/settings.php
+msgid "View site"
+msgstr "Переглянути сайт"
 
-msgid "Details on WordPress.org"
-msgstr "Докладніше у WordPress.org"
+#: includes/pilgrim.php
+msgid "Visitor information"
+msgstr "Інформація для паломника"
 
-msgid "No installed integrations or confirmed directory recommendations are available yet."
-msgstr "Поки немає встановлених модулів або підтверджених рекомендацій із каталогу."
+#: includes/about.php
+msgid "Welcome"
+msgstr "Раді зустрічі з вами"
+
+#: wide.php
+msgid "Wide"
+msgstr "Широка сторінка"

@@ -10,7 +10,7 @@ import sys
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / 'scripts'))
 from compile_po import read_catalog
-from plugin_messages import PLUGINS, source_messages
+from plugin_messages import PLUGINS, source_messages, plugin_folder
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--only', choices=list(PLUGINS))
@@ -19,7 +19,7 @@ count = 0
 for domain, handle in PLUGINS.items():
     if selected and domain != selected:
         continue
-    folder = ROOT / domain / 'languages'
+    folder = plugin_folder(domain) / 'languages'
     for locale in (['ru_RU', 'de_DE'] if domain == 'georg-kloster-connect-hub' else ['ru_RU']):
         path = folder / f'{domain}-{locale}.po'
         source = read_catalog(path)

@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: Georg-Kloster Parish Core
- * Description: Parish profile, places and clergy for WordPress.
- * Version: 0.1.5
+ * Plugin Name: Georg-Kloster Parish
+ * Description: Parish profile, clergy, service places and service schedules for WordPress.
+ * Version: 0.2.0
  * Requires at least: 6.5
  * Requires PHP: 8.0
  * License: GPL-2.0-or-later
@@ -12,7 +12,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'GKPC_VERSION', '0.1.5' );
+define( 'GKPC_VERSION', '0.2.0' );
 define( 'GKPC_FILE', __FILE__ );
 
 require_once __DIR__ . '/includes/class-profile.php';
@@ -23,12 +23,21 @@ require_once __DIR__ . '/includes/class-blocks.php';
 require_once __DIR__ . '/includes/class-lock.php';
 require_once __DIR__ . '/includes/class-demo-importer.php';
 require_once __DIR__ . '/includes/class-demo-admin.php';
+require_once __DIR__ . '/includes/class-schedule-module.php';
+require_once __DIR__ . '/includes/class-place-media.php';
 
-register_activation_hook( __FILE__, array( 'GeorgKlosterPrihodCore\\Admin', 'activate' ) );
+register_activation_hook( __FILE__, array( 'GeorgKlosterPrihodCore\\Schedule_Module', 'activate' ) );
+register_deactivation_hook( __FILE__, static function () { wp_clear_scheduled_hook( 'gkpsch_calendar_reminder' ); } );
+add_action( 'plugins_loaded', array( 'GeorgKlosterPrihodCore\\Schedule_Module', 'load' ), 0 );
+add_action( 'admin_enqueue_scripts', array( 'GeorgKlosterPrihodCore\\Place_Media', 'assets' ) );
+add_action( 'admin_notices', array( 'GeorgKlosterPrihodCore\\Place_Media', 'notice' ) );
+add_action( 'pre_get_posts', array( 'GeorgKlosterPrihodCore\\Directory', 'unified_list' ) );
+add_filter( 'wp_count_posts', array( 'GeorgKlosterPrihodCore\\Directory', 'counts' ), 10, 3 );
 add_action( 'init', static function () {
     load_plugin_textdomain( 'georg-kloster-prihod-core', false, dirname( plugin_basename( GKPC_FILE ) ) . '/languages' );
 }, 0 );
 add_action( 'init', array( 'GeorgKlosterPrihodCore\\Directory', 'register' ) );
+add_action( 'init', array( 'GeorgKlosterPrihodCore\\Directory', 'register_legacy' ), 11 );
 add_action( 'init', array( 'GeorgKlosterPrihodCore\\Blocks', 'register' ) );
 add_action( 'admin_menu', array( 'GeorgKlosterPrihodCore\\Admin', 'menu' ) );
 add_action( 'admin_menu', array( 'GeorgKlosterPrihodCore\\Demo_Admin', 'menu' ), 20 );
@@ -42,3 +51,6 @@ add_action( 'add_option_gkpc_profile', static function ( $name, $new ) { if ( is
 add_action( 'add_meta_boxes', array( 'GeorgKlosterPrihodCore\\Directory', 'meta_boxes' ) );
 add_action( 'save_post_gkpc_location', array( 'GeorgKlosterPrihodCore\\Directory', 'save' ) );
 add_action( 'save_post_gkpc_clergy', array( 'GeorgKlosterPrihodCore\\Directory', 'save' ) );
+add_action( 'save_post_gkpsch_location', array( 'GeorgKlosterPrihodCore\\Directory', 'save' ) );
+add_action( 'save_post_gkpc_location', array( 'GeorgKlosterPrihodCore\\Place_Media', 'save' ) );
+add_action( 'save_post_gkpsch_location', array( 'GeorgKlosterPrihodCore\\Place_Media', 'save' ) );

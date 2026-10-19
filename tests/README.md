@@ -1,12 +1,34 @@
 # Проверки
 
-## Импорт демо Core 0.1.5 / тема 0.4.34
+## Объединённый «Приход» 0.2.0
 
-`demo-import-blueprint.json` запускается только в одноразовом WordPress с
-монтированием темы, Core, Schedule и `tests` в `prihod-tests`:
+`parish-merge-blueprint.json` выполняет 50 проверок: один каталог мест и меню,
+сохранность прежних ID/типов/служб/духовенства, совместимость демо-мест,
+изображения из настоящей медиатеки без поддержки миниатюр в теме, валидация,
+права/nonce, публичный вывод и фиксированный API. Нужны только mounts Core и tests:
 
 ```powershell
-npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-prihod /wordpress/wp-content/themes/georg-kloster-prihod --mount-dir ./georg-kloster-prihod-core /wordpress/wp-content/plugins/georg-kloster-prihod-core --mount-dir ./georg-kloster-prihod-schedule /wordpress/wp-content/plugins/georg-kloster-prihod-schedule --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/demo-import-blueprint.json
+npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-prihod-core /wordpress/wp-content/plugins/georg-kloster-prihod-core --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/parish-merge-blueprint.json
+```
+
+Для проверки ZIP распаковать `georg-kloster-prihod-core-0.2.0.zip` и монтировать
+его каталог вместо исходника. Для минимальной платформы использовать копию
+Blueprint с WP6.5.13/PHP8.0. Результат: `tests/.parish-merge-result.json`.
+
+`parish-upgrade-blueprint.json` требует старые ZIP Core 0.1.5 и Schedule 0.1.10,
+распакованные отдельно в `build/parish-upgrade-old`. Монтировать их под прежними
+именами плагинов, новый Core — в `/next-parish`, tests — в `prihod-tests`.
+Сценарий копирует новый пакет поверх старого **только в одноразовом WordPress**,
+проверяет отключение Schedule и переход на следующий запрос без redeclare.
+Перед повтором распаковать старые ZIP заново: тест заменяет их в смонтированной копии.
+
+## Импорт демо «Приход» 0.2.0 / тема 0.4.35
+
+`demo-import-blueprint.json` запускается только в одноразовом WordPress с
+монтированием темы, Core и `tests` в `prihod-tests` (Schedule встроен):
+
+```powershell
+npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-prihod /wordpress/wp-content/themes/georg-kloster-prihod --mount-dir ./georg-kloster-prihod-core /wordpress/wp-content/plugins/georg-kloster-prihod-core --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/demo-import-blueprint.json
 ```
 
 54 проверки прошли на WP7.1.3/PHP8.4.25 и WP6.5.13/PHP8.0.30: права, nonce,
@@ -17,7 +39,7 @@ npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloste
 использовать копию Blueprint с `wp: 6.5`, `php: 8.0`.
 
 `demo-standalone-blueprint.json` проверяет английский набор на WP6.5/PHP8.0
-без темы «Приход» и Schedule, затем отключает Core: обычные блоки сохраняются.
+без темы «Приход» и дополнительных плагинов, затем отключает Core: обычные блоки сохраняются.
 Ему нужны только mount Core и `tests` из команды выше. HTTP/email запрещены
 обоими сценариями. На настоящем сайте эти fixtures не запускать.
 
@@ -84,7 +106,7 @@ WordPress/PHP, права редактора темы, отдельная фор
 экранов трёх самостоятельных плагинов с пустыми настройками.
 
 ```powershell
-npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-prihod /wordpress/wp-content/themes/georg-kloster-prihod --mount-dir ./georg-kloster-prihod-core /wordpress/wp-content/plugins/georg-kloster-prihod-core --mount-dir ./georg-kloster-prihod-schedule /wordpress/wp-content/plugins/georg-kloster-prihod-schedule --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/theme-plugins-blueprint.json
+npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-prihod /wordpress/wp-content/themes/georg-kloster-prihod --mount-dir ./georg-kloster-prihod-core /wordpress/wp-content/plugins/georg-kloster-prihod-core --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/theme-plugins-blueprint.json
 ```
 
 Результат — `tests/.theme-plugins-result.json`. Для минимальной платформы
@@ -102,7 +124,7 @@ Core 0.1.4, Connect Hub 0.3.0 и Schedule 0.1.10 содержат русские
 ```powershell
 python scripts/compile-translations.py --only plugins
 python tests/plugin-i18n-check.py
-npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-prihod-core /wordpress/wp-content/plugins/georg-kloster-prihod-core --mount-dir ./georg-kloster-connect-hub /wordpress/wp-content/plugins/georg-kloster-connect-hub --mount-dir ./georg-kloster-prihod-schedule /wordpress/wp-content/plugins/georg-kloster-prihod-schedule --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/plugin-i18n-blueprint.json
+npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-prihod-core /wordpress/wp-content/plugins/georg-kloster-prihod-core --mount-dir ./georg-kloster-connect-hub /wordpress/wp-content/plugins/georg-kloster-connect-hub --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/plugin-i18n-blueprint.json
 ```
 
 Статическая проверка сверяет все gettext-строки с PO/MO, русским текстом,
@@ -125,7 +147,7 @@ WordPress.org не мешает загрузке их собственных к�
 Он создаёт только искусственные материалы и не предназначен для живого сайта.
 
 ```powershell
-npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-prihod /wordpress/wp-content/themes/georg-kloster-prihod --mount-dir ./georg-kloster-prihod-schedule /wordpress/wp-content/plugins/georg-kloster-prihod-schedule --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/home-settings-blueprint.json
+npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-prihod /wordpress/wp-content/themes/georg-kloster-prihod --mount-dir ./georg-kloster-prihod-core /wordpress/wp-content/plugins/georg-kloster-prihod-core --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/home-settings-blueprint.json
 ```
 
 Отчёт — `tests/.home-settings-result.json`. Для минимальной платформы в копии

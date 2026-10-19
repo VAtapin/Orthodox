@@ -4,7 +4,6 @@
     {"step": "setSiteLanguage", "language": "ru_RU"},
     {"step": "activatePlugin", "pluginPath": "georg-kloster-prihod-core/georg-kloster-prihod-core.php"},
     {"step": "activatePlugin", "pluginPath": "georg-kloster-connect-hub/georg-kloster-connect-hub.php"},
-    {"step": "activatePlugin", "pluginPath": "georg-kloster-prihod-schedule/georg-kloster-prihod-schedule.php"},
     {"step": "runPHP", "code": "<?php define('WP_DISABLE_FATAL_ERROR_HANDLER', true); try { require '/wordpress/wp-content/plugins/prihod-tests/plugin-i18n.php'; } catch (Throwable $error) { echo get_class($error) . ': ' . $error->getMessage() . '\\n' . $error->getTraceAsString(); throw $error; }"}
   ]
 }

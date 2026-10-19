@@ -1,0 +1,8 @@
+{
+  "preferredVersions": { "wp": "7.1.3", "php": "8.4" },
+  "steps": [
+    { "step": "setSiteLanguage", "language": "ru_RU" },
+    { "step": "activatePlugin", "pluginPath": "georg-kloster-prihod-core/georg-kloster-prihod-core.php" },
+    { "step": "runPHP", "code": "<?php define('WP_DISABLE_FATAL_ERROR_HANDLER', true); try { require '/wordpress/wp-content/plugins/prihod-tests/parish-merge.php'; } catch (Throwable $e) { echo $e->getMessage().'\\n'.$e->getTraceAsString(); throw $e; }" }
+  ]
+}

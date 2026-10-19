@@ -67,7 +67,7 @@ final class Schedule_Admin {
     }
     public static function locations( string $name, int $selected_id ): string {
         $html = '<select name="' . esc_attr( $name ) . '"><option value="0">' . esc_html__( 'Выберите место', 'georg-kloster-prihod-schedule' ) . '</option>';
-        foreach ( get_posts( array( 'post_type' => 'gkpsch_location', 'post_status' => array( 'publish', 'draft', 'private' ), 'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC' ) ) as $post ) {
+        foreach ( get_posts( array( 'post_type' => \GeorgKlosterPrihodCore\Directory::location_types(), 'post_status' => array( 'publish', 'draft', 'private' ), 'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC' ) ) as $post ) {
             $html .= '<option value="' . esc_attr( $post->ID ) . '"' . selected( $selected_id, $post->ID, false ) . '>' . esc_html( $post->post_title ) . '</option>';
         }
         return $html . '</select>';
@@ -88,7 +88,7 @@ final class Schedule_Admin {
             echo '<label class="gkpsch-service-field">' . esc_html( $label ) . self::input( 'gkpsch_service[' . $key . ']', $rule[ $key ], 'date' === $key ? 'date' : 'time' ) . '</label>';
         }
         echo '<label class="gkpsch-service-field gkpsch-service-wide">' . esc_html__( 'Место служения', 'georg-kloster-prihod-schedule' ) . self::locations( 'gkpsch_service[location_id]', (int) $rule['location_id'] ) . '</label></div>';
-        if ( ! get_posts( array( 'post_type' => 'gkpsch_location', 'post_status' => array( 'publish', 'draft', 'private' ), 'numberposts' => 1, 'fields' => 'ids' ) ) && current_user_can( 'manage_prihod' ) ) { echo '<p class="gkpsch-service-help"><a href="' . esc_url( admin_url( 'post-new.php?post_type=gkpsch_location' ) ) . '">' . esc_html__( 'Сначала добавьте место служения', 'georg-kloster-prihod-schedule' ) . '</a></p>'; }
+        if ( ! get_posts( array( 'post_type' => \GeorgKlosterPrihodCore\Directory::location_types(), 'post_status' => array( 'publish', 'draft', 'private' ), 'numberposts' => 1, 'fields' => 'ids' ) ) && current_user_can( 'manage_gkpc_profile' ) ) { echo '<p class="gkpsch-service-help"><a href="' . esc_url( admin_url( 'post-new.php?post_type=gkpc_location' ) ) . '">' . esc_html__( 'Сначала добавьте место служения', 'georg-kloster-prihod-schedule' ) . '</a></p>'; }
         echo '</fieldset>';
         Schedule_Calendar::editor( $rule );
         echo '<fieldset class="gkpsch-service-section" data-gkpsch-repeat><legend>' . esc_html__( 'Повторение', 'georg-kloster-prihod-schedule' ) . '</legend><div class="gkpsch-weekday-choices">';

@@ -343,11 +343,7 @@ msgid "Georg-Kloster Connect Hub"
 msgstr ""
 
 #: includes/plugins.php
-msgid "Georg-Kloster Parish Core"
-msgstr ""
-
-#: includes/plugins.php
-msgid "Georg-Kloster Parish Schedule"
+msgid "Georg-Kloster Parish"
 msgstr ""
 
 #: includes/settings.php
@@ -563,7 +559,7 @@ msgid "Parish Appearance"
 msgstr ""
 
 #: includes/plugins.php
-msgid "Parish profile, places and clergy. Publish these details with blocks or shortcodes, using any theme."
+msgid "Parish profile, clergy, service places with logos and photos, service schedules and calendar. Publish with blocks or shortcodes using any theme."
 msgstr ""
 
 #: includes/presentation.php includes/site-settings.php
@@ -716,10 +712,6 @@ msgstr ""
 
 #: includes/pilgrim.php includes/render.php
 msgid "Service schedule"
-msgstr ""
-
-#: includes/plugins.php
-msgid "Service schedules, recurring events, cancellations and changes. Calendar views, upcoming services and vestment colours work without Parish Core."
 msgstr ""
 
 #: includes/site-settings.php

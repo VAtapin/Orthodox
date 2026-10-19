@@ -33,7 +33,7 @@ final class Demo_Importer {
     private static function key( array $pack, string $key ): string { return $pack['id'] . ':' . $pack['locale'] . ':' . $key; }
 
     private static function find( array $pack, string $key, string $type ): int {
-        $found = get_posts( array( 'post_type' => $type, 'post_status' => array_values( get_post_stati() ), 'numberposts' => 1, 'fields' => 'ids', 'meta_key' => '_gkpc_demo_key', 'meta_value' => self::key( $pack, $key ), 'suppress_filters' => true ) );
+        $found = get_posts( array( 'post_type' => 'gkpc_location' === $type ? Directory::location_types() : $type, 'post_status' => array_values( get_post_stati() ), 'numberposts' => 1, 'fields' => 'ids', 'meta_key' => '_gkpc_demo_key', 'meta_value' => self::key( $pack, $key ), 'suppress_filters' => true ) );
         return $found ? (int) $found[0] : 0;
     }
 
@@ -167,7 +167,7 @@ final class Demo_Importer {
     }
 
     private static function schedule( array $pack, array &$state ): void {
-        $place = self::post( $pack, 'schedule-place', $pack['location'], 'gkpsch_location' );
+        $place = self::post( $pack, 'schedule-place', $pack['location'], 'gkpc_location' );
         if ( 'publish' !== get_post_status( $place ) ) { throw new \RuntimeException( 'Demo service place is no longer published.' ); }
         $timezone = \GeorgKlosterPrihodSchedule\Schedule::timezone( $place );
         $today = current_datetime()->setTimezone( new \DateTimeZone( $timezone ) );

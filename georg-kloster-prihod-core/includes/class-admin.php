@@ -11,6 +11,7 @@ final class Admin {
 
     public static function menu(): void {
         add_menu_page( __( 'Parish', 'georg-kloster-prihod-core' ), __( 'Parish', 'georg-kloster-prihod-core' ), 'manage_gkpc_profile', 'gkpc', array( self::class, 'page' ), 'dashicons-admin-home', 26 );
+        add_submenu_page( 'gkpc', __( 'Parish profile', 'georg-kloster-prihod-core' ), __( 'Parish profile', 'georg-kloster-prihod-core' ), 'manage_gkpc_profile', 'gkpc', array( self::class, 'page' ) );
     }
 
     public static function settings(): void {

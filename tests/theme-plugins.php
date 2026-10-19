@@ -19,7 +19,7 @@ $posts_before = $wpdb->get_results( "SELECT ID,post_content,post_title,post_stat
 $cache_key = prihod_theme_plugin_cache_key();
 delete_transient( $cache_key );
 $catalog = prihod_theme_plugin_catalog();
-$check( 3 === count( $catalog ), 'Integration catalog changed.' );
+$check( 2 === count( $catalog ), 'Integration catalog changed.' );
 $check( isset( $catalog['georg-kloster-connect-hub'] ) && ! isset( $catalog['georg-kloster-prihod-social'] ), 'Connect Hub slug not updated.' );
 $slug = 'georg-kloster-prihod-core';
 $file = $slug . '/' . $slug . '.php';
@@ -70,10 +70,10 @@ $api = static function ( $result, $action, $args ) use ( &$api_calls, $valid ) {
 };
 add_filter( 'plugins_api', $api, 10, 3 );
 $records = prihod_theme_refresh_plugin_directory();
-$check( 3 === $api_calls && array( $slug ) === array_keys( $records ), 'Failed API entries were advertised or other plugins were requested.' );
+$check( 2 === $api_calls && array( $slug ) === array_keys( $records ), 'Failed API entries were advertised or other plugins were requested.' );
 $html = $render();
 $check( 1 === substr_count( $html, '<article class="prihod-plugin-card"' ) && str_contains( $html, 'install-plugin' ) && str_contains( $html, 'Details on WordPress.org' ), 'Confirmed recommendation is missing.' );
-$check( 0 === $http_calls && 3 === $api_calls, 'Rendering does not reuse the explicit directory check cache.' );
+$check( 0 === $http_calls && 2 === $api_calls, 'Rendering does not reuse the explicit directory check cache.' );
 remove_filter( 'plugins_api', $api, 10 );
 $api_error = static fn() => new WP_Error( 'fixture', 'Directory unavailable.' );
 add_filter( 'plugins_api', $api_error );

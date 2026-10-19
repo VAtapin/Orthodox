@@ -14,19 +14,24 @@ PLUGINS = {
 }
 
 
+def plugin_folder(domain: str) -> Path:
+    return ROOT / 'georg-kloster-prihod-core' / 'schedule' if domain == 'georg-kloster-prihod-schedule' else ROOT / domain
+
+
 def source_messages(domain: str, javascript_only: bool = False) -> dict[str, list[str]]:
     messages: dict[str, list[str]] = {}
-    for path in sorted((ROOT / domain).rglob('*')):
+    folder = plugin_folder(domain)
+    for path in sorted(folder.rglob('*')):
         if path.suffix not in (('.js',) if javascript_only else ('.php', '.js')):
             continue
         # These plugins use singular, literal gettext calls without contexts.
         pattern = r"\b(?:__|_e|esc_html__|esc_attr__|esc_html_e|esc_attr_e)\(\s*(['\"])((?:\\.|(?!\1).)*?)\1\s*,\s*'" + re.escape(domain) + r"'\s*\)"
         for match in re.finditer(pattern, path.read_text(encoding='utf-8')):
             message = match[2].replace("\\'", "'").replace('\\"', '"').replace('\\\\', '\\')
-            messages.setdefault(message, []).append(path.relative_to(ROOT / domain).as_posix())
+            messages.setdefault(message, []).append(path.relative_to(folder).as_posix())
     if not javascript_only:
-        entry = ROOT / domain / f'{domain}.php'
-        for message in re.findall(r'^\s*\* (?:Plugin Name|Description): (.+)$', entry.read_text(encoding='utf-8'), re.MULTILINE):
+        entry = folder / f'{domain}.php'
+        for message in re.findall(r'^\s*\* (?:Plugin Name|Description): (.+)$', entry.read_text(encoding='utf-8') if entry.exists() else '', re.MULTILINE):
             messages.setdefault(message.strip(), []).append(entry.name)
     return messages
 
@@ -35,7 +40,7 @@ def compile_plugins( only: str | None = None ) -> None:
     for domain, handle in PLUGINS.items():
         if only and domain != only:
             continue
-        folder = ROOT / domain / 'languages'
+        folder = plugin_folder(domain) / 'languages'
         folder.mkdir(exist_ok=True)
         expected = source_messages(domain)
         js = source_messages(domain, javascript_only=True)

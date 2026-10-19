@@ -5,10 +5,6 @@ msgstr "Project-Id-Version: georg-kloster-prihod-schedule\nLanguage: ru_RU\nMIME
 msgid "Access denied."
 msgstr "Доступ запрещён."
 
-#: georg-kloster-prihod-schedule.php
-msgid "Georg-Kloster Parish Schedule"
-msgstr "Georg-Kloster — Расписание богослужений"
-
 #: assets/blocks.js
 msgid "ID места (0 — все)"
 msgstr "Идентификатор места (0 — все)"
@@ -29,33 +25,13 @@ msgstr "Ближайшее богослужение"
 msgid "Schedule settings"
 msgstr "Настройки расписания"
 
-#: includes/class-directory.php
-msgid "Service place"
-msgstr "Место служения"
-
-#: includes/class-directory.php
-msgid "Service places"
-msgstr "Места служения"
-
 #: includes/class-admin.php includes/class-public-view.php
 msgid "Service schedule"
 msgstr "Расписание богослужений"
 
-#: georg-kloster-prihod-schedule.php
-msgid "Service schedule, recurring events and Orthodox calendar hints."
-msgstr "Расписание богослужений, повторяющиеся события и подсказки православного календаря."
-
 #: includes/class-admin.php
 msgid "Services"
 msgstr "Богослужения"
-
-#: includes/class-admin.php
-msgid "Settings"
-msgstr "Настройки"
-
-#: includes/class-directory.php
-msgid "Time zone (leave empty to use WordPress time zone)"
-msgstr "Часовой пояс (оставьте пустым, чтобы использовать часовой пояс WordPress)"
 
 #: includes/class-public-view.php
 msgid "Upcoming services"
@@ -72,10 +48,6 @@ msgstr "Автоматически по календарю"
 #: includes/class-schedule-admin.php
 msgid "Автоматический цвет определяется по календарю для каждой даты. Исключение на дату имеет приоритет."
 msgstr "Автоматический цвет определяется по календарю для каждой даты. Исключение на дату имеет приоритет."
-
-#: includes/class-calendar-provider.php
-msgid "Адрес API"
-msgstr "Адрес API"
 
 #: includes/class-public-view.php
 msgid "Апрель"
@@ -748,10 +720,6 @@ msgstr "Тип службы"
 #: includes/class-schedule-admin.php
 msgid "Удалить исключение"
 msgstr "Удалить исключение"
-
-#: includes/class-calendar-provider.php
-msgid "Укажите адрес календарного сервиса HTTPS без пути."
-msgstr "Укажите адрес календарного сервиса HTTPS без пути."
 
 #: includes/class-schedule-admin.php
 msgid "Укажите дату, время и место. Для регулярной службы выберите дни недели."

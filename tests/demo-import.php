@@ -62,11 +62,11 @@ $check( ! is_wp_error( $result ), 'Import failed: ' . ( is_wp_error( $result ) ?
 $check( ! empty( $result['complete'] ) && count( $result['pages'] ) === count( $pack['pages'] ) && count( $result['posts'] ) === count( $pack['posts'] ) && count( $result['media'] ) === count( $pack['media'] ), 'Demo content is incomplete.' );
 $check( $owner_id === (int) get_option( 'page_on_front' ) && $theme === get_option( 'georg_kloster_prihod_options' ) && $profile === get_option( 'gkpc_profile' ), 'Content-only import changed the live homepage, theme or profile.' );
 $check( $menu === get_theme_mod( 'nav_menu_locations' )['primary'] && $owner_menu === serialize( wp_get_nav_menu_items( $menu ) ), 'Owner menu was changed.' );
-$check( ! post_type_exists( 'gkpsch_service' ) && empty( $result['services'] ), 'Demo invented an unavailable Schedule integration.' );
+$check( post_type_exists( 'gkpsch_service' ) && empty( $result['services'] ), 'Demo invented an unavailable Schedule integration.' );
 foreach ( $result['media'] as $id ) {
     $check( is_file( get_attached_file( $id ) ) && wp_attachment_is_image( $id ) && is_array( wp_get_attachment_metadata( $id ) ) && '' !== get_post_field( 'post_excerpt', $id ), 'Image was linked remotely or lacks its source credit.' );
 }
-$check( ! str_contains( get_post_field( 'post_content', $result['pages']['schedule'] ), 'wp:gkpsch/' ), 'Standalone schedule page requires an absent plugin.' );
+$check( ! str_contains( get_post_field( 'post_content', $result['pages']['schedule'] ), 'wp:gkpsch/' ), 'Demo enabled a schedule block without the explicit services choice.' );
 $check( str_contains( get_post_field( 'post_content', $result['pages']['home'] ), 'wp:gallery' ), 'Homepage has no editable native gallery.' );
 $check( count( wp_get_nav_menu_items( $result['menu'] ) ) === count( $pack['navigation'] ), 'Demo navigation is incomplete.' );
 foreach ( $result['posts'] as $key => $id ) {
@@ -96,7 +96,7 @@ $check( $menu === get_theme_mod( 'nav_menu_locations' )['primary'], 'Explicit im
 $check( $http === $http_before && 0 === $http && 0 === $mail, 'Importer contacted an external service or sent email.' );
 
 // Existing real Schedule, its validation and actual service records.
-activate_plugin( 'georg-kloster-prihod-schedule/georg-kloster-prihod-schedule.php' );
+// Schedule is bundled; services remain an explicit, unchecked import choice.
 GeorgKlosterPrihodSchedule\Directory::register(); GeorgKlosterPrihodSchedule\Schedule::register();
 wp_set_current_user( 0 ); wp_set_current_user( 1 );
 $with_schedule = Demo_Importer::run( $locale, false, true );

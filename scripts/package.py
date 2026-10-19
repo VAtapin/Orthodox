@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parent.parent
 BUILD = ROOT / "build"
 BUILD.mkdir(exist_ok=True)
 parser = argparse.ArgumentParser()
-parser.add_argument('--only', nargs='+', choices=['core', 'parish-core', 'parish-social', 'connect-hub', 'parish-schedule', 'theme', 'connectors', 'telegram'], default=['core', 'theme', 'connectors'])
+parser.add_argument('--only', nargs='+', choices=['core', 'parish-core', 'parish-social', 'connect-hub', 'parish-schedule', 'theme', 'connectors', 'telegram'], default=['parish-core', 'connect-hub', 'theme'])
 selected = parser.parse_args().only
 
 def archive(folder: Path, filename: str, excluded: tuple[tuple[str, str], ...] = ()) -> None:
@@ -45,12 +45,10 @@ for name in (("prihod-telegram", "prihod-whatsapp", "prihod-social") if "connect
 
 if "core" in selected:
     archive(ROOT / "prihod", "prihod-1.0.0-rc.20.zip")
-if "parish-core" in selected:
-    archive(ROOT / "georg-kloster-prihod-core", "georg-kloster-prihod-core-0.1.5.zip")
+if "parish-core" in selected or "parish-schedule" in selected:
+    archive(ROOT / "georg-kloster-prihod-core", "georg-kloster-prihod-core-0.2.0.zip")
 if "parish-social" in selected or "connect-hub" in selected:
     archive(ROOT / "georg-kloster-connect-hub", "georg-kloster-connect-hub-0.3.0.zip")
-if "parish-schedule" in selected:
-    archive(ROOT / "georg-kloster-prihod-schedule", "georg-kloster-prihod-schedule-0.1.10.zip")
 if "theme" in selected:
-    archive(ROOT / "georg-kloster-prihod", "georg-kloster-prihod-0.4.34.zip")
+    archive(ROOT / "georg-kloster-prihod", "georg-kloster-prihod-0.4.35.zip")
 print("Built: " + ", ".join(selected))

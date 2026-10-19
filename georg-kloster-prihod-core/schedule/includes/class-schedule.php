@@ -23,7 +23,7 @@ final class Schedule {
         $caps = array_map( fn() => 'manage_gkpsch_schedule', Capabilities::directory() );
         register_post_type( 'gkpsch_service', array(
             'labels' => array( 'name' => __( 'Расписание', 'georg-kloster-prihod-schedule' ), 'singular_name' => __( 'Богослужение', 'georg-kloster-prihod-schedule' ), 'add_new_item' => __( 'Добавить богослужение', 'georg-kloster-prihod-schedule' ) ),
-            'public' => false, 'show_ui' => true, 'show_in_menu' => 'gkpsch', 'show_in_rest' => false,
+            'public' => false, 'show_ui' => true, 'show_in_menu' => 'gkpc', 'show_in_rest' => false,
             'rewrite' => false, 'query_var' => false, 'supports' => array( 'title', 'editor', 'revisions' ),
             'capabilities' => $caps, 'map_meta_cap' => false, 'delete_with_user' => false,
         ) );
@@ -95,7 +95,7 @@ final class Schedule {
         if ( ! Occurrences::instant( $end_date, $end, $zone ) ) { throw new \InvalidArgumentException( __( 'Время окончания не существует из-за перевода часов.', 'georg-kloster-prihod-schedule' ) ); }
     }
     private static function location( $id ): int {
-        if ( ! is_scalar( $id ) || ! ctype_digit( (string) $id ) || (int) $id < 1 || 'gkpsch_location' !== get_post_type( (int) $id ) || in_array( get_post_status( (int) $id ), array( 'trash', 'auto-draft' ), true ) ) {
+        if ( ! is_scalar( $id ) || ! ctype_digit( (string) $id ) || (int) $id < 1 || ! in_array( get_post_type( (int) $id ), \GeorgKlosterPrihodCore\Directory::location_types(), true ) || in_array( get_post_status( (int) $id ), array( 'trash', 'auto-draft' ), true ) ) {
             throw new \InvalidArgumentException( __( 'Выберите существующее место служения.', 'georg-kloster-prihod-schedule' ) );
         }
         return (int) $id;

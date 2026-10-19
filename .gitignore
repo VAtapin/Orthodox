@@ -26,3 +26,5 @@ Thumbs.db
 /tests/.theme-layout-result.json
 /tests/.theme-plugins-result.json
 /tests/.demo-import-result.json
+
+/tests/.parish-merge-result.json

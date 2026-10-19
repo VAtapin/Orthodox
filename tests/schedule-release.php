@@ -1,12 +1,13 @@
 <?php
 require_once '/wordpress/wp-load.php';
+add_filter( 'pre_http_request', static fn() => new WP_Error( 'fixture', 'No external calendar in release fixture.' ) );
 
 function gkpsch_assert( bool $condition, string $message ): void {
     if ( ! $condition ) { throw new RuntimeException( $message ); }
 }
 
 gkpsch_assert( class_exists( 'GeorgKlosterPrihodSchedule\\Schedule' ), 'Schedule did not load.' );
-gkpsch_assert( ! class_exists( 'GeorgKlosterPrihodCore\\Profile' ) && ! class_exists( 'Prihod\\Plugin' ), 'Schedule depends on another project plugin.' );
+gkpsch_assert( class_exists( 'GeorgKlosterPrihodCore\\Profile' ) && ! class_exists( 'Prihod\\Plugin' ), 'Bundled Schedule failed or loaded the legacy monolith.' );
 gkpsch_assert( post_type_exists( 'gkpsch_location' ) && post_type_exists( 'gkpsch_service' ), 'Schedule post types missing.' );
 gkpsch_assert( WP_Block_Type_Registry::get_instance()->is_registered( 'gkpsch/schedule' ), 'Schedule block missing.' );
 gkpsch_assert( 'UTC' === GeorgKlosterPrihodSchedule\Profile::get()['timezone'] || wp_timezone_string() === GeorgKlosterPrihodSchedule\Profile::get()['timezone'], 'WordPress time zone fallback failed.' );

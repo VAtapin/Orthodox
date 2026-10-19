@@ -5,10 +5,6 @@ msgstr "Content-Type: text/plain; charset=UTF-8\nX-Domain: georg-kloster-prihod-
 msgid "Access denied."
 msgstr ""
 
-#: georg-kloster-prihod-schedule.php
-msgid "Georg-Kloster Parish Schedule"
-msgstr ""
-
 #: assets/blocks.js
 msgid "ID места (0 — все)"
 msgstr ""
@@ -29,32 +25,12 @@ msgstr ""
 msgid "Schedule settings"
 msgstr ""
 
-#: includes/class-directory.php
-msgid "Service place"
-msgstr ""
-
-#: includes/class-directory.php
-msgid "Service places"
-msgstr ""
-
 #: includes/class-admin.php includes/class-public-view.php
 msgid "Service schedule"
 msgstr ""
 
-#: georg-kloster-prihod-schedule.php
-msgid "Service schedule, recurring events and Orthodox calendar hints."
-msgstr ""
-
 #: includes/class-admin.php
 msgid "Services"
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Settings"
-msgstr ""
-
-#: includes/class-directory.php
-msgid "Time zone (leave empty to use WordPress time zone)"
 msgstr ""
 
 #: includes/class-public-view.php
@@ -71,10 +47,6 @@ msgstr ""
 
 #: includes/class-schedule-admin.php
 msgid "Автоматический цвет определяется по календарю для каждой даты. Исключение на дату имеет приоритет."
-msgstr ""
-
-#: includes/class-calendar-provider.php
-msgid "Адрес API"
 msgstr ""
 
 #: includes/class-public-view.php
@@ -747,10 +719,6 @@ msgstr ""
 
 #: includes/class-schedule-admin.php
 msgid "Удалить исключение"
-msgstr ""
-
-#: includes/class-calendar-provider.php
-msgid "Укажите адрес календарного сервиса HTTPS без пути."
 msgstr ""
 
 #: includes/class-schedule-admin.php

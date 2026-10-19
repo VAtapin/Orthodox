@@ -12,7 +12,7 @@ add_filter( 'pre_wp_mail', static function () { throw new RuntimeException( 'Dem
 $result = Demo_Importer::run( 'en_US', true );
 $check( ! is_wp_error( $result ), is_wp_error( $result ) ? $result->get_error_message() : '' );
 $check( 10 === count( $result['pages'] ) && 4 === count( $result['posts'] ) && 5 === count( $result['media'] ), 'Standalone demo is incomplete.' );
-$check( ! get_option( 'georg_kloster_prihod_options' ) && ! post_type_exists( 'gkpsch_service' ), 'Demo assumes theme settings or Schedule is present.' );
+$check( ! get_option( 'georg_kloster_prihod_options' ) && post_type_exists( 'gkpsch_service' ) && empty( $result['services'] ), 'Demo assumes theme settings or Schedule is present.' );
 $check( (int) get_option( 'page_on_front' ) === $result['pages']['home'], 'Standalone demo homepage was not selected.' );
 $pack = Demo_Importer::pack( 'en_US' );
 $check( $pack['profile']['name'] === get_option( 'gkpc_profile' )['name'], 'Fictional profile was not saved.' );

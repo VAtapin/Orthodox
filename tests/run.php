@@ -141,10 +141,10 @@ check( 'green' === Prihod\Calendar_Colors::recommendation( array( 'Pfingsten' ) 
 check( null === Prihod\Calendar_Colors::recommendation( array( 'Unknown feast' ) ) && null === Prihod\Calendar_Colors::recommendation( array( 'Покров', 'Троица' ) ), 'Unknown and conflicting feasts never invent a color.' );
 try { Prihod\Calendar_Colors::validate( 'javascript:red' ); check( false, 'Invalid color rejected.' ); } catch ( InvalidArgumentException $e ) { check( true, 'Invalid color rejected.' ); }
 
-require dirname( __DIR__ ) . '/georg-kloster-prihod-schedule/includes/class-occurrences.php';
-require dirname( __DIR__ ) . '/georg-kloster-prihod-schedule/includes/class-calendar-colors.php';
-require dirname( __DIR__ ) . '/georg-kloster-prihod-schedule/includes/class-calendar-adapter.php';
-require dirname( __DIR__ ) . '/georg-kloster-prihod-schedule/includes/class-public-view.php';
+require dirname( __DIR__ ) . '/georg-kloster-prihod-core/schedule/includes/class-occurrences.php';
+require dirname( __DIR__ ) . '/georg-kloster-prihod-core/schedule/includes/class-calendar-colors.php';
+require dirname( __DIR__ ) . '/georg-kloster-prihod-core/schedule/includes/class-calendar-adapter.php';
+require dirname( __DIR__ ) . '/georg-kloster-prihod-core/schedule/includes/class-public-view.php';
 $location_filter = new ReflectionMethod( GeorgKlosterPrihodSchedule\Public_View::class, 'location_filter_visible' );
 check( ! $location_filter->invoke( null, 0, 0 ) && ! $location_filter->invoke( null, 1, 0 ), 'Schedule hides the place filter with zero or one published service place.' );
 check( $location_filter->invoke( null, 2, 0 ) && ! $location_filter->invoke( null, 2, 617 ), 'Schedule shows the place filter only for multiple places and an unfixed block.' );

@@ -31,7 +31,7 @@ final class Public_View {
             $fixed_location = absint( $attributes['location'] ?? 0 );
             $location = $fixed_location;
             if ( 'schedule' === $key ) {
-                $places = $fixed_location ? array() : get_posts( array( 'post_type' => 'gkpsch_location', 'post_status' => 'publish', 'numberposts' => -1 ) );
+                $places = $fixed_location ? array() : get_posts( array( 'post_type' => \GeorgKlosterPrihodCore\Directory::location_types(), 'post_status' => 'publish', 'numberposts' => -1 ) );
                 $show_location_filter = self::location_filter_visible( count( $places ), $fixed_location );
                 $requested_view = isset( $_GET['gkpsch_view'] ) && is_string( $_GET['gkpsch_view'] ) ? sanitize_key( $_GET['gkpsch_view'] ) : ( $attributes['view'] ?? 'week' );
                 $view = in_array( $requested_view, array( 'week', 'month', 'list' ), true ) ? $requested_view : 'week';
@@ -46,6 +46,12 @@ final class Public_View {
                     $requested_place = absint( $_GET['gkpsch_place'] );
                     foreach ( $places as $place ) { if ( (int) $place->ID === $requested_place ) { $location = $requested_place; break; } }
                 }
+                $media_place = $location;
+                if ( ! $media_place ) {
+                    $media_places = \GeorgKlosterPrihodCore\Directory::places( array( 'numberposts' => 2, 'fields' => 'ids' ) );
+                    if ( 1 === count( $media_places ) ) { $media_place = (int) $media_places[0]; }
+                }
+                $html .= \GeorgKlosterPrihodCore\Place_Media::render( $media_place );
                 $html .= self::schedule_overview( $location, $from, $to ) . '<div class="gkpsch-schedule-body"><div class="gkpsch-schedule-toolbar"><nav class="gkpsch-view-switch" aria-label="' . esc_attr__( 'Вид расписания', 'georg-kloster-prihod-schedule' ) . '">';
                 foreach ( array( 'week' => __( 'Неделя', 'georg-kloster-prihod-schedule' ), 'month' => __( 'Месяц', 'georg-kloster-prihod-schedule' ), 'list' => __( 'Список', 'georg-kloster-prihod-schedule' ) ) as $mode => $label ) { $html .= '<a href="' . esc_url( add_query_arg( 'gkpsch_view', $mode ) ) . '"' . ( $mode === $view ? ' aria-current="true"' : '' ) . '>' . esc_html( $label ) . '</a>'; }
                 $html .= '</nav><form method="get" class="gkpsch-controls"><input type="hidden" name="gkpsch_view" value="' . esc_attr( $view ) . '"><label>' . esc_html__( 'Дата', 'georg-kloster-prihod-schedule' ) . ' <input type="date" name="gkpsch_date" value="' . esc_attr( $date ) . '"></label> ';

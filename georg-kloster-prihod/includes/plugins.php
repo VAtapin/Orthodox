@@ -5,19 +5,14 @@ defined( 'ABSPATH' ) || exit;
 function prihod_theme_plugin_catalog(): array {
     return array(
         'georg-kloster-prihod-core' => array(
-            'name' => __( 'Georg-Kloster Parish Core', 'georg-kloster-prihod' ),
-            'description' => __( 'Parish profile, places and clergy. Publish these details with blocks or shortcodes, using any theme.', 'georg-kloster-prihod' ),
+            'name' => __( 'Georg-Kloster Parish', 'georg-kloster-prihod' ),
+            'description' => __( 'Parish profile, clergy, service places with logos and photos, service schedules and calendar. Publish with blocks or shortcodes using any theme.', 'georg-kloster-prihod' ),
             'page' => 'gkpc', 'capability' => 'manage_gkpc_profile', 'preview' => 'core',
         ),
         'georg-kloster-connect-hub' => array(
             'name' => __( 'Georg-Kloster Connect Hub', 'georg-kloster-prihod' ),
             'description' => __( 'Independent forms, private messages and queued publications. Connect Telegram, WhatsApp, Facebook, Instagram, VK and OK separately.', 'georg-kloster-prihod' ),
             'page' => 'gkps', 'capability' => 'manage_gkps_settings', 'preview' => 'social',
-        ),
-        'georg-kloster-prihod-schedule' => array(
-            'name' => __( 'Georg-Kloster Parish Schedule', 'georg-kloster-prihod' ),
-            'description' => __( 'Service schedules, recurring events, cancellations and changes. Calendar views, upcoming services and vestment colours work without Parish Core.', 'georg-kloster-prihod' ),
-            'page' => 'gkpsch-settings', 'capability' => 'manage_gkpsch_settings', 'preview' => 'schedule',
         ),
     );
 }

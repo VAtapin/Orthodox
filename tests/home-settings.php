@@ -106,9 +106,12 @@ foreach ( array_keys( prihod_theme_schemes() ) as $scheme ) {
 $copy_config['sections']['hero']['eyebrow'] = '<script>bad</script>Owner';
 $check( ! str_contains( prihod_theme_home_sanitize( $copy_config, 'classic' )['sections']['hero']['eyebrow'], '<' ), 'Eyebrow accepts markup.' );
 
-// Second phase: real standalone Schedule plugin, without Core or external API calls.
-$activated = activate_plugin( 'georg-kloster-prihod-schedule/georg-kloster-prihod-schedule.php' );
+// Second phase: activate Parish and its bundled Schedule without external API calls.
+$activated = activate_plugin( 'georg-kloster-prihod-core/georg-kloster-prihod-core.php' );
 if ( is_wp_error( $activated ) ) { throw new RuntimeException( $activated->get_error_message() ); }
+\GeorgKlosterPrihodCore\Schedule_Module::load();
+\GeorgKlosterPrihodCore\Directory::register();
+\GeorgKlosterPrihodCore\Directory::register_legacy();
 \GeorgKlosterPrihodSchedule\Schedule::register();
 $location = wp_insert_post( array( 'post_type' => 'gkpsch_location', 'post_status' => 'publish', 'post_title' => 'Fixture church' ) );
 foreach ( range( 1, 3 ) as $index ) {

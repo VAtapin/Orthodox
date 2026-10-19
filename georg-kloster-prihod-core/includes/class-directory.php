@@ -4,9 +4,22 @@ namespace GeorgKlosterPrihodCore;
 defined( 'ABSPATH' ) || exit;
 
 final class Directory {
+    public static function location_types(): array { return array( 'gkpc_location', 'gkpsch_location' ); }
+    public static function places( array $args = array() ): array {
+        return get_posts( array_merge( array( 'post_type' => self::location_types(), 'post_status' => 'publish', 'numberposts' => -1, 'orderby' => 'menu_order title', 'order' => 'ASC' ), $args ) );
+    }
+    public static function unified_list( $query ): void {
+        if ( is_admin() && $query->is_main_query() && 'gkpc_location' === $query->get( 'post_type' ) ) { $query->set( 'post_type', self::location_types() ); }
+    }
+    public static function counts( $counts, string $type, string $permission ) {
+        if ( 'gkpc_location' !== $type ) { return $counts; }
+        $combined = clone $counts;
+        foreach ( wp_count_posts( 'gkpsch_location', $permission ) as $status => $count ) { $combined->$status = ( $combined->$status ?? 0 ) + $count; }
+        return $combined;
+    }
     public static function register(): void {
         foreach ( array(
-            'gkpc_location' => array( __( 'Places', 'georg-kloster-prihod-core' ), __( 'Place', 'georg-kloster-prihod-core' ) ),
+            'gkpc_location' => array( __( 'Service places', 'georg-kloster-prihod-core' ), __( 'Service place', 'georg-kloster-prihod-core' ) ),
             'gkpc_clergy' => array( __( 'Clergy', 'georg-kloster-prihod-core' ), __( 'Clergy member', 'georg-kloster-prihod-core' ) ),
         ) as $type => $labels ) {
             register_post_type( $type, array(
@@ -26,21 +39,30 @@ final class Directory {
         }
     }
 
+    public static function register_legacy(): void {
+        $args = get_post_type_object( 'gkpc_location' );
+        // Existing places keep their IDs, metadata and every service reference.
+        $caps = class_exists( '\GeorgKlosterPrihodSchedule\Capabilities' ) ? \GeorgKlosterPrihodSchedule\Capabilities::directory() : (array) $args->cap;
+        register_post_type( 'gkpsch_location', array( 'labels' => (array) $args->labels, 'public' => false, 'show_ui' => true, 'show_in_menu' => false, 'show_in_rest' => true, 'supports' => array( 'title', 'editor', 'thumbnail', 'revisions' ), 'capabilities' => $caps, 'map_meta_cap' => false ) );
+    }
+
     public static function fields( string $type ): array {
-        if ( 'gkpc_location' === $type ) {
-            return array( 'address' => __( 'Address', 'georg-kloster-prihod-core' ), 'phone' => __( 'Phone', 'georg-kloster-prihod-core' ), 'email' => __( 'Email', 'georg-kloster-prihod-core' ) );
+        if ( in_array( $type, self::location_types(), true ) ) {
+            return array( 'address' => __( 'Address', 'georg-kloster-prihod-core' ), 'phone' => __( 'Phone', 'georg-kloster-prihod-core' ), 'email' => __( 'Email', 'georg-kloster-prihod-core' ), 'timezone' => __( 'Time zone (leave empty to use WordPress time zone)', 'georg-kloster-prihod-core' ) );
         }
         return 'gkpc_clergy' === $type ? array( 'rank' => __( 'Title', 'georg-kloster-prihod-core' ) ) : array();
     }
 
     public static function details( int $id ): array {
         $details = get_post_meta( $id, '_gkpc_details', true );
-        return is_array( $details ) ? $details : array();
+        $legacy = get_post_meta( $id, '_gkpsch_details', true );
+        return array_merge( is_array( $legacy ) ? $legacy : array(), is_array( $details ) ? $details : array() );
     }
 
     public static function meta_boxes(): void {
-        foreach ( array( 'gkpc_location', 'gkpc_clergy' ) as $type ) {
+        foreach ( array( 'gkpc_location', 'gkpsch_location', 'gkpc_clergy' ) as $type ) {
             add_meta_box( 'gkpc_details', __( 'Details', 'georg-kloster-prihod-core' ), array( self::class, 'render' ), $type );
+            if ( in_array( $type, self::location_types(), true ) ) { add_meta_box( 'gkpc_place_media', __( 'Place logo and photos', 'georg-kloster-prihod-core' ), array( Place_Media::class, 'render_box' ), $type ); }
         }
     }
 
@@ -64,12 +86,14 @@ final class Directory {
         foreach ( self::fields( $post->post_type ) as $key => $label ) {
             if ( ! isset( $input[ $key ] ) || ! is_string( $input[ $key ] ) ) { continue; }
             $value = trim( wp_unslash( $input[ $key ] ) );
+            if ( 'timezone' === $key && '' !== $value && ! in_array( $value, timezone_identifiers_list(), true ) ) { continue; }
             if ( 'email' === $key ) {
                 if ( '' !== $value && ! is_email( $value ) ) { continue; }
                 $value = sanitize_email( $value );
             } else { $value = sanitize_text_field( $value ); }
             $details[ $key ] = $value;
         }
-        update_post_meta( $id, '_gkpc_details', $details );
+        update_post_meta( $id, '_gkpc_details', wp_slash( $details ) );
+        if ( in_array( $post->post_type, self::location_types(), true ) ) { do_action( 'wpml_register_single_string', 'georg-kloster-prihod-schedule', 'location-' . $id, get_the_title( $id ) ); }
     }
 }

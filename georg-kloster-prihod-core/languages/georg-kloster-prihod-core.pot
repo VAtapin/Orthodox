@@ -9,12 +9,16 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php includes/class-place-media.php
 msgid "Access denied."
 msgstr ""
 
+#: includes/class-schedule-module.php
+msgid "Activate Parish network-wide to replace a network-active Parish Schedule."
+msgstr ""
+
 #: includes/class-demo-admin.php
-msgid "Add three example services to the active Schedule plugin. Dates are illustrative and do not represent a real parish schedule."
+msgid "Add three example services to Parish. Dates are illustrative and do not represent a real parish schedule."
 msgstr ""
 
 #: includes/class-directory.php includes/class-profile.php
@@ -31,6 +35,22 @@ msgstr ""
 
 #: includes/class-admin.php
 msgid "Chapel"
+msgstr ""
+
+#: includes/class-place-media.php
+msgid "Choose a logo and up to 24 photos from the media library."
+msgstr ""
+
+#: includes/class-place-media.php
+msgid "Choose a place logo"
+msgstr ""
+
+#: includes/class-place-media.php
+msgid "Choose images"
+msgstr ""
+
+#: includes/class-place-media.php
+msgid "Choose place photos"
 msgstr ""
 
 #: includes/class-page-links.php
@@ -106,7 +126,7 @@ msgid "First visit"
 msgstr ""
 
 #: georg-kloster-prihod-core.php
-msgid "Georg-Kloster Parish Core"
+msgid "Georg-Kloster Parish"
 msgstr ""
 
 #: includes/class-demo-admin.php
@@ -127,6 +147,10 @@ msgstr ""
 
 #: includes/class-demo-admin.php
 msgid "Items to create: %1$d pages, %2$d posts, %3$d images. Existing content is kept."
+msgstr ""
+
+#: includes/class-place-media.php
+msgid "Logo"
 msgstr ""
 
 #: includes/class-admin.php
@@ -162,7 +186,7 @@ msgid "Parish profile"
 msgstr ""
 
 #: georg-kloster-prihod-core.php
-msgid "Parish profile, places and clergy for WordPress."
+msgid "Parish profile, clergy, service places and service schedules for WordPress."
 msgstr ""
 
 #: includes/class-directory.php includes/class-profile.php
@@ -173,12 +197,20 @@ msgstr ""
 msgid "Photo gallery"
 msgstr ""
 
-#: includes/class-directory.php
-msgid "Place"
+#: includes/class-place-media.php
+msgid "Photos"
 msgstr ""
 
-#: assets/blocks.js includes/class-blocks.php includes/class-directory.php
+#: includes/class-directory.php
+msgid "Place logo and photos"
+msgstr ""
+
+#: assets/blocks.js
 msgid "Places"
+msgstr ""
+
+#: includes/class-place-media.php
+msgid "Remove images"
 msgstr ""
 
 #: includes/class-demo-admin.php
@@ -193,8 +225,20 @@ msgstr ""
 msgid "Select content"
 msgstr ""
 
+#: includes/class-place-media.php
+msgid "Select image attachments only."
+msgstr ""
+
 #: includes/class-page-links.php
 msgid "Sermons"
+msgstr ""
+
+#: includes/class-directory.php
+msgid "Service place"
+msgstr ""
+
+#: includes/class-blocks.php includes/class-directory.php
+msgid "Service places"
 msgstr ""
 
 #: includes/class-page-links.php
@@ -221,12 +265,24 @@ msgstr ""
 msgid "The import did not finish. Saved demo items remain; repeat the import to resume without duplicating them."
 msgstr ""
 
+#: includes/class-place-media.php
+msgid "These images are displayed separately from the description, in the Places block and the schedule for this place."
+msgstr ""
+
 #: includes/class-demo-admin.php
 msgid "This changes the front-page selection, not the content of your current homepage. Filled fields and assigned menus remain unchanged. You can restore the previous front page under Settings > Reading."
 msgstr ""
 
 #: includes/class-directory.php
+msgid "Time zone (leave empty to use WordPress time zone)"
+msgstr ""
+
+#: includes/class-directory.php
 msgid "Title"
+msgstr ""
+
+#: includes/class-place-media.php
+msgid "Use selected images"
 msgstr ""
 
 #: includes/class-demo-admin.php

@@ -17,7 +17,7 @@ Homepage settings control section visibility and order, headings, eyebrows,
 descriptions, button labels, cards and linked pages. Featured images from those
 pages provide card images. News controls include category, count, columns,
 excerpt length, date and image visibility. A zero numeric setting uses the
-selected style's default. Upcoming services require a schedule plugin; a link
+selected style's default. Upcoming services use the optional Parish plugin's bundled Schedule module; a link
 to an ordinary schedule page works without it.
 
 The hero and section layouts remain theme templates. Editorial text is stored
