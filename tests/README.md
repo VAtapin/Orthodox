@@ -1,5 +1,21 @@
 # Проверки
 
+## Управление главной страницы, тема 0.4.27
+
+Сценарий `home-settings-blueprint.json` запускает standalone theme-release и
+53 проверки настроек в одноразовой базе: без Core, затем с отдельным Schedule.
+Он создаёт только искусственные материалы и не предназначен для живого сайта.
+
+```powershell
+npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-prihod /wordpress/wp-content/themes/georg-kloster-prihod --mount-dir ./georg-kloster-prihod-schedule /wordpress/wp-content/plugins/georg-kloster-prihod-schedule --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/home-settings-blueprint.json
+```
+
+Отчёт — `tests/.home-settings-result.json`. Для минимальной платформы в копии
+Blueprint указать `wp: 6.5`, `php: 8.0`. Прошли обе конфигурации:
+WP7.1.3/PHP8.4.25 и WP6.5.13/PHP8.0.30. Тест подтверждает, что сохранение
+параметров не меняет содержимое страниц/записей; проверяет порядок, скрытие,
+блоки новостей, перевод собственных подписей и пять вариантов размещения служб.
+
 Core rc.14: настоящий приоритет календарной иконы, местный воскресный/будничный
 fallback, Settings API и выбранное изображение/alt, отключение и неверные ID;
 кэш, обычный золотой/попразднство/множественные сокращения, ручное исключение,

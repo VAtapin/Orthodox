@@ -81,10 +81,10 @@ function prihod_theme_section_title( string $title, string $url = '', string $li
     }
     return '<div class="prihod-section-title"><div>' . $eyebrow . '<h2>' . esc_html( $title ) . '</h2></div>' . ( $url ? '<a href="' . esc_url( $url ) . '">' . esc_html( $link ) . ' <span aria-hidden="true">→</span></a>' : '' ) . '</div>';
 }
-function prihod_theme_contact_panel(): string {
+function prihod_theme_contact_panel( string $title = '' ): string {
     $profile = prihod_theme_profile(); $options = georg_kloster_prihod_options();
     if ( ! $profile['address'] && ! $profile['phone'] && ! $profile['email'] ) { return ''; }
-    $html = '<section class="prihod-home-contacts">' . prihod_theme_section_title( __( 'Как нас найти', 'georg-kloster-prihod' ) ) . '<div class="prihod-contact-layout"><div class="prihod-contact-list">';
+    $html = '<section class="prihod-home-contacts">' . prihod_theme_section_title( $title ?: __( 'Как нас найти', 'georg-kloster-prihod' ) ) . '<div class="prihod-contact-layout"><div class="prihod-contact-list">';
     foreach ( array( 'address' => array( 'contacts', __( 'Адрес', 'georg-kloster-prihod' ) ), 'phone' => array( 'phone', __( 'Телефон', 'georg-kloster-prihod' ) ), 'email' => array( 'email', __( 'Email', 'georg-kloster-prihod' ) ) ) as $key => $item ) {
         if ( empty( $profile[$key] ) ) { continue; }
         $text = esc_html( $profile[$key] );

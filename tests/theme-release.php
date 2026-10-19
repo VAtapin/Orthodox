@@ -83,7 +83,8 @@ wp_set_current_user( 1 );
 $menu_item = wp_setup_nav_menu_item( get_post( $item_id ) );
 ob_start(); do_action( 'wp_nav_menu_item_custom_fields', $item_id, $menu_item, 0, new stdClass() ); $menu_fields = ob_get_clean();
 georg_theme_release_assert( str_contains( $menu_fields, 'name="prihod_menu_image[' . $item_id . ']"' ) && str_contains( $menu_fields, 'prihod_menu_image_nonce[' . $item_id . ']' ), 'Menu image field and nonce are missing.' );
-$image_id = wp_insert_attachment( array( 'post_title' => 'Menu image', 'post_mime_type' => 'image/jpeg', 'post_status' => 'inherit' ) );
+$image_file = wp_upload_bits( 'menu-fixture.png', null, base64_decode( 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aP1cAAAAASUVORK5CYII=' ) );
+$image_id = wp_insert_attachment( array( 'post_title' => 'Menu image', 'post_mime_type' => 'image/png', 'post_status' => 'inherit' ), $image_file['file'] );
 update_post_meta( $item_id, '_prihod_menu_image', $image_id );
 georg_theme_release_assert( $image_id === prihod_theme_menu_image_id( $menu_item ), 'Chosen menu image must override the linked content thumbnail.' );
 update_post_meta( $item_id, '_prihod_menu_image', 999999 );
@@ -94,6 +95,7 @@ $header = prihod_theme_header();
 georg_theme_release_assert( 2 === substr_count( $header, 'Standard menu link' ), 'Classic menu must be available in desktop and mobile navigation.' );
 georg_theme_release_assert( str_contains( $header, 'prihod-mobile-menu' ) && str_contains( $header, 'prihod-mobile-panel' ) && str_contains( $header, 'prihod-desktop-navigation' ), 'Compact mobile navigation is missing.' );
 georg_theme_release_assert( str_contains( $header, 'id="prihod-desktop-menu"' ) && str_contains( $header, 'id="prihod-mobile-menu"' ), 'Navigation lists need distinct IDs.' );
-georg_theme_release_assert( 1 === preg_match_all( '/id="menu-item-\d+"/', $header ), 'Duplicated menu item IDs are invalid HTML.' );
+preg_match_all( '/\bid="([^"]+)"/', $header, $header_ids );
+georg_theme_release_assert( count( $header_ids[1] ) === count( array_unique( $header_ids[1] ) ), 'Duplicated menu item IDs are invalid HTML.' );
 
 echo 'THEME_RELEASE_OK ' . esc_html( get_bloginfo( 'version' ) ) . ' PHP ' . esc_html( PHP_VERSION );

@@ -109,9 +109,6 @@ msgstr "Kalendarz prawosławny"
 msgid "Публикаций пока нет."
 msgstr "Brak publikacji."
 
-msgid "В этой рубрике пока нет записей."
-msgstr "W tej kategorii nie ma jeszcze wpisów."
-
 msgid "Пять схем в редакторе сайта → Стили"
 msgstr "Pięć schematów w edytorze witryny → Style"
 
@@ -2646,3 +2643,105 @@ msgstr "Kolorowe karty pokazują paletę. Podgląd na żywo wykorzystuje Twoje s
 
 msgid "Основное меню"
 msgstr "Menu główne"
+
+msgid "Автоматически"
+msgstr "Automatycznie"
+
+msgid "Включайте секции и меняйте их порядок стрелками. Пустые поля текста сохраняют стандартные подписи. Содержимое страниц не изменяется."
+msgstr "Włączaj sekcje i zmieniaj ich kolejność strzałkami. Puste pola zachowują domyślne podpisy. Treść stron nie jest zmieniana."
+
+msgid "Все рубрики"
+msgstr "Wszystkie kategorie"
+
+msgid "Выберите страницы для ссылок и карточек. Их изображения записей используются как фотографии карточек. Автоматический выбор использует привязки плагинов, если они установлены."
+msgstr "Wybierz strony dla odnośników i kart. Ich obrazki wyróżniające służą jako zdjęcia kart. Wybór automatyczny korzysta z powiązań zainstalowanych wtyczek."
+
+msgid "Выводится только собственное содержимое страницы, выбранной главной в настройках чтения."
+msgstr "Wyświetlana jest wyłącznie własna treść strony wybranej jako główna w ustawieniach czytania."
+
+msgid "Выше: %s"
+msgstr "Wyżej: %s"
+
+msgid "Главная страница"
+msgstr "Strona główna"
+
+msgid "Длина анонса, слов"
+msgstr "Długość zajawki w słowach"
+
+msgid "Дополнительные ссылки"
+msgstr "Dodatkowe odnośniki"
+
+msgid "Карточки разделов"
+msgstr "Karty działów"
+
+msgid "Количество публикаций"
+msgstr "Liczba publikacji"
+
+msgid "Количество служб"
+msgstr "Liczba nabożeństw"
+
+msgid "Колонок на компьютере"
+msgstr "Kolumny na komputerze"
+
+msgid "Название карточки"
+msgstr "Tytuł karty"
+
+msgid "Настройки секции"
+msgstr "Ustawienia sekcji"
+
+msgid "Ниже: %s"
+msgstr "Niżej: %s"
+
+msgid "О приходе / монастыре"
+msgstr "O parafii / klasztorze"
+
+msgid "Паломнику"
+msgstr "Dla pielgrzyma"
+
+msgid "Первый экран"
+msgstr "Sekcja powitalna"
+
+msgid "Переводы собственных подписей доступны в WPML String Translation, раздел georg-kloster-prihod."
+msgstr "Własne podpisy można tłumaczyć w WPML String Translation w dziale georg-kloster-prihod."
+
+msgid "По оформлению"
+msgstr "Zgodnie z wyglądem"
+
+msgid "По умолчанию"
+msgstr "Domyślnie"
+
+msgid "Подпись карточки"
+msgstr "Opis karty"
+
+msgid "Показывать анонс"
+msgstr "Pokazuj zajawkę"
+
+msgid "Показывать дату"
+msgstr "Pokazuj datę"
+
+msgid "Показывать фотографии"
+msgstr "Pokazuj zdjęcia"
+
+msgid "Показывать фотографии карточек"
+msgstr "Pokazuj zdjęcia kart"
+
+msgid "Проповеди и беседы"
+msgstr "Kazania i rozmowy"
+
+msgid "Рубрика публикаций"
+msgstr "Kategoria publikacji"
+
+msgid "Секция появляется, когда плагин расписания предоставляет ближайшие службы."
+msgstr "Sekcja pojawia się, gdy wtyczka harmonogramu udostępnia nadchodzące nabożeństwa."
+
+msgid "Скрывать карточку расписания, если показаны ближайшие службы"
+msgstr "Ukrywaj kartę harmonogramu, gdy wyświetlane są najbliższe nabożeństwa"
+
+msgid "Содержимое страницы «Главная»"
+msgstr "Treść strony głównej"
+
+msgid "Страницы разделов"
+msgstr "Strony działów"
+
+msgid "Текст ссылки"
+msgstr "Tekst odnośnika"

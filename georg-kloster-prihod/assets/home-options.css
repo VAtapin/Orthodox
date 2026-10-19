@@ -1,0 +1,4 @@
+/* Optional homepage presentation choices; content remains in WordPress. */
+@media(min-width:901px){.prihod-news-grid[data-home-columns]{grid-template-columns:repeat(var(--prihod-home-columns),minmax(0,1fr))}}
+.prihod-news-card.prihod-home-no-photo .prihod-news-copy{display:block;grid-template-columns:none}
+.prihod-news-card.prihod-home-no-photo .prihod-news-copy>div{width:auto;min-width:0}

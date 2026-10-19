@@ -34,6 +34,9 @@ Create and assign a menu under Appearance > Menus. Open a menu item and choose i
 
 == Changelog ==
 
+= 0.4.27 =
+Add homepage section visibility, ordering, custom headings, page links, card order and labels, service count and news appearance controls under Appearance > Parish Appearance > Homepage. Keep the hero and section layouts in theme templates; no page content is created or changed. Custom text supports WPML String Translation.
+
 = 0.4.25 =
 Set classic homepage section-card and news-card photographs to 200px high at every viewport width.
 
