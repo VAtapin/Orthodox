@@ -22,3 +22,4 @@ Thumbs.db
 /tmp/diocese-qa/
 /scripts/__pycache__/
 /diocese-index.tmp.html
+/tests/.theme-layout-result.json

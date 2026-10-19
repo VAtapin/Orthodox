@@ -4,17 +4,18 @@ defined( 'ABSPATH' ) || exit;
 function prihod_theme_home_features( string $scheme, string $about_label, bool $monastery, bool $has_schedule = false ): string {
     $home = prihod_theme_home_options(); $order = $home['card_order'];
     $photo_cards = $home['cards_show_images'];
-    $html = '<nav class="prihod-feature-grid' . ( $has_schedule ? ' has-schedule-panel' : '' ) . '" aria-label="' . esc_attr__( 'Site sections', 'georg-kloster-prihod' ) . '">'; $has_cards = false;
+    $cards_html = ''; $card_count = 0;
     foreach ( $order as $key ) {
         if ( ! $home['cards'][$key]['enabled'] || $has_schedule && $home['hide_schedule_card'] && 'schedule' === $key ) { continue; }
-        $url = prihod_theme_home_url( $key ); if ( ! $url ) { continue; } $has_cards = true;
+        $url = prihod_theme_home_url( $key ); if ( ! $url ) { continue; } ++$card_count;
         $card = array( get_the_title( prihod_theme_home_resource_id( $key ) ), '', '' ); $photo = prihod_theme_resource_image( $key, true );
         foreach ( array( 'title', 'description', 'button' ) as $index => $field ) { $card[$index] = prihod_theme_home_text( $home['cards'][$key][$field], 'card-' . $key . '-' . $field, $card[$index] ); }
-        $support = ( 'editorial' === $scheme && 'donations' === $key || 'tradition' === $scheme && in_array( $key, array( 'requests', 'donations' ), true ) ) && ! $photo;
-        $html .= '<div class="prihod-feature' . ( $support ? ( 'editorial' === $scheme ? ' prihod-feature-support' : ' prihod-feature-symbol' ) : ( $photo_cards ? ' has-photo' : '' ) ) . '">' . ( $support ? '<a class="prihod-feature-support-symbol" href="' . esc_url( $url ) . '">' . prihod_theme_icon( 'requests' === $key ? 'requests' : 'support' ) . '</a>' : ( $photo_cards && $photo ? prihod_theme_photo( $photo, 'medium_large', array( 'class' => 'prihod-feature-photo' . ( 'requests' === $key ? ' is-portrait' : '' ), 'style' => 'object-position:center 25%' ), '', $url ) : '' ) ) . '<a class="prihod-feature-copy" href="' . esc_url( $url ) . '">' . prihod_theme_icon( $key ) . '<div><h2>' . esc_html( $card[0] ) . '</h2>' . ( $card[1] ? '<p>' . esc_html( $card[1] ) . '</p>' : '' ) . ( $card[2] ? '<span class="prihod-feature-link">' . esc_html( $card[2] ) . ' →</span>' : '' ) . '</div></a></div>';
+        $support = $photo_cards && ( 'editorial' === $scheme && 'donations' === $key || 'tradition' === $scheme && in_array( $key, array( 'requests', 'donations' ), true ) );
+        $cards_html .= '<div class="prihod-feature' . ( $support ? ( 'editorial' === $scheme ? ' prihod-feature-support' : ' prihod-feature-symbol' ) : ( $photo_cards && $photo ? ' has-photo' : '' ) ) . '">' . ( $support ? '<a class="prihod-feature-support-symbol" aria-label="' . esc_attr( $card[0] ) . '" href="' . esc_url( $url ) . '">' . prihod_theme_icon( 'requests' === $key ? 'requests' : 'support' ) . '</a>' : ( $photo_cards && $photo ? prihod_theme_photo( $photo, 'medium_large', array( 'class' => 'prihod-feature-photo' . ( 'requests' === $key ? ' is-portrait' : '' ), 'style' => 'object-position:center 25%' ), '', $url ) : '' ) ) . '<a class="prihod-feature-copy" href="' . esc_url( $url ) . '">' . prihod_theme_icon( $key ) . '<div><h2>' . esc_html( $card[0] ) . '</h2>' . ( $card[1] ? '<p>' . esc_html( $card[1] ) . '</p>' : '' ) . ( $card[2] ? '<span class="prihod-feature-link">' . esc_html( $card[2] ) . ' →</span>' : '' ) . '</div></a></div>';
     }
     $title = prihod_theme_home_title( 'features' );
-    return $has_cards ? prihod_theme_section_title( $title, '', '', prihod_theme_home_eyebrow( 'features' ) ) . $html . '</nav>' : '';
+    $columns = min( $card_count, 'classic' === $scheme ? 4 : 5 );
+    return $card_count ? prihod_theme_section_title( $title, '', '', prihod_theme_home_eyebrow( 'features' ) ) . '<nav class="prihod-feature-grid" style="--prihod-feature-columns:' . esc_attr( $columns ) . '" aria-label="' . esc_attr__( 'Site sections', 'georg-kloster-prihod' ) . '">' . $cards_html . '</nav>' : '';
 }
 function prihod_theme_home_topic_links(): string {
     $links = '';
@@ -89,10 +90,11 @@ function prihod_theme_home_hero( string $scheme, array $profile, array $options,
     $schedule = prihod_theme_home_url( 'schedule' ); $about = prihod_theme_home_url( 'about' ); $contact = prihod_theme_home_url( 'contacts' );
     $title = prihod_theme_home_title( 'hero' );
     $eyebrow = prihod_theme_home_eyebrow( 'hero' );
-    $html = '<section class="prihod-home-hero"' . ( $hero ? ' style="--prihod-hero-image:url(' . esc_url( $hero ) . ')"' : '' ) . '><div class="prihod-container prihod-hero-grid"><div class="prihod-hero-copy">';
+    $has_motto = in_array( $scheme, array( 'classic', 'tradition' ), true ) && '' !== $options['hero_motto'];
+    $html = '<section class="prihod-home-hero' . ( $embedded ? ' has-service-panel' : '' ) . ( $has_motto ? ' has-motto' : '' ) . '"' . ( $hero ? ' style="--prihod-hero-image:url(' . esc_url( $hero ) . ')"' : '' ) . '><div class="prihod-container prihod-hero-grid"><div class="prihod-hero-copy">';
     if ( $eyebrow ) { $html .= '<p class="prihod-eyebrow">' . esc_html( $eyebrow ) . '</p>'; }
     if ( $title ) { $html .= '<h1>' . esc_html( $title ) . '</h1>'; }
-    if ( 'classic' === $scheme ) { $html .= prihod_theme_verse(); }
+    if ( in_array( $scheme, array( 'classic', 'tradition' ), true ) ) { $html .= prihod_theme_verse(); }
     $description = prihod_theme_home_text( $home['hero_description'], 'hero-description', $profile['description'] );
     if ( $description ) { $html .= '<p class="prihod-hero-description">' . nl2br( esc_html( $description ) ) . '</p>'; }
     if ( 'hospitality' === $scheme ) { $html .= prihod_theme_verse(); }
@@ -105,7 +107,7 @@ function prihod_theme_home_hero( string $scheme, array $profile, array $options,
     }
     if ( 'blue' === $scheme ) { $html .= prihod_theme_verse( 'hero_quote_text', 'hero_quote_source' ); }
     $html .= '</div>';
-    if ( in_array( $scheme, array( 'classic', 'tradition' ), true ) && $options['hero_motto'] ) { $html .= '<aside class="' . ( 'tradition' === $scheme ? 'prihod-tradition-motto' : 'prihod-classic-motto' ) . '">' . esc_html( $options['hero_motto'] ) . '</aside>'; }
+    if ( $has_motto ) { $html .= '<aside class="' . ( 'tradition' === $scheme ? 'prihod-tradition-motto' : 'prihod-classic-motto' ) . '">' . ( 'tradition' === $scheme ? prihod_theme_icon( 'cross' ) : '' ) . '<span>' . esc_html( $options['hero_motto'] ) . '</span></aside>'; }
     if ( $embedded ) { $html .= prihod_theme_home_service_panel( $scheme, $schedule ); }
     return $html . '</div></section>';
 }

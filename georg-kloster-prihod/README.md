@@ -44,3 +44,18 @@ python scripts/package.py --only theme
 The theme screenshot is the Classic style preview from
 `assets/schemes/classic.jpg`, converted to PNG. Preview photographs are never
 inserted into public page content. Resource credits are in `readme.txt`.
+
+## Style layouts
+
+The five styles share the same saved content and homepage controls. Their
+card grids use the number of visible cards (up to four in Classic, five in
+the other styles). Hiding the schedule card or disabling a section does not
+reserve empty columns. Upcoming services occupy a hero sidebar only when
+available and placed directly after the hero; otherwise sections keep their
+chosen order. Optional service headings and links do not reserve empty slots.
+
+Traditional uses the saved quotation and motto with the theme's cross icon.
+Its request/support tiles and the Editorial support tile use large symbols.
+Turning card images off retains compact icon cards. Displayed homepage card
+photographs are 200px high and remain inside their columns. Empty text fields
+stay empty; no reference-site content is inserted.

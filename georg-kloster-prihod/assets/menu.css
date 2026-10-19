@@ -5,6 +5,8 @@
 .prihod-menu-tools{display:flex;align-items:center;justify-content:flex-end;gap:12px}
 .prihod-menu-tools>.prihod-desktop-navigation{flex:1;min-width:0;justify-content:flex-end}
 .prihod-menu-tools .prihod-desktop-navigation>.wp-block-navigation__container{justify-content:flex-end;flex-wrap:wrap;gap:4px 14px}
+.prihod-scheme-tradition .prihod-menu-tools{grid-column:1/-1;justify-content:center}
+.prihod-scheme-tradition .prihod-menu-tools .prihod-desktop-navigation>.wp-block-navigation__container{justify-content:center}
 .prihod-menu-tools .prihod-desktop-navigation li{white-space:nowrap}
 .prihod-menu-tools .prihod-desktop-navigation a{text-decoration:none}
 .prihod-menu-tools .prihod-desktop-navigation a:hover,.prihod-menu-tools .prihod-desktop-navigation .current-menu-item>a{color:var(--wp--preset--color--forest)}

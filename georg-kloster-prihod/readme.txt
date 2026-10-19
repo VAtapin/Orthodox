@@ -34,6 +34,9 @@ Create and assign a menu under Appearance > Menus. Open a menu item and choose i
 
 == Changelog ==
 
+= 0.4.31 =
+Restore the five style layouts with card grids based on visible items, optional hero panels and headings, traditional quotation and cross, and style-specific symbol cards. Keep homepage card photographs 200px high. Align classic navigation, preserve mobile contrast and support missing plugin data without empty columns.
+
 = 0.4.30 =
 Use English gettext source strings with bundled Russian translations, including native theme.json contexts. Replace the theme screenshot with the full Classic preview. Remove output-warning suppression comments while retaining renderer escaping.
 
