@@ -9,9 +9,9 @@ function prihod_theme_plugin_catalog(): array {
             'description' => __( 'Parish profile, places and clergy. Publish these details with blocks or shortcodes, using any theme.', 'georg-kloster-prihod' ),
             'page' => 'gkpc', 'capability' => 'manage_gkpc_profile', 'preview' => 'core',
         ),
-        'georg-kloster-prihod-social' => array(
-            'name' => __( 'Georg-Kloster Parish Social', 'georg-kloster-prihod' ),
-            'description' => __( 'Configurable contact forms and private correspondence. Email replies and optional Telegram, WhatsApp and Facebook channels are configured separately.', 'georg-kloster-prihod' ),
+        'georg-kloster-connect-hub' => array(
+            'name' => __( 'Georg-Kloster Connect Hub', 'georg-kloster-prihod' ),
+            'description' => __( 'Independent forms, private messages and queued publications. Connect Telegram, WhatsApp, Facebook, Instagram, VK and OK separately.', 'georg-kloster-prihod' ),
             'page' => 'gkps', 'capability' => 'manage_gkps_settings', 'preview' => 'social',
         ),
         'georg-kloster-prihod-schedule' => array(

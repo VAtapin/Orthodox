@@ -642,8 +642,8 @@ msgstr "Optionale Plugins"
 msgid "Georg-Kloster Parish Core"
 msgstr "Georg-Kloster — Gemeinde"
 
-msgid "Georg-Kloster Parish Social"
-msgstr "Georg-Kloster — Kontakt"
+msgid "Georg-Kloster Connect Hub"
+msgstr "Georg-Kloster — Kommunikation"
 
 msgid "Georg-Kloster Parish Schedule"
 msgstr "Georg-Kloster — Gottesdienstplan"
@@ -651,8 +651,8 @@ msgstr "Georg-Kloster — Gottesdienstplan"
 msgid "Parish profile, places and clergy. Publish these details with blocks or shortcodes, using any theme."
 msgstr "Gemeindeprofil, Gottesdienstorte und Geistliche. Veröffentlichen Sie diese Angaben mit Blöcken oder Shortcodes in jedem Theme."
 
-msgid "Configurable contact forms and private correspondence. Email replies and optional Telegram, WhatsApp and Facebook channels are configured separately."
-msgstr "Konfigurierbare Kontaktformulare und private Korrespondenz. E-Mail-Antworten und optionale Telegram-, WhatsApp- und Facebook-Kanäle werden separat eingerichtet."
+msgid "Independent forms, private messages and queued publications. Connect Telegram, WhatsApp, Facebook, Instagram, VK and OK separately."
+msgstr "Unabhängige Formulare, private Nachrichten und geplante Veröffentlichungen. Telegram, WhatsApp, Facebook, Instagram, VK und OK werden separat verbunden."
 
 msgid "Service schedules, recurring events, cancellations and changes. Calendar views, upcoming services and vestment colours work without Parish Core."
 msgstr "Gottesdienstpläne, wiederkehrende Termine, Absagen und Änderungen. Kalenderansichten, nächste Gottesdienste und Gewandfarben funktionieren ohne Parish Core."

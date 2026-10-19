@@ -1,5 +1,6 @@
 """Check all standalone plugin Russian PHP and editor translations."""
 from pathlib import Path
+import argparse
 import gettext
 import hashlib
 import json
@@ -11,29 +12,35 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 from compile_po import read_catalog
 from plugin_messages import PLUGINS, source_messages
 
+parser = argparse.ArgumentParser()
+parser.add_argument('--only', choices=list(PLUGINS))
+selected = parser.parse_args().only
 count = 0
 for domain, handle in PLUGINS.items():
+    if selected and domain != selected:
+        continue
     folder = ROOT / domain / 'languages'
-    path = folder / f'{domain}-ru_RU.po'
-    source = read_catalog(path)
-    with path.with_suffix('.mo').open('rb') as stream:
-        compiled = gettext.GNUTranslations(stream)._catalog
-    assert source == compiled, (domain, 'PO/MO mismatch')
-    expected = source_messages(domain)
-    assert set(source) == set(expected) | {''}, (domain, 'Missing/unused messages')
-    for key in expected:
-        value = source[key]
-        assert value.strip(), (domain, key, 'Empty translation')
-        assert re.findall(r'%(?:\d+\$)?[dsf]', key) == re.findall(r'%(?:\d+\$)?[dsf]', value), (domain, key, 'Formatting placeholders changed')
-        assert re.search('[А-Яа-яЁё]', value) or key in ('Telegram', 'WhatsApp'), (domain, key, 'Non-Russian UI')
-        count += 1
-    javascript = source_messages(domain, javascript_only=True)
-    for suffix in (handle, hashlib.md5(b'assets/blocks.js').hexdigest()):
-        jed = json.loads((folder / f'{domain}-ru_RU-{suffix}.json').read_text(encoding='utf-8'))
-        messages = jed['locale_data']['messages']
-        assert jed['domain'] == domain and messages['']['lang'] == 'ru_RU'
-        assert set(messages) == set(javascript) | {''}, (domain, 'Editor coverage mismatch')
-        for key in javascript:
-            assert messages[key] == [source[key]], (domain, key, 'PHP/JS translations differ')
+    for locale in (['ru_RU', 'de_DE'] if domain == 'georg-kloster-connect-hub' else ['ru_RU']):
+        path = folder / f'{domain}-{locale}.po'
+        source = read_catalog(path)
+        with path.with_suffix('.mo').open('rb') as stream:
+            compiled = gettext.GNUTranslations(stream)._catalog
+        assert source == compiled, (domain, 'PO/MO mismatch')
+        expected = source_messages(domain)
+        assert set(source) == set(expected) | {''}, (domain, 'Missing/unused messages')
+        for key in expected:
+            value = source[key]
+            assert value.strip(), (domain, key, 'Empty translation')
+            assert re.findall(r'%(?:\d+\$)?[dsf]', key) == re.findall(r'%(?:\d+\$)?[dsf]', value), (domain, key, 'Formatting placeholders changed')
+            assert locale != 'ru_RU' or re.search('[А-Яа-яЁё]', value) or key in ('Telegram', 'WhatsApp', 'Facebook', 'Instagram', 'VK', 'OK'), (domain, key, 'Non-Russian UI')
+            count += 1
+        javascript = source_messages(domain, javascript_only=True)
+        for suffix in (handle, hashlib.md5(b'assets/blocks.js').hexdigest()):
+            jed = json.loads((folder / f'{domain}-{locale}-{suffix}.json').read_text(encoding='utf-8'))
+            messages = jed['locale_data']['messages']
+            assert jed['domain'] == domain and messages['']['lang'] == locale
+            assert set(messages) == set(javascript) | {''}, (domain, 'Editor coverage mismatch')
+            for key in javascript:
+                assert messages[key] == [source[key]], (domain, key, 'PHP/JS translations differ')
 
-print(f'Plugin Russian catalogs passed: {count} messages, three PHP catalogs and six editor catalogs.')
+print(f'Plugin catalogs passed: {count} translated messages across bundled PHP and editor catalogs.')

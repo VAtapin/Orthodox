@@ -8,11 +8,11 @@ import re
 
 ROOT = Path(__file__).resolve().parent.parent
 parser = argparse.ArgumentParser()
-parser.add_argument('--only', choices=['core', 'theme', 'telegram', 'plugins'])
+parser.add_argument('--only', choices=['core', 'theme', 'telegram', 'plugins', 'connect-hub'])
 selected = parser.parse_args().only
-if selected == 'plugins':
+if selected in ('plugins', 'connect-hub'):
     from plugin_messages import compile_plugins
-    compile_plugins()
+    compile_plugins('georg-kloster-connect-hub' if selected == 'connect-hub' else None)
     raise SystemExit(0)
 rows = [line.split('\t') for line in (ROOT / 'scripts/translations.tsv').read_text(encoding='utf-8').splitlines() if line]
 assert all(len(row) == 4 for row in rows)

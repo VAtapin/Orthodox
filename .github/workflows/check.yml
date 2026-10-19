@@ -1,6 +1,33 @@
 name: Check
 on: [push, pull_request]
 jobs:
+  connect-hub:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - wp: '6.5'
+            php: '8.0'
+          - wp: 'latest'
+            php: '8.4'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python tests/plugin-i18n-check.py --only georg-kloster-connect-hub
+      - run: node --check georg-kloster-connect-hub/assets/blocks.js
+      - run: python scripts/package.py --only connect-hub
+      - run: unzip -q build/georg-kloster-connect-hub-0.2.0.zip -d "$RUNNER_TEMP/connect-hub-package"
+      - name: Set Connect Hub test versions
+        env:
+          TEST_WP: ${{ matrix.wp }}
+          TEST_PHP: ${{ matrix.php }}
+        run: node -e "const fs=require('fs'); const b=JSON.parse(fs.readFileSync('tests/connect-hub-blueprint.json')); b.preferredVersions={wp:process.env.TEST_WP,php:process.env.TEST_PHP}; fs.writeFileSync(process.env.RUNNER_TEMP+'/connect-hub-blueprint.json',JSON.stringify(b));"
+      - run: npx --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir "$RUNNER_TEMP/connect-hub-package/georg-kloster-connect-hub" /wordpress/wp-content/plugins/georg-kloster-connect-hub --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint "$RUNNER_TEMP/connect-hub-blueprint.json"
   php:
     runs-on: ubuntu-latest
     strategy:

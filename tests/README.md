@@ -1,5 +1,31 @@
 # Проверки
 
+## Connect Hub 0.2.0
+
+`connect-hub-blueprint.json` выполняет 68 проверок на изолированных данных:
+семь разделов RU/DE/EN, несколько форм, права, одноразовый токен с привязкой
+к форме, собственный получатель, очередь шести каналов, API-контракты,
+ошибки и повторы. HTTP/email перехвачены только в тестовом процессе.
+
+```powershell
+python scripts/compile-translations.py --only connect-hub
+python tests/plugin-i18n-check.py --only georg-kloster-connect-hub
+python scripts/package.py --only connect-hub
+npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-connect-hub /wordpress/wp-content/plugins/georg-kloster-connect-hub --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/connect-hub-blueprint.json
+```
+
+Для проверки именно ZIP распаковать пакет в отдельный каталог и монтировать
+его вместо исходников. `connect-hub-upgrade-blueprint.json` дополнительно
+проверяет настоящую активацию поверх прежнего Social 0.1.3: нужен его старый
+ZIP, распакованный в `build/connect-legacy`, и mount
+`./build/connect-legacy/georg-kloster-prihod-social` в
+`/wordpress/wp-content/plugins/georg-kloster-prihod-social`.
+Окончательный ZIP прошёл 68 проверок на WP7.1.3/PHP8.4.25 с обновлением и
+WP6.5.13/PHP8.0.30 самостоятельно. Результат — `tests/.connect-hub-result.json`.
+482 строки RU/DE проверены на покрытие, placeholders и соответствие PO/MO/JSON.
+Браузерная QA недоступна: локальный адрес блокируется встроенным браузером.
+Реальные социальные аккаунты этим тестом не проверяются.
+
 ## Галерея главной
 
 `theme-gallery-blueprint.json` создаёт в одноразовом WordPress пять настоящих
@@ -35,14 +61,14 @@ npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloste
 
 ## Русский интерфейс самостоятельных плагинов
 
-Core 0.1.4, Social 0.1.3 и Schedule 0.1.10 содержат русские PO/MO и JSON
+Core 0.1.4, Connect Hub 0.2.0 и Schedule 0.1.10 содержат русские PO/MO и JSON
 для блоков редактора. Каталоги не зависят от старого «Прихода» или WPML.
 Собственные тексты владельца и содержимое страниц не переписываются.
 
 ```powershell
 python scripts/compile-translations.py --only plugins
 python tests/plugin-i18n-check.py
-npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-prihod-core /wordpress/wp-content/plugins/georg-kloster-prihod-core --mount-dir ./georg-kloster-prihod-social /wordpress/wp-content/plugins/georg-kloster-prihod-social --mount-dir ./georg-kloster-prihod-schedule /wordpress/wp-content/plugins/georg-kloster-prihod-schedule --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/plugin-i18n-blueprint.json
+npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-prihod-core /wordpress/wp-content/plugins/georg-kloster-prihod-core --mount-dir ./georg-kloster-connect-hub /wordpress/wp-content/plugins/georg-kloster-connect-hub --mount-dir ./georg-kloster-prihod-schedule /wordpress/wp-content/plugins/georg-kloster-prihod-schedule --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/plugin-i18n-blueprint.json
 ```
 
 Статическая проверка сверяет все gettext-строки с PO/MO, русским текстом,

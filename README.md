@@ -14,8 +14,9 @@
 Публикация в каталоге и обновление действующего сайта являются отдельными действиями.
 
 Существующий плагин `prihod/` всё ещё содержит Core, обращения и расписание.
-Разделение на `georg-kloster-prihod-core`, `georg-kloster-prihod-social` и
-`georg-kloster-prihod-schedule` запланировано следующими самостоятельными задачами.
+Самостоятельные плагины уже выделены: `georg-kloster-prihod-core`,
+`georg-kloster-connect-hub` и `georg-kloster-prihod-schedule`. Connect Hub заменяет
+прежний Social; универсальные формы и каналы описаны в [его документации](docs/CONNECT_HUB.md).
 План выпуска: [WordPress.org](docs/WORDPRESS_ORG_RELEASE_PLAN.md).
 ## Установка
 

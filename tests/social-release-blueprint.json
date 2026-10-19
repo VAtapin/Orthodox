@@ -1,7 +1,7 @@
 {
   "preferredVersions": {"wp": "6.5", "php": "8.0"},
   "steps": [
-    {"step": "activatePlugin", "pluginPath": "georg-kloster-prihod-social/georg-kloster-prihod-social.php"},
+    {"step": "activatePlugin", "pluginPath": "georg-kloster-connect-hub/georg-kloster-connect-hub.php"},
     {"step": "runPHP", "code": "<?php define('WP_DISABLE_FATAL_ERROR_HANDLER', true); require '/wordpress/wp-content/plugins/prihod-tests/social-release.php';"}
   ]
 }

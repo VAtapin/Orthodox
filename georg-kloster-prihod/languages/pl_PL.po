@@ -642,8 +642,8 @@ msgstr "Opcjonalne wtyczki"
 msgid "Georg-Kloster Parish Core"
 msgstr "Georg-Kloster — Parafia"
 
-msgid "Georg-Kloster Parish Social"
-msgstr "Georg-Kloster — Kontakt"
+msgid "Georg-Kloster Connect Hub"
+msgstr "Georg-Kloster — Komunikacja"
 
 msgid "Georg-Kloster Parish Schedule"
 msgstr "Georg-Kloster — Plan nabożeństw"
@@ -651,8 +651,8 @@ msgstr "Georg-Kloster — Plan nabożeństw"
 msgid "Parish profile, places and clergy. Publish these details with blocks or shortcodes, using any theme."
 msgstr "Profil parafii, miejsca nabożeństw i duchowieństwo. Publikuj te informacje za pomocą bloków lub krótkich kodów w dowolnym motywie."
 
-msgid "Configurable contact forms and private correspondence. Email replies and optional Telegram, WhatsApp and Facebook channels are configured separately."
-msgstr "Konfigurowalne formularze kontaktowe i prywatna korespondencja. Odpowiedzi e-mail oraz opcjonalne kanały Telegram, WhatsApp i Facebook konfiguruje się osobno."
+msgid "Independent forms, private messages and queued publications. Connect Telegram, WhatsApp, Facebook, Instagram, VK and OK separately."
+msgstr "Niezależne formularze, prywatne wiadomości i kolejka publikacji. Telegram, WhatsApp, Facebook, Instagram, VK i OK są podłączane osobno."
 
 msgid "Service schedules, recurring events, cancellations and changes. Calendar views, upcoming services and vestment colours work without Parish Core."
 msgstr "Plany nabożeństw, wydarzenia cykliczne, odwołania i zmiany. Widoki kalendarza, najbliższe nabożeństwa i kolory szat działają bez Parish Core."

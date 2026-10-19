@@ -1,0 +1,32 @@
+{
+  "preferredVersions": {
+    "wp": "7.1.3",
+    "php": "8.4"
+  },
+  "steps": [
+    {
+      "step": "setSiteLanguage",
+      "language": "de_DE"
+    },
+    {
+      "step": "setSiteLanguage",
+      "language": "ru_RU"
+    },
+    {
+      "step": "activatePlugin",
+      "pluginPath": "georg-kloster-prihod-social/georg-kloster-prihod-social.php"
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php require '/wordpress/wp-load.php'; update_option('gkps_form', array('enabled'=>false, 'title'=>'Existing development form', 'topics'=>'Existing topic', 'recipient'=>'existing@example.org')); update_option('gkps_connect_telegram', array('enabled'=>false, 'target'=>'12345', 'token'=>'12345:development_only_token')); wp_insert_post(array('post_type'=>'gkps_request','post_status'=>'private','post_title'=>'Synthetic upgrade fixture','post_content'=>'Synthetic development content'));"
+    },
+    {
+      "step": "activatePlugin",
+      "pluginPath": "georg-kloster-connect-hub/georg-kloster-connect-hub.php"
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php define('WP_DISABLE_FATAL_ERROR_HANDLER', true); try { require '/wordpress/wp-content/plugins/prihod-tests/connect-hub.php'; } catch (Throwable $e) { echo get_class($e).': '.$e->getMessage().'\\n'.$e->getTraceAsString(); throw $e; }"
+    }
+  ]
+}

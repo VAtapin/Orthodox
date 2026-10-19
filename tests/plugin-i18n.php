@@ -20,12 +20,12 @@ set_current_screen( 'dashboard' );
 $check( 'ru_RU' === determine_locale(), 'Russian locale was not selected: ' . get_locale() . '/' . determine_locale() . '/' . get_option( 'WPLANG' ) . ' plugins=' . wp_json_encode( get_option( 'active_plugins' ) ) );
 foreach ( array(
     'georg-kloster-prihod-core' => array( 'Parish', 'Приход' ),
-    'georg-kloster-prihod-social' => array( 'Contacts', 'Контакты' ),
+    'georg-kloster-connect-hub' => array( 'Connect Hub', 'Коммуникации' ),
     'georg-kloster-prihod-schedule' => array( 'Services', 'Богослужения' ),
 ) as $domain => $pair ) {
     $check( $pair[1] === translate( $pair[0], $domain ), 'Bundled catalog did not load automatically: ' . $domain );
 }
-foreach ( array( GKPC_FILE => 'Georg-Kloster — Приход', GKPS_FILE => 'Georg-Kloster — Связь', GKPSCH_FILE => 'Georg-Kloster — Расписание богослужений' ) as $file => $title ) {
+foreach ( array( GKPC_FILE => 'Georg-Kloster — Приход', GKPS_FILE => 'Georg-Kloster — Коммуникации', GKPSCH_FILE => 'Georg-Kloster — Расписание богослужений' ) as $file => $title ) {
     $data = get_plugin_data( $file );
     $check( $title === $data['Name'], 'Untranslated plugin name.' );
     $check( (bool) preg_match( '/[А-Яа-яЁё]/u', $data['Description'] ), 'Untranslated plugin description.' );
@@ -34,7 +34,7 @@ global $menu, $submenu;
 $menu = array(); $submenu = array();
 do_action( 'admin_init' );
 do_action( 'admin_menu' );
-foreach ( array( 'gkpc' => 'Приход', 'gkps' => 'Контакты', 'gkpsch' => 'Богослужения' ) as $slug => $title ) {
+foreach ( array( 'gkpc' => 'Приход', 'gkps' => 'Коммуникации', 'gkpsch' => 'Богослужения' ) as $slug => $title ) {
     $found = array_filter( $menu, static fn( $item ) => $slug === $item[2] && $title === $item[0] );
     $check( 1 === count( $found ), 'Untranslated admin menu: ' . $slug );
 }
@@ -44,7 +44,7 @@ $check( 'Места служения' === get_post_type_object( 'gkpsch_location
 foreach ( array(
     'gkpc/profile' => 'Сведения о приходе', 'gkpc/contacts' => 'Контакты прихода',
     'gkpc/clergy' => 'Духовенство', 'gkpc/places' => 'Места служения',
-    'gkps/contact-form' => 'Форма обращения', 'gkpsch/schedule' => 'Расписание богослужений',
+    'gkps/contact-form' => 'Форма', 'gkpsch/schedule' => 'Расписание богослужений',
     'gkpsch/next-service' => 'Ближайшее богослужение', 'gkpsch/next-services' => 'Ближайшие богослужения',
 ) as $name => $title ) {
     $check( $title === WP_Block_Type_Registry::get_instance()->get_registered( $name )->title, 'Untranslated block: ' . $name );
@@ -55,15 +55,15 @@ $saved = array( get_option( 'gkpc_profile' ), get_option( 'gkps_form' ) );
 $content = get_posts( array( 'post_type' => array( 'post', 'page' ), 'numberposts' => -1 ) );
 $screens = array(
     array( array( 'GeorgKlosterPrihodCore\Admin', 'page' ), array( 'Сведения о приходе', 'Тип общины', 'Разделы сайта', 'Owner supplied name' ) ),
-    array( array( 'GeorgKlosterPrihodSocial\Admin', 'render' ), array( 'Форма обращения', 'Заголовок формы', 'Электронная почта для уведомлений' ) ),
-    array( array( 'GeorgKlosterPrihodSocial\Request_Admin', 'render' ), array( 'Обращения' ) ),
+    array( array( 'GeorgKlosterPrihodSocial\Admin', 'render' ), array( 'Формы', 'Заголовок формы', 'Почта для уведомлений' ) ),
+    array( array( 'GeorgKlosterPrihodSocial\Request_Admin', 'render' ), array( 'Сообщения' ) ),
     array( array( 'GeorgKlosterPrihodSchedule\Admin', 'render' ), array( 'Расписание богослужений', 'Управление богослужениями', 'Управление местами служения' ) ),
     array( array( 'GeorgKlosterPrihodSchedule\Admin', 'settings_page' ), array( 'Настройки расписания' ) ),
 );
 foreach ( array( 'telegram', 'whatsapp', 'facebook' ) as $provider ) {
     $labels = array( 'Токен', 'Разрешить отправки' );
     if ( 'whatsapp' === $provider ) { $labels[] = 'Идентификатор номера телефона'; }
-    if ( 'facebook' === $provider ) { $labels[] = 'Страница Facebook'; $labels[] = 'Идентификатор страницы Facebook'; }
+    if ( 'facebook' === $provider ) { $labels[] = 'Facebook'; $labels[] = 'Идентификатор страницы Facebook'; }
     $screens[] = array( array( GeorgKlosterPrihodSocial\Connector::instance( $provider ), 'render' ), $labels );
 }
 foreach ( $screens as $screen ) {
@@ -75,7 +75,7 @@ foreach ( $screens as $screen ) {
 }
 $form = do_shortcode( '[gkps_contact_form]' );
 $check( str_contains( $form, 'Напишите нам' ) && str_contains( $form, 'Отправить обращение' ) && str_contains( $form, 'Owner supplied introduction' ), 'Russian form defaults or owner text missing.' );
-foreach ( array( 'gkpc-blocks' => 'Сведения о приходе', 'gkps-blocks' => 'Форма обращения', 'gkpsch-blocks' => 'Период' ) as $handle => $label ) {
+foreach ( array( 'gkpc-blocks' => 'Сведения о приходе', 'gkps-blocks' => 'Форма', 'gkpsch-blocks' => 'Период' ) as $handle => $label ) {
     $script = wp_scripts()->registered[$handle];
     $check( str_contains( $script->translations_path, '/languages' ), 'Script translation path missing.' );
     $translations = wp_scripts()->print_translations( $handle, false );

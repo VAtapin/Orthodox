@@ -196,10 +196,6 @@ msgstr ""
 msgid "Community type"
 msgstr ""
 
-#: includes/plugins.php
-msgid "Configurable contact forms and private correspondence. Email replies and optional Telegram, WhatsApp and Facebook channels are configured separately."
-msgstr ""
-
 #: includes/render.php
 msgid "Contact us"
 msgstr ""
@@ -343,15 +339,15 @@ msgid "For visitors"
 msgstr ""
 
 #: includes/plugins.php
+msgid "Georg-Kloster Connect Hub"
+msgstr ""
+
+#: includes/plugins.php
 msgid "Georg-Kloster Parish Core"
 msgstr ""
 
 #: includes/plugins.php
 msgid "Georg-Kloster Parish Schedule"
-msgstr ""
-
-#: includes/plugins.php
-msgid "Georg-Kloster Parish Social"
 msgstr ""
 
 #: includes/settings.php
@@ -408,6 +404,10 @@ msgstr ""
 
 #: includes/photos.php
 msgid "Icon of the day"
+msgstr ""
+
+#: includes/plugins.php
+msgid "Independent forms, private messages and queued publications. Connect Telegram, WhatsApp, Facebook, Instagram, VK and OK separately."
 msgstr ""
 
 #: includes/plugins.php

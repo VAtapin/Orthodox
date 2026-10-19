@@ -642,8 +642,8 @@ msgstr "Додаткові плагіни"
 msgid "Georg-Kloster Parish Core"
 msgstr "Georg-Kloster — Парафія"
 
-msgid "Georg-Kloster Parish Social"
-msgstr "Georg-Kloster — Зв’язок"
+msgid "Georg-Kloster Connect Hub"
+msgstr "Georg-Kloster — Комунікації"
 
 msgid "Georg-Kloster Parish Schedule"
 msgstr "Georg-Kloster — Розклад богослужінь"
@@ -651,8 +651,8 @@ msgstr "Georg-Kloster — Розклад богослужінь"
 msgid "Parish profile, places and clergy. Publish these details with blocks or shortcodes, using any theme."
 msgstr "Відомості про парафію, місця служіння та духовенство. Публікуйте їх за допомогою блоків або шорткодів у будь-якій темі."
 
-msgid "Configurable contact forms and private correspondence. Email replies and optional Telegram, WhatsApp and Facebook channels are configured separately."
-msgstr "Налаштовувані форми звернення та приватне листування. Відповіді електронною поштою й додаткові канали Telegram, WhatsApp і Facebook налаштовуються окремо."
+msgid "Independent forms, private messages and queued publications. Connect Telegram, WhatsApp, Facebook, Instagram, VK and OK separately."
+msgstr "Незалежні форми, приватні повідомлення та черга публікацій. Telegram, WhatsApp, Facebook, Instagram, VK і OK підключаються окремо."
 
 msgid "Service schedules, recurring events, cancellations and changes. Calendar views, upcoming services and vestment colours work without Parish Core."
 msgstr "Розклад богослужінь, повторення, скасування та перенесення. Види календаря, найближчі служби й кольори облачення працюють без плагіна «Парафія»."

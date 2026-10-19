@@ -20,6 +20,7 @@ $cache_key = prihod_theme_plugin_cache_key();
 delete_transient( $cache_key );
 $catalog = prihod_theme_plugin_catalog();
 $check( 3 === count( $catalog ), 'Integration catalog changed.' );
+$check( isset( $catalog['georg-kloster-connect-hub'] ) && ! isset( $catalog['georg-kloster-prihod-social'] ), 'Connect Hub slug not updated.' );
 $slug = 'georg-kloster-prihod-core';
 $file = $slug . '/' . $slug . '.php';
 $valid = (object) array( 'slug' => $slug, 'version' => '1.2.3', 'requires' => '6.5', 'requires_php' => '8.0', 'download_link' => 'https://downloads.wordpress.org/plugin/' . $slug . '.1.2.3.zip' );

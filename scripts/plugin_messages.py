@@ -9,7 +9,7 @@ from compile_po import compile_mo, read_catalog
 ROOT = Path(__file__).resolve().parent.parent
 PLUGINS = {
     'georg-kloster-prihod-core': 'gkpc-blocks',
-    'georg-kloster-prihod-social': 'gkps-blocks',
+    'georg-kloster-connect-hub': 'gkps-blocks',
     'georg-kloster-prihod-schedule': 'gkpsch-blocks',
 }
 
@@ -31,23 +31,27 @@ def source_messages(domain: str, javascript_only: bool = False) -> dict[str, lis
     return messages
 
 
-def compile_plugins() -> None:
+def compile_plugins( only: str | None = None ) -> None:
     for domain, handle in PLUGINS.items():
+        if only and domain != only:
+            continue
         folder = ROOT / domain / 'languages'
         folder.mkdir(exist_ok=True)
         expected = source_messages(domain)
-        path = folder / f'{domain}-ru_RU.po'
-        messages = read_catalog(path)
-        assert set(messages) == set(expected) | {''}, (domain, 'Missing or unused translations', set(expected) - set(messages), set(messages) - set(expected) - {''})
-        path.with_suffix('.mo').write_bytes(compile_mo(messages))
         js = source_messages(domain, javascript_only=True)
-        jed = {'domain': domain, 'locale_data': {'messages': {
-            '': {'domain': domain, 'lang': 'ru_RU', 'plural-forms': 'nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);'},
-            **{key: [messages[key]] for key in sorted(js)},
-        }}}
-        # WordPress resolves bundled catalogs by script handle, then relative-path hash.
-        for suffix in (handle, hashlib.md5(b'assets/blocks.js').hexdigest()):
-            (folder / f'{domain}-ru_RU-{suffix}.json').write_text(json.dumps(jed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        locales = ['ru_RU', 'de_DE'] if domain == 'georg-kloster-connect-hub' else ['ru_RU']
+        for locale in locales:
+            path = folder / f'{domain}-{locale}.po'
+            messages = read_catalog(path)
+            assert set(messages) == set(expected) | {''}, (domain, locale, 'Missing or unused translations', set(expected) - set(messages), set(messages) - set(expected) - {''})
+            path.with_suffix('.mo').write_bytes(compile_mo(messages))
+            plural = 'nplurals=2; plural=(n != 1);' if locale == 'de_DE' else 'nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);'
+            jed = {'domain': domain, 'locale_data': {'messages': {
+                '': {'domain': domain, 'lang': locale, 'plural-forms': plural},
+                **{key: [messages[key]] for key in sorted(js)},
+            }}}
+            for suffix in (handle, hashlib.md5(b'assets/blocks.js').hexdigest()):
+                (folder / f'{domain}-{locale}-{suffix}.json').write_text(json.dumps(jed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
         header = 'Content-Type: text/plain; charset=UTF-8\nX-Domain: ' + domain + '\n'
         pot = ['msgid ""\nmsgstr ' + json.dumps(header)]
         for key, paths in sorted(expected.items()):
