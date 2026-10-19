@@ -450,6 +450,10 @@ msgstr ""
 msgid "Link row"
 msgstr ""
 
+#: includes/home-settings.php
+msgid "Link to page: %s"
+msgstr ""
+
 #: includes/branding.php
 msgid "Logo"
 msgstr ""

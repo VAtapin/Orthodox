@@ -92,7 +92,7 @@ function prihod_theme_home_number( string $key, string $label, int $value, int $
     echo '</select></label></p>';
 }
 function prihod_theme_home_page_field( string $key, string $label, int $selected ): void {
-    echo '<p><label>' . esc_html( $label ) . '<br>';
+    echo '<p><label>' . esc_html( sprintf( __( 'Link to page: %s', 'georg-kloster-prihod' ), $label ) ) . '<br>';
     wp_dropdown_pages( array( 'name' => 'georg_kloster_prihod_options[home][pages][' . $key . ']', 'id' => 'prihod-home-page-' . $key, 'selected' => $selected, 'show_option_none' => __( 'Automatic', 'georg-kloster-prihod' ), 'option_none_value' => '0', 'post_status' => 'publish' ) );
     echo '</label></p>';
 }

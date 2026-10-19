@@ -50,5 +50,5 @@ if "parish-core" in selected or "parish-schedule" in selected:
 if "parish-social" in selected or "connect-hub" in selected:
     archive(ROOT / "georg-kloster-connect-hub", "georg-kloster-connect-hub-0.3.2.zip")
 if "theme" in selected:
-    archive(ROOT / "georg-kloster-prihod", "georg-kloster-prihod-0.4.36.zip")
+    archive(ROOT / "georg-kloster-prihod", "georg-kloster-prihod-0.4.37.zip")
 print("Built: " + ", ".join(selected))

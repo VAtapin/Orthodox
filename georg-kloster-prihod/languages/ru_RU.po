@@ -446,6 +446,9 @@ msgstr "Светлая гостеприимная"
 msgid "Link label"
 msgstr "Текст ссылки"
 
+msgid "Link to page: %s"
+msgstr "Ссылка на страницу «%s»"
+
 #: includes/settings.php
 msgid "Link row"
 msgstr "Строка ссылок"

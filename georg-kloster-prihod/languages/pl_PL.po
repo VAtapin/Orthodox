@@ -446,6 +446,9 @@ msgstr "Jasny i gościnny"
 msgid "Link label"
 msgstr "Tekst odnośnika"
 
+msgid "Link to page: %s"
+msgstr "Odnośnik do strony „%s”"
+
 #: includes/settings.php
 msgid "Link row"
 msgstr "Pasek odnośników"

@@ -446,6 +446,9 @@ msgstr "Hell und einladend"
 msgid "Link label"
 msgstr "Linktext"
 
+msgid "Link to page: %s"
+msgstr "Link zur Seite „%s“"
+
 #: includes/settings.php
 msgid "Link row"
 msgstr "Linkleiste"
