@@ -3,7 +3,7 @@ defined( 'ABSPATH' ) || exit;
 
 function georg_kloster_prihod_options(): array {
     $saved = get_option( 'georg_kloster_prihod_options', array() );
-    $defaults = array( 'hero_image' => 0, 'logo' => 0, 'logo_show' => true, 'logo_width' => 240, 'logo_removed' => false, 'logo_hide_title' => false, 'languages' => array(), 'scheme' => '', 'width' => 1200, 'font' => 'sans', 'font_size' => 16, 'sticky_header' => false, 'header_contacts' => true, 'menu_style' => 'visual', 'menu_columns' => 3, 'footer_text' => '', 'header_motto' => __( 'С любовью к Богу и людям', 'georg-kloster-prihod' ), 'hero_motto' => __( 'Вера объединяет сердца', 'georg-kloster-prihod' ), 'hero_quote_text' => __( 'Где двое или трое собраны во имя Моё, там Я посреди них', 'georg-kloster-prihod' ), 'hero_quote_source' => __( 'Мф. 18:20', 'georg-kloster-prihod' ), 'quote_text' => __( 'Где двое или трое собраны во имя Моё, там Я посреди них', 'georg-kloster-prihod' ), 'quote_source' => __( 'Мф. 18:20', 'georg-kloster-prihod' ) );
+    $defaults = array( 'hero_image' => 0, 'logo' => 0, 'logo_show' => true, 'logo_width' => 240, 'logo_removed' => false, 'logo_hide_title' => false, 'languages' => array(), 'scheme' => '', 'width' => 1200, 'font' => 'sans', 'font_size' => 16, 'sticky_header' => false, 'header_contacts' => true, 'menu_style' => 'visual', 'menu_columns' => 3, 'footer_text' => '', 'header_motto' => '', 'hero_motto' => '', 'hero_quote_text' => '', 'hero_quote_source' => '', 'quote_text' => '', 'quote_source' => '' );
     $defaults['home'] = array();
     $defaults['profile'] = array();
     return array_merge( $defaults, is_array( $saved ) ? array_intersect_key( $saved, $defaults ) : array() );

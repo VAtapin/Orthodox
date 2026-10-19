@@ -69,22 +69,14 @@ function prihod_theme_verse( string $text_key = 'quote_text', string $source_key
     $options = georg_kloster_prihod_options();
     return $options[$text_key] ? '<blockquote class="prihod-verse"><p>«' . esc_html( $options[$text_key] ) . '»</p>' . ( $options[$source_key] ? '<cite>' . esc_html( $options[$source_key] ) . '</cite>' : '' ) . '</blockquote>' : '';
 }
-function prihod_theme_section_title( string $title, string $url = '', string $link = '' ): string {
-    $eyebrow = '';
-    if ( 'blue' === prihod_theme_scheme() && is_front_page() ) {
-        $labels = array( __( 'О приходе', 'georg-kloster-prihod' ) => __( 'Наш приход', 'georg-kloster-prihod' ), __( 'О монастыре', 'georg-kloster-prihod' ) => __( 'Наша обитель', 'georg-kloster-prihod' ), __( 'Новости прихода', 'georg-kloster-prihod' ) => __( 'Новости', 'georg-kloster-prihod' ), __( 'Новости обители', 'georg-kloster-prihod' ) => __( 'Новости', 'georg-kloster-prihod' ), __( 'Жизнь прихода в фотографиях', 'georg-kloster-prihod' ) => __( 'Фотогалерея', 'georg-kloster-prihod' ), __( 'Жизнь обители в фотографиях', 'georg-kloster-prihod' ) => __( 'Фотогалерея', 'georg-kloster-prihod' ), __( 'Как нас найти', 'georg-kloster-prihod' ) => __( 'Контакты', 'georg-kloster-prihod' ) );
-        if ( isset( $labels[$title] ) ) { $eyebrow = '<p class="prihod-section-eyebrow">' . esc_html( $labels[$title] ) . '</p>'; }
-    }
-    if ( 'editorial' === prihod_theme_scheme() && is_front_page() ) {
-        if ( in_array( $title, array( __( 'Новости прихода', 'georg-kloster-prihod' ), __( 'Новости обители', 'georg-kloster-prihod' ) ), true ) ) { $eyebrow = '<p class="prihod-section-eyebrow">' . esc_html__( 'Живая Церковь', 'georg-kloster-prihod' ) . '</p>'; }
-        if ( in_array( $title, array( __( 'Жизнь прихода в фотографиях', 'georg-kloster-prihod' ), __( 'Жизнь обители в фотографиях', 'georg-kloster-prihod' ) ), true ) ) { $eyebrow = '<p class="prihod-section-eyebrow">' . esc_html__( 'Фотолетопись', 'georg-kloster-prihod' ) . '</p>'; }
-    }
-    return '<div class="prihod-section-title"><div>' . $eyebrow . '<h2>' . esc_html( $title ) . '</h2></div>' . ( $url ? '<a href="' . esc_url( $url ) . '">' . esc_html( $link ) . ' <span aria-hidden="true">→</span></a>' : '' ) . '</div>';
+function prihod_theme_section_title( string $title, string $url = '', string $link = '', string $eyebrow = '' ): string {
+    if ( ! $title && ! $eyebrow && ( ! $url || ! $link ) ) { return ''; }
+    return '<div class="prihod-section-title"><div>' . ( $eyebrow ? '<p class="prihod-section-eyebrow">' . esc_html( $eyebrow ) . '</p>' : '' ) . ( $title ? '<h2>' . esc_html( $title ) . '</h2>' : '' ) . '</div>' . ( $url && $link ? '<a href="' . esc_url( $url ) . '">' . esc_html( $link ) . ' <span aria-hidden="true">→</span></a>' : '' ) . '</div>';
 }
 function prihod_theme_contact_panel( string $title = '' ): string {
     $profile = prihod_theme_profile(); $options = georg_kloster_prihod_options();
     if ( ! $profile['address'] && ! $profile['phone'] && ! $profile['email'] ) { return ''; }
-    $html = '<section class="prihod-home-contacts">' . prihod_theme_section_title( $title ?: __( 'Как нас найти', 'georg-kloster-prihod' ) ) . '<div class="prihod-contact-layout"><div class="prihod-contact-list">';
+    $html = '<section class="prihod-home-contacts">' . prihod_theme_section_title( $title, '', '', prihod_theme_home_eyebrow( 'contacts' ) ) . '<div class="prihod-contact-layout"><div class="prihod-contact-list">';
     foreach ( array( 'address' => array( 'contacts', __( 'Адрес', 'georg-kloster-prihod' ) ), 'phone' => array( 'phone', __( 'Телефон', 'georg-kloster-prihod' ) ), 'email' => array( 'email', __( 'Email', 'georg-kloster-prihod' ) ) ) as $key => $item ) {
         if ( empty( $profile[$key] ) ) { continue; }
         $text = esc_html( $profile[$key] );
@@ -95,9 +87,9 @@ function prihod_theme_contact_panel( string $title = '' ): string {
     $html .= '</div>';
     if ( 'hospitality' === prihod_theme_scheme() ) { $html .= '<aside class="prihod-contact-quote">' . prihod_theme_verse() . '</aside>'; }
     elseif ( 'editorial' === prihod_theme_scheme() ) {
-        $html .= '<aside class="prihod-contact-welcome"><div><h3>' . esc_html__( 'Мы рядом', 'georg-kloster-prihod' ) . '</h3><p>' . esc_html( $profile['description'] ) . '</p>';
+        $html .= '<aside class="prihod-contact-welcome"><div><p>' . esc_html( $profile['description'] ) . '</p>';
         $contact = prihod_theme_url( 'contacts' );
-        if ( $contact ) { $html .= '<a href="' . esc_url( $contact ) . '">' . esc_html__( 'Связаться с нами', 'georg-kloster-prihod' ) . ' →</a>'; }
+        if ( $contact && prihod_theme_home_copy( 'contacts_button' ) ) { $html .= '<a href="' . esc_url( $contact ) . '">' . esc_html( prihod_theme_home_copy( 'contacts_button' ) ) . ' →</a>'; }
         $html .= '</div>' . prihod_theme_photo( $options['hero_image'], 'medium' ) . '</aside>';
     }
     elseif ( 'tradition' === prihod_theme_scheme() ) { $html .= '<aside class="prihod-contact-motto">' . prihod_theme_verse() . prihod_theme_icon( 'cross' ) . '</aside>'; }

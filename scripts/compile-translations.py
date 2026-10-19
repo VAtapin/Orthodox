@@ -4,6 +4,7 @@ import argparse
 import struct
 import json
 import hashlib
+import re
 
 ROOT = Path(__file__).resolve().parent.parent
 parser = argparse.ArgumentParser()
@@ -17,9 +18,14 @@ for folder, domain in [('prihod', 'prihod'), ('georg-kloster-prihod', 'georg-klo
         continue
     target = ROOT / folder / 'languages'
     target.mkdir(exist_ok=True)
+    package_rows = rows
+    if folder == 'georg-kloster-prihod':
+        sources = list((ROOT / folder).rglob('*.php')) + list((ROOT / folder).rglob('*.js'))
+        used = {match[1] for path in sources for match in re.findall(r"(?:__|esc_html__|esc_attr__|esc_html_e|esc_attr_e|_e)\(\s*(['\"])(.*?)\1\s*,\s*'georg-kloster-prihod'", path.read_text(encoding='utf-8'))}
+        package_rows = [row for row in rows if row[0] in used]
     for index, locale in enumerate(['de_DE', 'pl_PL', 'uk'], 1):
         header = f'Content-Type: text/plain; charset=UTF-8\nLanguage: {locale}\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\n'
-        messages = {'': header, **{row[0]: row[index].strip() for row in rows}}
+        messages = {'': header, **{row[0]: row[index].strip() for row in package_rows}}
         items = sorted((key.encode(), value.encode()) for key, value in messages.items())
         count = len(items)
         key_offset = 28 + count * 16

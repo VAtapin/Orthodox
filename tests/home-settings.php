@@ -90,6 +90,22 @@ $check( $post_snapshot === hash( 'sha256', serialize( $wpdb->get_results( "SELEC
 $set( array() );
 $check( prihod_theme_profile()['name'] === get_bloginfo( 'name' ) && prihod_theme_profile()['description'] === get_bloginfo( 'description' ), 'Empty theme settings lose standard WordPress identity.' );
 
+// Site copy is owner data, never a theme fallback, even after explicitly clearing it.
+foreach ( array( 'header_motto', 'hero_motto', 'hero_quote_text', 'hero_quote_source', 'quote_text', 'quote_source' ) as $key ) {
+    $check( georg_kloster_prihod_options()[$key] === '', 'A content default is embedded in theme options: ' . $key );
+}
+$copy_config = array( 'hero_schedule_button' => 'Owner schedule action', 'hero_secondary_button' => 'Owner second action', 'about_button' => 'Owner about action', 'news_button' => 'Owner news action', 'services_button' => 'Owner services action', 'sections' => array( 'hero' => array( 'title' => 'Owner welcome', 'eyebrow' => 'Owner eyebrow' ), 'about' => array( 'title' => 'Owner section', 'eyebrow' => 'Owner section eyebrow' ) ), 'pages' => array( 'schedule' => $page_id, 'contacts' => $page_id, 'about' => $page_id, 'news' => $page_id ) );
+foreach ( array_keys( prihod_theme_schemes() ) as $scheme ) {
+    $set( $copy_config, $scheme ); $html = prihod_theme_home();
+    $check( str_contains( $html, 'Owner welcome' ) && str_contains( $html, 'Owner eyebrow' ), 'Saved hero copy was ignored: ' . $scheme );
+    $check( 'editorial' === $scheme || str_contains( $html, 'Owner section eyebrow' ), 'Saved section eyebrow was ignored: ' . $scheme );
+    $set( array(), $scheme ); $html = prihod_theme_home();
+    $check( ! str_contains( $html, '<h1>' ) && ! str_contains( $html, 'prihod-verse' ) && ! str_contains( $html, 'prihod-classic-motto' ) && ! str_contains( $html, 'prihod-tradition-motto' ), 'Clearing copy restores ready-made content: ' . $scheme );
+    $check( ! str_contains( $html, 'Owner welcome' ) && ! str_contains( $html, 'Owner section eyebrow' ), 'Cleared owner text survives: ' . $scheme );
+}
+$copy_config['sections']['hero']['eyebrow'] = '<script>bad</script>Owner';
+$check( ! str_contains( prihod_theme_home_sanitize( $copy_config, 'classic' )['sections']['hero']['eyebrow'], '<' ), 'Eyebrow accepts markup.' );
+
 // Second phase: real standalone Schedule plugin, without Core or external API calls.
 $activated = activate_plugin( 'georg-kloster-prihod-schedule/georg-kloster-prihod-schedule.php' );
 if ( is_wp_error( $activated ) ) { throw new RuntimeException( $activated->get_error_message() ); }
@@ -100,8 +116,8 @@ foreach ( range( 1, 3 ) as $index ) {
     update_post_meta( $id, '_gkpsch_service', array_merge( \GeorgKlosterPrihodSchedule\Schedule::defaults(), array( 'date' => gmdate( 'Y-m-d', time() + $index * DAY_IN_SECONDS ), 'location_id' => $location, 'timezone' => 'UTC', 'time' => '10:00', 'vestment_color' => 'gold' ) ) );
 }
 foreach ( array_keys( prihod_theme_schemes() ) as $scheme ) {
-    $set( array( 'services_count' => 2 ), $scheme ); $html = prihod_theme_home();
-    $check( substr_count( $html, '<article class="prihod-service-compact' ) === 2, 'Configured service count failed: ' . $scheme );
+    $set( array( 'services_count' => 2, 'sections' => array( 'services' => array( 'eyebrow' => 'Owner service eyebrow' ) ) ), $scheme ); $html = prihod_theme_home();
+    $check( substr_count( $html, '<article class="prihod-service-compact' ) === 2 && str_contains( $html, 'Owner service eyebrow' ), 'Configured service count or owner eyebrow failed: ' . $scheme );
     $check( substr_count( $html, 'class="prihod-hero-service ' ) === 1, 'Services are duplicated: ' . $scheme );
     $set( array( 'order' => array( 'news', 'services', 'hero' ) ), $scheme ); $html = prihod_theme_home();
     $check( strpos( $html, 'prihod-news-section' ) < strpos( $html, 'prihod-hero-service' ) && strpos( $html, 'prihod-hero-service' ) < strpos( $html, 'prihod-home-hero' ), 'Reordered services remain embedded in hero: ' . $scheme );

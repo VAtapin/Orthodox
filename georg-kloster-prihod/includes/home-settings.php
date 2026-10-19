@@ -11,6 +11,9 @@ function prihod_theme_home_pages(): array {
 function prihod_theme_home_card_order( string $scheme ): array {
     return 'classic' === $scheme ? array( 'schedule', 'news', 'requests', 'donations' ) : ( in_array( $scheme, array( 'hospitality', 'blue' ), true ) ? array( 'schedule', 'about', 'news', 'requests', 'contacts' ) : array( 'schedule', 'news', 'about', 'requests', 'donations' ) );
 }
+function prihod_theme_home_text_fields(): array {
+    return array( 'hero_description', 'about_description', 'hero_schedule_button', 'hero_secondary_button', 'about_button', 'news_button', 'news_read_button', 'services_button', 'contacts_button' );
+}
 function prihod_theme_home_order( $input, array $allowed ): array {
     $order = is_array( $input ) ? array_values( array_unique( array_filter( $input, static fn( $key ) => is_string( $key ) && in_array( $key, $allowed, true ) ) ) ) : array();
     return array_merge( $order, array_values( array_diff( $allowed, $order ) ) );
@@ -21,6 +24,7 @@ function prihod_theme_home_normalize( $input, string $scheme ): array {
     foreach ( prihod_theme_home_sections() as $key => $label ) {
         $row = is_array( $input['sections'][$key] ?? null ) ? $input['sections'][$key] : array();
         $out['sections'][$key] = array( 'enabled' => array_key_exists( 'enabled', $row ) ? (bool) $row['enabled'] : ( 'about' !== $key || 'editorial' !== $scheme ), 'title' => is_string( $row['title'] ?? null ) ? sanitize_text_field( $row['title'] ) : '' );
+        $out['sections'][$key]['eyebrow'] = is_string( $row['eyebrow'] ?? null ) ? sanitize_text_field( $row['eyebrow'] ) : '';
     }
     $defaults = prihod_theme_home_card_order( $scheme );
     $card_keys = array_slice( array_keys( prihod_theme_home_pages() ), 0, 6 );
@@ -31,7 +35,7 @@ function prihod_theme_home_normalize( $input, string $scheme ): array {
         foreach ( array( 'title', 'description', 'button' ) as $field ) { $out['cards'][$key][$field] = is_string( $row[$field] ?? null ) ? sanitize_text_field( $row[$field] ) : ''; }
     }
     foreach ( prihod_theme_home_pages() as $key => $label ) { $out['pages'][$key] = is_scalar( $input['pages'][$key] ?? null ) ? absint( $input['pages'][$key] ) : 0; }
-    foreach ( array( 'hero_description', 'about_description' ) as $key ) { $out[$key] = is_string( $input[$key] ?? null ) ? sanitize_textarea_field( $input[$key] ) : ''; }
+    foreach ( prihod_theme_home_text_fields() as $key ) { $out[$key] = is_string( $input[$key] ?? null ) ? sanitize_textarea_field( $input[$key] ) : ''; }
     foreach ( array( 'services_count' => 6, 'news_count' => 12, 'news_excerpt_words' => 80, 'news_columns' => 4 ) as $key => $max ) { $out[$key] = is_scalar( $input[$key] ?? null ) ? max( 0, min( $max, (int) $input[$key] ) ) : 0; }
     $out['news_category'] = is_scalar( $input['news_category'] ?? null ) ? max( -1, (int) $input['news_category'] ) : 0;
     foreach ( array( 'news_show_date', 'news_show_excerpt', 'news_show_images', 'cards_show_images', 'hide_schedule_card' ) as $key ) { $out[$key] = array_key_exists( $key, $input ) ? (bool) $input[$key] : ( 'cards_show_images' !== $key || in_array( $scheme, array( 'classic', 'editorial', 'tradition' ), true ) ); }
@@ -48,6 +52,12 @@ function prihod_theme_home_text( string $value, string $key, string $fallback = 
 function prihod_theme_home_title( string $key, string $fallback = '' ): string {
     return prihod_theme_home_text( prihod_theme_home_options()['sections'][$key]['title'], $key . '-title', $fallback );
 }
+function prihod_theme_home_copy( string $key ): string {
+    return prihod_theme_home_text( prihod_theme_home_options()[$key] ?? '', str_replace( '_', '-', $key ) );
+}
+function prihod_theme_home_eyebrow( string $key ): string {
+    return prihod_theme_home_text( prihod_theme_home_options()['sections'][$key]['eyebrow'], $key . '-eyebrow' );
+}
 function prihod_theme_home_resource_id( string $key ): int {
     return prihod_theme_resource_id( $key );
 }
@@ -59,8 +69,9 @@ function prihod_theme_home_sanitize( $input, string $scheme ): array {
     $out = prihod_theme_home_normalize( $input, $scheme );
     foreach ( $out['pages'] as $key => $id ) { if ( $id && ( 'page' !== get_post_type( $id ) || 'publish' !== get_post_status( $id ) ) ) { $out['pages'][$key] = 0; } }
     if ( $out['news_category'] > 0 && ! term_exists( $out['news_category'], 'category' ) ) { $out['news_category'] = 0; }
-    $strings = array( 'hero-description' => $out['hero_description'], 'about-description' => $out['about_description'] );
-    foreach ( $out['sections'] as $key => $section ) { $strings[$key . '-title'] = $section['title']; }
+    $strings = array();
+    foreach ( prihod_theme_home_text_fields() as $key ) { $strings[str_replace( '_', '-', $key )] = $out[$key]; }
+    foreach ( $out['sections'] as $key => $section ) { foreach ( array( 'title', 'eyebrow' ) as $field ) { $strings[$key . '-' . $field] = $section[$field]; } }
     foreach ( $out['cards'] as $key => $card ) { foreach ( array( 'title', 'description', 'button' ) as $field ) { $strings['card-' . $key . '-' . $field] = $card[$field]; } }
     foreach ( $strings as $name => $value ) { if ( '' !== $value ) { do_action( 'wpml_register_single_string', 'georg-kloster-prihod', 'home-' . $name, $value ); } }
     return $out;
@@ -87,7 +98,7 @@ function prihod_theme_home_settings_panel( array $options ): void {
     $scheme = $options['scheme'] ?: prihod_theme_scheme();
     $home = prihod_theme_home_normalize( $options['home'], $scheme );
     $sections = prihod_theme_home_sections(); $pages = prihod_theme_home_pages();
-    echo '<section id="prihod-option-home" class="prihod-option-section"><h2>' . esc_html__( 'Главная страница', 'georg-kloster-prihod' ) . '</h2><p>' . esc_html__( 'Включайте секции и меняйте их порядок стрелками. Пустые поля текста сохраняют стандартные подписи. Содержимое страниц не изменяется.', 'georg-kloster-prihod' ) . '</p><div class="prihod-home-order" data-home-order>';
+    echo '<section id="prihod-option-home" class="prihod-option-section"><h2>' . esc_html__( 'Главная страница', 'georg-kloster-prihod' ) . '</h2><p>' . esc_html__( 'Тексты хранятся в настройках WordPress. Пустые поля не подставляют готовый контент. Включайте секции и меняйте их порядок стрелками. Страницы и записи не изменяются.', 'georg-kloster-prihod' ) . '</p><div class="prihod-home-order" data-home-order>';
     foreach ( $home['order'] as $key ) {
         $row = $home['sections'][$key];
         echo '<article class="prihod-home-setting" data-home-item><header><input type="hidden" name="georg_kloster_prihod_options[home][order][]" value="' . esc_attr( $key ) . '">';
@@ -95,6 +106,9 @@ function prihod_theme_home_settings_panel( array $options ): void {
         prihod_theme_home_move_buttons( $sections[$key] );
         echo '</header><details><summary>' . esc_html__( 'Настройки секции', 'georg-kloster-prihod' ) . '</summary>';
         prihod_theme_home_field( '[sections][' . $key . '][title]', __( 'Заголовок', 'georg-kloster-prihod' ), $row['title'] );
+        prihod_theme_home_field( '[sections][' . $key . '][eyebrow]', __( 'Надзаголовок', 'georg-kloster-prihod' ), $row['eyebrow'] );
+        $buttons = array( 'hero' => array( 'hero_schedule_button' => __( 'Текст кнопки расписания', 'georg-kloster-prihod' ), 'hero_secondary_button' => __( 'Текст второй кнопки', 'georg-kloster-prihod' ) ), 'about' => array( 'about_button' => __( 'Текст ссылки', 'georg-kloster-prihod' ) ), 'services' => array( 'services_button' => __( 'Текст ссылки', 'georg-kloster-prihod' ) ), 'news' => array( 'news_button' => __( 'Текст ссылки', 'georg-kloster-prihod' ), 'news_read_button' => __( 'Текст ссылки публикации', 'georg-kloster-prihod' ) ), 'contacts' => array( 'contacts_button' => __( 'Текст ссылки', 'georg-kloster-prihod' ) ) );
+        foreach ( $buttons[$key] ?? array() as $field => $label ) { prihod_theme_home_field( '[' . $field . ']', $label, $home[$field] ); }
         if ( in_array( $key, array( 'hero', 'about' ), true ) ) { prihod_theme_home_field( '[' . $key . '_description]', __( 'Описание', 'georg-kloster-prihod' ), $home[$key . '_description'], 'textarea' ); }
         if ( 'services' === $key ) { prihod_theme_home_number( 'services_count', __( 'Количество служб', 'georg-kloster-prihod' ), $home['services_count'], 6 ); echo '<p class="description">' . esc_html__( 'Секция появляется, когда плагин расписания предоставляет ближайшие службы.', 'georg-kloster-prihod' ) . '</p>'; }
         if ( 'features' === $key ) {

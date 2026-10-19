@@ -34,6 +34,9 @@ Create and assign a menu under Appearance > Menus. Open a menu item and choose i
 
 == Changelog ==
 
+= 0.4.29 =
+Remove built-in homepage copy, greetings, mottos and quotations. Store headings, eyebrows, descriptions and action labels in WordPress settings. Empty text fields stay empty; card titles can use the linked WordPress page title. Bundle only UI messages actually used by the theme in translation catalogs.
+
 = 0.4.28 =
 Add independent site identity and contact settings. Use theme page selections throughout the header, footer, sidebar and page templates. Companion plugins remain optional; existing plugin data is retained as a fallback for empty settings.
 
