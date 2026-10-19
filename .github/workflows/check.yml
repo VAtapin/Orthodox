@@ -30,6 +30,7 @@ jobs:
           python-version: '3.12'
       - run: python scripts/package.py
       - run: python tests/translation-check.py
+      - run: python tests/plugin-i18n-check.py
       - run: node --check prihod/assets/schedule-admin.js
       - run: node --check prihod/assets/blocks.js && node --check georg-kloster-prihod/assets/media.js && node --check georg-kloster-prihod/assets/settings.js && node --check georg-kloster-prihod/assets/gallery.js && node --check georg-kloster-prihod/assets/photos.js
       - name: Set test versions

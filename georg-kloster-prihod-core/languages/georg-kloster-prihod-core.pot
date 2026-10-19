@@ -1,0 +1,158 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8\nX-Domain: georg-kloster-prihod-core\n"
+
+#: includes/class-page-links.php
+msgid "About"
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Access denied."
+msgstr ""
+
+#: includes/class-directory.php includes/class-profile.php
+msgid "Address"
+msgstr ""
+
+#: includes/class-page-links.php
+msgid "Calendar"
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Chapel"
+msgstr ""
+
+#: includes/class-page-links.php
+msgid "Choose the content shown in the theme navigation and home page. Each language uses its linked WordPress translation."
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Church"
+msgstr ""
+
+#: assets/blocks.js includes/class-blocks.php includes/class-directory.php
+msgid "Clergy"
+msgstr ""
+
+#: includes/class-directory.php
+msgid "Clergy member"
+msgstr ""
+
+#: includes/class-page-links.php
+msgid "Clergy page"
+msgstr ""
+
+#: includes/class-page-links.php
+msgid "Contact requests"
+msgstr ""
+
+#: includes/class-page-links.php
+msgid "Contacts"
+msgstr ""
+
+#: includes/class-profile.php
+msgid "Description"
+msgstr ""
+
+#: includes/class-directory.php
+msgid "Details"
+msgstr ""
+
+#: includes/class-page-links.php
+msgid "Donations"
+msgstr ""
+
+#: includes/class-directory.php includes/class-profile.php
+msgid "Email"
+msgstr ""
+
+#: includes/class-page-links.php
+msgid "First visit"
+msgstr ""
+
+#: georg-kloster-prihod-core.php
+msgid "Georg-Kloster Parish Core"
+msgstr ""
+
+#: includes/class-profile.php
+msgid "Invalid profile."
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Monastery"
+msgstr ""
+
+#: includes/class-profile.php
+msgid "Name"
+msgstr ""
+
+#: includes/class-page-links.php
+msgid "News"
+msgstr ""
+
+#: includes/class-profile.php
+msgid "Organisation type"
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Parish"
+msgstr ""
+
+#: assets/blocks.js includes/class-blocks.php
+msgid "Parish contacts"
+msgstr ""
+
+#: assets/blocks.js includes/class-admin.php includes/class-blocks.php
+msgid "Parish profile"
+msgstr ""
+
+#: georg-kloster-prihod-core.php
+msgid "Parish profile, places and clergy for WordPress."
+msgstr ""
+
+#: includes/class-directory.php includes/class-profile.php
+msgid "Phone"
+msgstr ""
+
+#: includes/class-page-links.php
+msgid "Photo gallery"
+msgstr ""
+
+#: includes/class-directory.php
+msgid "Place"
+msgstr ""
+
+#: assets/blocks.js includes/class-blocks.php includes/class-directory.php
+msgid "Places"
+msgstr ""
+
+#: includes/class-page-links.php
+msgid "Save sections"
+msgstr ""
+
+#: includes/class-page-links.php
+msgid "Select content"
+msgstr ""
+
+#: includes/class-page-links.php
+msgid "Sermons"
+msgstr ""
+
+#: includes/class-page-links.php
+msgid "Service schedule"
+msgstr ""
+
+#: includes/class-profile.php
+msgid "Short name"
+msgstr ""
+
+#: includes/class-page-links.php
+msgid "Site sections"
+msgstr ""
+
+#: includes/class-directory.php
+msgid "Title"
+msgstr ""
+
+#: includes/class-profile.php
+msgid "Website"
+msgstr ""

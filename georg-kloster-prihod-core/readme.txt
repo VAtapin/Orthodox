@@ -3,7 +3,7 @@ Contributors: vatapin
 Tags: parish, church, clergy, contacts
 Requires at least: 6.5
 Requires PHP: 8.0
-Stable tag: 0.1.3
+Stable tag: 0.1.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -22,6 +22,10 @@ Upload the ZIP to Plugins, activate it, and open Parish in the dashboard. Add yo
 The profile and directory remain in the local WordPress database. Uninstalling the plugin retains authored content and settings.
 
 == Changelog ==
+
+= 0.1.4 =
+Bundle complete Russian interface and editor translations. Load translations at init.
+
 
 = 0.1.3 =
 Add editable section links for the theme home page and navigation. Register parish profile fields for WPML String Translation and read translations from the database when available.

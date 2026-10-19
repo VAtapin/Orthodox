@@ -1,0 +1,158 @@
+msgid ""
+msgstr "Project-Id-Version: georg-kloster-prihod-core\nLanguage: ru_RU\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+
+#: includes/class-page-links.php
+msgid "About"
+msgstr "О нас"
+
+#: includes/class-admin.php
+msgid "Access denied."
+msgstr "Доступ запрещён."
+
+#: includes/class-directory.php includes/class-profile.php
+msgid "Address"
+msgstr "Адрес"
+
+#: includes/class-page-links.php
+msgid "Calendar"
+msgstr "Календарь"
+
+#: includes/class-admin.php
+msgid "Chapel"
+msgstr "Часовня"
+
+#: includes/class-page-links.php
+msgid "Choose the content shown in the theme navigation and home page. Each language uses its linked WordPress translation."
+msgstr "Выберите страницы для навигации и главной страницы темы. Для каждого языка используется связанный перевод страницы WordPress."
+
+#: includes/class-admin.php
+msgid "Church"
+msgstr "Храм"
+
+#: assets/blocks.js includes/class-blocks.php includes/class-directory.php
+msgid "Clergy"
+msgstr "Духовенство"
+
+#: includes/class-directory.php
+msgid "Clergy member"
+msgstr "Священнослужитель"
+
+#: includes/class-page-links.php
+msgid "Clergy page"
+msgstr "Страница духовенства"
+
+#: includes/class-page-links.php
+msgid "Contact requests"
+msgstr "Обращения"
+
+#: includes/class-page-links.php
+msgid "Contacts"
+msgstr "Контакты"
+
+#: includes/class-profile.php
+msgid "Description"
+msgstr "Описание"
+
+#: includes/class-directory.php
+msgid "Details"
+msgstr "Дополнительные сведения"
+
+#: includes/class-page-links.php
+msgid "Donations"
+msgstr "Пожертвования"
+
+#: includes/class-directory.php includes/class-profile.php
+msgid "Email"
+msgstr "Электронная почта"
+
+#: includes/class-page-links.php
+msgid "First visit"
+msgstr "Первое посещение"
+
+#: georg-kloster-prihod-core.php
+msgid "Georg-Kloster Parish Core"
+msgstr "Georg-Kloster — Приход"
+
+#: includes/class-profile.php
+msgid "Invalid profile."
+msgstr "Некорректные данные прихода."
+
+#: includes/class-admin.php
+msgid "Monastery"
+msgstr "Монастырь"
+
+#: includes/class-profile.php
+msgid "Name"
+msgstr "Название"
+
+#: includes/class-page-links.php
+msgid "News"
+msgstr "Новости"
+
+#: includes/class-profile.php
+msgid "Organisation type"
+msgstr "Тип общины"
+
+#: includes/class-admin.php
+msgid "Parish"
+msgstr "Приход"
+
+#: assets/blocks.js includes/class-blocks.php
+msgid "Parish contacts"
+msgstr "Контакты прихода"
+
+#: assets/blocks.js includes/class-admin.php includes/class-blocks.php
+msgid "Parish profile"
+msgstr "Сведения о приходе"
+
+#: georg-kloster-prihod-core.php
+msgid "Parish profile, places and clergy for WordPress."
+msgstr "Сведения о приходе, места служения и духовенство для WordPress."
+
+#: includes/class-directory.php includes/class-profile.php
+msgid "Phone"
+msgstr "Телефон"
+
+#: includes/class-page-links.php
+msgid "Photo gallery"
+msgstr "Фотогалерея"
+
+#: includes/class-directory.php
+msgid "Place"
+msgstr "Место служения"
+
+#: assets/blocks.js includes/class-blocks.php includes/class-directory.php
+msgid "Places"
+msgstr "Места служения"
+
+#: includes/class-page-links.php
+msgid "Save sections"
+msgstr "Сохранить разделы"
+
+#: includes/class-page-links.php
+msgid "Select content"
+msgstr "Выбрать страницу"
+
+#: includes/class-page-links.php
+msgid "Sermons"
+msgstr "Проповеди"
+
+#: includes/class-page-links.php
+msgid "Service schedule"
+msgstr "Расписание богослужений"
+
+#: includes/class-profile.php
+msgid "Short name"
+msgstr "Краткое название"
+
+#: includes/class-page-links.php
+msgid "Site sections"
+msgstr "Разделы сайта"
+
+#: includes/class-directory.php
+msgid "Title"
+msgstr "Сан"
+
+#: includes/class-profile.php
+msgid "Website"
+msgstr "Сайт"

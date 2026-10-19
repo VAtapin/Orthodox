@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Georg-Kloster Parish Core
  * Description: Parish profile, places and clergy for WordPress.
- * Version: 0.1.3
+ * Version: 0.1.4
  * Requires at least: 6.5
  * Requires PHP: 8.0
  * License: GPL-2.0-or-later
@@ -12,7 +12,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'GKPC_VERSION', '0.1.3' );
+define( 'GKPC_VERSION', '0.1.4' );
 define( 'GKPC_FILE', __FILE__ );
 
 require_once __DIR__ . '/includes/class-profile.php';
@@ -22,6 +22,9 @@ require_once __DIR__ . '/includes/class-admin.php';
 require_once __DIR__ . '/includes/class-blocks.php';
 
 register_activation_hook( __FILE__, array( 'GeorgKlosterPrihodCore\\Admin', 'activate' ) );
+add_action( 'init', static function () {
+    load_plugin_textdomain( 'georg-kloster-prihod-core', false, dirname( plugin_basename( GKPC_FILE ) ) . '/languages' );
+}, 0 );
 add_action( 'init', array( 'GeorgKlosterPrihodCore\\Directory', 'register' ) );
 add_action( 'init', array( 'GeorgKlosterPrihodCore\\Blocks', 'register' ) );
 add_action( 'admin_menu', array( 'GeorgKlosterPrihodCore\\Admin', 'menu' ) );

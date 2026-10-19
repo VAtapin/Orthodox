@@ -1,5 +1,29 @@
 # Проверки
 
+## Русский интерфейс самостоятельных плагинов
+
+Core 0.1.4, Social 0.1.3 и Schedule 0.1.10 содержат русские PO/MO и JSON
+для блоков редактора. Каталоги не зависят от старого «Прихода» или WPML.
+Собственные тексты владельца и содержимое страниц не переписываются.
+
+```powershell
+python scripts/compile-translations.py --only plugins
+python tests/plugin-i18n-check.py
+npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-prihod-core /wordpress/wp-content/plugins/georg-kloster-prihod-core --mount-dir ./georg-kloster-prihod-social /wordpress/wp-content/plugins/georg-kloster-prihod-social --mount-dir ./georg-kloster-prihod-schedule /wordpress/wp-content/plugins/georg-kloster-prihod-schedule --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/plugin-i18n-blueprint.json
+```
+
+Статическая проверка сверяет все gettext-строки с PO/MO, русским текстом,
+placeholders и JSON редактора. Blueprint предназначен только для одноразового
+WordPress: проверяет автоматическую загрузку русского языка, настоящие меню,
+экраны настроек и каналов, названия блоков, JSON через WordPress, форму,
+переключение на английский и сохранность содержимого/настроек. Для минимальной
+платформы использовать копию Blueprint с `wp: 6.5`, `php: 8.0`.
+Окончательные ZIP прошли по 107 проверок на WP7.1.3/PHP8.4.25 и
+WP6.5.13/PHP8.0.30; каталог проверен на 421 строку. Результат сценария —
+`tests/.plugin-i18n-result.json`. Языковой пакет WordPress загружается штатным
+шагом `setSiteLanguage`; отсутствие отдельных пакетов этих плагинов в
+WordPress.org не мешает загрузке их собственных каталогов из ZIP.
+
 ## Самостоятельная тема и управление главной, версия 0.4.30
 
 Сценарий `home-settings-blueprint.json` запускает standalone theme-release и

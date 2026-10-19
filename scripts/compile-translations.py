@@ -8,8 +8,12 @@ import re
 
 ROOT = Path(__file__).resolve().parent.parent
 parser = argparse.ArgumentParser()
-parser.add_argument('--only', choices=['core', 'theme', 'telegram'])
+parser.add_argument('--only', choices=['core', 'theme', 'telegram', 'plugins'])
 selected = parser.parse_args().only
+if selected == 'plugins':
+    from plugin_messages import compile_plugins
+    compile_plugins()
+    raise SystemExit(0)
 rows = [line.split('\t') for line in (ROOT / 'scripts/translations.tsv').read_text(encoding='utf-8').splitlines() if line]
 assert all(len(row) == 4 for row in rows)
 assert len({row[0] for row in rows}) == len(rows), 'Duplicate source message'
@@ -45,4 +49,7 @@ for folder, domain in [('prihod', 'prihod'), ('georg-kloster-prihod', 'georg-klo
             jed = {'domain': domain, 'locale_data': {'messages': {'': {'domain': domain, 'lang': locale}, **{row[0]: [row[index].strip()] for row in rows}}}}
             for suffix in ['prihod-blocks', hashlib.md5(b'assets/blocks.js').hexdigest()]:
                 (target / f'{domain}-{locale}-{suffix}.json').write_text(json.dumps(jed, ensure_ascii=False), encoding='utf-8')
-print(f'Compiled catalogs for {selected or "Core, theme and Telegram"}. Theme: English source; Russian, German, Polish and Ukrainian catalogs.')
+if selected is None:
+    from plugin_messages import compile_plugins
+    compile_plugins()
+print(f'Compiled catalogs for {selected or "Core, theme, Telegram and standalone plugins"}. Theme: English source; Russian, German, Polish and Ukrainian catalogs.')

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Georg-Kloster Parish Social
  * Description: Contact forms, private correspondence and optional messaging channels.
- * Version: 0.1.2
+ * Version: 0.1.3
  * Requires at least: 6.5
  * Requires PHP: 8.0
  * License: GPL-2.0-or-later
@@ -12,7 +12,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'GKPS_VERSION', '0.1.2' );
+define( 'GKPS_VERSION', '0.1.3' );
 define( 'GKPS_FILE', __FILE__ );
 
 foreach ( array(
@@ -28,4 +28,4 @@ register_deactivation_hook( __FILE__, static function () {
     wp_clear_scheduled_hook( 'gkps_requests_retention' );
     wp_clear_scheduled_hook( 'gkps_telegram_register' );
 } );
-add_action( 'plugins_loaded', array( 'GeorgKlosterPrihodSocial\\Plugin', 'boot' ) );
+add_action( 'init', array( 'GeorgKlosterPrihodSocial\\Plugin', 'boot' ), 0 );

@@ -16,7 +16,7 @@ final class Request_Privacy {
         $posts = self::find( $email, $page ); $data = array();
         foreach ( $posts as $post ) {
             $sender = get_post_meta( $post->ID, '_gkps_sender', true );
-            $fields = array( array( 'name' => __( 'Имя', 'georg-kloster-prihod-social' ), 'value' => $sender['name'] ?? '' ), array( 'name' => 'Email', 'value' => $sender['email'] ?? '' ), array( 'name' => __( 'Тема', 'georg-kloster-prihod-social' ), 'value' => $post->post_title ), array( 'name' => __( 'Обращение', 'georg-kloster-prihod-social' ), 'value' => $post->post_content ) );
+            $fields = array( array( 'name' => __( 'Имя', 'georg-kloster-prihod-social' ), 'value' => $sender['name'] ?? '' ), array( 'name' => __( 'Email', 'georg-kloster-prihod-social' ), 'value' => $sender['email'] ?? '' ), array( 'name' => __( 'Тема', 'georg-kloster-prihod-social' ), 'value' => $post->post_title ), array( 'name' => __( 'Обращение', 'georg-kloster-prihod-social' ), 'value' => $post->post_content ) );
             foreach ( Requests::messages( $post->ID ) as $message ) {
                 $fields[] = array( 'name' => __( 'Переписка / заметка', 'georg-kloster-prihod-social' ) . ' ' . $message->post_date, 'value' => $message->post_content );
                 $media = get_post_meta( $message->ID, '_gkps_reply_media', true );
