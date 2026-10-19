@@ -40,8 +40,8 @@ function prihod_theme_contacts_content( string $html ): string {
     $data = prihod_theme_contacts_data(); $post = get_post();
     if ( ! $data || ! $post || $post->ID !== $data['page']->ID ) { return $html; }
     $actions = '';
-    foreach ( array( 'requests' => __( 'Вопрос священнику', 'georg-kloster-prihod' ), 'first-visit' => __( 'Первое посещение', 'georg-kloster-prihod' ) ) as $key => $label ) {
+    foreach ( array( 'requests' => __( 'Ask a priest', 'georg-kloster-prihod' ), 'first-visit' => __( 'First visit', 'georg-kloster-prihod' ) ) as $key => $label ) {
         $url = prihod_theme_url( $key ); if ( $url ) { $actions .= '<a class="prihod-button is-outline" href="' . esc_url( $url ) . '">' . esc_html( $label ) . ' →</a>'; }
     }
-    return '<div class="prihod-contacts-content">' . $data['intro'] . '<section class="prihod-contacts-primary"><div><h2>' . esc_html__( 'Контакты', 'georg-kloster-prihod' ) . '</h2>' . $data['contact'] . '<div class="prihod-actions">' . $actions . '</div></div></section><section class="prihod-contacts-road"><h2>' . esc_html__( 'Как добраться', 'georg-kloster-prihod' ) . '</h2><div class="prihod-contacts-road-photo">' . $data['photo'] . '</div>' . $data['body'] . '</section>' . $data['tail'] . '</div>';
+    return '<div class="prihod-contacts-content">' . $data['intro'] . '<section class="prihod-contacts-primary"><div><h2>' . esc_html__( 'Contacts', 'georg-kloster-prihod' ) . '</h2>' . $data['contact'] . '<div class="prihod-actions">' . $actions . '</div></div></section><section class="prihod-contacts-road"><h2>' . esc_html__( 'Directions', 'georg-kloster-prihod' ) . '</h2><div class="prihod-contacts-road-photo">' . $data['photo'] . '</div>' . $data['body'] . '</section>' . $data['tail'] . '</div>';
 }

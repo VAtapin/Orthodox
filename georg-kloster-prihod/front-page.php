@@ -10,7 +10,7 @@ get_header();
 if ( have_posts() ) {
     the_post();
 }
-echo prihod_theme_home(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by renderer.
+echo prihod_theme_home();
 ?>
 </main>
 <?php get_footer(); ?>

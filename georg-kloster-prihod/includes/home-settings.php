@@ -3,10 +3,10 @@ defined( 'ABSPATH' ) || exit;
 
 /** Presentation settings only: never create, copy or rewrite page content. */
 function prihod_theme_home_sections(): array {
-    return array( 'hero' => __( 'Первый экран', 'georg-kloster-prihod' ), 'services' => __( 'Ближайшие службы', 'georg-kloster-prihod' ), 'features' => __( 'Карточки разделов', 'georg-kloster-prihod' ), 'topics' => __( 'Дополнительные ссылки', 'georg-kloster-prihod' ), 'about' => __( 'О приходе / монастыре', 'georg-kloster-prihod' ), 'news' => __( 'Новости', 'georg-kloster-prihod' ), 'content' => __( 'Содержимое страницы «Главная»', 'georg-kloster-prihod' ), 'contacts' => __( 'Контакты', 'georg-kloster-prihod' ) );
+    return array( 'hero' => __( 'Hero', 'georg-kloster-prihod' ), 'services' => __( 'Upcoming services', 'georg-kloster-prihod' ), 'features' => __( 'Section cards', 'georg-kloster-prihod' ), 'topics' => __( 'Additional links', 'georg-kloster-prihod' ), 'about' => __( 'About the parish / monastery', 'georg-kloster-prihod' ), 'news' => __( 'News', 'georg-kloster-prihod' ), 'content' => __( 'Homepage content', 'georg-kloster-prihod' ), 'contacts' => __( 'Contacts', 'georg-kloster-prihod' ) );
 }
 function prihod_theme_home_pages(): array {
-    return array( 'schedule' => __( 'Расписание', 'georg-kloster-prihod' ), 'about' => __( 'О приходе / монастыре', 'georg-kloster-prihod' ), 'news' => __( 'Новости', 'georg-kloster-prihod' ), 'requests' => __( 'Вопрос священнику', 'georg-kloster-prihod' ), 'donations' => __( 'Пожертвования', 'georg-kloster-prihod' ), 'contacts' => __( 'Контакты', 'georg-kloster-prihod' ), 'first-visit' => __( 'Паломнику', 'georg-kloster-prihod' ), 'sermons' => __( 'Проповеди и беседы', 'georg-kloster-prihod' ) );
+    return array( 'schedule' => __( 'Schedule', 'georg-kloster-prihod' ), 'about' => __( 'About the parish / monastery', 'georg-kloster-prihod' ), 'news' => __( 'News', 'georg-kloster-prihod' ), 'requests' => __( 'Ask a priest', 'georg-kloster-prihod' ), 'donations' => __( 'Donations', 'georg-kloster-prihod' ), 'contacts' => __( 'Contacts', 'georg-kloster-prihod' ), 'first-visit' => __( 'For visitors', 'georg-kloster-prihod' ), 'sermons' => __( 'Sermons and talks', 'georg-kloster-prihod' ) );
 }
 function prihod_theme_home_card_order( string $scheme ): array {
     return 'classic' === $scheme ? array( 'schedule', 'news', 'requests', 'donations' ) : ( in_array( $scheme, array( 'hospitality', 'blue' ), true ) ? array( 'schedule', 'about', 'news', 'requests', 'contacts' ) : array( 'schedule', 'news', 'about', 'requests', 'donations' ) );
@@ -87,61 +87,61 @@ function prihod_theme_home_field( string $key, string $label, $value, string $ty
 }
 function prihod_theme_home_number( string $key, string $label, int $value, int $max ): void {
     echo '<p><label>' . esc_html( $label ) . '<br><select name="georg_kloster_prihod_options[home][' . esc_attr( $key ) . ']">';
-    echo '<option value="0"' . selected( $value, 0, false ) . '>' . esc_html__( 'По оформлению', 'georg-kloster-prihod' ) . '</option>';
+    echo '<option value="0"' . selected( $value, 0, false ) . '>' . esc_html__( 'Use style default', 'georg-kloster-prihod' ) . '</option>';
     for ( $i = 1; $i <= $max; ++$i ) { echo '<option value="' . $i . '"' . selected( $value, $i, false ) . '>' . $i . '</option>'; }
     echo '</select></label></p>';
 }
 function prihod_theme_home_move_buttons( string $label ): void {
-    echo '<span class="prihod-home-move"><button class="button" type="button" data-home-move="up" aria-label="' . esc_attr( sprintf( __( 'Выше: %s', 'georg-kloster-prihod' ), $label ) ) . '">↑</button> <button class="button" type="button" data-home-move="down" aria-label="' . esc_attr( sprintf( __( 'Ниже: %s', 'georg-kloster-prihod' ), $label ) ) . '">↓</button></span>';
+    echo '<span class="prihod-home-move"><button class="button" type="button" data-home-move="up" aria-label="' . esc_attr( sprintf( __( 'Move up: %s', 'georg-kloster-prihod' ), $label ) ) . '">↑</button> <button class="button" type="button" data-home-move="down" aria-label="' . esc_attr( sprintf( __( 'Move down: %s', 'georg-kloster-prihod' ), $label ) ) . '">↓</button></span>';
 }
 function prihod_theme_home_settings_panel( array $options ): void {
     $scheme = $options['scheme'] ?: prihod_theme_scheme();
     $home = prihod_theme_home_normalize( $options['home'], $scheme );
     $sections = prihod_theme_home_sections(); $pages = prihod_theme_home_pages();
-    echo '<section id="prihod-option-home" class="prihod-option-section"><h2>' . esc_html__( 'Главная страница', 'georg-kloster-prihod' ) . '</h2><p>' . esc_html__( 'Тексты хранятся в настройках WordPress. Пустые поля не подставляют готовый контент. Включайте секции и меняйте их порядок стрелками. Страницы и записи не изменяются.', 'georg-kloster-prihod' ) . '</p><div class="prihod-home-order" data-home-order>';
+    echo '<section id="prihod-option-home" class="prihod-option-section"><h2>' . esc_html__( 'Homepage', 'georg-kloster-prihod' ) . '</h2><p>' . esc_html__( 'Text is stored in WordPress settings. Empty fields do not insert preset content. Enable sections and change their order with the arrows. Pages and posts are not modified.', 'georg-kloster-prihod' ) . '</p><div class="prihod-home-order" data-home-order>';
     foreach ( $home['order'] as $key ) {
         $row = $home['sections'][$key];
         echo '<article class="prihod-home-setting" data-home-item><header><input type="hidden" name="georg_kloster_prihod_options[home][order][]" value="' . esc_attr( $key ) . '">';
         prihod_theme_home_field( '[sections][' . $key . '][enabled]', $sections[$key], $row['enabled'], 'checkbox' );
         prihod_theme_home_move_buttons( $sections[$key] );
-        echo '</header><details><summary>' . esc_html__( 'Настройки секции', 'georg-kloster-prihod' ) . '</summary>';
-        prihod_theme_home_field( '[sections][' . $key . '][title]', __( 'Заголовок', 'georg-kloster-prihod' ), $row['title'] );
-        prihod_theme_home_field( '[sections][' . $key . '][eyebrow]', __( 'Надзаголовок', 'georg-kloster-prihod' ), $row['eyebrow'] );
-        $buttons = array( 'hero' => array( 'hero_schedule_button' => __( 'Текст кнопки расписания', 'georg-kloster-prihod' ), 'hero_secondary_button' => __( 'Текст второй кнопки', 'georg-kloster-prihod' ) ), 'about' => array( 'about_button' => __( 'Текст ссылки', 'georg-kloster-prihod' ) ), 'services' => array( 'services_button' => __( 'Текст ссылки', 'georg-kloster-prihod' ) ), 'news' => array( 'news_button' => __( 'Текст ссылки', 'georg-kloster-prihod' ), 'news_read_button' => __( 'Текст ссылки публикации', 'georg-kloster-prihod' ) ), 'contacts' => array( 'contacts_button' => __( 'Текст ссылки', 'georg-kloster-prihod' ) ) );
+        echo '</header><details><summary>' . esc_html__( 'Section settings', 'georg-kloster-prihod' ) . '</summary>';
+        prihod_theme_home_field( '[sections][' . $key . '][title]', __( 'Heading', 'georg-kloster-prihod' ), $row['title'] );
+        prihod_theme_home_field( '[sections][' . $key . '][eyebrow]', __( 'Eyebrow', 'georg-kloster-prihod' ), $row['eyebrow'] );
+        $buttons = array( 'hero' => array( 'hero_schedule_button' => __( 'Schedule button label', 'georg-kloster-prihod' ), 'hero_secondary_button' => __( 'Secondary button label', 'georg-kloster-prihod' ) ), 'about' => array( 'about_button' => __( 'Link label', 'georg-kloster-prihod' ) ), 'services' => array( 'services_button' => __( 'Link label', 'georg-kloster-prihod' ) ), 'news' => array( 'news_button' => __( 'Link label', 'georg-kloster-prihod' ), 'news_read_button' => __( 'Post link label', 'georg-kloster-prihod' ) ), 'contacts' => array( 'contacts_button' => __( 'Link label', 'georg-kloster-prihod' ) ) );
         foreach ( $buttons[$key] ?? array() as $field => $label ) { prihod_theme_home_field( '[' . $field . ']', $label, $home[$field] ); }
-        if ( in_array( $key, array( 'hero', 'about' ), true ) ) { prihod_theme_home_field( '[' . $key . '_description]', __( 'Описание', 'georg-kloster-prihod' ), $home[$key . '_description'], 'textarea' ); }
-        if ( 'services' === $key ) { prihod_theme_home_number( 'services_count', __( 'Количество служб', 'georg-kloster-prihod' ), $home['services_count'], 6 ); echo '<p class="description">' . esc_html__( 'Секция появляется, когда плагин расписания предоставляет ближайшие службы.', 'georg-kloster-prihod' ) . '</p>'; }
+        if ( in_array( $key, array( 'hero', 'about' ), true ) ) { prihod_theme_home_field( '[' . $key . '_description]', __( 'Description', 'georg-kloster-prihod' ), $home[$key . '_description'], 'textarea' ); }
+        if ( 'services' === $key ) { prihod_theme_home_number( 'services_count', __( 'Number of services', 'georg-kloster-prihod' ), $home['services_count'], 6 ); echo '<p class="description">' . esc_html__( 'This section appears when a schedule plugin supplies upcoming services.', 'georg-kloster-prihod' ) . '</p>'; }
         if ( 'features' === $key ) {
-            prihod_theme_home_field( '[cards_show_images]', __( 'Показывать фотографии карточек', 'georg-kloster-prihod' ), $home['cards_show_images'], 'checkbox' );
-            prihod_theme_home_field( '[hide_schedule_card]', __( 'Скрывать карточку расписания, если показаны ближайшие службы', 'georg-kloster-prihod' ), $home['hide_schedule_card'], 'checkbox' );
+            prihod_theme_home_field( '[cards_show_images]', __( 'Show card images', 'georg-kloster-prihod' ), $home['cards_show_images'], 'checkbox' );
+            prihod_theme_home_field( '[hide_schedule_card]', __( 'Hide the schedule card when upcoming services are displayed', 'georg-kloster-prihod' ), $home['hide_schedule_card'], 'checkbox' );
             echo '<div class="prihod-home-order" data-home-order>';
             foreach ( $home['card_order'] as $card_key ) {
                 $card = $home['cards'][$card_key];
                 echo '<div class="prihod-home-setting" data-home-item><header><input type="hidden" name="georg_kloster_prihod_options[home][card_order][]" value="' . esc_attr( $card_key ) . '">';
                 prihod_theme_home_field( '[cards][' . $card_key . '][enabled]', $pages[$card_key], $card['enabled'], 'checkbox' ); prihod_theme_home_move_buttons( $pages[$card_key] );
                 echo '</header>';
-                foreach ( array( 'title' => __( 'Название карточки', 'georg-kloster-prihod' ), 'description' => __( 'Подпись карточки', 'georg-kloster-prihod' ), 'button' => __( 'Текст ссылки', 'georg-kloster-prihod' ) ) as $field => $label ) { prihod_theme_home_field( '[cards][' . $card_key . '][' . $field . ']', $label, $card[$field] ); }
+                foreach ( array( 'title' => __( 'Card title', 'georg-kloster-prihod' ), 'description' => __( 'Card description', 'georg-kloster-prihod' ), 'button' => __( 'Link label', 'georg-kloster-prihod' ) ) as $field => $label ) { prihod_theme_home_field( '[cards][' . $card_key . '][' . $field . ']', $label, $card[$field] ); }
                 echo '</div>';
             }
             echo '</div>';
         }
         if ( 'news' === $key ) {
-            foreach ( array( 'news_count' => array( __( 'Количество публикаций', 'georg-kloster-prihod' ), 12 ), 'news_columns' => array( __( 'Колонок на компьютере', 'georg-kloster-prihod' ), 4 ), 'news_excerpt_words' => array( __( 'Длина анонса, слов', 'georg-kloster-prihod' ), 80 ) ) as $field => $data ) { prihod_theme_home_number( $field, $data[0], $home[$field], $data[1] ); }
-            echo '<p><label>' . esc_html__( 'Рубрика публикаций', 'georg-kloster-prihod' ) . '<br><select name="georg_kloster_prihod_options[home][news_category]">';
-            foreach ( array( 0 => __( 'По умолчанию', 'georg-kloster-prihod' ), -1 => __( 'Все рубрики', 'georg-kloster-prihod' ) ) as $id => $label ) { echo '<option value="' . $id . '"' . selected( $home['news_category'], $id, false ) . '>' . esc_html( $label ) . '</option>'; }
+            foreach ( array( 'news_count' => array( __( 'Number of posts', 'georg-kloster-prihod' ), 12 ), 'news_columns' => array( __( 'Desktop columns', 'georg-kloster-prihod' ), 4 ), 'news_excerpt_words' => array( __( 'Excerpt length in words', 'georg-kloster-prihod' ), 80 ) ) as $field => $data ) { prihod_theme_home_number( $field, $data[0], $home[$field], $data[1] ); }
+            echo '<p><label>' . esc_html__( 'Post category', 'georg-kloster-prihod' ) . '<br><select name="georg_kloster_prihod_options[home][news_category]">';
+            foreach ( array( 0 => __( 'Default', 'georg-kloster-prihod' ), -1 => __( 'All categories', 'georg-kloster-prihod' ) ) as $id => $label ) { echo '<option value="' . $id . '"' . selected( $home['news_category'], $id, false ) . '>' . esc_html( $label ) . '</option>'; }
             $terms = get_terms( array( 'taxonomy' => 'category', 'hide_empty' => false ) );
             if ( ! is_wp_error( $terms ) ) { foreach ( $terms as $term ) { echo '<option value="' . (int) $term->term_id . '"' . selected( $home['news_category'], $term->term_id, false ) . '>' . esc_html( $term->name ) . '</option>'; } }
             echo '</select></label></p>';
-            foreach ( array( 'news_show_date' => __( 'Показывать дату', 'georg-kloster-prihod' ), 'news_show_excerpt' => __( 'Показывать анонс', 'georg-kloster-prihod' ), 'news_show_images' => __( 'Показывать фотографии', 'georg-kloster-prihod' ) ) as $field => $label ) { prihod_theme_home_field( '[' . $field . ']', $label, $home[$field], 'checkbox' ); }
+            foreach ( array( 'news_show_date' => __( 'Show date', 'georg-kloster-prihod' ), 'news_show_excerpt' => __( 'Show excerpt', 'georg-kloster-prihod' ), 'news_show_images' => __( 'Show images', 'georg-kloster-prihod' ) ) as $field => $label ) { prihod_theme_home_field( '[' . $field . ']', $label, $home[$field], 'checkbox' ); }
         }
-        if ( 'content' === $key ) { echo '<p class="description">' . esc_html__( 'Выводится только собственное содержимое страницы, выбранной главной в настройках чтения.', 'georg-kloster-prihod' ) . '</p>'; }
+        if ( 'content' === $key ) { echo '<p class="description">' . esc_html__( 'Only the content of the page selected as the homepage in Reading settings is displayed.', 'georg-kloster-prihod' ) . '</p>'; }
         echo '</details></article>';
     }
-    echo '</div><h3>' . esc_html__( 'Страницы разделов', 'georg-kloster-prihod' ) . '</h3><p>' . esc_html__( 'Выберите обычные страницы WordPress. Эти ссылки используются на главной, в шапке, подвале и боковой колонке; изображения записей — как фотографии карточек. Плагины не требуются. Пустой выбор позволяет использовать необязательные привязки подключённых плагинов.', 'georg-kloster-prihod' ) . '</p>';
+    echo '</div><h3>' . esc_html__( 'Section pages', 'georg-kloster-prihod' ) . '</h3><p>' . esc_html__( 'Choose standard WordPress pages. These links are used on the homepage, in the header, footer and sidebar; featured images become card images. No plugins are required. An empty selection allows optional page bindings from active plugins.', 'georg-kloster-prihod' ) . '</p>';
     foreach ( $pages as $key => $label ) {
         echo '<p><label>' . esc_html( $label ) . '<br>';
-        wp_dropdown_pages( array( 'name' => 'georg_kloster_prihod_options[home][pages][' . $key . ']', 'id' => 'prihod-home-page-' . $key, 'selected' => $home['pages'][$key], 'show_option_none' => __( 'Автоматически', 'georg-kloster-prihod' ), 'option_none_value' => '0', 'post_status' => 'publish' ) );
+        wp_dropdown_pages( array( 'name' => 'georg_kloster_prihod_options[home][pages][' . $key . ']', 'id' => 'prihod-home-page-' . $key, 'selected' => $home['pages'][$key], 'show_option_none' => __( 'Automatic', 'georg-kloster-prihod' ), 'option_none_value' => '0', 'post_status' => 'publish' ) );
         echo '</label></p>';
     }
-    echo '<p class="description">' . esc_html__( 'Переводы собственных подписей доступны в WPML String Translation, раздел georg-kloster-prihod.', 'georg-kloster-prihod' ) . '</p></section>';
+    echo '<p class="description">' . esc_html__( 'Custom labels can be translated in WPML String Translation under georg-kloster-prihod.', 'georg-kloster-prihod' ) . '</p></section>';
 }

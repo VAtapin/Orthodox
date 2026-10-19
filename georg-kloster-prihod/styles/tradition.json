@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "title": "Традиционная",
+  "title": "Traditional",
   "settings": {
     "custom": {
       "prihod": {
@@ -13,37 +13,37 @@
       "palette": [
         {
           "slug": "paper",
-          "name": "Фон",
+          "name": "Background",
           "color": "#f4eddf"
         },
         {
           "slug": "ink",
-          "name": "Текст",
+          "name": "Text",
           "color": "#3d3020"
         },
         {
           "slug": "forest",
-          "name": "Акцент",
+          "name": "Accent",
           "color": "#725532"
         },
         {
           "slug": "gold",
-          "name": "Золото",
+          "name": "Gold",
           "color": "#9b8054"
         },
         {
           "slug": "white",
-          "name": "Карточки",
+          "name": "Cards",
           "color": "#faf6ed"
         },
         {
           "slug": "muted",
-          "name": "Вторичный текст",
+          "name": "Secondary text",
           "color": "#687080"
         },
         {
           "slug": "line",
-          "name": "Границы",
+          "name": "Borders",
           "color": "#dcdcd4"
         }
       ]

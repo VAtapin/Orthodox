@@ -1,0 +1,841 @@
+msgid ""
+msgstr "Project-Id-Version: Georg-Kloster Prihod\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nX-Domain: georg-kloster-prihod\n"
+
+#: about.php
+msgid "About"
+msgstr ""
+
+#: includes/render.php
+msgid "About the monastery"
+msgstr ""
+
+#: includes/render.php
+msgid "About the parish"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "About the parish / monastery"
+msgstr ""
+
+#: includes/about.php
+msgid "Activities"
+msgstr ""
+
+#: includes/settings.php
+msgid "Additional footer text"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Additional links"
+msgstr ""
+
+#: includes/presentation.php includes/site-settings.php
+msgid "Address"
+msgstr ""
+
+#: includes/catalog.php
+msgid "All"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "All categories"
+msgstr ""
+
+#: includes/render.php
+msgid "All commemorations for the day"
+msgstr ""
+
+#: includes/render.php
+msgid "All services"
+msgstr ""
+
+#: includes/render.php
+msgid "Any questions?"
+msgstr ""
+
+#: includes/pilgrim.php
+msgid "Arrange a visit"
+msgstr ""
+
+#: includes/clergy.php includes/contacts.php includes/home-settings.php includes/render.php
+msgid "Ask a priest"
+msgstr ""
+
+#: includes/home-settings.php includes/site-settings.php
+msgid "Automatic"
+msgstr ""
+
+#: includes/design.php
+msgid "Back to styles"
+msgstr ""
+
+#: includes/render.php
+msgid "Back to top"
+msgstr ""
+
+#: includes/settings.php
+msgid "Base font"
+msgstr ""
+
+#: includes/settings.php
+msgid "Base text size in px"
+msgstr ""
+
+#: includes/settings.php
+msgid "Blue style quotation source"
+msgstr ""
+
+#: includes/pilgrim.php
+msgid "Call the monastery"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Card description"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Card title"
+msgstr ""
+
+#: includes/settings.php
+msgid "Cards per row"
+msgstr ""
+
+#: catalog.php
+msgid "Catalog"
+msgstr ""
+
+#: includes/menu.php
+msgid "Choose image"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Choose standard WordPress pages. These links are used on the homepage, in the header, footer and sidebar; featured images become card images. No plugins are required. An empty selection allows optional page bindings from active plugins."
+msgstr ""
+
+#: includes/settings.php
+msgid "Classic gold"
+msgstr ""
+
+#: includes/settings.php
+msgid "Classic header motto"
+msgstr ""
+
+#: includes/settings.php
+msgid "Classic hero motto"
+msgstr ""
+
+#: includes/about.php
+msgid "Clergy"
+msgstr ""
+
+#: includes/render.php
+msgid "Close menu"
+msgstr ""
+
+#: styles/blue.json styles/editorial.json styles/hospitality.json styles/tradition.json theme.json
+msgctxt "Color name"
+msgid "Accent"
+msgstr ""
+
+#: styles/blue.json styles/editorial.json styles/hospitality.json styles/tradition.json theme.json
+msgctxt "Color name"
+msgid "Background"
+msgstr ""
+
+#: styles/blue.json styles/editorial.json styles/hospitality.json styles/tradition.json theme.json
+msgctxt "Color name"
+msgid "Borders"
+msgstr ""
+
+#: styles/blue.json styles/editorial.json styles/hospitality.json styles/tradition.json theme.json
+msgctxt "Color name"
+msgid "Cards"
+msgstr ""
+
+#: styles/blue.json styles/editorial.json styles/hospitality.json styles/tradition.json theme.json
+msgctxt "Color name"
+msgid "Gold"
+msgstr ""
+
+#: styles/blue.json styles/editorial.json styles/hospitality.json styles/tradition.json theme.json
+msgctxt "Color name"
+msgid "Secondary text"
+msgstr ""
+
+#: styles/blue.json styles/editorial.json styles/hospitality.json styles/tradition.json theme.json
+msgctxt "Color name"
+msgid "Text"
+msgstr ""
+
+#: includes/about.php
+msgid "Community life"
+msgstr ""
+
+#: includes/site-settings.php
+msgid "Community type"
+msgstr ""
+
+#: includes/render.php
+msgid "Contact us"
+msgstr ""
+
+#: contacts.php includes/contacts.php includes/home-settings.php includes/render.php
+msgid "Contacts"
+msgstr ""
+
+#: includes/settings.php
+msgid "Current style"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Custom labels can be translated in WPML String Translation under georg-kloster-prihod."
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Content catalog"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Form and confirmation"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "History and community"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Wide page"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Default"
+msgstr ""
+
+#: includes/menu.php
+msgid "Delete"
+msgstr ""
+
+#: includes/home-settings.php includes/site-settings.php
+msgid "Description"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Desktop columns"
+msgstr ""
+
+#: includes/contacts.php includes/pilgrim.php
+msgid "Directions"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Donations"
+msgstr ""
+
+#: includes/settings.php
+msgid "Edit menu items and their order under Appearance → Menus. You can also choose an image for each item there. Without a chosen image, the linked page or post featured image is used."
+msgstr ""
+
+#: includes/settings.php
+msgid "Editorial"
+msgstr ""
+
+#: includes/presentation.php includes/site-settings.php
+msgid "Email"
+msgstr ""
+
+#: includes/settings.php
+msgid "Enter the URLs of existing language versions. Content translations are created separately; the theme does not translate text automatically."
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Excerpt length in words"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Eyebrow"
+msgstr ""
+
+#: includes/catalog.php
+msgid "Find"
+msgstr ""
+
+#: includes/render.php
+msgid "First time at church?"
+msgstr ""
+
+#: includes/contacts.php includes/pilgrim.php
+msgid "First visit"
+msgstr ""
+
+#: focused.php
+msgid "Focused"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Sans serif"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Serif"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Base"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Heading"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Small"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "For visitors"
+msgstr ""
+
+#: includes/settings.php
+msgid "German"
+msgstr ""
+
+#: includes/about.php
+msgid "Get involved"
+msgstr ""
+
+#: includes/pilgrim.php
+msgid "Group visit"
+msgstr ""
+
+#: includes/pilgrim.php
+msgid "Group visits and accommodation"
+msgstr ""
+
+#: includes/settings.php
+msgid "Header and footer"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Heading"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Hero"
+msgstr ""
+
+#: includes/branding.php
+msgid "Hero image"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Hide the schedule card when upcoming services are displayed"
+msgstr ""
+
+#: includes/about.php
+msgid "History"
+msgstr ""
+
+#: archive.php includes/pilgrim.php includes/render.php
+msgid "Home"
+msgstr ""
+
+#: includes/home-settings.php includes/settings.php
+msgid "Homepage"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Homepage content"
+msgstr ""
+
+#: includes/photos.php
+msgid "Icon of the day"
+msgstr ""
+
+#: includes/settings.php
+msgid "Insufficient permissions."
+msgstr ""
+
+#: includes/settings.php
+msgid "Keep the header visible while scrolling"
+msgstr ""
+
+#: includes/render.php
+msgid "Language"
+msgstr ""
+
+#: includes/settings.php
+msgid "Languages"
+msgstr ""
+
+#: includes/settings.php
+msgid "Layout and fonts"
+msgstr ""
+
+#: includes/about.php
+msgid "Learn more"
+msgstr ""
+
+#: includes/settings.php
+msgid "Light hospitality"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Link label"
+msgstr ""
+
+#: includes/settings.php
+msgid "Link row"
+msgstr ""
+
+#: includes/branding.php
+msgid "Logo"
+msgstr ""
+
+#: includes/branding.php includes/settings.php
+msgid "Logo and icon"
+msgstr ""
+
+#: includes/branding.php
+msgid "Maximum logo width in px"
+msgstr ""
+
+#: includes/render.php
+msgid "Menu"
+msgstr ""
+
+#: includes/menu.php
+msgid "Menu item image"
+msgstr ""
+
+#: includes/settings.php
+msgid "Menu style"
+msgstr ""
+
+#: includes/settings.php
+msgid "Menu with cards and images"
+msgstr ""
+
+#: includes/settings.php
+msgid "Modern blue"
+msgstr ""
+
+#: includes/site-settings.php
+msgid "Monastery"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Move down: %s"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Move up: %s"
+msgstr ""
+
+#: includes/site-settings.php
+msgid "Name"
+msgstr ""
+
+#: archive.php includes/home-settings.php includes/render.php
+msgid "News"
+msgstr ""
+
+#: includes/catalog.php
+msgid "No content found. Change your search or reset the filters."
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Number of posts"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Number of services"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Only the content of the page selected as the homepage in Reading settings is displayed."
+msgstr ""
+
+#: includes/render.php
+msgid "Orthodox calendar"
+msgstr ""
+
+#: includes/render.php
+msgid "Page breadcrumb"
+msgstr ""
+
+#: includes/settings.php
+msgid "Page language versions"
+msgstr ""
+
+#: includes/about.php
+msgid "Page sections"
+msgstr ""
+
+#: includes/site-settings.php
+msgid "Parish"
+msgstr ""
+
+#: includes/settings.php
+msgid "Parish Appearance"
+msgstr ""
+
+#: includes/presentation.php includes/site-settings.php
+msgid "Phone"
+msgstr ""
+
+#: pilgrim.php
+msgid "Pilgrim"
+msgstr ""
+
+#: includes/pilgrim.php
+msgid "Please arrange accommodation and group visits with the monastery in advance."
+msgstr ""
+
+#: includes/settings.php
+msgid "Polish"
+msgstr ""
+
+#: includes/render.php
+msgid "Post breadcrumb"
+msgstr ""
+
+#: includes/catalog.php
+msgid "Post categories"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Post category"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Post link label"
+msgstr ""
+
+#: includes/settings.php
+msgid "Preview"
+msgstr ""
+
+#: includes/design.php
+msgid "Preview: %s"
+msgstr ""
+
+#: includes/settings.php
+msgid "Preview: %s (new tab)"
+msgstr ""
+
+#: functions.php includes/render.php includes/settings.php
+msgid "Primary menu"
+msgstr ""
+
+#: includes/render.php
+msgid "Privacy policy"
+msgstr ""
+
+#: includes/settings.php
+msgid "Quotation below the buttons in the blue style"
+msgstr ""
+
+#: includes/settings.php
+msgid "Quotation source"
+msgstr ""
+
+#: includes/settings.php
+msgid "Quotation text"
+msgstr ""
+
+#: includes/article.php
+msgid "Read more"
+msgstr ""
+
+#: archive.php includes/catalog.php
+msgid "Read more →"
+msgstr ""
+
+#: includes/article.php
+msgid "Related posts"
+msgstr ""
+
+#: includes/branding.php
+msgid "Remove"
+msgstr ""
+
+#: includes/catalog.php
+msgid "Reset filters"
+msgstr ""
+
+#: includes/settings.php
+msgid "Russian"
+msgstr ""
+
+#: includes/settings.php
+msgid "Sans serif"
+msgstr ""
+
+#: includes/settings.php
+msgid "Save changes"
+msgstr ""
+
+#: includes/about.php includes/home-settings.php includes/render.php
+msgid "Schedule"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Schedule button label"
+msgstr ""
+
+#: includes/render.php
+msgid "Search"
+msgstr ""
+
+#: includes/catalog.php
+msgid "Search posts"
+msgstr ""
+
+#: includes/catalog.php
+msgid "Search posts…"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Secondary button label"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Section cards"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Section pages"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Section settings"
+msgstr ""
+
+#: includes/settings.php
+msgid "Serif"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Sermons and talks"
+msgstr ""
+
+#: includes/pilgrim.php includes/render.php
+msgid "Service schedule"
+msgstr ""
+
+#: includes/site-settings.php
+msgid "Set the name, description and contact details here without plugins. Filled fields take priority. Empty name or description fields use the WordPress general settings; an active Core plugin can supply other empty fields."
+msgstr ""
+
+#: includes/settings.php
+msgid "Settings sections"
+msgstr ""
+
+#: includes/site-settings.php
+msgid "Short name"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Show card images"
+msgstr ""
+
+#: includes/settings.php
+msgid "Show contact details in the header"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Show date"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Show excerpt"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Show images"
+msgstr ""
+
+#: includes/branding.php
+msgid "Show logo"
+msgstr ""
+
+#: includes/branding.php
+msgid "Show name"
+msgstr ""
+
+#: includes/settings.php includes/site-settings.php
+msgid "Site details"
+msgstr ""
+
+#: includes/branding.php
+msgid "Site icon"
+msgstr ""
+
+#: includes/home.php includes/render.php
+msgid "Site sections"
+msgstr ""
+
+#: includes/settings.php
+msgid "Site width in px"
+msgstr ""
+
+#: header.php
+msgid "Skip to content"
+msgstr ""
+
+#: includes/pilgrim.php
+msgid "Staying at the monastery"
+msgstr ""
+
+#: includes/design.php
+msgid "Style preview"
+msgstr ""
+
+#: styles/hospitality.json
+msgctxt "Style variation name"
+msgid "Light hospitality"
+msgstr ""
+
+#: styles/blue.json
+msgctxt "Style variation name"
+msgid "Modern blue"
+msgstr ""
+
+#: styles/editorial.json
+msgctxt "Style variation name"
+msgid "Modern editorial"
+msgstr ""
+
+#: styles/tradition.json
+msgctxt "Style variation name"
+msgid "Traditional"
+msgstr ""
+
+#: includes/settings.php
+msgid "Styles"
+msgstr ""
+
+#: includes/render.php
+msgid "Submit a prayer request"
+msgstr ""
+
+#: includes/render.php
+msgid "Support the church"
+msgstr ""
+
+#: includes/render.php
+msgid "Support the monastery"
+msgstr ""
+
+#: includes/render.php
+msgid "Support the parish"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Footer"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Header"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Text is stored in WordPress settings. Empty fields do not insert preset content. Enable sections and change their order with the arrows. Pages and posts are not modified."
+msgstr ""
+
+#: includes/settings.php
+msgid "The cards show example layouts. The live preview uses your pages, images and settings."
+msgstr ""
+
+#: includes/branding.php
+msgid "The logo and name are disabled. A homepage link will remain on the site."
+msgstr ""
+
+#: includes/settings.php
+msgid "The preview opens in a new tab without changing the site. To apply a style, select its card and save your changes."
+msgstr ""
+
+#: includes/branding.php
+msgid "The site icon must be a square image of at least 512 × 512 px. The previous icon has been kept."
+msgstr ""
+
+#: includes/branding.php
+msgid "The site icon must be square and at least 512 × 512 px."
+msgstr ""
+
+#: includes/design.php
+msgid "The site style has not been changed."
+msgstr ""
+
+#: includes/settings.php
+msgid "Theme settings"
+msgstr ""
+
+#: archive.php
+msgid "There are no posts in this category yet."
+msgstr ""
+
+#: archive.php includes/home.php
+msgid "There are no posts yet."
+msgstr ""
+
+#: includes/home-settings.php
+msgid "This section appears when a schedule plugin supplies upcoming services."
+msgstr ""
+
+#: includes/settings.php
+msgid "Traditional"
+msgstr ""
+
+#: includes/settings.php
+msgid "Ukrainian"
+msgstr ""
+
+#: includes/home-settings.php includes/render.php
+msgid "Upcoming services"
+msgstr ""
+
+#: includes/branding.php
+msgid "Upload or choose an image"
+msgstr ""
+
+#: includes/menu.php
+msgid "Use image"
+msgstr ""
+
+#: includes/home-settings.php
+msgid "Use style default"
+msgstr ""
+
+#: includes/settings.php
+msgid "View site"
+msgstr ""
+
+#: includes/pilgrim.php
+msgid "Visitor information"
+msgstr ""
+
+#: includes/about.php
+msgid "Welcome"
+msgstr ""
+
+#: wide.php
+msgid "Wide"
+msgstr ""

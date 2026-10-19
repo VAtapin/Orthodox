@@ -14,37 +14,37 @@
       "palette": [
         {
           "slug": "paper",
-          "name": "Фон",
+          "name": "Background",
           "color": "#faf9f6"
         },
         {
           "slug": "ink",
-          "name": "Текст",
+          "name": "Text",
           "color": "#192133"
         },
         {
           "slug": "forest",
-          "name": "Акцент",
+          "name": "Accent",
           "color": "#a46d25"
         },
         {
           "slug": "gold",
-          "name": "Золото",
+          "name": "Gold",
           "color": "#b9863d"
         },
         {
           "slug": "white",
-          "name": "Карточки",
+          "name": "Cards",
           "color": "#ffffff"
         },
         {
           "slug": "muted",
-          "name": "Вторичный текст",
+          "name": "Secondary text",
           "color": "#687080"
         },
         {
           "slug": "line",
-          "name": "Границы",
+          "name": "Borders",
           "color": "#e5dfd5"
         }
       ]
@@ -54,34 +54,34 @@
       "fontFamilies": [
         {
           "slug": "serif",
-          "name": "Книжный",
+          "name": "Serif",
           "fontFamily": "Georgia, 'Times New Roman', serif"
         },
         {
           "slug": "sans",
-          "name": "Простой",
+          "name": "Sans serif",
           "fontFamily": "system-ui, -apple-system, 'Segoe UI', sans-serif"
         }
       ],
       "fontSizes": [
         {
           "slug": "small",
-          "name": "Малый",
+          "name": "Small",
           "size": "0.9rem"
         },
         {
           "slug": "medium",
-          "name": "Основной",
+          "name": "Base",
           "size": "1.1rem"
         },
         {
           "slug": "large",
-          "name": "Большой",
+          "name": "Large",
           "size": "1.6rem"
         },
         {
           "slug": "x-large",
-          "name": "Заголовок",
+          "name": "Heading",
           "size": "2.8rem"
         }
       ]
@@ -160,40 +160,40 @@
   "templateParts": [
     {
       "name": "header",
-      "title": "Шапка",
+      "title": "Header",
       "area": "header"
     },
     {
       "name": "footer",
-      "title": "Подвал",
+      "title": "Footer",
       "area": "footer"
     }
   ],
   "customTemplates": [
     {
       "name": "wide",
-      "title": "Широкая страница",
+      "title": "Wide page",
       "postTypes": [
         "page"
       ]
     },
     {
       "name": "focused",
-      "title": "Форма и подтверждение",
+      "title": "Form and confirmation",
       "postTypes": [
         "page"
       ]
     },
     {
       "name": "catalog",
-      "title": "Каталог материалов",
+      "title": "Content catalog",
       "postTypes": [
         "page"
       ]
     },
     {
       "name": "about",
-      "title": "История и община",
+      "title": "History and community",
       "postTypes": [
         "page"
       ]

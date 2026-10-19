@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "title": "Светлая гостеприимная",
+  "title": "Light hospitality",
   "settings": {
     "custom": {
       "prihod": {
@@ -13,37 +13,37 @@
       "palette": [
         {
           "slug": "paper",
-          "name": "Фон",
+          "name": "Background",
           "color": "#fdfcf9"
         },
         {
           "slug": "ink",
-          "name": "Текст",
+          "name": "Text",
           "color": "#262c3c"
         },
         {
           "slug": "forest",
-          "name": "Акцент",
+          "name": "Accent",
           "color": "#b38b44"
         },
         {
           "slug": "gold",
-          "name": "Золото",
+          "name": "Gold",
           "color": "#b38b44"
         },
         {
           "slug": "white",
-          "name": "Карточки",
+          "name": "Cards",
           "color": "#ffffff"
         },
         {
           "slug": "muted",
-          "name": "Вторичный текст",
+          "name": "Secondary text",
           "color": "#687080"
         },
         {
           "slug": "line",
-          "name": "Границы",
+          "name": "Borders",
           "color": "#dcdcd4"
         }
       ]

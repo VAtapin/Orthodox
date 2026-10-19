@@ -8,15 +8,18 @@ import struct
 
 def read_catalog(path: Path) -> dict[str, str]:
     messages: dict[str, str] = {}
-    key = value = ""
+    key = value = context = ""
     field = None
 
     def save() -> None:
         if field is not None and value:
-            messages[key] = value
+            messages[(context + "\x04" if context else "") + key] = value
 
     for line in path.read_text(encoding="utf-8").splitlines() + [""]:
-        if line.startswith("msgid "):
+        if line.startswith("msgctxt "):
+            save()
+            key, value, context, field = "", "", ast.literal_eval(line[8:]), "context"
+        elif line.startswith("msgid "):
             save()
             key, value, field = ast.literal_eval(line[6:]), "", "id"
         elif line.startswith("msgstr "):
@@ -24,11 +27,13 @@ def read_catalog(path: Path) -> dict[str, str]:
         elif line.startswith('"') and field:
             if field == "id":
                 key += ast.literal_eval(line)
-            else:
+            elif field == "str":
                 value += ast.literal_eval(line)
+            else:
+                context += ast.literal_eval(line)
         elif not line.strip():
             save()
-            key = value = ""
+            key = value = context = ""
             field = None
     return messages
 

@@ -2,7 +2,7 @@
 defined( 'ABSPATH' ) || exit;
 
 function prihod_theme_profile_fields(): array {
-    return array( 'name' => __( 'Название', 'georg-kloster-prihod' ), 'short_name' => __( 'Краткое название', 'georg-kloster-prihod' ), 'description' => __( 'Описание', 'georg-kloster-prihod' ), 'address' => __( 'Адрес', 'georg-kloster-prihod' ), 'phone' => __( 'Телефон', 'georg-kloster-prihod' ), 'email' => __( 'Email', 'georg-kloster-prihod' ) );
+    return array( 'name' => __( 'Name', 'georg-kloster-prihod' ), 'short_name' => __( 'Short name', 'georg-kloster-prihod' ), 'description' => __( 'Description', 'georg-kloster-prihod' ), 'address' => __( 'Address', 'georg-kloster-prihod' ), 'phone' => __( 'Phone', 'georg-kloster-prihod' ), 'email' => __( 'Email', 'georg-kloster-prihod' ) );
 }
 
 function prihod_theme_profile_sanitize( $input ): array {
@@ -17,7 +17,7 @@ function prihod_theme_profile_sanitize( $input ): array {
 
 function prihod_theme_profile_settings_panel( array $options ): void {
     $profile = prihod_theme_profile_sanitize( $options['profile'] );
-    echo '<section id="prihod-option-profile" class="prihod-option-section"><h2>' . esc_html__( 'Данные сайта', 'georg-kloster-prihod' ) . '</h2><p>' . esc_html__( 'Название, описание и контакты можно задать здесь без плагинов. Заполненные поля имеют приоритет. Если название или описание не заданы, используются общие настройки WordPress; подключённый Core может дополнить пустые поля.', 'georg-kloster-prihod' ) . '</p>';
+    echo '<section id="prihod-option-profile" class="prihod-option-section"><h2>' . esc_html__( 'Site details', 'georg-kloster-prihod' ) . '</h2><p>' . esc_html__( 'Set the name, description and contact details here without plugins. Filled fields take priority. Empty name or description fields use the WordPress general settings; an active Core plugin can supply other empty fields.', 'georg-kloster-prihod' ) . '</p>';
     foreach ( prihod_theme_profile_fields() as $key => $label ) {
         echo '<p><label>' . esc_html( $label ) . '<br>';
         $name = 'georg_kloster_prihod_options[profile][' . $key . ']';
@@ -25,7 +25,7 @@ function prihod_theme_profile_settings_panel( array $options ): void {
         else { echo '<input class="regular-text" type="' . ( 'email' === $key ? 'email' : ( 'phone' === $key ? 'tel' : 'text' ) ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( $profile[$key] ) . '">'; }
         echo '</label></p>';
     }
-    echo '<p><label>' . esc_html__( 'Тип общины', 'georg-kloster-prihod' ) . '<br><select name="georg_kloster_prihod_options[profile][type]">';
-    foreach ( array( '' => __( 'Автоматически', 'georg-kloster-prihod' ), 'parish' => __( 'Приход', 'georg-kloster-prihod' ), 'monastery' => __( 'Монастырь', 'georg-kloster-prihod' ) ) as $value => $label ) { echo '<option value="' . esc_attr( $value ) . '"' . selected( $profile['type'], $value, false ) . '>' . esc_html( $label ) . '</option>'; }
+    echo '<p><label>' . esc_html__( 'Community type', 'georg-kloster-prihod' ) . '<br><select name="georg_kloster_prihod_options[profile][type]">';
+    foreach ( array( '' => __( 'Automatic', 'georg-kloster-prihod' ), 'parish' => __( 'Parish', 'georg-kloster-prihod' ), 'monastery' => __( 'Monastery', 'georg-kloster-prihod' ) ) as $value => $label ) { echo '<option value="' . esc_attr( $value ) . '"' . selected( $profile['type'], $value, false ) . '>' . esc_html( $label ) . '</option>'; }
     echo '</select></label></p></section>';
 }

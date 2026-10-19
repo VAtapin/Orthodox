@@ -6,7 +6,7 @@ $archive_description = get_the_archive_description();
 ?>
 <main id="prihod-main" class="prihod-category-archive">
 <div class="prihod-page-heading"><div class="prihod-container">
-<a class="prihod-breadcrumb" href="<?php echo esc_url( prihod_theme_preview_url( home_url( '/' ) ) ); ?>"><?php esc_html_e( 'Главная', 'georg-kloster-prihod' ); ?></a>
+<a class="prihod-breadcrumb" href="<?php echo esc_url( prihod_theme_preview_url( home_url( '/' ) ) ); ?>"><?php esc_html_e( 'Home', 'georg-kloster-prihod' ); ?></a>
 <h1><?php echo esc_html( $archive_title ); ?></h1>
 <?php if ( $archive_description ) : ?><div class="prihod-category-description"><?php echo wp_kses_post( $archive_description ); ?></div><?php endif; ?>
 </div></div>
@@ -20,16 +20,16 @@ $archive_description = get_the_archive_description();
 <time datetime="<?php echo esc_attr( get_the_date( 'Y-m-d' ) ); ?>"><?php echo esc_html( get_the_date() ); ?></time>
 <h2><a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo esc_html( get_the_title() ); ?></a></h2>
 <p><?php echo esc_html( wp_trim_words( get_the_excerpt(), 26 ) ); ?></p>
-<a class="prihod-category-read-more" href="<?php echo esc_url( get_permalink() ); ?>"><?php esc_html_e( 'Читать далее →', 'georg-kloster-prihod' ); ?></a>
+<a class="prihod-category-read-more" href="<?php echo esc_url( get_permalink() ); ?>"><?php esc_html_e( 'Read more →', 'georg-kloster-prihod' ); ?></a>
 </div></article>
 <?php endwhile; ?>
 </div>
 <?php the_posts_pagination(); ?>
 <?php else : ?>
 <div class="prihod-category-empty" role="status">
-<h2><?php esc_html_e( 'Публикаций пока нет.', 'georg-kloster-prihod' ); ?></h2>
-<?php if ( is_category() ) : ?><p><?php esc_html_e( 'В этой рубрике пока нет записей.', 'georg-kloster-prihod' ); ?></p><?php endif; ?>
-<a class="prihod-button is-outline" href="<?php echo esc_url( prihod_theme_url( 'news' ) ?: prihod_theme_preview_url( home_url( '/' ) ) ); ?>"><?php esc_html_e( 'Новости', 'georg-kloster-prihod' ); ?> →</a>
+<h2><?php esc_html_e( 'There are no posts yet.', 'georg-kloster-prihod' ); ?></h2>
+<?php if ( is_category() ) : ?><p><?php esc_html_e( 'There are no posts in this category yet.', 'georg-kloster-prihod' ); ?></p><?php endif; ?>
+<a class="prihod-button is-outline" href="<?php echo esc_url( prihod_theme_url( 'news' ) ?: prihod_theme_preview_url( home_url( '/' ) ) ); ?>"><?php esc_html_e( 'News', 'georg-kloster-prihod' ); ?> →</a>
 </div>
 <?php endif; ?>
 </div>

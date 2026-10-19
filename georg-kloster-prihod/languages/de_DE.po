@@ -1,518 +1,637 @@
 msgid ""
-msgstr "Content-Type: text/plain; charset=UTF-8\nLanguage: de_DE\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\n"
+msgstr "Project-Id-Version: Georg-Kloster Prihod 0.4.30\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nX-Domain: georg-kloster-prihod\nLanguage: de_DE\n"
 
-msgid "Приход"
-msgstr "Gemeinde"
+msgid "About"
+msgstr "Geschichte und Gemeinschaft"
 
-msgid "Главная"
-msgstr "Startseite"
+msgid "About the monastery"
+msgstr "Über das Kloster"
 
-msgid "О приходе"
+msgid "About the parish"
 msgstr "Über die Gemeinde"
 
-msgid "Новости"
-msgstr "Nachrichten"
+msgid "About the parish / monastery"
+msgstr "Über die Gemeinde / das Kloster"
 
-msgid "Контакты"
-msgstr "Kontakt"
+msgid "Activities"
+msgstr "Unsere Tätigkeitsbereiche"
 
-msgid "Вопрос священнику"
-msgstr "Frage an den Priester"
+msgid "Additional footer text"
+msgstr "Zusätzlicher Text im Fußbereich"
 
-msgid "Расписание"
-msgstr "Gottesdienste"
+msgid "Additional links"
+msgstr "Zusätzliche Links"
 
-msgid "Расписание богослужений"
-msgstr "Gottesdienstplan"
-
-msgid "Ближайшие службы"
-msgstr "Nächste Gottesdienste"
-
-msgid "Есть вопросы?"
-msgstr "Haben Sie Fragen?"
-
-msgid "Наверх"
-msgstr "Nach oben"
-
-msgid "Недостаточно прав."
-msgstr "Keine ausreichende Berechtigung."
-
-msgid "Оформление прихода"
-msgstr "Gemeindedesign"
-
-msgid "Политика конфиденциальности"
-msgstr "Datenschutzerklärung"
-
-msgid "Помочь приходу"
-msgstr "Gemeinde unterstützen"
-
-msgid "Православный календарь"
-msgstr "Orthodoxer Kalender"
-
-msgid "Публикаций пока нет."
-msgstr "Noch keine Beiträge vorhanden."
-
-msgid "Разделы сайта"
-msgstr "Website-Bereiche"
-
-msgid "Связаться с нами"
-msgstr "Kontakt aufnehmen"
-
-msgid "Читать дальше"
-msgstr "Weiterlesen"
-
-msgid "Язык"
-msgstr "Sprache"
-
-msgid "Языковые версии страниц"
-msgstr "Sprachversionen der Seiten"
-
-msgid "Укажите адреса существующих версий сайта. Переводы материалов создаются отдельно; тема не переводит тексты автоматически."
-msgstr "Geben Sie Adressen vorhandener Sprachversionen an. Inhalte werden separat übersetzt; das Theme übersetzt Texte nicht automatisch."
-
-msgid "Монастырь"
-msgstr "Kloster"
-
-msgid "Духовенство"
-msgstr "Geistliche"
-
-msgid "Оформление"
-msgstr "Design"
-
-msgid "Краткое название"
-msgstr "Kurzname"
-
-msgid "Описание"
-msgstr "Beschreibung"
-
-msgid "Адрес"
+msgid "Address"
 msgstr "Adresse"
 
-msgid "Телефон"
-msgstr "Telefon"
+msgid "All"
+msgstr "Alle"
 
-msgid "Классическая золотая"
+msgid "All categories"
+msgstr "Alle Kategorien"
+
+msgid "All commemorations for the day"
+msgstr "Alle Feste des Tages"
+
+msgid "All services"
+msgstr "Alle Gottesdienste"
+
+msgid "Any questions?"
+msgstr "Haben Sie Fragen?"
+
+msgid "Arrange a visit"
+msgstr "Besuch abstimmen"
+
+msgid "Ask a priest"
+msgstr "Frage an den Priester"
+
+msgid "Automatic"
+msgstr "Automatisch"
+
+msgid "Back to styles"
+msgstr "Zurück zu den Designs"
+
+msgid "Back to top"
+msgstr "Nach oben"
+
+msgid "Base font"
+msgstr "Grundschrift"
+
+msgid "Base text size in px"
+msgstr "Grundschriftgröße, px"
+
+msgid "Blue style quotation source"
+msgstr "Quelle des Zitats im blauen Stil"
+
+msgid "Call the monastery"
+msgstr "Im Kloster anrufen"
+
+msgid "Card description"
+msgstr "Kartenbeschreibung"
+
+msgid "Card title"
+msgstr "Kartentitel"
+
+msgid "Cards per row"
+msgstr "Karten pro Zeile"
+
+msgid "Catalog"
+msgstr "Beitragsübersicht"
+
+msgid "Choose image"
+msgstr "Bild auswählen"
+
+msgid "Choose standard WordPress pages. These links are used on the homepage, in the header, footer and sidebar; featured images become card images. No plugins are required. An empty selection allows optional page bindings from active plugins."
+msgstr "Wählen Sie normale WordPress-Seiten. Diese Links werden auf der Startseite, im Kopf- und Fußbereich sowie in der Seitenleiste verwendet; Beitragsbilder dienen als Kartenfotos. Plugins sind nicht erforderlich. Ohne Auswahl können optionale Seitenzuordnungen aktivierter Plugins verwendet werden."
+
+msgid "Classic gold"
 msgstr "Klassisch in Gold"
 
-msgid "Светлая гостеприимная"
-msgstr "Hell und einladend"
+msgid "Classic header motto"
+msgstr "Motto im klassischen Kopfbereich"
 
-msgid "Традиционная"
-msgstr "Traditionell"
+msgid "Classic hero motto"
+msgstr "Aufschrift im klassischen ersten Bereich"
 
-msgid "Современная синяя"
-msgstr "Modern in Blau"
+msgid "Clergy"
+msgstr "Geistliche"
+
+msgid "Close menu"
+msgstr "Menü schließen"
+
+msgctxt "Color name"
+msgid "Accent"
+msgstr "Akzent"
+
+msgctxt "Color name"
+msgid "Background"
+msgstr "Hintergrund"
+
+msgctxt "Color name"
+msgid "Borders"
+msgstr "Rahmen"
+
+msgctxt "Color name"
+msgid "Cards"
+msgstr "Karten"
+
+msgctxt "Color name"
+msgid "Gold"
+msgstr "Gold"
+
+msgctxt "Color name"
+msgid "Secondary text"
+msgstr "Sekundärtext"
+
+msgctxt "Color name"
+msgid "Text"
+msgstr "Text"
+
+msgid "Community life"
+msgstr "Gemeindeleben"
+
+msgid "Community type"
+msgstr "Art der Gemeinde"
+
+msgid "Contact us"
+msgstr "Kontakt aufnehmen"
+
+msgid "Contacts"
+msgstr "Kontakt"
+
+msgid "Current style"
+msgstr "Aktuelles Design"
+
+msgid "Custom labels can be translated in WPML String Translation under georg-kloster-prihod."
+msgstr "Eigene Beschriftungen können in WPML String Translation im Bereich georg-kloster-prihod übersetzt werden."
+
+msgctxt "Custom template name"
+msgid "Content catalog"
+msgstr "Beitragsübersicht"
+
+msgctxt "Custom template name"
+msgid "Form and confirmation"
+msgstr "Formular und Bestätigung"
+
+msgctxt "Custom template name"
+msgid "History and community"
+msgstr "Geschichte und Gemeinschaft"
+
+msgctxt "Custom template name"
+msgid "Wide page"
+msgstr "Breite Seite"
+
+msgid "Default"
+msgstr "Standard"
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid "Description"
+msgstr "Beschreibung"
+
+msgid "Desktop columns"
+msgstr "Spalten auf dem Desktop"
+
+msgid "Directions"
+msgstr "Anfahrt"
+
+msgid "Donations"
+msgstr "Spenden"
+
+msgid "Edit menu items and their order under Appearance → Menus. You can also choose an image for each item there. Without a chosen image, the linked page or post featured image is used."
+msgstr "Die Menüpunkte und ihre Reihenfolge ändern Sie unter „Design → Menüs“. Dort können Sie auch für jeden Punkt ein Bild wählen. Ohne Auswahl wird das Beitragsbild der verknüpften Seite oder des Beitrags angezeigt."
+
+msgid "Editorial"
+msgstr "Magazin"
 
 msgid "Email"
 msgstr "E-Mail"
 
-msgid "Книжный"
-msgstr "Serifenschrift"
+msgid "Enter the URLs of existing language versions. Content translations are created separately; the theme does not translate text automatically."
+msgstr "Geben Sie Adressen vorhandener Sprachversionen an. Inhalte werden separat übersetzt; das Theme übersetzt Texte nicht automatisch."
 
-msgid "Простой"
-msgstr "Sans-Serif"
-
-msgid "Заголовок"
-msgstr "Überschrift"
-
-msgid "Пожертвования"
-msgstr "Spenden"
-
-msgid "Удалить"
-msgstr "Löschen"
-
-msgid "Главное фото"
-msgstr "Hauptfoto"
-
-msgid "Убрать"
-msgstr "Entfernen"
-
-msgid "Макет и шрифты"
-msgstr "Layout und Schriften"
-
-msgid "Шапка и подвал"
-msgstr "Kopf- und Fußbereich"
-
-msgid "Языки"
-msgstr "Sprachen"
-
-msgid "Разделы настроек"
-msgstr "Einstellungsbereiche"
-
-msgid "Настройки темы"
-msgstr "Theme-Einstellungen"
-
-msgid "Сохранить изменения"
-msgstr "Änderungen speichern"
-
-msgid "Посмотреть сайт"
-msgstr "Website ansehen"
-
-msgid "Журнальная"
-msgstr "Magazin"
-
-msgid "Ширина сайта, px"
-msgstr "Website-Breite, px"
-
-msgid "Размер основного текста, px"
-msgstr "Grundschriftgröße, px"
-
-msgid "Основной шрифт"
-msgstr "Grundschrift"
-
-msgid "Логотип"
-msgstr "Logo"
-
-msgid "Закрепить шапку при прокрутке"
-msgstr "Kopfbereich beim Scrollen fixieren"
-
-msgid "Показывать контакты в шапке"
-msgstr "Kontaktdaten im Kopfbereich anzeigen"
-
-msgid "Дополнительный текст подвала"
-msgstr "Zusätzlicher Text im Fußbereich"
-
-msgid "О монастыре"
-msgstr "Über das Kloster"
-
-msgid "Помочь обители"
-msgstr "Das Kloster unterstützen"
-
-msgid "Все богослужения"
-msgstr "Alle Gottesdienste"
-
-msgid "Все праздники дня"
-msgstr "Alle Feste des Tages"
-
-msgid "Как добраться"
-msgstr "Anfahrt"
-
-msgid "Найти"
-msgstr "Suchen"
-
-msgid "Подать записку"
-msgstr "Gebetsanliegen einreichen"
-
-msgid "Поиск"
-msgstr "Suche"
-
-msgid "Читайте также"
-msgstr "Lesen Sie auch"
-
-msgid "Путь к статье"
-msgstr "Artikelnavigation"
-
-msgid "Поддержать храм"
-msgstr "Die Kirche unterstützen"
-
-msgid "Текст цитаты"
-msgstr "Zitattext"
-
-msgid "Источник цитаты"
-msgstr "Quelle des Zitats"
-
-msgid "Разделы страницы"
-msgstr "Abschnitte der Seite"
-
-msgid "Рады встрече с вами"
-msgstr "Wir freuen uns auf Ihren Besuch"
-
-msgid "История"
-msgstr "Geschichte"
-
-msgid "Жизнь общины"
-msgstr "Gemeindeleben"
-
-msgid "Направления деятельности"
-msgstr "Unsere Tätigkeitsbereiche"
-
-msgid "Как присоединиться"
-msgstr "So können Sie teilnehmen"
-
-msgid "Узнать подробнее"
-msgstr "Mehr erfahren"
-
-msgid "Впервые в храме?"
-msgstr "Zum ersten Mal in der Kirche?"
-
-msgid "Путь к странице"
-msgstr "Pfad zur Seite"
-
-msgid "Рубрики публикаций"
-msgstr "Rubriken der Beiträge"
-
-msgid "Поиск публикаций"
-msgstr "Beiträge suchen"
-
-msgid "Поиск публикаций…"
-msgstr "Beiträge suchen…"
-
-msgid "Сбросить фильтры"
-msgstr "Filter zurücksetzen"
-
-msgid "Читать далее →"
-msgstr "Weiterlesen →"
-
-msgid "Материалы не найдены. Измените запрос или сбросьте фильтры."
-msgstr "Keine Beiträge gefunden. Ändern Sie die Suche oder setzen Sie die Filter zurück."
-
-msgid "Все"
-msgstr "Alle"
-
-msgid "Информация паломнику"
-msgstr "Informationen für Pilger"
-
-msgid "Первое посещение"
-msgstr "Erster Besuch"
-
-msgid "Групповой визит"
-msgstr "Gruppenbesuch"
-
-msgid "Пребывание в обители"
-msgstr "Aufenthalt im Kloster"
-
-msgid "Групповой визит и пребывание"
-msgstr "Gruppenbesuch und Aufenthalt"
-
-msgid "Возможность пребывания и условия группового визита согласуйте с обителью заранее."
-msgstr "Bitte klären Sie einen möglichen Aufenthalt und die Bedingungen für einen Gruppenbesuch im Voraus mit dem Kloster."
-
-msgid "Позвонить в обитель"
-msgstr "Im Kloster anrufen"
-
-msgid "Согласовать приезд"
-msgstr "Besuch abstimmen"
-
-msgid "Девиз в шапке классической схемы"
-msgstr "Motto im klassischen Kopfbereich"
-
-msgid "Надпись первого экрана классической схемы"
-msgstr "Aufschrift im klassischen ersten Bereich"
-
-msgid "Цитата под кнопками синей схемы"
-msgstr "Zitat unter den Schaltflächen des blauen Stils"
-
-msgid "Источник цитаты синей схемы"
-msgstr "Quelle des Zitats im blauen Stil"
-
-msgid "Меню"
-msgstr "Menü"
-
-msgid "Икона дня"
-msgstr "Tagesikone"
-
-msgid "Иконка должна быть квадратным изображением размером не менее 512 × 512 px. Прежняя иконка сохранена."
-msgstr "Das Icon muss quadratisch und mindestens 512 × 512 px groß sein. Das bisherige Icon wurde beibehalten."
-
-msgid "Иконка сайта"
-msgstr "Website-Icon"
-
-msgid "Загрузить или выбрать изображение"
-msgstr "Bild hochladen oder auswählen"
-
-msgid "Максимальная ширина логотипа, px"
-msgstr "Maximale Logobreite, px"
-
-msgid "Предпросмотр открывается в новой вкладке и не меняет сайт. Чтобы применить оформление, выберите карточку и сохраните изменения."
-msgstr "Die Vorschau öffnet sich in einem neuen Tab und ändert die Website nicht. Zum Anwenden wählen Sie eine Karte und speichern die Änderungen."
-
-msgid "Текущее оформление"
-msgstr "Aktuelles Design"
-
-msgid "Предпросмотр: %s (новая вкладка)"
-msgstr "Vorschau: %s (neuer Tab)"
-
-msgid "Предпросмотр оформления"
-msgstr "Design-Vorschau"
-
-msgid "Предпросмотр: %s"
-msgstr "Vorschau: %s"
-
-msgid "Оформление сайта не изменено."
-msgstr "Das Design der Website wurde nicht geändert."
-
-msgid "Вернуться к оформлениям"
-msgstr "Zurück zu den Designs"
-
-msgid "Предпросмотр"
-msgstr "Vorschau"
-
-msgid "Показывать логотип"
-msgstr "Logo anzeigen"
-
-msgid "Показывать название"
-msgstr "Namen anzeigen"
-
-msgid "Логотип и название отключены. На сайте останется ссылка на главную страницу."
-msgstr "Logo und Name sind ausgeblendet. Ein Link zur Startseite bleibt auf der Website sichtbar."
-
-msgid "Иконка должна быть квадратной, не менее 512 × 512 px."
-msgstr "Das Website-Icon muss quadratisch und mindestens 512 × 512 px groß sein."
-
-msgid "Логотип и иконка"
-msgstr "Logo und Website-Icon"
-
-msgid "Основное меню"
-msgstr "Hauptmenü"
-
-msgid "Автоматически"
-msgstr "Automatisch"
-
-msgid "Все рубрики"
-msgstr "Alle Kategorien"
-
-msgid "Выводится только собственное содержимое страницы, выбранной главной в настройках чтения."
-msgstr "Es wird nur der eigene Inhalt der in den Leseeinstellungen gewählten Startseite angezeigt."
-
-msgid "Выше: %s"
-msgstr "Nach oben: %s"
-
-msgid "Главная страница"
-msgstr "Startseite"
-
-msgid "Длина анонса, слов"
+msgid "Excerpt length in words"
 msgstr "Auszugslänge in Wörtern"
 
-msgid "Дополнительные ссылки"
-msgstr "Zusätzliche Links"
-
-msgid "Карточки разделов"
-msgstr "Bereichskarten"
-
-msgid "Количество публикаций"
-msgstr "Anzahl der Beiträge"
-
-msgid "Количество служб"
-msgstr "Anzahl der Gottesdienste"
-
-msgid "Колонок на компьютере"
-msgstr "Spalten auf dem Desktop"
-
-msgid "Название карточки"
-msgstr "Kartentitel"
-
-msgid "Настройки секции"
-msgstr "Abschnittseinstellungen"
-
-msgid "Ниже: %s"
-msgstr "Nach unten: %s"
-
-msgid "О приходе / монастыре"
-msgstr "Über die Gemeinde / das Kloster"
-
-msgid "Паломнику"
-msgstr "Für Pilger"
-
-msgid "Первый экран"
-msgstr "Startbereich"
-
-msgid "Переводы собственных подписей доступны в WPML String Translation, раздел georg-kloster-prihod."
-msgstr "Eigene Beschriftungen können in WPML String Translation im Bereich georg-kloster-prihod übersetzt werden."
-
-msgid "По оформлению"
-msgstr "Gemäß Design"
-
-msgid "По умолчанию"
-msgstr "Standard"
-
-msgid "Подпись карточки"
-msgstr "Kartenbeschreibung"
-
-msgid "Показывать анонс"
-msgstr "Auszug anzeigen"
-
-msgid "Показывать дату"
-msgstr "Datum anzeigen"
-
-msgid "Показывать фотографии"
-msgstr "Fotos anzeigen"
-
-msgid "Показывать фотографии карточек"
-msgstr "Kartenfotos anzeigen"
-
-msgid "Проповеди и беседы"
-msgstr "Predigten und Gespräche"
-
-msgid "Рубрика публикаций"
-msgstr "Beitragskategorie"
-
-msgid "Секция появляется, когда плагин расписания предоставляет ближайшие службы."
-msgstr "Der Abschnitt erscheint, wenn das Kalenderplugin kommende Gottesdienste bereitstellt."
-
-msgid "Скрывать карточку расписания, если показаны ближайшие службы"
-msgstr "Zeitplankarte ausblenden, wenn kommende Gottesdienste angezeigt werden"
-
-msgid "Содержимое страницы «Главная»"
-msgstr "Inhalt der Startseite"
-
-msgid "Страницы разделов"
-msgstr "Seitenzuordnungen"
-
-msgid "Текст ссылки"
-msgstr "Linktext"
-
-msgid "Тексты хранятся в настройках WordPress. Пустые поля не подставляют готовый контент. Включайте секции и меняйте их порядок стрелками. Страницы и записи не изменяются."
-msgstr "Texte werden in den WordPress-Einstellungen gespeichert. Leere Felder fügen keine vorgefertigten Inhalte ein. Aktivieren Sie Abschnitte und ändern Sie ihre Reihenfolge mit den Pfeilen. Seiten und Beiträge bleiben unverändert."
-
-msgid "Надзаголовок"
+msgid "Eyebrow"
 msgstr "Überschriftzeile"
 
-msgid "В этой рубрике пока нет записей."
-msgstr "In dieser Kategorie gibt es noch keine Beiträge."
+msgid "Find"
+msgstr "Suchen"
 
-msgid "Перейти к содержимому"
-msgstr "Zum Inhalt springen"
+msgid "First time at church?"
+msgstr "Zum ersten Mal in der Kirche?"
 
-msgid "Текст кнопки расписания"
-msgstr "Text der Zeitplan-Schaltfläche"
+msgid "First visit"
+msgstr "Erster Besuch"
 
-msgid "Текст второй кнопки"
-msgstr "Text der zweiten Schaltfläche"
+msgid "Focused"
+msgstr "Formular und Bestätigung"
 
-msgid "Текст ссылки публикации"
-msgstr "Text des Beitragslinks"
+msgctxt "Font family name"
+msgid "Sans serif"
+msgstr "Sans-Serif"
 
-msgid "Название"
-msgstr "Name"
+msgctxt "Font family name"
+msgid "Serif"
+msgstr "Serifenschrift"
 
-msgid "Тип общины"
-msgstr "Art der Gemeinde"
+msgctxt "Font size name"
+msgid "Base"
+msgstr "Standard"
 
-msgid "Данные сайта"
-msgstr "Website-Daten"
+msgctxt "Font size name"
+msgid "Heading"
+msgstr "Überschrift"
 
-msgid "Выбрать изображение"
-msgstr "Bild auswählen"
+msgctxt "Font size name"
+msgid "Large"
+msgstr "Groß"
 
-msgid "Закрыть меню"
-msgstr "Menü schließen"
+msgctxt "Font size name"
+msgid "Small"
+msgstr "Klein"
 
-msgid "Изображение пункта меню"
-msgstr "Bild des Menüpunkts"
+msgid "For visitors"
+msgstr "Für Pilger"
 
-msgid "Использовать изображение"
-msgstr "Bild verwenden"
+msgid "German"
+msgstr "Deutsch"
 
-msgid "Карточек в строке"
-msgstr "Karten pro Zeile"
+msgid "Get involved"
+msgstr "So können Sie teilnehmen"
 
-msgid "Карточки показывают примеры оформления. Живой предпросмотр использует ваши страницы, фотографии и настройки."
-msgstr "Die Karten zeigen Gestaltungsbeispiele. Die Live-Vorschau verwendet Ihre Seiten, Fotos und Einstellungen."
+msgid "Group visit"
+msgstr "Gruppenbesuch"
 
-msgid "Меню с карточками и изображениями"
-msgstr "Menü mit Karten und Bildern"
+msgid "Group visits and accommodation"
+msgstr "Gruppenbesuch und Aufenthalt"
 
-msgid "Оформление меню"
-msgstr "Menügestaltung"
+msgid "Header and footer"
+msgstr "Kopf- und Fußbereich"
 
-msgid "Состав и порядок пунктов меняются в «Внешний вид → Меню». Там же можно выбрать изображение для каждого пункта. Если оно не выбрано, показывается миниатюра связанной страницы или записи."
-msgstr "Die Menüpunkte und ihre Reihenfolge ändern Sie unter „Design → Menüs“. Dort können Sie auch für jeden Punkt ein Bild wählen. Ohne Auswahl wird das Beitragsbild der verknüpften Seite oder des Beitrags angezeigt."
+msgid "Heading"
+msgstr "Überschrift"
 
-msgid "Строка ссылок"
+msgid "Hero"
+msgstr "Startbereich"
+
+msgid "Hero image"
+msgstr "Hauptfoto"
+
+msgid "Hide the schedule card when upcoming services are displayed"
+msgstr "Zeitplankarte ausblenden, wenn kommende Gottesdienste angezeigt werden"
+
+msgid "History"
+msgstr "Geschichte"
+
+msgid "Home"
+msgstr "Startseite"
+
+msgid "Homepage"
+msgstr "Startseite"
+
+msgid "Homepage content"
+msgstr "Inhalt der Startseite"
+
+msgid "Icon of the day"
+msgstr "Tagesikone"
+
+msgid "Insufficient permissions."
+msgstr "Keine ausreichende Berechtigung."
+
+msgid "Keep the header visible while scrolling"
+msgstr "Kopfbereich beim Scrollen fixieren"
+
+msgid "Language"
+msgstr "Sprache"
+
+msgid "Languages"
+msgstr "Sprachen"
+
+msgid "Layout and fonts"
+msgstr "Layout und Schriften"
+
+msgid "Learn more"
+msgstr "Mehr erfahren"
+
+msgid "Light hospitality"
+msgstr "Hell und einladend"
+
+msgid "Link label"
+msgstr "Linktext"
+
+msgid "Link row"
 msgstr "Linkleiste"
 
-msgid "Название, описание и контакты можно задать здесь без плагинов. Заполненные поля имеют приоритет. Если название или описание не заданы, используются общие настройки WordPress; подключённый Core может дополнить пустые поля."
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Logo and icon"
+msgstr "Logo und Website-Icon"
+
+msgid "Maximum logo width in px"
+msgstr "Maximale Logobreite, px"
+
+msgid "Menu"
+msgstr "Menü"
+
+msgid "Menu item image"
+msgstr "Bild des Menüpunkts"
+
+msgid "Menu style"
+msgstr "Menügestaltung"
+
+msgid "Menu with cards and images"
+msgstr "Menü mit Karten und Bildern"
+
+msgid "Modern blue"
+msgstr "Modern in Blau"
+
+msgid "Monastery"
+msgstr "Kloster"
+
+msgid "Move down: %s"
+msgstr "Nach unten: %s"
+
+msgid "Move up: %s"
+msgstr "Nach oben: %s"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "News"
+msgstr "Nachrichten"
+
+msgid "No content found. Change your search or reset the filters."
+msgstr "Keine Beiträge gefunden. Ändern Sie die Suche oder setzen Sie die Filter zurück."
+
+msgid "Number of posts"
+msgstr "Anzahl der Beiträge"
+
+msgid "Number of services"
+msgstr "Anzahl der Gottesdienste"
+
+msgid "Only the content of the page selected as the homepage in Reading settings is displayed."
+msgstr "Es wird nur der eigene Inhalt der in den Leseeinstellungen gewählten Startseite angezeigt."
+
+msgid "Orthodox calendar"
+msgstr "Orthodoxer Kalender"
+
+msgid "Page breadcrumb"
+msgstr "Pfad zur Seite"
+
+msgid "Page language versions"
+msgstr "Sprachversionen der Seiten"
+
+msgid "Page sections"
+msgstr "Abschnitte der Seite"
+
+msgid "Parish"
+msgstr "Gemeinde"
+
+msgid "Parish Appearance"
+msgstr "Gemeindedesign"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Pilgrim"
+msgstr "Für Pilger"
+
+msgid "Please arrange accommodation and group visits with the monastery in advance."
+msgstr "Bitte klären Sie einen möglichen Aufenthalt und die Bedingungen für einen Gruppenbesuch im Voraus mit dem Kloster."
+
+msgid "Polish"
+msgstr "Polnisch"
+
+msgid "Post breadcrumb"
+msgstr "Artikelnavigation"
+
+msgid "Post categories"
+msgstr "Rubriken der Beiträge"
+
+msgid "Post category"
+msgstr "Beitragskategorie"
+
+msgid "Post link label"
+msgstr "Text des Beitragslinks"
+
+msgid "Preview"
+msgstr "Vorschau"
+
+msgid "Preview: %s"
+msgstr "Vorschau: %s"
+
+msgid "Preview: %s (new tab)"
+msgstr "Vorschau: %s (neuer Tab)"
+
+msgid "Primary menu"
+msgstr "Hauptmenü"
+
+msgid "Privacy policy"
+msgstr "Datenschutzerklärung"
+
+msgid "Quotation below the buttons in the blue style"
+msgstr "Zitat unter den Schaltflächen des blauen Stils"
+
+msgid "Quotation source"
+msgstr "Quelle des Zitats"
+
+msgid "Quotation text"
+msgstr "Zitattext"
+
+msgid "Read more"
+msgstr "Weiterlesen"
+
+msgid "Read more →"
+msgstr "Weiterlesen →"
+
+msgid "Related posts"
+msgstr "Lesen Sie auch"
+
+msgid "Remove"
+msgstr "Entfernen"
+
+msgid "Reset filters"
+msgstr "Filter zurücksetzen"
+
+msgid "Russian"
+msgstr "Russisch"
+
+msgid "Sans serif"
+msgstr "Sans-Serif"
+
+msgid "Save changes"
+msgstr "Änderungen speichern"
+
+msgid "Schedule"
+msgstr "Gottesdienste"
+
+msgid "Schedule button label"
+msgstr "Text der Zeitplan-Schaltfläche"
+
+msgid "Search"
+msgstr "Suche"
+
+msgid "Search posts"
+msgstr "Beiträge suchen"
+
+msgid "Search posts…"
+msgstr "Beiträge suchen…"
+
+msgid "Secondary button label"
+msgstr "Text der zweiten Schaltfläche"
+
+msgid "Section cards"
+msgstr "Bereichskarten"
+
+msgid "Section pages"
+msgstr "Seitenzuordnungen"
+
+msgid "Section settings"
+msgstr "Abschnittseinstellungen"
+
+msgid "Serif"
+msgstr "Serifenschrift"
+
+msgid "Sermons and talks"
+msgstr "Predigten und Gespräche"
+
+msgid "Service schedule"
+msgstr "Gottesdienstplan"
+
+msgid "Set the name, description and contact details here without plugins. Filled fields take priority. Empty name or description fields use the WordPress general settings; an active Core plugin can supply other empty fields."
 msgstr "Name, Beschreibung und Kontaktdaten können hier ohne Plugins angegeben werden. Ausgefüllte Felder haben Vorrang. Ohne eigene Angaben gelten die allgemeinen WordPress-Einstellungen für Name und Beschreibung; ein aktiviertes Core-Plugin kann leere Felder ergänzen."
 
-msgid "Выберите обычные страницы WordPress. Эти ссылки используются на главной, в шапке, подвале и боковой колонке; изображения записей — как фотографии карточек. Плагины не требуются. Пустой выбор позволяет использовать необязательные привязки подключённых плагинов."
-msgstr "Wählen Sie normale WordPress-Seiten. Diese Links werden auf der Startseite, im Kopf- und Fußbereich sowie in der Seitenleiste verwendet; Beitragsbilder dienen als Kartenfotos. Plugins sind nicht erforderlich. Ohne Auswahl können optionale Seitenzuordnungen aktivierter Plugins verwendet werden."
+msgid "Settings sections"
+msgstr "Einstellungsbereiche"
+
+msgid "Short name"
+msgstr "Kurzname"
+
+msgid "Show card images"
+msgstr "Kartenfotos anzeigen"
+
+msgid "Show contact details in the header"
+msgstr "Kontaktdaten im Kopfbereich anzeigen"
+
+msgid "Show date"
+msgstr "Datum anzeigen"
+
+msgid "Show excerpt"
+msgstr "Auszug anzeigen"
+
+msgid "Show images"
+msgstr "Fotos anzeigen"
+
+msgid "Show logo"
+msgstr "Logo anzeigen"
+
+msgid "Show name"
+msgstr "Namen anzeigen"
+
+msgid "Site details"
+msgstr "Website-Daten"
+
+msgid "Site icon"
+msgstr "Website-Icon"
+
+msgid "Site sections"
+msgstr "Website-Bereiche"
+
+msgid "Site width in px"
+msgstr "Website-Breite, px"
+
+msgid "Skip to content"
+msgstr "Zum Inhalt springen"
+
+msgid "Staying at the monastery"
+msgstr "Aufenthalt im Kloster"
+
+msgid "Style preview"
+msgstr "Design-Vorschau"
+
+msgctxt "Style variation name"
+msgid "Light hospitality"
+msgstr "Hell und einladend"
+
+msgctxt "Style variation name"
+msgid "Modern blue"
+msgstr "Modern in Blau"
+
+msgctxt "Style variation name"
+msgid "Modern editorial"
+msgstr "Klar und modern"
+
+msgctxt "Style variation name"
+msgid "Traditional"
+msgstr "Traditionell"
+
+msgid "Styles"
+msgstr "Design"
+
+msgid "Submit a prayer request"
+msgstr "Gebetsanliegen einreichen"
+
+msgid "Support the church"
+msgstr "Die Kirche unterstützen"
+
+msgid "Support the monastery"
+msgstr "Das Kloster unterstützen"
+
+msgid "Support the parish"
+msgstr "Gemeinde unterstützen"
+
+msgctxt "Template part name"
+msgid "Footer"
+msgstr "Fußzeile"
+
+msgctxt "Template part name"
+msgid "Header"
+msgstr "Kopfzeile"
+
+msgid "Text is stored in WordPress settings. Empty fields do not insert preset content. Enable sections and change their order with the arrows. Pages and posts are not modified."
+msgstr "Texte werden in den WordPress-Einstellungen gespeichert. Leere Felder fügen keine vorgefertigten Inhalte ein. Aktivieren Sie Abschnitte und ändern Sie ihre Reihenfolge mit den Pfeilen. Seiten und Beiträge bleiben unverändert."
+
+msgid "The cards show example layouts. The live preview uses your pages, images and settings."
+msgstr "Die Karten zeigen Gestaltungsbeispiele. Die Live-Vorschau verwendet Ihre Seiten, Fotos und Einstellungen."
+
+msgid "The logo and name are disabled. A homepage link will remain on the site."
+msgstr "Logo und Name sind ausgeblendet. Ein Link zur Startseite bleibt auf der Website sichtbar."
+
+msgid "The preview opens in a new tab without changing the site. To apply a style, select its card and save your changes."
+msgstr "Die Vorschau öffnet sich in einem neuen Tab und ändert die Website nicht. Zum Anwenden wählen Sie eine Karte und speichern die Änderungen."
+
+msgid "The site icon must be a square image of at least 512 × 512 px. The previous icon has been kept."
+msgstr "Das Icon muss quadratisch und mindestens 512 × 512 px groß sein. Das bisherige Icon wurde beibehalten."
+
+msgid "The site icon must be square and at least 512 × 512 px."
+msgstr "Das Website-Icon muss quadratisch und mindestens 512 × 512 px groß sein."
+
+msgid "The site style has not been changed."
+msgstr "Das Design der Website wurde nicht geändert."
+
+msgid "Theme settings"
+msgstr "Theme-Einstellungen"
+
+msgid "There are no posts in this category yet."
+msgstr "In dieser Kategorie gibt es noch keine Beiträge."
+
+msgid "There are no posts yet."
+msgstr "Noch keine Beiträge vorhanden."
+
+msgid "This section appears when a schedule plugin supplies upcoming services."
+msgstr "Der Abschnitt erscheint, wenn das Kalenderplugin kommende Gottesdienste bereitstellt."
+
+msgid "Traditional"
+msgstr "Traditionell"
+
+msgid "Ukrainian"
+msgstr "Ukrainisch"
+
+msgid "Upcoming services"
+msgstr "Nächste Gottesdienste"
+
+msgid "Upload or choose an image"
+msgstr "Bild hochladen oder auswählen"
+
+msgid "Use image"
+msgstr "Bild verwenden"
+
+msgid "Use style default"
+msgstr "Gemäß Design"
+
+msgid "View site"
+msgstr "Website ansehen"
+
+msgid "Visitor information"
+msgstr "Informationen für Pilger"
+
+msgid "Welcome"
+msgstr "Wir freuen uns auf Ihren Besuch"
+
+msgid "Wide"
+msgstr "Breite Seite"

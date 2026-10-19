@@ -34,23 +34,23 @@ function prihod_theme_pilgrim_heading(): string {
     $data = prihod_theme_pilgrim_data(); if ( ! $data ) { return prihod_theme_heading(); }
     $options = georg_kloster_prihod_options();
     $image = get_the_post_thumbnail_url( $data['page']->ID, 'full' ) ?: wp_get_attachment_image_url( $options['hero_image'], 'full' );
-    return '<section class="prihod-pilgrim-heading"' . ( $image ? ' style="--prihod-hero-image:url(' . esc_url( $image ) . ')"' : '' ) . '><div class="prihod-container"><a class="prihod-breadcrumb" href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '">' . esc_html__( 'Главная', 'georg-kloster-prihod' ) . '</a><h1>' . esc_html( $data['page']->post_title ) . '</h1><div class="prihod-pilgrim-intro">' . $data['intro'] . '</div></div></section>';
+    return '<section class="prihod-pilgrim-heading"' . ( $image ? ' style="--prihod-hero-image:url(' . esc_url( $image ) . ')"' : '' ) . '><div class="prihod-container"><a class="prihod-breadcrumb" href="' . esc_url( prihod_theme_preview_url( home_url( '/' ) ) ) . '">' . esc_html__( 'Home', 'georg-kloster-prihod' ) . '</a><h1>' . esc_html( $data['page']->post_title ) . '</h1><div class="prihod-pilgrim-intro">' . $data['intro'] . '</div></div></section>';
 }
 function prihod_theme_pilgrim_content( string $html ): string {
     $data = prihod_theme_pilgrim_data(); $post = get_post();
     if ( ! $data || ! $post || $post->ID !== $data['page']->ID ) { return $html; }
     $sections = $data['sections']; $profile = prihod_theme_profile();
-    $html = '<div class="prihod-pilgrim-content"><nav class="prihod-pilgrim-quick" aria-label="' . esc_attr__( 'Информация паломнику', 'georg-kloster-prihod' ) . '">';
-    foreach ( array( array( 'road', 'contacts', __( 'Как добраться', 'georg-kloster-prihod' ) ), array( 'info', 'news', __( 'Первое посещение', 'georg-kloster-prihod' ) ), array( 'groups', 'group', __( 'Групповой визит', 'georg-kloster-prihod' ) ), array( 'groups', 'about', __( 'Пребывание в обители', 'georg-kloster-prihod' ) ) ) as $item ) {
+    $html = '<div class="prihod-pilgrim-content"><nav class="prihod-pilgrim-quick" aria-label="' . esc_attr__( 'Visitor information', 'georg-kloster-prihod' ) . '">';
+    foreach ( array( array( 'road', 'contacts', __( 'Directions', 'georg-kloster-prihod' ) ), array( 'info', 'news', __( 'First visit', 'georg-kloster-prihod' ) ), array( 'groups', 'group', __( 'Group visit', 'georg-kloster-prihod' ) ), array( 'groups', 'about', __( 'Staying at the monastery', 'georg-kloster-prihod' ) ) ) as $item ) {
         $html .= '<a href="#prihod-pilgrim-' . esc_attr( $item[0] ) . '">' . prihod_theme_icon( $item[1] ) . '<span>' . esc_html( $item[2] ) . '</span></a>';
     }
     $html .= '</nav>' . implode( '', $data['extra'] ) . '<div class="prihod-pilgrim-visit"><section id="prihod-pilgrim-info">' . $sections[0]['heading'] . $sections[0]['body'];
     $schedule = prihod_theme_url( 'schedule' );
-    if ( $schedule ) { $html .= '<a class="prihod-pilgrim-schedule" href="' . esc_url( $schedule ) . '">' . esc_html__( 'Расписание богослужений', 'georg-kloster-prihod' ) . ' →</a>'; }
-    $html .= '</section><section id="prihod-pilgrim-groups"><h2>' . esc_html__( 'Групповой визит и пребывание', 'georg-kloster-prihod' ) . '</h2><p>' . esc_html__( 'Возможность пребывания и условия группового визита согласуйте с обителью заранее.', 'georg-kloster-prihod' ) . '</p>' . $sections[2]['heading'] . $sections[2]['body'] . '<div class="prihod-actions">';
-    if ( $profile['phone'] ) { $html .= '<a class="prihod-pilgrim-phone" href="' . esc_url( 'tel:' . preg_replace( '/[^+0-9]/', '', $profile['phone'] ) ) . '">' . prihod_theme_icon( 'phone' ) . esc_html__( 'Позвонить в обитель', 'georg-kloster-prihod' ) . '</a>'; }
+    if ( $schedule ) { $html .= '<a class="prihod-pilgrim-schedule" href="' . esc_url( $schedule ) . '">' . esc_html__( 'Service schedule', 'georg-kloster-prihod' ) . ' →</a>'; }
+    $html .= '</section><section id="prihod-pilgrim-groups"><h2>' . esc_html__( 'Group visits and accommodation', 'georg-kloster-prihod' ) . '</h2><p>' . esc_html__( 'Please arrange accommodation and group visits with the monastery in advance.', 'georg-kloster-prihod' ) . '</p>' . $sections[2]['heading'] . $sections[2]['body'] . '<div class="prihod-actions">';
+    if ( $profile['phone'] ) { $html .= '<a class="prihod-pilgrim-phone" href="' . esc_url( 'tel:' . preg_replace( '/[^+0-9]/', '', $profile['phone'] ) ) . '">' . prihod_theme_icon( 'phone' ) . esc_html__( 'Call the monastery', 'georg-kloster-prihod' ) . '</a>'; }
     $contact = prihod_theme_url( 'requests' ) ?: prihod_theme_url( 'contacts' );
-    if ( $contact ) { $html .= '<a class="prihod-button" href="' . esc_url( $contact ) . '">' . esc_html__( 'Согласовать приезд', 'georg-kloster-prihod' ) . ' →</a>'; }
+    if ( $contact ) { $html .= '<a class="prihod-button" href="' . esc_url( $contact ) . '">' . esc_html__( 'Arrange a visit', 'georg-kloster-prihod' ) . ' →</a>'; }
     $html .= '</div></section></div><section id="prihod-pilgrim-road"><div class="prihod-pilgrim-road-copy">' . $sections[1]['heading'] . ( $data['photo'] ? '<div class="prihod-pilgrim-road-photo">' . $data['photo'] . '</div>' : '' ) . $sections[1]['body'] . '</div></section>';
     foreach ( array_slice( $sections, 3 ) as $section ) { $html .= '<section class="prihod-pilgrim-extra">' . $section['heading'] . $section['body'] . '</section>'; }
     return $html . $data['tail'] . '</div>';

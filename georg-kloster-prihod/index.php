@@ -4,7 +4,7 @@
 <div class="prihod-catalog-grid">
 <?php while ( have_posts() ) : the_post(); ?>
 <article <?php post_class( 'prihod-news-card' ); ?>>
-<?php echo prihod_theme_post_photo( get_post(), 'medium_large', get_permalink() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by renderer. ?>
+<?php echo prihod_theme_post_photo( get_post(), 'medium_large', get_permalink() ); ?>
 <a class="prihod-news-copy" href="<?php the_permalink(); ?>"><time datetime="<?php echo esc_attr( get_the_date( 'Y-m-d' ) ); ?>"><?php echo esc_html( get_the_date() ); ?></time><h2><?php the_title(); ?></h2><p><?php echo esc_html( get_the_excerpt() ); ?></p></a>
 </article>
 <?php endwhile; ?>

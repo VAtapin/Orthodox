@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "title": "Современная синяя",
+  "title": "Modern blue",
   "settings": {
     "custom": {
       "prihod": {
@@ -13,37 +13,37 @@
       "palette": [
         {
           "slug": "paper",
-          "name": "Фон",
+          "name": "Background",
           "color": "#f9fbfd"
         },
         {
           "slug": "ink",
-          "name": "Текст",
+          "name": "Text",
           "color": "#16324c"
         },
         {
           "slug": "forest",
-          "name": "Акцент",
+          "name": "Accent",
           "color": "#396fa3"
         },
         {
           "slug": "gold",
-          "name": "Золото",
+          "name": "Gold",
           "color": "#396fa3"
         },
         {
           "slug": "white",
-          "name": "Карточки",
+          "name": "Cards",
           "color": "#ffffff"
         },
         {
           "slug": "muted",
-          "name": "Вторичный текст",
+          "name": "Secondary text",
           "color": "#687080"
         },
         {
           "slug": "line",
-          "name": "Границы",
+          "name": "Borders",
           "color": "#dcdcd4"
         }
       ]

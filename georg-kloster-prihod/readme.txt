@@ -34,6 +34,9 @@ Create and assign a menu under Appearance > Menus. Open a menu item and choose i
 
 == Changelog ==
 
+= 0.4.30 =
+Use English gettext source strings with bundled Russian translations, including native theme.json contexts. Replace the theme screenshot with the full Classic preview. Remove output-warning suppression comments while retaining renderer escaping.
+
 = 0.4.29 =
 Remove built-in homepage copy, greetings, mottos and quotations. Store headings, eyebrows, descriptions and action labels in WordPress settings. Empty text fields stay empty; card titles can use the linked WordPress page title. Bundle only UI messages actually used by the theme in translation catalogs.
 
@@ -104,5 +107,5 @@ Connects the service preview and calendar icons to the standalone Schedule plugi
 == Resources ==
 
 Theme PHP, CSS, JavaScript, and SVG assets: © 2026 Vladimir Atapin, GPLv2 or later, included in this package.
-Theme screenshot, captured from the theme with neutral WordPress content: © 2026 Vladimir Atapin, GPLv2 or later, included in this package.
+Theme screenshot and style previews, captured from the theme demonstration: © 2026 Vladimir Atapin, GPLv2 or later, included in this package.
 WordPress core blocks and APIs are provided by WordPress, GPLv2 or later, https://wordpress.org/about/license/.

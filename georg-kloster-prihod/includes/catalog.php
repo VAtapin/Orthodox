@@ -42,11 +42,11 @@ function prihod_theme_catalog_controls( array $query ): string {
     parse_str( wp_parse_url( $base, PHP_URL_QUERY ) ?: '', $hidden );
     if ( $category ) { $hidden['prihod_catalog_category'] = $category; }
     $id = 'prihod-catalog-search-' . wp_unique_id();
-    $html = '<div class="prihod-catalog-controls"><nav class="prihod-catalog-filters" aria-label="' . esc_attr__( 'Рубрики публикаций', 'georg-kloster-prihod' ) . '"><a' . ( ! $category ? ' aria-current="true"' : '' ) . ' href="' . esc_url( prihod_theme_catalog_url( 0, $search ) ) . '">' . esc_html__( 'Все', 'georg-kloster-prihod' ) . '</a>';
+    $html = '<div class="prihod-catalog-controls"><nav class="prihod-catalog-filters" aria-label="' . esc_attr__( 'Post categories', 'georg-kloster-prihod' ) . '"><a' . ( ! $category ? ' aria-current="true"' : '' ) . ' href="' . esc_url( prihod_theme_catalog_url( 0, $search ) ) . '">' . esc_html__( 'All', 'georg-kloster-prihod' ) . '</a>';
     foreach ( prihod_theme_catalog_terms( $query ) as $term ) { $html .= '<a' . ( $category === $term->term_id ? ' aria-current="true"' : '' ) . ' href="' . esc_url( prihod_theme_catalog_url( $term->term_id, $search ) ) . '">' . esc_html( $term->name ) . '</a>'; }
-    $html .= '</nav><form method="get" action="' . esc_url( $base ) . '"><label class="screen-reader-text" for="' . esc_attr( $id ) . '">' . esc_html__( 'Поиск публикаций', 'georg-kloster-prihod' ) . '</label><div><input id="' . esc_attr( $id ) . '" type="search" name="prihod_catalog_search" value="' . esc_attr( $search ) . '" maxlength="200" placeholder="' . esc_attr__( 'Поиск публикаций…', 'georg-kloster-prihod' ) . '"><button type="submit" aria-label="' . esc_attr__( 'Найти', 'georg-kloster-prihod' ) . '">' . prihod_theme_icon( 'search' ) . '</button></div>';
+    $html .= '</nav><form method="get" action="' . esc_url( $base ) . '"><label class="screen-reader-text" for="' . esc_attr( $id ) . '">' . esc_html__( 'Search posts', 'georg-kloster-prihod' ) . '</label><div><input id="' . esc_attr( $id ) . '" type="search" name="prihod_catalog_search" value="' . esc_attr( $search ) . '" maxlength="200" placeholder="' . esc_attr__( 'Search posts…', 'georg-kloster-prihod' ) . '"><button type="submit" aria-label="' . esc_attr__( 'Find', 'georg-kloster-prihod' ) . '">' . prihod_theme_icon( 'search' ) . '</button></div>';
     foreach ( $hidden as $name => $value ) { if ( is_scalar( $value ) ) { $html .= '<input type="hidden" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '">'; } }
-    return $html . '</form><a class="prihod-catalog-reset" href="' . esc_url( $base ) . '">' . esc_html__( 'Сбросить фильтры', 'georg-kloster-prihod' ) . '</a></div>';
+    return $html . '</form><a class="prihod-catalog-reset" href="' . esc_url( $base ) . '">' . esc_html__( 'Reset filters', 'georg-kloster-prihod' ) . '</a></div>';
 }
 function prihod_theme_catalog_card_blocks( array $template ): array {
     $allowed = array( 'core/post-featured-image', 'core/post-date', 'core/post-title', 'core/post-excerpt', 'core/read-more' );
@@ -56,7 +56,7 @@ function prihod_theme_catalog_card_blocks( array $template ): array {
         $blocks[$child['blockName']] = $child;
     }
     if ( ! isset( $blocks['core/post-title'] ) || trim( $template['innerHTML'] ) ) { return $template; }
-    $defaults = parse_blocks( '<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/9"} /--><!-- wp:post-date /--><!-- wp:post-title {"isLink":true,"level":2} /--><!-- wp:post-excerpt {"excerptLength":24} /--><!-- wp:read-more {"content":' . wp_json_encode( __( 'Читать далее →', 'georg-kloster-prihod' ) ) . '} /-->' );
+    $defaults = parse_blocks( '<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/9"} /--><!-- wp:post-date /--><!-- wp:post-title {"isLink":true,"level":2} /--><!-- wp:post-excerpt {"excerptLength":24} /--><!-- wp:read-more {"content":' . wp_json_encode( __( 'Read more →', 'georg-kloster-prihod' ) ) . '} /-->' );
     $template['innerBlocks'] = array();
     foreach ( $defaults as $default ) {
         $child = $blocks[$default['blockName']] ?? $default;
@@ -100,7 +100,7 @@ add_filter( 'render_block_data', function ( array $block ): array {
         $block['innerBlocks'][] = $pagination; array_splice( $block['innerContent'], -1, 0, array( null ) );
     }
     if ( ! $has_empty ) {
-        $empty = parse_blocks( '<!-- wp:query-no-results --><div class="prihod-catalog-empty" role="status"><!-- wp:paragraph --><p>' . esc_html__( 'Материалы не найдены. Измените запрос или сбросьте фильтры.', 'georg-kloster-prihod' ) . '</p><!-- /wp:paragraph --><!-- wp:paragraph --><p><a href="' . esc_url( prihod_theme_catalog_url() ) . '">' . esc_html__( 'Сбросить фильтры', 'georg-kloster-prihod' ) . '</a></p><!-- /wp:paragraph --></div><!-- /wp:query-no-results -->' )[0];
+        $empty = parse_blocks( '<!-- wp:query-no-results --><div class="prihod-catalog-empty" role="status"><!-- wp:paragraph --><p>' . esc_html__( 'No content found. Change your search or reset the filters.', 'georg-kloster-prihod' ) . '</p><!-- /wp:paragraph --><!-- wp:paragraph --><p><a href="' . esc_url( prihod_theme_catalog_url() ) . '">' . esc_html__( 'Reset filters', 'georg-kloster-prihod' ) . '</a></p><!-- /wp:paragraph --></div><!-- /wp:query-no-results -->' )[0];
         $block['innerBlocks'][] = $empty; array_splice( $block['innerContent'], -1, 0, array( null ) );
     }
     return $block;

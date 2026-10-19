@@ -26,11 +26,11 @@ add_action( 'wp_nav_menu_item_custom_fields', function ( int $item_id ): void {
     $image_id = absint( get_post_meta( $item_id, '_prihod_menu_image', true ) );
     $preview = $image_id ? wp_get_attachment_image( $image_id, 'thumbnail', false, array( 'class' => 'prihod-menu-admin-preview', 'alt' => '' ) ) : '';
     echo '<p class="description description-wide prihod-menu-image-field"><label for="edit-menu-item-prihod-image-' . $item_id . '">'
-        . esc_html__( 'Изображение пункта меню', 'georg-kloster-prihod' ) . '</label><br>'
+        . esc_html__( 'Menu item image', 'georg-kloster-prihod' ) . '</label><br>'
         . '<span class="prihod-menu-admin-image">' . $preview . '</span>'
         . '<input id="edit-menu-item-prihod-image-' . $item_id . '" type="hidden" name="prihod_menu_image[' . $item_id . ']" value="' . $image_id . '">'
-        . '<button type="button" class="button prihod-menu-image-select">' . esc_html__( 'Выбрать изображение', 'georg-kloster-prihod' ) . '</button> '
-        . '<button type="button" class="button-link prihod-menu-image-remove"' . ( $image_id ? '' : ' hidden' ) . '>' . esc_html__( 'Удалить', 'georg-kloster-prihod' ) . '</button>'
+        . '<button type="button" class="button prihod-menu-image-select">' . esc_html__( 'Choose image', 'georg-kloster-prihod' ) . '</button> '
+        . '<button type="button" class="button-link prihod-menu-image-remove"' . ( $image_id ? '' : ' hidden' ) . '>' . esc_html__( 'Delete', 'georg-kloster-prihod' ) . '</button>'
         . wp_nonce_field( 'prihod_menu_image_' . $item_id, 'prihod_menu_image_nonce[' . $item_id . ']', true, false )
         . '</p>';
 } );
@@ -51,5 +51,5 @@ add_action( 'admin_enqueue_scripts', function ( string $hook ): void {
     if ( 'nav-menus.php' !== $hook ) { return; }
     wp_enqueue_media();
     wp_enqueue_script( 'prihod-menu-admin', get_template_directory_uri() . '/assets/menu-admin.js', array( 'media-views' ), wp_get_theme()->get( 'Version' ), true );
-    wp_add_inline_script( 'prihod-menu-admin', 'window.prihodMenuMedia = ' . wp_json_encode( array( 'title' => __( 'Изображение пункта меню', 'georg-kloster-prihod' ), 'select' => __( 'Использовать изображение', 'georg-kloster-prihod' ) ) ) . ';', 'before' );
+    wp_add_inline_script( 'prihod-menu-admin', 'window.prihodMenuMedia = ' . wp_json_encode( array( 'title' => __( 'Menu item image', 'georg-kloster-prihod' ), 'select' => __( 'Use image', 'georg-kloster-prihod' ) ) ) . ';', 'before' );
 } );

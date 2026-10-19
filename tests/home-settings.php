@@ -49,7 +49,7 @@ $check( $post_snapshot === hash( 'sha256', serialize( $wpdb->get_results( "SELEC
 $partial = prihod_theme_sanitize( array( 'width' => 1300 ) );
 $check( $partial['home'] === get_option( 'georg_kloster_prihod_options' )['home'], 'Saving old/partial theme forms discards home settings.' );
 $config['news_category'] = $other_category; $set( $config ); $html = prihod_theme_home_news( 'classic', false );
-$check( ! str_contains( $html, 'Fixture news 1' ) && str_contains( $html, 'Публикаций пока нет.' ), 'An explicitly selected empty category silently falls back to unrelated news.' );
+$check( ! str_contains( $html, 'Fixture news 1' ) && str_contains( $html, __( 'There are no posts yet.', 'georg-kloster-prihod' ) ), 'An explicitly selected empty category silently falls back to unrelated news.' );
 $config['news_category'] = $category; $config['news_show_excerpt'] = true; $config['news_excerpt_words'] = 3; $set( $config );
 $check( str_contains( prihod_theme_home_news( 'classic', false ), 'One two three' ) && ! str_contains( prihod_theme_home_news( 'classic', false ), 'four five' ), 'Excerpt length was ignored.' );
 $config['sections']['content']['enabled'] = false; $set( $config );

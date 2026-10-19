@@ -7,6 +7,6 @@
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<a class="skip-link screen-reader-text" href="#prihod-main"><?php esc_html_e( 'Перейти к содержимому', 'georg-kloster-prihod' ); ?></a>
+<a class="skip-link screen-reader-text" href="#prihod-main"><?php esc_html_e( 'Skip to content', 'georg-kloster-prihod' ); ?></a>
 <div class="wp-site-blocks">
-<header><?php echo prihod_theme_header(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by renderer. ?></header>
+<header><?php echo prihod_theme_header(); ?></header>

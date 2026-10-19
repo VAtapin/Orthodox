@@ -1,4 +1,4 @@
-<footer><?php echo prihod_theme_footer(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped by renderer. ?></footer>
+<footer><?php echo prihod_theme_footer(); ?></footer>
 </div>
 <?php wp_footer(); ?>
 </body>

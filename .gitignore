@@ -10,6 +10,7 @@ Thumbs.db
 /tests/.wordpress-result.json
 /tests/.theme-result.json
 /tests/.home-settings-result.json
+/tests/.theme-i18n-result.json
 /tests/.connectors-result.json
 /tests/.monastery-result.json
 /tests/.telegram-mail-preview.html

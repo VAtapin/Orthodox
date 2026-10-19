@@ -1,42 +1,46 @@
 # Georg-Kloster Prihod
 
-Самостоятельная тема WordPress 6.5+, PHP 8.0+. Пять схем: классическая золотая,
-гостеприимная, журнальная, традиционная и современная синяя. Тема работает со
-стандартными страницами и записями; плагины проекта необязательны для активации.
+Independent theme for WordPress 6.5+ and PHP 8.0+. Five styles are available:
+Classic gold, Light hospitality, Editorial, Traditional and Modern blue.
+Companion plugins are optional. The theme displays standard WordPress pages
+and posts without creating or rewriting them.
 
-Тема отвечает за внешний вид. Она не создаёт страницы, обращения или расписание,
-не отправляет сообщения и не меняет поведение форм. Настройки расположены в
-«Внешний вид → Оформление прихода». Там остаются общие параметры дизайна,
-логотип, иконка и главное фото. Фотографии разделов, карточек и карта задаются
-через содержимое и изображения записей обычных страниц WordPress.
-Название, описание, тип общины, адрес, телефон и email доступны в разделе
-«Данные сайта» самой темы. Заполненные значения имеют приоритет; необязательный
-Core может дополнять пустые поля. Без Core используются название и описание
-из общих настроек WordPress, контакты задаёт владелец.
-В разделе «Шапка и подвал» можно выбрать меню с карточками и число колонок.
-Пункты и вложенность редактируются в стандартном «Внешний вид → Меню»; там же
-для каждого пункта выбирается изображение из медиатеки. Если оно не задано,
-тема использует миниатюру связанной страницы или записи.
+## Settings
 
-Раздел «Главная страница» управляет включением и порядком секций, собственными
-заголовками, описанием первого экрана и блока об общине, карточками и ссылками
-на опубликованные страницы. Доступны количество ближайших служб, рубрика,
-число и колонки новостей, длина анонса, показ даты и фотографий. Нулевое значение
-«По оформлению» сохраняет параметры выбранной схемы. Службы появляются только
-при наличии данных Schedule; обычную страницу расписания можно выбрать без
-плагина. Выбранные страницы используются также в шапке, подвале, боковой
-колонке и при определении шаблонов страниц, без Core.
-Первый экран и остальные секции выводит шаблон, а настройки хранятся в options
-WordPress. Тема не переносит их в редактор страницы и не переписывает материалы.
-Готовых приветствий, девизов, цитат и описаний в теме нет. Текстовые поля
-по умолчанию пусты; тексты заполняются и сохраняются в базе WordPress.
-Название карточки может браться из выбранной страницы WordPress.
-Кнопки и надзаголовки задаются в настройках соответствующей секции.
-Собственные подписи регистрируются в WPML String Translation.
+Open **Appearance → Parish Appearance** for styles, layout, fonts, branding,
+hero image, navigation and footer settings. Site details include the name,
+description, community type, address, phone and email. Filled theme fields take
+priority; optional Core data may supply empty fields. Without Core, WordPress
+provides the site name and description.
 
-Пакет для WordPress.org собирается командой `py -3 scripts/package.py --only theme`
-из корня репозитория. Пять прежних JPG-превью с демонстрационными фотографиями
-остаются в исходниках для сравнения дизайна, но не включаются в публичный ZIP.
-Список ресурсов и инструкции установки находятся в `readme.txt`.
+Homepage settings control section visibility and order, headings, eyebrows,
+descriptions, button labels, cards and linked pages. Featured images from those
+pages provide card images. News controls include category, count, columns,
+excerpt length, date and image visibility. A zero numeric setting uses the
+selected style's default. Upcoming services require a schedule plugin; a link
+to an ordinary schedule page works without it.
 
-Статус проверки и порядок выпуска: `docs/WORDPRESS_ORG_RELEASE_PLAN.md`.
+The hero and section layouts remain theme templates. Editorial text is stored
+in WordPress options; blank fields do not insert preset homepage copy. Card
+titles may use the linked WordPress page title. Custom labels are registered
+with WPML String Translation.
+
+Menu items, nesting and images are managed under **Appearance → Menus**.
+The image menu is optional; the standard link row remains available.
+
+## Translation and packaging
+
+Source interface strings are English and use WordPress gettext. Russian,
+German, Polish and Ukrainian translations are in `languages/*.po` and `*.mo`.
+The POT includes native `theme.json` contexts for editor labels and style
+variations. Rebuild catalogs from the repository root:
+
+```sh
+python scripts/compile-translations.py --only theme
+python tests/translation-check.py
+python scripts/package.py --only theme
+```
+
+The theme screenshot is the Classic style preview from
+`assets/schemes/classic.jpg`, converted to PNG. Preview photographs are never
+inserted into public page content. Resource credits are in `readme.txt`.

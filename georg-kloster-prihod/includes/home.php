@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) || exit;
 function prihod_theme_home_features( string $scheme, string $about_label, bool $monastery, bool $has_schedule = false ): string {
     $home = prihod_theme_home_options(); $order = $home['card_order'];
     $photo_cards = $home['cards_show_images'];
-    $html = '<nav class="prihod-feature-grid' . ( $has_schedule ? ' has-schedule-panel' : '' ) . '" aria-label="' . esc_attr__( 'Разделы сайта', 'georg-kloster-prihod' ) . '">'; $has_cards = false;
+    $html = '<nav class="prihod-feature-grid' . ( $has_schedule ? ' has-schedule-panel' : '' ) . '" aria-label="' . esc_attr__( 'Site sections', 'georg-kloster-prihod' ) . '">'; $has_cards = false;
     foreach ( $order as $key ) {
         if ( ! $home['cards'][$key]['enabled'] || $has_schedule && $home['hide_schedule_card'] && 'schedule' === $key ) { continue; }
         $url = prihod_theme_home_url( $key ); if ( ! $url ) { continue; } $has_cards = true;
@@ -24,7 +24,7 @@ function prihod_theme_home_topic_links(): string {
         $links .= '<a href="' . esc_url( prihod_theme_preview_url( get_permalink( $id ) ) ) . '"><span>' . esc_html( get_the_title( $id ) ) . '</span><span aria-hidden="true">→</span></a>';
     }
     $title = prihod_theme_home_title( 'topics' );
-    return $links ? prihod_theme_section_title( $title, '', '', prihod_theme_home_eyebrow( 'topics' ) ) . '<nav class="prihod-home-topic-links" aria-label="' . esc_attr__( 'Разделы сайта', 'georg-kloster-prihod' ) . '">' . $links . '</nav>' : '';
+    return $links ? prihod_theme_section_title( $title, '', '', prihod_theme_home_eyebrow( 'topics' ) ) . '<nav class="prihod-home-topic-links" aria-label="' . esc_attr__( 'Site sections', 'georg-kloster-prihod' ) . '">' . $links . '</nav>' : '';
 }
 function prihod_theme_home_news( string $scheme, bool $monastery ): string {
     $home = prihod_theme_home_options();
@@ -44,7 +44,7 @@ function prihod_theme_home_news( string $scheme, bool $monastery ): string {
         $excerpt = $home['news_show_excerpt'] ? '<p>' . esc_html( wp_trim_words( wp_strip_all_tags( strip_shortcodes( $post->post_excerpt ?: $post->post_content ) ), $home['news_excerpt_words'] ?: ( 'tradition' === $scheme ? 9 : ( 'hospitality' === $scheme ? 12 : 19 ) ) ) ) . '</p>' : '';
         $html .= '<article class="prihod-news-card' . ( $home['news_show_images'] ? '' : ' prihod-home-no-photo' ) . '">' . ( $home['news_show_images'] ? prihod_theme_post_photo( $post, 'medium_large', prihod_theme_preview_url( get_permalink( $post ) ) ) : '' ) . '<a class="prihod-news-copy" href="' . esc_url( prihod_theme_preview_url( get_permalink( $post ) ) ) . '"><div>' . $date . '<h3>' . esc_html( $post->post_title ) . '</h3>' . $excerpt . ( prihod_theme_home_copy( 'news_read_button' ) ? '<span>' . esc_html( prihod_theme_home_copy( 'news_read_button' ) ) . ' →</span>' : '' ) . '</div></a></article>';
     }
-    return $html . '</div>' . ( ! $posts ? '<p>' . esc_html__( 'Публикаций пока нет.', 'georg-kloster-prihod' ) . '</p>' : '' ) . '</section>';
+    return $html . '</div>' . ( ! $posts ? '<p>' . esc_html__( 'There are no posts yet.', 'georg-kloster-prihod' ) . '</p>' : '' ) . '</section>';
 }
 function prihod_theme_home(): string {
     $profile = prihod_theme_profile(); $options = georg_kloster_prihod_options(); $scheme = prihod_theme_scheme(); $home = prihod_theme_home_options();

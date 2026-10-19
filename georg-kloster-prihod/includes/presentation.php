@@ -77,7 +77,7 @@ function prihod_theme_contact_panel( string $title = '' ): string {
     $profile = prihod_theme_profile(); $options = georg_kloster_prihod_options();
     if ( ! $profile['address'] && ! $profile['phone'] && ! $profile['email'] ) { return ''; }
     $html = '<section class="prihod-home-contacts">' . prihod_theme_section_title( $title, '', '', prihod_theme_home_eyebrow( 'contacts' ) ) . '<div class="prihod-contact-layout"><div class="prihod-contact-list">';
-    foreach ( array( 'address' => array( 'contacts', __( 'Адрес', 'georg-kloster-prihod' ) ), 'phone' => array( 'phone', __( 'Телефон', 'georg-kloster-prihod' ) ), 'email' => array( 'email', __( 'Email', 'georg-kloster-prihod' ) ) ) as $key => $item ) {
+    foreach ( array( 'address' => array( 'contacts', __( 'Address', 'georg-kloster-prihod' ) ), 'phone' => array( 'phone', __( 'Phone', 'georg-kloster-prihod' ) ), 'email' => array( 'email', __( 'Email', 'georg-kloster-prihod' ) ) ) as $key => $item ) {
         if ( empty( $profile[$key] ) ) { continue; }
         $text = esc_html( $profile[$key] );
         if ( 'phone' === $key ) { $text = '<a href="' . esc_url( 'tel:' . preg_replace( '/[^+0-9]/', '', $profile[$key] ) ) . '">' . $text . '</a>'; }

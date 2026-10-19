@@ -71,7 +71,7 @@ function prihod_theme_schedule_icon_markup( string $html, array $event, ?array $
     $full_url = $calendar::image_url( $event['start']->format( 'Y-m-d' ) );
     if ( ! $full_url ) { return $html; }
     $seed = $fallback['url'] ?? $full_url;
-    $image = '<img src="' . esc_url( $full_url ) . '" alt="' . esc_attr__( 'Икона дня', 'georg-kloster-prihod' ) . '" decoding="async">';
+    $image = '<img src="' . esc_url( $full_url ) . '" alt="' . esc_attr__( 'Icon of the day', 'georg-kloster-prihod' ) . '" decoding="async">';
     $html = str_replace( '</figure>', $image . '</figure>', $html );
     $html = prihod_theme_photo_html( $html, 0, '', true );
     // Native metadata retains its deferred full-size source; only the thumbnail is seeded.

@@ -22,7 +22,7 @@ function prihod_theme_clergy_content( string $html ): string {
     if ( ! str_contains( $native, esc_html( $people[0]->post_title ) ) ) { return $html; }
     $card = '<div class="prihod-clergy-card"><div class="prihod-clergy-photo">' . render_block( $blocks[$photo] ) . '</div><div class="prihod-clergy-biography">' . $native;
     $url = prihod_theme_url( 'requests' );
-    if ( $url ) { $card .= '<a class="prihod-button is-outline" href="' . esc_url( $url ) . '">' . esc_html__( 'Вопрос священнику', 'georg-kloster-prihod' ) . ' →</a>'; }
+    if ( $url ) { $card .= '<a class="prihod-button is-outline" href="' . esc_url( $url ) . '">' . esc_html__( 'Ask a priest', 'georg-kloster-prihod' ) . ' →</a>'; }
     $card .= '</div></div>'; $result = '';
     foreach ( $blocks as $index => $block ) {
         if ( $index === $bio ) { $result .= $card; }
