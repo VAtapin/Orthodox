@@ -1,0 +1,504 @@
+{
+  "id": "birch-haven-v1",
+  "locale": "en_US",
+  "title": "Saint Nicholas Parish in Birch Haven — a training example",
+  "disclaimer": "Demonstration website. Saint Nicholas Parish in Birch Haven and the Birch Haven Training Diocese are fictional. Events, the address and service times are examples. Photographs and illustrations are provided by Saint George Monastery in Götschendorf and do not depict the fictional parish.",
+  "profile": {
+    "type": "parish",
+    "name": "Saint Nicholas Parish in Birch Haven",
+    "short_name": "Saint Nicholas Parish",
+    "description": "A training parish dedicated to Saint Nicholas in fictional Birch Haven. A place for prayer, community and good works in the Birch Haven Training Diocese.",
+    "address": "1 Training Square, Birch Haven (fictional address)",
+    "phone": "",
+    "email": "office@birch-haven.example",
+    "website": ""
+  },
+  "media": {
+    "monastery": {
+      "file": "monastery.jpg",
+      "title": "Saint George Monastery in Götschendorf. Illustration for the demo website.",
+      "alt": "Saint George Monastery in Götschendorf. Illustration for the demo website.",
+      "caption": "Saint George Monastery in Götschendorf. Illustration for the demo website."
+    },
+    "trinity": {
+      "file": "trinity.jpg",
+      "title": "Holy Trinity celebration at Saint George Monastery. Illustration for the demo website.",
+      "alt": "Holy Trinity celebration at Saint George Monastery. Illustration for the demo website.",
+      "caption": "Holy Trinity celebration at Saint George Monastery. Illustration for the demo website."
+    },
+    "road": {
+      "file": "road.jpg",
+      "title": "Götschendorf. Illustration for the demo website.",
+      "alt": "Götschendorf. Illustration for the demo website.",
+      "caption": "Götschendorf. Illustration for the demo website."
+    },
+    "future": {
+      "file": "future.jpg",
+      "title": "An illustration of Saint George Monastery for the demo website.",
+      "alt": "An illustration of Saint George Monastery for the demo website.",
+      "caption": "An illustration of Saint George Monastery for the demo website."
+    },
+    "kitchen": {
+      "file": "kitchen.jpg",
+      "title": "Monastery hospitality and cooking. Photograph from Saint George Monastery.",
+      "alt": "Monastery hospitality and cooking. Photograph from Saint George Monastery.",
+      "caption": "Monastery hospitality and cooking. Photograph from Saint George Monastery."
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Home",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Demonstration website. Saint Nicholas Parish in Birch Haven and the Birch Haven Training Diocese are fictional. Events, the address and service times are examples."
+        },
+        {
+          "type": "gallery",
+          "text": "Community life in photographs",
+          "media": [
+            "monastery",
+            "trinity",
+            "road",
+            "future",
+            "kitchen"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Photographs and illustrations are provided by Saint George Monastery in Götschendorf and do not depict the fictional parish."
+        }
+      ],
+      "image": "monastery"
+    },
+    "about": {
+      "title": "About the parish",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Demonstration website. Saint Nicholas Parish in Birch Haven and the Birch Haven Training Diocese are fictional. Events, the address and service times are examples."
+        },
+        {
+          "type": "paragraph",
+          "text": "A training parish dedicated to Saint Nicholas in fictional Birch Haven. A place for prayer, community and good works in the Birch Haven Training Diocese."
+        },
+        {
+          "type": "heading",
+          "text": "Our story"
+        },
+        {
+          "type": "paragraph",
+          "text": "2018 — in this training example, the first families gathered for shared prayer."
+        },
+        {
+          "type": "paragraph",
+          "text": "2021 — Sunday gatherings and adult learning sessions began."
+        },
+        {
+          "type": "paragraph",
+          "text": "2025 — the community opened a space for gatherings and volunteer work."
+        },
+        {
+          "type": "heading",
+          "text": "Open doors"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use this demo page to explore parish history, church life and community activities. Replace the training text with your own material."
+        },
+        {
+          "type": "link",
+          "page": "first-visit",
+          "text": "Planning your first visit?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Photographs and illustrations are provided by Saint George Monastery in Götschendorf and do not depict the fictional parish."
+        }
+      ],
+      "image": "monastery"
+    },
+    "first-visit": {
+      "title": "For visitors",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Demonstration website. Saint Nicholas Parish in Birch Haven and the Birch Haven Training Diocese are fictional. Events, the address and service times are examples."
+        },
+        {
+          "type": "heading",
+          "text": "Your first visit"
+        },
+        {
+          "type": "paragraph",
+          "text": "Arrive a little before the service. If this is your first visit, a volunteer can help you find your way."
+        },
+        {
+          "type": "heading",
+          "text": "Directions"
+        },
+        {
+          "type": "paragraph",
+          "text": "Example address: 1 Training Square, Birch Haven. This address is fictional; enter the real location before publishing."
+        },
+        {
+          "type": "link",
+          "page": "schedule",
+          "text": "View the schedule"
+        },
+        {
+          "type": "link",
+          "page": "contacts",
+          "text": "Contact the parish"
+        },
+        {
+          "type": "paragraph",
+          "text": "Photographs and illustrations are provided by Saint George Monastery in Götschendorf and do not depict the fictional parish."
+        }
+      ],
+      "image": "road"
+    },
+    "schedule": {
+      "title": "Service schedule",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Demonstration website. Saint Nicholas Parish in Birch Haven and the Birch Haven Training Diocese are fictional. Events, the address and service times are examples."
+        },
+        {
+          "type": "heading",
+          "text": "An example week"
+        },
+        {
+          "type": "paragraph",
+          "text": "Saturday — 17:00, evening service. Sunday — 09:00, Divine Liturgy. This is a training example, not a real service schedule."
+        },
+        {
+          "type": "schedule",
+          "text": "An optional schedule plugin can provide a live calendar. This page remains editable with ordinary WordPress blocks."
+        },
+        {
+          "type": "link",
+          "page": "contacts",
+          "text": "Ask about visiting"
+        }
+      ],
+      "image": "trinity"
+    },
+    "news": {
+      "title": "Parish news",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Demonstration website. Saint Nicholas Parish in Birch Haven and the Birch Haven Training Diocese are fictional. Events, the address and service times are examples."
+        },
+        {
+          "type": "paragraph",
+          "text": "An example news page for community gatherings, celebrations and volunteer projects. Demo posts are separate from your existing material."
+        }
+      ],
+      "image": "trinity"
+    },
+    "sermons": {
+      "title": "Sermons and talks",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Demonstration website. Saint Nicholas Parish in Birch Haven and the Birch Haven Training Diocese are fictional. Events, the address and service times are examples."
+        },
+        {
+          "type": "paragraph",
+          "text": "A section for sermons, talks and reflections. Training material is not attributed to real clergy."
+        },
+        {
+          "type": "heading",
+          "text": "Caring for our neighbour"
+        },
+        {
+          "type": "paragraph",
+          "text": "Sometimes helping begins with listening, offering encouragement and making time for a kind action. This is a short demonstration text."
+        }
+      ],
+      "image": "future"
+    },
+    "requests": {
+      "title": "Ask a priest",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Demonstration website. Saint Nicholas Parish in Birch Haven and the Birch Haven Training Diocese are fictional. Events, the address and service times are examples."
+        },
+        {
+          "type": "paragraph",
+          "text": "A contact form can be placed on this page. The demo pack does not enable message sending."
+        },
+        {
+          "type": "paragraph",
+          "text": "Add the contact block of your chosen plugin and configure its recipient yourself."
+        },
+        {
+          "type": "link",
+          "page": "contacts",
+          "text": "Parish contacts"
+        }
+      ],
+      "image": "trinity"
+    },
+    "donations": {
+      "title": "Support the parish",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Demonstration website. Saint Nicholas Parish in Birch Haven and the Birch Haven Training Diocese are fictional. Events, the address and service times are examples."
+        },
+        {
+          "type": "paragraph",
+          "text": "This training community can demonstrate book collections, visitor support and care for the church."
+        },
+        {
+          "type": "paragraph",
+          "text": "The demo contains no payment details or working donation buttons. Configure real support methods separately."
+        },
+        {
+          "type": "link",
+          "page": "contacts",
+          "text": "Offer help"
+        }
+      ],
+      "image": "future"
+    },
+    "contacts": {
+      "title": "Contacts",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Demonstration website. Saint Nicholas Parish in Birch Haven and the Birch Haven Training Diocese are fictional. Events, the address and service times are examples."
+        },
+        {
+          "type": "paragraph",
+          "text": "Training address: 1 Training Square, Birch Haven. Fictional address."
+        },
+        {
+          "type": "paragraph",
+          "text": "Example email: office@birch-haven.example. This is a reserved example, not a working address."
+        },
+        {
+          "type": "link",
+          "page": "first-visit",
+          "text": "Visitor information"
+        }
+      ],
+      "image": "road"
+    },
+    "gallery": {
+      "title": "Photo gallery",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Demonstration website. Saint Nicholas Parish in Birch Haven and the Birch Haven Training Diocese are fictional. Events, the address and service times are examples."
+        },
+        {
+          "type": "paragraph",
+          "text": "Photographs and illustrations are provided by Saint George Monastery in Götschendorf and do not depict the fictional parish."
+        },
+        {
+          "type": "gallery",
+          "text": "Community life in photographs",
+          "media": [
+            "monastery",
+            "trinity",
+            "road",
+            "future",
+            "kitchen"
+          ]
+        }
+      ],
+      "image": "monastery"
+    }
+  },
+  "posts": {
+    "welcome": {
+      "title": "Welcome to the training community",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Demonstration website. Saint Nicholas Parish in Birch Haven and the Birch Haven Training Diocese are fictional. Events, the address and service times are examples."
+        },
+        {
+          "type": "paragraph",
+          "text": "A first visit can begin with a Sunday gathering and a cup of tea. This post demonstrates the news layout."
+        },
+        {
+          "type": "paragraph",
+          "text": "Photographs and illustrations are provided by Saint George Monastery in Götschendorf and do not depict the fictional parish."
+        }
+      ],
+      "image": "monastery",
+      "category": "news",
+      "excerpt": "A first visit can begin with a Sunday gathering and a cup of tea. This post demonstrates the news layout."
+    },
+    "volunteers": {
+      "title": "A day of kindness",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Demonstration website. Saint Nicholas Parish in Birch Haven and the Birch Haven Training Diocese are fictional. Events, the address and service times are examples."
+        },
+        {
+          "type": "paragraph",
+          "text": "In this example, volunteers collect books and prepare to welcome visitors. Replace this note with an account of your own event."
+        },
+        {
+          "type": "paragraph",
+          "text": "Photographs and illustrations are provided by Saint George Monastery in Götschendorf and do not depict the fictional parish."
+        }
+      ],
+      "image": "kitchen",
+      "category": "news",
+      "excerpt": "In this example, volunteers collect books and prepare to welcome visitors. Replace this note with an account of your own event."
+    },
+    "celebration": {
+      "title": "A community celebration",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Demonstration website. Saint Nicholas Parish in Birch Haven and the Birch Haven Training Diocese are fictional. Events, the address and service times are examples."
+        },
+        {
+          "type": "paragraph",
+          "text": "A demonstration note about shared prayer and fellowship. The illustrations come from a real monastery, while the event described is fictional."
+        },
+        {
+          "type": "paragraph",
+          "text": "Photographs and illustrations are provided by Saint George Monastery in Götschendorf and do not depict the fictional parish."
+        }
+      ],
+      "image": "trinity",
+      "category": "news",
+      "excerpt": "A demonstration note about shared prayer and fellowship. The illustrations come from a real monastery, while the event described is fictional."
+    },
+    "reflection": {
+      "title": "A little kindness every day",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Demonstration website. Saint Nicholas Parish in Birch Haven and the Birch Haven Training Diocese are fictional. Events, the address and service times are examples."
+        },
+        {
+          "type": "paragraph",
+          "text": "A training reflection: caring for our neighbour grows through small everyday actions. This text is not attributed to a real person."
+        }
+      ],
+      "image": "future",
+      "category": "sermons",
+      "excerpt": "A training reflection: caring for our neighbour grows through small everyday actions. This text is not attributed to a real person."
+    }
+  },
+  "categories": {
+    "news": "Demo: community news",
+    "sermons": "Demo: reflections"
+  },
+  "menu_title": "Demo — Birch Haven",
+  "navigation": [
+    "home",
+    "about",
+    "first-visit",
+    "schedule",
+    "news",
+    "sermons",
+    "donations",
+    "contacts"
+  ],
+  "theme": {
+    "header_contacts": true,
+    "menu_style": "classic",
+    "menu_columns": 3,
+    "scheme": "classic",
+    "width": 1200,
+    "font": "serif",
+    "font_size": 16,
+    "hero_motto": "Faith brings hearts together",
+    "header_motto": "With love for God and people",
+    "quote_text": "Where two or three are gathered together in my name, there am I in the midst of them.",
+    "quote_source": "Matthew 18:20",
+    "hero_quote_text": "Where two or three are gathered together in my name, there am I in the midst of them.",
+    "hero_quote_source": "Matthew 18:20",
+    "home": {
+      "hero_description": "A training parish dedicated to Saint Nicholas in fictional Birch Haven. A place for prayer, community and good works in the Birch Haven Training Diocese.",
+      "about_description": "A training parish dedicated to Saint Nicholas in fictional Birch Haven. A place for prayer, community and good works in the Birch Haven Training Diocese.",
+      "hero_schedule_button": "Service schedule",
+      "hero_secondary_button": "Directions",
+      "about_button": "About the parish",
+      "news_button": "All news",
+      "news_read_button": "Read more",
+      "services_button": "All services",
+      "contacts_button": "Contact us",
+      "news_count": 3,
+      "news_columns": 3,
+      "news_excerpt_words": 22,
+      "cards_show_images": true,
+      "hide_schedule_card": false,
+      "sections": {
+        "hero": {
+          "title": "Welcome to our parish!"
+        },
+        "about": {
+          "title": "About our parish",
+          "eyebrow": "Our community"
+        },
+        "news": {
+          "title": "Community news"
+        },
+        "services": {
+          "title": "Next service"
+        }
+      },
+      "cards": {
+        "schedule": {
+          "description": "Services and gatherings",
+          "button": "View schedule"
+        },
+        "news": {
+          "description": "Our community events",
+          "button": "Read news"
+        },
+        "requests": {
+          "description": "Ask your question",
+          "button": "Open page"
+        },
+        "donations": {
+          "description": "Taking part in good works",
+          "button": "How to help"
+        },
+        "about": {
+          "description": "Our story and community life",
+          "button": "Learn more"
+        },
+        "contacts": {
+          "description": "Information for visitors",
+          "button": "Contact us"
+        }
+      }
+    }
+  },
+  "location": {
+    "title": "Saint Nicholas training church"
+  },
+  "services": {
+    "liturgy": {
+      "title": "Divine Liturgy — training example",
+      "offset_days": 2,
+      "time": "09:00"
+    },
+    "evening": {
+      "title": "Evening service — training example",
+      "offset_days": 4,
+      "time": "17:00"
+    },
+    "next": {
+      "title": "Divine Liturgy — training example",
+      "offset_days": 7,
+      "time": "09:00"
+    }
+  }
+}

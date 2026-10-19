@@ -98,7 +98,9 @@ function prihod_theme_home_settings_panel( array $options ): void {
     $scheme = $options['scheme'] ?: prihod_theme_scheme();
     $home = prihod_theme_home_normalize( $options['home'], $scheme );
     $sections = prihod_theme_home_sections(); $pages = prihod_theme_home_pages();
-    echo '<section id="prihod-option-home" class="prihod-option-section"><h2>' . esc_html__( 'Homepage', 'georg-kloster-prihod' ) . '</h2><p>' . esc_html__( 'Text is stored in WordPress settings. Empty fields do not insert preset content. Enable sections and change their order with the arrows. Pages and posts are not modified.', 'georg-kloster-prihod' ) . '</p><div class="prihod-home-order" data-home-order>';
+    echo '<section id="prihod-option-home" class="prihod-option-section"><h2>' . esc_html__( 'Homepage', 'georg-kloster-prihod' ) . '</h2><p>' . esc_html__( 'Text is stored in WordPress settings. Empty fields do not insert preset content. Enable sections and change their order with the arrows. Pages and posts are not modified.', 'georg-kloster-prihod' ) . '</p>';
+    do_action( 'georg_kloster_prihod_home_settings_after' );
+    echo '<div class="prihod-home-order" data-home-order>';
     foreach ( $home['order'] as $key ) {
         $row = $home['sections'][$key];
         echo '<article class="prihod-home-setting" data-home-item><header><input type="hidden" name="georg_kloster_prihod_options[home][order][]" value="' . esc_attr( $key ) . '">';
@@ -143,5 +145,6 @@ function prihod_theme_home_settings_panel( array $options ): void {
         wp_dropdown_pages( array( 'name' => 'georg_kloster_prihod_options[home][pages][' . $key . ']', 'id' => 'prihod-home-page-' . $key, 'selected' => $home['pages'][$key], 'show_option_none' => __( 'Automatic', 'georg-kloster-prihod' ), 'option_none_value' => '0', 'post_status' => 'publish' ) );
         echo '</label></p>';
     }
-    echo '<p class="description">' . esc_html__( 'Custom labels can be translated in WPML String Translation under georg-kloster-prihod.', 'georg-kloster-prihod' ) . '</p></section>';
+    echo '<p class="description">' . esc_html__( 'Custom labels can be translated in WPML String Translation under georg-kloster-prihod.', 'georg-kloster-prihod' ) . '</p>';
+    echo '</section>';
 }

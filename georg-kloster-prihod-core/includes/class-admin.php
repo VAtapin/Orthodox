@@ -25,6 +25,7 @@ final class Admin {
         $profile = Profile::raw();
         echo '<div class="wrap"><h1>' . esc_html__( 'Parish profile', 'georg-kloster-prihod-core' ) . '</h1>';
         settings_errors( Profile::OPTION );
+        Demo_Admin::link();
         echo '<form method="post" action="' . esc_url( admin_url( 'options.php' ) ) . '">';
         settings_fields( 'gkpc_profile' );
         echo '<table class="form-table"><tbody>';

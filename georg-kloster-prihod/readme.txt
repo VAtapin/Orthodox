@@ -36,6 +36,9 @@ Create and assign a menu under Appearance > Menus. Open a menu item and choose i
 
 == Changelog ==
 
+= 0.4.34 =
+Add a generic homepage settings extension hook. An active Parish Core can provide its own demo import link; demo data, preview and import remain entirely in the optional plugin. No theme content or automatic setup is added.
+
 = 0.4.33 =
 Keep authored homepage galleries full width in every style, with responsive columns, 200px image frames and the native WordPress image viewer. Prevent the blue layout from squeezing a gallery into its old narrow navigation column. Page content is not changed.
 

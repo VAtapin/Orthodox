@@ -1,0 +1,8 @@
+{
+  "preferredVersions": {"wp": "7.1", "php": "8.4"},
+  "steps": [
+    {"step": "activateTheme", "themeFolderName": "georg-kloster-prihod"},
+    {"step": "activatePlugin", "pluginPath": "georg-kloster-prihod-core/georg-kloster-prihod-core.php"},
+    {"step": "runPHP", "code": "<?php define('WP_DISABLE_FATAL_ERROR_HANDLER', true); try { require '/wordpress/wp-content/plugins/prihod-tests/demo-import.php'; } catch (Throwable $error) { file_put_contents('/wordpress/wp-content/plugins/prihod-tests/.demo-import-result.json', $error->getMessage() . '\\n' . $error->getTraceAsString()); echo $error->getMessage(); throw $error; }"}
+  ]
+}

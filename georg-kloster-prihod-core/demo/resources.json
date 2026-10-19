@@ -1,0 +1,41 @@
+{
+  "content_license": "GPL-2.0-or-later",
+  "fictional_content": true,
+  "resources": [
+    {
+      "file": "media/monastery.jpg",
+      "source": "https://georg-kloster.ru/wp-content/uploads/2025/09/monastyr.jpg",
+      "copyright": "2026 Vladimir Atapin",
+      "license": "GPL-2.0-or-later",
+      "description": "Illustration provided by Saint George Monastery in Götschendorf; not a photograph of the fictional demo parish."
+    },
+    {
+      "file": "media/trinity.jpg",
+      "source": "https://georg-kloster.ru/wp-content/uploads/2026/05/troica-2026.jpeg",
+      "copyright": "2026 Vladimir Atapin",
+      "license": "GPL-2.0-or-later",
+      "description": "Illustration provided by Saint George Monastery in Götschendorf; not a photograph of the fictional demo parish."
+    },
+    {
+      "file": "media/road.jpg",
+      "source": "https://georg-kloster.ru/wp-content/uploads/2025/08/47386829-6996-4c7f-b58f-b70a0662e445.jpg",
+      "copyright": "2026 Vladimir Atapin",
+      "license": "GPL-2.0-or-later",
+      "description": "Illustration provided by Saint George Monastery in Götschendorf; not a photograph of the fictional demo parish."
+    },
+    {
+      "file": "media/future.jpg",
+      "source": "https://georg-kloster.ru/wp-content/uploads/2026/06/ChatGPT-Image-8.-Juni-2026-12_16_44.png",
+      "copyright": "2026 Vladimir Atapin",
+      "license": "GPL-2.0-or-later",
+      "description": "Illustration provided by Saint George Monastery in Götschendorf; not a photograph of the fictional demo parish."
+    },
+    {
+      "file": "media/kitchen.jpg",
+      "source": "https://georg-kloster.ru/wp-content/uploads/2025/08/WhatsApp-Bild-2025-09-16-um-19.07.50_8b455da6.jpg",
+      "copyright": "2026 Vladimir Atapin",
+      "license": "GPL-2.0-or-later",
+      "description": "Illustration provided by Saint George Monastery in Götschendorf; not a photograph of the fictional demo parish."
+    }
+  ]
+}

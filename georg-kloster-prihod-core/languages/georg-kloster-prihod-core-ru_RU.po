@@ -156,3 +156,72 @@ msgstr "Сан"
 #: includes/class-profile.php
 msgid "Website"
 msgstr "Сайт"
+
+msgid "Items to create: %1$d pages, %2$d posts, %3$d images. Existing content is kept."
+msgstr "Будет создано: страниц — %1$d, записей — %2$d, изображений — %3$d. Существующие материалы сохраняются."
+
+msgid "A demo import is already running. Please try again later."
+msgstr "Импорт демо уже выполняется. Повторите попытку позже."
+
+msgid "Add three example services to the active Schedule plugin. Dates are illustrative and do not represent a real parish schedule."
+msgstr "Добавить три примерные службы в активный плагин расписания. Даты учебные и не отражают реальное расписание прихода."
+
+msgid "Apply selected demo options"
+msgstr "Применить выбранные параметры демо"
+
+msgid "Confirm the demo import first."
+msgstr "Сначала подтвердите импорт демо."
+
+msgid "Demo content"
+msgstr "Демо-данные"
+
+msgid "Demo content has been imported. Repeating the action will not duplicate items or overwrite your edits."
+msgstr "Демо-данные импортированы. Повторный запуск не создаст копии материалов и не перезапишет ваши правки."
+
+msgid "Demo content language"
+msgstr "Язык демо-данных"
+
+msgid "Edit demo page"
+msgstr "Редактировать демо-страницу"
+
+msgid "English"
+msgstr "Английский"
+
+msgid "I understand that this creates fictional demonstration content on this site."
+msgstr "Я понимаю, что на этом сайте будут созданы вымышленные демонстрационные материалы."
+
+msgid "Import an editable fictional parish and diocese. Photographs of Saint George Monastery are illustrations, not photographs of the fictional parish."
+msgstr "Импорт редактируемого примера вымышленного прихода и епархии. Снимки Свято-Георгиевского монастыря используются как иллюстрации и не изображают вымышленный приход."
+
+msgid "Import demo content"
+msgstr "Импортировать демо-данные"
+
+msgid "Pages included in the demo"
+msgstr "Страницы в составе демо"
+
+msgid "Russian"
+msgstr "Русский"
+
+msgid "Show demo preview"
+msgstr "Показать состав демо"
+
+msgid "The import creates published demo pages, posts, images and a separate menu. It does not send messages, enable payment services, install plugins or contact an external service."
+msgstr "Импорт создаёт опубликованные демо-страницы, записи, изображения и отдельное меню. Он не отправляет сообщения, не включает платёжные сервисы, не устанавливает плагины и не обращается к внешним сервисам."
+
+msgid "The import did not finish. Saved demo items remain; repeat the import to resume without duplicating them."
+msgstr "Импорт не завершился. Созданные демо-материалы сохранены; повторите импорт, чтобы продолжить без дубликатов."
+
+msgid "This changes the front-page selection, not the content of your current homepage. Filled fields and assigned menus remain unchanged. You can restore the previous front page under Settings > Reading."
+msgstr "Будет изменён выбор главной страницы. Содержимое вашей текущей главной, заполненные поля и назначенные меню сохранятся. Прежнюю главную можно вернуть в разделе «Настройки → Чтение»."
+
+msgid "Use the demo homepage. Fill empty parish/theme fields and page links; assign the demo menu only if the primary menu is unassigned."
+msgstr "Использовать демо как главную. Заполнить пустые поля прихода/темы и ссылки на страницы; назначить демо-меню, только если основное меню не назначено."
+
+msgid "View created homepage"
+msgstr "Посмотреть созданную главную"
+
+msgid "Without Schedule, the demo includes an ordinary editable schedule page. No plugin is required for the page content."
+msgstr "Без плагина расписания демо содержит обычную редактируемую страницу с расписанием. Для её содержимого плагины не нужны."
+
+msgid "You do not have permission to import this demo."
+msgstr "У вас нет прав для импорта этих демо-данных."

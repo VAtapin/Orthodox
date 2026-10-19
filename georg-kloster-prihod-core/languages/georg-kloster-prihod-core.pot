@@ -1,6 +1,10 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\nX-Domain: georg-kloster-prihod-core\n"
 
+#: includes/class-demo-importer.php
+msgid "A demo import is already running. Please try again later."
+msgstr ""
+
 #: includes/class-page-links.php
 msgid "About"
 msgstr ""
@@ -9,8 +13,16 @@ msgstr ""
 msgid "Access denied."
 msgstr ""
 
+#: includes/class-demo-admin.php
+msgid "Add three example services to the active Schedule plugin. Dates are illustrative and do not represent a real parish schedule."
+msgstr ""
+
 #: includes/class-directory.php includes/class-profile.php
 msgid "Address"
+msgstr ""
+
+#: includes/class-demo-admin.php
+msgid "Apply selected demo options"
 msgstr ""
 
 #: includes/class-page-links.php
@@ -41,12 +53,28 @@ msgstr ""
 msgid "Clergy page"
 msgstr ""
 
+#: includes/class-demo-admin.php
+msgid "Confirm the demo import first."
+msgstr ""
+
 #: includes/class-page-links.php
 msgid "Contact requests"
 msgstr ""
 
 #: includes/class-page-links.php
 msgid "Contacts"
+msgstr ""
+
+#: includes/class-demo-admin.php
+msgid "Demo content"
+msgstr ""
+
+#: includes/class-demo-admin.php
+msgid "Demo content has been imported. Repeating the action will not duplicate items or overwrite your edits."
+msgstr ""
+
+#: includes/class-demo-admin.php
+msgid "Demo content language"
 msgstr ""
 
 #: includes/class-profile.php
@@ -61,8 +89,16 @@ msgstr ""
 msgid "Donations"
 msgstr ""
 
+#: includes/class-demo-admin.php
+msgid "Edit demo page"
+msgstr ""
+
 #: includes/class-directory.php includes/class-profile.php
 msgid "Email"
+msgstr ""
+
+#: includes/class-demo-admin.php
+msgid "English"
 msgstr ""
 
 #: includes/class-page-links.php
@@ -73,8 +109,24 @@ msgstr ""
 msgid "Georg-Kloster Parish Core"
 msgstr ""
 
+#: includes/class-demo-admin.php
+msgid "I understand that this creates fictional demonstration content on this site."
+msgstr ""
+
+#: includes/class-demo-admin.php
+msgid "Import an editable fictional parish and diocese. Photographs of Saint George Monastery are illustrations, not photographs of the fictional parish."
+msgstr ""
+
+#: includes/class-demo-admin.php
+msgid "Import demo content"
+msgstr ""
+
 #: includes/class-profile.php
 msgid "Invalid profile."
+msgstr ""
+
+#: includes/class-demo-admin.php
+msgid "Items to create: %1$d pages, %2$d posts, %3$d images. Existing content is kept."
 msgstr ""
 
 #: includes/class-admin.php
@@ -91,6 +143,10 @@ msgstr ""
 
 #: includes/class-profile.php
 msgid "Organisation type"
+msgstr ""
+
+#: includes/class-demo-admin.php
+msgid "Pages included in the demo"
 msgstr ""
 
 #: includes/class-admin.php
@@ -125,6 +181,10 @@ msgstr ""
 msgid "Places"
 msgstr ""
 
+#: includes/class-demo-admin.php
+msgid "Russian"
+msgstr ""
+
 #: includes/class-page-links.php
 msgid "Save sections"
 msgstr ""
@@ -145,14 +205,46 @@ msgstr ""
 msgid "Short name"
 msgstr ""
 
+#: includes/class-demo-admin.php
+msgid "Show demo preview"
+msgstr ""
+
 #: includes/class-page-links.php
 msgid "Site sections"
+msgstr ""
+
+#: includes/class-demo-admin.php
+msgid "The import creates published demo pages, posts, images and a separate menu. It does not send messages, enable payment services, install plugins or contact an external service."
+msgstr ""
+
+#: includes/class-demo-admin.php
+msgid "The import did not finish. Saved demo items remain; repeat the import to resume without duplicating them."
+msgstr ""
+
+#: includes/class-demo-admin.php
+msgid "This changes the front-page selection, not the content of your current homepage. Filled fields and assigned menus remain unchanged. You can restore the previous front page under Settings > Reading."
 msgstr ""
 
 #: includes/class-directory.php
 msgid "Title"
 msgstr ""
 
+#: includes/class-demo-admin.php
+msgid "Use the demo homepage. Fill empty parish/theme fields and page links; assign the demo menu only if the primary menu is unassigned."
+msgstr ""
+
+#: includes/class-demo-admin.php
+msgid "View created homepage"
+msgstr ""
+
 #: includes/class-profile.php
 msgid "Website"
+msgstr ""
+
+#: includes/class-demo-admin.php
+msgid "Without Schedule, the demo includes an ordinary editable schedule page. No plugin is required for the page content."
+msgstr ""
+
+#: includes/class-demo-admin.php includes/class-demo-importer.php
+msgid "You do not have permission to import this demo."
 msgstr ""

@@ -1,5 +1,32 @@
 # Проверки
 
+## Импорт демо Core 0.1.5 / тема 0.4.34
+
+`demo-import-blueprint.json` запускается только в одноразовом WordPress с
+монтированием темы, Core, Schedule и `tests` в `prihod-tests`:
+
+```powershell
+npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-prihod /wordpress/wp-content/themes/georg-kloster-prihod --mount-dir ./georg-kloster-prihod-core /wordpress/wp-content/plugins/georg-kloster-prihod-core --mount-dir ./georg-kloster-prihod-schedule /wordpress/wp-content/plugins/georg-kloster-prihod-schedule --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/demo-import-blueprint.json
+```
+
+54 проверки прошли на WP7.1.3/PHP8.4.25 и WP6.5.13/PHP8.0.30: права, nonce,
+явное согласие, конкурентный запуск, настоящий сбой копирования медиа и
+продолжение, отсутствие дублей, сохранность редакций/корзины/главной/меню,
+заполнение только пустых настроек и три настоящие записи Schedule по выбору.
+Результат — `tests/.demo-import-result.json`. Для минимальной платформы
+использовать копию Blueprint с `wp: 6.5`, `php: 8.0`.
+
+`demo-standalone-blueprint.json` проверяет английский набор на WP6.5/PHP8.0
+без темы «Приход» и Schedule, затем отключает Core: обычные блоки сохраняются.
+Ему нужны только mount Core и `tests` из команды выше. HTTP/email запрещены
+обоими сценариями. На настоящем сайте эти fixtures не запускать.
+
+В браузере импорт русского набора проверен на одноразовом WP7.1/PHP8.4:
+предпросмотр, три изначально снятых флажка, фактический импорт, пять оформлений
+на 1425/390 px без переполнения и сохранность после отключения Core. Фотографии
+карточек имеют высоту 200 px. На новом сайте проверяется только кнопка и
+предпросмотр; импорт не запускался, поля темы и текст главной до/после совпали.
+
 ## Connect Hub 0.2.0
 
 `connect-hub-blueprint.json` выполняет 68 проверок на изолированных данных:

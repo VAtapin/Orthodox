@@ -1,0 +1,7 @@
+{
+  "preferredVersions": {"wp": "6.5", "php": "8.0"},
+  "steps": [
+    {"step": "activatePlugin", "pluginPath": "georg-kloster-prihod-core/georg-kloster-prihod-core.php"},
+    {"step": "runPHP", "code": "<?php define('WP_DISABLE_FATAL_ERROR_HANDLER', true); try { require '/wordpress/wp-content/plugins/prihod-tests/demo-standalone.php'; } catch (Throwable $error) { echo $error->getMessage() . '\\n' . $error->getTraceAsString(); throw $error; }"}
+  ]
+}

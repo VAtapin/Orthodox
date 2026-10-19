@@ -45,6 +45,11 @@ and platform checks. Administrators without installation rights see instructions
 to contact a permitted administrator. See readme.txt for the request disclosure.
 The theme is fully usable without these plugins and never installs them itself.
 
+When Parish Core provides its optional demo importer, the Homepage settings
+include the plugin's import link. Core owns the preview, consent form, content
+pack and import; the theme adds no demo data or import implementation. Without
+Core, this extra entry is absent and the theme continues to work independently.
+
 ## Translation and packaging
 
 Source interface strings are English and use WordPress gettext. Russian,
