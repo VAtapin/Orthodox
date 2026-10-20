@@ -8,7 +8,7 @@ The theme's Optional Plugins panel shows compact cards and screenshots for Paris
 
 ## WordPress.org release status
 
-Prepared for first public submission as version 1.0.0. Development entries were removed from the theme's public changelog; Git history remains intact. The owner has confirmed visual review on the WordPress site. WordPress.org Theme Check and directory submission remain external steps.
+Prepared for first public submission as version 1.0.0. Development entries were removed from the theme's public changelog; Git history remains intact. The owner has confirmed visual review on the WordPress site. The first directory review's metadata findings (missing tags and duplicate Theme/Author URLs) are corrected. WordPress.org Theme Check and directory submission remain external steps.
 
 ## Checks completed
 
@@ -16,6 +16,6 @@ PHP lint passed. Isolated unit tests passed with 70 assertions. Theme catalogs c
 
 ## Next steps
 
-Submit the 1.0.0 theme ZIP to WordPress.org for review. Publish only after WordPress.org review is approved.
+Rebuild and resubmit the 1.0.0 theme ZIP to WordPress.org. Publish only after WordPress.org review is approved.
 
-Last related commit before this change: `ec6cb2b` (Show compact first-party plugin catalog), branch `main`, upstream `origin/main`.
+Last related commit before this change: `2b5e09a` (Prepare clean 1.0.0 theme release), branch `main`, upstream `origin/main`.

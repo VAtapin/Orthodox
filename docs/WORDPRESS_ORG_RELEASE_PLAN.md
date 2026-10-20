@@ -27,8 +27,13 @@ The resulting archive is `build/georg-kloster-prihod-1.0.0.zip`.
 - Theme slug: `georg-kloster-prihod`
 - Source: https://github.com/VAtapin/Orthodox/tree/main/georg-kloster-prihod
 - Author: Atapin Vladimir (`atapin`)
-- Website: https://georg-kloster.ru/
+- Theme URI: https://georg-kloster.ru/
+- Author URI: https://atapin.de/
 - Contact: atapin@gmail.com
+
+The initial directory review requested valid theme tags and distinct Theme URI
+and Author URI values. `style.css` now uses supported tags and the author's
+website for Author URI.
 
 Submit the ZIP through the WordPress.org theme review process. Keep the source
 repository's Git history as development provenance; the public theme changelog
