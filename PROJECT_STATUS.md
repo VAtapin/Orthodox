@@ -1,50 +1,21 @@
-# Статус проекта «Приход»
+# Project status: Georg-Kloster Prihod
 
-## Реализовано и текущее состояние
+## Current state
 
-В репозитории три самостоятельных пакета: тема Georg-Kloster Prihod 0.4.44,
-плагин «Приход» 0.2.5 (включает расписание) и Connect Hub 0.3.3.
-На new.georg-kloster.ru установлены оба плагина; ZIP темы 0.4.44 подготовлен для ручной загрузки.
+The repository contains the Georg-Kloster Prihod theme (current package 0.4.44), Parish Core (0.2.5), and Connect Hub (0.3.3). The theme has five styles, a standard WordPress widget area, native Customizer controls, English gettext source strings, and Russian, German, Polish, and Ukrainian translation catalogs. The author metadata is Atapin Vladimir / `atapin`; site https://georg-kloster.ru/; contact atapin@gmail.com.
 
-Каталожный скриншот темы обновлён пользовательским изображением 1200×900; `Contributors` темы подтверждён как `atapin`. Тема работает без плагинов, имеет пять оформлений, стандартную область виджетов
-WordPress и настройки главной страницы. Параметры темы доступны в стандартном
-Customizer с живым предпросмотром: стиль, ширина, типографика, логотип/изображения,
-данные сайта, шапка/подвал, ссылки языковых версий и содержимое/порядок секций
-и карточек главной. Полная страница «Внешний вид → Оформление прихода» сохранена;
-оба интерфейса используют существующие настройки WordPress.
+## WordPress.org release assessment
 
-Автор во всех пакетах: Atapin Vladimir; сайт: https://georg-kloster.ru/;
-email: atapin@gmail.com. Автор и сайт указаны в стандартных заголовках пакетов,
-email — в разделе Support/поддержки readme, поскольку стандартного поля email
-в заголовках темы и плагина WordPress нет.
+The theme is **not ready for submission**. Current WordPress.org theme requirements prohibit external calls from theme settings/onboarding pages. `includes/plugins.php` makes a WordPress.org plugin-directory API request when an administrator clicks “Check WordPress.org” from the theme settings page. Remove or redesign this feature before submitting. The catalog’s Theme Check and Theme Unit Test Data review are also still outstanding; runtime theme tests cannot run in this workspace because a WordPress installation is unavailable.
 
-## Проверки и состояние сайта
+The current `readme.txt` changelog still documents development releases, and the documentation does not include the repository GitHub URL. Do not reset the release version or clear the Git repository history before the compliance work and final checks. For a first stable public release, use version 1.0.0 rather than 0.1.0; retain Git history and condense only the public changelog to the initial release when actually preparing submission.
 
-Прошли 70 unit assertions, проверки каталогов плагинов (888 сообщений) и темы
-(264 сообщения на четырёх языках), PHP lint всех файлов и `git diff --check`.
-ZIP Core 0.2.5, Connect Hub 0.3.3 и темы 0.4.43 и 0.4.44 собраны; реквизиты автора,
-сайта и email сверены внутри архивов. В админке new.georg-kloster.ru проверены
-Customizer на русском, текущие значения стиля/макета, настройки главной и логотипа,
-а также сохранность отдельной страницы настроек темы. Фактические изменения
-настроек сайта не сохранялись. В теме 0.4.43 блок контактов главной показывает
-общую карту во всех схемах: OpenStreetMap по умолчанию, Google Maps с ключом из
-админки по выбору. Для отображения карты администратору нужно указать координаты;
-новые поля доступны в «Оформление прихода → Карта» и в Customizer. Панель
-ближайшей службы использует логотип первого места из Core, календарную дату и
-иконку времени. В теме 0.4.44 добавлены отдельные переключатели показа адреса,
-телефона, email, описания и изображения главной страницы в контактах, а также
-карты со ссылкой маршрута. Изображение главной страницы выключено по умолчанию
-в журнальном оформлении. По скриншоту видно, что OpenStreetMap загружается, но
-занимает узкую полосу из-за квадратных координатных границ внутри широкого блока;
-границы теперь рассчитываются под пропорции карты, а ссылка маршрута имеет
-контрастный текст и закреплена в правом нижнем углу. Проверки новых состояний
-добавлены в WordPress Playground fixture, который в этой задаче не запускался.
+## Checks completed
 
-WordPress Playground release-тест не запустился: `registry.npmjs.org` недоступен из среды (`ENOTFOUND`). Логин WordPress.org автора подтверждён как `atapin` и указан в readme темы. В Customizer на new.georg-kloster.ru проверены все пять вариантов главной через несохраняемый предпросмотр: меняются палитра, компоновка hero и расписания, карточки; состав секций зависит от настроек сайта. Theme Check и официальные Theme Unit Test Data ещё не запускались, каталог WordPress.org не публиковался. Внешние социальные отправки Connect Hub в этом выпуске не проверялись.
+Theme source/catalog/preview check passed: 264 messages in four locales. PHP lint passed across the repository. Theme package 0.4.44 built with 76 entries; required classic-theme files are present and screenshot is 1200 x 900. `git diff --check` passed. `tests/theme-release.php`, `tests/theme-smoke.php`, and `tests/theme-i18n.php` require WordPress at `/wordpress/wp-load.php` and therefore could not run here. Official Theme Check and Theme Unit Test Data have not been run. WordPress.org submission has not occurred.
 
-## Следующие шаги
+## Next steps
 
-Следующий шаг: установить ZIP темы 0.4.44 вручную и настроить видимость блока
-контактов в «Внешний вид → Оформление прихода → Главная страница → Контакты».
+Remove the theme-settings external API call, add the GitHub repository link and complete WordPress.org-facing release documentation, then run Theme Check and theme unit data on a clean WordPress install. Only after those checks pass should the theme be versioned as 1.0.0, its readme changelog reduced to the initial release, and a release ZIP built.
 
-Последний связанный commit: коммит, содержащий этот файл (branch `main`, upstream `origin/main`).
+Last related commit: check `git log -1` on branch `main` (upstream `origin/main`).
