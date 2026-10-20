@@ -41,9 +41,9 @@ and parish quotation.
 The settings sidebar includes **Optional plugins**. It lists integrations already
 installed on the site, with descriptions, screenshots and links to their settings.
 The screenshots use empty settings on a disposable site; no owner content is
-included or imported. Install optional plugins through the standard **Plugins →
-Add New** screen. The theme makes no plugin-directory API requests and does not
-install plugins. It is fully usable without these integrations.
+included or imported. A button opens the standard WordPress plugin installer
+with a search for Georg-Kloster. The theme makes no plugin-directory API requests
+and does not install plugins. It is fully usable without these integrations.
 
 When Parish Core provides its optional demo importer, the Homepage settings
 include the plugin's import link. Core owns the preview, consent form, content

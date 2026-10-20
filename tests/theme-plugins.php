@@ -18,7 +18,8 @@ $check( isset( $catalog['georg-kloster-connect-hub'] ) && ! isset( $catalog['geo
 $check( 'missing' === prihod_theme_plugin_action( 'georg-kloster-prihod-core/georg-kloster-prihod-core.php', array() )['state'], 'Missing integration is shown as available.' );
 $html = '';
 ob_start(); prihod_theme_plugins_panel(); $html = ob_get_clean();
-$check( str_contains( $html, 'Plugins &gt; Add New' ), 'Panel does not explain the standard plugin installation location.' );
+$check( str_contains( $html, 'Find Georg-Kloster plugins' ), 'Plugin installer search button is missing.' );
+$check( str_contains( $html, 's=Georg-Kloster' ) && str_contains( $html, 'tab=search' ) && str_contains( $html, 'type=term' ), 'Plugin installer button has incorrect search parameters.' );
 $check( ! str_contains( $html, 'Check WordPress.org' ) && ! str_contains( $html, 'install-plugin' ) && ! str_contains( $html, 'Directory check' ), 'Removed directory checker or installer remains in the panel.' );
 $check( 0 === $http_calls, 'Rendering the optional integrations panel made an external request.' );
 $source = file_get_contents( get_template_directory() . '/includes/plugins.php' );

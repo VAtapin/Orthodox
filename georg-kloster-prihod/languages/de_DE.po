@@ -216,6 +216,9 @@ msgstr "Überschriftzeile"
 msgid "Find"
 msgstr "Suchen"
 
+msgid "Find Georg-Kloster plugins"
+msgstr "Georg-Kloster-Plugins suchen"
+
 msgid "First time at church?"
 msgstr "Zum ersten Mal in der Kirche?"
 
@@ -735,8 +738,8 @@ msgstr "Das Website-Icon muss quadratisch und mindestens 512 × 512 px groß sei
 msgid "The site style has not been changed."
 msgstr "Das Design der Website wurde nicht geändert."
 
-msgid "The theme works on its own. Optional integrations appear here after you install them from Plugins > Add New."
-msgstr "Das Theme funktioniert eigenständig. Installierte optionale Integrationen werden hier angezeigt. Plugins können Sie unter „Plugins > Installieren“ hinzufügen."
+msgid "The theme works on its own. Optional integrations appear here after you install them."
+msgstr "Das Theme funktioniert eigenständig. Installierte optionale Integrationen werden hier angezeigt."
 
 msgid "Theme settings"
 msgstr "Theme-Einstellungen"

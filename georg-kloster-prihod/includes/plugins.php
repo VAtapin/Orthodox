@@ -46,7 +46,8 @@ function prihod_theme_plugins_panel(): void {
     ?>
     <section id="prihod-option-plugins" class="prihod-option-section">
         <h2><?php esc_html_e( 'Optional plugins', 'georg-kloster-prihod' ); ?></h2>
-        <p><?php esc_html_e( 'The theme works on its own. Optional integrations appear here after you install them from Plugins > Add New.', 'georg-kloster-prihod' ); ?></p>
+        <p><?php esc_html_e( 'The theme works on its own. Optional integrations appear here after you install them.', 'georg-kloster-prihod' ); ?></p>
+        <p><a class="button" href="<?php echo esc_url( add_query_arg( array( 's' => 'Georg-Kloster', 'tab' => 'search', 'type' => 'term' ), self_admin_url( 'plugin-install.php' ) ) ); ?>"><?php esc_html_e( 'Find Georg-Kloster plugins', 'georg-kloster-prihod' ); ?></a></p>
         <div class="prihod-plugin-cards">
         <?php $count = 0; foreach ( prihod_theme_plugin_catalog() as $slug => $plugin ) :
             $file = $slug . '/' . $slug . '.php';

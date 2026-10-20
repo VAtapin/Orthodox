@@ -216,6 +216,9 @@ msgstr "Надзаголовок"
 msgid "Find"
 msgstr "Найти"
 
+msgid "Find Georg-Kloster plugins"
+msgstr "Найти плагины Georg-Kloster"
+
 msgid "First time at church?"
 msgstr "Впервые в храме?"
 
@@ -735,8 +738,8 @@ msgstr "Иконка должна быть квадратной, не менее
 msgid "The site style has not been changed."
 msgstr "Оформление сайта не изменено."
 
-msgid "The theme works on its own. Optional integrations appear here after you install them from Plugins > Add New."
-msgstr "Тема работает самостоятельно. Установленные дополнительные интеграции отображаются здесь. Установить плагины можно в разделе «Плагины → Добавить новый»."
+msgid "The theme works on its own. Optional integrations appear here after you install them."
+msgstr "Тема работает самостоятельно. После установки здесь отображаются дополнительные интеграции."
 
 msgid "Theme settings"
 msgstr "Настройки темы"
