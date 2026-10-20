@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Georg-Kloster Prihod 0.4.30\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nX-Domain: georg-kloster-prihod\nLanguage: ru_RU\n"
+msgstr "Project-Id-Version: Georg-Kloster Prihod 1.0.0\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nX-Domain: georg-kloster-prihod\nLanguage: ru_RU\n"
 
 msgid "%1$s: %2$s"
 msgstr "%1$s: %2$s"
