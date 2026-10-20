@@ -18,3 +18,17 @@
   .prihod-scheme-tradition .prihod-home-hero,
   .prihod-scheme-blue .prihod-home-hero{background-image:linear-gradient(90deg,color-mix(in srgb,var(--wp--preset--color--paper) 94%,transparent),color-mix(in srgb,var(--wp--preset--color--paper) 84%,transparent)),var(--prihod-hero-image,none)}
 }
+/* Keep the homepage service strip readable when the theme, title, and schedule change. */
+.prihod-hero-service{display:grid;grid-template-columns:minmax(190px,.8fr) minmax(0,2fr) auto;gap:18px;align-items:center}
+.prihod-hero-service>h2{display:flex;align-items:center;gap:10px;min-width:0;margin:0;overflow-wrap:anywhere}
+.prihod-hero-service>h2>.prihod-icon{display:none}
+.prihod-hero-service>.prihod-compact-services{width:100%;min-width:0}
+.prihod-hero-service .prihod-service-compact{display:block;min-width:0}
+.prihod-hero-service .prihod-service-details{display:grid;grid-template-columns:minmax(105px,.8fr) minmax(90px,.65fr) minmax(130px,1.4fr);gap:8px 12px;align-items:center}
+.prihod-hero-service .prihod-service-details>h3{grid-column:3;grid-row:1;margin:0;font-size:clamp(15px,1.35vw,19px);line-height:1.25;overflow-wrap:anywhere}
+.prihod-hero-service .prihod-service-when{display:contents}
+.prihod-hero-service .prihod-service-when>.prihod-service-date{grid-column:1;grid-row:1;min-width:0;gap:7px}
+.prihod-hero-service .prihod-service-when>time{grid-column:2;grid-row:1;min-width:0;gap:7px;white-space:nowrap;font-size:clamp(17px,1.5vw,21px)}
+.prihod-hero-service .prihod-service-details>p{grid-column:3;grid-row:2;margin:0;font-size:12px}
+@media(max-width:900px){.prihod-hero-service{grid-template-columns:minmax(0,1fr);gap:12px}.prihod-hero-service>h2{font-size:21px}.prihod-hero-service>.prihod-service-all{justify-self:start}}
+@media(max-width:600px){.prihod-hero-service .prihod-service-details{grid-template-columns:minmax(0,1fr) auto;gap:8px 14px}.prihod-hero-service .prihod-service-details>h3{grid-column:1/-1;grid-row:1}.prihod-hero-service .prihod-service-when>.prihod-service-date{grid-column:1;grid-row:2}.prihod-hero-service .prihod-service-when>time{grid-column:2;grid-row:2;font-size:19px}.prihod-hero-service .prihod-service-details>p{grid-column:1/-1;grid-row:3}}
