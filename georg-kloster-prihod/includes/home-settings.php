@@ -36,6 +36,11 @@ function prihod_theme_home_normalize( $input, string $scheme ): array {
     }
     foreach ( prihod_theme_home_pages() as $key => $label ) { $out['pages'][$key] = is_scalar( $input['pages'][$key] ?? null ) ? absint( $input['pages'][$key] ) : 0; }
     foreach ( prihod_theme_home_text_fields() as $key ) { $out[$key] = is_string( $input[$key] ?? null ) ? sanitize_textarea_field( $input[$key] ) : ''; }
+    $out['contact_items'] = array();
+    foreach ( array( 'address', 'phone', 'email', 'map', 'description', 'image' ) as $item ) {
+        $default = 'image' !== $item;
+        $out['contact_items'][$item] = array_key_exists( $item, (array) ( $input['contact_items'] ?? array() ) ) ? (bool) $input['contact_items'][$item] : $default;
+    }
     foreach ( array( 'services_count' => 6, 'news_count' => 12, 'news_excerpt_words' => 80, 'news_columns' => 4 ) as $key => $max ) { $out[$key] = is_scalar( $input[$key] ?? null ) ? max( 0, min( $max, (int) $input[$key] ) ) : 0; }
     $out['news_category'] = is_scalar( $input['news_category'] ?? null ) ? max( -1, (int) $input['news_category'] ) : 0;
     foreach ( array( 'news_show_date', 'news_show_excerpt', 'news_show_images', 'cards_show_images', 'hide_schedule_card' ) as $key ) { $out[$key] = array_key_exists( $key, $input ) ? (bool) $input[$key] : ( 'cards_show_images' !== $key || in_array( $scheme, array( 'classic', 'editorial', 'tradition' ), true ) ); }
@@ -124,7 +129,12 @@ function prihod_theme_home_settings_panel( array $options ): void {
         }
         if ( 'about' === $key ) { prihod_theme_home_page_field( 'about', $pages['about'], $home['pages']['about'] ); }
         if ( 'news' === $key ) { prihod_theme_home_page_field( 'news', $pages['news'], $home['pages']['news'] ); }
-        if ( 'contacts' === $key ) { prihod_theme_home_page_field( 'contacts', $pages['contacts'], $home['pages']['contacts'] ); }
+        if ( 'contacts' === $key ) {
+            prihod_theme_home_page_field( 'contacts', $pages['contacts'], $home['pages']['contacts'] );
+            foreach ( array( 'address' => __( 'Show address', 'georg-kloster-prihod' ), 'phone' => __( 'Show phone', 'georg-kloster-prihod' ), 'email' => __( 'Show email', 'georg-kloster-prihod' ), 'map' => __( 'Show map and directions link', 'georg-kloster-prihod' ), 'description' => __( 'Show site description in contacts', 'georg-kloster-prihod' ), 'image' => __( 'Show hero image in contacts', 'georg-kloster-prihod' ) ) as $item => $label ) {
+                prihod_theme_home_field( '[contact_items][' . $item . ']', $label, $home['contact_items'][$item], 'checkbox' );
+            }
+        }
         if ( 'topics' === $key ) {
             foreach ( array( 'first-visit', 'sermons' ) as $page_key ) { prihod_theme_home_page_field( $page_key, $pages[$page_key], $home['pages'][$page_key] ); }
         }

@@ -55,7 +55,25 @@ foreach ( array_keys( prihod_theme_schemes() ) as $layout_scheme ) {
     WP_Theme_JSON_Resolver::clean_cached_data();
     $layout_contacts = prihod_theme_contact_panel( 'Contacts' );
     $layout_check( str_contains( $layout_contacts, 'prihod-contact-map' ) && str_contains( $layout_contacts, 'openstreetmap.org/export/embed.html' ) && str_contains( $layout_contacts, 'prihod-contact-list' ), 'Homepage contacts include the configured map in every visual style: ' . $layout_scheme );
+    preg_match( '/bbox=([^&"]+)/', $layout_contacts, $layout_bbox_match );
+    $layout_bbox = isset( $layout_bbox_match[1] ) ? array_map( 'floatval', explode( ',', rawurldecode( $layout_bbox_match[1] ) ) ) : array();
+    $layout_check( 4 === count( $layout_bbox ) && ( $layout_bbox[2] - $layout_bbox[0] ) > 5 * ( $layout_bbox[3] - $layout_bbox[1] ), 'OpenStreetMap viewport fills the wide contact map in every visual style: ' . $layout_scheme );
 }
+$layout_contact_options = array( 'scheme' => 'classic', 'profile' => array( 'address' => 'Test address', 'phone' => '+491234567', 'email' => 'test@example.org' ), 'map_latitude' => '53.09', 'map_longitude' => '13.67', 'home' => array( 'contact_items' => array( 'address' => false, 'phone' => true, 'email' => false, 'map' => false ) ) );
+update_option( 'georg_kloster_prihod_options', $layout_contact_options ); WP_Theme_JSON_Resolver::clean_cached_data();
+$layout_contacts = prihod_theme_contact_panel( 'Contacts' );
+$layout_check( str_contains( $layout_contacts, '+491234567' ) && ! str_contains( $layout_contacts, 'Test address' ) && ! str_contains( $layout_contacts, 'test@example.org' ) && ! str_contains( $layout_contacts, 'prihod-contact-map' ), 'Contact visibility settings independently hide address, email and map.' );
+$layout_contact_options['home']['contact_items'] = array( 'address' => false, 'phone' => false, 'email' => false, 'map' => false );
+update_option( 'georg_kloster_prihod_options', $layout_contact_options ); WP_Theme_JSON_Resolver::clean_cached_data();
+$layout_check( '' === prihod_theme_contact_panel( 'Contacts' ), 'The contacts section is omitted when every contact item is disabled.' );
+$layout_contact_options = array( 'scheme' => 'editorial', 'hero_image' => $layout_image, 'profile' => array( 'description' => 'Parish description' ), 'home' => array( 'contact_items' => array( 'address' => false, 'phone' => false, 'email' => false, 'map' => false, 'description' => true, 'image' => false ) ) );
+update_option( 'georg_kloster_prihod_options', $layout_contact_options ); WP_Theme_JSON_Resolver::clean_cached_data();
+$layout_contacts = prihod_theme_contact_panel( 'Contacts' );
+$layout_check( str_contains( $layout_contacts, 'Parish description' ) && ! str_contains( $layout_contacts, '<img' ), 'The journal style contact area hides the hero image when its control is off.' );
+$layout_contact_options['home']['contact_items']['image'] = true;
+update_option( 'georg_kloster_prihod_options', $layout_contact_options ); WP_Theme_JSON_Resolver::clean_cached_data();
+$layout_check( str_contains( prihod_theme_contact_panel( 'Contacts' ), '<img' ), 'The journal style contact area shows its optional hero image when enabled.' );
+$layout_check( str_contains( file_get_contents( get_template_directory() . '/assets/theme.css' ), '.prihod-home-contacts .prihod-contact-map>.prihod-button{position:absolute;top:auto;left:auto;right:12px;bottom:12px;z-index:2;background:#fff;color:' ), 'The map directions link has a visible high-contrast overlay position.' );
 if ( false === $layout_saved ) { delete_option( 'georg_kloster_prihod_options' ); } else { update_option( 'georg_kloster_prihod_options', $layout_saved ); }
 WP_Theme_JSON_Resolver::clean_cached_data();
 file_put_contents( __DIR__ . '/.theme-layout-result.json', wp_json_encode( array( 'checks' => $layout_checks, 'wordpress' => get_bloginfo( 'version' ), 'php' => PHP_VERSION, 'result' => 'THEME_LAYOUT_OK' ) ) );

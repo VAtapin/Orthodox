@@ -1023,3 +1023,21 @@ msgstr "Мапа з розташуванням парафії"
 
 msgid "Open map"
 msgstr "Відкрити мапу"
+
+msgid "Show address"
+msgstr "Показувати адресу"
+
+msgid "Show phone"
+msgstr "Показувати телефон"
+
+msgid "Show email"
+msgstr "Показувати email"
+
+msgid "Show map and directions link"
+msgstr "Показувати мапу та посилання маршруту"
+
+msgid "Show site description in contacts"
+msgstr "Показувати опис сайту в контактах"
+
+msgid "Show hero image in contacts"
+msgstr "Показувати зображення головної сторінки в контактах"

@@ -83,6 +83,9 @@ function prihod_theme_customize_register( WP_Customize_Manager $customize ): voi
 		$add( 'home][sections][' . $key . '][title', sprintf( __( 'Section heading: %s', 'georg-kloster-prihod' ), $label ), 'prihod_home' );
 		$add( 'home][sections][' . $key . '][eyebrow', sprintf( __( 'Section link or subtitle: %s', 'georg-kloster-prihod' ), $label ), 'prihod_home' );
 	}
+	foreach ( array( 'address' => __( 'Show address', 'georg-kloster-prihod' ), 'phone' => __( 'Show phone', 'georg-kloster-prihod' ), 'email' => __( 'Show email', 'georg-kloster-prihod' ), 'map' => __( 'Show map and directions link', 'georg-kloster-prihod' ), 'description' => __( 'Show site description in contacts', 'georg-kloster-prihod' ), 'image' => __( 'Show hero image in contacts', 'georg-kloster-prihod' ) ) as $item => $label ) {
+		$add( 'home][contact_items][' . $item, $label, 'prihod_home', 'checkbox' );
+	}
 	$section_choices = array();
 	foreach ( prihod_theme_home_sections() as $key => $label ) { $section_choices[$key] = $label; }
 	foreach ( $home['order'] as $index => $key ) { $add( 'home][order][' . $index, sprintf( __( 'Section position %d', 'georg-kloster-prihod' ), $index + 1 ), 'prihod_home', 'select', array( 'choices' => $section_choices ) ); }

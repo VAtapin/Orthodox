@@ -823,6 +823,10 @@ msgid "Short name"
 msgstr ""
 
 #: includes/customizer.php includes/home-settings.php
+msgid "Show address"
+msgstr ""
+
+#: includes/customizer.php includes/home-settings.php
 msgid "Show card images"
 msgstr ""
 
@@ -839,7 +843,15 @@ msgid "Show date"
 msgstr ""
 
 #: includes/customizer.php includes/home-settings.php
+msgid "Show email"
+msgstr ""
+
+#: includes/customizer.php includes/home-settings.php
 msgid "Show excerpt"
+msgstr ""
+
+#: includes/customizer.php includes/home-settings.php
+msgid "Show hero image in contacts"
 msgstr ""
 
 #: includes/customizer.php includes/home-settings.php
@@ -850,12 +862,24 @@ msgstr ""
 msgid "Show logo"
 msgstr ""
 
+#: includes/customizer.php includes/home-settings.php
+msgid "Show map and directions link"
+msgstr ""
+
 #: includes/branding.php
 msgid "Show name"
 msgstr ""
 
+#: includes/customizer.php includes/home-settings.php
+msgid "Show phone"
+msgstr ""
+
 #: includes/customizer.php
 msgid "Show section: %s"
+msgstr ""
+
+#: includes/customizer.php includes/home-settings.php
+msgid "Show site description in contacts"
 msgstr ""
 
 #: includes/customizer.php

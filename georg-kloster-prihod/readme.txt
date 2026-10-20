@@ -22,7 +22,7 @@ Author: Atapin Vladimir. Website: https://georg-kloster.ru/. Email: atapin@gmail
 
 == Installation ==
 
-Upload the theme ZIP under Appearance > Themes, activate it, then choose a visual style under Appearance > Parish Appearance. Add your own pages, navigation, logo, photographs and contact details in WordPress. The homepage contact area can show an OpenStreetMap embed when coordinates are configured; Google Maps is also available with an API key. Map embeds are loaded from the selected provider only after coordinates are entered.
+Upload the theme ZIP under Appearance > Themes, activate it, then choose a visual style under Appearance > Parish Appearance. Add your own pages, navigation, logo, photographs and contact details in WordPress. Under Homepage > Contacts, choose whether to show the address, phone, email and map. The homepage contact area can show an OpenStreetMap embed when coordinates are configured; Google Maps is also available with an API key. Map embeds are loaded from the selected provider only after coordinates are entered.
 
 == External services ==
 
@@ -47,6 +47,10 @@ The theme uses images selected from your WordPress media library. It does not do
 Create and assign a menu under Appearance > Menus. Open a menu item and choose its image from the media library; without a chosen image, the linked page or post featured image is used. The theme's Appearance > Parish Appearance > Header and Footer section enables an image menu alongside the standard desktop link row and sets the number of visual columns. The link-row-only option remains available. Menu item descriptions can be enabled under Screen Options on the Menus screen.
 
 == Changelog ==
+
+= 0.4.44 =
+* Add homepage contact controls for the address, phone, email, map and directions link in Parish Appearance and Customizer.
+* Make the homepage image optional in the journal-style contact section; keep the map full-width with a readable directions link.
 
 = 0.4.43 =
 * Add the logo removal control to native Customizer branding.

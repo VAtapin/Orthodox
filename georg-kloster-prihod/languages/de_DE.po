@@ -1023,3 +1023,21 @@ msgstr "Karte mit dem Standort der Gemeinde"
 
 msgid "Open map"
 msgstr "Karte öffnen"
+
+msgid "Show address"
+msgstr "Adresse anzeigen"
+
+msgid "Show phone"
+msgstr "Telefonnummer anzeigen"
+
+msgid "Show email"
+msgstr "E-Mail anzeigen"
+
+msgid "Show map and directions link"
+msgstr "Karte und Routenlink anzeigen"
+
+msgid "Show site description in contacts"
+msgstr "Websitebeschreibung im Kontaktbereich anzeigen"
+
+msgid "Show hero image in contacts"
+msgstr "Titelbild im Kontaktbereich anzeigen"

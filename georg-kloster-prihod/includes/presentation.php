@@ -88,26 +88,35 @@ function prihod_theme_section_title( string $title, string $url = '', string $li
 }
 function prihod_theme_contact_panel( string $title = '' ): string {
     $profile = prihod_theme_profile(); $options = georg_kloster_prihod_options();
-    if ( ! $profile['address'] && ! $profile['phone'] && ! $profile['email'] ) { return ''; }
-    $html = '<section class="prihod-home-contacts">' . prihod_theme_section_title( $title, '', '', prihod_theme_home_eyebrow( 'contacts' ) ) . '<div class="prihod-contact-layout"><div class="prihod-contact-list">';
+    $home = prihod_theme_home_options(); $items = $home['contact_items'];
+    $has_contact_data = ( ! empty( $items['address'] ) && ! empty( $profile['address'] ) ) || ( ! empty( $items['phone'] ) && ! empty( $profile['phone'] ) ) || ( ! empty( $items['email'] ) && ! empty( $profile['email'] ) );
+    $has_coordinates = '' !== $options['map_latitude'] && '' !== $options['map_longitude'];
+    $has_map = ! empty( $items['map'] ) && ( $has_coordinates || ! empty( $profile['address'] ) );
+    $has_editorial_extra = 'editorial' === prihod_theme_scheme() && ( ( ! empty( $items['description'] ) && ! empty( $profile['description'] ) ) || ( ! empty( $items['image'] ) && ! empty( $options['hero_image'] ) ) );
+    if ( ! $has_contact_data && ! $has_map && ! $has_editorial_extra ) { return ''; }
+    $html = '<section class="prihod-home-contacts">' . prihod_theme_section_title( $title, '', '', prihod_theme_home_eyebrow( 'contacts' ) );
+    if ( $has_contact_data || $has_map ) { $html .= '<div class="prihod-contact-layout"><div class="prihod-contact-list">'; }
     foreach ( array( 'address' => array( 'contacts', __( 'Address', 'georg-kloster-prihod' ) ), 'phone' => array( 'phone', __( 'Phone', 'georg-kloster-prihod' ) ), 'email' => array( 'email', __( 'Email', 'georg-kloster-prihod' ) ) ) as $key => $item ) {
-        if ( empty( $profile[$key] ) ) { continue; }
+        if ( empty( $items[$key] ) || empty( $profile[$key] ) ) { continue; }
         $text = esc_html( $profile[$key] );
         if ( 'phone' === $key ) { $text = '<a href="' . esc_url( 'tel:' . preg_replace( '/[^+0-9]/', '', $profile[$key] ) ) . '">' . $text . '</a>'; }
         if ( 'email' === $key ) { $text = '<a href="' . esc_url( 'mailto:' . $profile[$key] ) . '">' . $text . '</a>'; }
         $html .= '<div>' . prihod_theme_icon( $item[0] ) . '<div><h3>' . esc_html( $item[1] ) . '</h3><p>' . $text . '</p></div></div>';
     }
-    $html .= '</div>' . prihod_theme_contact_map( $profile );
+    if ( $has_contact_data || $has_map ) { $html .= '</div>' . ( $has_map ? prihod_theme_contact_map( $profile ) : '' ) . '</div>'; }
     $extra = '';
     if ( 'hospitality' === prihod_theme_scheme() ) { $extra .= '<aside class="prihod-contact-quote">' . prihod_theme_verse() . '</aside>'; }
     elseif ( 'editorial' === prihod_theme_scheme() ) {
-        $extra .= '<aside class="prihod-contact-welcome"><div><p>' . esc_html( $profile['description'] ) . '</p>';
+        $welcome = '<div>';
+        if ( ! empty( $items['description'] ) && $profile['description'] ) { $welcome .= '<p>' . esc_html( $profile['description'] ) . '</p>'; }
         $contact = prihod_theme_url( 'contacts' );
-        if ( $contact && prihod_theme_home_copy( 'contacts_button' ) ) { $extra .= '<a href="' . esc_url( $contact ) . '">' . esc_html( prihod_theme_home_copy( 'contacts_button' ) ) . ' →</a>'; }
-        $extra .= '</div>' . prihod_theme_photo( $options['hero_image'], 'medium' ) . '</aside>';
+        if ( $contact && prihod_theme_home_copy( 'contacts_button' ) ) { $welcome .= '<a href="' . esc_url( $contact ) . '">' . esc_html( prihod_theme_home_copy( 'contacts_button' ) ) . ' →</a>'; }
+        $welcome .= '</div>';
+        $image = ! empty( $items['image'] ) ? prihod_theme_photo( $options['hero_image'], 'medium' ) : '';
+        if ( trim( wp_strip_all_tags( $welcome ) ) || $image ) { $extra .= '<aside class="prihod-contact-welcome">' . $welcome . $image . '</aside>'; }
     }
     elseif ( 'tradition' === prihod_theme_scheme() ) { $extra .= '<aside class="prihod-contact-motto">' . prihod_theme_verse() . prihod_theme_icon( 'cross' ) . '</aside>'; }
-    return $html . '</div>' . ( $extra ? '<div class="prihod-contact-extra">' . $extra . '</div>' : '' ) . '</div></section>';
+    return $html . ( $extra ? '<div class="prihod-contact-extra">' . $extra . '</div>' : '' ) . '</section>';
 }
 
 function prihod_theme_contact_map( array $profile ): string {
@@ -120,7 +129,9 @@ function prihod_theme_contact_map( array $profile ): string {
         $directions_url = add_query_arg( array( 'api' => 1, 'destination' => $latitude . ',' . $longitude ), 'https://www.google.com/maps/dir/' );
     } elseif ( $has_coordinates ) {
         $pad = 0.004;
-        $bounds = implode( ',', array( (float) $longitude - $pad, (float) $latitude - $pad, (float) $longitude + $pad, (float) $latitude + $pad ) );
+        // Match the desktop contact-map viewport's wide shape so OSM doesn't render a narrow square inside it.
+        $longitude_pad = $pad * 3.2 / max( 0.1, cos( deg2rad( (float) $latitude ) ) );
+        $bounds = implode( ',', array( (float) $longitude - $longitude_pad, (float) $latitude - $pad, (float) $longitude + $longitude_pad, (float) $latitude + $pad ) );
         $map_url = add_query_arg( array( 'bbox' => $bounds, 'layer' => 'mapnik', 'marker' => $latitude . ',' . $longitude ), 'https://www.openstreetmap.org/export/embed.html' );
         $directions_url = add_query_arg( array( 'mlat' => $latitude, 'mlon' => $longitude, 'zoom' => 16 ), 'https://www.openstreetmap.org/directions' );
     } else {
