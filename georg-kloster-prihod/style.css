@@ -12,7 +12,7 @@ License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 Text Domain: georg-kloster-prihod
 Domain Path: /languages
-Tags: custom-menu, featured-images, translation-ready
+Tags: block-styles, custom-background, custom-header, custom-logo, custom-menu, editor-style, featured-images, translation-ready
 */
 .wp-site-blocks {padding-top: 0;}
 .georg-kloster-prihod-header {border-bottom: 1px solid var(--wp--preset--color--gold);}
