@@ -522,6 +522,9 @@ msgstr "Wyczyść filtry"
 msgid "Right sidebar"
 msgstr "Prawa kolumna"
 
+msgid "Newsletter"
+msgstr "Newsletter"
+
 msgid "Sans serif"
 msgstr "Bezszeryfowy"
 
@@ -768,6 +771,9 @@ msgstr "Szeroka strona"
 msgid "Widgets shown in the right column of pages and posts."
 msgstr "Widżety w prawej kolumnie stron i wpisów."
 
+msgid "Widgets shown above the footer on the homepage and news archives."
+msgstr "Widżety wyświetlane nad stopką strony głównej i archiwów aktualności."
+
 msgid "Georg Kloster – Orthodox Donations"
 msgstr "Georg Kloster – Orthodox Donations"
 
@@ -797,6 +803,30 @@ msgstr "Prośby modlitewne i darowizny przez Stripe i PayPal, zbiórki celowe, r
 
 msgid "The theme works on its own. These optional Georg-Kloster plugins add parish management, a calendar, communication, Church Slavonic translation and donations. Install only the features you need."
 msgstr "Motyw działa samodzielnie. Opcjonalne wtyczki Georg-Kloster dodają zarządzanie parafią, kalendarz, komunikację, tłumaczenie na cerkiewnosłowiański i darowizny. Zainstaluj tylko potrzebne funkcje."
+
+msgid "A simple welcome section with a heading, introduction and link."
+msgstr "Prosta sekcja powitalna z nagłówkiem, wprowadzeniem i odnośnikiem."
+
+msgid "Learn more about our community, services and parish life."
+msgstr "Dowiedz się więcej o naszej wspólnocie, nabożeństwach i życiu parafii."
+
+msgid "Our church is a place for prayer, fellowship and support for everyone."
+msgstr "Nasz kościół jest miejscem modlitwy, wspólnoty i wsparcia dla każdego."
+
+msgid "Parish lead paragraph"
+msgstr "Tekst wprowadzający o parafii"
+
+msgid "Parish theme"
+msgstr "Motyw parafii"
+
+msgid "Parish welcome"
+msgstr "Powitanie parafialne"
+
+msgid "Scripture quotation"
+msgstr "Cytat z Pisma Świętego"
+
+msgid "Welcome to our parish"
+msgstr "Witamy w naszej parafii"
 
 msgid "Translate text into Church Slavonic and search its dictionary through Bible Desktop."
 msgstr "Tłumaczenie tekstu na cerkiewnosłowiański i wyszukiwanie w słowniku przez Bible Desktop."

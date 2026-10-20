@@ -36,6 +36,11 @@ latest posts, categories, archives, calendar, or custom HTML. When the area is
 empty, the theme keeps its built-in calendar, service schedule, contact link,
 and parish quotation.
 
+A separate **Newsletter** widget area appears above the footer on the homepage
+and news archives. Add the MailPoet Form block there and select a form in
+**Appearance → Widgets**. The area stays hidden until it contains a widget; the
+theme does not send campaigns or require MailPoet.
+
 ## Optional plugins
 
 The settings sidebar includes **Optional plugins**. It shows compact cards for

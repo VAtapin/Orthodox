@@ -8,7 +8,7 @@ The theme has compact optional-plugin cards for Parish, Connect Hub, Calendar Wo
 
 The active theme on the test site `new.georg-kloster.ru` was updated from the current Git package (version 1.0.0). News and category archives use responsive card grids. The homepage service strip has a place logo, date calendar, and time clock with separate columns for date, time, and service title; narrow screens stack the strip without clipping. The classic hero motto stays in the text column. The live page retained its existing theme settings.
 
-The newsletter widget area is present on the homepage and news/archive views. It currently contains a MailPoet stock demo form and must be replaced with a clean parish newsletter form before considering MailPoet setup complete; no campaign has been sent.
+The newsletter widget area is present on the homepage and news/archive views. It uses a clean MailPoet form named “Новости монастыря” (form 2), linked to the “Рассылка новостей” list, with a confirmation reminder and theme-styled controls. The old stock demo form remains in MailPoet but is no longer displayed publicly. MailPoet sending is still inactive (“Other” method awaits activation); WP Mail SMTP has an SMTP transport configured, but delivery has not been tested. No campaign or test email has been sent.
 
 ## WordPress.org release status
 
@@ -16,10 +16,10 @@ Version 1.0.0 is submitted in WordPress.org Themes Trac ticket [#296403](https:/
 
 ## Checks completed
 
-`php tests/lint.php` passed; `php tests/run.php` passed 70 isolated assertions. Browser checks on the test site confirmed the three-column desktop archive, one-column mobile archive without horizontal overflow, category archive cards, the `Новости` posts-page title, all five service-strip layouts, the logo/calendar/clock icon placement, and the map at full width after its lazy load. The refreshed desktop service strip measured separate, non-overlapping date, time, and service-title columns.
+`php tests/lint.php` passed; `php tests/run.php` passed 70 isolated assertions. `python tests/translation-check.py` checked 2,891 translated UI messages and placeholders. Browser checks on the test site confirmed the three-column desktop archive, one-column mobile archive without horizontal overflow, category archive cards, the `Новости` posts-page title, all five service-strip layouts, the logo/calendar/clock icon placement, and the map at full width after its lazy load. The refreshed desktop service strip measured separate, non-overlapping date, time, and service-title columns. The public `/news/` page shows the clean form with no demo background image; its field and button colors match the theme.
 
 ## Next steps
 
-Replace the MailPoet demo form with a clean parish newsletter form and configure sending only after the sender/service details are available. WordPress.org manual review remains pending.
+Activate and verify MailPoet sending with the configured WP Mail SMTP transport before announcing the newsletter publicly; a test email was intentionally not sent. WordPress.org manual review remains pending.
 
-Last related code commit: responsive service-strip layout fix (current commit on `main`).
+Last related code commit: newsletter widget and form styling update (this commit on `main`); the preceding service-strip fix is `6bbfe8a`.

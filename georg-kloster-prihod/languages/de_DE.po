@@ -522,6 +522,9 @@ msgstr "Filter zurücksetzen"
 msgid "Right sidebar"
 msgstr "Rechte Seitenleiste"
 
+msgid "Newsletter"
+msgstr "Newsletter"
+
 msgid "Sans serif"
 msgstr "Sans-Serif"
 
@@ -768,6 +771,9 @@ msgstr "Breite Seite"
 msgid "Widgets shown in the right column of pages and posts."
 msgstr "Widgets in der rechten Spalte von Seiten und Beiträgen."
 
+msgid "Widgets shown above the footer on the homepage and news archives."
+msgstr "Widgets über dem Footer auf der Startseite und den Nachrichtenarchiven."
+
 msgid "Georg Kloster – Orthodox Donations"
 msgstr "Georg Kloster – Orthodox Donations"
 
@@ -797,6 +803,30 @@ msgstr "Gebetsanliegen und Spenden mit Stripe und PayPal, zweckgebundene Sammlun
 
 msgid "The theme works on its own. These optional Georg-Kloster plugins add parish management, a calendar, communication, Church Slavonic translation and donations. Install only the features you need."
 msgstr "Das Theme funktioniert eigenständig. Diese optionalen Georg-Kloster-Plugins ergänzen Gemeindeverwaltung, Kalender, Kommunikation, Übersetzung ins Kirchenslawische und Spenden. Installieren Sie nur die benötigten Funktionen."
+
+msgid "A simple welcome section with a heading, introduction and link."
+msgstr "Ein einfacher Begrüßungsbereich mit Überschrift, Einleitung und Link."
+
+msgid "Learn more about our community, services and parish life."
+msgstr "Erfahren Sie mehr über unsere Gemeinschaft, Gottesdienste und das Gemeindeleben."
+
+msgid "Our church is a place for prayer, fellowship and support for everyone."
+msgstr "Unsere Kirche ist ein Ort des Gebets, der Gemeinschaft und der Unterstützung für alle."
+
+msgid "Parish lead paragraph"
+msgstr "Einleitender Absatz zur Gemeinde"
+
+msgid "Parish theme"
+msgstr "Gemeindethema"
+
+msgid "Parish welcome"
+msgstr "Begrüßung der Gemeinde"
+
+msgid "Scripture quotation"
+msgstr "Bibelzitat"
+
+msgid "Welcome to our parish"
+msgstr "Willkommen in unserer Gemeinde"
 
 msgid "Translate text into Church Slavonic and search its dictionary through Bible Desktop."
 msgstr "Texte ins Kirchenslawische übersetzen und das Wörterbuch über Bible Desktop durchsuchen."

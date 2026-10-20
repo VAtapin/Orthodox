@@ -20,5 +20,6 @@ $archive_title = is_home() && ! is_front_page()
 <?php endwhile; ?>
 </div>
 <?php the_posts_pagination(); ?>
+<?php echo prihod_theme_newsletter_area(); ?>
 </main>
 <?php get_footer(); ?>

@@ -11,6 +11,7 @@ if ( have_posts() ) {
     the_post();
 }
 echo prihod_theme_home();
+echo prihod_theme_newsletter_area();
 ?>
 </main>
 <?php get_footer(); ?>

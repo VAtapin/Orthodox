@@ -64,6 +64,15 @@ add_action( 'widgets_init', function () {
         'before_title'  => '<h2 class="widget-title">',
         'after_title'   => '</h2>',
     ) );
+    register_sidebar( array(
+        'name'          => __( 'Newsletter', 'georg-kloster-prihod' ),
+        'id'            => 'prihod-newsletter',
+        'description'   => __( 'Widgets shown above the footer on the homepage and news archives.', 'georg-kloster-prihod' ),
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2 class="widget-title">',
+        'after_title'   => '</h2>',
+    ) );
 } );
 
 add_action( 'init', function () {

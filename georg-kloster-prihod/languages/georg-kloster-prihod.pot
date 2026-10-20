@@ -9,6 +9,10 @@ msgstr ""
 msgid "A Google key is only used when Google Maps is selected. The key is sent to visitors’ browsers and should be restricted to this site in Google Cloud."
 msgstr ""
 
+#: includes/theme-check-compat.php
+msgid "A simple welcome section with a heading, introduction and link."
+msgstr ""
+
 #: about.php
 msgid "About"
 msgstr ""
@@ -454,6 +458,10 @@ msgstr ""
 msgid "Learn more"
 msgstr ""
 
+#: includes/theme-check-compat.php
+msgid "Learn more about our community, services and parish life."
+msgstr ""
+
 #: includes/settings.php
 msgid "Light hospitality"
 msgstr ""
@@ -546,8 +554,12 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: archive.php includes/home-settings.php includes/render.php
+#: archive.php includes/home-settings.php includes/render.php index.php
 msgid "News"
+msgstr ""
+
+#: functions.php
+msgid "Newsletter"
 msgstr ""
 
 #: includes/catalog.php
@@ -602,6 +614,10 @@ msgstr ""
 msgid "Orthodox calendar blocks and shortcodes for dates, fasting, commemorations, readings and liturgical texts."
 msgstr ""
 
+#: includes/theme-check-compat.php
+msgid "Our church is a place for prayer, fellowship and support for everyone."
+msgstr ""
+
 #: includes/render.php
 msgid "Page breadcrumb"
 msgstr ""
@@ -618,12 +634,24 @@ msgstr ""
 msgid "Parish Appearance"
 msgstr ""
 
+#: includes/theme-check-compat.php
+msgid "Parish lead paragraph"
+msgstr ""
+
 #: includes/plugins.php
 msgid "Parish profile, clergy, service places with logos and photos, service schedules and calendar. Publish with blocks or shortcodes using any theme."
 msgstr ""
 
+#: includes/theme-check-compat.php
+msgid "Parish theme"
+msgstr ""
+
 #: includes/customizer.php
 msgid "Parish theme settings"
+msgstr ""
+
+#: includes/theme-check-compat.php
+msgid "Parish welcome"
 msgstr ""
 
 #: includes/presentation.php includes/site-settings.php
@@ -744,6 +772,10 @@ msgstr ""
 
 #: includes/plugins.php
 msgid "Screenshot: %s (new tab)"
+msgstr ""
+
+#: includes/theme-check-compat.php
+msgid "Scripture quotation"
 msgstr ""
 
 #: includes/render.php
@@ -1052,8 +1084,16 @@ msgstr ""
 msgid "Welcome"
 msgstr ""
 
+#: includes/theme-check-compat.php
+msgid "Welcome to our parish"
+msgstr ""
+
 #: wide.php
 msgid "Wide"
+msgstr ""
+
+#: functions.php
+msgid "Widgets shown above the footer on the homepage and news archives."
 msgstr ""
 
 #: functions.php

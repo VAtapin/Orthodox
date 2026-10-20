@@ -307,6 +307,7 @@
 .prihod-wide>.prihod-catalog-grid>.prihod-news-card>.prihod-news-copy h2{margin:7px 0;font:clamp(18px,1.5vw,22px)/1.22 Georgia,serif;overflow-wrap:anywhere}
 .prihod-wide>.prihod-catalog-grid>.prihod-news-card>.prihod-news-copy p{display:-webkit-box;margin:0;color:var(--prihod-muted);font-size:14px;line-height:1.45;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
 .prihod-category-content{padding-block:24px 48px}
+.prihod-newsletter-area{padding-block:36px;background:var(--prihod-soft-bg,#f7f4ee);border-top:1px solid var(--prihod-line);border-bottom:1px solid var(--prihod-line)}.prihod-newsletter-area .prihod-container{max-width:760px}.prihod-newsletter-area .widget{margin:0}.prihod-newsletter-area .widget-title{margin:0 0 12px}.prihod-newsletter-area :is(form,.mailpoet_form){max-width:100%}
 .prihod-category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch}
 .prihod-category-card{display:flex;min-width:0;flex-direction:column;overflow:hidden;border:1px solid var(--prihod-line);border-radius:var(--prihod-radius);background:var(--wp--preset--color--white);box-shadow:var(--prihod-shadow)}
 .prihod-category-card-image{display:block;aspect-ratio:16/9;overflow:hidden;background:var(--prihod-line)}
@@ -327,3 +328,11 @@
 .prihod-scheme-classic .prihod-classic-motto{position:static;width:max-content;max-width:min(100%,410px);margin:12px 0 0 53px;padding:10px 14px;border:1px solid #d7c29f;border-radius:5px;background:#fffF;box-shadow:0 3px 12px #17243c18;color:var(--wp--preset--color--forest);font-size:clamp(18px,2vw,25px);line-height:1.25;transform:none}
 @media(max-width:900px){.prihod-wide>.prihod-catalog-grid,.prihod-category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.prihod-scheme-classic .prihod-classic-motto{margin-left:0}}
 @media(max-width:600px){.prihod-wide>.prihod-catalog-grid,.prihod-category-grid{grid-template-columns:1fr;gap:14px}.prihod-wide>.prihod-catalog-grid>.prihod-news-card>.prihod-photo-item,.prihod-category-card-image{aspect-ratio:16/10}.prihod-wide>.prihod-catalog-grid>.prihod-news-card>.prihod-news-copy,.prihod-category-card-copy{padding:14px 16px 16px}.prihod-wide>.prihod-catalog-grid>.prihod-news-card>.prihod-news-copy h2,.prihod-category-card-copy h2{font-size:20px}.prihod-hero-service .prihod-service-details{display:block!important}.prihod-hero-service .prihod-service-when{display:flex!important;flex-direction:row!important;flex-wrap:wrap;align-items:center;gap:12px;padding:0;margin:12px 0;border:0}.prihod-hero-service .prihod-service-when time{font-size:20px}.prihod-scheme-classic .prihod-classic-motto{max-width:100%;margin:12px 0 0;font-size:19px}}
+/* Give the MailPoet signup area the same palette and controls as the theme. */
+.prihod-newsletter-area .mailpoet_form_widget{margin:0 auto}
+.prihod-newsletter-area .mailpoet_form_widget .mailpoet_paragraph{margin-bottom:10px}
+.prihod-newsletter-area .mailpoet_form_widget input.mailpoet_text{min-height:48px;padding:12px 15px!important;border:1px solid var(--prihod-line)!important;border-radius:var(--prihod-radius);background:var(--wp--preset--color--white);color:var(--wp--preset--color--ink);font:inherit}
+.prihod-newsletter-area .mailpoet_form_widget input.mailpoet_submit{min-height:48px;padding:12px 18px!important;border:1px solid var(--wp--preset--color--forest)!important;border-radius:var(--prihod-radius);background:var(--wp--preset--color--forest)!important;color:var(--wp--preset--color--white)!important;font:600 15px/1.4 var(--wp--preset--font-family--sans);cursor:pointer}
+.prihod-newsletter-area .mailpoet_form_widget input.mailpoet_submit:hover{filter:brightness(.92)}
+.prihod-newsletter-area .widget-title{text-align:center;font-size:clamp(24px,3vw,36px);line-height:1.2}
+.prihod-newsletter-area .widget_block p{max-width:720px;margin:12px auto 0;color:var(--wp--preset--color--muted);font-size:14px;line-height:1.5;text-align:center}

@@ -33,5 +33,6 @@ $archive_description = get_the_archive_description();
 </div>
 <?php endif; ?>
 </div>
+<?php echo prihod_theme_newsletter_area(); ?>
 </main>
 <?php get_footer(); ?>

@@ -522,6 +522,9 @@ msgstr "Скинути фільтри"
 msgid "Right sidebar"
 msgstr "Права колонка"
 
+msgid "Newsletter"
+msgstr "Підписка на новини"
+
 msgid "Sans serif"
 msgstr "Простий"
 
@@ -768,6 +771,9 @@ msgstr "Широка сторінка"
 msgid "Widgets shown in the right column of pages and posts."
 msgstr "Віджети в правій колонці сторінок і записів."
 
+msgid "Widgets shown above the footer on the homepage and news archives."
+msgstr "Віджети над підвалом головної сторінки та архівів новин."
+
 msgid "Georg Kloster – Orthodox Donations"
 msgstr "Georg Kloster – Orthodox Donations"
 
@@ -797,6 +803,30 @@ msgstr "Молитовні записки й пожертви через Stripe 
 
 msgid "The theme works on its own. These optional Georg-Kloster plugins add parish management, a calendar, communication, Church Slavonic translation and donations. Install only the features you need."
 msgstr "Тема працює самостійно. Додаткові плагіни Georg-Kloster додають керування парафією, календар, засоби зв’язку, переклад церковнослов’янською та пожертви. Встановлюйте лише потрібні функції."
+
+msgid "A simple welcome section with a heading, introduction and link."
+msgstr "Простий вітальний блок із заголовком, вступом і посиланням."
+
+msgid "Learn more about our community, services and parish life."
+msgstr "Дізнайтеся більше про нашу громаду, богослужіння та життя парафії."
+
+msgid "Our church is a place for prayer, fellowship and support for everyone."
+msgstr "Наш храм — місце молитви, спілкування та підтримки для кожного."
+
+msgid "Parish lead paragraph"
+msgstr "Основний текст про парафію"
+
+msgid "Parish theme"
+msgstr "Тема парафії"
+
+msgid "Parish welcome"
+msgstr "Вітання парафії"
+
+msgid "Scripture quotation"
+msgstr "Цитата зі Святого Письма"
+
+msgid "Welcome to our parish"
+msgstr "Ласкаво просимо до нашої парафії"
 
 msgid "Translate text into Church Slavonic and search its dictionary through Bible Desktop."
 msgstr "Переклад тексту церковнослов’янською мовою та пошук у словнику через Bible Desktop."
