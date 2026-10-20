@@ -20,11 +20,23 @@ require_once __DIR__ . '/includes/catalog.php';
 require_once __DIR__ . '/includes/clergy.php';
 require_once __DIR__ . '/includes/pilgrim.php';
 require_once __DIR__ . '/includes/contacts.php';
+require_once __DIR__ . '/includes/theme-check-compat.php';
 
 add_action( 'after_setup_theme', function () {
     load_theme_textdomain( 'georg-kloster-prihod', get_template_directory() . '/languages' );
     add_theme_support( 'title-tag' );
     add_theme_support( 'post-thumbnails' );
+    add_theme_support( 'custom-header', array(
+        'width'              => 1920,
+        'height'             => 600,
+        'flex-width'         => true,
+        'flex-height'        => true,
+        'header-text'        => false,
+        'uploads'            => true,
+    ) );
+    add_theme_support( 'custom-background', array(
+        'default-color' => 'faf9f6',
+    ) );
     add_theme_support( 'custom-logo', array(
         'height'               => 72,
         'width'                => 240,
