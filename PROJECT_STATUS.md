@@ -22,4 +22,4 @@ Version 1.0.0 is submitted in WordPress.org Themes Trac ticket [#296403](https:/
 
 Activate and verify MailPoet sending with the configured WP Mail SMTP transport before announcing the newsletter publicly; a test email was intentionally not sent. WordPress.org manual review remains pending.
 
-Last related code commit: pending for the current newsletter presentation update.
+Last related code commit: `882c20e` (newsletter presentation update on `main`).
