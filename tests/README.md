@@ -1,18 +1,19 @@
 # Проверки
 
-## Объединённый «Приход» 0.2.2
+## Объединённый «Приход» 0.2.4
 
-`parish-merge-blueprint.json` выполняет 82 проверки: один каталог мест и меню,
+`parish-merge-blueprint.json` выполняет 84 проверки: один каталог мест и меню,
 сохранность прежних ID/типов/служб/духовенства, совместимость демо-мест,
 изображения из настоящей медиатеки без поддержки миниатюр в теме, валидация,
-права/nonce, публичный вывод и фиксированный API. Дополнительно проверено
+права/nonce, публичный вывод и фиксированный API. Проверяется классический
+собственные формы без стандартного редактора, безопасное сохранение описания, контактов и нескольких связей мест, а также порядок регистрации страницы настроек. Дополнительно проверено
 распознавание календарных названий после переноса многоязычных шаблонов в JSON. Нужны только mounts Core и tests:
 
 ```powershell
 npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-prihod-core /wordpress/wp-content/plugins/georg-kloster-prihod-core --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/parish-merge-blueprint.json
 ```
 
-Для проверки ZIP распаковать `georg-kloster-prihod-core-0.2.2.zip` и монтировать
+Для проверки ZIP распаковать `georg-kloster-prihod-core-0.2.4.zip` и монтировать
 его каталог вместо исходника. Для минимальной платформы использовать копию
 Blueprint с WP6.5.13/PHP8.0. Результат: `tests/.parish-merge-result.json`.
 
@@ -129,7 +130,7 @@ npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloste
 
 ## Английские исходники и локализация текущих плагинов
 
-«Приход» 0.2.2 и Connect Hub 0.3.2 используют английские gettext-ключи.
+«Приход» 0.2.4 и Connect Hub 0.3.2 используют английские gettext-ключи.
 `plugin-i18n-check.py` запрещает кириллицу в PHP/JS/CSS обоих пакетов, сверяет
 PO/MO/JSON, покрытие и placeholders. 887 сообщений: Core 92, Schedule 195,
 Connect Hub по 300 в RU и DE. Демо и многоязычные входные шаблоны календаря —

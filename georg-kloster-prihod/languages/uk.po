@@ -922,3 +922,11 @@ msgstr "Раді зустрічі з вами"
 #: wide.php
 msgid "Wide"
 msgstr "Широка сторінка"
+
+#: functions.php
+msgid "Right sidebar"
+msgstr "Права колонка"
+
+#: functions.php
+msgid "Widgets shown in the right column of pages and posts."
+msgstr "Віджети в правій колонці сторінок і записів."

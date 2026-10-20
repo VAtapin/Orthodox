@@ -15,7 +15,9 @@ final class Plugin {
         Calendar_Icons::hooks();
         Calendar_Reminders::hooks();
         add_action( 'init', array( Public_View::class, 'register' ) );
-        add_action( 'admin_menu', array( Admin::class, 'menu' ), 5 );
+        // The Parish top-level menu is registered at the default priority (10).
+        // Registering this submenu earlier leaves WordPress with a relative URL.
+        add_action( 'admin_menu', array( Admin::class, 'menu' ), 20 );
         add_action( 'admin_init', array( Admin::class, 'settings' ) );
         add_action( 'admin_init', static function () { register_setting( Calendar_Provider::OPTION, Calendar_Provider::OPTION, array( 'type' => 'array', 'sanitize_callback' => array( Calendar_Provider::class, 'sanitize' ) ) ); } );
         add_filter( 'option_page_capability_' . Calendar_Provider::OPTION, static fn() => 'manage_gkpsch_settings' );

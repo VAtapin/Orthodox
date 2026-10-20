@@ -922,3 +922,11 @@ msgstr "Wir freuen uns auf Ihren Besuch"
 #: wide.php
 msgid "Wide"
 msgstr "Breite Seite"
+
+#: functions.php
+msgid "Right sidebar"
+msgstr "Rechte Seitenleiste"
+
+#: functions.php
+msgid "Widgets shown in the right column of pages and posts."
+msgstr "Widgets in der rechten Spalte von Seiten und Beiträgen."

@@ -23,9 +23,9 @@ final class Directory {
             'gkpc_clergy' => array( __( 'Clergy', 'georg-kloster-prihod-core' ), __( 'Clergy member', 'georg-kloster-prihod-core' ) ),
         ) as $type => $labels ) {
             register_post_type( $type, array(
-                'labels' => array( 'name' => $labels[0], 'singular_name' => $labels[1] ),
+                'labels' => array( 'name' => $labels[0], 'singular_name' => $labels[1], 'title' => $labels[1] ),
                 'public' => false, 'show_ui' => true, 'show_in_menu' => 'gkpc',
-                'show_in_rest' => true, 'supports' => array( 'title', 'editor', 'thumbnail', 'revisions' ),
+                'show_in_rest' => false, 'supports' => array( 'title', 'thumbnail', 'revisions' ),
                 'capabilities' => array(
                     'edit_post' => 'manage_gkpc_profile', 'read_post' => 'manage_gkpc_profile', 'delete_post' => 'manage_gkpc_profile',
                     'edit_posts' => 'manage_gkpc_profile', 'edit_others_posts' => 'manage_gkpc_profile',
@@ -43,14 +43,18 @@ final class Directory {
         $args = get_post_type_object( 'gkpc_location' );
         // Existing places keep their IDs, metadata and every service reference.
         $caps = class_exists( '\GeorgKlosterPrihodSchedule\Capabilities' ) ? \GeorgKlosterPrihodSchedule\Capabilities::directory() : (array) $args->cap;
-        register_post_type( 'gkpsch_location', array( 'labels' => (array) $args->labels, 'public' => false, 'show_ui' => true, 'show_in_menu' => false, 'show_in_rest' => true, 'supports' => array( 'title', 'editor', 'thumbnail', 'revisions' ), 'capabilities' => $caps, 'map_meta_cap' => false ) );
+        register_post_type( 'gkpsch_location', array( 'labels' => (array) $args->labels, 'public' => false, 'show_ui' => true, 'show_in_menu' => false, 'show_in_rest' => false, 'supports' => array( 'title', 'thumbnail', 'revisions' ), 'capabilities' => $caps, 'map_meta_cap' => false ) );
     }
 
     public static function fields( string $type ): array {
         if ( in_array( $type, self::location_types(), true ) ) {
-            return array( 'address' => __( 'Address', 'georg-kloster-prihod-core' ), 'phone' => __( 'Phone', 'georg-kloster-prihod-core' ), 'email' => __( 'Email', 'georg-kloster-prihod-core' ), 'timezone' => __( 'Time zone (leave empty to use WordPress time zone)', 'georg-kloster-prihod-core' ) );
+            return array( 'address' => __( 'Address', 'georg-kloster-prihod-core' ), 'phone' => __( 'Phone', 'georg-kloster-prihod-core' ), 'email' => __( 'Email', 'georg-kloster-prihod-core' ), 'website' => __( 'Website', 'georg-kloster-prihod-core' ), 'timezone' => __( 'Time zone (leave empty to use WordPress time zone)', 'georg-kloster-prihod-core' ) );
         }
-        return 'gkpc_clergy' === $type ? array( 'rank' => __( 'Title', 'georg-kloster-prihod-core' ) ) : array();
+        return 'gkpc_clergy' === $type ? array(
+            'rank' => __( 'Clergy rank', 'georg-kloster-prihod-core' ),
+            'phone' => __( 'Phone', 'georg-kloster-prihod-core' ),
+            'email' => __( 'Email', 'georg-kloster-prihod-core' ),
+        ) : array();
     }
 
     public static function details( int $id ): array {
@@ -69,8 +73,16 @@ final class Directory {
     public static function render( $post ): void {
         wp_nonce_field( 'gkpc_details_' . $post->ID, 'gkpc_details_nonce' );
         $details = self::details( (int) $post->ID );
+        echo '<p><label for="gkpc-description"><strong>' . esc_html__( 'Description', 'georg-kloster-prihod-core' ) . '</strong></label><br><textarea class="widefat" rows="6" id="gkpc-description" name="gkpc_description">' . esc_textarea( $post->post_content ) . '</textarea></p>';
         foreach ( self::fields( $post->post_type ) as $key => $label ) {
             echo '<p><label for="gkpc-' . esc_attr( $key ) . '">' . esc_html( $label ) . '</label><br><input class="widefat" id="gkpc-' . esc_attr( $key ) . '" name="gkpc_details[' . esc_attr( $key ) . ']" value="' . esc_attr( $details[ $key ] ?? '' ) . '"></p>';
+        }
+        if ( 'gkpc_clergy' === $post->post_type ) {
+            echo '<input type="hidden" name="gkpc_details[location_ids_present]" value="1"><p><label for="gkpc-location-ids">' . esc_html__( 'Service places (select all that apply)', 'georg-kloster-prihod-core' ) . '</label><br><select class="widefat" multiple size="6" id="gkpc-location-ids" name="gkpc_details[location_ids][]">';
+            foreach ( self::places( array( 'post_status' => array( 'publish', 'draft', 'private', 'pending', 'future' ) ) ) as $place ) {
+                echo '<option value="' . esc_attr( $place->ID ) . '"' . selected( in_array( (int) $place->ID, $details['location_ids'] ?? array(), true ), true, false ) . '>' . esc_html( $place->post_title ) . '</option>';
+            }
+            echo '</select></p>';
         }
     }
 
@@ -80,6 +92,15 @@ final class Directory {
         if ( ! is_string( $nonce ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $nonce ) ), 'gkpc_details_' . $id ) ) { return; }
         $post = get_post( $id );
         if ( ! $post ) { return; }
+        if ( isset( $_POST['gkpc_description'] ) && is_string( $_POST['gkpc_description'] ) ) {
+            $description = wp_kses_post( wp_unslash( $_POST['gkpc_description'] ) );
+            if ( $description !== $post->post_content ) {
+                $save_hook = 'save_post_' . $post->post_type;
+                remove_action( $save_hook, array( self::class, 'save' ) );
+                wp_update_post( array( 'ID' => $id, 'post_content' => $description ) );
+                add_action( $save_hook, array( self::class, 'save' ) );
+            }
+        }
         $input = $_POST['gkpc_details'] ?? array();
         if ( ! is_array( $input ) ) { return; }
         $details = self::details( $id );
@@ -87,11 +108,26 @@ final class Directory {
             if ( ! isset( $input[ $key ] ) || ! is_string( $input[ $key ] ) ) { continue; }
             $value = trim( wp_unslash( $input[ $key ] ) );
             if ( 'timezone' === $key && '' !== $value && ! in_array( $value, timezone_identifiers_list(), true ) ) { continue; }
-            if ( 'email' === $key ) {
+            if ( 'website' === $key ) {
+                $raw_url = trim( wp_unslash( $input[ $key ] ) );
+                $value = esc_url_raw( $raw_url, array( 'http', 'https' ) );
+                if ( '' !== $raw_url && '' === $value ) { continue; }
+            } elseif ( 'email' === $key ) {
                 if ( '' !== $value && ! is_email( $value ) ) { continue; }
                 $value = sanitize_email( $value );
             } else { $value = sanitize_text_field( $value ); }
             $details[ $key ] = $value;
+        }
+        if ( 'gkpc_clergy' === $post->post_type && isset( $input['location_ids_present'] ) ) {
+            $ids = $input['location_ids'] ?? array();
+            if ( ! is_array( $ids ) ) { return; }
+            $valid_ids = array();
+            foreach ( $ids as $place_id ) {
+                if ( ! is_scalar( $place_id ) || ! ctype_digit( (string) $place_id ) ) { return; }
+                $place_id = absint( $place_id );
+                if ( $place_id && in_array( get_post_type( $place_id ), self::location_types(), true ) && ! in_array( get_post_status( $place_id ), array( 'trash', 'auto-draft' ), true ) ) { $valid_ids[] = $place_id; }
+            }
+            $details['location_ids'] = array_values( array_unique( $valid_ids ) );
         }
         update_post_meta( $id, '_gkpc_details', wp_slash( $details ) );
         if ( in_array( $post->post_type, self::location_types(), true ) ) { do_action( 'wpml_register_single_string', 'georg-kloster-prihod-schedule', 'location-' . $id, get_the_title( $id ) ); }

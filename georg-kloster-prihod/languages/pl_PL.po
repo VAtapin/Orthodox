@@ -922,3 +922,11 @@ msgstr "Cieszymy się na spotkanie z Państwem"
 #: wide.php
 msgid "Wide"
 msgstr "Szeroka strona"
+
+#: functions.php
+msgid "Right sidebar"
+msgstr "Prawa kolumna"
+
+#: functions.php
+msgid "Widgets shown in the right column of pages and posts."
+msgstr "Widżety w prawej kolumnie stron i wpisów."

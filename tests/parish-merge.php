@@ -15,7 +15,7 @@ $throws = static function ( callable $fn, string $message ) use ( $check ): void
 $http = array();
 add_filter( 'pre_http_request', static function ( $pre, $args, $url ) use ( &$http ) { $http[] = $url; return new WP_Error( 'fixture', 'No external network in fixture.' ); }, 10, 3 );
 wp_set_current_user( 1 ); set_current_screen( 'dashboard' );
-$check( '0.2.2' === GKPC_VERSION && GKPC_VERSION === GKPSCH_VERSION, 'Merged package version or module missing.' );
+$check( '0.2.4' === GKPC_VERSION && GKPC_VERSION === GKPSCH_VERSION, 'Merged package version or module missing.' );
 $check( ! is_plugin_active( 'georg-kloster-prihod-schedule/georg-kloster-prihod-schedule.php' ), 'Old Schedule remains active.' );
 $check( str_contains( GKPSCH_FILE, '/georg-kloster-prihod-core/schedule/' ), 'Schedule still runs from the old package.' );
 $check( array() === GeorgKlosterPrihodCore\Demo_Importer::state(), 'Merge implicitly imported demo data.' );
@@ -46,9 +46,26 @@ $check( 'black' === GeorgKlosterPrihodSchedule\Calendar_Colors::day( array( 'dat
 
 do_action( 'admin_menu' ); global $menu, $submenu;
 $check( 1 === count( array_filter( $menu, static fn( $row ) => 'gkpc' === $row[2] ) ) && ! array_filter( $menu, static fn( $row ) => 'gkpsch' === $row[2] ), 'Separate Schedule top-level menu remains.' );
+$check( 20 === has_action( 'admin_menu', array( GeorgKlosterPrihodSchedule\Admin::class, 'menu' ) ), 'Schedule settings are registered after the Parish parent menu.' );
 $links = array_column( $submenu['gkpc'], 2 );
 foreach ( array( 'edit.php?post_type=gkpc_location', 'edit.php?post_type=gkpc_clergy', 'edit.php?post_type=gkpsch_service', 'gkpsch-settings', 'gkpc-demo' ) as $link ) { $check( in_array( $link, $links, true ), 'Merged menu link missing: ' . $link ); }
 $check( ! in_array( 'edit.php?post_type=gkpsch_location', $links, true ), 'Two separate place menus remain.' );
+$check( ! get_post_type_object( 'gkpc_location' )->show_in_rest && ! get_post_type_object( 'gkpc_clergy' )->show_in_rest && ! get_post_type_object( 'gkpsch_location' )->show_in_rest, 'Directory forms must use the custom classic editor rather than Gutenberg.' );
+$check( ! post_type_supports( 'gkpc_location', 'editor' ) && ! post_type_supports( 'gkpc_clergy', 'editor' ) && ! post_type_supports( 'gkpsch_location', 'editor' ), 'Standard content editor remains visible instead of the directory forms.' );
+$check( array_key_exists( 'rank', Directory::fields( 'gkpc_clergy' ) ) && array_key_exists( 'phone', Directory::fields( 'gkpc_clergy' ) ) && array_key_exists( 'email', Directory::fields( 'gkpc_clergy' ) ) && array_key_exists( 'website', Directory::fields( 'gkpc_location' ) ), 'Clergy or service-place custom fields are incomplete.' );
+$clergy_edit = get_post( $fixture['clergy'] ); ob_start(); Directory::render( $clergy_edit ); $clergy_form = ob_get_clean();
+$check( str_contains( $clergy_form, 'name="gkpc_description"' ) && str_contains( $clergy_form, 'name="gkpc_details[rank]"' ) && str_contains( $clergy_form, 'name="gkpc_details[phone]"' ) && str_contains( $clergy_form, 'name="gkpc_details[email]"' ) && str_contains( $clergy_form, 'gkpc_details[location_ids][]' ) && str_contains( $clergy_form, 'Existing parish chapel' ), 'Clergy custom form is missing biography, rank, contacts or place associations.' );
+$place_form_post = get_post( $fixture['place'] ); ob_start(); Directory::render( $place_form_post ); $place_form = ob_get_clean();
+$check( str_contains( $place_form, 'name="gkpc_description"' ) && str_contains( $place_form, 'gkpc_details[address]' ) && str_contains( $place_form, 'gkpc_details[website]' ) && str_contains( $place_form, 'gkpc_details[timezone]' ), 'Service-place custom form is incomplete.' );
+$nonce = wp_create_nonce( 'gkpc_details_' . $fixture['place'] );
+$_POST = array( 'gkpc_details_nonce' => $nonce, 'gkpc_description' => '<p>Updated place description</p><script>alert(1)</script>', 'gkpc_details' => array( 'website' => 'https://chapel.example/path' ) );
+Directory::save( $fixture['place'] );
+$check( '<p>Updated place description</p>alert(1)' === get_post_field( 'post_content', $fixture['place'] ) && 'https://chapel.example/path' === Directory::details( $fixture['place'] )['website'], 'Custom place form did not safely save description and website.' );
+$_POST = array( 'gkpc_details_nonce' => wp_create_nonce( 'gkpc_details_' . $fixture['clergy'] ), 'gkpc_details' => array( 'location_ids_present' => '1', 'location_ids' => array( (string) $fixture['place'], (string) $fixture['old_place'] ) ) );
+Directory::save( $fixture['clergy'] );
+$saved_clergy = Directory::details( $fixture['clergy'] ); sort( $saved_clergy['location_ids'] ); $expected_places = array( $fixture['place'], $fixture['old_place'] ); sort( $expected_places );
+$check( $expected_places === $saved_clergy['location_ids'], 'Clergy custom form did not preserve both current and legacy service-place associations.' );
+$_POST = array();
 $check( false === get_post_type_object( 'gkpsch_location' )->show_in_menu && 'gkpc' === get_post_type_object( 'gkpsch_service' )->show_in_menu, 'Legacy places or services attached to wrong menu.' );
 $query = new WP_Query(); $query->set( 'post_type', 'gkpc_location' ); global $wp_the_query; $old_main = $wp_the_query; $wp_the_query = $query;
 Directory::unified_list( $query ); $wp_the_query = $old_main;

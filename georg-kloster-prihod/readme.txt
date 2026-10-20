@@ -22,6 +22,10 @@ Upload the theme ZIP under Appearance > Themes, activate it, then choose a visua
 
 == Frequently Asked Questions ==
 
+= Where can I edit the right column? =
+
+Open Appearance > Widgets and add standard WordPress blocks such as paragraphs, search, latest posts, categories, archives, calendar or custom HTML to Right sidebar. If no widgets are assigned, the theme displays its built-in calendar, service schedule, contact link and parish quotation.
+
 = Does the theme require a plugin? =
 
 No. It displays ordinary WordPress pages and posts on its own.
@@ -35,6 +39,9 @@ The theme uses images selected from your WordPress media library. It does not do
 Create and assign a menu under Appearance > Menus. Open a menu item and choose its image from the media library; without a chosen image, the linked page or post featured image is used. The theme's Appearance > Parish Appearance > Header and Footer section enables an image menu alongside the standard desktop link row and sets the number of visual columns. The link-row-only option remains available. Menu item descriptions can be enabled under Screen Options on the Menus screen.
 
 == Changelog ==
+
+= 0.4.38 =
+Register the right column as a standard WordPress widget area. Core widgets can replace its automatic sidebar content; the existing calendar, services and contact link remain as the empty-area default.
 
 = 0.4.34 =
 Add a generic homepage settings extension hook. An active Parish Core can provide its own demo import link; demo data, preview and import remain entirely in the optional plugin. No theme content or automatic setup is added.

@@ -123,6 +123,11 @@ function prihod_theme_footer(): string {
     return '<div class="prihod-footer"><div class="prihod-container">' . prihod_theme_brand() . '<nav class="prihod-footer-links" aria-label="' . esc_attr__( 'Site sections', 'georg-kloster-prihod' ) . '">' . $links . '</nav><div>' . ( $policy ? '<a href="' . esc_url( $policy ) . '">' . esc_html__( 'Privacy policy', 'georg-kloster-prihod' ) . '</a>' : '' ) . '<p>© ' . esc_html( wp_date( 'Y' ) ) . ' ' . esc_html( prihod_theme_profile()['name'] ) . '</p><p>' . nl2br( esc_html( georg_kloster_prihod_options()['footer_text'] ) ) . '</p></div><a class="prihod-top" href="#prihod-header" aria-label="' . esc_attr__( 'Back to top', 'georg-kloster-prihod' ) . '">↑</a></div></div>';
 }
 function prihod_theme_sidebar(): string {
+    if ( is_active_sidebar( 'prihod-sidebar' ) ) {
+        ob_start();
+        dynamic_sidebar( 'prihod-sidebar' );
+        return (string) ob_get_clean();
+    }
     $html = '';
     $content = (string) get_post_field( 'post_content', get_the_ID() );
     $has_calendar = has_block( 'orthocal/calendar', $content ) || has_block( 'orthocal/today', $content ) || has_shortcode( $content, 'orthocal_calendar' ) || has_shortcode( $content, 'orthocal_today' );

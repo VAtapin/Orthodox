@@ -77,6 +77,10 @@ msgstr ""
 msgid "Clergy page"
 msgstr ""
 
+#: includes/class-directory.php
+msgid "Clergy rank"
+msgstr ""
+
 #: includes/class-demo-admin.php
 msgid "Confirm the demo import first."
 msgstr ""
@@ -101,7 +105,7 @@ msgstr ""
 msgid "Demo content language"
 msgstr ""
 
-#: includes/class-blocks.php includes/class-profile.php
+#: includes/class-blocks.php includes/class-directory.php includes/class-profile.php
 msgid "Description"
 msgstr ""
 
@@ -277,6 +281,10 @@ msgstr ""
 msgid "Service places"
 msgstr ""
 
+#: includes/class-directory.php
+msgid "Service places (select all that apply)"
+msgstr ""
+
 #: includes/class-page-links.php
 msgid "Service schedule"
 msgstr ""
@@ -329,10 +337,6 @@ msgstr ""
 msgid "Time zone (leave empty to use WordPress time zone)"
 msgstr ""
 
-#: includes/class-directory.php
-msgid "Title"
-msgstr ""
-
 #: includes/class-place-media.php
 msgid "Use selected images"
 msgstr ""
@@ -345,7 +349,7 @@ msgstr ""
 msgid "View created homepage"
 msgstr ""
 
-#: includes/class-profile.php
+#: includes/class-directory.php includes/class-profile.php
 msgid "Website"
 msgstr ""
 

@@ -28,6 +28,12 @@ with WPML String Translation.
 Menu items, nesting and images are managed under **Appearance → Menus**.
 The image menu is optional; the standard link row remains available.
 
+The right column on pages and posts is a standard WordPress widget area. Edit it
+under **Appearance → Widgets** with core blocks such as paragraphs, search,
+latest posts, categories, archives, calendar, or custom HTML. When the area is
+empty, the theme keeps its built-in calendar, service schedule, contact link,
+and parish quotation.
+
 ## Optional plugins
 
 The settings sidebar includes **Optional plugins**. Installed Core, Social and

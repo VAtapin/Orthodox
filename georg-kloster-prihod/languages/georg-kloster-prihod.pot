@@ -650,6 +650,10 @@ msgstr ""
 msgid "Reset filters"
 msgstr ""
 
+#: functions.php
+msgid "Right sidebar"
+msgstr ""
+
 #: includes/settings.php
 msgid "Russian"
 msgstr ""
@@ -922,4 +926,8 @@ msgstr ""
 
 #: wide.php
 msgid "Wide"
+msgstr ""
+
+#: functions.php
+msgid "Widgets shown in the right column of pages and posts."
 msgstr ""

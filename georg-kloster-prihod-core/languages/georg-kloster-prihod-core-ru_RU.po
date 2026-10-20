@@ -277,10 +277,6 @@ msgstr "Будет изменён выбор главной страницы. С
 msgid "Time zone (leave empty to use WordPress time zone)"
 msgstr "Часовой пояс (оставьте пустым, чтобы использовать часовой пояс WordPress)"
 
-#: includes/class-directory.php
-msgid "Title"
-msgstr "Сан"
-
 #: includes/class-place-media.php
 msgid "Use selected images"
 msgstr "Использовать выбранные изображения"
@@ -352,3 +348,11 @@ msgstr "location: идентификатор места служения; 0 (п�
 
 msgid "view: week (default), month or list."
 msgstr "view: week (неделя, по умолчанию), month (месяц) или list (список)."
+
+#: includes/class-directory.php
+msgid "Clergy rank"
+msgstr "Сан / должность"
+
+#: includes/class-directory.php
+msgid "Service places (select all that apply)"
+msgstr "Места служения (можно выбрать несколько)"

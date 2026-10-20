@@ -32,6 +32,15 @@ add_action( 'after_setup_theme', function () {
     add_theme_support( 'responsive-embeds' );
     add_theme_support( 'wp-block-styles' );
     register_nav_menus( array( 'primary' => __( 'Primary menu', 'georg-kloster-prihod' ) ) );
+    register_sidebar( array(
+        'name'          => __( 'Right sidebar', 'georg-kloster-prihod' ),
+        'id'            => 'prihod-sidebar',
+        'description'   => __( 'Widgets shown in the right column of pages and posts.', 'georg-kloster-prihod' ),
+        'before_widget' => '<section id="%1$s" class="widget %2$s prihod-panel">',
+        'after_widget'  => '</section>',
+        'before_title'  => '<h2 class="widget-title">',
+        'after_title'   => '</h2>',
+    ) );
 } );
 
 add_action( 'init', function () {

@@ -15,6 +15,7 @@ georg_theme_release_assert( ! in_array( 'prihod/prihod.php', get_option( 'active
 georg_theme_release_assert( function_exists( 'prihod_theme_home' ), 'Theme renderer did not load.' );
 georg_theme_release_assert( ! WP_Block_Type_Registry::get_instance()->is_registered( 'georg-kloster-prihod/home' ), 'Theme registered a custom block.' );
 georg_theme_release_assert( has_filter( 'option_page_capability_prihod_theme' ), 'Theme settings capability is missing.' );
+georg_theme_release_assert( isset( $GLOBALS['wp_registered_sidebars']['prihod-sidebar'] ), 'Theme registers the standard right sidebar widget area.' );
 georg_theme_release_assert( str_contains( prihod_theme_brand(), 'prihod-mark' ), 'Default theme logo is hidden.' );
 georg_theme_release_assert( '<figure>Icon</figure>' === apply_filters( 'prihod_schedule_icon_markup', '<figure>Icon</figure>', array( 'start' => new DateTimeImmutable() ), null ), 'Theme assumes the legacy Core calendar class exists.' );
 
@@ -53,6 +54,9 @@ include get_template_directory() . '/page.php';
 $plugin_markup = ob_get_clean();
 georg_theme_release_assert( str_contains( $plugin_markup, 'Plugin block content' ), 'Theme does not display plugin supplied block: ' . substr( wp_strip_all_tags( $plugin_markup ), -500 ) );
 georg_theme_release_assert( str_contains( $plugin_markup, 'Plugin shortcode content' ), 'Theme does not display plugin supplied shortcode.' );
+wp_register_sidebar_widget( 'theme-release-widget', 'Theme release widget', static function (): void { echo '<p>Theme widget marker</p>'; } );
+update_option( 'sidebars_widgets', array( 'wp_inactive_widgets' => array(), 'prihod-sidebar' => array( 'theme-release-widget' ) ) );
+georg_theme_release_assert( str_contains( prihod_theme_sidebar(), 'Theme widget marker' ), 'A standard WordPress sidebar widget is rendered in the right column.' );
 wp_update_post( array( 'ID' => $home_page_id, 'post_content' => '<!-- wp:georg-test/contact /-->' ) );
 georg_theme_release_assert( str_contains( prihod_theme_home_content(), 'Plugin block content' ), 'Plugin content on front page is hidden.' );
 unregister_block_type( 'georg-test/contact' );

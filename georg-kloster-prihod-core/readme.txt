@@ -3,7 +3,7 @@ Contributors: vatapin
 Tags: parish, church, clergy, contacts
 Requires at least: 6.5
 Requires PHP: 8.0
-Stable tag: 0.2.2
+Stable tag: 0.2.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -13,6 +13,8 @@ Parish profile, clergy, service places with images, schedules and calendar.
 
 Adds a parish profile, site-section links, clergy, service places, recurring services, cancellations, calendar views and upcoming services under one Parish menu. Works with any theme; the Parish theme also works without this plugin. Forms and messaging belong to the separate Connect Hub plugin.
 
+Service places and clergy use dedicated directory forms rather than the standard content editor. Place forms include description, address, phone, email, website, time zone and separate logo/photo controls. Clergy forms include biography, rank, contacts and multiple service-place associations. Existing descriptions, fields and associations are retained.
+
 Places have independent logo and photo fields with native media-library selection, outside the description. Images appear in the Places block and above the schedule for a selected place (or the only published place). Existing descriptions, featured images, places, clergy and service IDs are retained. Old Schedule places share the new Places list without moving or deleting their records. New places use the Parish directory; both old and new IDs work in services.
 
 The previously separate Schedule implementation is bundled here. Existing gkpsch blocks, shortcodes, service metadata, REST routes, cron hooks and settings remain compatible. The old Schedule plugin is silently deactivated on activation or the first request after a ZIP update. If it was already loaded in that request, its PHP classes finish once; the next request uses the bundled module. Network-active Schedule requires network-wide Parish activation.
@@ -21,7 +23,7 @@ The previously separate Schedule implementation is bundled here. Existing gkpsch
 
 Upload the ZIP to Plugins, activate it, and open Parish in the dashboard. Add your profile, places, and clergy. Insert the Parish profile, Parish contacts, Clergy, or Places block in a page. The matching shortcodes are [gkpc_profile], [gkpc_contacts], [gkpc_clergy], and [gkpc_places].
 
-For an installed Parish Core, upload georg-kloster-prihod-core-0.2.2.zip and replace the installed version. Keep the existing georg-kloster-prihod-core folder/slug. No manual database migration is needed. Create services under Parish and configure calendar display under Parish > Schedule settings. Schedule blocks and [gkpsch_schedule], [gkpsch_next_service], [gkpsch_next_services] remain available. No separate Schedule ZIP is required.
+For an installed Parish Core, upload georg-kloster-prihod-core-0.2.4.zip and replace the installed version. Keep the existing georg-kloster-prihod-core folder/slug. No manual database migration is needed. Create services under Parish and configure calendar display under Parish > Schedule settings. Schedule blocks and [gkpsch_schedule], [gkpsch_next_service], [gkpsch_next_services] remain available. No separate Schedule ZIP is required.
 
 == Shortcodes ==
 
@@ -58,6 +60,12 @@ Interrupted imports can be resumed. The importer identifies its own items, does 
 Demo texts and media: copyright 2026 Vladimir Atapin, GPLv2 or later. The parish, diocese, address and events are fictional. The photographs and illustrations are provided by Saint George Monastery in Gotschendorf and are not images of the fictional parish. Sources and individual credits are in demo/resources.json. Files are included locally; import does not contact their original sites. Photographs of real people are not assigned to fictional persons.
 
 == Changelog ==
+
+= 0.2.4 =
+Hide the standard content editor and restore dedicated service-place and clergy forms. Keep descriptions in post_content; restore clergy contacts/place associations and the service-place website field.
+
+= 0.2.3 =
+Register Schedule settings after the Parish menu so its admin link resolves correctly.
 
 = 0.2.2 =
 Use English source UI strings with bundled Russian translations. Add in-dashboard shortcode descriptions, parameters and examples. Keep multilingual calendar matching data separate from executable sources.
