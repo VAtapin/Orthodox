@@ -101,6 +101,12 @@ add_action( 'wp_enqueue_scripts', function () {
 add_filter( 'body_class', function ( array $classes ): array {
     $settings = WP_Theme_JSON_Resolver::get_merged_data()->get_settings();
     $scheme = $settings['custom']['prihod']['scheme'] ?? 'classic';
+    if ( isset( $_GET['mailpoet_page'], $_GET['mailpoet_router'], $_GET['endpoint'], $_GET['action'] )
+        && 'subscriptions' === sanitize_key( wp_unslash( $_GET['mailpoet_page'] ) )
+        && 'subscription' === sanitize_key( wp_unslash( $_GET['endpoint'] ) )
+        && 'confirm' === sanitize_key( wp_unslash( $_GET['action'] ) ) ) {
+        $classes[] = 'prihod-mailpoet-confirmation';
+    }
     if ( georg_kloster_prihod_options()['sticky_header'] ) {
         $classes[] = 'prihod-sticky-header';
     }

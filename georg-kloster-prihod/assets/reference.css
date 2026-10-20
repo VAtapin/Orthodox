@@ -307,7 +307,7 @@
 .prihod-wide>.prihod-catalog-grid>.prihod-news-card>.prihod-news-copy h2{margin:7px 0;font:clamp(18px,1.5vw,22px)/1.22 Georgia,serif;overflow-wrap:anywhere}
 .prihod-wide>.prihod-catalog-grid>.prihod-news-card>.prihod-news-copy p{display:-webkit-box;margin:0;color:var(--prihod-muted);font-size:14px;line-height:1.45;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
 .prihod-category-content{padding-block:24px 48px}
-.prihod-newsletter-area{padding-block:36px;background:var(--prihod-soft-bg,#f7f4ee);border-top:1px solid var(--prihod-line);border-bottom:1px solid var(--prihod-line)}.prihod-newsletter-area .prihod-container{max-width:760px}.prihod-newsletter-area .widget{margin:0}.prihod-newsletter-area .widget-title{margin:0 0 12px}.prihod-newsletter-area :is(form,.mailpoet_form){max-width:100%}
+.prihod-newsletter-area{padding-block:24px;background:var(--prihod-soft-bg,#f7f4ee);border-top:1px solid var(--prihod-line);border-bottom:1px solid var(--prihod-line)}.prihod-newsletter-area .prihod-container{max-width:600px}.prihod-newsletter-area .widget{margin:0}.prihod-newsletter-area .widget-title{margin:0 0 10px}.prihod-newsletter-area :is(form,.mailpoet_form){max-width:100%}
 .prihod-category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch}
 .prihod-category-card{display:flex;min-width:0;flex-direction:column;overflow:hidden;border:1px solid var(--prihod-line);border-radius:var(--prihod-radius);background:var(--wp--preset--color--white);box-shadow:var(--prihod-shadow)}
 .prihod-category-card-image{display:block;aspect-ratio:16/9;overflow:hidden;background:var(--prihod-line)}
@@ -331,8 +331,16 @@
 /* Give the MailPoet signup area the same palette and controls as the theme. */
 .prihod-newsletter-area .mailpoet_form_widget{margin:0 auto}
 .prihod-newsletter-area .mailpoet_form_widget .mailpoet_paragraph{margin-bottom:10px}
-.prihod-newsletter-area .mailpoet_form_widget input.mailpoet_text{min-height:48px;padding:12px 15px!important;border:1px solid var(--prihod-line)!important;border-radius:var(--prihod-radius);background:var(--wp--preset--color--white);color:var(--wp--preset--color--ink);font:inherit}
-.prihod-newsletter-area .mailpoet_form_widget input.mailpoet_submit{min-height:48px;padding:12px 18px!important;border:1px solid var(--wp--preset--color--forest)!important;border-radius:var(--prihod-radius);background:var(--wp--preset--color--forest)!important;color:var(--wp--preset--color--white)!important;font:600 15px/1.4 var(--wp--preset--font-family--sans);cursor:pointer}
+.prihod-newsletter-area .mailpoet_form_widget input.mailpoet_text{min-height:44px;padding:10px 14px!important;border:1px solid var(--prihod-line)!important;border-radius:var(--prihod-radius);background:var(--wp--preset--color--white);color:var(--wp--preset--color--ink);font:inherit}
+.prihod-newsletter-area .mailpoet_form_widget input.mailpoet_submit{min-height:44px;padding:10px 16px!important;border:1px solid var(--wp--preset--color--forest)!important;border-radius:var(--prihod-radius);background:var(--wp--preset--color--forest)!important;color:var(--wp--preset--color--white)!important;font:600 14px/1.4 var(--wp--preset--font-family--sans);cursor:pointer}
 .prihod-newsletter-area .mailpoet_form_widget input.mailpoet_submit:hover{filter:brightness(.92)}
-.prihod-newsletter-area .widget-title{text-align:center;font-size:clamp(24px,3vw,36px);line-height:1.2}
-.prihod-newsletter-area .widget_block p{max-width:720px;margin:12px auto 0;color:var(--wp--preset--color--muted);font-size:14px;line-height:1.5;text-align:center}
+.prihod-newsletter-area .widget-title{text-align:center;font-size:clamp(22px,2.5vw,30px);line-height:1.2}
+.prihod-newsletter-area .widget_block p{max-width:560px;margin:10px auto 0;color:var(--wp--preset--color--muted);font-size:13px;line-height:1.5;text-align:center}
+/* Give MailPoet's double opt-in result page a compact, site-native layout. */
+.prihod-mailpoet-confirmation #prihod-main .prihod-inner-grid{grid-template-columns:minmax(0,1fr);max-width:900px;margin:26px auto 54px!important}
+.prihod-mailpoet-confirmation #prihod-main .prihod-sidebar{display:none}
+.prihod-mailpoet-confirmation #prihod-main>.prihod-page-heading{padding-block:24px}
+.prihod-mailpoet-confirmation #prihod-main>.prihod-page-heading h1{max-width:850px;margin:10px auto;font-size:clamp(30px,3.3vw,42px);line-height:1.18;text-align:center;text-wrap:balance}
+.prihod-mailpoet-confirmation #prihod-main .prihod-article{padding:28px 32px;border:1px solid var(--prihod-line);border-radius:var(--prihod-radius);background:var(--wp--preset--color--white);box-shadow:var(--prihod-shadow);text-align:center}
+.prihod-mailpoet-confirmation #prihod-main .prihod-article p{max-width:680px;margin:0 auto;color:var(--prihod-ink);font-size:17px;line-height:1.65}
+@media(max-width:600px){.prihod-newsletter-area{padding-block:20px}.prihod-mailpoet-confirmation #prihod-main .prihod-inner-grid{margin-block:18px 36px!important}.prihod-mailpoet-confirmation #prihod-main .prihod-article{padding:22px 18px}.prihod-mailpoet-confirmation #prihod-main .prihod-page-heading h1{font-size:30px}}
