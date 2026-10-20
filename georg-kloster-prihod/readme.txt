@@ -1,5 +1,5 @@
 === Georg-Kloster Prihod ===
-Contributors: vatapin
+Contributors: atapin
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.0
