@@ -90,7 +90,7 @@ add_action( 'wp_enqueue_scripts', function () {
     wp_enqueue_style( 'georg-kloster-prihod-reference', $uri . '/assets/reference.css', array( 'georg-kloster-prihod-design' ), $version . '.' . filemtime( get_template_directory() . '/assets/reference.css' ) );
     wp_enqueue_style( 'georg-kloster-prihod-home-content', $uri . '/assets/home-content.css', array( 'georg-kloster-prihod-reference' ), $version );
     wp_enqueue_style( 'georg-kloster-prihod-menu', $uri . '/assets/menu.css', array( 'georg-kloster-prihod-home-content' ), $version );
-    wp_enqueue_style( 'georg-kloster-prihod-home-options', $uri . '/assets/home-options.css', array( 'georg-kloster-prihod-menu' ), $version );
+    wp_enqueue_style( 'georg-kloster-prihod-home-options', $uri . '/assets/home-options.css', array( 'georg-kloster-prihod-menu' ), $version . '.' . filemtime( get_template_directory() . '/assets/home-options.css' ) );
     wp_enqueue_script( 'georg-kloster-prihod-gallery', $uri . '/assets/gallery.js', array(), $version, true );
     wp_enqueue_script( 'georg-kloster-prihod-menu', $uri . '/assets/menu.js', array(), $version, true );
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

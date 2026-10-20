@@ -6,7 +6,7 @@ The repository contains the Georg-Kloster Prihod theme (1.0.0), Parish Core (0.2
 
 The theme has compact optional-plugin cards for Parish, Connect Hub, Calendar Workshop, Orthodox Donations, and Slavonic Translator. Language switching is delegated to WPML or Polylang. The shared homepage map uses a full-width iframe.
 
-The active theme on the test site `new.georg-kloster.ru` was updated from the current Git package (version 1.0.0). News and category archives use responsive card grids. The homepage service strip has a place logo, date calendar, and time clock with separate columns for date, time, and service title; narrow screens stack the strip without clipping. The classic hero motto stays in the text column. The live page retained its existing theme settings.
+The active theme on the test site `new.georg-kloster.ru` was updated from the current Git package (version 1.0.0). News and category archives use responsive card grids. The homepage service strip has a place logo, date calendar, and time clock with separate columns for date, time, and service title; the time column is widened and its stylesheet uses a file modification cache key so updates reach visitors. Narrow screens stack the strip without clipping. The classic hero motto stays in the text column. The live page retained its existing theme settings.
 
 The newsletter widget area is present on the homepage and news/archive views. It uses a clean MailPoet form named “Новости монастыря” (form 2), linked to the “Рассылка новостей” list, with a confirmation reminder and theme-styled controls. The old stock demo form remains in MailPoet but is no longer displayed publicly. MailPoet sending is still inactive (“Other” method awaits activation); WP Mail SMTP has an SMTP transport configured, but delivery has not been tested. No campaign or test email has been sent.
 
@@ -22,4 +22,4 @@ Version 1.0.0 is submitted in WordPress.org Themes Trac ticket [#296403](https:/
 
 Activate and verify MailPoet sending with the configured WP Mail SMTP transport before announcing the newsletter publicly; a test email was intentionally not sent. WordPress.org manual review remains pending.
 
-Last related code commit: newsletter widget and form styling update (this commit on `main`); the preceding service-strip fix is `6bbfe8a`.
+Last related code commit: service-strip width and cache-busting fix (this commit on `main`); the preceding newsletter widget update is `1f66eef`.
