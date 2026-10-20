@@ -8,14 +8,14 @@ The theme's Optional Plugins panel shows compact cards and screenshots for Paris
 
 ## WordPress.org release status
 
-Prepared for first public submission as version 1.0.0. Development entries were removed from the theme's public changelog; Git history remains intact. The owner has confirmed visual review on the WordPress site. Directory metadata findings are corrected. Theme Check follow-up includes sidebar registration on `widgets_init`, native custom logo/header/background support, block styles and a block pattern. The owner will prepare the screenshot; the workspace copy is currently 1.2 MB and must be replaced before resubmission. Archive stylesheet URLs now change when their CSS file changes to prevent stale browser caches. The iframe notice is informational because the map loads only after an administrator configures it. Re-run Theme Check and submit the refreshed ZIP for review.
+Version 1.0.0 is submitted in WordPress.org Themes Trac ticket [#296403](https://themes.trac.wordpress.org/ticket/296403); the released SVN directory is the current source of truth. The ticket is open (`new`) and awaits manual review. Its Theme Check results show one warning: no theme copyright notice was found for the GPL license. The uploaded SVN source has the sidebar registered on `widgets_init` and includes custom logo, header, and background support. The local `build/georg-kloster-prihod-1.0.0/georg-kloster-prihod.zip` is older and does not match SVN; do not use it as the submitted release package.
 
 ## Checks completed
 
-PHP lint passed. Isolated unit tests passed with 70 assertions. Theme catalogs compiled and translation consistency passed for 2,851 UI messages. Owner confirmed the site review passed. The package generator ran, but its archive still contains the 1.2 MB screenshot and is not ready to resubmit. Production has not been updated.
+PHP syntax lint passed for all 35 PHP files in the local ZIP. The local extracted release folder also passed PHP lint. The screenshot in that local ZIP is 288,952 bytes. WordPress.org's Theme Check on the submitted SVN version reports only the copyright warning; the ticket's manual review is still pending. Earlier repository checks passed: 70 isolated assertions and translation consistency for 2,851 UI messages. No production deployment was performed.
 
 ## Next steps
 
-Replace `screenshot.png` with the owner's optimized image; rebuild and audit the 1.0.0 ZIP, then rerun Theme Check and address any remaining review feedback.
+Wait for the reviewer on ticket #296403. If requested, add an explicit copyright notice and submit the corrected package. Keep the SVN submission as authoritative; refresh the local build ZIP before using it again.
 
-Last related commit before this change: `f0c61f2` (Fix WordPress.org theme metadata), branch `main`, upstream `origin/main`.
+Last related code commit: `e10e018` (Bust theme style cache after updates), branch `main`, upstream `origin/main`.
