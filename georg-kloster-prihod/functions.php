@@ -77,7 +77,7 @@ add_action( 'wp_enqueue_scripts', function () {
     $uri = get_template_directory_uri();
     $version = wp_get_theme()->get( 'Version' );
     wp_enqueue_style( 'georg-kloster-prihod', get_stylesheet_uri(), array(), $version );
-    wp_enqueue_style( 'georg-kloster-prihod-design', $uri . '/assets/theme.css', array( 'georg-kloster-prihod' ), $version );
+    wp_enqueue_style( 'georg-kloster-prihod-design', $uri . '/assets/theme.css', array( 'georg-kloster-prihod' ), $version . '.' . filemtime( get_template_directory() . '/assets/theme.css' ) );
     wp_enqueue_style( 'georg-kloster-prihod-reference', $uri . '/assets/reference.css', array( 'georg-kloster-prihod-design' ), $version . '.' . filemtime( get_template_directory() . '/assets/reference.css' ) );
     wp_enqueue_style( 'georg-kloster-prihod-home-content', $uri . '/assets/home-content.css', array( 'georg-kloster-prihod-reference' ), $version );
     wp_enqueue_style( 'georg-kloster-prihod-menu', $uri . '/assets/menu.css', array( 'georg-kloster-prihod-home-content' ), $version );

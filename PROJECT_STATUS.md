@@ -8,14 +8,14 @@ The theme's Optional Plugins panel shows compact cards and screenshots for Paris
 
 ## WordPress.org release status
 
-Prepared for first public submission as version 1.0.0. Development entries were removed from the theme's public changelog; Git history remains intact. The owner has confirmed visual review on the WordPress site. The first directory review's metadata findings are corrected. Automatic Theme Check found a large screenshot (owner is preparing its replacement), required sidebar registration timing, and recommendations; the sidebar and custom logo support are corrected. Theme Check and directory submission remain external steps.
+Prepared for first public submission as version 1.0.0. Development entries were removed from the theme's public changelog; Git history remains intact. The owner has confirmed visual review on the WordPress site. Directory metadata findings are corrected. Theme Check follow-up includes sidebar registration on `widgets_init`, native custom logo/header/background support, block styles and a block pattern. The owner will prepare the screenshot; the workspace copy is currently 1.2 MB and must be replaced before resubmission. Archive stylesheet URLs now change when their CSS file changes to prevent stale browser caches. The iframe notice is informational because the map loads only after an administrator configures it. Re-run Theme Check and submit the refreshed ZIP for review.
 
 ## Checks completed
 
-PHP lint passed. Isolated unit tests passed with 70 assertions. Theme catalogs compiled and translation consistency passed for 2,851 UI messages. Theme package ZIP built and audited; owner confirmed the site review passed. Production has not been updated. The 1.0.0 ZIP must be rebuilt after the owner replaces `screenshot.png`.
+PHP lint passed. Isolated unit tests passed with 70 assertions. Theme catalogs compiled and translation consistency passed for 2,851 UI messages. Owner confirmed the site review passed. The package generator ran, but its archive still contains the 1.2 MB screenshot and is not ready to resubmit. Production has not been updated.
 
 ## Next steps
 
-Owner replaces/compresses `screenshot.png`; rebuild and resubmit the 1.0.0 ZIP, then address any remaining Theme Check or manual review feedback.
+Replace `screenshot.png` with the owner's optimized image; rebuild and audit the 1.0.0 ZIP, then rerun Theme Check and address any remaining review feedback.
 
 Last related commit before this change: `f0c61f2` (Fix WordPress.org theme metadata), branch `main`, upstream `origin/main`.
