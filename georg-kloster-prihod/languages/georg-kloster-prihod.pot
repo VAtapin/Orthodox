@@ -77,16 +77,8 @@ msgstr ""
 msgid "Ask a priest"
 msgstr ""
 
-#: includes/plugins.php
-msgid "Ask an administrator with plugin installation permissions to check the directory or install plugins."
-msgstr ""
-
 #: includes/customizer.php includes/home-settings.php includes/site-settings.php
 msgid "Automatic"
-msgstr ""
-
-#: includes/plugins.php
-msgid "Available on WordPress.org"
 msgstr ""
 
 #: includes/design.php
@@ -131,10 +123,6 @@ msgstr ""
 
 #: catalog.php
 msgid "Catalog"
-msgstr ""
-
-#: includes/plugins.php
-msgid "Check WordPress.org"
 msgstr ""
 
 #: includes/menu.php
@@ -260,16 +248,8 @@ msgstr ""
 msgid "Desktop columns"
 msgstr ""
 
-#: includes/plugins.php
-msgid "Details on WordPress.org"
-msgstr ""
-
 #: includes/contacts.php includes/pilgrim.php
 msgid "Directions"
-msgstr ""
-
-#: includes/plugins.php
-msgid "Directory check complete. Plugins that could not be confirmed are not offered for installation. You can check again if a plugin has just been published or the directory was unavailable."
 msgstr ""
 
 #: includes/home-settings.php
@@ -439,18 +419,10 @@ msgid "Independent forms, private messages and queued publications. Connect Tele
 msgstr ""
 
 #: includes/plugins.php
-msgid "Install from WordPress.org"
-msgstr ""
-
-#: includes/plugins.php
-msgid "Installed integrations appear below. New recommendations and installation buttons appear only after WordPress.org confirms that a plugin is available in its directory."
-msgstr ""
-
-#: includes/plugins.php
 msgid "Installed, inactive"
 msgstr ""
 
-#: includes/plugins.php includes/settings.php
+#: includes/settings.php
 msgid "Insufficient permissions."
 msgstr ""
 
@@ -575,7 +547,7 @@ msgid "No content found. Change your search or reset the filters."
 msgstr ""
 
 #: includes/plugins.php
-msgid "No installed integrations or confirmed directory recommendations are available yet."
+msgid "No optional integrations are currently installed."
 msgstr ""
 
 #: includes/customizer.php includes/home-settings.php
@@ -1001,7 +973,7 @@ msgid "The site style has not been changed."
 msgstr ""
 
 #: includes/plugins.php
-msgid "The theme works on its own. Add plugins only for the features you need; each plugin is independent."
+msgid "The theme works on its own. Optional integrations appear here after you install them from Plugins > Add New."
 msgstr ""
 
 #: includes/settings.php
@@ -1018,10 +990,6 @@ msgstr ""
 
 #: includes/customizer.php
 msgid "These controls mirror the Parish Appearance settings page. Preview changes here and publish when ready."
-msgstr ""
-
-#: includes/plugins.php
-msgid "This contacts the WordPress.org plugin directory. Nothing is installed or activated by the check."
 msgstr ""
 
 #: includes/home-settings.php

@@ -5,6 +5,8 @@ Classic gold, Light hospitality, Editorial, Traditional and Modern blue.
 Companion plugins are optional. The theme displays standard WordPress pages
 and posts without creating or rewriting them.
 
+Source code: https://github.com/VAtapin/Orthodox/tree/main/georg-kloster-prihod
+
 ## Settings
 
 Open **Appearance → Customize → Parish theme settings** for live-preview controls covering styles, layout, fonts, branding,
@@ -36,20 +38,12 @@ and parish quotation.
 
 ## Optional plugins
 
-The settings sidebar includes **Optional plugins**. Installed Core, Social and
-Schedule integrations have descriptions, actual settings screenshots and links
-to their configuration. The screenshots use empty settings on a disposable site;
-no owner content is included or imported.
-
-**Check WordPress.org** explicitly queries the official plugin information API
-for the three integration slugs and caches confirmed entries for one hour.
-Opening settings or the public site never triggers that lookup. Missing plugins
-are recommended only when the directory confirms an installable entry. An
-unpublished plugin is not advertised or installed from an external ZIP source.
-Installation and activation use standard WordPress screens, nonces, capabilities
-and platform checks. Administrators without installation rights see instructions
-to contact a permitted administrator. See readme.txt for the request disclosure.
-The theme is fully usable without these plugins and never installs them itself.
+The settings sidebar includes **Optional plugins**. It lists integrations already
+installed on the site, with descriptions, screenshots and links to their settings.
+The screenshots use empty settings on a disposable site; no owner content is
+included or imported. Install optional plugins through the standard **Plugins →
+Add New** screen. The theme makes no plugin-directory API requests and does not
+install plugins. It is fully usable without these integrations.
 
 When Parish Core provides its optional demo importer, the Homepage settings
 include the plugin's import link. Core owns the preview, consent form, content

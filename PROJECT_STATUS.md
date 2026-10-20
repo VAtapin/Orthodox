@@ -2,20 +2,20 @@
 
 ## Current state
 
-The repository contains the Georg-Kloster Prihod theme (current package 0.4.44), Parish Core (0.2.5), and Connect Hub (0.3.3). The theme has five styles, a standard WordPress widget area, native Customizer controls, English gettext source strings, and Russian, German, Polish, and Ukrainian translation catalogs. The author metadata is Atapin Vladimir / `atapin`; site https://georg-kloster.ru/; contact atapin@gmail.com.
+The repository contains the Georg-Kloster Prihod theme (release candidate 0.4.45), Parish Core (0.2.5), and Connect Hub (0.3.3). The theme has five styles, a standard WordPress widget area, native Customizer controls, English gettext source strings, and Russian, German, Polish, and Ukrainian catalogs. The author is Atapin Vladimir / `atapin`; site https://georg-kloster.ru/; contact atapin@gmail.com.
 
-## WordPress.org release assessment
+The theme settings no longer query the WordPress.org plugin API. The Optional Plugins panel lists only installed integrations, with descriptions and links to their settings; installation is left to the standard Plugins > Add New screen. The WordPress.org readme and developer README link to the GitHub theme source.
 
-The theme is **not ready for submission**. Current WordPress.org theme requirements prohibit external calls from theme settings/onboarding pages. `includes/plugins.php` makes a WordPress.org plugin-directory API request when an administrator clicks “Check WordPress.org” from the theme settings page. Remove or redesign this feature before submitting. The catalog’s Theme Check and Theme Unit Test Data review are also still outstanding; runtime theme tests cannot run in this workspace because a WordPress installation is unavailable.
+## WordPress.org release status
 
-The current `readme.txt` changelog still documents development releases, and the documentation does not include the repository GitHub URL. Do not reset the release version or clear the Git repository history before the compliance work and final checks. For a first stable public release, use version 1.0.0 rather than 0.1.0; retain Git history and condense only the public changelog to the initial release when actually preparing submission.
+Not yet ready for submission. Theme Check and official Theme Unit Test Data testing remain outstanding. Runtime theme tests require a WordPress Playground installation at `/wordpress/wp-load.php`, which is unavailable in this workspace. Keep the Git commit history. When the theme is ready for its first stable public release, use version 1.0.0 and replace the development changelog with the initial release entry.
 
 ## Checks completed
 
-Theme source/catalog/preview check passed: 264 messages in four locales. PHP lint passed across the repository. Theme package 0.4.44 built with 76 entries; required classic-theme files are present and screenshot is 1200 x 900. `git diff --check` passed. `tests/theme-release.php`, `tests/theme-smoke.php`, and `tests/theme-i18n.php` require WordPress at `/wordpress/wp-load.php` and therefore could not run here. Official Theme Check and Theme Unit Test Data have not been run. WordPress.org submission has not occurred.
+Theme source/catalog/preview check passed: 256 messages in four locales. Translation consistency check passed for 2,839 UI messages. Repository PHP lint passed, as did 70 isolated unit assertions. The 0.4.45 package builds with 76 entries, includes the required classic-theme files, and has a 1200 x 900 screenshot. The modified integrations-panel Playground test and other WordPress runtime tests could not run because the workspace has no WordPress installation at `/wordpress/wp-load.php`. WordPress.org submission has not occurred.
 
 ## Next steps
 
-Remove the theme-settings external API call, add the GitHub repository link and complete WordPress.org-facing release documentation, then run Theme Check and theme unit data on a clean WordPress install. Only after those checks pass should the theme be versioned as 1.0.0, its readme changelog reduced to the initial release, and a release ZIP built.
+Run Theme Check and theme unit data on a clean WordPress install, resolve any findings, then prepare and validate the first stable release package.
 
 Last related commit: check `git log -1` on branch `main` (upstream `origin/main`).

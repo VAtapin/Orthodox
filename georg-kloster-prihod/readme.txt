@@ -14,11 +14,11 @@ Georg-Kloster Prihod provides five visual styles: Classic, Hospitality, Editoria
 
 The theme does not create pages. Set your own name, description, community type and contacts under Appearance > Parish Appearance > Site Details. Choose ordinary WordPress pages for links throughout the theme under Homepage. Optional Parish supplies profile, clergy, places and schedules; Connect Hub supplies forms and communications. Schedule is bundled in Parish rather than installed separately. No bundled photographs appear on the public site.
 
-Under Optional Plugins, installed integrations have descriptions, screenshots and links to their settings. The theme contacts the WordPress.org plugin information API only when an administrator clicks Check WordPress.org. The request contains the plugin slugs and WordPress locale, with standard WordPress HTTP request metadata. Directory results are cached locally for one hour. No site content or contact-form messages are sent. Only confirmed WordPress.org entries are recommended for installation; unavailable or unpublished plugins are not advertised to new installations. Installation and activation require an explicit click and use WordPress core screens, capabilities, nonces and compatibility checks. The theme never bundles, downloads or activates plugins automatically. WordPress.org privacy policy: https://wordpress.org/about/privacy/.
+The Optional Plugins section lists integrations already installed on the site and links to their settings. Install optional plugins through Plugins > Add New. The theme makes no plugin-directory API requests and does not install plugins.
 
 == Support ==
 
-Author: Atapin Vladimir. Website: https://georg-kloster.ru/. Email: atapin@gmail.com.
+Author: Atapin Vladimir. Website: https://georg-kloster.ru/. Email: atapin@gmail.com. Source code: https://github.com/VAtapin/Orthodox/tree/main/georg-kloster-prihod.
 
 == Installation ==
 
@@ -47,6 +47,9 @@ The theme uses images selected from your WordPress media library. It does not do
 Create and assign a menu under Appearance > Menus. Open a menu item and choose its image from the media library; without a chosen image, the linked page or post featured image is used. The theme's Appearance > Parish Appearance > Header and Footer section enables an image menu alongside the standard desktop link row and sets the number of visual columns. The link-row-only option remains available. Menu item descriptions can be enabled under Screen Options on the Menus screen.
 
 == Changelog ==
+
+= 0.4.45 =
+* Remove the plugin-directory check and list only integrations already installed on the site.
 
 = 0.4.44 =
 * Add homepage contact controls for the address, phone, email, map and directions link in Parish Appearance and Customizer.

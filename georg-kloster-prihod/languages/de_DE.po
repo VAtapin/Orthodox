@@ -1,971 +1,574 @@
 msgid ""
 msgstr "Project-Id-Version: Georg-Kloster Prihod 0.4.30\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nX-Domain: georg-kloster-prihod\nLanguage: de_DE\n"
 
-#: about.php
+msgid "%1$s: %2$s"
+msgstr "%1$s: %2$s"
+
+msgid "A Google key is only used when Google Maps is selected. The key is sent to visitors’ browsers and should be restricted to this site in Google Cloud."
+msgstr "Der Google-Schlüssel wird nur bei ausgewähltem Google Maps verwendet. Er wird an die Browser der Besucher übertragen und sollte in Google Cloud auf diese Website beschränkt werden."
+
 msgid "About"
 msgstr "Geschichte und Gemeinschaft"
 
-#: includes/render.php
 msgid "About the monastery"
 msgstr "Über das Kloster"
 
-#: includes/render.php
 msgid "About the parish"
 msgstr "Über die Gemeinde"
 
-#: includes/home-settings.php
 msgid "About the parish / monastery"
 msgstr "Über die Gemeinde / das Kloster"
 
-#: includes/plugins.php
 msgid "Activate"
 msgstr "Aktivieren"
 
-#: includes/plugins.php
 msgid "Active"
 msgstr "Aktiv"
 
-#: includes/about.php
 msgid "Activities"
 msgstr "Unsere Tätigkeitsbereiche"
 
-#: includes/settings.php
 msgid "Additional footer text"
 msgstr "Zusätzlicher Text im Fußbereich"
 
-#: includes/home-settings.php
 msgid "Additional links"
 msgstr "Zusätzliche Links"
 
-#: includes/presentation.php includes/site-settings.php
 msgid "Address"
 msgstr "Adresse"
 
-#: includes/catalog.php
 msgid "All"
 msgstr "Alle"
 
-#: includes/home-settings.php
 msgid "All categories"
 msgstr "Alle Kategorien"
 
-#: includes/render.php
 msgid "All commemorations for the day"
 msgstr "Alle Feste des Tages"
 
-#: includes/render.php
 msgid "All services"
 msgstr "Alle Gottesdienste"
 
-#: includes/render.php
 msgid "Any questions?"
 msgstr "Haben Sie Fragen?"
 
-#: includes/pilgrim.php
 msgid "Arrange a visit"
 msgstr "Besuch abstimmen"
 
-#: includes/clergy.php includes/contacts.php includes/home-settings.php includes/render.php
 msgid "Ask a priest"
 msgstr "Frage an den Priester"
 
-#: includes/plugins.php
-msgid "Ask an administrator with plugin installation permissions to check the directory or install plugins."
-msgstr "Bitten Sie einen Administrator mit Installationsrechten, das Verzeichnis zu prüfen oder Plugins zu installieren."
-
-#: includes/home-settings.php includes/site-settings.php
 msgid "Automatic"
 msgstr "Automatisch"
 
-#: includes/plugins.php
-msgid "Available on WordPress.org"
-msgstr "Auf WordPress.org verfügbar"
-
-#: includes/design.php
 msgid "Back to styles"
 msgstr "Zurück zu den Designs"
 
-#: includes/render.php
 msgid "Back to top"
 msgstr "Nach oben"
 
-#: includes/settings.php
 msgid "Base font"
 msgstr "Grundschrift"
 
-#: includes/settings.php
 msgid "Base text size in px"
 msgstr "Grundschriftgröße, px"
 
-#: includes/settings.php
 msgid "Blue style quotation source"
 msgstr "Quelle des Zitats im blauen Stil"
 
-#: includes/pilgrim.php
 msgid "Call the monastery"
 msgstr "Im Kloster anrufen"
 
-#: includes/home-settings.php
 msgid "Card description"
 msgstr "Kartenbeschreibung"
 
-#: includes/home-settings.php
+msgid "Card position %d"
+msgstr "Position der Karte %d"
+
 msgid "Card title"
 msgstr "Kartentitel"
 
-#: includes/settings.php
 msgid "Cards per row"
 msgstr "Karten pro Zeile"
 
-#: catalog.php
 msgid "Catalog"
 msgstr "Beitragsübersicht"
 
-#: includes/plugins.php
-msgid "Check WordPress.org"
-msgstr "WordPress.org prüfen"
-
-#: includes/menu.php
 msgid "Choose image"
 msgstr "Bild auswählen"
 
-#: includes/settings.php
 msgid "Classic gold"
 msgstr "Klassisch in Gold"
 
-#: includes/settings.php
 msgid "Classic header motto"
 msgstr "Motto im klassischen Kopfbereich"
 
-#: includes/settings.php
 msgid "Classic hero motto"
 msgstr "Aufschrift im klassischen ersten Bereich"
 
-#: includes/about.php
 msgid "Clergy"
 msgstr "Geistliche"
 
-#: includes/render.php
 msgid "Close menu"
 msgstr "Menü schließen"
 
-#: styles/blue.json styles/editorial.json styles/hospitality.json styles/tradition.json theme.json
 msgctxt "Color name"
 msgid "Accent"
 msgstr "Akzent"
 
-#: styles/blue.json styles/editorial.json styles/hospitality.json styles/tradition.json theme.json
 msgctxt "Color name"
 msgid "Background"
 msgstr "Hintergrund"
 
-#: styles/blue.json styles/editorial.json styles/hospitality.json styles/tradition.json theme.json
 msgctxt "Color name"
 msgid "Borders"
 msgstr "Rahmen"
 
-#: styles/blue.json styles/editorial.json styles/hospitality.json styles/tradition.json theme.json
 msgctxt "Color name"
 msgid "Cards"
 msgstr "Karten"
 
-#: styles/blue.json styles/editorial.json styles/hospitality.json styles/tradition.json theme.json
 msgctxt "Color name"
 msgid "Gold"
 msgstr "Gold"
 
-#: styles/blue.json styles/editorial.json styles/hospitality.json styles/tradition.json theme.json
 msgctxt "Color name"
 msgid "Secondary text"
 msgstr "Sekundärtext"
 
-#: styles/blue.json styles/editorial.json styles/hospitality.json styles/tradition.json theme.json
 msgctxt "Color name"
 msgid "Text"
 msgstr "Text"
 
-#: includes/about.php
 msgid "Community life"
 msgstr "Gemeindeleben"
 
-#: includes/site-settings.php
 msgid "Community type"
 msgstr "Art der Gemeinde"
 
-#: includes/render.php
 msgid "Contact us"
 msgstr "Kontakt aufnehmen"
 
-#: contacts.php includes/contacts.php includes/home-settings.php includes/render.php
 msgid "Contacts"
 msgstr "Kontakt"
 
-#: includes/settings.php
 msgid "Current style"
 msgstr "Aktuelles Design"
 
-#: includes/home-settings.php
 msgid "Custom labels can be translated in WPML String Translation under georg-kloster-prihod."
 msgstr "Eigene Beschriftungen können in WPML String Translation im Bereich georg-kloster-prihod übersetzt werden."
 
-#: theme.json
 msgctxt "Custom template name"
 msgid "Content catalog"
 msgstr "Beitragsübersicht"
 
-#: theme.json
 msgctxt "Custom template name"
 msgid "Form and confirmation"
 msgstr "Formular und Bestätigung"
 
-#: theme.json
 msgctxt "Custom template name"
 msgid "History and community"
 msgstr "Geschichte und Gemeinschaft"
 
-#: theme.json
 msgctxt "Custom template name"
 msgid "Wide page"
 msgstr "Breite Seite"
 
-#: includes/home-settings.php
 msgid "Default"
 msgstr "Standard"
 
-#: includes/menu.php
 msgid "Delete"
 msgstr "Löschen"
 
-#: includes/home-settings.php includes/site-settings.php
 msgid "Description"
 msgstr "Beschreibung"
-
-#: includes/home-settings.php
-msgid "Desktop columns"
-msgstr "Spalten auf dem Desktop"
-
-#: includes/plugins.php
-msgid "Details on WordPress.org"
-msgstr "Details auf WordPress.org"
-
-#: includes/contacts.php includes/pilgrim.php
-msgid "Directions"
-msgstr "Anfahrt"
-
-#: includes/plugins.php
-msgid "Directory check complete. Plugins that could not be confirmed are not offered for installation. You can check again if a plugin has just been published or the directory was unavailable."
-msgstr "Verzeichnisprüfung abgeschlossen. Nicht bestätigte Plugins werden nicht zur Installation angeboten. Prüfen Sie erneut, wenn ein Plugin gerade veröffentlicht wurde oder das Verzeichnis nicht erreichbar war."
-
-#: includes/home-settings.php
-msgid "Donations"
-msgstr "Spenden"
-
-#: includes/settings.php
-msgid "Edit menu items and their order under Appearance → Menus. You can also choose an image for each item there. Without a chosen image, the linked page or post featured image is used."
-msgstr "Die Menüpunkte und ihre Reihenfolge ändern Sie unter „Design → Menüs“. Dort können Sie auch für jeden Punkt ein Bild wählen. Ohne Auswahl wird das Beitragsbild der verknüpften Seite oder des Beitrags angezeigt."
-
-#: includes/settings.php
-msgid "Editorial"
-msgstr "Magazin"
-
-#: includes/presentation.php includes/site-settings.php
-msgid "Email"
-msgstr "E-Mail"
-
-#: includes/settings.php
-msgid "Enter the URLs of existing language versions. Content translations are created separately; the theme does not translate text automatically."
-msgstr "Geben Sie Adressen vorhandener Sprachversionen an. Inhalte werden separat übersetzt; das Theme übersetzt Texte nicht automatisch."
-
-#: includes/home-settings.php
-msgid "Excerpt length in words"
-msgstr "Auszugslänge in Wörtern"
-
-#: includes/home-settings.php
-msgid "Eyebrow"
-msgstr "Überschriftzeile"
-
-#: includes/catalog.php
-msgid "Find"
-msgstr "Suchen"
-
-#: includes/render.php
-msgid "First time at church?"
-msgstr "Zum ersten Mal in der Kirche?"
-
-#: includes/contacts.php includes/pilgrim.php
-msgid "First visit"
-msgstr "Erster Besuch"
-
-#: focused.php
-msgid "Focused"
-msgstr "Formular und Bestätigung"
-
-#: theme.json
-msgctxt "Font family name"
-msgid "Sans serif"
-msgstr "Sans-Serif"
-
-#: theme.json
-msgctxt "Font family name"
-msgid "Serif"
-msgstr "Serifenschrift"
-
-#: theme.json
-msgctxt "Font size name"
-msgid "Base"
-msgstr "Standard"
-
-#: theme.json
-msgctxt "Font size name"
-msgid "Heading"
-msgstr "Überschrift"
-
-#: theme.json
-msgctxt "Font size name"
-msgid "Large"
-msgstr "Groß"
-
-#: theme.json
-msgctxt "Font size name"
-msgid "Small"
-msgstr "Klein"
-
-#: includes/home-settings.php
-msgid "For visitors"
-msgstr "Für Pilger"
-
-#: includes/plugins.php
-msgid "Georg-Kloster Connect Hub"
-msgstr "Georg-Kloster — Kommunikation"
-
-#: includes/plugins.php
-msgid "Georg-Kloster Parish"
-msgstr "Georg-Kloster — Gemeinde"
-
-#: includes/settings.php
-msgid "German"
-msgstr "Deutsch"
-
-#: includes/about.php
-msgid "Get involved"
-msgstr "So können Sie teilnehmen"
-
-#: includes/pilgrim.php
-msgid "Group visit"
-msgstr "Gruppenbesuch"
-
-#: includes/pilgrim.php
-msgid "Group visits and accommodation"
-msgstr "Gruppenbesuch und Aufenthalt"
-
-#: includes/settings.php
-msgid "Header and footer"
-msgstr "Kopf- und Fußbereich"
-
-#: includes/home-settings.php
-msgid "Heading"
-msgstr "Überschrift"
-
-#: includes/home-settings.php
-msgid "Hero"
-msgstr "Startbereich"
-
-#: includes/branding.php
-msgid "Hero image"
-msgstr "Hauptfoto"
-
-#: includes/home-settings.php
-msgid "Hide the schedule card when upcoming services are displayed"
-msgstr "Zeitplankarte ausblenden, wenn kommende Gottesdienste angezeigt werden"
-
-#: includes/about.php
-msgid "History"
-msgstr "Geschichte"
-
-#: archive.php includes/pilgrim.php includes/render.php
-msgid "Home"
-msgstr "Startseite"
-
-#: includes/home-settings.php includes/settings.php
-msgid "Homepage"
-msgstr "Startseite"
-
-#: includes/home-settings.php
-msgid "Homepage content"
-msgstr "Inhalt der Startseite"
-
-#: includes/photos.php
-msgid "Icon of the day"
-msgstr "Tagesikone"
-
-#: includes/plugins.php
-msgid "Independent forms, private messages and queued publications. Connect Telegram, WhatsApp, Facebook, Instagram, VK and OK separately."
-msgstr "Unabhängige Formulare, private Nachrichten und geplante Veröffentlichungen. Telegram, WhatsApp, Facebook, Instagram, VK und OK werden separat verbunden."
-
-#: includes/plugins.php
-msgid "Install from WordPress.org"
-msgstr "Von WordPress.org installieren"
-
-#: includes/plugins.php
-msgid "Installed integrations appear below. New recommendations and installation buttons appear only after WordPress.org confirms that a plugin is available in its directory."
-msgstr "Installierte Integrationen erscheinen unten. Neue Empfehlungen und Installationsschaltflächen erscheinen erst, wenn WordPress.org die Verfügbarkeit im Verzeichnis bestätigt."
-
-#: includes/plugins.php
-msgid "Installed, inactive"
-msgstr "Installiert, inaktiv"
-
-#: includes/plugins.php includes/settings.php
-msgid "Insufficient permissions."
-msgstr "Keine ausreichende Berechtigung."
-
-#: includes/settings.php
-msgid "Keep the header visible while scrolling"
-msgstr "Kopfbereich beim Scrollen fixieren"
-
-#: includes/render.php
-msgid "Language"
-msgstr "Sprache"
-
-#: includes/settings.php
-msgid "Languages"
-msgstr "Sprachen"
-
-#: includes/settings.php
-msgid "Layout and fonts"
-msgstr "Layout und Schriften"
-
-#: includes/about.php
-msgid "Learn more"
-msgstr "Mehr erfahren"
-
-#: includes/settings.php
-msgid "Light hospitality"
-msgstr "Hell und einladend"
-
-#: includes/home-settings.php
-msgid "Link label"
-msgstr "Linktext"
-
-msgid "Link to page: %s"
-msgstr "Link zur Seite „%s“"
-
-#: includes/settings.php
-msgid "Link row"
-msgstr "Linkleiste"
-
-#: includes/branding.php
-msgid "Logo"
-msgstr "Logo"
-
-#: includes/branding.php includes/settings.php
-msgid "Logo and icon"
-msgstr "Logo und Website-Icon"
-
-#: includes/branding.php
-msgid "Maximum logo width in px"
-msgstr "Maximale Logobreite, px"
-
-#: includes/render.php
-msgid "Menu"
-msgstr "Menü"
-
-#: includes/menu.php
-msgid "Menu item image"
-msgstr "Bild des Menüpunkts"
-
-#: includes/settings.php
-msgid "Menu style"
-msgstr "Menügestaltung"
-
-#: includes/settings.php
-msgid "Menu with cards and images"
-msgstr "Menü mit Karten und Bildern"
-
-#: includes/settings.php
-msgid "Modern blue"
-msgstr "Modern in Blau"
-
-#: includes/site-settings.php
-msgid "Monastery"
-msgstr "Kloster"
-
-#: includes/home-settings.php
-msgid "Move down: %s"
-msgstr "Nach unten: %s"
-
-#: includes/home-settings.php
-msgid "Move up: %s"
-msgstr "Nach oben: %s"
-
-#: includes/site-settings.php
-msgid "Name"
-msgstr "Name"
-
-#: archive.php includes/home-settings.php includes/render.php
-msgid "News"
-msgstr "Nachrichten"
-
-#: includes/catalog.php
-msgid "No content found. Change your search or reset the filters."
-msgstr "Keine Beiträge gefunden. Ändern Sie die Suche oder setzen Sie die Filter zurück."
-
-#: includes/plugins.php
-msgid "No installed integrations or confirmed directory recommendations are available yet."
-msgstr "Noch keine installierten Integrationen oder bestätigten Verzeichnisempfehlungen verfügbar."
-
-#: includes/home-settings.php
-msgid "Number of posts"
-msgstr "Anzahl der Beiträge"
-
-#: includes/home-settings.php
-msgid "Number of services"
-msgstr "Anzahl der Gottesdienste"
-
-#: includes/home-settings.php
-msgid "Only the content of the page selected as the homepage in Reading settings is displayed."
-msgstr "Es wird nur der eigene Inhalt der in den Leseeinstellungen gewählten Startseite angezeigt."
-
-#: includes/plugins.php
-msgid "Open settings"
-msgstr "Einstellungen öffnen"
-
-#: includes/plugins.php includes/settings.php
-msgid "Optional plugins"
-msgstr "Optionale Plugins"
-
-#: includes/render.php
-msgid "Orthodox calendar"
-msgstr "Orthodoxer Kalender"
-
-#: includes/render.php
-msgid "Page breadcrumb"
-msgstr "Pfad zur Seite"
-
-#: includes/settings.php
-msgid "Page language versions"
-msgstr "Sprachversionen der Seiten"
-
-#: includes/about.php
-msgid "Page sections"
-msgstr "Abschnitte der Seite"
-
-#: includes/site-settings.php
-msgid "Parish"
-msgstr "Gemeinde"
-
-#: includes/settings.php
-msgid "Parish Appearance"
-msgstr "Gemeindedesign"
-
-#: includes/plugins.php
-msgid "Parish profile, clergy, service places with logos and photos, service schedules and calendar. Publish with blocks or shortcodes using any theme."
-msgstr "Gemeindeprofil, Geistliche, Gottesdienstorte mit Logos und Fotos, Gottesdienste und Kalender. Ausgabe mit Blöcken oder Shortcodes in jedem Theme."
-
-#: includes/presentation.php includes/site-settings.php
-msgid "Phone"
-msgstr "Telefon"
-
-#: pilgrim.php
-msgid "Pilgrim"
-msgstr "Für Pilger"
-
-#: includes/pilgrim.php
-msgid "Please arrange accommodation and group visits with the monastery in advance."
-msgstr "Bitte klären Sie einen möglichen Aufenthalt und die Bedingungen für einen Gruppenbesuch im Voraus mit dem Kloster."
-
-#: includes/settings.php
-msgid "Polish"
-msgstr "Polnisch"
-
-#: includes/render.php
-msgid "Post breadcrumb"
-msgstr "Artikelnavigation"
-
-#: includes/catalog.php
-msgid "Post categories"
-msgstr "Rubriken der Beiträge"
-
-#: includes/home-settings.php
-msgid "Post category"
-msgstr "Beitragskategorie"
-
-#: includes/home-settings.php
-msgid "Post link label"
-msgstr "Text des Beitragslinks"
-
-#: includes/settings.php
-msgid "Preview"
-msgstr "Vorschau"
-
-#: includes/design.php
-msgid "Preview: %s"
-msgstr "Vorschau: %s"
-
-#: includes/settings.php
-msgid "Preview: %s (new tab)"
-msgstr "Vorschau: %s (neuer Tab)"
-
-#: functions.php includes/render.php includes/settings.php
-msgid "Primary menu"
-msgstr "Hauptmenü"
-
-#: includes/render.php
-msgid "Privacy policy"
-msgstr "Datenschutzerklärung"
-
-#: includes/settings.php
-msgid "Quotation below the buttons in the blue style"
-msgstr "Zitat unter den Schaltflächen des blauen Stils"
-
-#: includes/settings.php
-msgid "Quotation source"
-msgstr "Quelle des Zitats"
-
-#: includes/settings.php
-msgid "Quotation text"
-msgstr "Zitattext"
-
-#: includes/article.php
-msgid "Read more"
-msgstr "Weiterlesen"
-
-#: archive.php includes/catalog.php
-msgid "Read more →"
-msgstr "Weiterlesen →"
-
-#: includes/article.php
-msgid "Related posts"
-msgstr "Lesen Sie auch"
-
-#: includes/branding.php
-msgid "Remove"
-msgstr "Entfernen"
-
-#: includes/plugins.php
-msgid "Requires a newer WordPress or PHP version"
-msgstr "Erfordert eine neuere WordPress- oder PHP-Version"
-
-#: includes/catalog.php
-msgid "Reset filters"
-msgstr "Filter zurücksetzen"
-
-#: includes/settings.php
-msgid "Russian"
-msgstr "Russisch"
-
-#: includes/settings.php
-msgid "Sans serif"
-msgstr "Sans-Serif"
-
-#: includes/settings.php
-msgid "Save changes"
-msgstr "Änderungen speichern"
-
-#: includes/about.php includes/home-settings.php includes/render.php
-msgid "Schedule"
-msgstr "Gottesdienste"
-
-#: includes/home-settings.php
-msgid "Schedule button label"
-msgstr "Text der Zeitplan-Schaltfläche"
-
-#: includes/plugins.php
-msgid "Screenshot: %s (new tab)"
-msgstr "Screenshot: %s (neuer Tab)"
-
-#: includes/render.php
-msgid "Search"
-msgstr "Suche"
-
-#: includes/catalog.php
-msgid "Search posts"
-msgstr "Beiträge suchen"
-
-#: includes/catalog.php
-msgid "Search posts…"
-msgstr "Beiträge suchen…"
-
-#: includes/home-settings.php
-msgid "Secondary button label"
-msgstr "Text der zweiten Schaltfläche"
-
-#: includes/home-settings.php
-msgid "Section cards"
-msgstr "Bereichskarten"
-
-#: includes/home-settings.php
-msgid "Section settings"
-msgstr "Abschnittseinstellungen"
-
-#: includes/settings.php
-msgid "Serif"
-msgstr "Serifenschrift"
-
-#: includes/home-settings.php
-msgid "Sermons and talks"
-msgstr "Predigten und Gespräche"
-
-#: includes/pilgrim.php includes/render.php
-msgid "Service schedule"
-msgstr "Gottesdienstplan"
-
-#: includes/site-settings.php
-msgid "Set the name, description and contact details here without plugins. Filled fields take priority. Empty name or description fields use the WordPress general settings; an active Core plugin can supply other empty fields."
-msgstr "Name, Beschreibung und Kontaktdaten können hier ohne Plugins angegeben werden. Ausgefüllte Felder haben Vorrang. Ohne eigene Angaben gelten die allgemeinen WordPress-Einstellungen für Name und Beschreibung; ein aktiviertes Core-Plugin kann leere Felder ergänzen."
-
-#: includes/settings.php
-msgid "Settings sections"
-msgstr "Einstellungsbereiche"
-
-#: includes/site-settings.php
-msgid "Short name"
-msgstr "Kurzname"
-
-#: includes/home-settings.php
-msgid "Show card images"
-msgstr "Kartenfotos anzeigen"
-
-#: includes/settings.php
-msgid "Show contact details in the header"
-msgstr "Kontaktdaten im Kopfbereich anzeigen"
-
-#: includes/home-settings.php
-msgid "Show date"
-msgstr "Datum anzeigen"
-
-#: includes/home-settings.php
-msgid "Show excerpt"
-msgstr "Auszug anzeigen"
-
-#: includes/home-settings.php
-msgid "Show images"
-msgstr "Fotos anzeigen"
-
-#: includes/branding.php
-msgid "Show logo"
-msgstr "Logo anzeigen"
-
-#: includes/branding.php
-msgid "Show name"
-msgstr "Namen anzeigen"
-
-#: includes/settings.php includes/site-settings.php
-msgid "Site details"
-msgstr "Website-Daten"
-
-#: includes/branding.php
-msgid "Site icon"
-msgstr "Website-Icon"
-
-#: includes/home.php includes/render.php
-msgid "Site sections"
-msgstr "Website-Bereiche"
-
-#: includes/settings.php
-msgid "Site width in px"
-msgstr "Website-Breite, px"
-
-#: header.php
-msgid "Skip to content"
-msgstr "Zum Inhalt springen"
-
-#: includes/pilgrim.php
-msgid "Staying at the monastery"
-msgstr "Aufenthalt im Kloster"
-
-#: includes/design.php
-msgid "Style preview"
-msgstr "Design-Vorschau"
-
-#: styles/hospitality.json
-msgctxt "Style variation name"
-msgid "Light hospitality"
-msgstr "Hell und einladend"
-
-#: styles/blue.json
-msgctxt "Style variation name"
-msgid "Modern blue"
-msgstr "Modern in Blau"
-
-#: styles/editorial.json
-msgctxt "Style variation name"
-msgid "Modern editorial"
-msgstr "Klar und modern"
-
-#: styles/tradition.json
-msgctxt "Style variation name"
-msgid "Traditional"
-msgstr "Traditionell"
-
-#: includes/settings.php
-msgid "Styles"
-msgstr "Design"
-
-#: includes/render.php
-msgid "Submit a prayer request"
-msgstr "Gebetsanliegen einreichen"
-
-#: includes/render.php
-msgid "Support the church"
-msgstr "Die Kirche unterstützen"
-
-#: includes/render.php
-msgid "Support the monastery"
-msgstr "Das Kloster unterstützen"
-
-#: includes/render.php
-msgid "Support the parish"
-msgstr "Gemeinde unterstützen"
-
-#: theme.json
-msgctxt "Template part name"
-msgid "Footer"
-msgstr "Fußzeile"
-
-#: theme.json
-msgctxt "Template part name"
-msgid "Header"
-msgstr "Kopfzeile"
-
-#: includes/home-settings.php
-msgid "Text is stored in WordPress settings. Empty fields do not insert preset content. Enable sections and change their order with the arrows. Pages and posts are not modified."
-msgstr "Texte werden in den WordPress-Einstellungen gespeichert. Leere Felder fügen keine vorgefertigten Inhalte ein. Aktivieren Sie Abschnitte und ändern Sie ihre Reihenfolge mit den Pfeilen. Seiten und Beiträge bleiben unverändert."
-
-#: includes/settings.php
-msgid "The cards show example layouts. The live preview uses your pages, images and settings."
-msgstr "Die Karten zeigen Gestaltungsbeispiele. Die Live-Vorschau verwendet Ihre Seiten, Fotos und Einstellungen."
-
-#: includes/branding.php
-msgid "The logo and name are disabled. A homepage link will remain on the site."
-msgstr "Logo und Name sind ausgeblendet. Ein Link zur Startseite bleibt auf der Website sichtbar."
-
-#: includes/settings.php
-msgid "The preview opens in a new tab without changing the site. To apply a style, select its card and save your changes."
-msgstr "Die Vorschau öffnet sich in einem neuen Tab und ändert die Website nicht. Zum Anwenden wählen Sie eine Karte und speichern die Änderungen."
-
-#: includes/branding.php
-msgid "The site icon must be a square image of at least 512 × 512 px. The previous icon has been kept."
-msgstr "Das Icon muss quadratisch und mindestens 512 × 512 px groß sein. Das bisherige Icon wurde beibehalten."
-
-#: includes/branding.php
-msgid "The site icon must be square and at least 512 × 512 px."
-msgstr "Das Website-Icon muss quadratisch und mindestens 512 × 512 px groß sein."
-
-#: includes/design.php
-msgid "The site style has not been changed."
-msgstr "Das Design der Website wurde nicht geändert."
-
-#: includes/plugins.php
-msgid "The theme works on its own. Add plugins only for the features you need; each plugin is independent."
-msgstr "Das Theme funktioniert eigenständig. Ergänzen Sie nur Plugins für benötigte Funktionen; jedes Plugin ist unabhängig."
-
-#: includes/settings.php
-msgid "Theme settings"
-msgstr "Theme-Einstellungen"
-
-#: archive.php
-msgid "There are no posts in this category yet."
-msgstr "In dieser Kategorie gibt es noch keine Beiträge."
-
-#: archive.php includes/home.php
-msgid "There are no posts yet."
-msgstr "Noch keine Beiträge vorhanden."
-
-#: includes/plugins.php
-msgid "This contacts the WordPress.org plugin directory. Nothing is installed or activated by the check."
-msgstr "Dabei wird das Plugin-Verzeichnis von WordPress.org kontaktiert. Die Prüfung installiert oder aktiviert nichts."
-
-#: includes/home-settings.php
-msgid "This section appears when a schedule plugin supplies upcoming services."
-msgstr "Der Abschnitt erscheint, wenn das Kalenderplugin kommende Gottesdienste bereitstellt."
-
-#: includes/settings.php
-msgid "Traditional"
-msgstr "Traditionell"
-
-#: includes/settings.php
-msgid "Ukrainian"
-msgstr "Ukrainisch"
-
-#: includes/home-settings.php includes/render.php
-msgid "Upcoming services"
-msgstr "Nächste Gottesdienste"
-
-#: includes/branding.php
-msgid "Upload or choose an image"
-msgstr "Bild hochladen oder auswählen"
-
-#: includes/menu.php
-msgid "Use image"
-msgstr "Bild verwenden"
-
-#: includes/home-settings.php
-msgid "Use style default"
-msgstr "Gemäß Design"
-
-#: includes/plugins.php
-msgid "Version: %s"
-msgstr "Version: %s"
-
-#: includes/settings.php
-msgid "View site"
-msgstr "Website ansehen"
-
-#: includes/pilgrim.php
-msgid "Visitor information"
-msgstr "Informationen für Pilger"
-
-#: includes/about.php
-msgid "Welcome"
-msgstr "Wir freuen uns auf Ihren Besuch"
-
-#: wide.php
-msgid "Wide"
-msgstr "Breite Seite"
-
-#: functions.php
-msgid "Right sidebar"
-msgstr "Rechte Seitenleiste"
-
-#: functions.php
-msgid "Widgets shown in the right column of pages and posts."
-msgstr "Widgets in der rechten Spalte von Seiten und Beiträgen."
-
-msgid "Parish theme settings"
-msgstr "Einstellungen des Gemeindethemes"
-
-msgid "These controls mirror the Parish Appearance settings page. Preview changes here and publish when ready."
-msgstr "Diese Optionen gibt es auch unter Gemeindegestaltung. Änderungen hier ansehen und veröffentlichen, wenn alles passt."
 
 msgid "Design and layout"
 msgstr "Design und Layout"
 
-msgid "Logo and images"
-msgstr "Logo und Bilder"
+msgid "Desktop columns"
+msgstr "Spalten auf dem Desktop"
 
-msgid "Homepage sections and content"
-msgstr "Startseitenbereiche und Inhalte"
+msgid "Directions"
+msgstr "Anfahrt"
 
-msgid "Visual style"
-msgstr "Stil"
+msgid "Donations"
+msgstr "Spenden"
 
-msgid "Site logo"
-msgstr "Website-Logo"
+msgid "Edit menu items and their order under Appearance → Menus. You can also choose an image for each item there. Without a chosen image, the linked page or post featured image is used."
+msgstr "Die Menüpunkte und ihre Reihenfolge ändern Sie unter „Design → Menüs“. Dort können Sie auch für jeden Punkt ein Bild wählen. Ohne Auswahl wird das Beitragsbild der verknüpften Seite oder des Beitrags angezeigt."
 
-msgid "Homepage hero image"
-msgstr "Titelbild der Startseite"
+msgid "Editorial"
+msgstr "Magazin"
 
-msgid "Logo width in px"
-msgstr "Logobreite in Pixel"
+msgid "Email"
+msgstr "E-Mail"
+
+msgid "Enter the URLs of existing language versions. Content translations are created separately; the theme does not translate text automatically."
+msgstr "Geben Sie Adressen vorhandener Sprachversionen an. Inhalte werden separat übersetzt; das Theme übersetzt Texte nicht automatisch."
+
+msgid "Excerpt length in words"
+msgstr "Auszugslänge in Wörtern"
+
+msgid "Eyebrow"
+msgstr "Überschriftzeile"
+
+msgid "Find"
+msgstr "Suchen"
+
+msgid "First time at church?"
+msgstr "Zum ersten Mal in der Kirche?"
+
+msgid "First visit"
+msgstr "Erster Besuch"
+
+msgid "Focused"
+msgstr "Formular und Bestätigung"
+
+msgctxt "Font family name"
+msgid "Sans serif"
+msgstr "Sans-Serif"
+
+msgctxt "Font family name"
+msgid "Serif"
+msgstr "Serifenschrift"
+
+msgctxt "Font size name"
+msgid "Base"
+msgstr "Standard"
+
+msgctxt "Font size name"
+msgid "Heading"
+msgstr "Überschrift"
+
+msgctxt "Font size name"
+msgid "Large"
+msgstr "Groß"
+
+msgctxt "Font size name"
+msgid "Small"
+msgstr "Klein"
+
+msgid "For visitors"
+msgstr "Für Pilger"
+
+msgid "Georg-Kloster Connect Hub"
+msgstr "Georg-Kloster — Kommunikation"
+
+msgid "Georg-Kloster Parish"
+msgstr "Georg-Kloster — Gemeinde"
+
+msgid "German"
+msgstr "Deutsch"
+
+msgid "Get involved"
+msgstr "So können Sie teilnehmen"
+
+msgid "Google Maps"
+msgstr "Google Maps"
+
+msgid "Google Maps API key"
+msgstr "Google-Maps-API-Schlüssel"
+
+msgid "Group visit"
+msgstr "Gruppenbesuch"
+
+msgid "Group visits and accommodation"
+msgstr "Gruppenbesuch und Aufenthalt"
+
+msgid "Header and footer"
+msgstr "Kopf- und Fußbereich"
+
+msgid "Heading"
+msgstr "Überschrift"
+
+msgid "Hero"
+msgstr "Startbereich"
+
+msgid "Hero image"
+msgstr "Hauptfoto"
+
+msgid "Hide the schedule card when upcoming services are displayed"
+msgstr "Zeitplankarte ausblenden, wenn kommende Gottesdienste angezeigt werden"
 
 msgid "Hide the site title beside the logo"
 msgstr "Seitentitel neben dem Logo ausblenden"
 
-msgid "Show the theme logo"
-msgstr "Theme-Logo anzeigen"
+msgid "History"
+msgstr "Geschichte"
 
-msgid "Show section: %s"
-msgstr "Bereich anzeigen: %s"
+msgid "Home"
+msgstr "Startseite"
+
+msgid "Homepage"
+msgstr "Startseite"
+
+msgid "Homepage content"
+msgstr "Inhalt der Startseite"
+
+msgid "Homepage hero image"
+msgstr "Titelbild der Startseite"
+
+msgid "Homepage sections and content"
+msgstr "Startseitenbereiche und Inhalte"
+
+msgid "Icon of the day"
+msgstr "Tagesikone"
+
+msgid "Independent forms, private messages and queued publications. Connect Telegram, WhatsApp, Facebook, Instagram, VK and OK separately."
+msgstr "Unabhängige Formulare, private Nachrichten und geplante Veröffentlichungen. Telegram, WhatsApp, Facebook, Instagram, VK und OK werden separat verbunden."
+
+msgid "Installed, inactive"
+msgstr "Installiert, inaktiv"
+
+msgid "Insufficient permissions."
+msgstr "Keine ausreichende Berechtigung."
+
+msgid "Keep the header visible while scrolling"
+msgstr "Kopfbereich beim Scrollen fixieren"
+
+msgid "Language"
+msgstr "Sprache"
+
+msgid "Languages"
+msgstr "Sprachen"
+
+msgid "Layout and fonts"
+msgstr "Layout und Schriften"
+
+msgid "Learn more"
+msgstr "Mehr erfahren"
+
+msgid "Light hospitality"
+msgstr "Hell und einladend"
+
+msgid "Link label"
+msgstr "Linktext"
+
+msgid "Link row"
+msgstr "Linkleiste"
+
+msgid "Link to page: %s"
+msgstr "Link zur Seite „%s“"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Logo and icon"
+msgstr "Logo und Website-Icon"
+
+msgid "Logo and images"
+msgstr "Logo und Bilder"
+
+msgid "Logo width in px"
+msgstr "Logobreite in Pixel"
+
+msgid "Map"
+msgstr "Karte"
+
+msgid "Map latitude"
+msgstr "Breitengrad der Karte"
+
+msgid "Map longitude"
+msgstr "Längengrad der Karte"
+
+msgid "Map provider"
+msgstr "Kartendienst"
+
+msgid "Map showing the parish location"
+msgstr "Karte mit dem Standort der Gemeinde"
+
+msgid "Maximum logo width in px"
+msgstr "Maximale Logobreite, px"
+
+msgid "Menu"
+msgstr "Menü"
+
+msgid "Menu item image"
+msgstr "Bild des Menüpunkts"
+
+msgid "Menu style"
+msgstr "Menügestaltung"
+
+msgid "Menu with cards and images"
+msgstr "Menü mit Karten und Bildern"
+
+msgid "Modern blue"
+msgstr "Modern in Blau"
+
+msgid "Monastery"
+msgstr "Kloster"
+
+msgid "Move down: %s"
+msgstr "Nach unten: %s"
+
+msgid "Move up: %s"
+msgstr "Nach oben: %s"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "News"
+msgstr "Nachrichten"
+
+msgid "No content found. Change your search or reset the filters."
+msgstr "Keine Beiträge gefunden. Ändern Sie die Suche oder setzen Sie die Filter zurück."
+
+msgid "No optional integrations are currently installed."
+msgstr "Derzeit sind keine optionalen Integrationen installiert."
+
+msgid "Number of posts"
+msgstr "Anzahl der Beiträge"
+
+msgid "Number of services"
+msgstr "Anzahl der Gottesdienste"
+
+msgid "Only the content of the page selected as the homepage in Reading settings is displayed."
+msgstr "Es wird nur der eigene Inhalt der in den Leseeinstellungen gewählten Startseite angezeigt."
+
+msgid "Open live preview customizer"
+msgstr "Live-Vorschau öffnen"
+
+msgid "Open map"
+msgstr "Karte öffnen"
+
+msgid "Open settings"
+msgstr "Einstellungen öffnen"
+
+msgid "OpenStreetMap"
+msgstr "OpenStreetMap"
+
+msgid "Optional plugins"
+msgstr "Optionale Plugins"
+
+msgid "Orthodox calendar"
+msgstr "Orthodoxer Kalender"
+
+msgid "Page breadcrumb"
+msgstr "Pfad zur Seite"
+
+msgid "Page language versions"
+msgstr "Sprachversionen der Seiten"
+
+msgid "Page sections"
+msgstr "Abschnitte der Seite"
+
+msgid "Parish"
+msgstr "Gemeinde"
+
+msgid "Parish Appearance"
+msgstr "Gemeindedesign"
+
+msgid "Parish profile, clergy, service places with logos and photos, service schedules and calendar. Publish with blocks or shortcodes using any theme."
+msgstr "Gemeindeprofil, Geistliche, Gottesdienstorte mit Logos und Fotos, Gottesdienste und Kalender. Ausgabe mit Blöcken oder Shortcodes in jedem Theme."
+
+msgid "Parish theme settings"
+msgstr "Einstellungen des Gemeindethemes"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Pilgrim"
+msgstr "Für Pilger"
+
+msgid "Please arrange accommodation and group visits with the monastery in advance."
+msgstr "Bitte klären Sie einen möglichen Aufenthalt und die Bedingungen für einen Gruppenbesuch im Voraus mit dem Kloster."
+
+msgid "Polish"
+msgstr "Polnisch"
+
+msgid "Post breadcrumb"
+msgstr "Artikelnavigation"
+
+msgid "Post categories"
+msgstr "Rubriken der Beiträge"
+
+msgid "Post category"
+msgstr "Beitragskategorie"
+
+msgid "Post link label"
+msgstr "Text des Beitragslinks"
+
+msgid "Preview"
+msgstr "Vorschau"
+
+msgid "Preview: %s"
+msgstr "Vorschau: %s"
+
+msgid "Preview: %s (new tab)"
+msgstr "Vorschau: %s (neuer Tab)"
+
+msgid "Primary menu"
+msgstr "Hauptmenü"
+
+msgid "Privacy policy"
+msgstr "Datenschutzerklärung"
+
+msgid "Quotation below the buttons in the blue style"
+msgstr "Zitat unter den Schaltflächen des blauen Stils"
+
+msgid "Quotation source"
+msgstr "Quelle des Zitats"
+
+msgid "Quotation text"
+msgstr "Zitattext"
+
+msgid "Read more"
+msgstr "Weiterlesen"
+
+msgid "Read more →"
+msgstr "Weiterlesen →"
+
+msgid "Related posts"
+msgstr "Lesen Sie auch"
+
+msgid "Remove"
+msgstr "Entfernen"
+
+msgid "Remove selected logo"
+msgstr "Ausgewähltes Logo entfernen"
+
+msgid "Requires a newer WordPress or PHP version"
+msgstr "Erfordert eine neuere WordPress- oder PHP-Version"
+
+msgid "Reset filters"
+msgstr "Filter zurücksetzen"
+
+msgid "Right sidebar"
+msgstr "Rechte Seitenleiste"
+
+msgid "Russian"
+msgstr "Russisch"
+
+msgid "Sans serif"
+msgstr "Sans-Serif"
+
+msgid "Save changes"
+msgstr "Änderungen speichern"
+
+msgid "Schedule"
+msgstr "Gottesdienste"
+
+msgid "Schedule button label"
+msgstr "Text der Zeitplan-Schaltfläche"
+
+msgid "Screenshot: %s (new tab)"
+msgstr "Screenshot: %s (neuer Tab)"
+
+msgid "Search"
+msgstr "Suche"
+
+msgid "Search posts"
+msgstr "Beiträge suchen"
+
+msgid "Search posts…"
+msgstr "Beiträge suchen…"
+
+msgid "Secondary button label"
+msgstr "Text der zweiten Schaltfläche"
+
+msgid "Section cards"
+msgstr "Bereichskarten"
 
 msgid "Section heading: %s"
 msgstr "Bereichsüberschrift: %s"
@@ -976,68 +579,215 @@ msgstr "Bereichslink oder Untertitel: %s"
 msgid "Section position %d"
 msgstr "Position des Bereichs %d"
 
-msgid "Card position %d"
-msgstr "Position der Karte %d"
+msgid "Section settings"
+msgstr "Abschnittseinstellungen"
 
-msgid "Show card: %s"
-msgstr "Karte anzeigen: %s"
+msgid "Serif"
+msgstr "Serifenschrift"
 
-msgid "%1$s: %2$s"
-msgstr "%1$s: %2$s"
+msgid "Sermons and talks"
+msgstr "Predigten und Gespräche"
 
-msgid "Open live preview customizer"
-msgstr "Live-Vorschau öffnen"
+msgid "Service schedule"
+msgstr "Gottesdienstplan"
 
-msgid "Remove selected logo"
-msgstr "Ausgewähltes Logo entfernen"
+msgid "Set the name, description and contact details here without plugins. Filled fields take priority. Empty name or description fields use the WordPress general settings; an active Core plugin can supply other empty fields."
+msgstr "Name, Beschreibung und Kontaktdaten können hier ohne Plugins angegeben werden. Ausgefüllte Felder haben Vorrang. Ohne eigene Angaben gelten die allgemeinen WordPress-Einstellungen für Name und Beschreibung; ein aktiviertes Core-Plugin kann leere Felder ergänzen."
 
-msgid "Map"
-msgstr "Karte"
+msgid "Settings sections"
+msgstr "Einstellungsbereiche"
 
-msgid "Map provider"
-msgstr "Kartendienst"
-
-msgid "OpenStreetMap"
-msgstr "OpenStreetMap"
-
-msgid "Google Maps"
-msgstr "Google Maps"
-
-msgid "Map latitude"
-msgstr "Breitengrad der Karte"
-
-msgid "Map longitude"
-msgstr "Längengrad der Karte"
-
-msgid "Google Maps API key"
-msgstr "Google-Maps-API-Schlüssel"
-
-msgid "The map appears in the homepage contact area in every visual style. OpenStreetMap is used by default and does not need an API key. Add the exact coordinates of the parish or monastery."
-msgstr "Die Karte erscheint im Kontaktbereich der Startseite bei jedem Design. Standardmäßig wird OpenStreetMap ohne API-Schlüssel verwendet. Geben Sie die genauen Koordinaten der Gemeinde oder des Klosters ein."
-
-msgid "A Google key is only used when Google Maps is selected. The key is sent to visitors’ browsers and should be restricted to this site in Google Cloud."
-msgstr "Der Google-Schlüssel wird nur bei ausgewähltem Google Maps verwendet. Er wird an die Browser der Besucher übertragen und sollte in Google Cloud auf diese Website beschränkt werden."
-
-msgid "Map showing the parish location"
-msgstr "Karte mit dem Standort der Gemeinde"
-
-msgid "Open map"
-msgstr "Karte öffnen"
+msgid "Short name"
+msgstr "Kurzname"
 
 msgid "Show address"
 msgstr "Adresse anzeigen"
 
-msgid "Show phone"
-msgstr "Telefonnummer anzeigen"
+msgid "Show card images"
+msgstr "Kartenfotos anzeigen"
+
+msgid "Show card: %s"
+msgstr "Karte anzeigen: %s"
+
+msgid "Show contact details in the header"
+msgstr "Kontaktdaten im Kopfbereich anzeigen"
+
+msgid "Show date"
+msgstr "Datum anzeigen"
 
 msgid "Show email"
 msgstr "E-Mail anzeigen"
 
+msgid "Show excerpt"
+msgstr "Auszug anzeigen"
+
+msgid "Show hero image in contacts"
+msgstr "Titelbild im Kontaktbereich anzeigen"
+
+msgid "Show images"
+msgstr "Fotos anzeigen"
+
+msgid "Show logo"
+msgstr "Logo anzeigen"
+
 msgid "Show map and directions link"
 msgstr "Karte und Routenlink anzeigen"
+
+msgid "Show name"
+msgstr "Namen anzeigen"
+
+msgid "Show phone"
+msgstr "Telefonnummer anzeigen"
+
+msgid "Show section: %s"
+msgstr "Bereich anzeigen: %s"
 
 msgid "Show site description in contacts"
 msgstr "Websitebeschreibung im Kontaktbereich anzeigen"
 
-msgid "Show hero image in contacts"
-msgstr "Titelbild im Kontaktbereich anzeigen"
+msgid "Show the theme logo"
+msgstr "Theme-Logo anzeigen"
+
+msgid "Site details"
+msgstr "Website-Daten"
+
+msgid "Site icon"
+msgstr "Website-Icon"
+
+msgid "Site logo"
+msgstr "Website-Logo"
+
+msgid "Site sections"
+msgstr "Website-Bereiche"
+
+msgid "Site width in px"
+msgstr "Website-Breite, px"
+
+msgid "Skip to content"
+msgstr "Zum Inhalt springen"
+
+msgid "Staying at the monastery"
+msgstr "Aufenthalt im Kloster"
+
+msgid "Style preview"
+msgstr "Design-Vorschau"
+
+msgctxt "Style variation name"
+msgid "Light hospitality"
+msgstr "Hell und einladend"
+
+msgctxt "Style variation name"
+msgid "Modern blue"
+msgstr "Modern in Blau"
+
+msgctxt "Style variation name"
+msgid "Modern editorial"
+msgstr "Klar und modern"
+
+msgctxt "Style variation name"
+msgid "Traditional"
+msgstr "Traditionell"
+
+msgid "Styles"
+msgstr "Design"
+
+msgid "Submit a prayer request"
+msgstr "Gebetsanliegen einreichen"
+
+msgid "Support the church"
+msgstr "Die Kirche unterstützen"
+
+msgid "Support the monastery"
+msgstr "Das Kloster unterstützen"
+
+msgid "Support the parish"
+msgstr "Gemeinde unterstützen"
+
+msgctxt "Template part name"
+msgid "Footer"
+msgstr "Fußzeile"
+
+msgctxt "Template part name"
+msgid "Header"
+msgstr "Kopfzeile"
+
+msgid "Text is stored in WordPress settings. Empty fields do not insert preset content. Enable sections and change their order with the arrows. Pages and posts are not modified."
+msgstr "Texte werden in den WordPress-Einstellungen gespeichert. Leere Felder fügen keine vorgefertigten Inhalte ein. Aktivieren Sie Abschnitte und ändern Sie ihre Reihenfolge mit den Pfeilen. Seiten und Beiträge bleiben unverändert."
+
+msgid "The cards show example layouts. The live preview uses your pages, images and settings."
+msgstr "Die Karten zeigen Gestaltungsbeispiele. Die Live-Vorschau verwendet Ihre Seiten, Fotos und Einstellungen."
+
+msgid "The logo and name are disabled. A homepage link will remain on the site."
+msgstr "Logo und Name sind ausgeblendet. Ein Link zur Startseite bleibt auf der Website sichtbar."
+
+msgid "The map appears in the homepage contact area in every visual style. OpenStreetMap is used by default and does not need an API key. Add the exact coordinates of the parish or monastery."
+msgstr "Die Karte erscheint im Kontaktbereich der Startseite bei jedem Design. Standardmäßig wird OpenStreetMap ohne API-Schlüssel verwendet. Geben Sie die genauen Koordinaten der Gemeinde oder des Klosters ein."
+
+msgid "The preview opens in a new tab without changing the site. To apply a style, select its card and save your changes."
+msgstr "Die Vorschau öffnet sich in einem neuen Tab und ändert die Website nicht. Zum Anwenden wählen Sie eine Karte und speichern die Änderungen."
+
+msgid "The site icon must be a square image of at least 512 × 512 px. The previous icon has been kept."
+msgstr "Das Icon muss quadratisch und mindestens 512 × 512 px groß sein. Das bisherige Icon wurde beibehalten."
+
+msgid "The site icon must be square and at least 512 × 512 px."
+msgstr "Das Website-Icon muss quadratisch und mindestens 512 × 512 px groß sein."
+
+msgid "The site style has not been changed."
+msgstr "Das Design der Website wurde nicht geändert."
+
+msgid "The theme works on its own. Optional integrations appear here after you install them from Plugins > Add New."
+msgstr "Das Theme funktioniert eigenständig. Installierte optionale Integrationen werden hier angezeigt. Plugins können Sie unter „Plugins > Installieren“ hinzufügen."
+
+msgid "Theme settings"
+msgstr "Theme-Einstellungen"
+
+msgid "There are no posts in this category yet."
+msgstr "In dieser Kategorie gibt es noch keine Beiträge."
+
+msgid "There are no posts yet."
+msgstr "Noch keine Beiträge vorhanden."
+
+msgid "These controls mirror the Parish Appearance settings page. Preview changes here and publish when ready."
+msgstr "Diese Optionen gibt es auch unter Gemeindegestaltung. Änderungen hier ansehen und veröffentlichen, wenn alles passt."
+
+msgid "This section appears when a schedule plugin supplies upcoming services."
+msgstr "Der Abschnitt erscheint, wenn das Kalenderplugin kommende Gottesdienste bereitstellt."
+
+msgid "Traditional"
+msgstr "Traditionell"
+
+msgid "Ukrainian"
+msgstr "Ukrainisch"
+
+msgid "Upcoming services"
+msgstr "Nächste Gottesdienste"
+
+msgid "Upload or choose an image"
+msgstr "Bild hochladen oder auswählen"
+
+msgid "Use image"
+msgstr "Bild verwenden"
+
+msgid "Use style default"
+msgstr "Gemäß Design"
+
+msgid "Version: %s"
+msgstr "Version: %s"
+
+msgid "View site"
+msgstr "Website ansehen"
+
+msgid "Visitor information"
+msgstr "Informationen für Pilger"
+
+msgid "Visual style"
+msgstr "Stil"
+
+msgid "Welcome"
+msgstr "Wir freuen uns auf Ihren Besuch"
+
+msgid "Wide"
+msgstr "Breite Seite"
+
+msgid "Widgets shown in the right column of pages and posts."
+msgstr "Widgets in der rechten Spalte von Seiten und Beiträgen."
