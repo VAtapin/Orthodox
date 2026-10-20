@@ -120,7 +120,7 @@ function prihod_theme_home_about( string $scheme, array $profile, array $options
 function prihod_theme_home_service_panel( string $scheme, string $schedule ): string {
     $title = prihod_theme_home_title( 'services' ); $button = prihod_theme_home_copy( 'services_button' ); $eyebrow = prihod_theme_home_eyebrow( 'services' );
     $limit = prihod_theme_home_options()['services_count'] ?: ( 'editorial' === $scheme ? 3 : 1 );
-    $html = '<section class="prihod-hero-service prihod-panel">' . ( $eyebrow ? '<p class="prihod-section-eyebrow">' . esc_html( $eyebrow ) . '</p>' : '' ) . ( $title ? '<h2>' . prihod_theme_service_place_logo() . prihod_theme_icon( 'schedule' ) . esc_html( $title ) . '</h2>' : '' ) . '<div class="prihod-compact-services">' . prihod_theme_compact_services( $limit ) . '</div>';
+    $html = '<section class="prihod-hero-service prihod-panel">' . ( $eyebrow ? '<p class="prihod-section-eyebrow">' . esc_html( $eyebrow ) . '</p>' : '' ) . ( $title ? '<h2>' . prihod_theme_service_place_logo() . esc_html( $title ) . '</h2>' : '' ) . '<div class="prihod-compact-services">' . prihod_theme_compact_services( $limit ) . '</div>';
     if ( $schedule && $button ) { $html .= '<a class="prihod-service-all" href="' . esc_url( $schedule ) . '">' . esc_html( $button ) . ' →</a>'; }
     if ( 'blue' === $scheme ) { $html .= prihod_theme_verse(); }
     return $html . '</section>';

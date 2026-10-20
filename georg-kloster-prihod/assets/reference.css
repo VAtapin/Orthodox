@@ -295,3 +295,35 @@
 @media(max-width:800px){.prihod-contact-layout{grid-template-columns:1fr}.prihod-contact-list{grid-template-columns:1fr}.prihod-contact-map iframe{height:220px}}
 .prihod-scheme-hospitality .prihod-contact-layout,.prihod-scheme-editorial .prihod-contact-layout,.prihod-scheme-tradition .prihod-contact-layout{grid-template-columns:minmax(0,1.1fr) minmax(260px,1fr)}
 @media(max-width:800px){.prihod-scheme-hospitality .prihod-contact-layout,.prihod-scheme-editorial .prihod-contact-layout,.prihod-scheme-tradition .prihod-contact-layout{grid-template-columns:1fr}}
+
+/* Keep post archives compact and readable across all five visual schemes. */
+.prihod-wide>.prihod-catalog-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch;margin-block:22px 30px}
+.prihod-wide>.prihod-catalog-grid>.prihod-news-card{display:flex;min-width:0;flex-direction:column;height:100%}
+.prihod-wide>.prihod-catalog-grid>.prihod-news-card>.prihod-photo-item{position:relative;width:100%;margin:0;overflow:hidden;aspect-ratio:16/9;background:var(--prihod-line)}
+.prihod-wide>.prihod-catalog-grid>.prihod-news-card>.prihod-photo-item>a,.prihod-wide>.prihod-catalog-grid>.prihod-news-card>.prihod-photo-item>img{display:block;width:100%;height:100%}
+.prihod-wide>.prihod-catalog-grid>.prihod-news-card>.prihod-photo-item img{display:block;width:100%;height:100%;object-fit:cover}
+.prihod-wide>.prihod-catalog-grid>.prihod-news-card>.prihod-news-copy{display:block;height:auto;padding:16px 18px 18px;text-decoration:none;color:inherit}
+.prihod-wide>.prihod-catalog-grid>.prihod-news-card>.prihod-news-copy time{display:block;color:var(--prihod-muted);font-size:12px;line-height:1.4}
+.prihod-wide>.prihod-catalog-grid>.prihod-news-card>.prihod-news-copy h2{margin:7px 0;font:clamp(18px,1.5vw,22px)/1.22 Georgia,serif;overflow-wrap:anywhere}
+.prihod-wide>.prihod-catalog-grid>.prihod-news-card>.prihod-news-copy p{display:-webkit-box;margin:0;color:var(--prihod-muted);font-size:14px;line-height:1.45;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+.prihod-category-content{padding-block:24px 48px}
+.prihod-category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch}
+.prihod-category-card{display:flex;min-width:0;flex-direction:column;overflow:hidden;border:1px solid var(--prihod-line);border-radius:var(--prihod-radius);background:var(--wp--preset--color--white);box-shadow:var(--prihod-shadow)}
+.prihod-category-card-image{display:block;aspect-ratio:16/9;overflow:hidden;background:var(--prihod-line)}
+.prihod-category-card-image img{display:block;width:100%;height:100%;object-fit:cover}
+.prihod-category-card-copy{display:flex;flex:1;flex-direction:column;align-items:flex-start;padding:16px 18px 18px}
+.prihod-category-card-copy time{color:var(--prihod-muted);font-size:12px}
+.prihod-category-card-copy h2{margin:7px 0;font:clamp(18px,1.5vw,22px)/1.22 Georgia,serif;overflow-wrap:anywhere}
+.prihod-category-card-copy h2 a{color:inherit;text-decoration:none}
+.prihod-category-card-copy p{display:-webkit-box;margin:0 0 12px;color:var(--prihod-muted);font-size:14px;line-height:1.45;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+.prihod-category-read-more{margin-top:auto;color:var(--wp--preset--color--forest);font-size:13px}
+.prihod-hero-service>h2 .prihod-service-place-logo{width:38px;height:38px;flex:none;object-fit:contain;border-radius:50%;background:#fff;padding:2px}
+.prihod-hero-service>h2{min-width:0;overflow-wrap:anywhere}
+.prihod-hero-service .prihod-service-details{min-width:0}
+.prihod-hero-service .prihod-service-when{min-width:0;align-items:flex-start}
+.prihod-hero-service .prihod-service-date{min-width:0}
+.prihod-hero-service .prihod-service-date>span{min-width:0;overflow-wrap:anywhere}
+.prihod-hero-service .prihod-service-when time{min-width:0;white-space:nowrap;font-size:clamp(18px,2vw,24px)}
+.prihod-scheme-classic .prihod-classic-motto{position:static;width:max-content;max-width:min(100%,410px);margin:12px 0 0 53px;padding:10px 14px;border:1px solid #d7c29f;border-radius:5px;background:#fffF;box-shadow:0 3px 12px #17243c18;color:var(--wp--preset--color--forest);font-size:clamp(18px,2vw,25px);line-height:1.25;transform:none}
+@media(max-width:900px){.prihod-wide>.prihod-catalog-grid,.prihod-category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.prihod-scheme-classic .prihod-classic-motto{margin-left:0}}
+@media(max-width:600px){.prihod-wide>.prihod-catalog-grid,.prihod-category-grid{grid-template-columns:1fr;gap:14px}.prihod-wide>.prihod-catalog-grid>.prihod-news-card>.prihod-photo-item,.prihod-category-card-image{aspect-ratio:16/10}.prihod-wide>.prihod-catalog-grid>.prihod-news-card>.prihod-news-copy,.prihod-category-card-copy{padding:14px 16px 16px}.prihod-wide>.prihod-catalog-grid>.prihod-news-card>.prihod-news-copy h2,.prihod-category-card-copy h2{font-size:20px}.prihod-hero-service .prihod-service-details{display:block!important}.prihod-hero-service .prihod-service-when{display:flex!important;flex-direction:row!important;flex-wrap:wrap;align-items:center;gap:12px;padding:0;margin:12px 0;border:0}.prihod-hero-service .prihod-service-when time{font-size:20px}.prihod-scheme-classic .prihod-classic-motto{max-width:100%;margin:12px 0 0;font-size:19px}}
