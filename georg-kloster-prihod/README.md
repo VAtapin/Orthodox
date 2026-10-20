@@ -38,12 +38,14 @@ and parish quotation.
 
 ## Optional plugins
 
-The settings sidebar includes **Optional plugins**. It lists integrations already
-installed on the site, with descriptions, screenshots and links to their settings.
-The screenshots use empty settings on a disposable site; no owner content is
-included or imported. A button opens the standard WordPress plugin installer
-with a search for Georg-Kloster. The theme makes no plugin-directory API requests
-and does not install plugins. It is fully usable without these integrations.
+The settings sidebar includes **Optional plugins**. It shows compact cards for
+Parish, Connect Hub, Calendar Workshop, Orthodox Donations and Slavonic
+Translator, with descriptions, screenshots and installation status. Cards link
+to settings when available; public plugins also link to the standard WordPress
+installer search and their WordPress.org details. The theme makes no
+plugin-directory API requests and does not install plugins. It is fully usable
+without these integrations. WPML or Polylang supplies language switching; the
+theme does not maintain a second set of language URLs.
 
 When Parish Core provides its optional demo importer, the Homepage settings
 include the plugin's import link. Core owns the preview, consent form, content

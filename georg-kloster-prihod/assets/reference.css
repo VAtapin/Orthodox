@@ -290,6 +290,7 @@
 .prihod-contact-layout{grid-template-columns:minmax(0,1.1fr) minmax(260px,1fr)}
 .prihod-contact-map{min-height:180px}
 .prihod-contact-map iframe{min-height:180px}
+.prihod-home-contacts .prihod-contact-map iframe{width:100%!important;max-width:none!important;display:block}
 .prihod-contact-extra{grid-column:1/-1}
 @media(max-width:800px){.prihod-contact-layout{grid-template-columns:1fr}.prihod-contact-list{grid-template-columns:1fr}.prihod-contact-map iframe{height:220px}}
 .prihod-scheme-hospitality .prihod-contact-layout,.prihod-scheme-editorial .prihod-contact-layout,.prihod-scheme-tradition .prihod-contact-layout{grid-template-columns:minmax(0,1.1fr) minmax(260px,1fr)}

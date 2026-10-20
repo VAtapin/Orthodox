@@ -14,7 +14,7 @@ Georg-Kloster Prihod provides five visual styles: Classic, Hospitality, Editoria
 
 The theme does not create pages. Set your own name, description, community type and contacts under Appearance > Parish Appearance > Site Details. Choose ordinary WordPress pages for links throughout the theme under Homepage. Optional Parish supplies profile, clergy, places and schedules; Connect Hub supplies forms and communications. Schedule is bundled in Parish rather than installed separately. No bundled photographs appear on the public site.
 
-The Optional Plugins section lists integrations already installed on the site and links to their settings. Its search button opens the standard WordPress plugin installer with a search for Georg-Kloster. The theme makes no plugin-directory API requests and does not install plugins.
+The Optional Plugins section shows compact screenshot cards for the five Georg-Kloster plugins: Parish, Connect Hub, Calendar Workshop, Orthodox Donations and Slavonic Translator. Cards show whether a plugin is installed and link to settings when available. Public plugins link to the standard WordPress installer search and their WordPress.org details. The theme makes no plugin-directory API requests and does not install plugins.
 
 == Support ==
 
@@ -47,6 +47,11 @@ The theme uses images selected from your WordPress media library. It does not do
 Create and assign a menu under Appearance > Menus. Open a menu item and choose its image from the media library; without a chosen image, the linked page or post featured image is used. The theme's Appearance > Parish Appearance > Header and Footer section enables an image menu alongside the standard desktop link row and sets the number of visual columns. The link-row-only option remains available. Menu item descriptions can be enabled under Screen Options on the Menus screen.
 
 == Changelog ==
+
+= 0.4.47 =
+* List the five Georg-Kloster plugins with compact cards, screenshots and install links.
+* Use WPML or Polylang for language switching instead of theme-managed language URLs.
+* Ensure the shared homepage map iframe fills its container.
 
 = 0.4.46 =
 * Add a direct link to the standard WordPress plugin installer search for Georg-Kloster.

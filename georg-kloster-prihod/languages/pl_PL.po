@@ -204,9 +204,6 @@ msgstr "Magazynowy"
 msgid "Email"
 msgstr "E-mail"
 
-msgid "Enter the URLs of existing language versions. Content translations are created separately; the theme does not translate text automatically."
-msgstr "Podaj adresy istniejących wersji witryny. Materiały tłumaczy się osobno; motyw nie tłumaczy tekstów automatycznie."
-
 msgid "Excerpt length in words"
 msgstr "Długość zajawki w słowach"
 
@@ -260,9 +257,6 @@ msgstr "Georg-Kloster — Komunikacja"
 
 msgid "Georg-Kloster Parish"
 msgstr "Georg-Kloster — Parafia"
-
-msgid "German"
-msgstr "Niemiecki"
 
 msgid "Get involved"
 msgstr "Jak dołączyć"
@@ -332,9 +326,6 @@ msgstr "Przypnij nagłówek podczas przewijania"
 
 msgid "Language"
 msgstr "Język"
-
-msgid "Languages"
-msgstr "Języki"
 
 msgid "Layout and fonts"
 msgstr "Układ i czcionki"
@@ -417,9 +408,6 @@ msgstr "Aktualności"
 msgid "No content found. Change your search or reset the filters."
 msgstr "Nie znaleziono publikacji. Zmień wyszukiwanie lub wyczyść filtry."
 
-msgid "No optional integrations are currently installed."
-msgstr "Obecnie nie ma zainstalowanych opcjonalnych integracji."
-
 msgid "Number of posts"
 msgstr "Liczba publikacji"
 
@@ -450,9 +438,6 @@ msgstr "Kalendarz prawosławny"
 msgid "Page breadcrumb"
 msgstr "Ścieżka do strony"
 
-msgid "Page language versions"
-msgstr "Wersje językowe stron"
-
 msgid "Page sections"
 msgstr "Sekcje strony"
 
@@ -476,9 +461,6 @@ msgstr "Dla pielgrzyma"
 
 msgid "Please arrange accommodation and group visits with the monastery in advance."
 msgstr "Możliwość pobytu i warunki wizyty grupowej należy wcześniej uzgodnić z monasterem."
-
-msgid "Polish"
-msgstr "Polski"
 
 msgid "Post breadcrumb"
 msgstr "Ścieżka do artykułu"
@@ -539,9 +521,6 @@ msgstr "Wyczyść filtry"
 
 msgid "Right sidebar"
 msgstr "Prawa kolumna"
-
-msgid "Russian"
-msgstr "Rosyjski"
 
 msgid "Sans serif"
 msgstr "Bezszeryfowy"
@@ -738,9 +717,6 @@ msgstr "Ikona musi być kwadratowa i mieć co najmniej 512 × 512 px."
 msgid "The site style has not been changed."
 msgstr "Wygląd witryny nie został zmieniony."
 
-msgid "The theme works on its own. Optional integrations appear here after you install them."
-msgstr "Motyw działa samodzielnie. Zainstalowane opcjonalne integracje są tutaj wyświetlane."
-
 msgid "Theme settings"
 msgstr "Ustawienia motywu"
 
@@ -758,9 +734,6 @@ msgstr "Sekcja pojawia się, gdy wtyczka harmonogramu udostępnia nadchodzące n
 
 msgid "Traditional"
 msgstr "Tradycyjny"
-
-msgid "Ukrainian"
-msgstr "Ukraiński"
 
 msgid "Upcoming services"
 msgstr "Najbliższe nabożeństwa"
@@ -794,3 +767,36 @@ msgstr "Szeroka strona"
 
 msgid "Widgets shown in the right column of pages and posts."
 msgstr "Widżety w prawej kolumnie stron i wpisów."
+
+msgid "Georg Kloster – Orthodox Donations"
+msgstr "Georg Kloster – Orthodox Donations"
+
+msgid "Georg-Kloster Calendar Workshop"
+msgstr "Georg-Kloster Calendar Workshop"
+
+msgid "Georg-Kloster Slavonic Translator"
+msgstr "Georg-Kloster Slavonic Translator"
+
+msgid "Install plugin"
+msgstr "Zainstaluj wtyczkę"
+
+msgid "No optional plugins are listed."
+msgstr "Nie wymieniono opcjonalnych wtyczek."
+
+msgid "Not installed"
+msgstr "Nie zainstalowano"
+
+msgid "Orthodox calendar blocks and shortcodes for dates, fasting, commemorations, readings and liturgical texts."
+msgstr "Bloki i kody skrócone kalendarza prawosławnego: daty, posty, wspomnienia, czytania i teksty liturgiczne."
+
+msgid "Plugin details"
+msgstr "Szczegóły wtyczki"
+
+msgid "Prayer requests and donations with Stripe and PayPal, targeted campaigns, recurring support and printable prayer slips."
+msgstr "Prośby modlitewne i darowizny przez Stripe i PayPal, zbiórki celowe, regularne wsparcie i drukowane karteczki modlitewne."
+
+msgid "The theme works on its own. These optional Georg-Kloster plugins add parish management, a calendar, communication, Church Slavonic translation and donations. Install only the features you need."
+msgstr "Motyw działa samodzielnie. Opcjonalne wtyczki Georg-Kloster dodają zarządzanie parafią, kalendarz, komunikację, tłumaczenie na cerkiewnosłowiański i darowizny. Zainstaluj tylko potrzebne funkcje."
+
+msgid "Translate text into Church Slavonic and search its dictionary through Bible Desktop."
+msgstr "Tłumaczenie tekstu na cerkiewnosłowiański i wyszukiwanie w słowniku przez Bible Desktop."

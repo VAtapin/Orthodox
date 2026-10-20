@@ -204,9 +204,6 @@ msgstr "Журнальна"
 msgid "Email"
 msgstr "Електронна пошта"
 
-msgid "Enter the URLs of existing language versions. Content translations are created separately; the theme does not translate text automatically."
-msgstr "Укажіть адреси наявних версій сайту. Переклади матеріалів створюються окремо; тема не перекладає тексти автоматично."
-
 msgid "Excerpt length in words"
 msgstr "Довжина анонсу, слів"
 
@@ -260,9 +257,6 @@ msgstr "Georg-Kloster — Комунікації"
 
 msgid "Georg-Kloster Parish"
 msgstr "Georg-Kloster — Парафія"
-
-msgid "German"
-msgstr "Німецька"
 
 msgid "Get involved"
 msgstr "Як долучитися"
@@ -332,9 +326,6 @@ msgstr "Закріпити шапку під час прокручування"
 
 msgid "Language"
 msgstr "Мова"
-
-msgid "Languages"
-msgstr "Мови"
 
 msgid "Layout and fonts"
 msgstr "Макет і шрифти"
@@ -417,9 +408,6 @@ msgstr "Новини"
 msgid "No content found. Change your search or reset the filters."
 msgstr "Матеріалів не знайдено. Змініть запит або скиньте фільтри."
 
-msgid "No optional integrations are currently installed."
-msgstr "Додаткові інтеграції наразі не встановлено."
-
 msgid "Number of posts"
 msgstr "Кількість публікацій"
 
@@ -450,9 +438,6 @@ msgstr "Православний календар"
 msgid "Page breadcrumb"
 msgstr "Шлях до сторінки"
 
-msgid "Page language versions"
-msgstr "Мовні версії сторінок"
-
 msgid "Page sections"
 msgstr "Розділи сторінки"
 
@@ -476,9 +461,6 @@ msgstr "Паломнику"
 
 msgid "Please arrange accommodation and group visits with the monastery in advance."
 msgstr "Можливість перебування та умови групового візиту узгодьте з обителлю заздалегідь."
-
-msgid "Polish"
-msgstr "Польська"
 
 msgid "Post breadcrumb"
 msgstr "Шлях до статті"
@@ -539,9 +521,6 @@ msgstr "Скинути фільтри"
 
 msgid "Right sidebar"
 msgstr "Права колонка"
-
-msgid "Russian"
-msgstr "Російська"
 
 msgid "Sans serif"
 msgstr "Простий"
@@ -738,9 +717,6 @@ msgstr "Іконка має бути квадратною, не менш ніж 
 msgid "The site style has not been changed."
 msgstr "Оформлення сайту не змінено."
 
-msgid "The theme works on its own. Optional integrations appear here after you install them."
-msgstr "Тема працює самостійно. Після встановлення тут відображаються додаткові інтеграції."
-
 msgid "Theme settings"
 msgstr "Налаштування теми"
 
@@ -758,9 +734,6 @@ msgstr "Секція з’являється, коли плагін розкла
 
 msgid "Traditional"
 msgstr "Традиційна"
-
-msgid "Ukrainian"
-msgstr "Українська"
 
 msgid "Upcoming services"
 msgstr "Найближчі служби"
@@ -794,3 +767,36 @@ msgstr "Широка сторінка"
 
 msgid "Widgets shown in the right column of pages and posts."
 msgstr "Віджети в правій колонці сторінок і записів."
+
+msgid "Georg Kloster – Orthodox Donations"
+msgstr "Georg Kloster – Orthodox Donations"
+
+msgid "Georg-Kloster Calendar Workshop"
+msgstr "Georg-Kloster Calendar Workshop"
+
+msgid "Georg-Kloster Slavonic Translator"
+msgstr "Перекладач церковнослов’янською Georg-Kloster"
+
+msgid "Install plugin"
+msgstr "Встановити плагін"
+
+msgid "No optional plugins are listed."
+msgstr "Додаткові плагіни не вказані."
+
+msgid "Not installed"
+msgstr "Не встановлено"
+
+msgid "Orthodox calendar blocks and shortcodes for dates, fasting, commemorations, readings and liturgical texts."
+msgstr "Блоки та шорткоди православного календаря: дати, пости, пам’ятні дні, читання та богослужбові тексти."
+
+msgid "Plugin details"
+msgstr "Докладніше про плагін"
+
+msgid "Prayer requests and donations with Stripe and PayPal, targeted campaigns, recurring support and printable prayer slips."
+msgstr "Молитовні записки й пожертви через Stripe і PayPal, цільові збори, регулярна підтримка та друковані записки."
+
+msgid "The theme works on its own. These optional Georg-Kloster plugins add parish management, a calendar, communication, Church Slavonic translation and donations. Install only the features you need."
+msgstr "Тема працює самостійно. Додаткові плагіни Georg-Kloster додають керування парафією, календар, засоби зв’язку, переклад церковнослов’янською та пожертви. Встановлюйте лише потрібні функції."
+
+msgid "Translate text into Church Slavonic and search its dictionary through Bible Desktop."
+msgstr "Переклад тексту церковнослов’янською мовою та пошук у словнику через Bible Desktop."

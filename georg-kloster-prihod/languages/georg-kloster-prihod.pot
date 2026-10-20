@@ -268,10 +268,6 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: includes/settings.php
-msgid "Enter the URLs of existing language versions. Content translations are created separately; the theme does not translate text automatically."
-msgstr ""
-
 #: includes/customizer.php includes/home-settings.php
 msgid "Excerpt length in words"
 msgstr ""
@@ -335,6 +331,14 @@ msgid "For visitors"
 msgstr ""
 
 #: includes/plugins.php
+msgid "Georg Kloster – Orthodox Donations"
+msgstr ""
+
+#: includes/plugins.php
+msgid "Georg-Kloster Calendar Workshop"
+msgstr ""
+
+#: includes/plugins.php
 msgid "Georg-Kloster Connect Hub"
 msgstr ""
 
@@ -342,8 +346,8 @@ msgstr ""
 msgid "Georg-Kloster Parish"
 msgstr ""
 
-#: includes/customizer.php includes/settings.php
-msgid "German"
+#: includes/plugins.php
+msgid "Georg-Kloster Slavonic Translator"
 msgstr ""
 
 #: includes/about.php
@@ -423,6 +427,10 @@ msgid "Independent forms, private messages and queued publications. Connect Tele
 msgstr ""
 
 #: includes/plugins.php
+msgid "Install plugin"
+msgstr ""
+
+#: includes/plugins.php
 msgid "Installed, inactive"
 msgstr ""
 
@@ -436,10 +444,6 @@ msgstr ""
 
 #: includes/render.php
 msgid "Language"
-msgstr ""
-
-#: includes/settings.php
-msgid "Languages"
 msgstr ""
 
 #: includes/settings.php
@@ -551,7 +555,11 @@ msgid "No content found. Change your search or reset the filters."
 msgstr ""
 
 #: includes/plugins.php
-msgid "No optional integrations are currently installed."
+msgid "No optional plugins are listed."
+msgstr ""
+
+#: includes/plugins.php
+msgid "Not installed"
 msgstr ""
 
 #: includes/customizer.php includes/home-settings.php
@@ -590,12 +598,12 @@ msgstr ""
 msgid "Orthodox calendar"
 msgstr ""
 
-#: includes/render.php
-msgid "Page breadcrumb"
+#: includes/plugins.php
+msgid "Orthodox calendar blocks and shortcodes for dates, fasting, commemorations, readings and liturgical texts."
 msgstr ""
 
-#: includes/customizer.php includes/settings.php
-msgid "Page language versions"
+#: includes/render.php
+msgid "Page breadcrumb"
 msgstr ""
 
 #: includes/about.php
@@ -630,8 +638,8 @@ msgstr ""
 msgid "Please arrange accommodation and group visits with the monastery in advance."
 msgstr ""
 
-#: includes/customizer.php includes/settings.php
-msgid "Polish"
+#: includes/plugins.php
+msgid "Plugin details"
 msgstr ""
 
 #: includes/render.php
@@ -648,6 +656,10 @@ msgstr ""
 
 #: includes/customizer.php includes/home-settings.php
 msgid "Post link label"
+msgstr ""
+
+#: includes/plugins.php
+msgid "Prayer requests and donations with Stripe and PayPal, targeted campaigns, recurring support and printable prayer slips."
 msgstr ""
 
 #: includes/settings.php
@@ -712,10 +724,6 @@ msgstr ""
 
 #: functions.php
 msgid "Right sidebar"
-msgstr ""
-
-#: includes/customizer.php includes/settings.php
-msgid "Russian"
 msgstr ""
 
 #: includes/customizer.php includes/settings.php
@@ -977,7 +985,7 @@ msgid "The site style has not been changed."
 msgstr ""
 
 #: includes/plugins.php
-msgid "The theme works on its own. Optional integrations appear here after you install them."
+msgid "The theme works on its own. These optional Georg-Kloster plugins add parish management, a calendar, communication, Church Slavonic translation and donations. Install only the features you need."
 msgstr ""
 
 #: includes/settings.php
@@ -1004,8 +1012,8 @@ msgstr ""
 msgid "Traditional"
 msgstr ""
 
-#: includes/customizer.php includes/settings.php
-msgid "Ukrainian"
+#: includes/plugins.php
+msgid "Translate text into Church Slavonic and search its dictionary through Bible Desktop."
 msgstr ""
 
 #: includes/home-settings.php includes/render.php

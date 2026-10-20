@@ -20,6 +20,11 @@ require_once ABSPATH . 'wp-includes/class-wp-customize-manager.php';
 $customizer = new WP_Customize_Manager();
 do_action( 'customize_register', $customizer );
 georg_theme_release_assert( $customizer->get_panel( 'prihod_theme_panel' ) instanceof WP_Customize_Panel, 'Theme options are available in the native Customizer.' );
+georg_theme_release_assert( ! $customizer->get_section( 'prihod_languages' ), 'Language switching is delegated to WPML or Polylang rather than theme URL fields.' );
+$plugin_catalog = prihod_theme_plugin_catalog();
+georg_theme_release_assert( 5 === count( $plugin_catalog ) && isset( $plugin_catalog['orthocal'], $plugin_catalog['georg-kloster-orthodox-donations'], $plugin_catalog['georg-kloster-slavonic-translator'] ), 'The plugin catalog includes the Parish, Connect Hub, Calendar Workshop, Donations and Slavonic Translator.' );
+foreach ( $plugin_catalog as $plugin ) { georg_theme_release_assert( is_file( get_template_directory() . '/assets/plugins/' . $plugin['preview'] ), 'Every plugin card has its screenshot.' ); }
+georg_theme_release_assert( str_contains( file_get_contents( get_template_directory() . '/assets/reference.css' ), '.prihod-home-contacts .prihod-contact-map iframe{width:100%!important;max-width:none!important;display:block}' ), 'The shared homepage map iframe is explicitly kept at full width.' );
 georg_theme_release_assert( $customizer->get_control( 'georg_kloster_prihod_options[home][sections][hero][title]' ) instanceof WP_Customize_Control, 'Homepage content can be edited in the live-preview Customizer.' );
 georg_theme_release_assert( $customizer->get_control( 'georg_kloster_prihod_options[logo]' ) instanceof WP_Customize_Media_Control, 'Logo uses the native media picker in the Customizer.' );
 $hero_visibility = $customizer->get_setting( 'georg_kloster_prihod_options[home][sections][hero][enabled]' );

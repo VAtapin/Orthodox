@@ -204,9 +204,6 @@ msgstr "Magazin"
 msgid "Email"
 msgstr "E-Mail"
 
-msgid "Enter the URLs of existing language versions. Content translations are created separately; the theme does not translate text automatically."
-msgstr "Geben Sie Adressen vorhandener Sprachversionen an. Inhalte werden separat übersetzt; das Theme übersetzt Texte nicht automatisch."
-
 msgid "Excerpt length in words"
 msgstr "Auszugslänge in Wörtern"
 
@@ -260,9 +257,6 @@ msgstr "Georg-Kloster — Kommunikation"
 
 msgid "Georg-Kloster Parish"
 msgstr "Georg-Kloster — Gemeinde"
-
-msgid "German"
-msgstr "Deutsch"
 
 msgid "Get involved"
 msgstr "So können Sie teilnehmen"
@@ -332,9 +326,6 @@ msgstr "Kopfbereich beim Scrollen fixieren"
 
 msgid "Language"
 msgstr "Sprache"
-
-msgid "Languages"
-msgstr "Sprachen"
 
 msgid "Layout and fonts"
 msgstr "Layout und Schriften"
@@ -417,9 +408,6 @@ msgstr "Nachrichten"
 msgid "No content found. Change your search or reset the filters."
 msgstr "Keine Beiträge gefunden. Ändern Sie die Suche oder setzen Sie die Filter zurück."
 
-msgid "No optional integrations are currently installed."
-msgstr "Derzeit sind keine optionalen Integrationen installiert."
-
 msgid "Number of posts"
 msgstr "Anzahl der Beiträge"
 
@@ -450,9 +438,6 @@ msgstr "Orthodoxer Kalender"
 msgid "Page breadcrumb"
 msgstr "Pfad zur Seite"
 
-msgid "Page language versions"
-msgstr "Sprachversionen der Seiten"
-
 msgid "Page sections"
 msgstr "Abschnitte der Seite"
 
@@ -476,9 +461,6 @@ msgstr "Für Pilger"
 
 msgid "Please arrange accommodation and group visits with the monastery in advance."
 msgstr "Bitte klären Sie einen möglichen Aufenthalt und die Bedingungen für einen Gruppenbesuch im Voraus mit dem Kloster."
-
-msgid "Polish"
-msgstr "Polnisch"
 
 msgid "Post breadcrumb"
 msgstr "Artikelnavigation"
@@ -539,9 +521,6 @@ msgstr "Filter zurücksetzen"
 
 msgid "Right sidebar"
 msgstr "Rechte Seitenleiste"
-
-msgid "Russian"
-msgstr "Russisch"
 
 msgid "Sans serif"
 msgstr "Sans-Serif"
@@ -738,9 +717,6 @@ msgstr "Das Website-Icon muss quadratisch und mindestens 512 × 512 px groß sei
 msgid "The site style has not been changed."
 msgstr "Das Design der Website wurde nicht geändert."
 
-msgid "The theme works on its own. Optional integrations appear here after you install them."
-msgstr "Das Theme funktioniert eigenständig. Installierte optionale Integrationen werden hier angezeigt."
-
 msgid "Theme settings"
 msgstr "Theme-Einstellungen"
 
@@ -758,9 +734,6 @@ msgstr "Der Abschnitt erscheint, wenn das Kalenderplugin kommende Gottesdienste 
 
 msgid "Traditional"
 msgstr "Traditionell"
-
-msgid "Ukrainian"
-msgstr "Ukrainisch"
 
 msgid "Upcoming services"
 msgstr "Nächste Gottesdienste"
@@ -794,3 +767,36 @@ msgstr "Breite Seite"
 
 msgid "Widgets shown in the right column of pages and posts."
 msgstr "Widgets in der rechten Spalte von Seiten und Beiträgen."
+
+msgid "Georg Kloster – Orthodox Donations"
+msgstr "Georg Kloster – Orthodox Donations"
+
+msgid "Georg-Kloster Calendar Workshop"
+msgstr "Georg-Kloster Calendar Workshop"
+
+msgid "Georg-Kloster Slavonic Translator"
+msgstr "Georg-Kloster Slavonic Translator"
+
+msgid "Install plugin"
+msgstr "Plugin installieren"
+
+msgid "No optional plugins are listed."
+msgstr "Es sind keine optionalen Plugins aufgeführt."
+
+msgid "Not installed"
+msgstr "Nicht installiert"
+
+msgid "Orthodox calendar blocks and shortcodes for dates, fasting, commemorations, readings and liturgical texts."
+msgstr "Blöcke und Shortcodes für orthodoxe Kalenderdaten, Fastenzeiten, Gedenktage, Lesungen und liturgische Texte."
+
+msgid "Plugin details"
+msgstr "Plugin-Details"
+
+msgid "Prayer requests and donations with Stripe and PayPal, targeted campaigns, recurring support and printable prayer slips."
+msgstr "Gebetsanliegen und Spenden mit Stripe und PayPal, zweckgebundene Sammlungen, regelmäßige Unterstützung und druckbare Gebetszettel."
+
+msgid "The theme works on its own. These optional Georg-Kloster plugins add parish management, a calendar, communication, Church Slavonic translation and donations. Install only the features you need."
+msgstr "Das Theme funktioniert eigenständig. Diese optionalen Georg-Kloster-Plugins ergänzen Gemeindeverwaltung, Kalender, Kommunikation, Übersetzung ins Kirchenslawische und Spenden. Installieren Sie nur die benötigten Funktionen."
+
+msgid "Translate text into Church Slavonic and search its dictionary through Bible Desktop."
+msgstr "Texte ins Kirchenslawische übersetzen und das Wörterbuch über Bible Desktop durchsuchen."

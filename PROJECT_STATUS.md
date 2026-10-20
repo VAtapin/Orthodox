@@ -2,20 +2,20 @@
 
 ## Current state
 
-The repository contains the Georg-Kloster Prihod theme (development version 0.4.46), Parish Core (0.2.5), and Connect Hub (0.3.3). The theme has five styles, a standard WordPress widget area, native Customizer controls, English gettext source strings, and Russian, German, Polish, and Ukrainian catalogs. The author is Atapin Vladimir / `atapin`; site https://georg-kloster.ru/; contact atapin@gmail.com.
+The repository contains the Georg-Kloster Prihod theme (development version 0.4.47), Parish Core (0.2.5), and Connect Hub (0.3.3). The theme has five visual styles, native Customizer controls, a standard WordPress widget area, English gettext source strings, and Russian, German, Polish, and Ukrainian catalogs. Author: Atapin Vladimir (`atapin`); site: https://georg-kloster.ru/; email: atapin@gmail.com.
 
-The theme settings no longer query the WordPress.org plugin API. The Optional Plugins panel lists only installed integrations, with descriptions and links to their settings, and includes a direct link to the WordPress plugin installer search for Georg-Kloster. The WordPress.org readme and developer README link to the GitHub theme source.
+The theme's Optional Plugins panel shows compact cards and screenshots for Parish, Connect Hub, Calendar Workshop, Orthodox Donations, and Slavonic Translator, including installed status and available WordPress.org links. Language switching uses WPML or Polylang; theme-managed language URLs were removed. The shared homepage map iframe is explicitly full width.
 
 ## WordPress.org release status
 
-Not yet ready for submission. Theme Check and official Theme Unit Test Data testing remain outstanding. Runtime theme tests require a WordPress Playground installation at `/wordpress/wp-load.php`, which is unavailable in this workspace. Keep the Git commit history. When the theme is ready for its first stable public release, use version 1.0.0 and replace the development changelog with the initial release entry.
+Not yet ready for submission. Theme Check and official Theme Unit Test Data testing remain outstanding. WordPress runtime tests require `/wordpress/wp-load.php`, which is unavailable in this workspace. Keep Git commit history. For a first stable public release, use version 1.0.0 and replace development changelog entries with the initial release entry.
 
 ## Checks completed
 
-Theme source/catalog/preview check passed: 257 messages in four locales. Translation consistency check passed for 2,843 UI messages. Repository PHP lint passed, as did 70 isolated unit assertions. The 0.4.46 package builds with 76 entries, includes the required classic-theme files, and has a 1200 x 900 screenshot. The modified integrations-panel Playground test and other WordPress runtime tests could not run because the workspace has no WordPress installation at `/wordpress/wp-load.php`. WordPress.org submission has not occurred.
+PHP lint passed. Isolated unit tests passed with 70 assertions. Theme catalogs compiled and translation consistency passed for 2,851 UI messages. The 0.4.47 theme ZIP built successfully with the new screenshots. WordPress runtime theme tests could not run because `/wordpress/wp-load.php` is unavailable. Production has not been updated.
 
 ## Next steps
 
-Run Theme Check and theme unit data on a clean WordPress install, resolve any findings, then prepare and validate the first stable release package.
+Run the WordPress runtime release checks, Theme Check, and Theme Unit Test Data on a clean WordPress installation. Verify the map width on the live site after the theme package is installed.
 
-Last related commit: check `git log -1` on branch `main` (upstream `origin/main`).
+Last related commit before this change: `f5422a1` (Link theme to plugin installer search), branch `main`, upstream `origin/main`.

@@ -20,7 +20,6 @@ function prihod_theme_customize_register( WP_Customize_Manager $customize ): voi
 		'prihod_header' => __( 'Header and footer', 'georg-kloster-prihod' ),
 		'prihod_map' => __( 'Map', 'georg-kloster-prihod' ),
 		'prihod_home' => __( 'Homepage sections and content', 'georg-kloster-prihod' ),
-		'prihod_languages' => __( 'Page language versions', 'georg-kloster-prihod' ),
 	);
 	foreach ( $sections as $id => $title ) {
 		$customize->add_section( $id, array( 'title' => $title, 'panel' => 'prihod_theme_panel' ) );
@@ -109,10 +108,6 @@ function prihod_theme_customize_register( WP_Customize_Manager $customize ): voi
 		$add( 'home][cards][' . $key . '][enabled', sprintf( __( 'Show card: %s', 'georg-kloster-prihod' ), $label ), 'prihod_home', 'checkbox' );
 		foreach ( array( 'title' => __( 'Card title', 'georg-kloster-prihod' ), 'description' => __( 'Card description', 'georg-kloster-prihod' ), 'button' => __( 'Link label', 'georg-kloster-prihod' ) ) as $field => $title ) { $add( 'home][cards][' . $key . '][' . $field, sprintf( __( '%1$s: %2$s', 'georg-kloster-prihod' ), $title, $label ), 'prihod_home', 'text' ); }
 	}
-	$add( 'languages][ru', __( 'Russian', 'georg-kloster-prihod' ), 'prihod_languages', 'url' );
-	$add( 'languages][de', __( 'German', 'georg-kloster-prihod' ), 'prihod_languages', 'url' );
-	$add( 'languages][pl', __( 'Polish', 'georg-kloster-prihod' ), 'prihod_languages', 'url' );
-	$add( 'languages][uk', __( 'Ukrainian', 'georg-kloster-prihod' ), 'prihod_languages', 'url' );
 
 }
 add_action( 'customize_register', 'prihod_theme_customize_register' );

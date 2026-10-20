@@ -46,8 +46,8 @@ function prihod_theme_url( string $key ): string {
 }
 function prihod_theme_languages(): string {
     if ( function_exists( 'pll_the_languages' ) ) { return '<nav class="prihod-languages" aria-label="' . esc_attr__( 'Language', 'georg-kloster-prihod' ) . '"><ul>' . pll_the_languages( array( 'echo' => 0, 'hide_if_empty' => 1 ) ) . '</ul></nav>'; }
-    $urls = georg_kloster_prihod_options()['languages'];
     $wpml = apply_filters( 'wpml_active_languages', null, array( 'skip_missing' => 1 ) );
+    $urls = array();
     if ( is_array( $wpml ) ) { foreach ( $wpml as $code => $lang ) { if ( isset( $lang['url'] ) ) { $urls[ $code ] = $lang['url']; } } }
     $html = ''; $current = substr( determine_locale(), 0, 2 );
     foreach ( array( 'ru' => 'RU', 'de' => 'DE', 'pl' => 'PL', 'uk' => 'UK' ) as $code => $label ) {
