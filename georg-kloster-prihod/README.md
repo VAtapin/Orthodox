@@ -7,13 +7,13 @@ and posts without creating or rewriting them.
 
 ## Settings
 
-Open **Appearance → Parish Appearance** for styles, layout, fonts, branding,
+Open **Appearance → Customize → Parish theme settings** for live-preview controls covering styles, layout, fonts, branding,
 hero image, navigation and footer settings. Site details include the name,
 description, community type, address, phone and email. Filled theme fields take
 priority; optional Core data may supply empty fields. Without Core, WordPress
 provides the site name and description.
 
-Homepage settings control section visibility and order, headings, eyebrows,
+The same complete controls remain available under **Appearance → Parish Appearance**. Homepage settings control section visibility and order, headings, eyebrows,
 descriptions, button labels, cards and linked pages. Featured images from those
 pages provide card images. News controls include category, count, columns,
 excerpt length, date and image visibility. A zero numeric setting uses the

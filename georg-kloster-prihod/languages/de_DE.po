@@ -930,3 +930,63 @@ msgstr "Rechte Seitenleiste"
 #: functions.php
 msgid "Widgets shown in the right column of pages and posts."
 msgstr "Widgets in der rechten Spalte von Seiten und Beiträgen."
+
+msgid "Parish theme settings"
+msgstr "Einstellungen des Gemeindethemes"
+
+msgid "These controls mirror the Parish Appearance settings page. Preview changes here and publish when ready."
+msgstr "Diese Optionen gibt es auch unter Gemeindegestaltung. Änderungen hier ansehen und veröffentlichen, wenn alles passt."
+
+msgid "Design and layout"
+msgstr "Design und Layout"
+
+msgid "Logo and images"
+msgstr "Logo und Bilder"
+
+msgid "Homepage sections and content"
+msgstr "Startseitenbereiche und Inhalte"
+
+msgid "Visual style"
+msgstr "Stil"
+
+msgid "Site logo"
+msgstr "Website-Logo"
+
+msgid "Homepage hero image"
+msgstr "Titelbild der Startseite"
+
+msgid "Logo width in px"
+msgstr "Logobreite in Pixel"
+
+msgid "Hide the site title beside the logo"
+msgstr "Seitentitel neben dem Logo ausblenden"
+
+msgid "Show the theme logo"
+msgstr "Theme-Logo anzeigen"
+
+msgid "Show section: %s"
+msgstr "Bereich anzeigen: %s"
+
+msgid "Section heading: %s"
+msgstr "Bereichsüberschrift: %s"
+
+msgid "Section link or subtitle: %s"
+msgstr "Bereichslink oder Untertitel: %s"
+
+msgid "Section position %d"
+msgstr "Position des Bereichs %d"
+
+msgid "Card position %d"
+msgstr "Position der Karte %d"
+
+msgid "Show card: %s"
+msgstr "Karte anzeigen: %s"
+
+msgid "%1$s: %2$s"
+msgstr "%1$s: %2$s"
+
+msgid "Open live preview customizer"
+msgstr "Live-Vorschau öffnen"
+
+msgid "Remove selected logo"
+msgstr "Ausgewähltes Logo entfernen"

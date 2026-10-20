@@ -930,3 +930,63 @@ msgstr "Правая колонка"
 #: functions.php
 msgid "Widgets shown in the right column of pages and posts."
 msgstr "Виджеты в правой колонке страниц и записей."
+
+msgid "Parish theme settings"
+msgstr "Настройки темы «Приход»"
+
+msgid "These controls mirror the Parish Appearance settings page. Preview changes here and publish when ready."
+msgstr "Эти параметры также доступны на странице оформления прихода. Изменения можно просмотреть здесь и опубликовать, когда всё будет готово."
+
+msgid "Design and layout"
+msgstr "Макет и оформление"
+
+msgid "Logo and images"
+msgstr "Логотип и изображения"
+
+msgid "Homepage sections and content"
+msgstr "Разделы и содержимое главной страницы"
+
+msgid "Visual style"
+msgstr "Визуальный стиль"
+
+msgid "Site logo"
+msgstr "Логотип сайта"
+
+msgid "Homepage hero image"
+msgstr "Фоновое изображение главной страницы"
+
+msgid "Logo width in px"
+msgstr "Ширина логотипа в пикселях"
+
+msgid "Hide the site title beside the logo"
+msgstr "Скрыть название сайта рядом с логотипом"
+
+msgid "Show the theme logo"
+msgstr "Показывать логотип темы"
+
+msgid "Show section: %s"
+msgstr "Показывать раздел: %s"
+
+msgid "Section heading: %s"
+msgstr "Заголовок раздела: %s"
+
+msgid "Section link or subtitle: %s"
+msgstr "Ссылка или подзаголовок раздела: %s"
+
+msgid "Section position %d"
+msgstr "Позиция раздела %d"
+
+msgid "Card position %d"
+msgstr "Позиция карточки %d"
+
+msgid "Show card: %s"
+msgstr "Показывать карточку: %s"
+
+msgid "%1$s: %2$s"
+msgstr "%1$s: %2$s"
+
+msgid "Open live preview customizer"
+msgstr "Открыть настройщик с предпросмотром"
+
+msgid "Remove selected logo"
+msgstr "Удалить выбранный логотип"

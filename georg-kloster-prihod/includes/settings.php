@@ -71,7 +71,7 @@ function prihod_theme_settings_page(): void {
     foreach ( $sections as $id => $title ) { echo '<a href="#prihod-option-' . esc_attr( $id ) . '" data-section="' . esc_attr( $id ) . '">' . esc_html( $title ) . '</a>'; }
     echo '</nav><div class="prihod-options-content"><form method="post" action="options.php"><div class="prihod-options-toolbar"><strong>' . esc_html__( 'Theme settings', 'georg-kloster-prihod' ) . '</strong>';
     submit_button( __( 'Save changes', 'georg-kloster-prihod' ), 'primary', 'submit', false );
-    echo '<a class="button" href="' . esc_url( home_url( '/' ) ) . '" target="_blank" rel="noopener">' . esc_html__( 'View site', 'georg-kloster-prihod' ) . '</a></div>';
+    echo '<a class="button" href="' . esc_url( home_url( '/' ) ) . '" target="_blank" rel="noopener">' . esc_html__( 'View site', 'georg-kloster-prihod' ) . '</a> <a class="button" href="' . esc_url( admin_url( 'customize.php' ) ) . '">' . esc_html__( 'Open live preview customizer', 'georg-kloster-prihod' ) . '</a></div>';
     settings_fields( 'prihod_theme' );
     echo '<section id="prihod-option-schemes" class="prihod-option-section"><h2>' . esc_html( $sections['schemes'] ) . '</h2><p>' . esc_html__( 'The preview opens in a new tab without changing the site. To apply a style, select its card and save your changes.', 'georg-kloster-prihod' ) . '</p><p>' . esc_html__( 'The cards show example layouts. The live preview uses your pages, images and settings.', 'georg-kloster-prihod' ) . '</p><div class="prihod-scheme-cards">';
     $current = $options['scheme'] ?: ( WP_Theme_JSON_Resolver::get_merged_data()->get_settings()['custom']['prihod']['scheme'] ?? 'classic' );

@@ -18,7 +18,7 @@ $throws = static function ( callable $operation, string $message ) use ( $check 
 };
 $admin_id = get_users( array( 'role' => 'administrator', 'number' => 1 ) )[0]->ID;
 wp_set_current_user( $admin_id ); set_current_screen( 'dashboard' );
-$check( '0.3.2' === GKPS_VERSION, 'Wrong Connect Hub version.' );
+$check( '0.3.3' === GKPS_VERSION, 'Wrong Connect Hub version.' );
 $check( ! is_plugin_active( 'georg-kloster-prihod-social/georg-kloster-prihod-social.php' ), 'Old development package remains active.' );
 $check( 'Existing development form' === Admin::get()['title'], 'Development form settings were lost.' );
 $check( '12345' === Connector::instance( 'telegram' )->settings()['target'], 'Channel settings were lost.' );

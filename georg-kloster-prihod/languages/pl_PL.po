@@ -930,3 +930,63 @@ msgstr "Prawa kolumna"
 #: functions.php
 msgid "Widgets shown in the right column of pages and posts."
 msgstr "Widżety w prawej kolumnie stron i wpisów."
+
+msgid "Parish theme settings"
+msgstr "Ustawienia motywu parafii"
+
+msgid "These controls mirror the Parish Appearance settings page. Preview changes here and publish when ready."
+msgstr "Te opcje są również dostępne na stronie wyglądu parafii. Zobacz podgląd zmian i opublikuj, gdy będą gotowe."
+
+msgid "Design and layout"
+msgstr "Wygląd i układ"
+
+msgid "Logo and images"
+msgstr "Logo i obrazy"
+
+msgid "Homepage sections and content"
+msgstr "Sekcje i treść strony głównej"
+
+msgid "Visual style"
+msgstr "Styl wizualny"
+
+msgid "Site logo"
+msgstr "Logo witryny"
+
+msgid "Homepage hero image"
+msgstr "Obraz główny strony startowej"
+
+msgid "Logo width in px"
+msgstr "Szerokość logo w pikselach"
+
+msgid "Hide the site title beside the logo"
+msgstr "Ukryj tytuł witryny obok logo"
+
+msgid "Show the theme logo"
+msgstr "Pokaż logo motywu"
+
+msgid "Show section: %s"
+msgstr "Pokaż sekcję: %s"
+
+msgid "Section heading: %s"
+msgstr "Nagłówek sekcji: %s"
+
+msgid "Section link or subtitle: %s"
+msgstr "Odnośnik lub podtytuł sekcji: %s"
+
+msgid "Section position %d"
+msgstr "Pozycja sekcji %d"
+
+msgid "Card position %d"
+msgstr "Pozycja karty %d"
+
+msgid "Show card: %s"
+msgstr "Pokaż kartę: %s"
+
+msgid "%1$s: %2$s"
+msgstr "%1$s: %2$s"
+
+msgid "Open live preview customizer"
+msgstr "Otwórz podgląd na żywo"
+
+msgid "Remove selected logo"
+msgstr "Usuń wybrane logo"

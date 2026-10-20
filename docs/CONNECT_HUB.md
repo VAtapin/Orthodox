@@ -1,4 +1,4 @@
-# Georg-Kloster Connect Hub 0.3.2
+# Georg-Kloster Connect Hub 0.3.3
 
 Универсальный плагин коммуникаций для WordPress 6.5+/PHP 8.0+.
 Пакет разрабатывается и проверяется в одноразовом WordPress; наличие кода
@@ -88,7 +88,7 @@ Instagram использует один сохранённый контейне�
 ## Смена пакета и установка
 
 Сборка: `python scripts/package.py --only connect-hub`.
-Результат: `build/georg-kloster-connect-hub-0.3.2.zip`.
+Результат: `build/georg-kloster-connect-hub-0.3.3.zip`.
 Для установленного Connect Hub 0.2.0/0.3.0 загрузить ZIP и подтвердить замену версии.
 При первой установке загрузить ZIP как **новый плагин**, затем активировать. При активации прежний
 `georg-kloster-prihod-social` отключается; его параметры сохраняются. Для

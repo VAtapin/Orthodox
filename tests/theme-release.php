@@ -16,6 +16,14 @@ georg_theme_release_assert( function_exists( 'prihod_theme_home' ), 'Theme rende
 georg_theme_release_assert( ! WP_Block_Type_Registry::get_instance()->is_registered( 'georg-kloster-prihod/home' ), 'Theme registered a custom block.' );
 georg_theme_release_assert( has_filter( 'option_page_capability_prihod_theme' ), 'Theme settings capability is missing.' );
 georg_theme_release_assert( isset( $GLOBALS['wp_registered_sidebars']['prihod-sidebar'] ), 'Theme registers the standard right sidebar widget area.' );
+require_once ABSPATH . 'wp-includes/class-wp-customize-manager.php';
+$customizer = new WP_Customize_Manager();
+do_action( 'customize_register', $customizer );
+georg_theme_release_assert( $customizer->get_panel( 'prihod_theme_panel' ) instanceof WP_Customize_Panel, 'Theme options are available in the native Customizer.' );
+georg_theme_release_assert( $customizer->get_control( 'georg_kloster_prihod_options[home][sections][hero][title]' ) instanceof WP_Customize_Control, 'Homepage content can be edited in the live-preview Customizer.' );
+georg_theme_release_assert( $customizer->get_control( 'georg_kloster_prihod_options[logo]' ) instanceof WP_Customize_Media_Control, 'Logo uses the native media picker in the Customizer.' );
+$hero_visibility = $customizer->get_setting( 'georg_kloster_prihod_options[home][sections][hero][enabled]' );
+georg_theme_release_assert( $hero_visibility instanceof WP_Customize_Setting && true === $hero_visibility->default, 'Customizer defaults match the current theme homepage configuration.' );
 georg_theme_release_assert( str_contains( prihod_theme_brand(), 'prihod-mark' ), 'Default theme logo is hidden.' );
 georg_theme_release_assert( '<figure>Icon</figure>' === apply_filters( 'prihod_schedule_icon_markup', '<figure>Icon</figure>', array( 'start' => new DateTimeImmutable() ), null ), 'Theme assumes the legacy Core calendar class exists.' );
 

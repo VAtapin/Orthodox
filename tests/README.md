@@ -1,6 +1,6 @@
 # Проверки
 
-## Объединённый «Приход» 0.2.4
+## Объединённый «Приход» 0.2.5
 
 `parish-merge-blueprint.json` выполняет 84 проверки: один каталог мест и меню,
 сохранность прежних ID/типов/служб/духовенства, совместимость демо-мест,
@@ -13,7 +13,7 @@
 npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-prihod-core /wordpress/wp-content/plugins/georg-kloster-prihod-core --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/parish-merge-blueprint.json
 ```
 
-Для проверки ZIP распаковать `georg-kloster-prihod-core-0.2.4.zip` и монтировать
+Для проверки ZIP распаковать `georg-kloster-prihod-core-0.2.5.zip` и монтировать
 его каталог вместо исходника. Для минимальной платформы использовать копию
 Blueprint с WP6.5.13/PHP8.0. Результат: `tests/.parish-merge-result.json`.
 
@@ -58,7 +58,7 @@ npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloste
 карточек имеют высоту 200 px. На новом сайте проверяется только кнопка и
 предпросмотр; импорт не запускался, поля темы и текст главной до/после совпали.
 
-## Connect Hub 0.3.2
+## Connect Hub 0.3.3
 
 `connect-hub-blueprint.json` выполняет 147 проверок на изолированных данных:
 четыре раздела RU/DE/EN, несколько форм, права, одноразовый токен с привязкой
@@ -130,7 +130,7 @@ npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloste
 
 ## Английские исходники и локализация текущих плагинов
 
-«Приход» 0.2.4 и Connect Hub 0.3.2 используют английские gettext-ключи.
+«Приход» 0.2.5 и Connect Hub 0.3.3 используют английские gettext-ключи.
 `plugin-i18n-check.py` запрещает кириллицу в PHP/JS/CSS обоих пакетов, сверяет
 PO/MO/JSON, покрытие и placeholders. 887 сообщений: Core 92, Schedule 195,
 Connect Hub по 300 в RU и DE. Демо и многоязычные входные шаблоны календаря —
@@ -373,7 +373,7 @@ home-detail-smoke.php: 11 проверок независимых владель
 фото над символами tradition и обработки настоящего портрета. Временные параметры
 восстанавливаются. CSS geometry/лицо/мобильный overflow отдельно проверены браузером.
 
-### Просмотр икон rc.15 / тема 0.3.23
+### Просмотр икон rc.15 / тема 0.3.33
 
 336 smoke / 210 design на WP7.1.3/PHP8.4.25; 310 / 209 на WP6.5.13/PHP8.0.30.
 Проверены native Image metadata обеих версий, opt-in permission full-size endpoint,
@@ -381,7 +381,7 @@ signed orthocal media без thumbnail, отдельно full/medium выбра�
 Никаких реальных отправок; интеграционные fixtures одноразовые.
 
 
-### Регрессия ширины «О монастыре», тема0.3.24
+### Регрессия ширины «О монастыре», тема0.3.34
 
 Через CUA при одинаковых viewport1920×1080/1122×998/390×844 сравнить about и
 расписание для каждой схемы: main/header/footer, ширину/позицию, overflow,

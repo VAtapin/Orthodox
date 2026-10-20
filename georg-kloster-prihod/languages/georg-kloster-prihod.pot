@@ -1,6 +1,10 @@
 msgid ""
 msgstr "Project-Id-Version: Georg-Kloster Prihod\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nX-Domain: georg-kloster-prihod\n"
 
+#: includes/customizer.php
+msgid "%1$s: %2$s"
+msgstr ""
+
 #: about.php
 msgid "About"
 msgstr ""
@@ -29,7 +33,7 @@ msgstr ""
 msgid "Activities"
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "Additional footer text"
 msgstr ""
 
@@ -45,7 +49,7 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "All categories"
 msgstr ""
 
@@ -73,7 +77,7 @@ msgstr ""
 msgid "Ask an administrator with plugin installation permissions to check the directory or install plugins."
 msgstr ""
 
-#: includes/home-settings.php includes/site-settings.php
+#: includes/customizer.php includes/home-settings.php includes/site-settings.php
 msgid "Automatic"
 msgstr ""
 
@@ -89,15 +93,15 @@ msgstr ""
 msgid "Back to top"
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "Base font"
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "Base text size in px"
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "Blue style quotation source"
 msgstr ""
 
@@ -105,15 +109,19 @@ msgstr ""
 msgid "Call the monastery"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Card description"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php
+msgid "Card position %d"
+msgstr ""
+
+#: includes/customizer.php includes/home-settings.php
 msgid "Card title"
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "Cards per row"
 msgstr ""
 
@@ -133,11 +141,11 @@ msgstr ""
 msgid "Classic gold"
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "Classic header motto"
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "Classic hero motto"
 msgstr ""
 
@@ -188,7 +196,7 @@ msgstr ""
 msgid "Community life"
 msgstr ""
 
-#: includes/site-settings.php
+#: includes/customizer.php includes/site-settings.php
 msgid "Community type"
 msgstr ""
 
@@ -228,7 +236,7 @@ msgctxt "Custom template name"
 msgid "Wide page"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Default"
 msgstr ""
 
@@ -236,11 +244,15 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: includes/home-settings.php includes/site-settings.php
+#: includes/customizer.php includes/home-settings.php includes/site-settings.php
 msgid "Description"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php
+msgid "Design and layout"
+msgstr ""
+
+#: includes/customizer.php includes/home-settings.php
 msgid "Desktop columns"
 msgstr ""
 
@@ -276,7 +288,7 @@ msgstr ""
 msgid "Enter the URLs of existing language versions. Content translations are created separately; the theme does not translate text automatically."
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Excerpt length in words"
 msgstr ""
 
@@ -342,7 +354,7 @@ msgstr ""
 msgid "Georg-Kloster Parish"
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "German"
 msgstr ""
 
@@ -358,7 +370,7 @@ msgstr ""
 msgid "Group visits and accommodation"
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "Header and footer"
 msgstr ""
 
@@ -374,8 +386,12 @@ msgstr ""
 msgid "Hero image"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Hide the schedule card when upcoming services are displayed"
+msgstr ""
+
+#: includes/customizer.php
+msgid "Hide the site title beside the logo"
 msgstr ""
 
 #: includes/about.php
@@ -392,6 +408,14 @@ msgstr ""
 
 #: includes/home-settings.php
 msgid "Homepage content"
+msgstr ""
+
+#: includes/customizer.php
+msgid "Homepage hero image"
+msgstr ""
+
+#: includes/customizer.php
+msgid "Homepage sections and content"
 msgstr ""
 
 #: includes/photos.php
@@ -418,7 +442,7 @@ msgstr ""
 msgid "Insufficient permissions."
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "Keep the header visible while scrolling"
 msgstr ""
 
@@ -442,15 +466,15 @@ msgstr ""
 msgid "Light hospitality"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Link label"
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "Link row"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Link to page: %s"
 msgstr ""
 
@@ -460,6 +484,14 @@ msgstr ""
 
 #: includes/branding.php includes/settings.php
 msgid "Logo and icon"
+msgstr ""
+
+#: includes/customizer.php
+msgid "Logo and images"
+msgstr ""
+
+#: includes/customizer.php
+msgid "Logo width in px"
 msgstr ""
 
 #: includes/branding.php
@@ -474,11 +506,11 @@ msgstr ""
 msgid "Menu item image"
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "Menu style"
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "Menu with cards and images"
 msgstr ""
 
@@ -486,7 +518,7 @@ msgstr ""
 msgid "Modern blue"
 msgstr ""
 
-#: includes/site-settings.php
+#: includes/customizer.php includes/site-settings.php
 msgid "Monastery"
 msgstr ""
 
@@ -514,16 +546,20 @@ msgstr ""
 msgid "No installed integrations or confirmed directory recommendations are available yet."
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Number of posts"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Number of services"
 msgstr ""
 
 #: includes/home-settings.php
 msgid "Only the content of the page selected as the homepage in Reading settings is displayed."
+msgstr ""
+
+#: includes/settings.php
+msgid "Open live preview customizer"
 msgstr ""
 
 #: includes/plugins.php
@@ -542,7 +578,7 @@ msgstr ""
 msgid "Page breadcrumb"
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "Page language versions"
 msgstr ""
 
@@ -550,7 +586,7 @@ msgstr ""
 msgid "Page sections"
 msgstr ""
 
-#: includes/site-settings.php
+#: includes/customizer.php includes/site-settings.php
 msgid "Parish"
 msgstr ""
 
@@ -560,6 +596,10 @@ msgstr ""
 
 #: includes/plugins.php
 msgid "Parish profile, clergy, service places with logos and photos, service schedules and calendar. Publish with blocks or shortcodes using any theme."
+msgstr ""
+
+#: includes/customizer.php
+msgid "Parish theme settings"
 msgstr ""
 
 #: includes/presentation.php includes/site-settings.php
@@ -574,7 +614,7 @@ msgstr ""
 msgid "Please arrange accommodation and group visits with the monastery in advance."
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "Polish"
 msgstr ""
 
@@ -586,11 +626,11 @@ msgstr ""
 msgid "Post categories"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Post category"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Post link label"
 msgstr ""
 
@@ -614,15 +654,15 @@ msgstr ""
 msgid "Privacy policy"
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "Quotation below the buttons in the blue style"
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "Quotation source"
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "Quotation text"
 msgstr ""
 
@@ -642,6 +682,10 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
+#: includes/customizer.php
+msgid "Remove selected logo"
+msgstr ""
+
 #: includes/plugins.php
 msgid "Requires a newer WordPress or PHP version"
 msgstr ""
@@ -654,11 +698,11 @@ msgstr ""
 msgid "Right sidebar"
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "Russian"
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "Sans serif"
 msgstr ""
 
@@ -670,7 +714,7 @@ msgstr ""
 msgid "Schedule"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Schedule button label"
 msgstr ""
 
@@ -690,7 +734,7 @@ msgstr ""
 msgid "Search posts…"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Secondary button label"
 msgstr ""
 
@@ -698,11 +742,23 @@ msgstr ""
 msgid "Section cards"
 msgstr ""
 
+#: includes/customizer.php
+msgid "Section heading: %s"
+msgstr ""
+
+#: includes/customizer.php
+msgid "Section link or subtitle: %s"
+msgstr ""
+
+#: includes/customizer.php
+msgid "Section position %d"
+msgstr ""
+
 #: includes/home-settings.php
 msgid "Section settings"
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "Serif"
 msgstr ""
 
@@ -726,23 +782,27 @@ msgstr ""
 msgid "Short name"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Show card images"
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php
+msgid "Show card: %s"
+msgstr ""
+
+#: includes/customizer.php includes/settings.php
 msgid "Show contact details in the header"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Show date"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Show excerpt"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Show images"
 msgstr ""
 
@@ -754,7 +814,15 @@ msgstr ""
 msgid "Show name"
 msgstr ""
 
-#: includes/settings.php includes/site-settings.php
+#: includes/customizer.php
+msgid "Show section: %s"
+msgstr ""
+
+#: includes/customizer.php
+msgid "Show the theme logo"
+msgstr ""
+
+#: includes/customizer.php includes/settings.php includes/site-settings.php
 msgid "Site details"
 msgstr ""
 
@@ -762,11 +830,15 @@ msgstr ""
 msgid "Site icon"
 msgstr ""
 
+#: includes/customizer.php
+msgid "Site logo"
+msgstr ""
+
 #: includes/home.php includes/render.php
 msgid "Site sections"
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "Site width in px"
 msgstr ""
 
@@ -876,6 +948,10 @@ msgstr ""
 msgid "There are no posts yet."
 msgstr ""
 
+#: includes/customizer.php
+msgid "These controls mirror the Parish Appearance settings page. Preview changes here and publish when ready."
+msgstr ""
+
 #: includes/plugins.php
 msgid "This contacts the WordPress.org plugin directory. Nothing is installed or activated by the check."
 msgstr ""
@@ -888,7 +964,7 @@ msgstr ""
 msgid "Traditional"
 msgstr ""
 
-#: includes/settings.php
+#: includes/customizer.php includes/settings.php
 msgid "Ukrainian"
 msgstr ""
 
@@ -918,6 +994,10 @@ msgstr ""
 
 #: includes/pilgrim.php
 msgid "Visitor information"
+msgstr ""
+
+#: includes/customizer.php
+msgid "Visual style"
 msgstr ""
 
 #: includes/about.php

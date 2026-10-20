@@ -46,9 +46,9 @@ for name in (("prihod-telegram", "prihod-whatsapp", "prihod-social") if "connect
 if "core" in selected:
     archive(ROOT / "prihod", "prihod-1.0.0-rc.20.zip")
 if "parish-core" in selected or "parish-schedule" in selected:
-    archive(ROOT / "georg-kloster-prihod-core", "georg-kloster-prihod-core-0.2.4.zip")
+    archive(ROOT / "georg-kloster-prihod-core", "georg-kloster-prihod-core-0.2.5.zip")
 if "parish-social" in selected or "connect-hub" in selected:
-    archive(ROOT / "georg-kloster-connect-hub", "georg-kloster-connect-hub-0.3.2.zip")
+    archive(ROOT / "georg-kloster-connect-hub", "georg-kloster-connect-hub-0.3.3.zip")
 if "theme" in selected:
-    archive(ROOT / "georg-kloster-prihod", "georg-kloster-prihod-0.4.38.zip")
+    archive(ROOT / "georg-kloster-prihod", "georg-kloster-prihod-0.4.42.zip")
 print("Built: " + ", ".join(selected))

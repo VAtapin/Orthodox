@@ -3,7 +3,8 @@ Contributors: vatapin
 Tags: contact form, messages, social, publishing, telegram
 Requires at least: 6.5
 Requires PHP: 8.0
-Stable tag: 0.3.2
+Tested up to: 7.1
+Stable tag: 0.3.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -42,9 +43,13 @@ This release does not implement carousels, videos or reels. An ambiguous OK
 transport result requires checking the account before an explicitly confirmed retry.
 No channel is enabled automatically and no account credentials are bundled.
 
+== Support ==
+
+Author: Atapin Vladimir. Website: https://georg-kloster.ru/. Email: atapin@gmail.com.
+
 == Installation ==
 
-Upload georg-kloster-connect-hub-0.3.2.zip. Replace an existing Connect Hub version,
+Upload georg-kloster-connect-hub-0.3.3.zip. Replace an existing Connect Hub version,
 or install as a new plugin and activate it.
 Activation deactivates the previous georg-kloster-prihod-social development plugin
 without deleting its settings. Keep only Connect Hub active. Network-active old
@@ -114,6 +119,9 @@ Dashboard help appears under Connect Hub > Forms and Settings > General, in the 
 Enable the selected form and incoming messages in Settings. Disabled or missing forms render no public form. Submitted messages retain their selected form's topics and recipient.
 
 == Changelog ==
+
+= 0.3.3 =
+Add plugin author, website and support contact metadata.
 
 = 0.3.2 =
 Use English source UI strings while retaining Russian and German catalogs. Add form shortcode and block help with parameters, examples and the compatible alias.

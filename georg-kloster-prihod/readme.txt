@@ -16,6 +16,10 @@ The theme does not create pages. Set your own name, description, community type 
 
 Under Optional Plugins, installed integrations have descriptions, screenshots and links to their settings. The theme contacts the WordPress.org plugin information API only when an administrator clicks Check WordPress.org. The request contains the plugin slugs and WordPress locale, with standard WordPress HTTP request metadata. Directory results are cached locally for one hour. No site content or contact-form messages are sent. Only confirmed WordPress.org entries are recommended for installation; unavailable or unpublished plugins are not advertised to new installations. Installation and activation require an explicit click and use WordPress core screens, capabilities, nonces and compatibility checks. The theme never bundles, downloads or activates plugins automatically. WordPress.org privacy policy: https://wordpress.org/about/privacy/.
 
+== Support ==
+
+Author: Atapin Vladimir. Website: https://georg-kloster.ru/. Email: atapin@gmail.com.
+
 == Installation ==
 
 Upload the theme ZIP under Appearance > Themes, activate it, then choose a visual style under Appearance > Parish Appearance. Add your own pages, navigation, logo, and photographs in WordPress. The theme does not load an external map or contact service. Add those features through page content or optional plugins.
@@ -39,6 +43,18 @@ The theme uses images selected from your WordPress media library. It does not do
 Create and assign a menu under Appearance > Menus. Open a menu item and choose its image from the media library; without a chosen image, the linked page or post featured image is used. The theme's Appearance > Parish Appearance > Header and Footer section enables an image menu alongside the standard desktop link row and sets the number of visual columns. The link-row-only option remains available. Menu item descriptions can be enabled under Screen Options on the Menus screen.
 
 == Changelog ==
+
+= 0.4.42 =
+* Add the logo removal control to native Customizer branding.
+
+= 0.4.41 =
+* Ensure live-preview controls use the current normalized theme defaults.
+
+= 0.4.40 =
+* Add native Customizer controls with live preview for theme design, branding, site details and homepage sections. Keep the full Parish Appearance settings page.
+
+= 0.4.39 =
+Set the theme author, website and contact in the package metadata.
 
 = 0.4.38 =
 Register the right column as a standard WordPress widget area. Core widgets can replace its automatic sidebar content; the existing calendar, services and contact link remain as the empty-area default.
@@ -127,7 +143,7 @@ Connects the service preview and calendar icons to the standalone Schedule plugi
 
 == Resources ==
 
-Theme PHP, CSS, JavaScript, and SVG assets: © 2026 Vladimir Atapin, GPLv2 or later, included in this package.
-Theme screenshot and style previews, captured from the theme demonstration: © 2026 Vladimir Atapin, GPLv2 or later, included in this package.
-Plugin settings screenshots in assets/plugins, captured from the standalone GPLv2-or-later Georg-Kloster Parish plugins on a disposable WordPress installation with empty settings: © 2026 Vladimir Atapin, GPLv2 or later. WordPress admin interface: WordPress contributors, GPLv2 or later, https://wordpress.org/about/license/. Screenshots are documentation only and are never inserted into public pages.
+Theme PHP, CSS, JavaScript, and SVG assets: © 2026 Atapin Vladimir, GPLv2 or later, included in this package.
+Theme screenshot and style previews, captured from the theme demonstration: © 2026 Atapin Vladimir, GPLv2 or later, included in this package.
+Plugin settings screenshots in assets/plugins, captured from the standalone GPLv2-or-later Georg-Kloster Parish plugins on a disposable WordPress installation with empty settings: © 2026 Atapin Vladimir, GPLv2 or later. WordPress admin interface: WordPress contributors, GPLv2 or later, https://wordpress.org/about/license/. Screenshots are documentation only and are never inserted into public pages.
 WordPress core blocks and APIs are provided by WordPress, GPLv2 or later, https://wordpress.org/about/license/.
