@@ -990,3 +990,36 @@ msgstr "Відкрити налаштовувач із переглядом"
 
 msgid "Remove selected logo"
 msgstr "Видалити вибраний логотип"
+
+msgid "Map"
+msgstr "Мапа"
+
+msgid "Map provider"
+msgstr "Картографічний сервіс"
+
+msgid "OpenStreetMap"
+msgstr "OpenStreetMap"
+
+msgid "Google Maps"
+msgstr "Google Карти"
+
+msgid "Map latitude"
+msgstr "Широта мапи"
+
+msgid "Map longitude"
+msgstr "Довгота мапи"
+
+msgid "Google Maps API key"
+msgstr "Ключ API Google Карт"
+
+msgid "The map appears in the homepage contact area in every visual style. OpenStreetMap is used by default and does not need an API key. Add the exact coordinates of the parish or monastery."
+msgstr "Мапа відображається в блоці контактів головної сторінки за будь-якого оформлення. Типово використовується OpenStreetMap без ключа API. Укажіть точні координати парафії або монастиря."
+
+msgid "A Google key is only used when Google Maps is selected. The key is sent to visitors’ browsers and should be restricted to this site in Google Cloud."
+msgstr "Ключ Google використовується лише за вибору Google Карт. Він передається браузерам відвідувачів; обмежте його використання цим сайтом у Google Cloud."
+
+msgid "Map showing the parish location"
+msgstr "Мапа з розташуванням парафії"
+
+msgid "Open map"
+msgstr "Відкрити мапу"

@@ -18,6 +18,7 @@ function prihod_theme_customize_register( WP_Customize_Manager $customize ): voi
 		'prihod_branding' => __( 'Logo and images', 'georg-kloster-prihod' ),
 		'prihod_profile' => __( 'Site details', 'georg-kloster-prihod' ),
 		'prihod_header' => __( 'Header and footer', 'georg-kloster-prihod' ),
+		'prihod_map' => __( 'Map', 'georg-kloster-prihod' ),
 		'prihod_home' => __( 'Homepage sections and content', 'georg-kloster-prihod' ),
 		'prihod_languages' => __( 'Page language versions', 'georg-kloster-prihod' ),
 	);
@@ -33,10 +34,11 @@ function prihod_theme_customize_register( WP_Customize_Manager $customize ): voi
 			'type'              => 'option',
 			'default'           => $value,
 			'transport'         => 'refresh',
-			'sanitize_callback' => static function ( $input ) use ( $control_type ) {
+			'sanitize_callback' => static function ( $input ) use ( $control_type, $key ) {
 				if ( 'checkbox' === $control_type ) { return (bool) $input; }
 				if ( 'url' === $control_type ) { return esc_url_raw( is_scalar( $input ) ? (string) $input : '' ); }
 				if ( 'number' === $control_type ) { return is_scalar( $input ) ? absint( $input ) : 0; }
+				if ( 'decimal' === $control_type ) { $value = str_replace( ',', '.', is_scalar( $input ) ? (string) $input : '' ); $range = 'map_latitude' === $key ? array( -90, 90 ) : array( -180, 180 ); return is_numeric( $value ) && (float) $value >= $range[0] && (float) $value <= $range[1] ? (string) (float) $value : ''; }
 				if ( 'textarea' === $control_type ) { return sanitize_textarea_field( is_scalar( $input ) ? (string) $input : '' ); }
 				return sanitize_text_field( is_scalar( $input ) ? (string) $input : '' );
 			},
@@ -65,6 +67,10 @@ function prihod_theme_customize_register( WP_Customize_Manager $customize ): voi
 
 	foreach ( prihod_theme_profile_fields() as $key => $label ) { $add( 'profile][' . $key, $label, 'prihod_profile', in_array( $key, array( 'description', 'address' ), true ) ? 'textarea' : 'text' ); }
 	$add_select( 'profile][type', __( 'Community type', 'georg-kloster-prihod' ), 'prihod_profile', array( '' => __( 'Automatic', 'georg-kloster-prihod' ), 'parish' => __( 'Parish', 'georg-kloster-prihod' ), 'monastery' => __( 'Monastery', 'georg-kloster-prihod' ) ) );
+	$add_select( 'map_provider', __( 'Map provider', 'georg-kloster-prihod' ), 'prihod_map', array( 'openstreetmap' => __( 'OpenStreetMap', 'georg-kloster-prihod' ), 'google' => __( 'Google Maps', 'georg-kloster-prihod' ) ) );
+	$add( 'map_latitude', __( 'Map latitude', 'georg-kloster-prihod' ), 'prihod_map', 'decimal', array( 'input_attrs' => array( 'step' => 'any', 'min' => -90, 'max' => 90 ) ) );
+	$add( 'map_longitude', __( 'Map longitude', 'georg-kloster-prihod' ), 'prihod_map', 'decimal', array( 'input_attrs' => array( 'step' => 'any', 'min' => -180, 'max' => 180 ) ) );
+	$add( 'google_maps_key', __( 'Google Maps API key', 'georg-kloster-prihod' ), 'prihod_map', 'password' );
 
 	foreach ( array( 'sticky_header' => __( 'Keep the header visible while scrolling', 'georg-kloster-prihod' ), 'header_contacts' => __( 'Show contact details in the header', 'georg-kloster-prihod' ) ) as $key => $label ) { $add( $key, $label, 'prihod_header', 'checkbox' ); }
 	$add_select( 'menu_style', __( 'Menu style', 'georg-kloster-prihod' ), 'prihod_header', array( 'visual' => __( 'Menu with cards and images', 'georg-kloster-prihod' ), 'classic' => __( 'Link row', 'georg-kloster-prihod' ) ) );

@@ -990,3 +990,36 @@ msgstr "Live-Vorschau öffnen"
 
 msgid "Remove selected logo"
 msgstr "Ausgewähltes Logo entfernen"
+
+msgid "Map"
+msgstr "Karte"
+
+msgid "Map provider"
+msgstr "Kartendienst"
+
+msgid "OpenStreetMap"
+msgstr "OpenStreetMap"
+
+msgid "Google Maps"
+msgstr "Google Maps"
+
+msgid "Map latitude"
+msgstr "Breitengrad der Karte"
+
+msgid "Map longitude"
+msgstr "Längengrad der Karte"
+
+msgid "Google Maps API key"
+msgstr "Google-Maps-API-Schlüssel"
+
+msgid "The map appears in the homepage contact area in every visual style. OpenStreetMap is used by default and does not need an API key. Add the exact coordinates of the parish or monastery."
+msgstr "Die Karte erscheint im Kontaktbereich der Startseite bei jedem Design. Standardmäßig wird OpenStreetMap ohne API-Schlüssel verwendet. Geben Sie die genauen Koordinaten der Gemeinde oder des Klosters ein."
+
+msgid "A Google key is only used when Google Maps is selected. The key is sent to visitors’ browsers and should be restricted to this site in Google Cloud."
+msgstr "Der Google-Schlüssel wird nur bei ausgewähltem Google Maps verwendet. Er wird an die Browser der Besucher übertragen und sollte in Google Cloud auf diese Website beschränkt werden."
+
+msgid "Map showing the parish location"
+msgstr "Karte mit dem Standort der Gemeinde"
+
+msgid "Open map"
+msgstr "Karte öffnen"

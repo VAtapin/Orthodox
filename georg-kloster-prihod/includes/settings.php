@@ -3,7 +3,7 @@ defined( 'ABSPATH' ) || exit;
 
 function georg_kloster_prihod_options(): array {
     $saved = get_option( 'georg_kloster_prihod_options', array() );
-    $defaults = array( 'hero_image' => 0, 'logo' => 0, 'logo_show' => true, 'logo_width' => 240, 'logo_removed' => false, 'logo_hide_title' => false, 'languages' => array(), 'scheme' => '', 'width' => 1200, 'font' => 'sans', 'font_size' => 16, 'sticky_header' => false, 'header_contacts' => true, 'menu_style' => 'visual', 'menu_columns' => 3, 'footer_text' => '', 'header_motto' => '', 'hero_motto' => '', 'hero_quote_text' => '', 'hero_quote_source' => '', 'quote_text' => '', 'quote_source' => '' );
+    $defaults = array( 'hero_image' => 0, 'logo' => 0, 'logo_show' => true, 'logo_width' => 240, 'logo_removed' => false, 'logo_hide_title' => false, 'languages' => array(), 'scheme' => '', 'width' => 1200, 'font' => 'sans', 'font_size' => 16, 'sticky_header' => false, 'header_contacts' => true, 'menu_style' => 'visual', 'menu_columns' => 3, 'footer_text' => '', 'header_motto' => '', 'hero_motto' => '', 'hero_quote_text' => '', 'hero_quote_source' => '', 'quote_text' => '', 'quote_source' => '', 'map_provider' => 'openstreetmap', 'map_latitude' => '', 'map_longitude' => '', 'google_maps_key' => '' );
     $defaults['home'] = array();
     $defaults['profile'] = array();
     return array_merge( $defaults, is_array( $saved ) ? array_intersect_key( $saved, $defaults ) : array() );
@@ -24,6 +24,13 @@ function prihod_theme_sanitize( $input ): array {
     $out['font_size'] = max( 14, min( 20, is_scalar( $input['font_size'] ?? null ) ? absint( $input['font_size'] ) : 16 ) );
     $out['font'] = in_array( $input['font'] ?? null, array( 'sans', 'serif' ), true ) ? $input['font'] : 'sans';
     $out['footer_text'] = is_string( $input['footer_text'] ?? null ) ? sanitize_textarea_field( $input['footer_text'] ) : '';
+    $out['map_provider'] = in_array( $input['map_provider'] ?? null, array( 'openstreetmap', 'google' ), true ) ? $input['map_provider'] : 'openstreetmap';
+    foreach ( array( 'map_latitude' => array( -90, 90 ), 'map_longitude' => array( -180, 180 ) ) as $key => $range ) {
+        $value = is_scalar( $input[$key] ?? null ) ? (string) $input[$key] : '';
+        $value = str_replace( ',', '.', trim( $value ) );
+        $out[$key] = is_numeric( $value ) && (float) $value >= $range[0] && (float) $value <= $range[1] ? (string) (float) $value : '';
+    }
+    $out['google_maps_key'] = sanitize_text_field( is_scalar( $input['google_maps_key'] ?? null ) ? (string) $input['google_maps_key'] : '' );
     foreach ( array( 'hero_image', 'logo' ) as $key ) {
         if ( ! array_key_exists( $key, $input ) ) { continue; }
         $id = is_scalar( $input[ $key ] ?? null ) ? absint( $input[ $key ] ) : 0;
@@ -59,11 +66,19 @@ add_action( 'admin_enqueue_scripts', function () {
 function prihod_theme_schemes(): array {
     return array( 'classic' => __( 'Classic gold', 'georg-kloster-prihod' ), 'hospitality' => __( 'Light hospitality', 'georg-kloster-prihod' ), 'editorial' => __( 'Editorial', 'georg-kloster-prihod' ), 'tradition' => __( 'Traditional', 'georg-kloster-prihod' ), 'blue' => __( 'Modern blue', 'georg-kloster-prihod' ) );
 }
+function prihod_theme_map_settings_panel( array $options ): void {
+    echo '<section id="prihod-option-map" class="prihod-option-section"><h2>' . esc_html__( 'Map', 'georg-kloster-prihod' ) . '</h2><p>' . esc_html__( 'The map appears in the homepage contact area in every visual style. OpenStreetMap is used by default and does not need an API key. Add the exact coordinates of the parish or monastery.', 'georg-kloster-prihod' ) . '</p>';
+    echo '<p><label>' . esc_html__( 'Map provider', 'georg-kloster-prihod' ) . '<br><select name="georg_kloster_prihod_options[map_provider]">';
+    foreach ( array( 'openstreetmap' => __( 'OpenStreetMap', 'georg-kloster-prihod' ), 'google' => __( 'Google Maps', 'georg-kloster-prihod' ) ) as $value => $label ) { echo '<option value="' . esc_attr( $value ) . '"' . selected( $options['map_provider'], $value, false ) . '>' . esc_html( $label ) . '</option>'; }
+    echo '</select></label></p>';
+    foreach ( array( 'map_latitude' => array( __( 'Map latitude', 'georg-kloster-prihod' ), -90, 90 ), 'map_longitude' => array( __( 'Map longitude', 'georg-kloster-prihod' ), -180, 180 ) ) as $key => $field ) { echo '<p><label>' . esc_html( $field[0] ) . '<br><input class="regular-text" type="number" step="any" min="' . $field[1] . '" max="' . $field[2] . '" name="georg_kloster_prihod_options[' . esc_attr( $key ) . ']" value="' . esc_attr( $options[$key] ) . '"></label></p>'; }
+    echo '<p><label>' . esc_html__( 'Google Maps API key', 'georg-kloster-prihod' ) . '<br><input class="regular-text" type="password" autocomplete="new-password" name="georg_kloster_prihod_options[google_maps_key]" value="' . esc_attr( $options['google_maps_key'] ) . '"></label></p><p class="description">' . esc_html__( 'A Google key is only used when Google Maps is selected. The key is sent to visitors’ browsers and should be restricted to this site in Google Cloud.', 'georg-kloster-prihod' ) . '</p></section>';
+}
 function prihod_theme_settings_page(): void {
     if ( ! current_user_can( 'edit_theme_options' ) ) { wp_die( esc_html__( 'Insufficient permissions.', 'georg-kloster-prihod' ) ); }
     $options = georg_kloster_prihod_options();
     $sections = array( 'schemes' => __( 'Styles', 'georg-kloster-prihod' ), 'layout' => __( 'Layout and fonts', 'georg-kloster-prihod' ), 'branding' => __( 'Logo and icon', 'georg-kloster-prihod' ), 'header' => __( 'Header and footer', 'georg-kloster-prihod' ), 'languages' => __( 'Languages', 'georg-kloster-prihod' ) );
-    $sections = array_slice( $sections, 0, 1, true ) + array( 'home' => __( 'Homepage', 'georg-kloster-prihod' ), 'profile' => __( 'Site details', 'georg-kloster-prihod' ) ) + array_slice( $sections, 1, null, true );
+    $sections = array_slice( $sections, 0, 1, true ) + array( 'home' => __( 'Homepage', 'georg-kloster-prihod' ), 'profile' => __( 'Site details', 'georg-kloster-prihod' ), 'map' => __( 'Map', 'georg-kloster-prihod' ) ) + array_slice( $sections, 1, null, true );
     $sections['plugins'] = __( 'Optional plugins', 'georg-kloster-prihod' );
     echo '<div class="wrap georg-kloster-prihod-settings"><h1>' . esc_html__( 'Parish Appearance', 'georg-kloster-prihod' ) . ' <small>' . esc_html( wp_get_theme()->get( 'Version' ) ) . '</small></h1>';
     settings_errors();
@@ -83,6 +98,7 @@ function prihod_theme_settings_page(): void {
     echo '</div></section>';
     prihod_theme_home_settings_panel( $options );
     prihod_theme_profile_settings_panel( $options );
+    prihod_theme_map_settings_panel( $options );
     echo '<section id="prihod-option-layout" class="prihod-option-section"><h2>' . esc_html( $sections['layout'] ) . '</h2>';
     foreach ( array( 'width' => array( __( 'Site width in px', 'georg-kloster-prihod' ), 960, 1440 ), 'font_size' => array( __( 'Base text size in px', 'georg-kloster-prihod' ), 14, 20 ) ) as $key => $field ) { echo '<p><label>' . esc_html( $field[0] ) . '<br><input type="number" min="' . $field[1] . '" max="' . $field[2] . '" name="georg_kloster_prihod_options[' . esc_attr( $key ) . ']" value="' . esc_attr( $options[$key] ) . '"></label></p>'; }
     echo '<p><label>' . esc_html__( 'Base font', 'georg-kloster-prihod' ) . '<br><select name="georg_kloster_prihod_options[font]">';

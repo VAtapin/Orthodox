@@ -48,6 +48,14 @@ foreach ( array( 'tradition' => 'prihod-feature-symbol', 'editorial' => 'prihod-
     $layout_check( str_contains( $layout_html, $layout_symbol ), 'Style symbols were replaced by featured images: ' . $layout_scheme );
 }
 $layout_check( 'Owner layout content' === get_post( $layout_page )->post_content, 'Layout rendering rewrote page content.' );
+$layout_map_options = prihod_theme_sanitize( array( 'map_latitude' => '91', 'map_longitude' => '13.4', 'map_provider' => 'unsafe', 'google_maps_key' => '<b>key</b>' ) );
+$layout_check( '' === $layout_map_options['map_latitude'] && '13.4' === $layout_map_options['map_longitude'] && 'openstreetmap' === $layout_map_options['map_provider'] && 'key' === $layout_map_options['google_maps_key'], 'Map settings validate coordinates and provider and sanitize the optional key.' );
+foreach ( array_keys( prihod_theme_schemes() ) as $layout_scheme ) {
+    update_option( 'georg_kloster_prihod_options', array( 'scheme' => $layout_scheme, 'profile' => array( 'address' => 'Götschendorf 33, 17268 Milmersdorf' ), 'map_latitude' => '53.091587', 'map_longitude' => '13.671996' ) );
+    WP_Theme_JSON_Resolver::clean_cached_data();
+    $layout_contacts = prihod_theme_contact_panel( 'Contacts' );
+    $layout_check( str_contains( $layout_contacts, 'prihod-contact-map' ) && str_contains( $layout_contacts, 'openstreetmap.org/export/embed.html' ) && str_contains( $layout_contacts, 'prihod-contact-list' ), 'Homepage contacts include the configured map in every visual style: ' . $layout_scheme );
+}
 if ( false === $layout_saved ) { delete_option( 'georg_kloster_prihod_options' ); } else { update_option( 'georg_kloster_prihod_options', $layout_saved ); }
 WP_Theme_JSON_Resolver::clean_cached_data();
 file_put_contents( __DIR__ . '/.theme-layout-result.json', wp_json_encode( array( 'checks' => $layout_checks, 'wordpress' => get_bloginfo( 'version' ), 'php' => PHP_VERSION, 'result' => 'THEME_LAYOUT_OK' ) ) );

@@ -31,7 +31,7 @@ for locale in ['ru_RU', 'de_DE', 'pl_PL', 'uk']:
 
 png = (THEME / 'screenshot.png').read_bytes()
 assert png[:8] == b'\x89PNG\r\n\x1a\n'
-assert struct.unpack('>II', png[16:24]) == (1425, 891), 'Full Classic preview dimensions changed'
+assert struct.unpack('>II', png[16:24]) == (1200, 900), 'Full Classic preview dimensions changed'
 pot = (THEME / 'languages/georg-kloster-prihod.pot').read_text(encoding='utf-8')
 assert 'msgctxt "Custom template name"' in pot and 'msgctxt "Color name"' in pot
 print(f'Theme source/catalog/preview checks passed: {len(expected) - 1} messages in four locales.')

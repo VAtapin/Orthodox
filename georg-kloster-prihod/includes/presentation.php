@@ -39,6 +39,17 @@ function prihod_theme_schedule_class(): string {
     return '';
 }
 
+function prihod_theme_service_place_logo(): string {
+    $schedule = prihod_theme_schedule_class();
+    if ( ! $schedule || ! class_exists( '\\GeorgKlosterPrihodCore\\Place_Media' ) || ! is_callable( array( $schedule, 'next' ) ) ) { return ''; }
+    $events = $schedule::next( 0, 1 );
+    $location_id = absint( $events[0]['location_id'] ?? 0 );
+    if ( ! $location_id || ! in_array( get_post_type( $location_id ), array( 'gkpc_location', 'gkpsch_location' ), true ) ) { return ''; }
+    $media = \GeorgKlosterPrihodCore\Place_Media::get( $location_id );
+    $logo_id = absint( $media['logo'] ?? 0 );
+    return $logo_id && wp_attachment_is_image( $logo_id ) ? wp_get_attachment_image( $logo_id, 'thumbnail', false, array( 'class' => 'prihod-service-place-logo', 'alt' => '', 'aria-hidden' => 'true' ) ) : '';
+}
+
 function prihod_theme_compact_services( int $limit = 1 ): string {
     $schedule = prihod_theme_schedule_class();
     if ( ! $schedule ) { return ''; }
@@ -61,7 +72,9 @@ function prihod_theme_compact_services( int $limit = 1 ): string {
         }
         $color = $event['vestment_color'] ?? '';
         $color_data = is_callable( array( $calendar, 'feast_placeholder' ) ) ? $calendar::feast_placeholder( $event, true, true ) : '';
-        $html .= '<article class="prihod-service-compact' . $service_class . '"' . ( $color && 'auto' !== $color ? ' data-vestment-color="' . esc_attr( $color ) . '"' : '' ) . '><div class="prihod-service-date"><strong>' . esc_html( $date->format( 'j' ) ) . '</strong><span>' . esc_html( wp_date( 'M', $date->getTimestamp(), $date->getTimezone() ) ) . '</span></div><div class="prihod-service-details' . ( $place_title ? ' has-place' : '' ) . '"><h3>' . esc_html( $event['title'] ) . '</h3><div class="prihod-service-when"><span>' . esc_html( wp_date( 'editorial' === prihod_theme_scheme() ? 'l' : 'l, j F Y', $date->getTimestamp(), $date->getTimezone() ) ) . '</span><time datetime="' . esc_attr( $date->format( DATE_ATOM ) ) . '">' . esc_html( $date->format( 'H:i' ) ) . '</time></div>' . ( $place_title ? '<p>' . prihod_theme_icon( 'contacts' ) . esc_html( $place_title ) . '</p>' : '' ) . '</div>' . ( $color_data ? '<div class="prihod-service-color-data" hidden>' . $color_data . '</div>' : '' ) . '</article>';
+        $weekday = wp_date( 'l', $date->getTimestamp(), $date->getTimezone() );
+        $full_date = wp_date( 'j F Y', $date->getTimestamp(), $date->getTimezone() );
+        $html .= '<article class="prihod-service-compact' . $service_class . '"' . ( $color && 'auto' !== $color ? ' data-vestment-color="' . esc_attr( $color ) . '"' : '' ) . '><div class="prihod-service-details' . ( $place_title ? ' has-place' : '' ) . '"><h3>' . esc_html( $event['title'] ) . '</h3><div class="prihod-service-when"><span class="prihod-service-date">' . prihod_theme_icon( 'schedule' ) . '<span><strong>' . esc_html( $weekday ) . '</strong><span>' . esc_html( $full_date ) . '</span></span></span><time datetime="' . esc_attr( $date->format( DATE_ATOM ) ) . '">' . prihod_theme_icon( 'time' ) . esc_html( $date->format( 'H:i' ) ) . '</time></div>' . ( $place_title ? '<p>' . prihod_theme_icon( 'contacts' ) . esc_html( $place_title ) . '</p>' : '' ) . '</div>' . ( $color_data ? '<div class="prihod-service-color-data" hidden>' . $color_data . '</div>' : '' ) . '</article>';
     }
     return $html;
 }
@@ -84,14 +97,41 @@ function prihod_theme_contact_panel( string $title = '' ): string {
         if ( 'email' === $key ) { $text = '<a href="' . esc_url( 'mailto:' . $profile[$key] ) . '">' . $text . '</a>'; }
         $html .= '<div>' . prihod_theme_icon( $item[0] ) . '<div><h3>' . esc_html( $item[1] ) . '</h3><p>' . $text . '</p></div></div>';
     }
-    $html .= '</div>';
-    if ( 'hospitality' === prihod_theme_scheme() ) { $html .= '<aside class="prihod-contact-quote">' . prihod_theme_verse() . '</aside>'; }
+    $html .= '</div>' . prihod_theme_contact_map( $profile );
+    $extra = '';
+    if ( 'hospitality' === prihod_theme_scheme() ) { $extra .= '<aside class="prihod-contact-quote">' . prihod_theme_verse() . '</aside>'; }
     elseif ( 'editorial' === prihod_theme_scheme() ) {
-        $html .= '<aside class="prihod-contact-welcome"><div><p>' . esc_html( $profile['description'] ) . '</p>';
+        $extra .= '<aside class="prihod-contact-welcome"><div><p>' . esc_html( $profile['description'] ) . '</p>';
         $contact = prihod_theme_url( 'contacts' );
-        if ( $contact && prihod_theme_home_copy( 'contacts_button' ) ) { $html .= '<a href="' . esc_url( $contact ) . '">' . esc_html( prihod_theme_home_copy( 'contacts_button' ) ) . ' →</a>'; }
-        $html .= '</div>' . prihod_theme_photo( $options['hero_image'], 'medium' ) . '</aside>';
+        if ( $contact && prihod_theme_home_copy( 'contacts_button' ) ) { $extra .= '<a href="' . esc_url( $contact ) . '">' . esc_html( prihod_theme_home_copy( 'contacts_button' ) ) . ' →</a>'; }
+        $extra .= '</div>' . prihod_theme_photo( $options['hero_image'], 'medium' ) . '</aside>';
     }
-    elseif ( 'tradition' === prihod_theme_scheme() ) { $html .= '<aside class="prihod-contact-motto">' . prihod_theme_verse() . prihod_theme_icon( 'cross' ) . '</aside>'; }
-    return $html . '</div></section>';
+    elseif ( 'tradition' === prihod_theme_scheme() ) { $extra .= '<aside class="prihod-contact-motto">' . prihod_theme_verse() . prihod_theme_icon( 'cross' ) . '</aside>'; }
+    return $html . '</div>' . ( $extra ? '<div class="prihod-contact-extra">' . $extra . '</div>' : '' ) . '</div></section>';
+}
+
+function prihod_theme_contact_map( array $profile ): string {
+    $options = georg_kloster_prihod_options();
+    $latitude = $options['map_latitude']; $longitude = $options['map_longitude'];
+    $has_coordinates = '' !== $latitude && '' !== $longitude;
+    $map_url = '';
+    if ( $has_coordinates && 'google' === $options['map_provider'] && $options['google_maps_key'] ) {
+        $map_url = add_query_arg( array( 'key' => $options['google_maps_key'], 'q' => $latitude . ',' . $longitude ), 'https://www.google.com/maps/embed/v1/place' );
+        $directions_url = add_query_arg( array( 'api' => 1, 'destination' => $latitude . ',' . $longitude ), 'https://www.google.com/maps/dir/' );
+    } elseif ( $has_coordinates ) {
+        $pad = 0.004;
+        $bounds = implode( ',', array( (float) $longitude - $pad, (float) $latitude - $pad, (float) $longitude + $pad, (float) $latitude + $pad ) );
+        $map_url = add_query_arg( array( 'bbox' => $bounds, 'layer' => 'mapnik', 'marker' => $latitude . ',' . $longitude ), 'https://www.openstreetmap.org/export/embed.html' );
+        $directions_url = add_query_arg( array( 'mlat' => $latitude, 'mlon' => $longitude, 'zoom' => 16 ), 'https://www.openstreetmap.org/directions' );
+    } else {
+        $directions_url = $profile['address'] ? add_query_arg( 'query', $profile['address'], 'https://www.openstreetmap.org/search' ) : '';
+    }
+    $html = '<div class="prihod-contact-map">';
+    if ( $map_url ) {
+        $html .= '<iframe src="' . esc_url( $map_url ) . '" title="' . esc_attr__( 'Map showing the parish location', 'georg-kloster-prihod' ) . '" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+    } elseif ( $profile['address'] ) {
+        $html .= '<div class="prihod-map-address"><div>' . prihod_theme_icon( 'contacts' ) . '<p>' . esc_html( $profile['address'] ) . '</p></div></div>';
+    }
+    if ( $directions_url ) { $html .= '<a class="prihod-button" href="' . esc_url( $directions_url ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Open map', 'georg-kloster-prihod' ) . ' →</a>'; }
+    return $html . '</div>';
 }

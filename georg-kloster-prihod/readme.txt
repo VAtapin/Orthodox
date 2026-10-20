@@ -22,7 +22,11 @@ Author: Atapin Vladimir. Website: https://georg-kloster.ru/. Email: atapin@gmail
 
 == Installation ==
 
-Upload the theme ZIP under Appearance > Themes, activate it, then choose a visual style under Appearance > Parish Appearance. Add your own pages, navigation, logo, and photographs in WordPress. The theme does not load an external map or contact service. Add those features through page content or optional plugins.
+Upload the theme ZIP under Appearance > Themes, activate it, then choose a visual style under Appearance > Parish Appearance. Add your own pages, navigation, logo, photographs and contact details in WordPress. The homepage contact area can show an OpenStreetMap embed when coordinates are configured; Google Maps is also available with an API key. Map embeds are loaded from the selected provider only after coordinates are entered.
+
+== External services ==
+
+The homepage map is optional and does not load until an administrator enters map coordinates. OpenStreetMap is the default provider (https://www.openstreetmap.org/); administrators can instead choose Google Maps Platform Embed API (https://developers.google.com/maps/documentation/embed/get-started) and enter an API key. The selected provider receives the visitor's IP address, browser request data and the configured map coordinates when the map loads. Restrict Google API keys to the website in Google Cloud. OpenStreetMap privacy policy: https://osmfoundation.org/wiki/Privacy_Policy. Google privacy policy: https://policies.google.com/privacy.
 
 == Frequently Asked Questions ==
 
@@ -44,8 +48,9 @@ Create and assign a menu under Appearance > Menus. Open a menu item and choose i
 
 == Changelog ==
 
-= 0.4.42 =
+= 0.4.43 =
 * Add the logo removal control to native Customizer branding.
+* Add a shared homepage contact map with OpenStreetMap and optional Google Maps, and improve the next-service panel.
 
 = 0.4.41 =
 * Ensure live-preview controls use the current normalized theme defaults.

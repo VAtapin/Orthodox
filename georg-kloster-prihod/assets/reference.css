@@ -280,3 +280,17 @@
 .home .prihod-feature-grid .prihod-feature-photo,
 .home .prihod-news-section .prihod-news-card img{height:200px;width:100%;max-width:100%}
 @media(max-width:600px){.prihod-home-topic-links{grid-template-columns:1fr}.prihod-home-topic-links a{font-size:18px;padding:14px 16px}}
+.prihod-hero-service h2 .prihod-service-place-logo{width:38px;height:38px;object-fit:contain;border-radius:50%;background:#fff;padding:2px;box-sizing:border-box}
+.prihod-service-when>.prihod-service-date{display:flex;align-items:center;gap:9px;text-align:left;min-width:0}
+.prihod-service-date>.prihod-icon,.prihod-service-when time>.prihod-icon{width:21px;height:21px;flex:none;color:var(--wp--preset--color--forest)}
+.prihod-service-date>span{display:grid;gap:3px}
+.prihod-service-date strong{font:inherit}
+.prihod-service-date>span>span{font-size:.95em}
+.prihod-service-when time{display:flex;align-items:center;gap:8px}
+.prihod-contact-layout{grid-template-columns:minmax(0,1.1fr) minmax(260px,1fr)}
+.prihod-contact-map{min-height:180px}
+.prihod-contact-map iframe{min-height:180px}
+.prihod-contact-extra{grid-column:1/-1}
+@media(max-width:800px){.prihod-contact-layout{grid-template-columns:1fr}.prihod-contact-list{grid-template-columns:1fr}.prihod-contact-map iframe{height:220px}}
+.prihod-scheme-hospitality .prihod-contact-layout,.prihod-scheme-editorial .prihod-contact-layout,.prihod-scheme-tradition .prihod-contact-layout{grid-template-columns:minmax(0,1.1fr) minmax(260px,1fr)}
+@media(max-width:800px){.prihod-scheme-hospitality .prihod-contact-layout,.prihod-scheme-editorial .prihod-contact-layout,.prihod-scheme-tradition .prihod-contact-layout{grid-template-columns:1fr}}
