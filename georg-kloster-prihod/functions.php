@@ -25,6 +25,13 @@ add_action( 'after_setup_theme', function () {
     load_theme_textdomain( 'georg-kloster-prihod', get_template_directory() . '/languages' );
     add_theme_support( 'title-tag' );
     add_theme_support( 'post-thumbnails' );
+    add_theme_support( 'custom-logo', array(
+        'height'               => 72,
+        'width'                => 240,
+        'flex-height'          => true,
+        'flex-width'           => true,
+        'unlink-homepage-logo' => false,
+    ) );
     add_theme_support( 'automatic-feed-links' );
     add_theme_support( 'editor-styles' );
     add_editor_style( array( 'style.css', 'assets/theme.css' ) );
@@ -33,6 +40,9 @@ add_action( 'after_setup_theme', function () {
     add_theme_support( 'responsive-embeds' );
     add_theme_support( 'wp-block-styles' );
     register_nav_menus( array( 'primary' => __( 'Primary menu', 'georg-kloster-prihod' ) ) );
+} );
+
+add_action( 'widgets_init', function () {
     register_sidebar( array(
         'name'          => __( 'Right sidebar', 'georg-kloster-prihod' ),
         'id'            => 'prihod-sidebar',
