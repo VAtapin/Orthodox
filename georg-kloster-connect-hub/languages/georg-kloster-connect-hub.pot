@@ -1061,14 +1061,6 @@ msgstr ""
 msgid "The reply was not saved."
 msgstr ""
 
-#: includes/class-telegram-requests.php
-msgid "The reply was saved, but the email could not be sent. Check the message on the site."
-msgstr ""
-
-#: includes/class-telegram-requests.php
-msgid "The reply was saved. The email was passed to the mail system."
-msgstr ""
-
 #: includes/class-telegram-request-settings.php
 msgid "The sender name, email, subject and complete message will be sent to Telegram. Use Reply on the bot's message: the site saves the reply and sends a formatted email to the visitor. Internal notes are not transmitted."
 msgstr ""
@@ -1123,10 +1115,6 @@ msgstr ""
 
 #: includes/class-publications.php
 msgid "Unknown"
-msgstr ""
-
-#: includes/class-telegram-requests.php
-msgid "Use Reply on this message in Telegram."
 msgstr ""
 
 #: includes/class-social-providers.php

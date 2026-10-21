@@ -881,14 +881,6 @@ msgstr "Ответ недоступен для повторной отправк
 msgid "Email reply"
 msgstr "Ответ по электронной почте"
 
-#: includes/class-telegram-requests.php
-msgid "The reply was saved, but the email could not be sent. Check the message on the site."
-msgstr "Ответ сохранён, но письмо не удалось отправить. Проверьте обращение на сайте."
-
-#: includes/class-telegram-requests.php
-msgid "The reply was saved. The email was passed to the mail system."
-msgstr "Ответ сохранён. Письмо передано почтовой системе."
-
 #: includes/class-request-admin.php
 msgid "Assigned staff member"
 msgstr "Ответственный"
@@ -896,10 +888,6 @@ msgstr "Ответственный"
 #: includes/class-request-admin.php
 msgid "The assigned staff member does not have the required permissions."
 msgstr "Ответственный не имеет необходимых прав."
-
-#: includes/class-telegram-requests.php
-msgid "Use Reply on this message in Telegram."
-msgstr "Ответьте на это сообщение кнопкой «Ответить» в Telegram."
 
 #: includes/class-requests.php
 msgid "Answered"

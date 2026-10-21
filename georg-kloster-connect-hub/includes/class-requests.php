@@ -63,7 +63,12 @@ final class Requests {
         if ( $responsible && user_can( $responsible, 'view_gkps_requests' ) && user_can( $responsible, 'reply_gkps_requests' ) ) { update_post_meta( $id, '_gkps_assigned', $responsible ); }
         update_post_meta( $id, '_gkps_request_locale', determine_locale() );
         update_post_meta( $id, '_gkps_consent_at', gmdate( DATE_ATOM ) );
-        do_action( 'gkps_request_created', $id );
+        try {
+            do_action( 'gkps_request_created', $id );
+        } catch ( \Throwable $error ) {
+            // The request is already persisted; a failing notification must not tell the sender to submit it again.
+            error_log( sprintf( 'Georg-Kloster Connect Hub: a post-create notification failed for request #%d (%s).', $id, get_class( $error ) ) );
+        }
         return $id;
     }
     public static function assert_request( int $id ): void {

@@ -881,14 +881,6 @@ msgstr "Antwort kann nicht erneut gesendet werden."
 msgid "Email reply"
 msgstr "Antwort per E-Mail"
 
-#: includes/class-telegram-requests.php
-msgid "The reply was saved, but the email could not be sent. Check the message on the site."
-msgstr "Antwort gespeichert, aber die E-Mail konnte nicht gesendet werden. Prüfen Sie die Anfrage auf der Website."
-
-#: includes/class-telegram-requests.php
-msgid "The reply was saved. The email was passed to the mail system."
-msgstr "Antwort gespeichert. Die E-Mail wurde an das Mailsystem übergeben."
-
 #: includes/class-request-admin.php
 msgid "Assigned staff member"
 msgstr "Zuständige Person"
@@ -896,10 +888,6 @@ msgstr "Zuständige Person"
 #: includes/class-request-admin.php
 msgid "The assigned staff member does not have the required permissions."
 msgstr "Zuständige Person hat nicht die erforderlichen Rechte."
-
-#: includes/class-telegram-requests.php
-msgid "Use Reply on this message in Telegram."
-msgstr "Antworten Sie auf diese Nachricht mit „Antworten“ in Telegram."
 
 #: includes/class-requests.php
 msgid "Answered"

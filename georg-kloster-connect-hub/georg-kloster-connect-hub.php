@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Georg-Kloster Connect Hub
  * Description: Independent forms, messages and publications across communication channels.
- * Version: 0.3.4
+ * Version: 0.3.5
  * Author: Atapin Vladimir
  * Author URI: https://georg-kloster.ru/
  * Requires at least: 6.5
@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
 // Telegram callbacks must survive a change of the public package name.
 $gkch_load = static function (): bool {
     if ( class_exists( 'GeorgKlosterPrihodSocial\\Plugin', false ) ) { return false; }
-    define( 'GKPS_VERSION', '0.3.4' );
+    define( 'GKPS_VERSION', '0.3.5' );
     define( 'GKPS_FILE', __FILE__ );
     foreach ( array(
     'class-plugin', 'class-profile', 'class-modules', 'class-capabilities', 'class-admin',

@@ -45,7 +45,7 @@ final class Telegram_Requests {
         foreach ( array( __( 'Sender name', 'georg-kloster-connect-hub' ) => $sender['name'] ?? '', __( 'Email', 'georg-kloster-connect-hub' ) => $sender['email'] ?? '', __( 'Message subject', 'georg-kloster-connect-hub' ) => $post->post_title, __( 'Message date', 'georg-kloster-connect-hub' ) => get_post_time( 'd.m.Y H:i', false, $post ), __( 'Message status', 'georg-kloster-connect-hub' ) => Requests::statuses()[get_post_meta( $id, '_gkps_request_status', true )] ?? '' ) as $label => $value ) { $header .= '<b>' . esc_html( $label ) . ':</b> ' . esc_html( $value ) . "\n"; }
         $parts = self::chunks( $post->post_content ); $url = admin_url( 'admin.php?page=gkps-requests&request_id=' . $id );
         foreach ( $parts as $index => $part ) {
-            $text = $header . "\n<b>" . esc_html__( 'Message', 'georg-kloster-connect-hub' ) . '</b> · ' . ( $index + 1 ) . '/' . count( $parts ) . "\n" . esc_html( $part ) . "\n\n" . esc_html__( 'Use Reply on this message in Telegram.', 'georg-kloster-connect-hub' );
+            $text = $header . "\n<b>" . esc_html__( 'Message', 'georg-kloster-connect-hub' ) . '</b> · ' . ( $index + 1 ) . '/' . count( $parts ) . "\n" . esc_html( $part );
             self::connector()->queue( $text, $url, 'request', $id, array( 'request_id' => $id, 'configuration' => self::options()['configuration'], 'telegram_html' => true ) );
         }
     }
@@ -86,12 +86,9 @@ final class Telegram_Requests {
             try { $media = Request_Media::telegram( $message ); }
             catch ( \InvalidArgumentException $error ) {
                 Requests::message( $posts[0]->ID, Request_Media::unsupported(), true, $receipt );
-                self::connector()->queue( Request_Media::unsupported(), admin_url( 'admin.php?page=gkps-requests&request_id=' . $posts[0]->ID ), 'request', $posts[0]->ID );
                 return $ok;
             }
             $id = Requests::message( $posts[0]->ID, $body, false, $receipt, $media );
-            $text = 'sent' === get_post_meta( $id, '_gkps_delivery', true ) ? __( 'The reply was saved. The email was passed to the mail system.', 'georg-kloster-connect-hub' ) : __( 'The reply was saved, but the email could not be sent. Check the message on the site.', 'georg-kloster-connect-hub' );
-            self::connector()->queue( $text, admin_url( 'admin.php?page=gkps-requests&request_id=' . $posts[0]->ID ), 'request', $posts[0]->ID );
             return $ok;
         } catch ( \Throwable $error ) {
             return new \WP_Error( 'telegram_reply_failed', __( 'The reply was not saved.', 'georg-kloster-connect-hub' ), array( 'status' => 503 ) );

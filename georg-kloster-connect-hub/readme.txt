@@ -4,7 +4,7 @@ Tags: contact form, messages, social, publishing, telegram
 Requires at least: 6.5
 Requires PHP: 8.0
 Tested up to: 7.1
-Stable tag: 0.3.4
+Stable tag: 0.3.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -49,7 +49,7 @@ Author: Atapin Vladimir. Website: https://georg-kloster.ru/. Email: atapin@gmail
 
 == Installation ==
 
-Upload georg-kloster-connect-hub-0.3.3.zip. Replace an existing Connect Hub version,
+Upload georg-kloster-connect-hub-0.3.5.zip. Replace an existing Connect Hub version,
 or install as a new plugin and activate it.
 Activation deactivates the previous georg-kloster-prihod-social development plugin
 without deleting its settings. Keep only Connect Hub active. Network-active old
@@ -119,6 +119,10 @@ Dashboard help appears under Connect Hub > Forms and Settings > General, in the 
 Enable the selected form and incoming messages in Settings. Disabled or missing forms render no public form. Submitted messages retain their selected form's topics and recipient.
 
 == Changelog ==
+
+= 0.3.5 =
+Do not report a saved request as failed when a post-create notification hook throws.
+Restore submitted form values after a failed submission in the same browser tab.
 
 = 0.3.4 =
 Allow the explicit Telegram reply-connection action to move the bot webhook to this site.

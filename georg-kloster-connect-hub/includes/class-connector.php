@@ -160,7 +160,8 @@ final class Connector {
     }
     public function request( array $job ): array {
         $settings = $this->settings(); $html = 'telegram' === $this->id && ! empty( $job['reply_context']['telegram_html'] );
-        $text = $job['text'] . ( $html ? "\n\n" : "\n" ) . ( $html ? esc_html( $job['url'] ) : $job['url'] );
+        $text = $job['text'];
+        if ( ! ( 'telegram' === $this->id && 'request' === ( $job['kind'] ?? '' ) ) ) { $text .= ( $html ? "\n\n" : "\n" ) . ( $html ? esc_html( $job['url'] ) : $job['url'] ); }
         $headers = array( 'Content-Type' => 'application/json' );
         if ( 'telegram' === $this->id ) { $url = 'https://api.telegram.org/bot' . $settings['token'] . '/sendMessage'; $body = array( 'chat_id' => $settings['target'], 'text' => $text, 'link_preview_options' => array( 'is_disabled' => true ) ); }
         else {
