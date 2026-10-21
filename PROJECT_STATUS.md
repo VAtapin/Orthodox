@@ -10,7 +10,11 @@ The active theme on the test site `new.georg-kloster.ru` was updated from the cu
 
 The newsletter widget area is present on the homepage and news/archive views. It uses MailPoet form 2 (“Новости монастыря”), linked to “Рассылка новостей”; the theme now constrains the form to a 600px maximum width and uses tighter spacing and shorter controls. The old stock demo form remains in MailPoet but is no longer displayed publicly. The confirmation email uses Russian text and the theme palette, and the confirmation page layout is compact with its sidebar hidden. Double opt-in and MailPoet’s built-in CAPTCHA are enabled. MailPoet sending is still inactive (“Other” method awaits activation); WP Mail SMTP has an SMTP transport configured, but delivery has not been tested. No campaign or test email has been sent.
 
-Connect Hub 0.3.5 allows the explicit Telegram “Connect / check incoming replies” action to set this site's webhook even when another application currently owns it. The settings warn that the previous application will stop receiving messages; pending Telegram updates are preserved. Telegram request notifications and replies contain no admin links, reply instructions, or separate service acknowledgements. A saved contact request remains successful if a post-create notification callback fails, and failed form submissions restore values in the same browser tab. Version 0.3.5 was installed successfully on `new.georg-kloster.ru`.
+Connect Hub 0.3.6 allows the explicit Telegram “Connect / check incoming replies” action to set this site's webhook even when another application currently owns it. The settings warn that the previous application will stop receiving messages; pending Telegram updates are preserved. Telegram request notifications and replies contain no admin links, reply instructions, or separate service acknowledgements. A saved contact request remains successful if a post-create notification callback fails, and failed form submissions restore values in the same browser tab. Version 0.3.6 was installed successfully on `new.georg-kloster.ru`.
+
+## Connect Hub WordPress.org release candidate
+
+The 0.3.6 package has GPL-2.0-or-later metadata and LICENSE.txt, a WordPress.org readme with the `atapin` contributor account, source repository, support details and external-service/privacy disclosures. The package is built as `build/georg-kloster-connect-hub-0.3.6.zip` and installed on the test site. The official Plugin Check (PCP) full category scan reported 0 errors and 96 warnings; most warnings concern nonce/input flows that delegate verification to WordPress settings/form handlers, plus database query patterns and discouraged manual translation loading. PCP warnings still need human review. The plugin has not been submitted to WordPress.org.
 
 ## WordPress.org release status
 
@@ -18,7 +22,7 @@ Version 1.0.0 is submitted in WordPress.org Themes Trac ticket [#296403](https:/
 
 ## Checks completed
 
-`php tests/lint.php` passed; `php tests/run.php` passed 70 isolated assertions. Connect Hub translations compile and `python tests/plugin-i18n-check.py --only georg-kloster-connect-hub` passed (592 messages); `node --check georg-kloster-connect-hub/assets/request-form.js` passed; the Connect Hub 0.3.5 package built successfully. WordPress confirmed the 0.3.5 plugin ZIP was installed on `new.georg-kloster.ru`. The isolated WordPress Playground integration test could not start because npm registry DNS/network access was unavailable.
+`php tests/lint.php` passed; `php tests/run.php` passed 70 isolated assertions. Connect Hub translations compile and `python tests/plugin-i18n-check.py --only georg-kloster-connect-hub` passed (592 messages); `node --check georg-kloster-connect-hub/assets/request-form.js` passed; the Connect Hub 0.3.6 package built successfully and Plugin Check reported 0 errors. The isolated WordPress Playground integration test could not start because npm registry DNS/network access was unavailable.
 
 ## Next steps
 

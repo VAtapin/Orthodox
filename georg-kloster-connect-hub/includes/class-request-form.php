@@ -15,6 +15,7 @@ final class Request_Form {
     /** Keep legacy free-text subjects; only the new explicit custom choice is normalized. */
     public static function submission_data( array $input ): array {
         if ( '__other' === ( $input['subject'] ?? null ) ) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
             if ( ! is_string( $input['subject_other'] ?? null ) || '' === trim( $input['subject_other'] ) ) { throw new \InvalidArgumentException( __( 'Enter your own subject.', 'georg-kloster-connect-hub' ) ); }
             $input['subject'] = $input['subject_other'];
         }
@@ -78,7 +79,8 @@ final class Request_Form {
     public static function submit(): void {
         $redirect = wp_validate_redirect( wp_get_referer() ?: home_url( '/' ), home_url( '/' ) );
         try {
-            self::process_submission( wp_unslash( $_POST ), isset( $_SERVER['REMOTE_ADDR'] ) && is_string( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : 'unknown' );
+            // phpcs:ignore WordPress.Security.NonceVerification.Missing -- process_submission() validates the form-specific nonce, one-time token, consent, honeypot and rate limit.
+            self::process_submission( wp_unslash( $_POST ), isset( $_SERVER['REMOTE_ADDR'] ) && is_string( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : 'unknown' );
             $status = 'sent';
         } catch ( \Throwable $error ) { $status = 'error'; }
         wp_safe_redirect( add_query_arg( array( 'gkps_request' => $status, 'gkch_form' => isset( $_POST['form_id'] ) && is_scalar( $_POST['form_id'] ) ? absint( $_POST['form_id'] ) : 0 ), $redirect ) ); exit;

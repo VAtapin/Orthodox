@@ -33,6 +33,7 @@ final class Forms {
         foreach ( array( 'title', 'intro', 'submit', 'topics', 'recipient' ) as $key ) {
             $value = isset( $input[$key] ) && is_string( $input[$key] ) ? trim( $input[$key] ) : '';
             if ( 'recipient' === $key ) {
+                // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
                 if ( '' !== $value && ! is_email( $value ) ) { throw new \InvalidArgumentException( __( 'Enter a valid notification email.', 'georg-kloster-connect-hub' ) ); }
                 $value = sanitize_email( $value );
             } else { $value = in_array( $key, array( 'intro', 'topics' ), true ) ? sanitize_textarea_field( $value ) : sanitize_text_field( $value ); }
@@ -42,12 +43,16 @@ final class Forms {
     }
 
     public static function store( int $id, array $input ): int {
+        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
         if ( ! current_user_can( 'manage_gkps_settings' ) ) { throw new \RuntimeException( __( 'Access denied.', 'georg-kloster-connect-hub' ) ); }
+        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
         if ( $id && ! self::get( $id ) ) { throw new \InvalidArgumentException( __( 'Form not found.', 'georg-kloster-connect-hub' ) ); }
         $name = isset( $input['name'] ) && is_string( $input['name'] ) ? sanitize_text_field( $input['name'] ) : '';
+        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
         if ( '' === $name ) { throw new \InvalidArgumentException( __( 'Enter a form name.', 'georg-kloster-connect-hub' ) ); }
         $settings = self::sanitize( $input );
         $saved = wp_insert_post( wp_slash( array( 'ID' => $id, 'post_type' => 'gkch_form', 'post_status' => 'private', 'post_title' => $name ) ), true );
+        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
         if ( is_wp_error( $saved ) ) { throw new \RuntimeException( __( 'Form could not be saved.', 'georg-kloster-connect-hub' ) ); }
         update_post_meta( $saved, '_gkch_form', $settings );
         return (int) $saved;

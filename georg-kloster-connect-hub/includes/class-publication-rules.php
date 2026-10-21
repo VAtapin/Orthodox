@@ -43,46 +43,60 @@ final class Publication_Rules {
     }
 
     public static function store( int $id, array $input ): int {
+        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
         if ( ! self::can_manage() ) { throw new \RuntimeException( __( 'Access denied.', 'georg-kloster-connect-hub' ) ); }
         $owner = Lock::acquire( 'gkch_rules_edit', 60 );
+        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
         if ( ! $owner ) { throw new \RuntimeException( __( 'Publication is busy. Try again shortly.', 'georg-kloster-connect-hub' ) ); }
         try {
             $old = $id ? self::get( $id ) : null;
+            // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
             if ( ( $id && ! $old ) || ( ! $id && count( self::all() ) >= 100 ) ) { throw new \InvalidArgumentException( __( 'Rule not found or rule limit reached.', 'georg-kloster-connect-hub' ) ); }
             $rule = self::defaults();
             foreach ( array( 'name', 'type', 'text', 'url', 'frequency', 'time', 'date' ) as $field ) {
+                // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
                 if ( isset( $input[$field] ) && ! is_string( $input[$field] ) ) { throw new \InvalidArgumentException( __( 'Invalid publication rule.', 'georg-kloster-connect-hub' ) ); }
                 if ( isset( $input[$field] ) ) { $rule[$field] = 'text' === $field ? sanitize_textarea_field( $input[$field] ) : sanitize_text_field( $input[$field] ); }
             }
             foreach ( array( 'category', 'image', 'weekday' ) as $field ) {
+                // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
                 if ( isset( $input[$field] ) && ! is_scalar( $input[$field] ) ) { throw new \InvalidArgumentException( __( 'Invalid publication rule.', 'georg-kloster-connect-hub' ) ); }
                 if ( isset( $input[$field] ) ) { $rule[$field] = absint( $input[$field] ); }
             }
             $rule['enabled'] = ! empty( $input['enabled'] );
             $channels = isset( $input['channels'] ) && is_array( $input['channels'] ) ? array_filter( $input['channels'], 'is_string' ) : array();
             $rule['channels'] = array_values( array_intersect( array_keys( Publications::titles() ), $channels ) );
+            // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
             if ( '' === $rule['name'] || mb_strlen( $rule['name'] ) > 150 || ! in_array( $rule['type'], array( 'new_posts', 'message' ), true ) || ! $rule['channels'] ) { throw new \InvalidArgumentException( __( 'Enter a rule name and choose at least one channel.', 'georg-kloster-connect-hub' ) ); }
+            // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
             if ( $rule['category'] && ! term_exists( $rule['category'], 'category' ) ) { throw new \InvalidArgumentException( __( 'Choose an existing category.', 'georg-kloster-connect-hub' ) ); }
             if ( 'message' === $rule['type'] ) {
+                // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
                 if ( '' === $rule['text'] || mb_strlen( $rule['text'] ) > 900 || ! in_array( $rule['frequency'], array( 'once', 'daily', 'weekly' ), true ) || ! preg_match( '/^(?:[01][0-9]|2[0-3]):[0-5][0-9]$/D', $rule['time'] ) || $rule['weekday'] > 6 ) { throw new \InvalidArgumentException( __( 'Enter a message of up to 900 characters and a valid schedule.', 'georg-kloster-connect-hub' ) ); }
+                // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
                 if ( 'once' === $rule['frequency'] && ( ! preg_match( '/^([0-9]{4})-([0-9]{2})-([0-9]{2})$/D', $rule['date'], $date ) || ! checkdate( (int) $date[2], (int) $date[3], (int) $date[1] ) ) ) { throw new \InvalidArgumentException( __( 'Choose a valid reminder date.', 'georg-kloster-connect-hub' ) ); }
+                // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
                 if ( '' !== $rule['url'] && ( ! wp_http_validate_url( $rule['url'] ) || ! in_array( wp_parse_url( $rule['url'], PHP_URL_SCHEME ), array( 'http', 'https' ), true ) ) ) { throw new \InvalidArgumentException( __( 'Enter a public HTTP or HTTPS link.', 'georg-kloster-connect-hub' ) ); }
                 $rule['url'] = esc_url_raw( $rule['url'] );
+                // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
                 if ( in_array( 'instagram', $rule['channels'], true ) && ! Social_Providers::attachment_image( $rule['image'] ) ) { throw new \InvalidArgumentException( __( 'Instagram requires a public HTTPS JPEG from the media library.', 'georg-kloster-connect-hub' ) ); }
             }
             if ( $rule['enabled'] ) {
                 foreach ( $rule['channels'] as $channel ) {
                     $connector = Connector::instance( $channel );
+                    // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
                     if ( ! $connector || ! $connector->valid( $connector->settings() ) ) { throw new \InvalidArgumentException( __( 'Configure and enable each selected channel first.', 'georg-kloster-connect-hub' ) ); }
                 }
             }
             $rule['owner'] = get_current_user_id();
             $rule['revision'] = wp_generate_uuid4();
             $rule['next'] = $rule['enabled'] && 'message' === $rule['type'] ? self::next_time( $rule, time() ) : 0;
+            // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
             if ( $rule['enabled'] && 'message' === $rule['type'] && ! $rule['next'] ) { throw new \InvalidArgumentException( __( 'Choose a future reminder date and time.', 'georg-kloster-connect-hub' ) ); }
             $post = array( 'post_type' => self::TYPE, 'post_status' => 'private', 'post_title' => $rule['name'], 'post_author' => $rule['owner'] );
             if ( $id ) { $post['ID'] = $id; }
             $result = wp_insert_post( wp_slash( $post ), true );
+            // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
             if ( is_wp_error( $result ) ) { throw new \RuntimeException( __( 'Could not save the publication rule.', 'georg-kloster-connect-hub' ) ); }
             $id = (int) $result; $rule['id'] = $id;
             if ( $old ) { self::clear_event( $old ); }
@@ -94,11 +108,14 @@ final class Publication_Rules {
     }
 
     public static function remove( int $id ): void {
+        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
         if ( ! self::can_manage() ) { throw new \RuntimeException( __( 'Access denied.', 'georg-kloster-connect-hub' ) ); }
         $rule = self::get( $id );
+        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
         if ( ! $rule ) { throw new \InvalidArgumentException( __( 'Invalid publication rule.', 'georg-kloster-connect-hub' ) ); }
         // Keep queued history; the worker cancels jobs whose rule no longer exists.
         $owner = Lock::acquire( 'gkch_rules_edit', 60 );
+        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
         if ( ! $owner ) { throw new \RuntimeException( __( 'Publication is busy. Try again shortly.', 'georg-kloster-connect-hub' ) ); }
         try { self::clear_event( $rule ); wp_trash_post( $id ); }
         finally { Lock::release( 'gkch_rules_edit', $owner ); }

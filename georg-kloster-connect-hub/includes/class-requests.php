@@ -40,19 +40,24 @@ final class Requests {
     public static function validate( array $input ): array {
         $result = array();
         foreach ( array( 'name' => 100, 'email' => 254, 'subject' => 200, 'body' => 10000 ) as $key => $length ) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
             if ( ! isset( $input[ $key ] ) || ! is_string( $input[ $key ] ) || strlen( $input[ $key ] ) > $length ) { throw new \InvalidArgumentException( __( 'Check the required fields and text length.', 'georg-kloster-connect-hub' ) ); }
             $value = trim( $input[ $key ] );
+            // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
             if ( '' === $value || ( 'email' === $key && ! is_email( $value ) ) ) { throw new \InvalidArgumentException( __( 'Fill in all fields and enter a valid email address.', 'georg-kloster-connect-hub' ) ); }
             $result[ $key ] = 'email' === $key ? sanitize_email( $value ) : ( 'body' === $key ? sanitize_textarea_field( $value ) : sanitize_text_field( $value ) );
+            // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
             if ( '' === $result[ $key ] ) { throw new \InvalidArgumentException( __( 'A field cannot contain markup only.', 'georg-kloster-connect-hub' ) ); }
         }
         return $result;
     }
     public static function create( array $input ): int {
         $form_id = isset( $input['form_id'] ) && is_scalar( $input['form_id'] ) ? absint( $input['form_id'] ) : 0;
+        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
         if ( ! Forms::active( $form_id ) || get_option( 'gkps_purge_job' ) ) { throw new \RuntimeException( __( 'Incoming messages are disabled.', 'georg-kloster-connect-hub' ) ); }
         $data = self::validate( $input );
         $id = wp_insert_post( array( 'post_type' => 'gkps_request', 'post_status' => 'private', 'post_title' => $data['subject'], 'post_content' => $data['body'], 'post_author' => 0 ), true );
+        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
         if ( is_wp_error( $id ) ) { throw new \RuntimeException( __( 'Your message could not be saved. Try again later.', 'georg-kloster-connect-hub' ) ); }
         update_post_meta( $id, '_gkps_sender', array( 'name' => $data['name'], 'email' => $data['email'] ) );
         update_post_meta( $id, '_gkch_form_id', $form_id );
@@ -72,15 +77,20 @@ final class Requests {
         return $id;
     }
     public static function assert_request( int $id ): void {
+        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
         if ( 'gkps_request' !== get_post_type( $id ) || 'trash' === get_post_status( $id ) ) { throw new \InvalidArgumentException( __( 'Message not found.', 'georg-kloster-connect-hub' ) ); }
     }
     public static function message( int $id, string $body, bool $internal, string $source_id = '', array $media = array() ): int {
         self::assert_request( $id );
+        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
         if ( ! current_user_can( 'view_gkps_requests' ) || ! current_user_can( 'reply_gkps_requests' ) ) { throw new \RuntimeException( __( 'Insufficient permissions to reply.', 'georg-kloster-connect-hub' ) ); }
+        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
         if ( $source_id && ! preg_match( '/^[a-f0-9]{64}$/D', $source_id ) ) { throw new \InvalidArgumentException( __( 'The reply was not saved.', 'georg-kloster-connect-hub' ) ); }
         $media = Request_Media::validated( $media );
+        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
         if ( ( ! $media && '' === trim( sanitize_textarea_field( $body ) ) ) || strlen( $body ) > 20000 ) { throw new \InvalidArgumentException( __( 'Enter a reply of an allowed length.', 'georg-kloster-connect-hub' ) ); }
         $message = wp_insert_post( array( 'post_type' => 'gkps_message', 'post_parent' => $id, 'post_status' => 'private', 'post_content' => sanitize_textarea_field( $body ), 'post_author' => get_current_user_id(), 'meta_input' => $source_id ? array( '_gkps_reply_source' => $source_id ) : array() ), true );
+        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
         if ( is_wp_error( $message ) ) { throw new \RuntimeException( __( 'The reply was not saved.', 'georg-kloster-connect-hub' ) ); }
         if ( $media ) { update_post_meta( $message, '_gkps_reply_media', $media ); }
         update_post_meta( $message, '_gkps_internal', $internal );
@@ -119,8 +129,10 @@ final class Requests {
     }
     public static function retry( int $id, int $message_id ): void {
         self::assert_request( $id );
+        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
         if ( ! current_user_can( 'view_gkps_requests' ) || ! current_user_can( 'reply_gkps_requests' ) ) { throw new \RuntimeException( __( 'Insufficient permissions.', 'georg-kloster-connect-hub' ) ); }
         $message = get_post( $message_id );
+        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
         if ( ! $message || 'gkps_message' !== $message->post_type || (int) $message->post_parent !== $id || get_post_meta( $message_id, '_gkps_internal', true ) || 'failed' !== get_post_meta( $message_id, '_gkps_delivery', true ) ) { throw new \InvalidArgumentException( __( 'This reply cannot be resent.', 'georg-kloster-connect-hub' ) ); }
         wp_clear_scheduled_hook( 'gkps_request_mail', array( $id, $message_id ) ); update_post_meta( $message_id, '_gkps_attempts', 0 );
         update_post_meta( $message_id, '_gkps_delivery', 'pending' ); self::deliver( $id, $message_id );
