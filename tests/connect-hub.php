@@ -18,7 +18,7 @@ $throws = static function ( callable $operation, string $message ) use ( $check 
 };
 $admin_id = get_users( array( 'role' => 'administrator', 'number' => 1 ) )[0]->ID;
 wp_set_current_user( $admin_id ); set_current_screen( 'dashboard' );
-$check( '0.3.3' === GKPS_VERSION, 'Wrong Connect Hub version.' );
+$check( '0.3.4' === GKPS_VERSION, 'Wrong Connect Hub version.' );
 $check( ! is_plugin_active( 'georg-kloster-prihod-social/georg-kloster-prihod-social.php' ), 'Old development package remains active.' );
 $check( 'Existing development form' === Admin::get()['title'], 'Development form settings were lost.' );
 $check( '12345' === Connector::instance( 'telegram' )->settings()['target'], 'Channel settings were lost.' );
@@ -26,8 +26,8 @@ $old_messages = get_posts( array( 'post_type' => 'gkps_request', 'post_status' =
 $check( 1 === count( $old_messages ) && 'Synthetic development content' === $old_messages[0]->post_content, 'Synthetic upgrade fixture was lost.' );
 $mail = array();
 add_filter( 'pre_wp_mail', static function ( $result, $args ) use ( &$mail ) { $mail[] = $args; return true; }, 10, 2 );
-$http = array(); $mode = 'success'; $ig_status = 'IN_PROGRESS';
-add_filter( 'pre_http_request', static function ( $pre, $args, $url ) use ( &$http, &$mode, &$ig_status ) {
+$http = array(); $mode = 'success'; $ig_status = 'IN_PROGRESS'; $telegram_webhook_url = 'https://old-test.example/telegram-webhook'; $telegram_set_webhook = array();
+add_filter( 'pre_http_request', static function ( $pre, $args, $url ) use ( &$http, &$mode, &$ig_status, &$telegram_webhook_url, &$telegram_set_webhook ) {
     $http[] = array( 'url' => $url, 'args' => $args );
     $body = array(); $code = 200;
     if ( str_contains( $url, 'api.vk.com/method/wall.post' ) ) {
@@ -43,7 +43,14 @@ add_filter( 'pre_http_request', static function ( $pre, $args, $url ) use ( &$ht
     elseif ( str_contains( $url, '/77001?' ) ) { $body = array( 'status_code' => $ig_status ); }
     elseif ( str_contains( $url, '/feed' ) ) { $body = array( 'id' => 'page_71' ); }
     elseif ( str_contains( $url, '/messages' ) ) { $body = array( 'messages' => array( array( 'id' => 'wa_71' ) ) ); }
-    elseif ( str_contains( $url, 'api.telegram.org' ) ) { $body = array( 'ok' => true, 'result' => array( 'message_id' => 71 ) ); }
+    elseif ( str_contains( $url, 'api.telegram.org' ) ) {
+        $method = basename( (string) wp_parse_url( $url, PHP_URL_PATH ) ); $payload = json_decode( $args['body'] ?? '{}', true );
+        if ( 'getWebhookInfo' === $method ) { $body = array( 'ok' => true, 'result' => array( 'url' => $telegram_webhook_url ) ); }
+        elseif ( 'getMe' === $method ) { $body = array( 'ok' => true, 'result' => array( 'id' => 123456, 'is_bot' => true ) ); }
+        elseif ( 'getChat' === $method ) { $body = array( 'ok' => true, 'result' => array( 'id' => 12345, 'type' => 'private' ) ); }
+        elseif ( 'setWebhook' === $method ) { $telegram_set_webhook = $payload; $telegram_webhook_url = $payload['url'] ?? ''; $body = array( 'ok' => true, 'result' => true ); }
+        else { $body = array( 'ok' => true, 'result' => array( 'message_id' => 71 ) ); }
+    }
     else { return new WP_Error( 'fixture', 'External request blocked by disposable test.' ); }
     return array( 'headers' => array(), 'response' => array( 'code' => $code ), 'body' => wp_json_encode( $body ) );
 }, 10, 3 );
@@ -148,7 +155,7 @@ foreach ( array_keys( Publications::titles() ) as $network ) {
     $check( str_contains( $screen, Publications::titles()[$network] ) && ! str_contains( $screen, 'development_token' ) && ! str_contains( $screen, 'secret123' ), 'Network screen leaked secrets or omitted provider.' );
     $check( str_contains( Connector::instance( $network )->settings_url(), 'page=gkch-settings' ) && str_contains( $screen, 'name="action" value="gkps_connect_' . $network . '"' ), 'Network moved without its save handler.' );
     $check( 7 === preg_match_all( '/<a class="nav-tab(?: nav-tab-active)?"/', $screen ), 'Settings must show General and all six channel tabs.' );
-    if ( 'telegram' === $network ) { $check( str_contains( $screen, 'name="telegram_full_requests"' ) && str_contains( $screen, 'value="gkps_telegram_receive"' ), 'Telegram reply controls lost in the Settings tab.' ); }
+    if ( 'telegram' === $network ) { $check( str_contains( $screen, 'name="telegram_full_requests"' ) && str_contains( $screen, 'value="gkps_telegram_receive"' ) && str_contains( $screen, 'previous application will stop receiving messages' ), 'Telegram reply controls or webhook takeover warning missing.' ); }
     if ( 'whatsapp' === $network ) { $check( str_contains( $screen, 'name="template"' ) && str_contains( $screen, 'name="recipient_consent"' ), 'WhatsApp template/consent controls lost in the Settings tab.' ); }
 }
 // Intercept redirects before exit so the real save/legacy handlers can be exercised.
@@ -177,6 +184,14 @@ foreach ( array( 'en_US' => 'Shortcodes and blocks', 'ru_RU' => 'Шорткод�
     $check( str_contains( $help, $heading ) && str_contains( $help, '[gkch_form id=' ) && str_contains( $help, '[gkps_contact_form id=' ), 'Localized form shortcode help is missing: ' . $help_locale );
     restore_previous_locale();
 }
+$_POST['gkps_connect_telegram'] = array( 'enabled' => true, 'token' => '12345:development_only_token', 'target' => '12345', 'notify_requests' => true );
+$telegram_settings = Connector::instance( 'telegram' )->settings(); $telegram_settings['enabled'] = true; $telegram_settings['notify_requests'] = true;
+update_option( 'gkps_connect_telegram', $telegram_settings, false );
+update_option( GeorgKlosterPrihodSocial\Telegram_Requests::OPTION, array_merge( GeorgKlosterPrihodSocial\Telegram_Requests::options(), array( 'enabled' => true, 'staff' => $admin_id, 'registered' => false, 'configuration' => '' ) ), false );
+$telegram_webhook_url = 'https://old-test.example/telegram-webhook';
+$connection = GeorgKlosterPrihodSocial\Telegram_Request_Settings::configure();
+$check( true === $connection && GeorgKlosterPrihodSocial\Telegram_Requests::ready(), 'Explicit Telegram connect action did not take over a webhook from the previous site.' );
+$check( rest_url( GeorgKlosterPrihodSocial\Plugin::REST_NAMESPACE . '/telegram-reply' ) === $telegram_webhook_url && false === $telegram_set_webhook['drop_pending_updates'], 'Webhook moved to this site or pending Telegram messages were preserved incorrectly.' );
 $_REQUEST = array( '_wpnonce' => wp_create_nonce( 'gkps_telegram_receive' ) );
 $check( Connector::instance( 'telegram' )->settings_url() === $redirect( array( GeorgKlosterPrihodSocial\Telegram_Request_Settings::class, 'connect' ) ), 'Telegram receive/reply setup returns to the old page.' );
 $_POST = $_REQUEST = array();

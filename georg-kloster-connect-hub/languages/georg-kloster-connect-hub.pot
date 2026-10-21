@@ -850,7 +850,7 @@ msgid "Save rule"
 msgstr ""
 
 #: includes/class-telegram-request-settings.php
-msgid "Save settings first, then connect incoming replies. Channels and groups retain ordinary notifications without personal data."
+msgid "Save settings first, then connect incoming replies. Connecting here moves this bot’s incoming-message webhook to this site; the previous application will stop receiving messages. Channels and groups retain ordinary notifications without personal data."
 msgstr ""
 
 #: includes/class-telegram-request-settings.php
@@ -1083,10 +1083,6 @@ msgstr ""
 
 #: includes/class-request-mail-log.php
 msgid "There is no technical log for this reply. Past delivery attempts cannot be reconstructed retroactively."
-msgstr ""
-
-#: includes/class-telegram-request-settings.php
-msgid "This bot already receives messages in another application. Its connection was not changed."
 msgstr ""
 
 #: includes/class-publications.php

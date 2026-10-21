@@ -4,7 +4,7 @@ Tags: contact form, messages, social, publishing, telegram
 Requires at least: 6.5
 Requires PHP: 8.0
 Tested up to: 7.1
-Stable tag: 0.3.3
+Stable tag: 0.3.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -119,6 +119,10 @@ Dashboard help appears under Connect Hub > Forms and Settings > General, in the 
 Enable the selected form and incoming messages in Settings. Disabled or missing forms render no public form. Submitted messages retain their selected form's topics and recipient.
 
 == Changelog ==
+
+= 0.3.4 =
+Allow the explicit Telegram reply-connection action to move the bot webhook to this site.
+Warn that the previous application will stop receiving messages.
 
 = 0.3.3 =
 Add plugin author, website and support contact metadata.

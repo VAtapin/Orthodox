@@ -1082,8 +1082,8 @@ msgid "Correct the connection first."
 msgstr "Сначала исправьте подключение."
 
 #: includes/class-telegram-request-settings.php
-msgid "Save settings first, then connect incoming replies. Channels and groups retain ordinary notifications without personal data."
-msgstr "Сначала сохраните настройки, затем подключите приём ответов. Каналы и группы сохраняют обычные уведомления без персональных данных."
+msgid "Save settings first, then connect incoming replies. Connecting here moves this bot’s incoming-message webhook to this site; the previous application will stop receiving messages. Channels and groups retain ordinary notifications without personal data."
+msgstr "Сначала сохраните настройки, затем подключите приём ответов. При подключении здесь бот будет перенаправлен на этот сайт, а прежнее приложение перестанет получать сообщения. Каналы и группы сохраняют обычные уведомления без персональных данных."
 
 #: includes/class-telegram-request-settings.php
 msgid "Save the connection first."
@@ -1170,8 +1170,6 @@ msgid "Stages:"
 msgstr "Этапы:"
 
 #: includes/class-telegram-request-settings.php
-msgid "This bot already receives messages in another application. Its connection was not changed."
-msgstr "Этот бот уже принимает сообщения в другом приложении. Его подключение не изменено."
 
 #: includes/class-connector.php
 msgid "Template language"

@@ -40,7 +40,7 @@ final class Telegram_Request_Settings {
             if ( user_can( $user, 'reply_gkps_requests' ) ) { echo '<option value="' . esc_attr( $user->ID ) . '"' . selected( $o['staff'], $user->ID, false ) . '>' . esc_html( $user->display_name ) . '</option>'; }
         }
         echo '<p>' . esc_html__( 'You can reply to a bot message multiple times: each reply is saved separately and immediately passed to PHP mail. Captioned photos and static stickers are included in the email. Visitor replies by email are not received automatically yet.', 'georg-kloster-connect-hub' ) . '</p>';
-        echo '</select></label></p><p>' . esc_html__( 'Save settings first, then connect incoming replies. Channels and groups retain ordinary notifications without personal data.', 'georg-kloster-connect-hub' ) . '</p></fieldset>';
+        echo '</select></label></p><p>' . esc_html__( 'Save settings first, then connect incoming replies. Connecting here moves this bot’s incoming-message webhook to this site; the previous application will stop receiving messages. Channels and groups retain ordinary notifications without personal data.', 'georg-kloster-connect-hub' ) . '</p></fieldset>';
     }
     public static function after( string $provider ): void {
         if ( 'telegram' !== $provider ) { return; }
@@ -66,7 +66,7 @@ final class Telegram_Request_Settings {
         if ( 'https' !== wp_parse_url( $url, PHP_URL_SCHEME ) ) { return new \WP_Error( 'telegram_https', __( 'An HTTPS site address is required to receive Telegram replies.', 'georg-kloster-connect-hub' ) ); }
         $settings = $connector->settings(); $fingerprint = Telegram_Requests::configuration( $settings, (int) $o['staff'] );
         $info = self::api( 'getWebhookInfo', array(), $settings ); if ( is_wp_error( $info ) ) { return $info; }
-        if ( ! is_array( $info ) || ( ! empty( $info['url'] ) && $info['url'] !== $url ) ) { return new \WP_Error( 'telegram_foreign_webhook', __( 'This bot already receives messages in another application. Its connection was not changed.', 'georg-kloster-connect-hub' ) ); }
+        if ( ! is_array( $info ) ) { return new \WP_Error( 'telegram_api', __( 'Telegram did not confirm the connection. Check the token, Chat ID and service availability.', 'georg-kloster-connect-hub' ) ); }
         $me = self::api( 'getMe', array(), $settings ); if ( is_wp_error( $me ) ) { return $me; }
         $chat = self::api( 'getChat', array( 'chat_id' => $settings['target'] ), $settings ); if ( is_wp_error( $chat ) ) { return $chat; }
         if ( ! is_array( $me ) || empty( $me['is_bot'] ) || ! is_int( $me['id'] ?? null ) || ! is_array( $chat ) || 'private' !== ( $chat['type'] ?? '' ) || (string) ( $chat['id'] ?? '' ) !== $settings['target'] ) { return new \WP_Error( 'telegram_chat', __( 'Telegram did not confirm a private chat with this bot.', 'georg-kloster-connect-hub' ) ); }
