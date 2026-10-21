@@ -24,4 +24,4 @@ Version 1.0.0 is submitted in WordPress.org Themes Trac ticket [#296403](https:/
 
 On the intended site, use “Connect / check incoming replies” to move the Telegram bot webhook there; the old application will stop receiving updates. Activate and verify MailPoet sending with the configured WP Mail SMTP transport before announcing the newsletter publicly; a test email was intentionally not sent. WordPress.org manual review remains pending.
 
-Last related code commit: pending for Connect Hub 0.3.5.
+Last related code commit: `a83a8d4` (remove Telegram request service messages on `main`).
