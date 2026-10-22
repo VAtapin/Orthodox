@@ -38,11 +38,8 @@ $check( $fixture['place'] === $new_rule['location_id'], 'New schedule rules cann
 $bad_place = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Not a service place' ) );
 $throws( static fn() => Schedule::validate( array_merge( $new_rule, array( 'location_id' => $bad_place ) ) ), 'Schedule accepted a page as a place.' );
 require __DIR__ . '/schedule-admin-validation.php';
-foreach ( array( 'Покров Пресвятой Богородицы' => 'blue', 'Благовещение' => 'blue', 'Троица' => 'green', 'Преображение' => 'white', 'Рождество Христово' => 'white', 'Воздвижение Креста' => 'purple', 'Пасха' => 'red', 'Преподобный Сергий' => 'green', 'Святитель Николай' => 'gold', 'Pfingsten' => 'green', 'Unknown feast' => null ) as $title => $color ) {
-    $recommendation = GeorgKlosterPrihodSchedule\Calendar_Colors::recommendation( array( $title ) );
-    $check( $color === ( $recommendation['color'] ?? null ), 'Moving calendar language data changed a color recommendation: ' . $title );
-}
-$check( 'black' === GeorgKlosterPrihodSchedule\Calendar_Colors::day( array( 'date' => '2026-03-02', 'events' => array( array( 'category' => 'commemoration', 'typeCode' => 7, 'title' => 'Великий пост' ) ) ) )['color'], 'Calendar period matching data was lost.' );
+$check( 'purple' === GeorgKlosterPrihodSchedule\Calendar_Colors::day( array( 'vestment' => array( 'color' => 'violet' ) ) )['color'], 'Bible Desktop violet vestment maps to the Parish schedule palette.' );
+$check( null === GeorgKlosterPrihodSchedule\Calendar_Colors::day( array( 'date' => '2026-03-02', 'events' => array( array( 'category' => 'commemoration', 'typeCode' => 7, 'title' => 'Великий пост' ) ) ) ), 'Schedule does not infer vestment colors locally when the API field is absent.' );
 
 do_action( 'admin_menu' ); global $menu, $submenu;
 $check( 1 === count( array_filter( $menu, static fn( $row ) => 'gkpc' === $row[2] ) ) && ! array_filter( $menu, static fn( $row ) => 'gkpsch' === $row[2] ), 'Separate Schedule top-level menu remains.' );

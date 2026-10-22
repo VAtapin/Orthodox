@@ -2,12 +2,14 @@
 
 ## Объединённый «Приход» 0.2.5
 
-`parish-merge-blueprint.json` выполняет 84 проверки: один каталог мест и меню,
+`parish-merge-blueprint.json` проверяет: один каталог мест и меню,
 сохранность прежних ID/типов/служб/духовенства, совместимость демо-мест,
 изображения из настоящей медиатеки без поддержки миниатюр в теме, валидация,
 права/nonce, публичный вывод и фиксированный API. Проверяется классический
 собственные формы без стандартного редактора, безопасное сохранение описания, контактов и нескольких связей мест, а также порядок регистрации страницы настроек. Дополнительно проверено
-распознавание календарных названий после переноса многоязычных шаблонов в JSON. Нужны только mounts Core и tests:
+использование рекомендаций цветов облачений из Bible Desktop `day.vestment`, включая
+маппинг `violet` в палитру расписания и отсутствие локального вывода цвета без поля API.
+Нужны только mounts Core и tests:
 
 ```powershell
 npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-prihod-core /wordpress/wp-content/plugins/georg-kloster-prihod-core --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/parish-merge-blueprint.json
