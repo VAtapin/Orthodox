@@ -11,6 +11,7 @@ $archive_description = get_the_archive_description();
 <?php if ( $archive_description ) : ?><div class="prihod-category-description"><?php echo wp_kses_post( $archive_description ); ?></div><?php endif; ?>
 </div></div>
 <div class="prihod-container prihod-category-content">
+<?php echo prihod_theme_news_archive_controls(); ?>
 <?php if ( have_posts() ) : ?>
 <div class="prihod-category-grid">
 <?php while ( have_posts() ) : the_post(); ?>

@@ -42,6 +42,21 @@ $private_term = wp_insert_term( 'Private-only fixture category', 'category' )['t
 for ( $i = 1; $i <= 15; ++$i ) { $fixture_ids[] = wp_insert_post( array( 'post_type' => 'post', 'post_status' => 'publish', 'post_title' => 'Catalog paging fixture ' . $i, 'post_content' => 'Disposable native publication.', 'post_date' => sprintf( '2025-01-%02d 12:00:00', $i ), 'post_category' => array( $news_category->term_id, $fixture_term ) ) ); }
 $fixture_ids[] = wp_insert_post( array( 'post_type' => 'post', 'post_status' => 'private', 'post_title' => 'Catalog paging fixture private', 'post_category' => array( $news_category->term_id, $private_term ) ) );
 $fixture_ids[] = wp_insert_post( array( 'post_type' => 'post', 'post_status' => 'draft', 'post_title' => 'Catalog paging fixture draft', 'post_category' => array( $news_category->term_id, $private_term ) ) );
+// The native news category archive gets the same category/search controls as the page catalog.
+$archive_saved_query = $GLOBALS['wp_query']; $archive_saved_main_query = $GLOBALS['wp_the_query'];
+$news_archive_query = new WP_Query( array( 'cat' => $news_category->term_id ) );
+$GLOBALS['wp_query'] = $GLOBALS['wp_the_query'] = $news_archive_query;
+$_GET = array( 'prihod_catalog_category' => $fixture_term, 'prihod_catalog_search' => 'Catalog paging fixture' );
+$archive_controls = prihod_theme_news_archive_controls();
+$archive_chips = new WP_HTML_Tag_Processor( $archive_controls ); $has_fixture_chip = false;
+while ( $archive_chips->next_tag( 'A' ) ) { $href = $archive_chips->get_attribute( 'href' ); if ( is_string( $href ) ) { parse_str( wp_parse_url( $href, PHP_URL_QUERY ) ?: '', $chip_args ); $has_fixture_chip = $has_fixture_chip || (int) ( $chip_args['prihod_catalog_category'] ?? 0 ) === (int) $fixture_term; } }
+$archive_inputs = new WP_HTML_Tag_Processor( $archive_controls ); $has_search_input = false; $has_category_hidden = false;
+while ( $archive_inputs->next_tag( 'INPUT' ) ) { $name = $archive_inputs->get_attribute( 'name' ); $has_search_input = $has_search_input || 'prihod_catalog_search' === $name; $has_category_hidden = $has_category_hidden || ( 'prihod_catalog_category' === $name && (int) $archive_inputs->get_attribute( 'value' ) === (int) $fixture_term ); }
+$check( str_contains( $archive_controls, 'prihod-catalog-controls' ) && str_contains( $archive_controls, 'Catalog fixture category' ) && $has_fixture_chip && $has_search_input && $has_category_hidden, 'News category archive controls offer scoped category chips and preserve selected filters in search.' );
+do_action( 'pre_get_posts', $news_archive_query );
+$archive_tax_query = (array) $news_archive_query->get( 'tax_query' );
+$check( 'Catalog paging fixture' === $news_archive_query->get( 's' ) && count( $archive_tax_query ) >= 1, 'News category archive applies search and category filters to its main query.' );
+$GLOBALS['wp_query'] = $archive_saved_query; $GLOBALS['wp_the_query'] = $archive_saved_main_query;
 $_GET = array( 'prihod_preview' => 'classic', 'prihod_catalog_search' => 'Catalog paging fixture', 'prihod_catalog_category' => $fixture_term );
 $catalog_html = $catalog_render(); $page_one_ids = $catalog_cards( $catalog_html );
 $check( 12 === count( $page_one_ids ) && ! str_contains( $catalog_html, 'Private-only fixture category' ), 'Search/category pagination exposes twelve published results and no private-only facets.' );
