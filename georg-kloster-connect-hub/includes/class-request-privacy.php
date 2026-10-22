@@ -22,6 +22,9 @@ final class Request_Privacy {
                 $media = get_post_meta( $message->ID, '_gkps_reply_media', true );
                 if ( is_array( $media ) && isset( $media['mime'], $media['data'] ) ) { $fields[] = array( 'name' => __( 'Image from Telegram', 'georg-kloster-connect-hub' ) . ' ' . $message->post_date, 'value' => 'data:' . $media['mime'] . ';base64,' . $media['data'] ); }
             }
+            foreach ( Outgoing_Log::for_source( $post->ID ) as $entry ) {
+                $fields[] = array( 'name' => __( 'Outgoing delivery log', 'georg-kloster-connect-hub' ) . ' ' . $entry['time_gmt'], 'value' => implode( "\n", array_filter( array( $entry['channel'], $entry['recipient'], $entry['subject'], $entry['content'], $entry['status'] ) ) ) );
+            }
             $data[] = array( 'group_id' => 'gkps-requests', 'group_label' => __( 'Incoming messages', 'georg-kloster-connect-hub' ), 'item_id' => 'gkps-' . $post->ID, 'data' => $fields );
         }
         return array( 'data' => $data, 'done' => count( $posts ) < 50 );

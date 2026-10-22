@@ -29,6 +29,14 @@ msgstr ""
 msgid "Accepted by WordPress; the transport result is unknown."
 msgstr ""
 
+#: includes/class-outgoing-log.php
+msgid "Accepted by service"
+msgstr ""
+
+#: includes/class-outgoing-log.php
+msgid "Accepted by service; inbox delivery is not confirmed."
+msgstr ""
+
 #: includes/class-request-mail-log.php
 msgid "Accepted by transport"
 msgstr ""
@@ -57,8 +65,16 @@ msgstr ""
 msgid "All categories"
 msgstr ""
 
+#: includes/class-outgoing-log.php
+msgid "All channels"
+msgstr ""
+
 #: includes/class-request-admin.php
 msgid "All forms"
+msgstr ""
+
+#: includes/class-outgoing-log.php
+msgid "All results"
 msgstr ""
 
 #: includes/class-request-admin.php
@@ -101,6 +117,10 @@ msgstr ""
 msgid "Assigned staff member"
 msgstr ""
 
+#: includes/class-outgoing-log.php
+msgid "Attempt #%d"
+msgstr ""
+
 #: includes/class-request-mail-log.php
 msgid "Attempt ID"
 msgstr ""
@@ -137,8 +157,12 @@ msgstr ""
 msgid "Changes saved."
 msgstr ""
 
-#: includes/class-publications.php
+#: includes/class-outgoing-log.php includes/class-publications.php
 msgid "Channel"
+msgstr ""
+
+#: includes/class-outgoing-log.php
+msgid "Channel / recipient"
 msgstr ""
 
 #: includes/class-publication-rules-admin.php
@@ -297,7 +321,7 @@ msgstr ""
 msgid "Each form has its own topics, text, recipient and enabled state. Channel credentials are configured in their respective sections."
 msgstr ""
 
-#: includes/class-request-privacy.php includes/class-telegram-requests.php
+#: includes/class-outgoing-log.php includes/class-request-privacy.php includes/class-telegram-requests.php
 msgid "Email"
 msgstr ""
 
@@ -369,7 +393,7 @@ msgstr ""
 msgid "Enter your question subject"
 msgstr ""
 
-#: includes/class-request-mail-log.php
+#: includes/class-outgoing-log.php includes/class-request-mail-log.php
 msgid "Error code"
 msgstr ""
 
@@ -397,7 +421,7 @@ msgstr ""
 msgid "Facebook Page ID"
 msgstr ""
 
-#: includes/class-publications.php
+#: includes/class-outgoing-log.php includes/class-publications.php
 msgid "Failed"
 msgstr ""
 
@@ -407,6 +431,10 @@ msgstr ""
 
 #: includes/class-requests.php
 msgid "Fill in all fields and enter a valid email address."
+msgstr ""
+
+#: includes/class-outgoing-log.php
+msgid "Filter"
 msgstr ""
 
 #: includes/class-request-mail-log.php
@@ -455,6 +483,10 @@ msgstr ""
 
 #: georg-kloster-connect-hub.php
 msgid "Georg-Kloster Connect Hub"
+msgstr ""
+
+#: includes/class-outgoing-log.php
+msgid "HTTP response: %d"
 msgstr ""
 
 #: includes/class-publications.php
@@ -529,7 +561,7 @@ msgstr ""
 msgid "Insufficient permissions to reply."
 msgstr ""
 
-#: includes/class-connector.php includes/class-request-admin.php includes/class-request-media.php includes/class-requests.php includes/class-telegram-request-settings.php includes/class-telegram-requests.php
+#: includes/class-connector.php includes/class-outgoing-log.php includes/class-request-admin.php includes/class-request-media.php includes/class-requests.php includes/class-telegram-request-settings.php includes/class-telegram-requests.php
 msgid "Insufficient permissions."
 msgstr ""
 
@@ -577,7 +609,11 @@ msgstr ""
 msgid "Link (optional)"
 msgstr ""
 
-#: includes/class-telegram-requests.php
+#: includes/class-outgoing-log.php
+msgid "Mail transport"
+msgstr ""
+
+#: includes/class-outgoing-log.php includes/class-telegram-requests.php
 msgid "Message"
 msgstr ""
 
@@ -587,6 +623,14 @@ msgstr ""
 
 #: includes/class-telegram-requests.php
 msgid "Message date"
+msgstr ""
+
+#: includes/class-admin.php includes/class-outgoing-log.php
+msgid "Message delivery log"
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Message log"
 msgstr ""
 
 #: includes/class-request-admin.php includes/class-requests.php
@@ -649,6 +693,10 @@ msgstr ""
 msgid "No messages yet."
 msgstr ""
 
+#: includes/class-outgoing-log.php
+msgid "No outgoing messages match these filters."
+msgstr ""
+
 #: includes/class-publication-rules-admin.php
 msgid "No rules yet. Add a rule below; automatic sending is off by default."
 msgstr ""
@@ -702,6 +750,10 @@ msgid "Other subject"
 msgstr ""
 
 #: includes/class-request-privacy.php
+msgid "Outgoing delivery log"
+msgstr ""
+
+#: includes/class-request-privacy.php
 msgid "Parish messages"
 msgstr ""
 
@@ -721,7 +773,7 @@ msgstr ""
 msgid "Privacy policy"
 msgstr ""
 
-#: includes/class-publications.php
+#: includes/class-outgoing-log.php includes/class-publications.php
 msgid "Processing"
 msgstr ""
 
@@ -789,7 +841,7 @@ msgstr ""
 msgid "Reply or note"
 msgstr ""
 
-#: includes/class-request-mail.php
+#: includes/class-request-mail.php includes/class-requests.php
 msgid "Reply to message:"
 msgstr ""
 
@@ -799,6 +851,18 @@ msgstr ""
 
 #: includes/class-request-admin.php
 msgid "Reset filter"
+msgstr ""
+
+#: includes/class-outgoing-log.php
+msgid "Result"
+msgstr ""
+
+#: includes/class-outgoing-log.php
+msgid "Result uncertain"
+msgstr ""
+
+#: includes/class-outgoing-log.php
+msgid "Result uncertain; check the destination account."
 msgstr ""
 
 #: includes/class-publications.php
@@ -831,6 +895,10 @@ msgstr ""
 
 #: includes/class-request-mail-log.php
 msgid "SMTP code"
+msgstr ""
+
+#: includes/class-outgoing-log.php
+msgid "SMTP response: %d"
 msgstr ""
 
 #: includes/class-request-admin.php
@@ -929,6 +997,10 @@ msgstr ""
 msgid "Sent"
 msgstr ""
 
+#: includes/class-outgoing-log.php
+msgid "Service message ID"
+msgstr ""
+
 #: includes/class-publication-rules-admin.php
 msgid "Set what to send, when and to which channels. Channel connections alone do not enable automatic publications."
 msgstr ""
@@ -961,12 +1033,20 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
+#: includes/class-outgoing-log.php
+msgid "Show sent content"
+msgstr ""
+
 #: includes/class-blocks.php
 msgid "Show the selected form. Replace 123 with its ID; id=\"0\" or an omitted id uses the default form."
 msgstr ""
 
 #: includes/class-request-admin.php
 msgid "Some changes could not be applied. Check permissions and fields."
+msgstr ""
+
+#: includes/class-outgoing-log.php
+msgid "Source message #%d"
 msgstr ""
 
 #: includes/class-request-mail-log.php
@@ -989,7 +1069,11 @@ msgstr ""
 msgid "Suggested topics (one per line)"
 msgstr ""
 
-#: includes/class-publications.php
+#: includes/class-outgoing-log.php
+msgid "Technical history of email, Telegram and WhatsApp messages. Publications remain in Publications history. Entries include message contents and are available to communication administrators for 30 days, up to 200 entries."
+msgstr ""
+
+#: includes/class-outgoing-log.php includes/class-publications.php
 msgid "Telegram"
 msgstr ""
 
@@ -1089,6 +1173,10 @@ msgstr ""
 msgid "Time"
 msgstr ""
 
+#: includes/class-outgoing-log.php
+msgid "Time (site timezone)"
+msgstr ""
+
 #: includes/class-publication-rules-admin.php
 msgid "Timezone:"
 msgstr ""
@@ -1149,8 +1237,12 @@ msgstr ""
 msgid "What to send"
 msgstr ""
 
-#: includes/class-publications.php
+#: includes/class-outgoing-log.php includes/class-publications.php
 msgid "WhatsApp"
+msgstr ""
+
+#: includes/class-connector.php
+msgid "WhatsApp template: %1$s (%2$s)"
 msgstr ""
 
 #: includes/class-publication-rules-admin.php

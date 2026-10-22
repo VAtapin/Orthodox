@@ -18,7 +18,7 @@ $throws = static function ( callable $operation, string $message ) use ( $check 
 };
 $admin_id = get_users( array( 'role' => 'administrator', 'number' => 1 ) )[0]->ID;
 wp_set_current_user( $admin_id ); set_current_screen( 'dashboard' );
-$check( '0.3.6' === GKPS_VERSION, 'Wrong Connect Hub version.' );
+$check( '0.3.7' === GKPS_VERSION, 'Wrong Connect Hub version.' );
 $check( ! is_plugin_active( 'georg-kloster-prihod-social/georg-kloster-prihod-social.php' ), 'Old development package remains active.' );
 $check( 'Existing development form' === Admin::get()['title'], 'Development form settings were lost.' );
 $check( '12345' === Connector::instance( 'telegram' )->settings()['target'], 'Channel settings were lost.' );
@@ -56,13 +56,13 @@ add_filter( 'pre_http_request', static function ( $pre, $args, $url ) use ( &$ht
 }, 10, 3 );
 
 do_action( 'admin_init' );
-foreach ( array( 'ru_RU' => array( 'Коммуникации', 'Формы', 'Сообщения', 'Публикации', 'Соцсети', 'Настройки' ), 'de_DE' => array( 'Kommunikation', 'Formulare', 'Nachrichten', 'Veröffentlichungen', 'Soziale Netzwerke', 'Einstellungen' ), 'en_US' => array( 'Connect Hub', 'Forms', 'Messages', 'Publications', 'Social networks', 'Settings' ) ) as $test_locale => $labels ) {
+foreach ( array( 'ru_RU' => array( 'Коммуникации', 'Формы', 'Сообщения', 'Публикации', 'Журнал', 'Настройки' ), 'de_DE' => array( 'Kommunikation', 'Formulare', 'Nachrichten', 'Veröffentlichungen', 'Protokoll', 'Einstellungen' ), 'en_US' => array( 'Connect Hub', 'Forms', 'Messages', 'Publications', 'Message log', 'Settings' ) ) as $test_locale => $labels ) {
     $switched = switch_to_locale( $test_locale );
     global $menu, $submenu; $menu = array(); $submenu = array(); do_action( 'admin_menu' );
     $main = array_values( array_filter( $menu, static fn( $item ) => 'gkps' === $item[2] ) );
     $check( 1 === count( $main ) && $labels[0] === $main[0][0], 'Main menu locale: ' . $test_locale . ' ' . wp_json_encode( array( $switched, get_locale(), determine_locale(), $main ) ) );
-    $check( array( 'gkps', 'gkps-requests', 'gkch-publications', 'gkch-settings' ) === array_column( $submenu['gkps'], 2 ), 'Four menu sections/order: ' . $test_locale );
-    $check( array( $labels[1], $labels[2], $labels[3], $labels[5] ) === array_column( $submenu['gkps'], 0 ), 'Submenu locale: ' . $test_locale );
+    $check( array( 'gkps', 'gkps-requests', 'gkch-publications', 'gkch-log', 'gkch-settings' ) === array_column( $submenu['gkps'], 2 ), 'Five menu sections/order: ' . $test_locale );
+    $check( array( $labels[1], $labels[2], $labels[3], $labels[4], $labels[5] ) === array_column( $submenu['gkps'], 0 ), 'Submenu locale: ' . $test_locale );
     if ( $switched ) { restore_previous_locale(); }
 }
 
@@ -124,6 +124,19 @@ foreach ( array( 'telegram', 'whatsapp', 'facebook', 'vk', 'ok' ) as $id ) {
     $calls = count( $http ); Connector::instance( $id )->worker( $jobs[$id] );
     $check( $calls === count( $http ), 'Sent publication was delivered twice: ' . $id );
 }
+$message_fixture = wp_insert_post( array( 'post_type' => 'gkps_request', 'post_status' => 'private', 'post_title' => 'Synthetic outgoing log fixture', 'post_content' => 'Private message body to audit.' ) );
+foreach ( array( 'telegram' => '12345', 'whatsapp' => '49123456789' ) as $channel => $recipient ) {
+    $job_id = Connector::instance( $channel )->queue( 'Synthetic outgoing message body.', '', 'request', $message_fixture );
+    $check( '' !== $job_id, 'Request message was not queued for the technical journal: ' . $channel );
+    Connector::instance( $channel )->worker( $job_id );
+    $events = GeorgKlosterPrihodSocial\Outgoing_Log::rows( array( 'channel' => $channel ) );
+    $event = array_values( array_filter( $events, static fn( $row ) => $message_fixture === (int) $row['source_id'] ) )[0] ?? array();
+    $check( 'accepted' === ( $event['status'] ?? '' ) && $recipient === ( $event['recipient'] ?? '' ) && str_contains( $event['content'] ?? '', 'Synthetic outgoing message body.' ), 'Request-message journal missed actual destination, content or accepted status: ' . $channel );
+}
+ob_start(); GeorgKlosterPrihodSocial\Outgoing_Log::render(); $log_html = ob_get_clean();
+$check( str_contains( $log_html, 'Synthetic outgoing message body.' ) && str_contains( $log_html, '49123456789' ), 'Authorized message journal does not display the sent text and recipient.' );
+GeorgKlosterPrihodSocial\Requests::delete( $message_fixture );
+$check( ! GeorgKlosterPrihodSocial\Outgoing_Log::for_source( $message_fixture ), 'Deleting a private request retained its outgoing journal entries.' );
 $vk_call = array_values( array_filter( $http, static fn( $r ) => str_contains( $r['url'], 'api.vk.com' ) ) )[0];
 $check( '-12345' === $vk_call['args']['body']['owner_id'] && 1 === $vk_call['args']['body']['from_group'] && 32 === strlen( $vk_call['args']['body']['guid'] ), 'VK request contract.' );
 $ok_call = array_values( array_filter( $http, static fn( $r ) => str_contains( $r['url'], 'api.ok.ru' ) ) )[0];

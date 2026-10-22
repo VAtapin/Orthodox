@@ -120,6 +120,7 @@ final class Requests {
             } catch ( \Throwable $error ) { $transport['error_code'] = 'compose_exception'; }
             if ( $transport ) { update_post_meta( $message_id, '_gkps_mail_transport', $transport ); }
             Request_Mail_Log::record( $message_id, $journal, $success ? 'accepted' : 'failed', $transport );
+            Outgoing_Log::record( array( 'channel' => 'email', 'recipient' => $sender['email'] ?? '', 'subject' => $mail['subject'] ?? ( __( 'Reply to message:', 'georg-kloster-connect-hub' ) . ' ' . $post->post_title ), 'content' => $mail['text'] ?? $message->post_content, 'kind' => 'request_reply', 'source_type' => 'request', 'source_id' => $id, 'status' => $success ? 'accepted' : 'failed', 'attempt' => $attempt, 'http_code' => (int) ( $transport['smtp_code'] ?? 0 ), 'remote_id' => (string) ( $transport['message_id'] ?? '' ), 'transport' => (string) ( $transport['method'] ?? '' ), 'error_code' => (string) ( $transport['error_code'] ?? '' ) ) );
             update_post_meta( $message_id, '_gkps_attempts', $attempt );
             update_post_meta( $message_id, '_gkps_delivery', $success ? 'sent' : 'failed' );
             if ( $success ) {
@@ -139,6 +140,7 @@ final class Requests {
     }
     public static function delete( int $id ): void {
         self::assert_request( $id );
+        Outgoing_Log::delete_source( $id );
         do_action( 'gkps_request_deleted', $id );
         foreach ( self::messages( $id ) as $message ) { wp_clear_scheduled_hook( 'gkps_request_mail', array( $id, $message->ID ) ); wp_delete_post( $message->ID, true ); }
         wp_delete_post( $id, true );

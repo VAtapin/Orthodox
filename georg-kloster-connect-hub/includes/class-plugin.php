@@ -12,6 +12,7 @@ final class Plugin {
         Forms::register();
         Requests::hooks();
         Telegram_Requests::hooks();
+        Outgoing_Log::schedule();
         add_action( 'wp_enqueue_scripts', array( Request_Form::class, 'enqueue_styles' ) );
         add_action( 'gkps_request_created', array( self::class, 'notify_by_email' ) );
         add_action( 'init', array( Blocks::class, 'register' ) );
@@ -30,7 +31,10 @@ final class Plugin {
         $form = Forms::get( (int) get_post_meta( $id, '_gkch_form_id', true ) );
         $recipient = $form['recipient'] ?? '';
         if ( is_email( $recipient ) ) {
-            wp_mail( $recipient, __( 'New contact message', 'georg-kloster-connect-hub' ), admin_url( 'admin.php?page=gkps-requests&request_id=' . $id ) );
+            $subject = __( 'New contact message', 'georg-kloster-connect-hub' );
+            $content = admin_url( 'admin.php?page=gkps-requests&request_id=' . $id );
+            try { $sent = wp_mail( $recipient, $subject, $content ); } catch ( \Throwable $error ) { $sent = false; }
+            Outgoing_Log::record( array( 'channel' => 'email', 'recipient' => $recipient, 'subject' => $subject, 'content' => $content, 'kind' => 'request_notification', 'source_type' => 'request', 'source_id' => $id, 'status' => $sent ? 'accepted' : 'failed' ) );
         }
     }
 }

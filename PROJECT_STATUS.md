@@ -2,7 +2,7 @@
 
 ## Current state
 
-The repository contains the Georg-Kloster Prihod theme (1.0.0), Parish Core (0.2.5), and Connect Hub (0.3.6). The theme has five visual styles, native Customizer controls, a standard WordPress widget area, English gettext source strings, and Russian, German, Polish, and Ukrainian catalogs. Author: Atapin Vladimir (`atapin`); site: https://georg-kloster.ru/; email: atapin@gmail.com.
+The repository contains the Georg-Kloster Prihod theme (1.0.0), Parish Core (0.2.5), and Connect Hub (0.3.7). The theme has five visual styles, native Customizer controls, a standard WordPress widget area, English gettext source strings, and Russian, German, Polish, and Ukrainian catalogs. Author: Atapin Vladimir (`atapin`); site: https://georg-kloster.ru/; email: atapin@gmail.com.
 
 The theme has compact optional-plugin cards for Parish, Connect Hub, Calendar Workshop, Orthodox Donations, and Slavonic Translator. Language switching is delegated to WPML or Polylang. The shared homepage map uses a full-width iframe.
 
@@ -12,11 +12,11 @@ The native `/news/` Posts page and “News” category archive share the catalog
 
 The newsletter widget area is present on the homepage and news/archive views. It uses MailPoet form 2 (“Новости монастыря”), linked to “Рассылка новостей”; the theme now constrains the form to a 600px maximum width and uses tighter spacing and shorter controls. The old stock demo form remains in MailPoet but is no longer displayed publicly. The confirmation email uses Russian text and the theme palette, and the confirmation page layout is compact with its sidebar hidden. Double opt-in and MailPoet’s built-in CAPTCHA are enabled. MailPoet sending is still inactive (“Other” method awaits activation); WP Mail SMTP has an SMTP transport configured, but delivery has not been tested. No campaign or test email has been sent.
 
-Connect Hub 0.3.6 allows the explicit Telegram “Connect / check incoming replies” action to set this site's webhook even when another application currently owns it. The settings warn that the previous application will stop receiving messages; pending Telegram updates are preserved. Telegram request notifications and replies contain no admin links, reply instructions, or separate service acknowledgements. A saved contact request remains successful if a post-create notification callback fails, and failed form submissions restore values in the same browser tab. Version 0.3.6 was installed successfully on `new.georg-kloster.ru`.
+Connect Hub 0.3.6 allows the explicit Telegram “Connect / check incoming replies” action to set this site's webhook even when another application currently owns it. The settings warn that the previous application will stop receiving messages; pending Telegram updates are preserved. Telegram request notifications and replies contain no admin links, reply instructions, or separate service acknowledgements. A saved contact request remains successful if a post-create notification callback fails, and failed form submissions restore values in the same browser tab. Version 0.3.6 was installed successfully on `new.georg-kloster.ru`. Version 0.3.7 adds a private Message log for outgoing request email and request/schedule messages through Telegram and WhatsApp: time, recipient/ID, content, attempt, API/mail response and status. It is independent of publication history, available to communication administrators, capped at 200 entries/30 days, and request-linked entries are removed with their request or privacy erasure. The 0.3.7 ZIP is built but has not yet been installed on the test site.
 
 ## Connect Hub WordPress.org release candidate
 
-The 0.3.6 package has GPL-2.0-or-later metadata and LICENSE.txt, a WordPress.org readme with the `atapin` contributor account, source repository, support details and external-service/privacy disclosures. The package is built as `build/georg-kloster-connect-hub-0.3.6.zip` and installed on the test site. The official Plugin Check (PCP) full category scan reported 0 errors and 96 warnings; most warnings concern nonce/input flows that delegate verification to WordPress settings/form handlers, plus database query patterns and discouraged manual translation loading. PCP warnings still need human review. The plugin has not been submitted to WordPress.org.
+Connect Hub 0.3.7 retains GPL-2.0-or-later metadata and LICENSE.txt, the WordPress.org readme, source repository, support details and external-service/privacy disclosures. The official Plugin Check (PCP) full category scan of 0.3.6 reported 0 errors and 96 warnings; warnings still need human review. Version 0.3.7 is packaged locally and has not yet been installed on the test site, rescanned by PCP or submitted to WordPress.org.
 
 ## WordPress.org release status
 
@@ -24,10 +24,10 @@ Version 1.0.0 is submitted in WordPress.org Themes Trac ticket [#296403](https:/
 
 ## Checks completed
 
-`php tests/lint.php` passed; `php tests/run.php` passed 70 isolated assertions. Theme translations compile and `python tests/translation-check.py` plus `python tests/theme-i18n-check.py` passed. Connect Hub translations compile and `python tests/plugin-i18n-check.py --only georg-kloster-connect-hub` passed (592 messages); `node --check georg-kloster-connect-hub/assets/request-form.js` passed; the Connect Hub 0.3.6 package built successfully and Plugin Check reported 0 errors. The isolated WordPress Playground integration test could not start because npm registry DNS/network access was unavailable; therefore the new archive smoke assertions still need a WordPress runtime check.
+`php tests/lint.php` passed; `php tests/run.php` passed 70 isolated assertions. Connect Hub catalogs compile and `python tests/plugin-i18n-check.py --only georg-kloster-connect-hub` passed (638 translated messages); `python scripts/package.py --only connect-hub` built the 0.3.7 ZIP. The WordPress Playground integration run could not start because npm registry DNS/network access failed, so the new live-worker/journal smoke assertions still need a WordPress runtime check.
 
 ## Next steps
 
-On the intended site, use “Connect / check incoming replies” to move the Telegram bot webhook there; the old application will stop receiving updates. Activate and verify MailPoet sending with the configured WP Mail SMTP transport before announcing the newsletter publicly; a test email was intentionally not sent. WordPress.org manual review remains pending.
+Install `build/georg-kloster-connect-hub-0.3.7.zip` on `new.georg-kloster.ru` and verify the Message log with test Telegram/WhatsApp request notifications and email replies. On the intended site, use “Connect / check incoming replies” to move the Telegram bot webhook there; the old application will stop receiving updates. Activate and verify MailPoet sending with the configured WP Mail SMTP transport before announcing the newsletter publicly; a test email was intentionally not sent. WordPress.org manual review remains pending.
 
-Last related code commit: “Add filters to native news index” on `main`.
+Last related code commit: “Add a technical log for outgoing messages” on `main` (this task's pending commit).

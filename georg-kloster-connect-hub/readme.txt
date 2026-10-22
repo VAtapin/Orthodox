@@ -4,7 +4,7 @@ Tags: contact form, messages, social, publishing, telegram
 Requires at least: 6.5
 Requires PHP: 8.0
 Tested up to: 7.1
-Stable tag: 0.3.6
+Stable tag: 0.3.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -20,7 +20,11 @@ status filters. Staff can reply by email. Telegram supports the existing opt-in
 private-chat reply workflow. WhatsApp sends approved outbound templates only;
 WhatsApp replies are not imported.
 
-The menu has Forms, Messages, Publications and Settings. All six channel connections
+The menu has Forms, Messages, Publications, Message log and Settings. The Message log
+records time, recipient, message text and technical result for outgoing email,
+Telegram and WhatsApp request/schedule messages. It is separate from publication history, requires
+communication-settings access, and keeps at most 200 entries for 30 days. Deleting a
+request or erasing its personal data also removes its message-log entries. All six channel connections
 (Telegram, WhatsApp, Facebook, Instagram, VK and OK) are tabs in Settings.
 Its title is Connect Hub in English, Kommunikation in German and
 Коммуникации in Russian. Russian and German PHP/editor catalogs are bundled.
@@ -53,7 +57,7 @@ Development repository: https://github.com/VAtapin/Orthodox/tree/main/georg-klos
 
 == Installation ==
 
-Upload georg-kloster-connect-hub-0.3.6.zip. Replace an existing Connect Hub version,
+Upload georg-kloster-connect-hub-0.3.7.zip. Replace an existing Connect Hub version,
 or install as a new plugin and activate it.
 Activation deactivates the previous georg-kloster-prihod-social development plugin
 without deleting its settings. Keep only Connect Hub active. Network-active old
@@ -108,6 +112,9 @@ permissions must be obtained by the site administrator.
 
 Messages remain private in WordPress and require the designated capabilities.
 Privacy exporter/eraser support and retention of closed messages are retained.
+The technical outgoing-message log stores recipients, message text and service
+results for up to 30 days (200 entries); deleting a request or erasing its data
+also removes its related log entries.
 The source form ID/name is stored with each message. Form recipients are never
 included in public markup or the block selector. Ordinary uninstall retains
 saved messages/settings and does not delete posts in external services.
@@ -123,6 +130,10 @@ Dashboard help appears under Connect Hub > Forms and Settings > General, in the 
 Enable the selected form and incoming messages in Settings. Disabled or missing forms render no public form. Submitted messages retain their selected form's topics and recipient.
 
 == Changelog ==
+
+= 0.3.7 =
+Add a private technical journal for outgoing email and Telegram/WhatsApp request and schedule messages.
+Show recipients, sent content and delivery results; erase linked entries with requests.
 
 = 0.3.6 =
 Remove admin links and service-only instructions from Telegram request notifications.

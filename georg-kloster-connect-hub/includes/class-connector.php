@@ -202,6 +202,18 @@ final class Connector {
             $job['status'] = $accepted ? 'sent' : ( ! empty( $result['uncertain'] ) ? 'uncertain' : ( $pending ? 'processing' : 'failed' ) );
             $job['http_code'] = $code; $job['error'] = $result['error'] ?? '';
             if ( $accepted && ! empty( $body['id'] ) ) { $job['remote_id'] = sanitize_text_field( (string) $body['id'] ); }
+            if ( in_array( $job['kind'] ?? '', array( 'request', 'schedule' ), true ) && in_array( $this->id, array( 'telegram', 'whatsapp' ), true ) ) {
+                $payload = isset( $request['args']['body'] ) ? json_decode( $request['args']['body'], true ) : array();
+                $content = 'telegram' === $this->id ? ( $payload['text'] ?? $job['text'] ) : ( $payload['template']['components'][0]['parameters'][0]['text'] ?? $job['text'] );
+                if ( is_array( $content ) ) { $content = wp_json_encode( $content ); }
+                $remote_id = 'telegram' === $this->id ? ( $body['result']['message_id'] ?? '' ) : ( $body['messages'][0]['id'] ?? '' );
+                $template = 'whatsapp' === $this->id ? sprintf( __( 'WhatsApp template: %1$s (%2$s)', 'georg-kloster-connect-hub' ), $settings['template'], $settings['language'] ) : '';
+                if ( 'schedule' === $job['kind'] ) { $template .= ( $template ? ' · ' : '' ) . get_the_title( (int) $job['source'] ); }
+                $api_code = 'telegram' === $this->id ? ( $body['error_code'] ?? '' ) : ( $body['error']['code'] ?? '' );
+                $error_code = is_scalar( $api_code ) && preg_match( '/^\d{1,8}$/D', (string) $api_code ) ? 'api_' . $api_code : (string) ( $result['error_code'] ?? '' );
+                $is_request = 'request' === $job['kind'];
+                Outgoing_Log::record( array( 'channel' => $this->id, 'recipient' => 'telegram' === $this->id ? $settings['target'] : $settings['recipient'], 'subject' => $template, 'content' => (string) $content, 'kind' => $is_request ? 'request_notification' : 'schedule_notification', 'source_type' => $job['kind'], 'source_id' => (int) $job['source'], 'status' => 'sent' === $job['status'] ? 'accepted' : $job['status'], 'attempt' => (int) $job['attempts'], 'http_code' => $code, 'remote_id' => (string) $remote_id, 'error_code' => $error_code ) );
+            }
             update_option( $key, $job, false ); update_option( 'gkps_connect_last_' . $this->id, array( 'id' => $id, 'status' => $job['status'], 'http_code' => $code, 'time' => time() ), false );
             if ( $accepted ) { do_action( 'gkps_connector_sent', $this->id, $id, $job, $body ); }
             if ( $pending || ( ! $accepted && ! empty( $result['retry'] ) && $job['attempts'] < 3 ) ) { wp_schedule_single_event( time() + ( $pending ? 60 : 300 * $job['attempts'] ), 'gkps_' . $this->id . '_worker', array( $id ) ); }

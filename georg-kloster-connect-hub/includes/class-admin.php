@@ -8,13 +8,14 @@ final class Admin {
         add_menu_page( __( 'Connect Hub', 'georg-kloster-connect-hub' ), __( 'Connect Hub', 'georg-kloster-connect-hub' ), 'manage_gkps_settings', 'gkps', array( Forms::class, 'render' ), 'dashicons-format-chat', 27 );
         add_submenu_page( 'gkps', __( 'Forms', 'georg-kloster-connect-hub' ), __( 'Forms', 'georg-kloster-connect-hub' ), 'manage_gkps_settings', 'gkps', array( Forms::class, 'render' ) );
         add_submenu_page( 'gkps', __( 'Publications', 'georg-kloster-connect-hub' ), __( 'Publications', 'georg-kloster-connect-hub' ), 'publish_posts', 'gkch-publications', array( Publications::class, 'render' ) );
+        add_submenu_page( 'gkps', __( 'Message delivery log', 'georg-kloster-connect-hub' ), __( 'Message log', 'georg-kloster-connect-hub' ), 'manage_gkps_settings', 'gkch-log', array( Outgoing_Log::class, 'render' ) );
         add_submenu_page( 'gkps', __( 'Settings', 'georg-kloster-connect-hub' ), __( 'Settings', 'georg-kloster-connect-hub' ), 'manage_gkps_settings', 'gkch-settings', array( Hub_Settings::class, 'render' ) );
     }
 
     public static function order_menu(): void {
         global $submenu;
         if ( empty( $submenu['gkps'] ) ) { return; }
-        $order = array_flip( array( 'gkps', 'gkps-requests', 'gkch-publications', 'gkch-settings' ) );
+        $order = array_flip( array( 'gkps', 'gkps-requests', 'gkch-publications', 'gkch-log', 'gkch-settings' ) );
         usort( $submenu['gkps'], static fn( $a, $b ) => ( $order[$a[2]] ?? 99 ) <=> ( $order[$b[2]] ?? 99 ) );
     }
 
