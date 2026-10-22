@@ -34,4 +34,4 @@ Vestment API integration: `php tests/run.php` passes 78 isolated assertions and 
 
 Install `build/georg-kloster-connect-hub-0.3.7.zip` on `new.georg-kloster.ru` and verify the Message log with test Telegram/WhatsApp request notifications and email replies. On the intended site, use “Connect / check incoming replies” to move the Telegram bot webhook there; the old application will stop receiving updates. Activate and verify MailPoet sending with the configured WP Mail SMTP transport before announcing the newsletter publicly; a test email was intentionally not sent. WordPress.org manual review remains pending.
 
-Last related code commit: `85d4e2c` — “Add an outgoing message delivery log” on `main`.
+Last related code commit: `7097c2a` — “Bump Parish Core to 0.2.6” on `main`.
