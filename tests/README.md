@@ -1,6 +1,6 @@
 # Проверки
 
-## Объединённый «Приход» 0.2.5
+## Объединённый «Приход» 0.2.6
 
 `parish-merge-blueprint.json` проверяет: один каталог мест и меню,
 сохранность прежних ID/типов/служб/духовенства, совместимость демо-мест,
@@ -15,7 +15,7 @@
 npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-prihod-core /wordpress/wp-content/plugins/georg-kloster-prihod-core --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/parish-merge-blueprint.json
 ```
 
-Для проверки ZIP распаковать `georg-kloster-prihod-core-0.2.5.zip` и монтировать
+Для проверки ZIP распаковать `georg-kloster-prihod-core-0.2.6.zip` и монтировать
 его каталог вместо исходника. Для минимальной платформы использовать копию
 Blueprint с WP6.5.13/PHP8.0. Результат: `tests/.parish-merge-result.json`.
 

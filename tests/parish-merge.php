@@ -15,7 +15,7 @@ $throws = static function ( callable $fn, string $message ) use ( $check ): void
 $http = array();
 add_filter( 'pre_http_request', static function ( $pre, $args, $url ) use ( &$http ) { $http[] = $url; return new WP_Error( 'fixture', 'No external network in fixture.' ); }, 10, 3 );
 wp_set_current_user( 1 ); set_current_screen( 'dashboard' );
-$check( '0.2.5' === GKPC_VERSION && GKPC_VERSION === GKPSCH_VERSION, 'Merged package version or module missing.' );
+$check( '0.2.6' === GKPC_VERSION && GKPC_VERSION === GKPSCH_VERSION, 'Merged package version or module missing.' );
 $check( ! is_plugin_active( 'georg-kloster-prihod-schedule/georg-kloster-prihod-schedule.php' ), 'Old Schedule remains active.' );
 $check( str_contains( GKPSCH_FILE, '/georg-kloster-prihod-core/schedule/' ), 'Schedule still runs from the old package.' );
 $check( array() === GeorgKlosterPrihodCore\Demo_Importer::state(), 'Merge implicitly imported demo data.' );
