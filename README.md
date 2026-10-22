@@ -24,7 +24,7 @@
 ## Установка
 
 Сборка текущих пакетов: `python scripts/package.py --only parish-core connect-hub theme`.
-В WordPress загрузить `build/georg-kloster-prihod-core-0.2.7.zip` как плагин
+В WordPress загрузить `build/georg-kloster-prihod-core-0.2.8.zip` как плагин
 «Приход»; при обновлении Core подтвердить замену установленной версии. Прежний
 Schedule отключается автоматически, его места/службы сохраняют ID и связи.
 Коммуникации устанавливаются из отдельного ZIP Connect Hub. Тема устанавливается
