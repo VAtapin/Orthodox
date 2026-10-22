@@ -57,6 +57,17 @@ do_action( 'pre_get_posts', $news_archive_query );
 $archive_tax_query = (array) $news_archive_query->get( 'tax_query' );
 $check( 'Catalog paging fixture' === $news_archive_query->get( 's' ) && count( $archive_tax_query ) >= 1, 'News category archive applies search and category filters to its main query.' );
 $GLOBALS['wp_query'] = $archive_saved_query; $GLOBALS['wp_the_query'] = $archive_saved_main_query;
+// The public /news/ route is WordPress's Posts page (is_home), rendered by index.php.
+$posts_saved_query = $GLOBALS['wp_query']; $posts_saved_main_query = $GLOBALS['wp_the_query'];
+$posts_page_query = new WP_Query(); $posts_page_query->is_home = true; $posts_page_query->is_front_page = false;
+$GLOBALS['wp_query'] = $GLOBALS['wp_the_query'] = $posts_page_query;
+$_GET = array( 'prihod_catalog_category' => $fixture_term, 'prihod_catalog_search' => 'Catalog paging fixture' );
+$posts_controls = prihod_theme_posts_page_controls(); $posts_inputs = new WP_HTML_Tag_Processor( $posts_controls ); $posts_has_category = false; $posts_has_search = false;
+while ( $posts_inputs->next_tag( 'INPUT' ) ) { $name = $posts_inputs->get_attribute( 'name' ); $posts_has_category = $posts_has_category || ( 'prihod_catalog_category' === $name && (int) $posts_inputs->get_attribute( 'value' ) === (int) $fixture_term ); $posts_has_search = $posts_has_search || ( 'prihod_catalog_search' === $name && 'Catalog paging fixture' === $posts_inputs->get_attribute( 'value' ) ); }
+$check( str_contains( $posts_controls, 'prihod-catalog-controls' ) && str_contains( $posts_controls, 'Catalog fixture category' ) && $posts_has_category && $posts_has_search, 'The native Posts page controls render category chips and preserve selected search/category filters.' );
+do_action( 'pre_get_posts', $posts_page_query );
+$check( 'Catalog paging fixture' === $posts_page_query->get( 's' ) && (int) $posts_page_query->get( 'cat' ) === (int) $fixture_term, 'The native Posts page applies selected search and category filters to its main query.' );
+$GLOBALS['wp_query'] = $posts_saved_query; $GLOBALS['wp_the_query'] = $posts_saved_main_query;
 $_GET = array( 'prihod_preview' => 'classic', 'prihod_catalog_search' => 'Catalog paging fixture', 'prihod_catalog_category' => $fixture_term );
 $catalog_html = $catalog_render(); $page_one_ids = $catalog_cards( $catalog_html );
 $check( 12 === count( $page_one_ids ) && ! str_contains( $catalog_html, 'Private-only fixture category' ), 'Search/category pagination exposes twelve published results and no private-only facets.' );

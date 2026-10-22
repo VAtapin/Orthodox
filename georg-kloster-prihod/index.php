@@ -11,6 +11,7 @@ $archive_title = is_home() && ! is_front_page()
 	: get_the_archive_title();
 ?>
 <h1><?php echo esc_html( $archive_title ?: get_bloginfo( 'name' ) ); ?></h1>
+<?php echo prihod_theme_posts_page_controls(); ?>
 <div class="prihod-catalog-grid">
 <?php while ( have_posts() ) : the_post(); ?>
 <article <?php post_class( 'prihod-news-card' ); ?>>

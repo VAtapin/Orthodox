@@ -42,6 +42,42 @@ function prihod_theme_news_archive_category(): int {
     $id = is_scalar( $value ) ? absint( $value ) : 0;
     return $id && in_array( $id, array_map( static fn( $term ) => (int) $term->term_id, prihod_theme_news_archive_terms() ), true ) ? $id : 0;
 }
+/** The native Posts page is a separate route from category archives and catalog pages. */
+function prihod_theme_posts_page_url(): string {
+    $id = absint( get_option( 'page_for_posts' ) );
+    if ( $id && function_exists( 'pll_get_post' ) ) { $id = absint( pll_get_post( $id ) ?: $id ); }
+    if ( $id && has_filter( 'wpml_object_id' ) ) { $id = absint( apply_filters( 'wpml_object_id', $id, 'page', true ) ); }
+    $url = $id ? get_permalink( $id ) : home_url( '/' );
+    return prihod_theme_preview_url( $url );
+}
+function prihod_theme_posts_page_terms(): array {
+    $posts = get_posts( array( 'post_type' => 'post', 'post_status' => 'publish', 'numberposts' => -1, 'fields' => 'ids', 'no_found_rows' => true, 'suppress_filters' => false ) );
+    if ( ! $posts ) { return array(); }
+    $terms = get_terms( array( 'taxonomy' => 'category', 'object_ids' => $posts, 'hide_empty' => true ) );
+    return is_wp_error( $terms ) ? array() : $terms;
+}
+function prihod_theme_posts_page_category(): int {
+    $value = $_GET['prihod_catalog_category'] ?? '';
+    $id = is_scalar( $value ) ? absint( $value ) : 0;
+    return $id && in_array( $id, array_map( static fn( $term ) => (int) $term->term_id, prihod_theme_posts_page_terms() ), true ) ? $id : 0;
+}
+function prihod_theme_posts_page_controls(): string {
+    if ( ! is_home() || is_front_page() ) { return ''; }
+    $base = prihod_theme_posts_page_url(); $search = prihod_theme_catalog_search(); $category = prihod_theme_posts_page_category(); $hidden = array();
+    parse_str( wp_parse_url( $base, PHP_URL_QUERY ) ?: '', $hidden );
+    if ( $category ) { $hidden['prihod_catalog_category'] = $category; }
+    $id = 'prihod-news-search-' . wp_unique_id();
+    $all_url = $search ? add_query_arg( 'prihod_catalog_search', $search, $base ) : $base;
+    $html = '<div class="prihod-catalog-controls"><nav class="prihod-catalog-filters" aria-label="' . esc_attr__( 'Post categories', 'georg-kloster-prihod' ) . '"><a' . ( ! $category ? ' aria-current="true"' : '' ) . ' href="' . esc_url( $all_url ) . '">' . esc_html__( 'All', 'georg-kloster-prihod' ) . '</a>';
+    foreach ( prihod_theme_posts_page_terms() as $term ) {
+        $url = add_query_arg( 'prihod_catalog_category', (int) $term->term_id, $base );
+        if ( $search ) { $url = add_query_arg( 'prihod_catalog_search', $search, $url ); }
+        $html .= '<a' . ( $category === (int) $term->term_id ? ' aria-current="true"' : '' ) . ' href="' . esc_url( $url ) . '">' . esc_html( $term->name ) . '</a>';
+    }
+    $html .= '</nav><form method="get" action="' . esc_url( $base ) . '"><label class="screen-reader-text" for="' . esc_attr( $id ) . '">' . esc_html__( 'Search posts', 'georg-kloster-prihod' ) . '</label><div><input id="' . esc_attr( $id ) . '" type="search" name="prihod_catalog_search" value="' . esc_attr( $search ) . '" maxlength="200" placeholder="' . esc_attr__( 'Search posts…', 'georg-kloster-prihod' ) . '"><button type="submit" aria-label="' . esc_attr__( 'Find', 'georg-kloster-prihod' ) . '">' . prihod_theme_icon( 'search' ) . '</button></div>';
+    foreach ( $hidden as $name => $value ) { if ( is_scalar( $value ) ) { $html .= '<input type="hidden" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '">'; } }
+    return $html . '</form><a class="prihod-catalog-reset" href="' . esc_url( $base ) . '">' . esc_html__( 'Reset filters', 'georg-kloster-prihod' ) . '</a></div>';
+}
 function prihod_theme_news_archive_controls(): string {
     if ( ! prihod_theme_is_news_archive() ) { return ''; }
     $news = prihod_theme_news_archive_term();
@@ -62,6 +98,13 @@ function prihod_theme_news_archive_controls(): string {
     foreach ( $hidden as $name => $value ) { if ( is_scalar( $value ) ) { $html .= '<input type="hidden" name="' . esc_attr( $name ) . '" value="' . esc_attr( $value ) . '">'; } }
     return $html . '</form><a class="prihod-catalog-reset" href="' . esc_url( $base ) . '">' . esc_html__( 'Reset filters', 'georg-kloster-prihod' ) . '</a></div>';
 }
+add_action( 'pre_get_posts', function ( WP_Query $query ): void {
+    if ( is_admin() || ! $query->is_main_query() || ! $query->is_home() || $query->is_front_page() ) { return; }
+    $search = prihod_theme_catalog_search();
+    if ( $search ) { $query->set( 's', trim( (string) $query->get( 's' ) . ' ' . $search ) ); }
+    $category = prihod_theme_posts_page_category();
+    if ( $category ) { $query->set( 'cat', $category ); }
+} );
 add_action( 'pre_get_posts', function ( WP_Query $query ): void {
     $news = prihod_theme_news_archive_term();
     if ( is_admin() || ! $news || ! $query->is_main_query() || ! $query->is_category( (int) $news->term_id ) ) { return; }
