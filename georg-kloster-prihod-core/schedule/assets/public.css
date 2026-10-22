@@ -40,7 +40,9 @@ body .gkpsch-service-icon.wp-lightbox-container button.lightbox-trigger{inset:0!
 
 .gkpsch-schedule-overview>.gkpsch-upcoming-card:only-child{grid-column:1/-1}
 
-.gkpsch-month .gkpsch-event[data-vestment-color]{padding-inline-start:12px}
+.gkpsch-month .gkpsch-event[data-vestment-color]{padding-inline-start:22px}
+.gkpsch-block article.gkpsch-event[data-vestment-color]{padding-inline-start:24px}
+.gkpsch-upcoming-card[data-vestment-color]{padding-inline-start:30px}
 
 /* Shared mini-month styling for every theme; feast text and service frames are independent. */
 .gkpsch-mini-grid a.has-vestment-frame{border-style:solid;border-width:2px;color:var(--gkpsch-day-ink)}.gkpsch-mini-grid a.is-great-feast,.gkpsch-mini-grid a.is-great-feast.is-today{color:#b22222;font-weight:700}
@@ -108,7 +110,7 @@ body .gkpsch-service-icon.wp-lightbox-container button.lightbox-trigger{inset:0!
 .gkpsch-mini-grid .is-today{border-color:var(--gkpsch-accent);color:var(--gkpsch-accent)}
 @media(max-width:800px){.gkpsch-schedule-columns{grid-template-columns:1fr}.gkpsch-schedule-aside{grid-template-columns:1fr 1fr}.gkpsch-schedule-toolbar{display:block}.gkpsch-controls{margin-top:15px}}
 @media(max-width:760px){.gkpsch-schedule-overview{grid-template-columns:1fr}}
-@media(max-width:600px){.gkpsch-schedule-body{padding:12px}.gkpsch-schedule-overview{gap:12px}.gkpsch-schedule-overview>div,.gkpsch-schedule-overview .gkpsch-changes-card{padding:16px}.gkpsch-upcoming-card:before,.gkpsch-changes-card:before{display:none}.gkpsch-upcoming-card>p:not(.gkpsch-overview-date){max-width:none}.gkpsch-upcoming-card>a{position:static;display:inline-block;margin-top:8px}.gkpsch-schedule-aside{grid-template-columns:1fr}.gkpsch-week-day{grid-template-columns:48px minmax(0,1fr)}.gkpsch-block article.gkpsch-event{gap:8px;padding:10px}.gkpsch-event-time{width:46px;font-size:18px}.gkpsch-event-copy h3{font-size:18px}.gkpsch-period-nav a{font-size:11px}}
+@media(max-width:600px){.gkpsch-schedule-body{padding:12px}.gkpsch-schedule-overview{gap:12px}.gkpsch-schedule-overview>div,.gkpsch-schedule-overview .gkpsch-changes-card{padding:16px}.gkpsch-upcoming-card:before,.gkpsch-changes-card:before{display:none}.gkpsch-upcoming-card>p:not(.gkpsch-overview-date){max-width:none}.gkpsch-upcoming-card>a{position:static;display:inline-block;margin-top:8px}.gkpsch-schedule-aside{grid-template-columns:1fr}.gkpsch-week-day{grid-template-columns:48px minmax(0,1fr)}.gkpsch-block article.gkpsch-event{gap:8px;padding:10px}.gkpsch-block article.gkpsch-event[data-vestment-color]{padding-inline-start:22px}.gkpsch-service-compact[data-vestment-color]{padding-inline-start:26px}.gkpsch-upcoming-card[data-vestment-color]{padding-inline-start:28px}.gkpsch-event-time{width:46px;font-size:18px}.gkpsch-event-copy h3{font-size:18px}.gkpsch-period-nav a{font-size:11px}}
 
 /* One balanced seven-column month, with calendar commemorations and compact services. */
 .gkpsch-schedule .gkpsch-month{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:5px;margin:0;background:transparent}
