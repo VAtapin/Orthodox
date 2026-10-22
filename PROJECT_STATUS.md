@@ -2,7 +2,7 @@
 
 ## Current state
 
-The repository contains the Georg-Kloster Prihod theme (1.0.0), Parish Core (0.2.8), and Connect Hub (0.3.7). The theme has five visual styles, native Customizer controls, a standard WordPress widget area, English gettext source strings, and Russian, German, Polish, and Ukrainian catalogs. Author: Atapin Vladimir (`atapin`); site: https://georg-kloster.ru/; email: atapin@gmail.com.
+The repository contains the Georg-Kloster Prihod theme (1.0.0), Parish Core (0.2.9), and Connect Hub (0.3.7). The theme has five visual styles, native Customizer controls, a standard WordPress widget area, English gettext source strings, and Russian, German, Polish, and Ukrainian catalogs. Author: Atapin Vladimir (`atapin`); site: https://georg-kloster.ru/; email: atapin@gmail.com.
 
 The merged Parish Schedule reads vestment recommendations from Bible Desktop `day.vestment.color`; API `violet` maps to the existing `purple` palette key. Existing manual service colors and date overrides remain available. White vestments use a wider silver frosted-pattern stripe so they remain visible against white schedule cards.
 
@@ -28,7 +28,7 @@ Version 1.0.0 is submitted in WordPress.org Themes Trac ticket [#296403](https:/
 
 `php tests/lint.php` passed; `php tests/run.php` passed 70 isolated assertions. Connect Hub catalogs compile and `python tests/plugin-i18n-check.py --only georg-kloster-connect-hub` passed (638 translated messages); `python scripts/package.py --only connect-hub` built the 0.3.7 ZIP. The WordPress Playground integration run could not start because npm registry DNS/network access failed, so the new live-worker/journal smoke assertions still need a WordPress runtime check.
 
-Vestment API integration: `php tests/run.php` passes 78 isolated assertions and `php tests/lint.php` passes. The Parish merge Blueprint could not run because `registry.npmjs.org` DNS was unavailable; the Core 0.2.8 ZIP is packaged locally. A direct live Bible Desktop API check from this environment also failed at DNS resolution, so January 2027 production responses were not confirmed. All vestment colors now share the same width, bordered frost-pattern stripe in week, month, list and compact service views.
+Vestment API integration: `php tests/run.php` passes 78 isolated assertions and `php tests/lint.php` passes. The Parish merge Blueprint could not run because `registry.npmjs.org` DNS was unavailable; the Core 0.2.9 ZIP is packaged locally. A direct live Bible Desktop API check from this environment also failed at DNS resolution, so January 2027 production responses were not confirmed. All vestment colors share one patterned stripe style; non-white colors have brighter, more saturated fills and borders.
 
 ## Next steps
 

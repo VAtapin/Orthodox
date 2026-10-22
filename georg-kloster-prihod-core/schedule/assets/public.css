@@ -30,12 +30,12 @@ body .gkpsch-service-icon.wp-lightbox-container button.lightbox-trigger{inset:0!
 /* One framed, patterned swatch style keeps every vestment color equally visible. */
 .gkpsch-service-feast{font-weight:600;font-size:.95em;line-height:1.45;margin-block:8px}.gkpsch-vestment-label{display:block;font-size:.8em;margin-block:5px}.gkpsch-service-compact[data-vestment-color],.gkpsch-event[data-vestment-color],.gkpsch-upcoming-card[data-vestment-color]{position:relative;box-shadow:none}.gkpsch-service-compact[data-vestment-color],.gkpsch-event[data-vestment-color]{padding-inline-start:14px}
 [data-vestment-color="white"]{--gkpsch-vestment-edge:#aeb8c3;--gkpsch-vestment-fill:#f3f5f7}
-[data-vestment-color="red"]{--gkpsch-vestment-edge:#9e2228;--gkpsch-vestment-fill:#f5dfe0}
-[data-vestment-color="gold"]{--gkpsch-vestment-edge:#977500;--gkpsch-vestment-fill:#f8edc9}
-[data-vestment-color="green"]{--gkpsch-vestment-edge:#126c37;--gkpsch-vestment-fill:#deeee3}
-[data-vestment-color="blue"]{--gkpsch-vestment-edge:#216a92;--gkpsch-vestment-fill:#dfeef6}
-[data-vestment-color="purple"]{--gkpsch-vestment-edge:#713894;--gkpsch-vestment-fill:#eee5f3}
-[data-vestment-color="black"]{--gkpsch-vestment-edge:#353a40;--gkpsch-vestment-fill:#e5e7e9}
+[data-vestment-color="red"]{--gkpsch-vestment-edge:#a91e27;--gkpsch-vestment-fill:#f3c9cd}
+[data-vestment-color="gold"]{--gkpsch-vestment-edge:#a47c00;--gkpsch-vestment-fill:#f6e39e}
+[data-vestment-color="green"]{--gkpsch-vestment-edge:#087c35;--gkpsch-vestment-fill:#bfe6ca}
+[data-vestment-color="blue"]{--gkpsch-vestment-edge:#087baa;--gkpsch-vestment-fill:#bfe3f4}
+[data-vestment-color="purple"]{--gkpsch-vestment-edge:#7835a0;--gkpsch-vestment-fill:#dfc8ed}
+[data-vestment-color="black"]{--gkpsch-vestment-edge:#252a30;--gkpsch-vestment-fill:#d7dade}
 :is(.gkpsch-service-compact,.gkpsch-event,.gkpsch-upcoming-card)[data-vestment-color]:after{content:"";position:absolute;inset-block:0;inset-inline-start:0;width:12px;background-color:var(--gkpsch-vestment-fill);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%236f7d8b' stroke-width='.8' stroke-linecap='round' stroke-linejoin='round' opacity='.8'%3E%3Cpath d='M12 22V2m0 6-3-3m3 6 4-4m-4 9-4-4m4 6 4-4M2 12h20m-8 0 3-3m-6 3-3-3m8 3 3 3m-8-3-3 3'/%3E%3C/g%3E%3C/svg%3E");background-size:12px 12px;border-inline:2px solid var(--gkpsch-vestment-edge);pointer-events:none}
 
 .gkpsch-schedule-overview>.gkpsch-upcoming-card:only-child{grid-column:1/-1}
