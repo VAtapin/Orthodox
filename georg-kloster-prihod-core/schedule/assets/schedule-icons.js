@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 label.title = primary.title;
                 const choice = label.closest('[data-gkpsch-month-day]');
                 if (choice) {
+                    choice.dataset.vestmentColor = Object.hasOwn(colors, info.color) ? info.color : '';
                     choice.setAttribute('aria-label', `${choice.getAttribute('aria-label')} · ${primary.title}`);
                     choice.classList.toggle('is-great-feast', Array.isArray(info.feasts) && info.feasts.length > 0);
                     const oldDay = choice.querySelector('[data-gkpsch-old-day]');
