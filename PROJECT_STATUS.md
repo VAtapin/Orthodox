@@ -34,4 +34,4 @@ Vestment API integration: `php tests/run.php` passes 78 isolated assertions and 
 
 Install `build/georg-kloster-connect-hub-0.3.8.zip` on `georg-kloster.ru`, enter the reCAPTCHA site and secret keys under Connect Hub > Settings > General, then submit a test question and confirm a low-score response is rejected. On the intended site, use “Connect / check incoming replies” to move the Telegram bot webhook there; the old application will stop receiving updates. Activate and verify MailPoet sending with the configured WP Mail SMTP transport before announcing the newsletter publicly; a test email was intentionally not sent. WordPress.org manual review remains pending.
 
-Last related code commit: pending reCAPTCHA v3 implementation commit on `main`.
+Last related code commit: `624c44e` — “Add reCAPTCHA protection to public forms” on `main`.
