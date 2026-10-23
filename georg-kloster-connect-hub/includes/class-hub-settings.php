@@ -20,7 +20,11 @@ final class Hub_Settings {
     }
     public static function sanitize_general( $input ): array {
         $current = self::get();
-        return array( 'enabled' => is_array( $input ) && ! empty( $input['enabled'] ), 'recaptcha_site_key' => $current['recaptcha_site_key'], 'recaptcha_threshold' => $current['recaptcha_threshold'] );
+        $site_key = $current['recaptcha_site_key'];
+        $threshold = $current['recaptcha_threshold'];
+        if ( is_array( $input ) && isset( $input['recaptcha_site_key'] ) && is_string( $input['recaptcha_site_key'] ) ) { $site_key = sanitize_text_field( trim( $input['recaptcha_site_key'] ) ); }
+        if ( is_array( $input ) && isset( $input['recaptcha_threshold'] ) && is_numeric( $input['recaptcha_threshold'] ) ) { $threshold = max( 0.1, min( 0.9, round( (float) $input['recaptcha_threshold'], 1 ) ) ); }
+        return array( 'enabled' => is_array( $input ) && ! empty( $input['enabled'] ), 'recaptcha_site_key' => $site_key, 'recaptcha_threshold' => $threshold );
     }
     public static function save_general(): void {
         if ( ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Access denied.', 'georg-kloster-connect-hub' ) ); }

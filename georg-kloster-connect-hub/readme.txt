@@ -4,7 +4,7 @@ Tags: contact form, messages, social, publishing, telegram
 Requires at least: 6.5
 Requires PHP: 8.0
 Tested up to: 7.1
-Stable tag: 0.3.9
+Stable tag: 0.3.10
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -57,7 +57,7 @@ Development repository: https://github.com/VAtapin/Orthodox/tree/main/georg-klos
 
 == Installation ==
 
-Upload georg-kloster-connect-hub-0.3.9.zip. Replace an existing Connect Hub version,
+Upload georg-kloster-connect-hub-0.3.10.zip. Replace an existing Connect Hub version,
 or install as a new plugin and activate it.
 Activation deactivates the previous georg-kloster-prihod-social development plugin
 without deleting its settings. Keep only Connect Hub active. Network-active old
@@ -139,6 +139,9 @@ Configure optional reCAPTCHA v3 site and secret keys under Connect Hub > Setting
 General reception, retention and reCAPTCHA settings use one save button. A status message confirms whether both reCAPTCHA keys are saved; the secret key is never displayed.
 
 == Changelog ==
+
+= 0.3.10 =
+Preserve newly submitted reCAPTCHA site keys when WordPress sanitizes the settings option.
 
 = 0.3.9 =
 Save all general and reCAPTCHA settings through one form and return to the settings page. Show whether reCAPTCHA keys are configured without exposing the secret.

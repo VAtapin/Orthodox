@@ -53,7 +53,9 @@ $gap = Publication_Rules::next_time( array_merge( $rule, array( 'frequency' => '
 $check( '2026-03-29 03:30' === wp_date( 'Y-m-d H:i', $gap ), 'Nonexistent spring time was not normalized forward.' );
 
 // reCAPTCHA v3 is verified server-side, and its secret is non-autoloaded.
+update_option( 'gkch_settings', array( 'enabled' => true ) );
 update_option( 'gkch_settings', array( 'enabled' => true, 'recaptcha_site_key' => 'synthetic-site-key', 'recaptcha_threshold' => 0.5 ), false );
+$check( 'synthetic-site-key' === GeorgKlosterPrihodSocial\Hub_Settings::get()['recaptcha_site_key'], 'WordPress settings sanitization discarded the submitted reCAPTCHA site key.' );
 update_option( 'gkch_recaptcha_secret', 'synthetic-secret', false );
 $check( ! isset( wp_load_alloptions()['gkch_recaptcha_secret'] ), 'reCAPTCHA secret was stored as an autoload option.' );
 $check( 'synthetic-site-key' === GeorgKlosterPrihodSocial\Hub_Settings::sanitize_general( array( 'enabled' => true ) )['recaptcha_site_key'], 'Saving general settings removed the reCAPTCHA configuration.' );
