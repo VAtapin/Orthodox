@@ -12,6 +12,7 @@ final class Plugin {
         Forms::register();
         Requests::hooks();
         Telegram_Requests::hooks();
+        Telegram_Bot::hooks();
         Outgoing_Log::schedule();
         add_action( 'wp_enqueue_scripts', array( Request_Form::class, 'enqueue_styles' ) );
         add_action( 'gkps_request_created', array( self::class, 'notify_by_email' ) );

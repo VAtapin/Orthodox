@@ -15,7 +15,7 @@ final class Admin {
     public static function order_menu(): void {
         global $submenu;
         if ( empty( $submenu['gkps'] ) ) { return; }
-        $order = array_flip( array( 'gkps', 'gkps-requests', 'gkch-publications', 'gkch-log', 'gkch-settings' ) );
+        $order = array_flip( array( 'gkps', 'gkps-requests', 'gkch-publications', 'gkch-telegram', 'gkch-log', 'gkch-settings' ) );
         usort( $submenu['gkps'], static fn( $a, $b ) => ( $order[$a[2]] ?? 99 ) <=> ( $order[$b[2]] ?? 99 ) );
     }
 
@@ -42,12 +42,12 @@ final class Admin {
         }
         if ( isset( $input['telegram_chat_id'] ) && is_string( $input['telegram_chat_id'] ) ) {
             $chat_id = trim( wp_unslash( $input['telegram_chat_id'] ) );
-            if ( '' !== $chat_id && ! preg_match( '/^[1-9][0-9]*$/D', $chat_id ) ) { throw new \InvalidArgumentException( 'Для личного чата отдела укажите положительный числовой Telegram Chat ID. Оставьте поле пустым, чтобы использовать общий чат.' ); }
+            if ( '' !== $chat_id && ! preg_match( '/^[1-9][0-9]*$/D', $chat_id ) ) { throw new \InvalidArgumentException( __( 'Enter a positive numeric Telegram Chat ID for this form.', 'georg-kloster-connect-hub' ) ); }
             $result['telegram_chat_id'] = $chat_id;
         }
         if ( isset( $input['telegram_staff'] ) && is_scalar( $input['telegram_staff'] ) ) {
             $staff = absint( $input['telegram_staff'] );
-            if ( $staff && ( ! user_can( $staff, 'view_gkps_requests' ) || ! user_can( $staff, 'reply_gkps_requests' ) ) ) { throw new \InvalidArgumentException( 'Выберите сотрудника с правом просматривать обращения и отвечать на них.' ); }
+            if ( $staff && ( ! user_can( $staff, 'view_gkps_requests' ) || ! user_can( $staff, 'reply_gkps_requests' ) ) ) { throw new \InvalidArgumentException( __( 'Choose a staff member who can view and reply to messages.', 'georg-kloster-connect-hub' ) ); }
             $result['telegram_staff'] = $staff;
         }
         return $result;

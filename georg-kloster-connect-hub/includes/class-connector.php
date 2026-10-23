@@ -25,7 +25,7 @@ final class Connector {
             $telegram_target = '';
             if ( 'telegram' === $this->id ) {
                 $form_id = absint( get_post_meta( (int) $request, '_gkch_form_id', true ) );
-                $telegram_target = Forms::telegram_target( $form_id, $settings['target'] );
+                $telegram_target = Forms::telegram_target( $form_id, '' );
             }
             $this->queue( __( 'New message. Open the private parish dashboard.', 'georg-kloster-connect-hub' ), admin_url( 'admin.php?page=gkps-requests&request_id=' . absint( $request ) ), 'request', (int) $request, array(), $telegram_target );
         } );
@@ -33,14 +33,14 @@ final class Connector {
             foreach ( get_post_meta( $request, '_gkps_jobs_' . $this->id, true ) ?: array() as $id ) { delete_option( 'gkps_job_' . $this->id . '_' . $id ); wp_clear_scheduled_hook( 'gkps_' . $this->id . '_worker', array( $id ) ); }
         } );
         add_action( 'gkpsch_schedule_changed', function ( $service ) {
-            if ( ! empty( $this->settings()['notify_schedule'] ) && 'publish' === get_post_status( $service ) ) {
+            if ( 'telegram' === $this->id && ! empty( $this->settings()['notify_schedule'] ) && 'publish' === get_post_status( $service ) ) {
                 $url = home_url( '/' );
                 $this->queue( __( 'Schedule updated:', 'georg-kloster-connect-hub' ) . ' ' . get_the_title( $service ), $url, 'schedule', (int) $service );
             }
         } );
     }
     public function __get( string $key ) { return in_array( $key, array( 'id', 'title' ), true ) ? $this->$key : null; }
-    public function settings(): array { $saved = get_option( 'gkps_connect_' . $this->id, array() ); return array_merge( array( 'enabled' => false, 'token' => '', 'target' => '', 'api_version' => '', 'recipient' => '', 'application_key' => '', 'application_secret' => '', 'notify_requests' => false, 'notify_schedule' => false ), is_array( $saved ) ? $saved : array() ); }
+    public function settings(): array { $saved = get_option( 'gkps_connect_' . $this->id, array() ); return array_merge( array( 'enabled' => false, 'token' => '', 'target' => '', 'api_version' => '', 'recipient' => '', 'application_key' => '', 'application_secret' => '', 'notify_requests' => false, 'notify_schedule' => false, 'telegram_broadcasts' => false, 'daily_digest_enabled' => false, 'daily_digest_time' => '08:00' ), is_array( $saved ) ? $saved : array() ); }
     public function settings_url(): string { return add_query_arg( array( 'page' => 'gkch-settings', 'network' => $this->id ), admin_url( 'admin.php' ) ); }
     private function authorize(): void { if ( ! current_user_can( 'manage_options' ) && ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Insufficient permissions.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); } }
     public function menu(): void {
@@ -67,7 +67,7 @@ final class Connector {
     public function valid( array $settings ): bool {
         if ( Social_Providers::supports( $this->id ) ) { return Social_Providers::valid( $this->id, $settings ); }
         if ( empty( $settings['enabled'] ) || ! is_string( $settings['token'] ) || ! is_string( $settings['target'] ) ) { return false; }
-        if ( 'telegram' === $this->id ) { return (bool) preg_match( '/^[0-9]+:[A-Za-z0-9_-]{10,}$/D', $settings['token'] ) && (bool) preg_match( '/^(?:-?[0-9]+|@[A-Za-z0-9_]{5,})$/D', $settings['target'] ); }
+        if ( 'telegram' === $this->id ) { return (bool) preg_match( '/^[0-9]+:[A-Za-z0-9_-]{10,}$/D', $settings['token'] ); }
         if ( ! preg_match( '/^[A-Za-z0-9._-]+$/D', $settings['token'] ) || ! preg_match( '/^[0-9]+$/D', $settings['target'] ) || ! preg_match( '/^v[0-9]+\.[0-9]+$/D', $settings['api_version'] ) ) { return false; }
         return true;
     }
@@ -79,22 +79,22 @@ final class Connector {
         if ( 'telegram' === $this->id ) {
             $error_codes = isset( $_GET['gkps_connect_error'] ) && is_string( $_GET['gkps_connect_error'] ) ? explode( ',', $_GET['gkps_connect_error'] ) : array();
             foreach ( self::telegram_error_messages() as $code => $message ) { if ( in_array( $code, $error_codes, true ) ) { echo '<div class="notice notice-error"><p>' . esc_html( $message ) . '</p></div>'; } }
-            echo '<p>' . esc_html__( 'A bot token and recipient Chat ID are required. For a private chat, enter its numeric Chat ID; for a channel, enter @channel_name. Do not enter the bot\'s own username here.', 'georg-kloster-connect-hub' ) . '</p>';
+        echo '<p>' . esc_html__( 'A bot token is required. Each form uses only its own private Chat ID for contact messages; the old global Chat ID is not used. Public posts and schedule messages go to people who pressed Start in the bot.', 'georg-kloster-connect-hub' ) . '</p>';
         }
         echo '<div class="wrap"><h1>' . esc_html( $this->title ) . '</h1><p>' . esc_html( $this->health()['message'] ) . '</p><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="gkps_connect_' . esc_attr( $this->id ) . '">'; wp_nonce_field( 'gkps_connect_' . $this->id );
         echo '<p><label><input type="checkbox" name="enabled" value="1"' . checked( $settings['enabled'], true, false ) . '> ' . esc_html__( 'Allow sending to the external service', 'georg-kloster-connect-hub' ) . '</label></p><p><label>' . esc_html__( 'Token (leave empty to keep the existing token)', 'georg-kloster-connect-hub' ) . ' <input type="password" name="token" autocomplete="new-password" value=""></label> <label><input type="checkbox" name="clear_token" value="1"> ' . esc_html__( 'Delete token', 'georg-kloster-connect-hub' ) . '</label></p>';
-        $fields = array( 'target' => 'telegram' === $this->id ? __( 'Chat ID / @channel', 'georg-kloster-connect-hub' ) : __( 'Facebook Page ID', 'georg-kloster-connect-hub' ) );
+        $fields = 'telegram' === $this->id ? array() : array( 'target' => __( 'Facebook Page ID', 'georg-kloster-connect-hub' ) );
         if ( in_array( $this->id, array( 'instagram', 'vk', 'ok' ), true ) ) { $fields['target'] = 'vk' === $this->id ? __( 'VK owner ID', 'georg-kloster-connect-hub' ) : ( 'ok' === $this->id ? __( 'OK group ID', 'georg-kloster-connect-hub' ) : __( 'Instagram account ID', 'georg-kloster-connect-hub' ) ); }
         if ( 'telegram' !== $this->id && 'ok' !== $this->id ) { $fields['api_version'] = __( 'API version from your application', 'georg-kloster-connect-hub' ); }
         foreach ( $fields as $key => $label ) {
             echo '<p><label>' . esc_html( $label ) . '<br><input class="regular-text" name="' . esc_attr( $key ) . '" value="' . esc_attr( $settings[ $key ] ) . '"></label>';
             if ( 'api_version' === $key ) {
-                echo '<br><span class="description">' . ( 'vk' === $this->id ? 'Это версия методов VK API, а не токен. Скопируйте версию из документации метода; формат — например, <code>5.199</code>, без буквы v.' : 'Это версия Graph API Meta в URL запросов, а не ключ и не версия плагина. Скопируйте значение из списка версий в Graph API Explorer, например в формате <code>vNN.N</code>.' ) . '</span>';
+                echo '<br><span class="description">' . ( 'vk' === $this->id ? esc_html__( 'This is the VK API method version, not a token. Copy it from the method documentation, for example 5.199, without a v prefix.', 'georg-kloster-connect-hub' ) : esc_html__( 'This is the Meta Graph API version used in request URLs, not a key or plugin version. Copy a supported version from Graph API Explorer, for example vNN.N.', 'georg-kloster-connect-hub' ) ) . '</span>';
             }
             echo '</p>';
         }
         if ( 'telegram' === $this->id ) {
-            foreach ( array( 'notify_requests' => __( 'Notify about new messages', 'georg-kloster-connect-hub' ), 'notify_schedule' => __( 'Notify about changes to published schedules', 'georg-kloster-connect-hub' ) ) as $key => $label ) { echo '<p><label><input type="checkbox" name="' . esc_attr( $key ) . '" value="1"' . checked( $settings[ $key ], true, false ) . '> ' . esc_html( $label ) . '</label></p>'; }
+            foreach ( array( 'notify_requests' => __( 'Notify about new messages', 'georg-kloster-connect-hub' ), 'notify_schedule' => __( 'Notify subscribers about changes to the published schedule', 'georg-kloster-connect-hub' ) ) as $key => $label ) { echo '<p><label><input type="checkbox" name="' . esc_attr( $key ) . '" value="1"' . checked( $settings[ $key ], true, false ) . '> ' . esc_html( $label ) . '</label></p>'; }
         }
         if ( Social_Providers::supports( $this->id ) ) { echo '<p>' . esc_html( Social_Providers::help( $this->id ) ) . '</p>'; }
         if ( 'ok' === $this->id ) {
@@ -113,14 +113,12 @@ final class Connector {
         echo '</div>';
     }
     private function documentation(): void {
-        $guides = array(
-            'telegram' => '<h3>Telegram: подключение и отдельный чат для каждого отдела</h3><ol><li>Откройте <a href="https://t.me/BotFather" target="_blank" rel="noopener noreferrer">@BotFather</a>, отправьте <code>/newbot</code>, задайте имя и username бота. Скопируйте выданный токен в поле «Токен» выше. Токен — пароль бота: не публикуйте его и не отправляйте в переписке.</li><li>Для общего чата откройте созданного бота и нажмите Start. Чтобы узнать свой числовой ID, откройте <a href="https://t.me/userinfobot" target="_blank" rel="noopener noreferrer">@userinfobot</a>. В поле «Chat ID / @channel» укажите свой числовой ID. Это общий адрес по умолчанию для форм без отдельного адреса.</li><li>Затем откройте Connect Hub → Forms, выберите нужный отдел и в его блоке Telegram укажите личный числовой Chat ID ответственного. Каждый сотрудник должен открыть именно вашего бота и нажать Start до первой отправки. Выберите соответствующего сотрудника WordPress, от имени которого сохранять ответы.</li><li>Включите отправку и уведомления о новых обращениях. Если сотрудники должны видеть полный текст и отвечать прямо в Telegram, включите «Send complete messages and receive replies in a private chat», сохраните настройки и нажмите «Connect / check incoming replies».</li><li>Отправьте тестовое обращение отдельно через форму каждого отдела и проверьте, что оно пришло в нужный личный чат. Telegram принимает ответы только как Reply на сообщение бота с обращением. Общий токен один; маршруты, ответственные и ответы разделены по формам.</li></ol><p>Для ответов нужен личный положительный числовой ID. Имя бота, username сотрудника, ID группы и <code>@channel</code> не подходят для личной переписки. Подробности: <a href="https://core.telegram.org/bots/features#botfather" target="_blank" rel="noopener noreferrer">создание бота</a> · <a href="https://core.telegram.org/bots/api" target="_blank" rel="noopener noreferrer">Telegram Bot API</a>.</p>',
-            'facebook' => '<h3>Facebook: Page token, ID страницы и версия Graph API</h3><ol><li>Откройте <a href="https://developers.facebook.com/apps/" target="_blank" rel="noopener noreferrer">Meta for Developers → My Apps</a> и создайте приложение. Добавьте Facebook Login/Pages API и привяжите страницу Facebook, на которой у вас есть право публиковать.</li><li>В <a href="https://developers.facebook.com/tools/explorer/" target="_blank" rel="noopener noreferrer">Graph API Explorer</a> выберите своё приложение, запросите Page Access Token для нужной страницы и разрешения, необходимые для публикации: <code>pages_manage_posts</code> и <code>pages_read_engagement</code>. Для работы приложения вне ролей разработчика/тестировщика Meta может потребовать App Review и расширенный доступ.</li><li>Скопируйте Page Access Token в поле «Токен». Укажите числовой Page ID в поле «Facebook Page ID». Не используйте пароль Facebook или App Secret вместо Page Access Token.</li><li>Поле «API version» — это версия адреса Graph API, а не ключ и не версия плагина. В Graph API Explorer выберите поддерживаемую версию в выпадающем списке рядом с запросом и перепишите её точно, с префиксом <code>v</code> (например, формат <code>vNN.N</code>).</li><li>Сохраните настройки, включите канал и сначала проверьте публикацию на тестовой записи. Этот канал публикует выбранные записи WordPress на страницу; уведомления о формах отправляются через Telegram и email.</li></ol><p>Ссылки: <a href="https://developers.facebook.com/docs/pages-api/getting-started/" target="_blank" rel="noopener noreferrer">начало работы с Pages API</a> · <a href="https://developers.facebook.com/docs/pages-api/posts/" target="_blank" rel="noopener noreferrer">публикация постов</a> · <a href="https://developers.facebook.com/docs/graph-api/overview/versioning/" target="_blank" rel="noopener noreferrer">версии Graph API</a>.</p>',
-            'instagram' => '<h3>Instagram: профессиональный аккаунт, токен, ID и версия API</h3><ol><li>Переведите Instagram в профессиональный аккаунт Business или Creator и свяжите его со страницей Facebook, администратором которой вы являетесь.</li><li>В <a href="https://developers.facebook.com/apps/" target="_blank" rel="noopener noreferrer">Meta for Developers</a> создайте/выберите приложение и настройте Instagram API with Facebook Login. В Graph API Explorer получите токен пользователя с разрешениями <code>instagram_basic</code> и <code>instagram_content_publish</code> (для поиска связанной страницы также может потребоваться <code>pages_show_list</code>). При использовании вне ролей приложения может потребоваться App Review.</li><li>Вставьте токен в поле «Токен». В поле «Instagram account ID» укажите ID именно профессионального аккаунта Instagram, связанного со страницей, а не username и не Page ID. Его можно найти через связанный Page node и поле <code>instagram_business_account.id</code> в Graph API Explorer.</li><li>Поле «API version» — версия Graph API, используемая в запросах к Meta. Выберите доступную поддерживаемую версию в Graph API Explorer и скопируйте строку целиком, например в формате <code>vNN.N</code>. Это не секретный ключ.</li><li>Публикация требует JPEG-запись WordPress с публичным HTTPS URL: Meta должна иметь возможность скачать изображение. Сохраните настройки и проверьте на тестовой публикации.</li></ol><p>Ссылки: <a href="https://developers.facebook.com/docs/instagram-platform/" target="_blank" rel="noopener noreferrer">Instagram Platform</a> · <a href="https://developers.facebook.com/docs/instagram-platform/content-publishing/" target="_blank" rel="noopener noreferrer">правила публикации контента</a> · <a href="https://developers.facebook.com/tools/explorer/" target="_blank" rel="noopener noreferrer">Graph API Explorer</a>.</p>',
-            'vk' => '<h3>ВКонтакте: токен, ID владельца и версия API</h3><ol><li>Откройте <a href="https://dev.vk.com/ru" target="_blank" rel="noopener noreferrer">VK для разработчиков</a>, создайте приложение и получите пользовательский access token с правом публикации на стене (<code>wall</code>). Не вставляйте пароль аккаунта.</li><li>Укажите access token в поле «Токен». Для публикации в сообщество укажите его числовой ID со знаком минус (например, <code>-123456</code>); положительный ID означает публикацию на личной странице. У пользователя токена должны быть права публикации в этой цели.</li><li>«API version» — версия методов VK API, а не токен. Найдите версию в документации/примере метода <code>wall.post</code> в кабинете разработчика и введите только цифры в формате <code>NN.NNN</code> (например, <code>5.199</code>), без буквы <code>v</code>.</li><li>Сохраните настройки и сначала проверьте публикацию тестовой записи. Токен даёт право публиковать от имени выбранного пользователя/сообщества, поэтому храните его как пароль.</li></ol><p>Ссылки: <a href="https://dev.vk.com/ru" target="_blank" rel="noopener noreferrer">портал VK для разработчиков</a> · <a href="https://dev.vk.com/ru/method/wall.post" target="_blank" rel="noopener noreferrer">метод wall.post</a> · <a href="https://dev.vk.com/ru/api/access-token/getting-started" target="_blank" rel="noopener noreferrer">руководство по access token</a>.</p>',
-            'ok' => '<h3>Одноклассники: приложение, группа и ключи</h3><ol><li>Откройте <a href="https://apiok.ru/dev/" target="_blank" rel="noopener noreferrer">портал разработки OK</a>. Для уже существующего приложения найдите в его настройках ID приложения, публичный ключ и секретный ключ; access token создаётся там же. Официальная документация сообщает, что создание новых игр и пользовательских приложений через интерфейс OK сейчас прекращено; если приложения ещё нет, следуйте текущим указаниям портала/поддержки OK.</li><li>В поле «Token» вставьте access token; в поле «OK group ID» укажите числовой ID группы. В полях ниже укажите публичный ключ и секрет приложения. Секрет не публикуйте и не пересылайте.</li><li>Для публикации в группу приложению требуется разрешение <code>GROUP_CONTENT</code>. Если права приложения менялись, создайте новый access token после их выдачи.</li><li>Сохраните и проверьте на тестовой публикации. Для OK отдельное поле версии API не используется.</li></ol><p>Ссылки: <a href="https://apiok.ru/dev/app/create" target="_blank" rel="noopener noreferrer">создание приложения и получение ключей (актуальное уведомление OK)</a> · <a href="https://apiok.ru/dev/methods/rest/mediatopic/mediatopic.post" target="_blank" rel="noopener noreferrer">метод публикации в группу</a> · <a href="https://apiok.ru/ext/oauth/permissions" target="_blank" rel="noopener noreferrer">права приложения</a>.</p>',
-        );
-        if ( isset( $guides[$this->id] ) ) { echo '<details class="gkch-channel-guide"><summary>Подробная инструкция: куда нажать и где взять данные</summary><div class="gkch-channel-guide__content">' . wp_kses_post( $guides[$this->id] ) . '</div></details>'; }
+        $guide_file = dirname( GKPS_FILE ) . '/docs/channel-guides.json';
+        $guide_json = is_readable( $guide_file ) ? file_get_contents( $guide_file ) : false;
+        $guide_data = is_string( $guide_json ) ? json_decode( $guide_json, true ) : array();
+        $locale = substr( determine_locale(), 0, 2 );
+        $guides = is_array( $guide_data[$locale] ?? null ) ? $guide_data[$locale] : ( is_array( $guide_data['ru'] ?? null ) ? $guide_data['ru'] : array() );
+        if ( isset( $guides[$this->id] ) ) { echo '<details class="gkch-channel-guide"><summary>' . esc_html__( 'Detailed setup: where to click and find the required details', 'georg-kloster-connect-hub' ) . '</summary><div class="gkch-channel-guide__content">' . wp_kses_post( $guides[$this->id] ) . '</div></details>'; }
     }
     public function save(): void {
         $this->authorize(); check_admin_referer( 'gkps_connect_' . $this->id ); $settings = $this->settings();
@@ -130,7 +128,11 @@ final class Connector {
         }
         if ( ! empty( $_POST['clear_application_secret'] ) ) { $settings['application_secret'] = ''; }
         if ( ! empty( $_POST['clear_token'] ) ) { $settings['token'] = ''; }
-        foreach ( array( 'enabled', 'notify_requests', 'notify_schedule' ) as $key ) { $settings[ $key ] = ! empty( $_POST[ $key ] ) && ( 'telegram' === $this->id || 'enabled' === $key ); }
+        foreach ( array( 'enabled', 'notify_requests', 'notify_schedule', 'telegram_broadcasts', 'daily_digest_enabled' ) as $key ) { $settings[ $key ] = ! empty( $_POST[ $key ] ) && ( 'telegram' === $this->id || 'enabled' === $key ); }
+        if ( 'telegram' === $this->id && isset( $_POST['daily_digest_time'] ) && is_string( $_POST['daily_digest_time'] ) ) {
+            $time = sanitize_text_field( wp_unslash( $_POST['daily_digest_time'] ) );
+            if ( preg_match( '/^(?:[01][0-9]|2[0-3]):[0-5][0-9]$/D', $time ) ) { $settings['daily_digest_time'] = $time; }
+        }
         if ( 'telegram' === $this->id && $settings['enabled'] ) {
             $errors = $this->telegram_errors( $settings );
             if ( $errors ) { wp_safe_redirect( add_query_arg( 'gkps_connect_error', implode( ',', $errors ), $this->settings_url() ) ); exit; }
@@ -141,18 +143,17 @@ final class Connector {
         update_option( 'gkps_connect_' . $this->id, $settings, false ); do_action( 'gkps_connector_saved', $this->id, $settings ); wp_safe_redirect( $this->settings_url() ); exit;
     }
     public static function telegram_error_messages(): array {
-        return array( 'token_missing' => __( 'Enter the bot token. The connection was not saved.', 'georg-kloster-connect-hub' ), 'token_invalid' => __( 'The bot token format is invalid. Copy the token from BotFather. The connection was not saved.', 'georg-kloster-connect-hub' ), 'target_missing' => __( 'Enter the recipient Chat ID or @channel_name. The connection was not saved.', 'georg-kloster-connect-hub' ), 'target_invalid' => __( 'Chat ID must be a number (groups may use a leading minus sign) or @channel_name. The connection was not saved.', 'georg-kloster-connect-hub' ) );
+        return array( 'token_missing' => __( 'Enter the bot token. The connection was not saved.', 'georg-kloster-connect-hub' ), 'token_invalid' => __( 'The bot token format is invalid. Copy the token from BotFather. The connection was not saved.', 'georg-kloster-connect-hub' ) );
     }
     public function telegram_errors( array $settings ): array {
         $errors = array();
         if ( empty( $settings['token'] ) ) { $errors[] = 'token_missing'; }
         elseif ( ! is_string( $settings['token'] ) || ! preg_match( '/^[0-9]+:[A-Za-z0-9_-]{10,}$/D', $settings['token'] ) ) { $errors[] = 'token_invalid'; }
-        if ( empty( $settings['target'] ) ) { $errors[] = 'target_missing'; }
-        elseif ( ! is_string( $settings['target'] ) || ! preg_match( '/^(?:-?[0-9]+|@[A-Za-z0-9_]{5,})$/D', $settings['target'] ) ) { $errors[] = 'target_invalid'; }
         return $errors;
     }
     public function meta_box(): void {
         if ( ! $this->valid( $this->settings() ) ) { return; }
+        if ( 'telegram' === $this->id && ! Telegram_Bot::broadcasting_enabled() ) { return; }
         add_meta_box( 'gkps-connect-' . $this->id, $this->title, function () {
             wp_nonce_field( 'gkps_publish_' . $this->id, 'gkps_publish_nonce_' . $this->id );
             echo '<label><input type="checkbox" name="gkps_publish[' . esc_attr( $this->id ) . ']" value="1"> ' . esc_html__( 'Send this published post to the service', 'georg-kloster-connect-hub' ) . '</label>';
@@ -167,13 +168,16 @@ final class Connector {
     public function queue( string $text, string $url, string $kind, int $source, array $reply_context = array(), string $telegram_target = '' ): string {
         if ( ! $this->valid( $this->settings() ) ) { return ''; }
         if ( ! in_array( $kind, array( 'post', 'request', 'schedule', 'automation' ), true ) || ( 'telegram' !== $this->id && ! in_array( $kind, array( 'post', 'automation' ), true ) ) ) { return ''; }
+        if ( 'telegram' === $this->id && in_array( $kind, array( 'post', 'schedule', 'automation' ), true ) ) { return Telegram_Bot::queue( $kind, $source, $reply_context, $text, $url ); }
+        if ( 'telegram' === $this->id && 'request' !== $kind && ! Telegram_Bot::broadcasting_enabled() ) { return ''; }
         if ( 'automation' === $kind && ! Publication_Rules::allows( array( 'kind' => $kind, 'source' => $source, 'reply_context' => $reply_context ) ) ) { return ''; }
         $image = 'automation' === $kind ? Publication_Rules::image( $source ) : Social_Providers::image( $source );
         if ( 'instagram' === $this->id && ! $image ) { return ''; }
         $settings = $this->settings(); $limit = max( 1, min( 3000, (int) apply_filters( 'gkps_connector_text_limit', 900, $this->id, $kind ) ) );
         $html = 'telegram' === $this->id && 'request' === $kind && ! empty( $reply_context['telegram_html'] ) && ! empty( $reply_context['request_id'] );
         $text = $html ? wp_kses( $text, array( 'b' => array() ) ) : wp_html_excerpt( wp_strip_all_tags( $text ), $limit, '…' ); $url = esc_url_raw( $url );
-        $destination = 'telegram' === $this->id && 'request' === $kind ? ( '' !== $telegram_target ? $telegram_target : $settings['target'] ) : $settings['target'];
+        $destination = 'telegram' === $this->id && 'request' === $kind ? $telegram_target : $settings['target'];
+        if ( 'telegram' === $this->id && 'request' === $kind && ! preg_match( '/^[1-9][0-9]*$/D', $destination ) ) { return ''; }
         $id = hash( 'sha256', $this->id . $kind . $source . $text . $url . $destination . $settings['recipient'] . ( $reply_context['configuration'] ?? '' ) ); $key = 'gkps_job_' . $this->id . '_' . $id;
         $target = hash( 'sha256', $destination . '|' . $settings['recipient'] );
         if ( add_option( $key, array( 'text' => $text, 'url' => $url, 'kind' => $kind, 'source' => $source, 'target' => $target, 'telegram_target' => 'telegram' === $this->id && 'request' === $kind ? $destination : '', 'status' => 'pending', 'attempts' => 0, 'reply_context' => $reply_context, 'image_url' => 'instagram' === $this->id ? $image : '' ), '', false ) ) {
@@ -188,7 +192,7 @@ final class Connector {
         $text = $job['text'];
         if ( ! ( 'telegram' === $this->id && 'request' === ( $job['kind'] ?? '' ) ) ) { $text .= ( $html ? "\n\n" : "\n" ) . ( $html ? esc_html( $job['url'] ) : $job['url'] ); }
         $headers = array( 'Content-Type' => 'application/json' );
-        if ( 'telegram' === $this->id ) { $url = 'https://api.telegram.org/bot' . $settings['token'] . '/sendMessage'; $body = array( 'chat_id' => ! empty( $job['telegram_target'] ) ? $job['telegram_target'] : $settings['target'], 'text' => $text, 'link_preview_options' => array( 'is_disabled' => true ) ); }
+        if ( 'telegram' === $this->id ) { $url = 'https://api.telegram.org/bot' . $settings['token'] . '/sendMessage'; $body = array( 'chat_id' => (string) ( $job['telegram_target'] ?? '' ), 'text' => $text, 'link_preview_options' => array( 'is_disabled' => true ) ); }
         else {
             $headers['Authorization'] = 'Bearer ' . $settings['token'];
             $url = 'https://graph.facebook.com/' . $settings['api_version'] . '/' . $settings['target'] . '/feed';
@@ -201,9 +205,12 @@ final class Connector {
     public function worker( string $id ): void {
         if ( ! preg_match( '/^[a-f0-9]{64}$/D', $id ) ) { return; }
         $key = 'gkps_job_' . $this->id . '_' . $id; $job = get_option( $key );
+        // Older queued Telegram post jobs targeted one private Chat ID. Never replay
+        // them after publications have moved to the subscriber broadcast queue.
+        if ( 'telegram' === $this->id && is_array( $job ) && in_array( $job['kind'] ?? '', array( 'post', 'schedule', 'automation' ), true ) ) { $job['status'] = 'cancelled'; update_option( $key, $job, false ); return; }
         if ( ! is_array( $job ) || in_array( $job['status'], array( 'sent', 'cancelled', 'uncertain' ), true ) || $job['attempts'] >= ( 'instagram' === $this->id ? 16 : 3 ) || ! $this->valid( $this->settings() ) ) { return; }
         if ( ! apply_filters( 'gkps_connector_job_allowed', true, $this->id, $job ) ) { $job['status'] = 'cancelled'; update_option( $key, $job, false ); return; }
-        $settings = $this->settings(); $destination = 'telegram' === $this->id && 'request' === ( $job['kind'] ?? '' ) ? ( $job['telegram_target'] ?? $settings['target'] ) : $settings['target']; if ( ! hash_equals( $job['target'], hash( 'sha256', $destination . '|' . $settings['recipient'] ) ) ) { $job['status'] = 'cancelled'; update_option( $key, $job, false ); return; }
+        $settings = $this->settings(); $destination = 'telegram' === $this->id && 'request' === ( $job['kind'] ?? '' ) ? ( $job['telegram_target'] ?? '' ) : $settings['target']; if ( ( 'telegram' === $this->id && 'request' === ( $job['kind'] ?? '' ) && ! preg_match( '/^[1-9][0-9]*$/D', $destination ) ) || ! hash_equals( $job['target'], hash( 'sha256', $destination . '|' . $settings['recipient'] ) ) ) { $job['status'] = 'cancelled'; update_option( $key, $job, false ); return; }
         if ( ! Publication_Rules::allows( $job ) || ( 'request' === $job['kind'] && ( ! get_post( $job['source'] ) || get_option( 'gkps_purge_job' ) ) ) || ( ! in_array( $job['kind'], array( 'request', 'automation' ), true ) && 'publish' !== get_post_status( $job['source'] ) ) ) { $job['status'] = 'cancelled'; update_option( $key, $job, false ); return; }
         $lock = $key . '_lock'; $owner = Lock::acquire( $lock, 60 );
         if ( ! $owner ) { return; }
@@ -254,7 +261,7 @@ final class Connector {
         $last = get_option( 'gkps_connect_last_' . $this->id, array() ); $id = $last['id'] ?? '';
         if ( ! is_string( $id ) || ! preg_match( '/^[a-f0-9]{64}$/D', $id ) || ! $this->valid( $this->settings() ) ) { wp_die( esc_html__( 'Correct the connection first.', 'georg-kloster-connect-hub' ) ); }
         $key = 'gkps_job_' . $this->id . '_' . $id; $job = get_option( $key ); $settings = $this->settings();
-        $destination = 'telegram' === $this->id && 'request' === ( $job['kind'] ?? '' ) ? ( $job['telegram_target'] ?? $settings['target'] ) : $settings['target'];
+        $destination = 'telegram' === $this->id && 'request' === ( $job['kind'] ?? '' ) ? ( $job['telegram_target'] ?? '' ) : $settings['target'];
         if ( ! is_array( $job ) || 'failed' !== $job['status'] || ! hash_equals( $job['target'], hash( 'sha256', $destination . '|' . $settings['recipient'] ) ) ) { wp_die( esc_html__( 'The job is unavailable or the recipient has changed. Create a new publication.', 'georg-kloster-connect-hub' ) ); }
         if ( ! empty( $job['container_terminal'] ) ) { unset( $job['container_id'], $job['container_terminal'] ); }
         $job['attempts'] = 0; $job['status'] = 'pending'; update_option( $key, $job, false );

@@ -25,7 +25,7 @@ final class Publication_Rules {
     public static function can_manage(): bool { return current_user_can( 'manage_gkps_settings' ) && current_user_can( 'publish_posts' ); }
 
     public static function defaults(): array {
-        return array( 'id' => 0, 'name' => '', 'enabled' => false, 'type' => 'new_posts', 'channels' => array(), 'category' => 0, 'text' => '', 'url' => '', 'image' => 0, 'frequency' => 'daily', 'time' => '09:00', 'weekday' => 1, 'date' => '', 'next' => 0, 'revision' => '', 'owner' => 0 );
+        return array( 'id' => 0, 'name' => '', 'enabled' => false, 'type' => 'new_posts', 'channels' => array(), 'category' => 0, 'text' => '', 'text_ru' => '', 'text_de' => '', 'url' => '', 'image' => 0, 'frequency' => 'daily', 'time' => '09:00', 'weekday' => 1, 'date' => '', 'next' => 0, 'revision' => '', 'owner' => 0 );
     }
 
     public static function get( int $id ): ?array {
@@ -53,7 +53,7 @@ final class Publication_Rules {
             // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
             if ( ( $id && ! $old ) || ( ! $id && count( self::all() ) >= 100 ) ) { throw new \InvalidArgumentException( __( 'Rule not found or rule limit reached.', 'georg-kloster-connect-hub' ) ); }
             $rule = self::defaults();
-            foreach ( array( 'name', 'type', 'text', 'url', 'frequency', 'time', 'date' ) as $field ) {
+            foreach ( array( 'name', 'type', 'text', 'text_ru', 'text_de', 'url', 'frequency', 'time', 'date' ) as $field ) {
                 // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
                 if ( isset( $input[$field] ) && ! is_string( $input[$field] ) ) { throw new \InvalidArgumentException( __( 'Invalid publication rule.', 'georg-kloster-connect-hub' ) ); }
                 if ( isset( $input[$field] ) ) { $rule[$field] = 'text' === $field ? sanitize_textarea_field( $input[$field] ) : sanitize_text_field( $input[$field] ); }
@@ -64,6 +64,10 @@ final class Publication_Rules {
                 if ( isset( $input[$field] ) ) { $rule[$field] = absint( $input[$field] ); }
             }
             $rule['enabled'] = ! empty( $input['enabled'] );
+            if ( '' === $rule['text_ru'] && '' === $rule['text_de'] && '' !== $rule['text'] ) {
+                if ( 'de' === substr( determine_locale(), 0, 2 ) ) { $rule['text_de'] = $rule['text']; }
+                else { $rule['text_ru'] = $rule['text']; }
+            }
             $channels = isset( $input['channels'] ) && is_array( $input['channels'] ) ? array_filter( $input['channels'], 'is_string' ) : array();
             $rule['channels'] = array_values( array_intersect( array_keys( Publications::titles() ), $channels ) );
             // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
@@ -71,8 +75,10 @@ final class Publication_Rules {
             // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
             if ( $rule['category'] && ! term_exists( $rule['category'], 'category' ) ) { throw new \InvalidArgumentException( __( 'Choose an existing category.', 'georg-kloster-connect-hub' ) ); }
             if ( 'message' === $rule['type'] ) {
+                $needs_general_text = (bool) array_diff( $rule['channels'], array( 'telegram' ) );
                 // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
-                if ( '' === $rule['text'] || mb_strlen( $rule['text'] ) > 900 || ! in_array( $rule['frequency'], array( 'once', 'daily', 'weekly' ), true ) || ! preg_match( '/^(?:[01][0-9]|2[0-3]):[0-5][0-9]$/D', $rule['time'] ) || $rule['weekday'] > 6 ) { throw new \InvalidArgumentException( __( 'Enter a message of up to 900 characters and a valid schedule.', 'georg-kloster-connect-hub' ) ); }
+                if ( ( $needs_general_text && '' === $rule['text'] ) || mb_strlen( $rule['text'] ) > 900 || mb_strlen( $rule['text_ru'] ) > 900 || mb_strlen( $rule['text_de'] ) > 900 || ! in_array( $rule['frequency'], array( 'once', 'daily', 'weekly' ), true ) || ! preg_match( '/^(?:[01][0-9]|2[0-3]):[0-5][0-9]$/D', $rule['time'] ) || $rule['weekday'] > 6 ) { throw new \InvalidArgumentException( __( 'Enter a message of up to 900 characters and a valid schedule.', 'georg-kloster-connect-hub' ) ); }
+                if ( $rule['enabled'] && in_array( 'telegram', $rule['channels'], true ) && ( '' === $rule['text_ru'] || '' === $rule['text_de'] ) ) { throw new \InvalidArgumentException( __( 'Add both Russian and German message text before enabling this Telegram rule.', 'georg-kloster-connect-hub' ) ); }
                 // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
                 if ( 'once' === $rule['frequency'] && ( ! preg_match( '/^([0-9]{4})-([0-9]{2})-([0-9]{2})$/D', $rule['date'], $date ) || ! checkdate( (int) $date[2], (int) $date[3], (int) $date[1] ) ) ) { throw new \InvalidArgumentException( __( 'Choose a valid reminder date.', 'georg-kloster-connect-hub' ) ); }
                 // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
@@ -84,6 +90,7 @@ final class Publication_Rules {
             if ( $rule['enabled'] ) {
                 foreach ( $rule['channels'] as $channel ) {
                     $connector = Connector::instance( $channel );
+                    if ( 'telegram' === $channel && ! Telegram_Bot::broadcasting_enabled() ) { throw new \InvalidArgumentException( __( 'Enable Telegram subscriber broadcasts on the Telegram settings tab before selecting it for publications.', 'georg-kloster-connect-hub' ) ); }
                     // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
                     if ( ! $connector || ! $connector->valid( $connector->settings() ) ) { throw new \InvalidArgumentException( __( 'Configure and enable each selected channel first.', 'georg-kloster-connect-hub' ) ); }
                 }

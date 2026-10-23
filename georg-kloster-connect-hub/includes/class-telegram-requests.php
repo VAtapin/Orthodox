@@ -17,7 +17,7 @@ final class Telegram_Requests {
     public static function destination_for_request( int $id ): string {
         $settings = self::connector() ? self::connector()->settings() : array( 'target' => '' );
         $form_id = absint( get_post_meta( $id, '_gkch_form_id', true ) );
-        return Forms::telegram_target( $form_id, (string) $settings['target'] );
+        return Forms::telegram_target( $form_id, '' );
     }
     public static function staff_for_request( int $id ): int {
         $default = (int) self::options()['staff'];
@@ -38,7 +38,14 @@ final class Telegram_Requests {
     }
     public static function ready(): bool {
         $connector = self::connector(); $o = self::options();
-        return ! get_option( 'gkps_purge_job' ) && $connector && $connector->valid( $connector->settings() ) && preg_match( '/^[1-9][0-9]*$/D', $connector->settings()['target'] ) && is_string( $o['secret'] ) && strlen( $o['secret'] ) >= 32 && preg_match( '/^[1-9][0-9]*$/D', $o['bot'] ) && $o['enabled'] && $o['registered'] && user_can( $o['staff'], 'view_gkps_requests' ) && user_can( $o['staff'], 'reply_gkps_requests' ) && hash_equals( $o['configuration'], self::configuration( $connector->settings(), (int) $o['staff'] ) );
+        return self::webhook_ready() && ! get_option( 'gkps_purge_job' ) && $o['enabled'] && ! empty( $connector->settings()['notify_requests'] ) && user_can( $o['staff'], 'view_gkps_requests' ) && user_can( $o['staff'], 'reply_gkps_requests' );
+    }
+    public static function webhook_ready(): bool {
+        $connector = self::connector(); $o = self::options();
+        if ( ! $connector ) { return false; }
+        $settings = $connector->settings();
+        $feature_enabled = ! empty( $settings['telegram_broadcasts'] ) || ! empty( $o['enabled'] );
+        return ! get_option( 'gkps_purge_job' ) && $connector->valid( $settings ) && ! empty( $settings['enabled'] ) && $feature_enabled && is_string( $o['secret'] ) && strlen( $o['secret'] ) >= 32 && preg_match( '/^[1-9][0-9]*$/D', $o['bot'] ) && ! empty( $o['registered'] ) && hash_equals( (string) $o['configuration'], self::configuration( $settings, (int) $o['staff'] ) );
     }
     public static function hooks(): void {
         Telegram_Request_Settings::hooks();
@@ -87,7 +94,7 @@ final class Telegram_Requests {
     }
     public static function authorize( \WP_REST_Request $request ) {
         $o = self::options(); $provided = $request->get_header( 'X-Telegram-Bot-Api-Secret-Token' );
-        return self::ready() && is_string( $o['secret'] ) && strlen( $o['secret'] ) >= 32 && is_string( $provided ) && hash_equals( $o['secret'], $provided ) ? true : new \WP_Error( 'telegram_unauthorized', __( 'Insufficient permissions.', 'georg-kloster-connect-hub' ), array( 'status' => 403 ) );
+        return self::webhook_ready() && is_string( $o['secret'] ) && strlen( $o['secret'] ) >= 32 && is_string( $provided ) && hash_equals( $o['secret'], $provided ) ? true : new \WP_Error( 'telegram_unauthorized', __( 'Insufficient permissions.', 'georg-kloster-connect-hub' ), array( 'status' => 403 ) );
     }
     public static function receive( \WP_REST_Request $request ) {
         // Also enforce the secret for direct callers, not only REST dispatch.
@@ -95,6 +102,7 @@ final class Telegram_Requests {
         $data = $request->get_json_params(); $message = is_array( $data ) ? ( $data['message'] ?? array() ) : array();
         $o = self::options(); $settings = self::connector()->settings();
         $ok = new \WP_REST_Response( array( 'ok' => true ), 200 );
+        if ( is_array( $data ) && Telegram_Bot::receive_update( $data ) ) { return $ok; }
         if ( ! is_array( $message ) || ! is_int( $data['update_id'] ?? null ) || $data['update_id'] < 0 || 'private' !== ( $message['chat']['type'] ?? '' ) || ! is_scalar( $message['chat']['id'] ?? null ) || (string) ( $message['chat']['id'] ?? '' ) !== (string) ( $message['from']['id'] ?? '' ) || ! preg_match( '/^[1-9][0-9]*$/D', (string) ( $message['chat']['id'] ?? '' ) ) || ! empty( $message['from']['is_bot'] ) || ! is_int( $message['reply_to_message']['message_id'] ?? null ) || (string) ( $message['reply_to_message']['from']['id'] ?? '' ) !== $o['bot'] ) { return $ok; }
         $raw_body = $message['text'] ?? $message['caption'] ?? '';
         if ( ! is_string( $raw_body ) ) { return $ok; }

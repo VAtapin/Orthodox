@@ -20,6 +20,7 @@ final class Publications {
             $connector = Connector::instance( $id );
             // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
             if ( ! $connector || ! $connector->valid( $connector->settings() ) ) { throw new \InvalidArgumentException( __( 'Configure and enable each selected channel first.', 'georg-kloster-connect-hub' ) ); }
+            if ( 'telegram' === $id && ! Telegram_Bot::broadcasting_enabled() ) { throw new \InvalidArgumentException( __( 'Enable Telegram subscriber broadcasts before selecting Telegram.', 'georg-kloster-connect-hub' ) ); }
             // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
             if ( 'instagram' === $id && ! Social_Providers::image( $post_id ) ) { throw new \InvalidArgumentException( __( 'Instagram requires a public JPEG featured image.', 'georg-kloster-connect-hub' ) ); }
         }
@@ -101,6 +102,7 @@ final class Publications {
         $key = 'gkch_publication_notice_' . get_current_user_id();
         if ( $notice = get_transient( $key ) ) { echo '<p role="status">' . esc_html( $notice ) . '</p>'; delete_transient( $key ); }
         Publication_Rules_Admin::render();
+        echo '<p><a class="button" href="' . esc_url( admin_url( 'admin.php?page=gkch-telegram' ) ) . '">' . esc_html__( 'Telegram bot subscribers and delivery status', 'georg-kloster-connect-hub' ) . '</a></p>';
         $statuses = array( 'pending' => __( 'Queued', 'georg-kloster-connect-hub' ), 'processing' => __( 'Processing', 'georg-kloster-connect-hub' ), 'sent' => __( 'Sent', 'georg-kloster-connect-hub' ), 'failed' => __( 'Failed', 'georg-kloster-connect-hub' ), 'cancelled' => __( 'Cancelled', 'georg-kloster-connect-hub' ), 'uncertain' => __( 'Check the remote account before retrying', 'georg-kloster-connect-hub' ) );
         echo '<h2>' . esc_html__( 'Publication history', 'georg-kloster-connect-hub' ) . '</h2><table class="widefat striped"><thead><tr><th>' . esc_html__( 'Publication or reminder', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Channel', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Status', 'georg-kloster-connect-hub' ) . '</th></tr></thead><tbody>';
         foreach ( self::history() as $job ) {

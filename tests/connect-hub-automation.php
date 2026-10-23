@@ -5,10 +5,13 @@ use GeorgKlosterPrihodSocial\Publication_Rules_Admin;
 use GeorgKlosterPrihodSocial\Publications;
 use GeorgKlosterPrihodSocial\Connector;
 use GeorgKlosterPrihodSocial\Forms;
+use GeorgKlosterPrihodSocial\Telegram_Bot;
 
 $routing_form_one = Forms::sanitize( array( 'enabled' => true, 'telegram_chat_id' => '10101', 'telegram_staff' => $admin_id ) );
 $routing_form_two = Forms::sanitize( array( 'enabled' => true, 'telegram_chat_id' => '20202', 'telegram_staff' => $admin_id ) );
 $check( '10101' === $routing_form_one['telegram_chat_id'] && '20202' === $routing_form_two['telegram_chat_id'], 'Each form retains its independent Telegram private Chat ID.' );
+$no_route_form = Forms::store( 0, array( 'name' => 'No Telegram route', 'enabled' => true ) );
+$check( '' === Forms::telegram_target( $no_route_form, '' ), 'A form without a private Chat ID fell back to the old global Telegram destination.' );
 try { Forms::sanitize( array( 'telegram_chat_id' => '@department' ) ); $check( false, 'A public username or channel must not be accepted for a private-reply route.' ); }
 catch ( InvalidArgumentException $error ) { $check( true, 'Per-form Telegram routes require a numeric private Chat ID.' ); }
 $routing_settings = Connector::instance( 'telegram' )->settings();
@@ -35,15 +38,20 @@ wp_insert_post( array( 'post_type' => 'post', 'post_status' => 'publish', 'post_
 $check( $before === count( Publications::history() ), 'Category filter ignored.' );
 $calls = count( $http );
 $new_post = wp_insert_post( array( 'post_type' => 'post', 'post_status' => 'publish', 'post_title' => 'New synthetic news', 'post_content' => 'News excerpt', 'post_category' => array( $category ) ) );
-$check( $before + 2 === count( Publications::history() ) && $calls === count( $http ), 'First publication did not queue selected channels asynchronously.' );
+$check( $before + 1 === count( Publications::history() ) && $calls === count( $http ), 'First publication did not queue selected channels asynchronously.' );
 $new_jobs = array_values( array_filter( Publications::history(), static fn( $j ) => ( $j['reply_context']['rule_id'] ?? 0 ) === $news ) );
-$check( 2 === count( $new_jobs ) && array( 'vk', 'telegram' ) === array_column( $new_jobs, 'provider' ), 'Rule channel routing.' );
+$check( 1 === count( $new_jobs ) && array( 'vk' ) === array_column( $new_jobs, 'provider' ), 'Non-Telegram rule channel routing.' );
 foreach ( $new_jobs as $job ) { Connector::instance( $job['provider'] )->worker( $job['id'] ); }
-$check( $calls + 2 === count( $http ), 'Queued rule jobs were not delivered by workers. ' . wp_json_encode( array( 'calls' => array( $calls, count( $http ) ), 'jobs' => array_map( static fn( $j ) => get_option( 'gkps_job_' . $j['provider'] . '_' . $j['id'] ), $new_jobs ) ) ) );
+$check( $calls + 1 === count( $http ), 'Queued rule jobs were not delivered by workers. ' . wp_json_encode( array( 'calls' => array( $calls, count( $http ) ), 'jobs' => array_map( static fn( $j ) => get_option( 'gkps_job_' . $j['provider'] . '_' . $j['id'] ), $new_jobs ) ) ) );
+$telegram_tables = Telegram_Bot::tables();
+$news_campaign_id = (int) $GLOBALS['wpdb']->get_var( $GLOBALS['wpdb']->prepare( "SELECT id FROM {$telegram_tables['campaigns']} WHERE source_type='post' AND source_id=%d ORDER BY id DESC LIMIT 1", $new_post ) );
+$check( $news_campaign_id > 0, 'New-post rule did not create a Telegram subscriber campaign.' );
+Telegram_Bot::worker( $news_campaign_id );
+$check( 'partial' === $GLOBALS['wpdb']->get_var( $GLOBALS['wpdb']->prepare( "SELECT status FROM {$telegram_tables['campaigns']} WHERE id=%d", $news_campaign_id ) ), 'New-post campaign did not record its untranslated German recipient as skipped.' );
 wp_update_post( array( 'ID' => $new_post, 'post_content' => 'Edited after publication' ) );
 wp_update_post( array( 'ID' => $new_post, 'post_status' => 'draft' ) );
 wp_update_post( array( 'ID' => $new_post, 'post_status' => 'publish' ) );
-$check( $before + 2 === count( Publications::history() ), 'Edit or republish produced a duplicate.' );
+$check( $before + 1 === count( Publications::history() ), 'Edit or republish produced a duplicate.' );
 $scheduled_post = wp_insert_post( array( 'post_type' => 'post', 'post_status' => 'future', 'post_date' => wp_date( 'Y-m-d H:i:s', time() + 86400 ), 'post_title' => 'Scheduled synthetic news', 'post_category' => array( $category ) ) );
 wp_set_current_user( 0 ); wp_publish_post( $scheduled_post );
 $check( $before + 4 === count( Publications::history() ), 'WordPress future-post publication did not use the saved rule owner.' );
@@ -58,7 +66,7 @@ $check( $calls === count( $http ) && 'cancelled' === get_option( 'gkps_job_' . $
 $throws( static fn() => Publications::change_job( $pending[0]['provider'], $pending[0]['id'], 'retry' ), 'Cancelled rule job could be retried.' );
 
 update_option( 'timezone_string', 'Europe/Berlin' );
-$message_input = array( 'name' => 'Synthetic weekly reminder', 'type' => 'message', 'enabled' => true, 'channels' => array( 'telegram', 'facebook', 'vk', 'ok', 'instagram' ), 'text' => 'Synthetic reminder without a source post', 'image' => $image, 'frequency' => 'weekly', 'weekday' => 1, 'time' => '09:15' );
+$message_input = array( 'name' => 'Synthetic weekly reminder', 'type' => 'message', 'enabled' => true, 'channels' => array( 'telegram', 'facebook', 'vk', 'ok', 'instagram' ), 'text' => 'Synthetic reminder without a source post', 'text_ru' => 'Русское напоминание', 'text_de' => 'Deutsche Erinnerung', 'image' => $image, 'frequency' => 'weekly', 'weekday' => 1, 'time' => '09:15' );
 $reminder = Publication_Rules::store( 0, $message_input );
 $rule = Publication_Rules::get( $reminder );
 $check( wp_next_scheduled( Publication_Rules::HOOK, array( $reminder, $rule['revision'], $rule['next'] ) ) === $rule['next'], 'Reminder cron event missing.' );
@@ -108,16 +116,21 @@ $due = static function ( int $id, int $slot ): array {
 $rule = $due( $reminder, time() - 3600 );
 $before = count( Publications::history() ); $calls = count( $http );
 do_action( Publication_Rules::HOOK, $reminder, $rule['revision'], $rule['next'] );
-$check( $before + 5 === count( Publications::history() ) && $calls === count( $http ), 'Reminder did not use the asynchronous queue for all five channels.' );
+$check( $before + 4 === count( Publications::history() ) && $calls === count( $http ), 'Reminder did not use asynchronous queues for the selected channels.' );
 $reminder_jobs = array_values( array_filter( Publications::history(), static fn( $j ) => 'automation' === $j['kind'] && $j['source'] === $reminder ) );
+$check( 4 === count( $reminder_jobs ), 'Social reminder jobs were not queued.' );
 foreach ( $reminder_jobs as $job ) {
     Connector::instance( $job['provider'] )->worker( $job['id'] );
     if ( 'instagram' === $job['provider'] ) { Connector::instance( 'instagram' )->worker( $job['id'] ); }
     $check( 'sent' === get_option( 'gkps_job_' . $job['provider'] . '_' . $job['id'] )['status'], 'Standalone reminder rejected: ' . $job['provider'] );
 }
+$reminder_campaign_id = (int) $GLOBALS['wpdb']->get_var( $GLOBALS['wpdb']->prepare( "SELECT id FROM {$telegram_tables['campaigns']} WHERE source_type='automation' AND source_id=%d ORDER BY id DESC LIMIT 1", $reminder ) );
+$check( $reminder_campaign_id > 0, 'Scheduled reminder did not queue a Telegram subscriber campaign.' );
+Telegram_Bot::worker( $reminder_campaign_id );
+$check( 'sent' === $GLOBALS['wpdb']->get_var( $GLOBALS['wpdb']->prepare( "SELECT status FROM {$telegram_tables['campaigns']} WHERE id=%d", $reminder_campaign_id ) ), 'Bilingual Telegram reminder campaign did not complete.' );
 $calls = count( $http );
 do_action( Publication_Rules::HOOK, $reminder, $rule['revision'], $rule['next'] );
-$check( $before + 5 === count( Publications::history() ) && $calls === count( $http ), 'Duplicate cron invocation replayed a reminder.' );
+$check( $before + 4 === count( Publications::history() ) && $calls === count( $http ), 'Duplicate cron invocation replayed a reminder.' );
 $check( Publication_Rules::get( $reminder )['next'] > time(), 'Late cron run failed to advance to a future slot.' );
 $ok_call = array_values( array_filter( $http, static fn( $r ) => str_contains( $r['url'], 'api.ok.ru' ) ) );
 $ok_media = json_decode( end( $ok_call )['args']['body']['attachment'], true )['media'];
@@ -127,7 +140,7 @@ $check( ! isset( json_decode( end( $fb_call )['args']['body'], true )['link'] ),
 
 $rule2 = $due( $reminder, $rule['next'] + 60 );
 Publication_Rules::run( $reminder, $rule2['revision'], $rule2['next'] );
-$check( $before + 12 === count( Publications::history() ), 'Identical reminder text was deduplicated across different occurrences.' );
+$check( $before + 8 === count( Publications::history() ), 'Identical reminder text was deduplicated across different occurrences.' );
 $vk_jobs = array_values( array_filter( Publications::history(), static fn( $j ) => 'vk' === $j['provider'] && 'automation' === $j['kind'] ) );
 Connector::instance( 'vk' )->worker( $vk_jobs[0]['id'] );
 $vk_calls = array_values( array_filter( $http, static fn( $r ) => str_contains( $r['url'], 'api.vk.com' ) ) );
@@ -149,9 +162,10 @@ $once_rule = $due( $once, time() - 1 );
 $once_rule['date'] = wp_date( 'Y-m-d', time() - 86400 ); update_post_meta( $once, '_gkch_rule', $once_rule );
 Publication_Rules::run( $once, $once_rule['revision'], $once_rule['next'] );
 $check( 0 === Publication_Rules::get( $once )['next'], 'One-time reminder was scheduled again.' );
-$once_job = array_values( array_filter( Publications::history(), static fn( $j ) => 'automation' === $j['kind'] && $j['source'] === $once ) )[0];
+$once_campaign_id = (int) $GLOBALS['wpdb']->get_var( $GLOBALS['wpdb']->prepare( "SELECT id FROM {$telegram_tables['campaigns']} WHERE source_type='automation' AND source_id=%d ORDER BY id DESC LIMIT 1", $once ) );
+ $check( $once_campaign_id > 0, 'Telegram-only one-time reminder did not create a subscriber campaign.' );
 Publication_Rules::remove( $once );
-$calls = count( $http ); Connector::instance( 'telegram' )->worker( $once_job['id'] );
+$calls = count( $http ); Telegram_Bot::worker( $once_campaign_id );
 $check( null === Publication_Rules::get( $once ) && $calls === count( $http ), 'Deleted rule delivered a queued reminder.' );
 $check( $before < count( Publications::history() ), 'Removing a rule removed publication history.' );
 

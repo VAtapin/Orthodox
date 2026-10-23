@@ -1,1133 +1,797 @@
 msgid ""
 msgstr "Project-Id-Version: Georg-Kloster Connect Hub 0.2.0\nLanguage: de_DE\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: includes/class-connector.php
 msgid "API version from your application"
 msgstr "API-Version Ihrer Anwendung"
 
-#: includes/class-hub-settings.php
 msgid "Accept incoming form messages"
 msgstr "Nachrichten aus Formularen annehmen"
 
-#: includes/class-forms.php
 msgid "Accept messages"
 msgstr "Nachrichten annehmen"
 
-#: includes/class-forms.php includes/class-hub-settings.php includes/class-publication-rules.php includes/class-publications.php
 msgid "Access denied."
 msgstr "Zugriff verweigert."
 
-#: georg-kloster-connect-hub.php
 msgid "Activate Connect Hub network-wide to replace a network-active Parish Social."
 msgstr "Aktivieren Sie Connect Hub netzwerkweit, um ein netzwerkweit aktives Parish Social zu ersetzen."
 
-#: includes/class-forms.php
 msgid "Add form"
 msgstr "Formular hinzufügen"
 
-#: includes/class-publication-rules-admin.php
 msgid "Add or edit a rule"
 msgstr "Regel hinzufügen oder bearbeiten"
 
-#: includes/class-publication-rules-admin.php
 msgid "All categories"
 msgstr "Alle Kategorien"
 
-#: includes/class-request-admin.php
 msgid "All forms"
 msgstr "Alle Formulare"
 
-#: includes/class-connector.php
 msgid "Application public key"
 msgstr "Öffentlicher Anwendungsschlüssel"
 
-#: includes/class-connector.php
 msgid "Application secret (leave empty to keep)"
 msgstr "Anwendungsgeheimnis (leer lassen, um es beizubehalten)"
 
-#: includes/class-publication-rules-admin.php
 msgid "Ask a communication settings administrator to manage automatic publication rules."
 msgstr "Automatische Veröffentlichungen können von Personen mit Berechtigung für die Kommunikationseinstellungen verwaltet werden."
 
-#: includes/class-publication-rules-admin.php
 msgid "Automatic publication rules"
 msgstr "Regeln für automatische Veröffentlichungen"
 
-#: includes/class-forms.php
 msgid "Button label"
 msgstr "Schaltflächentext"
 
-#: includes/class-publications.php
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: includes/class-publications.php
 msgid "Cancelled"
 msgstr "Abgebrochen"
 
-#: includes/class-publication-rules-admin.php
 msgid "Category"
 msgstr "Kategorie"
 
-#: includes/class-publications.php
 msgid "Channel"
 msgstr "Kanal"
 
-#: includes/class-publication-rules-admin.php
 msgid "Channels"
 msgstr "Kanäle"
 
-#: includes/class-connector.php
-msgid "Chat ID / @channel"
-msgstr "Chat-ID / @Kanal"
-
-#: includes/class-connector.php
-msgid "Chat ID must be a number (groups may use a leading minus sign) or @channel_name. The connection was not saved."
-msgstr "Die Chat-ID muss eine Zahl (bei Gruppen auch negativ) oder @Kanalname sein. Die Verbindung wurde nicht gespeichert."
-
-#: includes/class-publications.php
 msgid "Check the original channel, source post and active rule before retrying."
 msgstr "Prüfen Sie vor einem erneuten Versuch den ursprünglichen Kanal, den Beitrag und die aktive Regel."
 
-#: includes/class-publications.php
 msgid "Check the remote account and confirm that no post was published before retrying."
 msgstr "Prüfen Sie vor einem erneuten Versuch das Konto und bestätigen Sie, dass kein Beitrag veröffentlicht wurde."
 
-#: includes/class-publications.php
 msgid "Check the remote account before retrying"
 msgstr "Vor einem erneuten Versuch das Konto prüfen"
 
-#: includes/class-publication-rules-admin.php
 msgid "Choose a JPEG image"
 msgstr "JPEG-Bild auswählen"
 
-#: includes/class-publications.php
 msgid "Choose a channel. If scheduling failed, check WordPress Cron."
 msgstr "Wählen Sie einen Kanal aus. Falls die Planung fehlschlägt, prüfen Sie WordPress Cron."
 
-#: includes/class-publication-rules.php
 msgid "Choose a future reminder date and time."
 msgstr "Wählen Sie Datum und Uhrzeit der Erinnerung in der Zukunft."
 
-#: includes/class-publication-rules.php
 msgid "Choose a valid reminder date."
 msgstr "Wählen Sie ein gültiges Erinnerungsdatum."
 
-#: includes/class-publication-rules.php
 msgid "Choose an existing category."
 msgstr "Wählen Sie eine vorhandene Kategorie."
 
-#: includes/class-publication-rules.php includes/class-publications.php
 msgid "Configure and enable each selected channel first."
 msgstr "Konfigurieren und aktivieren Sie zuerst jeden ausgewählten Kanal."
 
-#: includes/class-publication-rules-admin.php
 msgid "Configure channel"
 msgstr "Kanal einrichten"
 
-#: includes/class-admin.php
 msgid "Connect Hub"
 msgstr "Kommunikation"
 
-#: includes/class-admin.php
 msgid "Contact us"
 msgstr "Kontaktieren Sie uns"
 
-#: includes/class-publication-rules.php
 msgid "Could not save the publication rule."
 msgstr "Die Veröffentlichungsregel konnte nicht gespeichert werden."
 
-#: includes/class-publications.php
 msgid "Could not schedule publication."
 msgstr "Die Veröffentlichung konnte nicht eingeplant werden."
 
-#: includes/class-publication-rules.php
 msgid "Could not schedule publication. Check WordPress Cron."
 msgstr "Die Veröffentlichung konnte nicht geplant werden. Prüfen Sie WordPress Cron."
 
-#: includes/class-publication-rules-admin.php
 msgid "Date (for a one-time reminder)"
 msgstr "Datum (für eine einmalige Erinnerung)"
 
-#: includes/class-publication-rules-admin.php
 msgid "Day (for weekly messages)"
 msgstr "Wochentag (für wöchentliche Nachrichten)"
 
-#: georg-kloster-connect-hub.php
 msgid "Deactivate Parish Social to use Connect Hub. Your saved data will be retained."
 msgstr "Deaktivieren Sie Parish Social, um Connect Hub zu verwenden. Gespeicherte Daten bleiben erhalten."
 
-#: includes/class-forms.php includes/class-request-admin.php
 msgid "Default form"
 msgstr "Standardformular"
 
-#: includes/class-connector.php
 msgid "Delete application secret"
 msgstr "Anwendungsgeheimnis löschen"
 
-#: includes/class-forms.php
 msgid "Disabled"
 msgstr "Deaktiviert"
 
-#: includes/class-hub-settings.php
 msgid "Each form has its own topics, text, recipient and enabled state. Channel credentials are configured in their respective sections."
 msgstr "Jedes Formular hat eigene Themen, Texte, Benachrichtigungsempfänger und einen eigenen Aktivierungsstatus. Die Zugangsdaten der Kanäle werden in den jeweiligen Bereichen verwaltet."
 
-#: includes/class-request-privacy.php includes/class-telegram-requests.php
 msgid "Email"
 msgstr "E-Mail"
 
-#: includes/class-publication-rules-admin.php
 msgid "Enable automatic sending for this rule"
 msgstr "Automatischen Versand für diese Regel aktivieren"
 
-#: includes/class-forms.php includes/class-publication-rules-admin.php
 msgid "Enabled"
 msgstr "Aktiviert"
 
-#: includes/class-forms.php
 msgid "Enter a form name."
 msgstr "Geben Sie einen Formularnamen ein."
 
-#: includes/class-publication-rules.php
 msgid "Enter a message of up to 900 characters and a valid schedule."
 msgstr "Geben Sie eine Nachricht mit bis zu 900 Zeichen und einen gültigen Zeitplan ein."
 
-#: includes/class-publication-rules.php
 msgid "Enter a public HTTP or HTTPS link."
 msgstr "Geben Sie einen öffentlich zugänglichen HTTP- oder HTTPS-Link ein."
 
-#: includes/class-publication-rules.php
 msgid "Enter a rule name and choose at least one channel."
 msgstr "Geben Sie einen Regelnamen ein und wählen Sie mindestens einen Kanal."
 
-#: includes/class-forms.php
 msgid "Enter a valid notification email."
 msgstr "Geben Sie eine gültige E-Mail-Adresse für Benachrichtigungen ein."
 
-#: includes/class-publication-rules-admin.php
 msgid "Every day"
 msgstr "Täglich"
 
-#: includes/class-publication-rules-admin.php
 msgid "Every week"
 msgstr "Wöchentlich"
 
-#: includes/class-publications.php
 msgid "Facebook"
 msgstr "Facebook"
 
-#: includes/class-connector.php
 msgid "Facebook Page ID"
 msgstr "Facebook-Seiten-ID"
 
-#: includes/class-publications.php
 msgid "Failed"
 msgstr "Fehlgeschlagen"
 
-#: includes/class-publication-rules-admin.php
 msgid "For Instagram, each new post must have a public HTTPS JPEG featured image."
 msgstr "Für Instagram benötigt jeder neue Beitrag ein öffentlich über HTTPS zugängliches JPEG-Beitragsbild."
 
-#: assets/blocks.js includes/class-blocks.php includes/class-request-admin.php
 msgid "Form"
 msgstr "Formular"
 
-#: includes/class-forms.php
 msgid "Form could not be saved."
 msgstr "Das Formular konnte nicht gespeichert werden."
 
-#: includes/class-forms.php
 msgid "Form name"
 msgstr "Formularname"
 
-#: includes/class-forms.php
 msgid "Form not found."
 msgstr "Formular nicht gefunden."
 
-#: includes/class-forms.php
 msgid "Form title"
 msgstr "Formulartitel"
 
-#: includes/class-admin.php includes/class-forms.php
 msgid "Forms"
 msgstr "Formulare"
 
-#: includes/class-hub-settings.php
 msgid "General"
 msgstr "Allgemein"
 
-#: georg-kloster-connect-hub.php
 msgid "Georg-Kloster Connect Hub"
 msgstr "Georg-Kloster — Kommunikation"
 
-#: includes/class-publications.php
 msgid "I checked the account: no post was published"
 msgstr "Ich habe das Konto geprüft: Es wurde kein Beitrag veröffentlicht"
 
-#: includes/class-request-mail-log.php
 msgid "Attempt ID"
 msgstr "Versuchs-ID"
 
-#: includes/class-publication-rules-admin.php
 msgid "Image (required for Instagram; public HTTPS JPEG)"
 msgstr "Bild (für Instagram erforderlich; öffentliches HTTPS-JPEG)"
 
-#: georg-kloster-connect-hub.php
 msgid "Independent forms, messages and publications across communication channels."
 msgstr "Unabhängige Formulare, Nachrichten und Veröffentlichungen über verschiedene Kommunikationskanäle."
 
-#: includes/class-publications.php
 msgid "Instagram"
 msgstr "Instagram"
 
-#: includes/class-connector.php
 msgid "Instagram account ID"
 msgstr "Instagram-Konto-ID"
 
-#: includes/class-publication-rules.php
 msgid "Instagram requires a public HTTPS JPEG from the media library."
 msgstr "Wählen Sie für Instagram ein öffentlich über HTTPS zugängliches JPEG aus der Mediathek."
 
-#: includes/class-publications.php includes/class-social-providers.php
 msgid "Instagram requires a public JPEG featured image."
 msgstr "Für Instagram ist ein öffentlich zugängliches JPEG-Beitragsbild erforderlich."
 
-#: includes/class-forms.php
 msgid "Introduction"
 msgstr "Einleitung"
 
-#: includes/class-publications.php
 msgid "Invalid publication action."
 msgstr "Ungültige Veröffentlichungsaktion."
 
-#: includes/class-publication-rules-admin.php includes/class-publication-rules.php
 msgid "Invalid publication rule."
 msgstr "Ungültige Veröffentlichungsregel."
 
-#: includes/class-hub-settings.php
 msgid "Keep closed messages for days"
 msgstr "Geschlossene Nachrichten aufbewahren, Tage"
 
-#: includes/class-publication-rules-admin.php
 msgid "Link (optional)"
 msgstr "Link (optional)"
 
-#: includes/class-publication-rules-admin.php
-msgid "Message or reminder text"
-msgstr "Text der Nachricht oder Erinnerung"
-
-#: includes/class-request-admin.php
 msgid "Messages"
 msgstr "Nachrichten"
 
-#: includes/class-publication-rules-admin.php
 msgid "New WordPress posts"
 msgstr "Neue WordPress-Beiträge"
 
-#: includes/class-plugin.php
 msgid "New contact message"
 msgstr "Neue Nachricht"
 
-#: includes/class-publication-rules-admin.php
 msgid "Next:"
 msgstr "Nächster Versand:"
 
-#: includes/class-publication-rules-admin.php
 msgid "No rules yet. Add a rule below; automatic sending is off by default."
 msgstr "Noch keine Regeln. Fügen Sie unten eine Regel hinzu; der automatische Versand ist standardmäßig ausgeschaltet."
 
-#: includes/class-publication-rules-admin.php
 msgid "No scheduled delivery"
 msgstr "Kein Versand geplant"
 
-#: includes/class-publication-rules.php
 msgid "Not queued. Check the connection, required image and WordPress Cron:"
 msgstr "Nicht eingereiht. Prüfen Sie Verbindung, erforderliches Bild und WordPress Cron:"
 
-#: includes/class-forms.php
 msgid "Notification email"
 msgstr "E-Mail-Adresse für Benachrichtigungen"
 
-#: includes/class-publications.php
 msgid "OK"
 msgstr "OK"
 
-#: includes/class-connector.php
 msgid "OK group ID"
 msgstr "OK-Gruppen-ID"
 
-#: includes/class-publication-rules-admin.php
 msgid "Once"
 msgstr "Einmalig"
 
-#: includes/class-publication-rules-admin.php
 msgid "Paused"
 msgstr "Pausiert"
 
-#: includes/class-publications.php
 msgid "Processing"
 msgstr "In Bearbeitung"
 
-#: includes/class-publications.php
 msgid "Publication history"
 msgstr "Veröffentlichungsverlauf"
 
-#: includes/class-publication-rules.php includes/class-publications.php
 msgid "Publication is busy. Try again shortly."
 msgstr "Die Veröffentlichung wird gerade verarbeitet. Versuchen Sie es später erneut."
 
-#: includes/class-publications.php
 msgid "Publication or reminder"
 msgstr "Veröffentlichung oder Erinnerung"
 
-#: includes/class-publications.php
 msgid "Publication queued. Delivery status appears below."
 msgstr "Die Veröffentlichung wurde eingeplant. Der Sendestatus erscheint unten."
 
-#: includes/class-publication-rules-admin.php
 msgid "Publication rule removed. History was retained."
 msgstr "Regel entfernt. Der Verlauf wurde beibehalten."
 
-#: includes/class-publication-rules-admin.php
 msgid "Publication rule saved."
 msgstr "Veröffentlichungsregel gespeichert."
 
-#: includes/class-publications.php
 msgid "Publication updated."
 msgstr "Veröffentlichung aktualisiert."
 
-#: includes/class-admin.php includes/class-publications.php
 msgid "Publications"
 msgstr "Veröffentlichungen"
 
-#: includes/class-publications.php
 msgid "Queued"
 msgstr "In der Warteschlange"
 
-#: includes/class-publication-rules-admin.php
 msgid "Remove image"
 msgstr "Bild entfernen"
 
-#: includes/class-publication-rules-admin.php
 msgid "Remove rule"
 msgstr "Regel entfernen"
 
-#: includes/class-publication-rules-admin.php
 msgid "Repeat"
 msgstr "Wiederholung"
 
-#: includes/class-publications.php
 msgid "Retry"
 msgstr "Erneut versuchen"
 
-#: includes/class-publication-rules-admin.php
 msgid "Rule"
 msgstr "Regel"
 
-#: includes/class-publication-rules-admin.php
 msgid "Rule name"
 msgstr "Regelname"
 
-#: includes/class-publication-rules.php
 msgid "Rule not found or rule limit reached."
 msgstr "Regel nicht gefunden oder maximale Regelanzahl erreicht."
 
-#: includes/class-publication-rules.php
 msgid "Rule paused: its owner no longer has publication and settings permissions."
 msgstr "Versand pausiert: Die Person, der die Regel gehört, hat keine Berechtigung mehr für Veröffentlichungen und Einstellungen."
 
-#: includes/class-publication-rules-admin.php
 msgid "Save rule"
 msgstr "Regel speichern"
 
-#: includes/class-publication-rules-admin.php
 msgid "Schedule and status"
 msgstr "Zeitplan und Status"
 
-#: includes/class-publication-rules-admin.php
 msgid "Scheduled messages and reminders"
 msgstr "Geplante Nachrichten und Erinnerungen"
 
-#: assets/blocks.js
 msgid "Select a form"
 msgstr "Formular auswählen"
 
-#: includes/class-publications.php
 msgid "Select a published WordPress post."
 msgstr "Wählen Sie einen veröffentlichten WordPress-Beitrag aus."
 
-#: includes/class-admin.php
 msgid "Send message"
 msgstr "Nachricht senden"
 
-#: includes/class-publication-rules-admin.php
 msgid "Send the title, excerpt and link when a post is first published, including scheduled WordPress posts. Existing posts and later edits are not sent."
 msgstr "Titel, Auszug und Link bei der ersten Veröffentlichung eines Beitrags senden, auch bei zeitgesteuerten WordPress-Beiträgen. Vorhandene Beiträge und spätere Änderungen werden nicht gesendet."
 
-#: includes/class-publication-rules-admin.php
 msgid "Send to channels"
 msgstr "An diese Kanäle senden"
 
-#: includes/class-publications.php
 msgid "Sent"
 msgstr "Gesendet"
 
-#: includes/class-publication-rules-admin.php
 msgid "Set what to send, when and to which channels. Channel connections alone do not enable automatic publications."
 msgstr "Legen Sie fest, was wann an welche Kanäle gesendet wird. Eine Kanalverbindung allein aktiviert keine automatischen Veröffentlichungen."
 
-#: includes/class-admin.php includes/class-hub-settings.php
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: includes/class-hub-settings.php
 msgid "Settings sections"
 msgstr "Einstellungsbereiche"
 
-#: includes/class-forms.php
 msgid "Shortcode"
 msgstr "Shortcode"
 
-#: includes/class-forms.php includes/class-publications.php
 msgid "Status"
 msgstr "Status"
 
-#: includes/class-forms.php
 msgid "Suggested topics (one per line)"
 msgstr "Themen (eines pro Zeile)"
 
-#: includes/class-publications.php
 msgid "Telegram"
 msgstr "Telegram"
 
-#: includes/class-telegram-request-settings.php
-msgid "Telegram did not confirm a private chat with this bot."
-msgstr "Telegram hat den privaten Chat mit diesem Bot nicht bestätigt."
+msgid "Telegram did not confirm the connection. Check the bot token and service availability."
+msgstr "Telegram hat die Verbindung nicht bestätigt. Prüfen Sie den Bot-Token und die Erreichbarkeit des Dienstes."
 
-#: includes/class-telegram-request-settings.php
-msgid "Telegram did not confirm the connection. Check the token, Chat ID and service availability."
-msgstr "Telegram hat die Verbindung nicht bestätigt. Prüfen Sie Token, Chat-ID und Erreichbarkeit des Dienstes."
-
-#: includes/class-telegram-request-settings.php
 msgid "Telegram did not confirm incoming replies."
 msgstr "Telegram hat den Empfang von Antworten nicht bestätigt."
 
-#: includes/class-social-providers.php
 msgid "The remote API did not confirm publication. Check permissions, credentials and account limits."
 msgstr "Die API hat die Veröffentlichung nicht bestätigt. Prüfen Sie Berechtigungen, Zugangsdaten und Kontolimits."
 
-#: includes/class-publications.php
 msgid "This publication cannot be changed."
 msgstr "Diese Veröffentlichung kann in ihrem aktuellen Zustand nicht geändert werden."
 
-#: includes/class-publication-rules-admin.php
 msgid "Time"
 msgstr "Uhrzeit"
 
-#: includes/class-publication-rules-admin.php
 msgid "Timezone:"
 msgstr "Zeitzone:"
 
-#: includes/class-connector.php
 msgid "Token (leave empty to keep the existing token)"
 msgstr "Token (leer lassen, um den bisherigen zu behalten)"
 
-#: includes/class-publications.php
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: includes/class-social-providers.php
 msgid "Use a VK token with wall publication permission. Enter a negative community ID to publish as the community, or a positive user ID. Enter the API version from your application, for example 5.199."
 msgstr "Verwenden Sie ein VK-Benutzertoken mit Berechtigung zum Veröffentlichen an der Pinnwand. Geben Sie für eine Community eine negative ID und für einen Benutzer eine positive ID ein. Übernehmen Sie die API-Version Ihrer Anwendung, zum Beispiel 5.199."
 
-#: includes/class-social-providers.php
 msgid "Use a professional Instagram account linked to a Facebook Page and a token with instagram_basic and instagram_content_publish permissions. A public HTTPS JPEG featured image is required. The container is processed in the background before publication."
 msgstr "Verwenden Sie ein professionelles Instagram-Konto, das mit einer Facebook-Seite verbunden ist, und ein Token mit den Berechtigungen instagram_basic und instagram_content_publish. Ein öffentlich zugängliches JPEG-Beitragsbild über HTTPS ist erforderlich. Das Bild wird vor der Veröffentlichung im Hintergrund verarbeitet."
 
-#: includes/class-social-providers.php
 msgid "Use an OK application with GROUP_CONTENT permission, an access token, application public key and application secret. Only publication to the configured group is enabled."
 msgstr "Verwenden Sie eine OK-Anwendung mit GROUP_CONTENT-Berechtigung, Zugriffstoken, öffentlichem Schlüssel und Anwendungsgeheimnis. Veröffentlicht wird nur in der konfigurierten Gruppe."
 
-#: includes/class-publication-rules-admin.php
 msgid "Use this image"
 msgstr "Dieses Bild verwenden"
 
-#: includes/class-publications.php
 msgid "VK"
 msgstr "VK"
 
-#: includes/class-connector.php
 msgid "VK owner ID"
 msgstr "Benutzer- oder Community-ID bei VK"
 
-#: includes/class-publication-rules-admin.php
 msgid "What to send"
 msgstr "Was gesendet wird"
 
-#: includes/class-publication-rules-admin.php
 msgid "WordPress Cron runs on site visits or the server scheduler. Late runs send once, without repeating every missed interval. Editing or pausing a rule cancels its pending deliveries."
 msgstr "WordPress Cron läuft bei Seitenaufrufen oder über den Server-Zeitplaner. Bei Verspätungen wird einmal gesendet, ohne alle verpassten Intervalle nachzuholen. Das Bearbeiten oder Pausieren einer Regel verhindert ihre ausstehenden Sendungen."
 
-#: includes/class-telegram-request-settings.php
-msgid "The sender name, email, subject and complete message will be sent to Telegram. Use Reply on the bot's message: the site saves the reply and sends a formatted email to the visitor. Internal notes are not transmitted."
-msgstr "Name, E-Mail, Betreff und vollständiger Text des Anliegens werden an Telegram übermittelt. Antworten Sie mit „Antworten“ auf die Bot-Nachricht: Die Website speichert die Antwort und sendet dem Besucher eine gestaltete E-Mail. Interne Notizen werden nicht übermittelt."
-
-#: includes/class-requests.php
 msgid "In progress"
 msgstr "In Bearbeitung"
 
-#: includes/class-request-form.php
 msgid "Your email"
 msgstr "Ihre E-Mail-Adresse"
 
-#: includes/class-request-form.php
 msgid "Your name"
 msgstr "Ihr Name"
 
-#: includes/class-request-mail.php
 msgid "Your message"
 msgstr "Ihr Anliegen"
 
-#: includes/class-request-form.php
 msgid "Enter your name"
 msgstr "Geben Sie Ihren Namen ein"
 
-#: includes/class-requests.php
 msgid "Enter a reply of an allowed length."
 msgstr "Geben Sie eine Antwort mit zulässiger Länge ein."
 
-#: includes/class-request-form.php
 msgid "Enter your question subject"
 msgstr "Geben Sie einen Betreff ein"
 
-#: includes/class-request-form.php
 msgid "Enter your own subject."
 msgstr "Bitte geben Sie einen Betreff ein."
 
-#: includes/class-connector.php
 msgid "Enter the bot token. The connection was not saved."
 msgstr "Geben Sie den Bot-Token ein. Die Verbindung wurde nicht gespeichert."
 
-#: includes/class-telegram-request-settings.php
 msgid "Enable sending and notifications about new messages."
 msgstr "Aktivieren Sie das Senden und Benachrichtigungen über neue Anliegen."
 
-#: includes/class-request-admin.php
 msgid "Internal note"
 msgstr "Interne Notiz"
 
-#: includes/class-request-admin.php
 msgid "Internal note (do not send to the visitor)"
 msgstr "Interne Notiz (nicht an Besucher senden)"
 
-#: includes/class-request-admin.php
 msgid "All statuses"
 msgstr "Alle Status"
 
-#: includes/class-telegram-request-settings.php
 msgid "Select a staff member"
 msgstr "Mitarbeiter auswählen"
 
-#: includes/class-telegram-request-settings.php
 msgid "Select a staff member with permission to view and reply to messages."
 msgstr "Wählen Sie einen Mitarbeiter mit Berechtigung zum Lesen und Beantworten von Anliegen."
 
-#: includes/class-request-form.php
 msgid "Select a subject"
 msgstr "Betreff auswählen"
 
-#: includes/class-telegram-requests.php
 msgid "Message date"
 msgstr "Datum"
 
-#: includes/class-request-form.php
 msgid "For another subject, enter your own title in the field below."
 msgstr "Geben Sie den Betreff im folgenden Feld ein."
 
-#: includes/class-telegram-request-settings.php
-msgid "A numeric Chat ID for your private chat with the bot is required to reply to messages."
-msgstr "Für Antworten auf Anliegen ist die numerische Chat-ID Ihres privaten Chats mit dem Bot erforderlich."
-
-#: includes/class-connector.php
-msgid "A bot token and recipient Chat ID are required. For a private chat, enter its numeric Chat ID; for a channel, enter @channel_name. Do not enter the bot's own username here."
-msgstr "Zum Senden sind Bot-Token und Chat-ID des Empfängers erforderlich. Für einen privaten Chat geben Sie eine numerische Chat-ID an, für einen Kanal @Kanalname. Der Name des Bots ist hier nicht geeignet."
-
-#: includes/class-telegram-request-settings.php
 msgid "An HTTPS site address is required to receive Telegram replies."
 msgstr "Zum Empfang von Telegram-Antworten benötigt die Website eine HTTPS-Adresse."
 
-#: includes/class-request-mail-log.php
 msgid "There is no technical log for this reply. Past delivery attempts cannot be reconstructed retroactively."
 msgstr "Für diese Antwort ist kein technisches Protokoll vorhanden. Frühere Sendungen werden nicht nachträglich rekonstruiert."
 
-#: includes/class-request-form.php
 msgid "Other subject"
 msgstr "Anderer Betreff"
 
-#: includes/class-connector.php
 msgid "The job is unavailable or the recipient has changed. Create a new publication."
 msgstr "Auftrag nicht verfügbar oder Empfänger geändert. Erstellen Sie eine neue Veröffentlichung."
 
-#: includes/class-requests.php
 msgid "Closed"
 msgstr "Geschlossen"
 
-#: includes/class-requests.php
 msgid "Fill in all fields and enter a valid email address."
 msgstr "Füllen Sie alle Felder aus und geben Sie eine gültige E-Mail-Adresse an."
 
-#: includes/class-connector.php
 msgid "Configure the connection and explicitly enable sending."
 msgstr "Richten Sie die Verbindung ein und aktivieren Sie das Senden ausdrücklich."
 
-#: includes/class-request-admin.php
 msgid "Changes saved."
 msgstr "Änderungen gespeichert."
 
-#: includes/class-connector.php
 msgid "Schedule updated:"
 msgstr "Gottesdienstplan geändert:"
 
-#: includes/class-request-mail.php includes/class-request-media.php includes/class-request-privacy.php
 msgid "Image from Telegram"
 msgstr "Bild aus Telegram"
 
-#: includes/class-request-media.php
 msgid "The image was not sent. Photos and static stickers up to 4 MB are supported. Videos and animated stickers are not supported."
 msgstr "Das Bild wurde nicht gesendet. Unterstützt werden Fotos und statische Sticker bis 4 MB. Videos und animierte Sticker werden nicht unterstützt."
 
-#: includes/class-request-privacy.php includes/class-telegram-requests.php
 msgid "Sender name"
 msgstr "Name"
 
-#: includes/class-request-mail-log.php
 msgid "SMTP code"
 msgstr "SMTP-Code"
 
-#: includes/class-request-mail-log.php
 msgid "Exception code"
 msgstr "Ausnahmecode"
 
-#: includes/class-request-mail-log.php
 msgid "Error code"
 msgstr "Fehlercode"
 
-#: includes/class-telegram-request-settings.php
 msgid "You can reply to a bot message multiple times: each reply is saved separately and immediately passed to PHP mail. Captioned photos and static stickers are included in the email. Visitor replies by email are not received automatically yet."
 msgstr "Sie können mehrfach auf die Nachricht des Bots antworten: Jede Antwort wird einzeln gespeichert und sofort an PHP-Mail übergeben. Fotos mit Bildunterschrift und statische Sticker werden in die E-Mail eingebettet. Antworten des Besuchers per E-Mail werden noch nicht automatisch empfangen."
 
-#: includes/class-request-admin.php
 msgid "There are no messages on this page."
 msgstr "Auf dieser Seite gibt es keine Anfragen."
 
-#: includes/class-request-mail-log.php
 msgid "Assigned Message-ID"
 msgstr "Zugewiesene Message-ID"
 
-#: includes/class-connector.php
 msgid "Settings are complete; a successful live delivery has not been confirmed yet."
 msgstr "Einstellungen ausgefüllt; erfolgreiches tatsächliches Senden wurde noch nicht bestätigt."
 
-#: includes/class-telegram-request-settings.php
-msgid "Settings changed during the check. Reconnect incoming replies."
-msgstr "Die Einstellungen wurden während der Prüfung geändert. Verbinden Sie den Antwortempfang erneut."
-
-#: includes/class-request-mail-log.php
 msgid "Started"
 msgstr "Beginn"
 
-#: includes/class-request-mail-log.php
 msgid "Started (UTC)"
 msgstr "Beginn (UTC)"
 
-#: includes/class-request-admin.php
 msgid "Unassigned"
 msgstr "Nicht zugewiesen"
 
-#: includes/class-request-admin.php
 msgid "Not sent"
 msgstr "Nicht gesendet"
 
-#: includes/class-request-admin.php
 msgid "Some changes could not be applied. Check permissions and fields."
 msgstr "Nicht alle Änderungen konnten angewendet werden. Prüfen Sie Rechte und Felder."
 
-#: includes/class-requests.php
 msgid "Insufficient permissions to reply."
 msgstr "Keine Berechtigung zum Antworten."
 
-#: includes/class-connector.php includes/class-request-admin.php includes/class-request-media.php includes/class-requests.php includes/class-telegram-request-settings.php includes/class-telegram-requests.php
 msgid "Insufficient permissions."
 msgstr "Keine ausreichende Berechtigung."
 
-#: includes/class-connector.php
 msgid "Invalid field."
 msgstr "Ungültiges Feld."
 
-#: includes/class-request-admin.php
 msgid "Invalid reply."
 msgstr "Ungültige Antwort."
 
-#: includes/class-request-admin.php
 msgid "Invalid status."
 msgstr "Ungültiger Status."
 
-#: includes/class-requests.php
 msgid "New"
 msgstr "Neu"
 
-#: includes/class-telegram-requests.php
 msgid "New incoming message"
 msgstr "Neues Anliegen"
 
-#: includes/class-connector.php
 msgid "New message. Open the private parish dashboard."
 msgstr "Neues Anliegen. Öffnen Sie den geschützten Gemeindebereich."
 
-#: includes/class-request-privacy.php
 msgid "Incoming message"
 msgstr "Anfrage"
 
-#: includes/class-request-mail-log.php
 msgid "Message #%1$d · reply #%2$d · attempt %3$d"
 msgstr "Anfrage #%1$d · Antwort #%2$d · Versuch %3$d"
 
-#: includes/class-request-admin.php includes/class-requests.php
 msgid "Message not found."
 msgstr "Anfrage nicht gefunden."
 
-#: includes/class-request-form.php
 msgid "Your message was not sent. Check the fields or try again later."
 msgstr "Die Nachricht konnte nicht gesendet werden. Prüfen Sie die Angaben oder versuchen Sie es später erneut."
 
-#: includes/class-requests.php
 msgid "Your message could not be saved. Try again later."
 msgstr "Anfrage nicht gespeichert. Versuchen Sie es später erneut."
 
-#: includes/class-request-form.php
 msgid "Your message has been received. A reply will be sent by email."
 msgstr "Ihre Nachricht wurde empfangen. Sie erhalten eine Antwort per E-Mail."
 
-#: includes/class-request-admin.php
 msgid "No messages yet."
 msgstr "Noch keine Anfragen."
 
-#: includes/class-request-privacy.php
 msgid "Incoming messages"
 msgstr "Anfragen"
 
-#: includes/class-request-privacy.php
 msgid "Parish messages"
 msgstr "Gemeindeanfragen"
 
-#: includes/class-telegram-request-settings.php
 msgid "Messages and replies in Telegram"
 msgstr "Anliegen und Antworten in Telegram"
 
-#: includes/class-requests.php
 msgid "Awaiting reply"
 msgstr "Wartet auf Antwort"
 
-#: includes/class-request-mail-log.php
 msgid "Finished (UTC)"
 msgstr "Ende (UTC)"
 
-#: includes/class-request-form.php
 msgid "Describe your question…"
 msgstr "Schreiben Sie Ihre Nachricht…"
 
-#: includes/class-request-form.php
 msgid "Leave this field empty"
 msgstr "Dieses Feld leer lassen"
 
-#: includes/class-telegram-request-settings.php
 msgid "Save replies on behalf of this staff member"
 msgstr "Unter welchem Mitarbeiter Antworten speichern"
 
-#: includes/class-request-admin.php
 msgid "Reply or note"
 msgstr "Antwort oder Notiz"
 
-#: includes/class-request-mail.php
 msgid "Reply to your message"
 msgstr "Antwort auf Ihr Anliegen"
 
-#: includes/class-request-mail.php
 msgid "Reply to message:"
 msgstr "Antwort auf Anfrage:"
 
-#: includes/class-requests.php includes/class-telegram-requests.php
 msgid "The reply was not saved."
 msgstr "Antwort nicht gespeichert."
 
-#: includes/class-requests.php
 msgid "This reply cannot be resent."
 msgstr "Antwort kann nicht erneut gesendet werden."
 
-#: includes/class-request-admin.php
 msgid "Email reply"
 msgstr "Antwort per E-Mail"
 
-#: includes/class-request-admin.php
 msgid "Assigned staff member"
 msgstr "Zuständige Person"
 
-#: includes/class-request-admin.php
 msgid "The assigned staff member does not have the required permissions."
 msgstr "Zuständige Person hat nicht die erforderlichen Rechte."
 
-#: includes/class-requests.php
 msgid "Answered"
 msgstr "Beantwortet"
 
-#: includes/class-telegram-request-settings.php
 msgid "Send the complete message to Telegram"
 msgstr "Vollständiges Anliegen an Telegram senden"
 
-#: includes/class-connector.php
 msgid "Send this published post to the service"
 msgstr "Diesen veröffentlichten Beitrag an den Dienst senden"
 
-#: includes/class-request-admin.php
 msgid "Sending"
 msgstr "Wird gesendet"
 
-#: includes/class-request-admin.php includes/class-request-mail-log.php
 msgid "Sending error"
 msgstr "Sendefehler"
 
-#: includes/class-request-admin.php
 msgid "First page"
 msgstr "Erste Seite"
 
-#: includes/class-telegram-request-settings.php
-msgid "Send complete messages and receive replies in a private chat"
-msgstr "Vollständige Anliegen übertragen und Antworten im privaten Chat empfangen"
-
-#: includes/class-request-admin.php includes/class-request-mail-log.php
 msgid "Passed to the mail system. Inbox delivery is not confirmed."
 msgstr "An das Mailsystem übergeben. Die Zustellung ins Postfach ist nicht bestätigt."
 
-#: includes/class-request-mail.php
 msgid "Visit the website"
 msgstr "Zur Website"
 
-#: includes/class-request-privacy.php
 msgid "Conversation / note"
 msgstr "Korrespondenz / Notiz"
 
-#: includes/class-request-mail-log.php
 msgid "The email was handled by a WordPress interceptor; the actual transport was not recorded."
 msgstr "Die E-Mail wurde von einem WordPress-Handler verarbeitet; der tatsächliche Transport wurde nicht erfasst."
 
-#: includes/class-request-mail-log.php
 msgid "Email prepared"
 msgstr "E-Mail vorbereitet"
 
-#: includes/class-request-admin.php
-
-#: includes/class-connector.php
 msgid "Retry the last delivery after correcting the settings"
 msgstr "Letzten Versand nach Korrektur der Einstellungen wiederholen"
 
-#: includes/class-request-admin.php
 msgid "Retry this reply after correcting the mail configuration"
 msgstr "Antwort nach Behebung des E-Mail-Problems erneut senden"
 
-#: includes/class-telegram-request-settings.php
-msgid "Connect / check incoming replies"
-msgstr "Antwortempfang verbinden / prüfen"
-
-#: includes/class-request-admin.php
 msgid "Confirm deletion."
 msgstr "Bestätigen Sie die Löschung."
 
-#: includes/class-request-admin.php
 msgid "I confirm permanent deletion of the message and conversation"
 msgstr "Ich bestätige die vollständige Löschung der Anfrage und Korrespondenz"
 
-#: includes/class-request-admin.php
 msgid "Show"
 msgstr "Anzeigen"
 
-#: includes/class-requests.php
 msgid "A field cannot contain markup only."
 msgstr "Das Feld darf nicht nur Markup enthalten."
 
-#: includes/class-request-form.php
 msgid "Privacy policy"
 msgstr "Datenschutzerklärung"
 
-#: includes/class-request-form.php
 msgid "Fields marked with an asterisk are required."
 msgstr "Mit einem Stern markierte Felder sind Pflichtfelder."
 
-#: includes/class-telegram-requests.php
 msgid "Try again later."
 msgstr "Versuchen Sie es später erneut."
 
-#: includes/class-request-mail-log.php
 msgid "Attempt started, no result received"
 msgstr "Versuch gestartet, Ergebnis liegt nicht vor"
 
-#: includes/class-request-mail-log.php
 msgid "Email delivery attempts"
 msgstr "E-Mail-Sendeversuche"
 
-#: includes/class-connector.php
 msgid "The last delivery failed. HTTP code:"
 msgstr "Der letzte Versand ist fehlgeschlagen. HTTP-Code:"
 
-#: includes/class-connector.php
 msgid "The last delivery was accepted by the service."
 msgstr "Der letzte Versand wurde vom Dienst angenommen."
 
-#: includes/class-request-admin.php includes/class-request-mail-log.php
 msgid "Accepted by WordPress; the transport result is unknown."
 msgstr "Von WordPress angenommen; das Transportergebnis ist unbekannt."
 
-#: includes/class-request-mail-log.php
 msgid "Accepted by transport"
 msgstr "Vom Transport angenommen"
 
-#: includes/class-requests.php
 msgid "Incoming messages are disabled."
 msgstr "Anfragen sind deaktiviert."
 
-#: includes/class-telegram-request-settings.php
-msgid "Incoming replies are configured. New messages are sent in full."
-msgstr "Der Empfang von Antworten ist eingerichtet. Neue Anliegen werden vollständig übertragen."
-
-#: includes/class-telegram-request-settings.php
-msgid "Incoming replies are connected. Messages are sent in full."
-msgstr "Der Empfang von Antworten ist verbunden. Anliegen werden vollständig gesendet."
-
-#: includes/class-telegram-request-settings.php
-msgid "Incoming replies are not connected yet; ordinary notifications keep their previous behavior."
-msgstr "Der Empfang von Antworten ist noch nicht verbunden; normale Benachrichtigungen bleiben im bisherigen Modus."
-
-#: includes/class-telegram-request-settings.php
 msgid "The connection check is still queued. Refresh this page later."
 msgstr "Die Verbindungsprüfung ist noch in der Warteschlange. Aktualisieren Sie die Seite später."
 
-#: includes/class-telegram-request-settings.php
 msgid "The connection check has been queued. Refresh this page in a while."
 msgstr "Die Verbindungsprüfung wurde in die Warteschlange gestellt. Aktualisieren Sie diese Seite nach einiger Zeit."
 
-#: includes/class-telegram-request-settings.php
 msgid "The check could not be queued. Try again later."
 msgstr "Die Prüfung konnte nicht in die Warteschlange gestellt werden. Versuchen Sie es später erneut."
 
-#: includes/class-connector.php
 msgid "Check the token, identifiers and API settings. The connection was not saved."
 msgstr "Prüfen Sie Token, Kennungen und API-Einstellungen. Die Verbindung wurde nicht gespeichert."
 
-#: includes/class-requests.php
 msgid "Check the required fields and text length."
 msgstr "Prüfen Sie Pflichtfelder und Textlänge."
 
-#: includes/class-connector.php
 msgid "Allow sending to the external service"
 msgstr "Senden an externen Dienst erlauben"
 
-#: includes/class-request-admin.php
 msgid "Reset filter"
 msgstr "Filter zurücksetzen"
 
-#: includes/class-request-form.php
 msgid "Custom question subject"
 msgstr "Eigener Betreff"
 
-#: includes/class-connector.php
 msgid "Correct the connection first."
 msgstr "Korrigieren Sie zuerst die Verbindung."
 
-#: includes/class-telegram-request-settings.php
-msgid "Save settings first, then connect incoming replies. Connecting here moves this bot’s incoming-message webhook to this site; the previous application will stop receiving messages. Channels and groups retain ordinary notifications without personal data."
-msgstr "Speichern Sie zuerst die Einstellungen und verbinden Sie dann den Antwortempfang. Bei der Verbindung hier wird der Bot auf diese Website umgestellt; die vorherige Anwendung empfängt dann keine Nachrichten mehr. Kanäle und Gruppen behalten normale Benachrichtigungen ohne personenbezogene Daten."
-
-#: includes/class-telegram-request-settings.php
 msgid "Save the connection first."
 msgstr "Speichern Sie zuerst die Verbindung."
 
-#: includes/class-request-form.php
 msgid "I consent to processing my data to receive a reply to this message."
 msgstr "Ich stimme der Verarbeitung meiner Daten zur Beantwortung meiner Nachricht zu."
 
-#: includes/class-telegram-requests.php
 msgid "Message"
 msgstr "Nachricht"
 
-#: includes/class-telegram-request-settings.php
-msgid "Save complete-message delivery, a private Chat ID and a staff member with reply permissions."
-msgstr "Speichern Sie vollständige Anliegen, private Chat-ID und einen Mitarbeiter mit Antwortberechtigung."
-
-#: includes/class-request-admin.php
 msgid "Save and send reply"
 msgstr "Antwort speichern und senden"
 
-#: includes/class-request-admin.php includes/class-telegram-requests.php
 msgid "Message status"
 msgstr "Status"
 
-#: includes/class-request-form.php
 msgid "Message text"
 msgstr "Ihre Nachricht"
 
-#: includes/class-request-admin.php includes/class-request-privacy.php includes/class-telegram-requests.php
 msgid "Message subject"
 msgstr "Betreff"
 
-#: includes/class-request-form.php
 msgid "Question subject"
 msgstr "Betreff"
 
-#: includes/class-request-mail-log.php
 msgid "The technical log is kept for 30 days. Transport acceptance does not confirm inbox delivery."
 msgstr "Das technische Protokoll wird 30 Tage gespeichert. Die Annahme durch den Transport bestätigt keine Zustellung ins Postfach."
 
-#: includes/class-request-mail-log.php
 msgid "Exception type"
 msgstr "Ausnahmetyp"
 
-#: includes/class-connector.php
 msgid "The bot token format is invalid. Copy the token from BotFather. The connection was not saved."
 msgstr "Der Bot-Token hat ein ungültiges Format. Kopieren Sie ihn aus BotFather. Die Verbindung wurde nicht gespeichert."
 
-#: includes/class-request-mail-log.php
 msgid "Transport"
 msgstr "Transport"
 
-#: includes/class-request-mail-log.php
 msgid "Transport prepared"
 msgstr "Transport vorbereitet"
 
-#: includes/class-connector.php
 msgid "Notify about new messages"
 msgstr "Über neue Anliegen benachrichtigen"
 
-#: includes/class-connector.php
-msgid "Notify about changes to published schedules"
-msgstr "Über Änderungen am veröffentlichten Gottesdienstplan benachrichtigen"
-
-#: includes/class-request-admin.php
 msgid "Delete"
 msgstr "Löschen"
 
-#: includes/class-connector.php
 msgid "Delete token"
 msgstr "Token löschen"
 
-#: includes/class-connector.php
-msgid "Enter the recipient Chat ID or @channel_name. The connection was not saved."
-msgstr "Geben Sie die Chat-ID des Empfängers oder @Kanalname an. Die Verbindung wurde nicht gespeichert."
-
-#: includes/class-request-mail-log.php
 msgid "Stages:"
 msgstr "Schritte:"
-
-#: includes/class-telegram-request-settings.php
 
 msgid "Add a Form block and select a form, or insert a Shortcode block with one of these examples. Copy the form ID from the Forms table. A form must be enabled, and incoming messages must be enabled in Settings."
 msgstr "Fügen Sie einen Formularblock hinzu und wählen Sie ein Formular oder verwenden Sie ein Beispiel in einem Shortcode-Block. Die Formular-ID steht in der Formulartabelle. Das Formular und der Nachrichteneingang in den Einstellungen müssen aktiviert sein."
@@ -1149,45 +813,64 @@ msgstr "Zeigt das ausgewählte Formular. Ersetzen Sie 123 durch seine ID; id=\"0
 
 msgid "Accepted by service"
 msgstr "Vom Dienst angenommen"
+
 msgid "Accepted by service; inbox delivery is not confirmed."
 msgstr "Vom Dienst angenommen; die Zustellung im Postfach ist nicht bestätigt."
+
 msgid "All channels"
 msgstr "Alle Kanäle"
+
 msgid "All results"
 msgstr "Alle Ergebnisse"
+
 msgid "Channel / recipient"
 msgstr "Kanal / Empfänger"
+
 msgid "Filter"
 msgstr "Filtern"
+
 msgid "Mail transport"
 msgstr "Mail-Transport"
+
 msgid "Message delivery log"
 msgstr "Protokoll ausgehender Nachrichten"
+
 msgid "Message log"
 msgstr "Nachrichtenprotokoll"
+
 msgid "No outgoing messages match these filters."
 msgstr "Keine ausgehenden Nachrichten für diese Filter."
+
 msgid "Outgoing delivery log"
 msgstr "Protokoll ausgehender Nachrichten"
+
 msgid "Result"
 msgstr "Ergebnis"
+
 msgid "Result uncertain"
 msgstr "Ergebnis unklar"
+
 msgid "Result uncertain; check the destination account."
 msgstr "Ergebnis unklar; bitte das Zielkonto prüfen."
+
 msgid "Service message ID"
 msgstr "Nachrichten-ID des Dienstes"
+
 msgid "Show sent content"
 msgstr "Gesendeten Inhalt anzeigen"
+
 msgid "Source message #%d"
 msgstr "Ursprungsnachricht #%d"
+
 msgid "Time (site timezone)"
 msgstr "Zeit (Zeitzone der Website)"
 
 msgid "Attempt #%d"
 msgstr "Versuch Nr. %d"
+
 msgid "HTTP response: %d"
 msgstr "HTTP-Antwort: %d"
+
 msgid "SMTP response: %d"
 msgstr "SMTP-Antwort: %d"
 
@@ -1239,48 +922,36 @@ msgstr "Nachrichten konnten nicht gelöscht werden. Bitte versuchen Sie es erneu
 msgid "Apply"
 msgstr "Anwenden"
 
-
-#: includes/class-hub-settings.php
 msgid "Google reCAPTCHA v3 — spam protection"
 msgstr "Google reCAPTCHA v3 — Spamschutz"
 
-#: includes/class-hub-settings.php
 msgid "Protect public forms from automated submissions. Enter the site key and secret key from your reCAPTCHA v3 registration. The secret is never displayed after saving."
 msgstr "Schützt öffentliche Formulare vor automatisierten Einsendungen. Geben Sie den Website-Schlüssel und den geheimen Schlüssel Ihrer reCAPTCHA-v3-Registrierung ein. Der geheime Schlüssel wird nach dem Speichern nicht mehr angezeigt."
 
-#: includes/class-hub-settings.php
 msgid "reCAPTCHA site key"
 msgstr "reCAPTCHA-Website-Schlüssel"
 
-#: includes/class-hub-settings.php
 msgid "reCAPTCHA secret key (leave empty to keep the saved key)"
 msgstr "Geheimer reCAPTCHA-Schlüssel (leer lassen, um den gespeicherten Schlüssel beizubehalten)"
 
-#: includes/class-hub-settings.php
 msgid "Delete saved reCAPTCHA secret key"
 msgstr "Gespeicherten reCAPTCHA-Geheimschlüssel löschen"
 
-#: includes/class-hub-settings.php
 msgid "Minimum reCAPTCHA score (0.1–0.9)"
 msgstr "Mindestwert für reCAPTCHA (0,1–0,9)"
 
-#: includes/class-request-form.php
 msgid "The security check could not be completed. Please try again."
 msgstr "Die Sicherheitsprüfung konnte nicht abgeschlossen werden. Bitte versuchen Sie es erneut."
 
-#: includes/class-hub-settings.php
 msgid "Google reCAPTCHA"
 msgstr "Google reCAPTCHA"
 
-#: includes/class-hub-settings.php
 msgid "This site uses Google reCAPTCHA v3 to assess whether public form submissions are automated. Google receives browser interaction data and the reCAPTCHA response token; the server sends the token to Google for verification without forwarding the visitor IP address."
 msgstr "Diese Website verwendet Google reCAPTCHA v3, um automatisierte Einsendungen über öffentliche Formulare zu erkennen. Google erhält Browser-Interaktionsdaten und das reCAPTCHA-Antworttoken; der Server sendet das Token zur Überprüfung an Google, ohne die IP-Adresse des Besuchers weiterzuleiten."
 
-#: includes/class-hub-settings.php
 msgid "Google Privacy Policy"
 msgstr "Datenschutzerklärung von Google"
 
-#: includes/class-hub-settings.php
 msgid "Google Terms of Service"
 msgstr "Nutzungsbedingungen von Google"
 
@@ -1301,3 +972,201 @@ msgstr "reCAPTCHA ist nicht eingerichtet. Geben Sie beide Schlüssel ein und spe
 
 msgid "reCAPTCHA setup is incomplete. Both keys are required."
 msgstr "Die reCAPTCHA-Einrichtung ist unvollständig. Beide Schlüssel sind erforderlich."
+
+msgid "Enter a positive numeric Telegram Chat ID for this form."
+msgstr "Geben Sie eine positive numerische Telegram-Chat-ID für dieses Formular ein."
+
+msgid "Choose a staff member who can view and reply to messages."
+msgstr "Wählen Sie einen Mitarbeiter aus, der Nachrichten ansehen und beantworten darf."
+
+msgid "A bot token is required. Each form uses only its own private Chat ID for contact messages; the old global Chat ID is not used. Public posts and schedule messages go to people who pressed Start in the bot."
+msgstr "Für den Betrieb wird ein Bot-Token benötigt. Jede Formularnachricht geht nur an den privaten Chat der jeweiligen Form; die alte globale Chat-ID wird nicht verwendet. Beiträge und Planmeldungen erhalten alle, die im Bot auf Start gedrückt haben."
+
+msgid "This is the VK API method version, not a token. Copy it from the method documentation, for example 5.199, without a v prefix."
+msgstr "Dies ist die Version der VK-API-Methode, kein Token. Übernehmen Sie sie aus der Methodendokumentation, zum Beispiel 5.199, ohne v-Präfix."
+
+msgid "This is the Meta Graph API version used in request URLs, not a key or plugin version. Copy a supported version from Graph API Explorer, for example vNN.N."
+msgstr "Dies ist die Meta-Graph-API-Version in den Anfrage-URLs, kein Schlüssel und keine Plugin-Version. Übernehmen Sie eine unterstützte Version aus dem Graph API Explorer, zum Beispiel vNN.N."
+
+msgid "Notify subscribers about changes to the published schedule"
+msgstr "Abonnenten über Änderungen am veröffentlichten Gottesdienstplan informieren"
+
+msgid "Detailed setup: where to click and find the required details"
+msgstr "Detaillierte Anleitung: Wo Sie klicken und die benötigten Angaben finden"
+
+msgid "Telegram chat and responsible person for this form"
+msgstr "Telegram-Chat und zuständige Person für dieses Formular"
+
+msgid "Private numeric Telegram Chat ID (leave empty to disable Telegram notifications for this form)"
+msgstr "Numerische Telegram-Chat-ID des privaten Chats (leer lassen, um Telegram-Benachrichtigungen für dieses Formular zu deaktivieren)"
+
+msgid "To find this form’s Chat ID, the responsible person opens your bot and presses Start, then opens"
+msgstr "Um die Chat-ID für dieses Formular zu finden, öffnet die zuständige Person Ihren Bot und drückt auf Start. Anschließend öffnet sie"
+
+msgid "and copies their numeric ID. They must start your bot first or it cannot message them. Enter a separate private Chat ID for each form. Groups and public channels do not support private replies. Find the bot token and connection instructions under"
+msgstr "und kopiert ihre numerische ID. Zuvor muss sie Ihren Bot gestartet haben, sonst kann er keine Nachrichten senden. Verwenden Sie für jedes Formular eine eigene private Chat-ID. Gruppen und öffentliche Kanäle unterstützen keine privaten Antworten. Bot-Token und Anleitung finden Sie unter"
+
+msgid "create a bot with"
+msgstr "erstellen Sie einen Bot bei"
+
+msgid "Save Telegram replies on behalf of this staff member (empty uses the shared staff setting)"
+msgstr "Telegram-Antworten diesem Mitarbeiter zuordnen (leer verwendet den in den Einstellungen ausgewählten Mitarbeiter)"
+
+msgid "Shared staff member from Telegram settings"
+msgstr "Gemeinsamer Mitarbeiter aus den Telegram-Einstellungen"
+
+msgid "Each form sends contact messages to its own chat; replies are recorded under the selected staff member. The bot token and webhook are shared. Enable Telegram in Settings, and enable complete-message replies there if staff need to answer in Telegram."
+msgstr "Jedes Formular sendet Anfragen an seinen eigenen Chat; Antworten werden dem ausgewählten Mitarbeiter zugeordnet. Bot-Token und Webhook sind gemeinsam. Aktivieren Sie Telegram in den Einstellungen und zusätzlich die vollständige Nachrichtenübermittlung, wenn Mitarbeiter über Telegram antworten sollen."
+
+msgid "Message or reminder text for other selected channels"
+msgstr "Nachrichten- oder Erinnerungstext für andere ausgewählte Kanäle"
+
+msgid "Telegram text by subscriber language"
+msgstr "Telegram-Text nach Sprache des Abonnenten"
+
+msgid "Fill in the Russian and German versions for Telegram. A subscriber without a translation is skipped and counted in the delivery status."
+msgstr "Geben Sie für Telegram russische und deutsche Texte ein. Abonnenten ohne passende Übersetzung werden übersprungen und im Zustellstatus gezählt."
+
+msgid "Russian"
+msgstr "Russisch"
+
+msgid "German"
+msgstr "Deutsch"
+
+msgid "Add both Russian and German message text before enabling this Telegram rule."
+msgstr "Fügen Sie vor dem Aktivieren dieser Telegram-Regel einen russischen und einen deutschen Nachrichtentext hinzu."
+
+msgid "Enable Telegram subscriber broadcasts on the Telegram settings tab before selecting it for publications."
+msgstr "Aktivieren Sie auf der Registerkarte Telegram-Rundnachrichten an Abonnenten, bevor Sie Telegram für Veröffentlichungen auswählen."
+
+msgid "Enable Telegram subscriber broadcasts before selecting Telegram."
+msgstr "Aktivieren Sie Telegram-Rundnachrichten an Abonnenten, bevor Sie Telegram auswählen."
+
+msgid "Telegram bot subscribers and delivery status"
+msgstr "Telegram-Bot-Abonnenten und Zustellstatus"
+
+msgid "Public Telegram bot and subscriber broadcasts"
+msgstr "Öffentlicher Telegram-Bot und Rundnachrichten an Abonnenten"
+
+msgid "Enable bot subscriptions and broadcasts to people who pressed Start"
+msgstr "Bot-Abonnements und Rundnachrichten für Nutzer aktivieren, die auf Start gedrückt haben"
+
+msgid "The old global Chat ID is not used for form routing. News and schedule announcements are sent to active bot subscribers; each form uses only its own responsible person’s Chat ID. A person must open the bot and press Start first. /stop removes the subscription."
+msgstr "Die alte globale Chat-ID wird nicht für Formularnachrichten verwendet. Nachrichten und Hinweise zum Gottesdienstplan gehen an aktive Bot-Abonnenten; jedes Formular verwendet nur die Chat-ID seiner zuständigen Person. Zum Abonnieren muss man den Bot öffnen und auf Start drücken. /stop beendet das Abonnement."
+
+msgid "Send subscribers a daily schedule digest"
+msgstr "Abonnenten täglich eine Übersicht des Gottesdienstplans senden"
+
+msgid "Time in the WordPress time zone"
+msgstr "Uhrzeit in der WordPress-Zeitzone"
+
+msgid "Subscribers can use /today, /week and /lang. Daily digests include the parish services and the calendar day’s main commemorations when the connected calendar is available."
+msgstr "Abonnenten können /today, /week und /lang verwenden. Die Tagesübersicht enthält Gottesdienste und die wichtigsten Gedenktage des Kirchenkalenders, sofern der Kalender verfügbar ist."
+
+msgid "Telegram bot subscribers"
+msgstr "Abonnenten des Telegram-Bots"
+
+msgid "Telegram bot"
+msgstr "Telegram-Bot"
+
+msgid "Anyone who presses Start is subscribed to news and schedule announcements. /stop removes their Chat ID from the active subscriber list. The bot sends only to users who initiated the chat."
+msgstr "Wer auf Start drückt, abonniert Nachrichten und Hinweise zum Gottesdienstplan. /stop entfernt die Chat-ID aus der aktiven Abonnentenliste. Der Bot schreibt nur Nutzern, die den Chat selbst gestartet haben."
+
+msgid "Active subscribers"
+msgstr "Aktive Abonnenten"
+
+msgid "Recent broadcast status"
+msgstr "Letzte Rundnachrichten und ihr Status"
+
+msgid "Recipients"
+msgstr "Empfänger"
+
+msgid "Action"
+msgstr "Aktion"
+
+msgid "sent"
+msgstr "Gesendet"
+
+msgid "failed"
+msgstr "Fehlgeschlagen"
+
+msgid "skipped"
+msgstr "Übersprungen"
+
+msgid "Completed with issues"
+msgstr "Mit Problemen abgeschlossen"
+
+msgid "Completed"
+msgstr "Abgeschlossen"
+
+msgid "Needs attention"
+msgstr "Erfordert Aufmerksamkeit"
+
+msgid "No subscribers at send time"
+msgstr "Zum Sendezeitpunkt gab es keine Abonnenten"
+
+msgid "WordPress could not schedule this delivery. Retry it or check that WordPress Cron is running."
+msgstr "WordPress konnte diese Zustellung nicht planen. Versuchen Sie es erneut oder prüfen Sie, ob WordPress Cron ausgeführt wird."
+
+msgid "Telegram sending is disabled or the connection is incomplete. Pending deliveries remain available."
+msgstr "Der Telegram-Versand ist deaktiviert oder die Verbindung ist unvollständig. Ausstehende Zustellungen bleiben erhalten."
+
+msgid "Retry failed recipients"
+msgstr "Fehlgeschlagene Zustellungen erneut versuchen"
+
+msgid "No broadcasts have been sent yet."
+msgstr "Es wurden noch keine Rundnachrichten gesendet."
+
+msgid "Language"
+msgstr "Sprache"
+
+msgid "Subscribed"
+msgstr "Abonniert"
+
+msgid "Remove subscriber"
+msgstr "Abonnent entfernen"
+
+msgid "There are no active subscribers."
+msgstr "Es gibt keine aktiven Abonnenten."
+
+msgid "Previous"
+msgstr "Zurück"
+
+msgid "Next"
+msgstr "Weiter"
+
+msgid "Send complete messages and receive replies in each form’s private chat"
+msgstr "Vollständige Nachrichten an den privaten Chat des jeweiligen Formulars senden und Antworten empfangen"
+
+msgid "Each form’s Telegram Chat ID determines which responsible person receives the contact message. Use Reply on the bot’s message: the site saves the reply and sends a formatted email to the visitor. Internal notes are not transmitted. Public posts and schedule broadcasts do not use these form Chat IDs."
+msgstr "Die Telegram-Chat-ID jeder Form bestimmt, wer die Anfrage erhält. Antworten Sie mit Reply auf die Bot-Nachricht: Die Website speichert die Antwort und sendet dem Besucher eine formatierte E-Mail. Interne Notizen werden nicht übertragen. Öffentliche Beiträge und Planmeldungen verwenden diese Chat-IDs nicht."
+
+msgid "Save settings first, then connect the bot. This one webhook receives both bot commands (/start, /stop, /today and /week) and replies to form messages. Connecting it moves this bot’s incoming-message webhook to this site; the previous application will stop receiving messages."
+msgstr "Speichern Sie zuerst die Einstellungen und verbinden Sie dann den Bot. Ein gemeinsamer Webhook empfängt sowohl Bot-Befehle (/start, /stop, /today und /week) als auch Antworten auf Formularnachrichten. Beim Verbinden wird der eingehende Webhook dieses Bots auf diese Website umgestellt; die vorherige Anwendung erhält dann keine Nachrichten mehr."
+
+msgid "The shared bot webhook is connected. Subscriber commands and enabled form replies are being received here."
+msgstr "Der gemeinsame Bot-Webhook ist verbunden. Hier gehen Abonnentenbefehle und Antworten auf aktivierte Formularnachrichten ein."
+
+msgid "The shared bot webhook is not connected yet. Press the button after saving the bot settings."
+msgstr "Der gemeinsame Bot-Webhook ist noch nicht verbunden. Speichern Sie die Bot-Einstellungen und klicken Sie auf die Schaltfläche zum Verbinden."
+
+msgid "Connect / check Telegram bot webhook"
+msgstr "Telegram-Bot-Webhook verbinden / prüfen"
+
+msgid "Enable Telegram broadcasts or complete-message form replies before connecting the bot."
+msgstr "Aktivieren Sie vor dem Verbinden des Bots entweder Rundnachrichten an Abonnenten oder Antworten auf vollständige Formularnachrichten."
+
+msgid "Enable contact notifications and select a staff member with reply permissions."
+msgstr "Aktivieren Sie Benachrichtigungen über neue Anfragen und wählen Sie einen Mitarbeiter mit Antwortberechtigung aus."
+
+msgid "Telegram did not confirm the bot identity."
+msgstr "Telegram hat die Bot-Identität nicht bestätigt."
+
+msgid "Settings changed during the check. Reconnect the bot webhook."
+msgstr "Die Einstellungen wurden während der Prüfung geändert. Verbinden Sie den Bot-Webhook erneut."
+
+msgid "Enable Telegram broadcasts or configure complete-message replies with a permitted staff member."
+msgstr "Aktivieren Sie Telegram-Rundnachrichten oder richten Sie Antworten auf vollständige Nachrichten mit einem berechtigten Mitarbeiter ein."
+
+msgid "The shared bot webhook is connected."
+msgstr "Der gemeinsame Bot-Webhook ist verbunden."

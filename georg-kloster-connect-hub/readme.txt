@@ -4,7 +4,7 @@ Tags: contact form, messages, social, publishing, telegram
 Requires at least: 6.5
 Requires PHP: 8.0
 Tested up to: 7.1
-Stable tag: 0.3.13
+Stable tag: 0.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -17,9 +17,12 @@ topics, recipients and enabled states. Use [gkch_form id="123"] or the Form bloc
 The previous [gkps_contact_form] shortcode and gkps/contact-form block still work.
 Messages record the source form and appear in one private inbox with form and
 status filters. Staff can reply by email. Telegram supports the existing opt-in
-private-chat reply workflow.
+private-chat reply workflow. Separately, readers can press Start in the bot to
+receive public post announcements and service-schedule messages. Russian and
+German subscribers receive their matching published translations. Bot users can
+request today's or this week's schedule and select their message language.
 
-The menu has Forms, Messages, Publications, Message log and Settings. The Message log
+The menu has Forms, Messages, Publications, Telegram bot, Message log and Settings. The Message log
 records time, recipient, message text and technical result for outgoing email and
 Telegram request/schedule messages. It is separate from publication history, requires
 communication-settings access, and keeps at most 200 entries for 30 days. Deleting a
@@ -56,18 +59,21 @@ Development repository: https://github.com/VAtapin/Orthodox/tree/main/georg-klos
 
 == Installation ==
 
-Upload georg-kloster-connect-hub-0.3.13.zip. Replace an existing Connect Hub version,
+Upload georg-kloster-connect-hub-0.4.0.zip. Replace an existing Connect Hub version,
 or install as a new plugin and activate it.
 Activation deactivates the previous georg-kloster-prihod-social development plugin
 without deleting its settings. Keep only Connect Hub active. Network-active old
-installations require network-wide activation. The internal gkps data, capabilities,
-cron hooks and Telegram REST paths remain compatible; no database migration is needed.
+installations require network-wide activation. Existing messages, forms, capabilities,
+cron hooks and Telegram REST paths remain compatible. On the first WordPress request
+after activation or upgrade, Connect Hub creates the subscriber, campaign and delivery
+tables; existing plugin data is retained.
 
 Configure forms under Forms, global reception/retention under Settings and each
 channel under its tab in Settings. Each channel tab contains a step-by-step guide
-with official links. Telegram supports a separate private Chat ID and responsible
-WordPress staff account per form; blank IDs use the shared Telegram destination.
-Read docs/CHANNEL_SETUP_RU.md in the plugin package for the full Russian setup guide.
+with official links. Telegram contact notifications use only the private Chat ID
+set on each form; a blank ID disables Telegram notification for that form. Public
+posts and schedule messages go to the bot's active subscribers, not to a form's
+private Chat ID. Read docs/TELEGRAM_BOT.md and docs/CHANNEL_SETUP_RU.md for setup.
 Configure
 automatic rules under Publications. Insert the Form block and select a saved form, or use its
 listed shortcode. Exclude pages containing forms from full-page caching: tokens
@@ -80,9 +86,13 @@ WordPress Cron sends selected publications in the background. Missing permission
 expired credentials and rejected API responses are recorded as failures.
 A configured channel alone is not proof of successful live delivery.
 
-Telegram Bot API: selected public text/link and target chat ID. Optional full
-private messages transmit name, email, subject, body and reply photos to the
-configured private chat. https://core.telegram.org/bots/api https://telegram.org/privacy
+Telegram Bot API: selected post or schedule announcements are sent to private
+Chat IDs of readers who explicitly started the bot; the subscriber table stores
+Chat ID, language and subscription timestamps. `/stop` or admin removal deletes
+the active subscriber record. Optional contact notifications transmit request
+name, email, subject and body only to that form's configured private chat. The
+bot does not receive email addresses or names from public subscribers.
+https://core.telegram.org/bots/api https://telegram.org/privacy
 
 Facebook Graph API: selected public text/link and Page ID. Requires a Page token
 with publication rights and the API version configured in the application.
@@ -121,7 +131,9 @@ The technical outgoing-message log stores recipients, message text and service
 results for up to 30 days (200 entries); deleting a request or erasing its data
 also removes its related log entries.
 The source form ID/name is stored with each message. Form recipients are never
-included in public markup or the block selector. Ordinary uninstall retains
+included in public markup or the block selector. Telegram broadcast history stores
+delivery results by subscriber ID but does not store subscriber names or emails.
+Ordinary uninstall retains
 saved messages/settings and does not delete posts in external services.
 
 == Shortcodes ==
@@ -138,6 +150,11 @@ Configure optional reCAPTCHA v3 site and secret keys under Connect Hub > Setting
 General reception, retention and reCAPTCHA settings use one save button. A status message confirms whether both reCAPTCHA keys are saved; the secret key is never displayed.
 
 == Changelog ==
+
+= 0.4.0 =
+Add opt-in Telegram bot subscribers, Russian/German post broadcasts, schedule
+commands and digest, shared webhook routing, and subscriber/campaign management.
+Route each form's private notifications only to its own Chat ID.
 
 = 0.3.13 =
 Improve the requests list and add permission-checked bulk deletion.
