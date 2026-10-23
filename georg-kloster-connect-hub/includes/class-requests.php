@@ -22,6 +22,7 @@ final class Requests {
         add_action( 'admin_post_nopriv_gkps_request_submit', array( Request_Form::class, 'submit' ) );
         add_action( 'admin_post_gkps_reply_image', array( Request_Media::class, 'serve' ) );
         add_action( 'admin_post_gkps_request_update', array( Request_Admin::class, 'update' ) );
+        add_action( 'admin_post_gkps_request_bulk_delete', array( Request_Admin::class, 'bulk_delete' ) );
     }
     public static function register(): void {
         $capabilities = array_map( fn() => 'view_gkps_requests', Capabilities::directory() );

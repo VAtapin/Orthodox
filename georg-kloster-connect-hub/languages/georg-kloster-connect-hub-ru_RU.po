@@ -365,7 +365,6 @@ msgstr "Один раз"
 msgid "Paused"
 msgstr "Приостановлено"
 
-
 #: includes/class-publications.php
 msgid "Processing"
 msgstr "Обрабатывается"
@@ -565,7 +564,6 @@ msgstr "Идентификатор пользователя или сообще�
 #: includes/class-publication-rules-admin.php
 msgid "What to send"
 msgstr "Что отправлять"
-
 
 #: includes/class-publication-rules-admin.php
 msgid "WordPress Cron runs on site visits or the server scheduler. Late runs send once, without repeating every missed interval. Editing or pausing a rule cancels its pending deliveries."
@@ -827,7 +825,6 @@ msgstr "Обращения «Прихода»"
 msgid "Messages and replies in Telegram"
 msgstr "Обращения и ответы в Telegram"
 
-
 #: includes/class-requests.php
 msgid "Awaiting reply"
 msgstr "Ожидает ответа"
@@ -929,8 +926,6 @@ msgid "Email prepared"
 msgstr "Письмо подготовлено"
 
 #: includes/class-request-admin.php
-msgid "No messages match the selected status."
-msgstr "По выбранному статусу обращений не найдено."
 
 #: includes/class-connector.php
 msgid "Retry the last delivery after correcting the settings"
@@ -963,8 +958,6 @@ msgstr "Поле не может состоять только из размет
 #: includes/class-request-form.php
 msgid "Privacy policy"
 msgstr "Политика конфиденциальности"
-
-
 
 #: includes/class-request-form.php
 msgid "Fields marked with an asterisk are required."
@@ -1033,7 +1026,6 @@ msgstr "Проверьте токен, идентификаторы и наст�
 #: includes/class-requests.php
 msgid "Check the required fields and text length."
 msgstr "Проверьте обязательные поля и длину текста."
-
 
 #: includes/class-connector.php
 msgid "Allow sending to the external service"
@@ -1115,7 +1107,6 @@ msgstr "Транспорт подготовлен"
 msgid "Notify about new messages"
 msgstr "Уведомлять о новых обращениях"
 
-
 #: includes/class-connector.php
 msgid "Notify about changes to published schedules"
 msgstr "Уведомлять об изменениях опубликованного расписания"
@@ -1137,7 +1128,6 @@ msgid "Stages:"
 msgstr "Этапы:"
 
 #: includes/class-telegram-request-settings.php
-
 
 msgid "Add a Form block and select a form, or insert a Shortcode block with one of these examples. Copy the form ID from the Forms table. A form must be enabled, and incoming messages must be enabled in Settings."
 msgstr "Добавьте блок «Форма» и выберите форму или вставьте один из примеров в блок «Шорткод». Идентификатор формы указан в таблице раздела «Формы». Форма должна быть включена; приём сообщений также должен быть включён в настройках."
@@ -1201,42 +1191,104 @@ msgstr "Ответ HTTP: %d"
 msgid "SMTP response: %d"
 msgstr "Ответ SMTP: %d"
 
+msgid "Bulk actions"
+msgstr "Действия с выбранными"
 
-#: includes/class-hub-settings.php
-msgid "Delete saved reCAPTCHA secret key"
-msgstr "Удалить сохранённый секретный ключ reCAPTCHA"
-#: includes/class-hub-settings.php
-msgid "Google Privacy Policy"
-msgstr "Политика конфиденциальности Google"
-#: includes/class-hub-settings.php
-msgid "Google Terms of Service"
-msgstr "Условия использования Google"
-#: includes/class-hub-settings.php
-msgid "Google reCAPTCHA"
-msgstr "Google reCAPTCHA — защита от спама"
+msgid "Confirm permanent deletion"
+msgstr "Подтверждаю безвозвратное удаление"
+
+msgid "Confirm permanent deletion."
+msgstr "Подтвердите безвозвратное удаление."
+
+msgid "Date received"
+msgstr "Дата получения"
+
+msgid "Delete selected"
+msgstr "Удалить выбранные"
+
+msgid "Deleted messages: %d."
+msgstr "Удалено сообщений: %d."
+
+msgid "No messages match the selected filters."
+msgstr "По выбранным фильтрам обращений не найдено."
+
+msgid "Select all messages"
+msgstr "Выбрать все обращения"
+
+msgid "Select at least one message to delete."
+msgstr "Выберите хотя бы одно обращение для удаления."
+
+msgid "Select message: %s"
+msgstr "Выбрать обращение: %s"
+
+msgid "Sender"
+msgstr "Отправитель"
+
+msgid "Show more details"
+msgstr "Показать подробности"
+
+msgid "Total messages: %d"
+msgstr "Всего обращений: %d"
+
+msgid "Choose an action for the selected messages."
+msgstr "Выберите действие для отмеченных обращений."
+
+msgid "Messages could not be deleted. Please try again."
+msgstr "Не удалось удалить обращения. Попробуйте ещё раз."
+
+msgid "Apply"
+msgstr "Применить"
+
+
 #: includes/class-hub-settings.php
 msgid "Google reCAPTCHA v3 — spam protection"
 msgstr "Google reCAPTCHA v3 — защита от спама"
-#: includes/class-hub-settings.php
-msgid "Minimum reCAPTCHA score (0.1–0.9)"
-msgstr "Минимальная оценка reCAPTCHA (0,1–0,9)"
+
 #: includes/class-hub-settings.php
 msgid "Protect public forms from automated submissions. Enter the site key and secret key from your reCAPTCHA v3 registration. The secret is never displayed after saving."
 msgstr "Защищает открытые формы от автоматических отправок. Введите ключ сайта и секретный ключ из регистрации reCAPTCHA v3. Секретный ключ не отображается после сохранения."
-#: includes/class-hub-settings.php
-msgid "The security check could not be completed. Please try again."
-msgstr "Не удалось выполнить проверку безопасности. Попробуйте ещё раз."
-#: includes/class-hub-settings.php
-msgid "This site uses Google reCAPTCHA v3 to assess whether public form submissions are automated. Google receives browser interaction data and the reCAPTCHA response token; the server sends the token to Google for verification without forwarding the visitor IP address."
-msgstr "Сайт использует Google reCAPTCHA v3, чтобы определять автоматические отправки публичных форм. Google получает данные о взаимодействии браузера и токен reCAPTCHA; сервер отправляет токен Google для проверки, не передавая IP-адрес посетителя."
-#: includes/class-hub-settings.php
-msgid "reCAPTCHA secret key (leave empty to keep the saved key)"
-msgstr "Секретный ключ reCAPTCHA (оставьте поле пустым, чтобы сохранить текущий ключ)"
-#: includes/class-hub-settings.php
 
 #: includes/class-hub-settings.php
 msgid "reCAPTCHA site key"
 msgstr "Ключ сайта reCAPTCHA"
+
+#: includes/class-hub-settings.php
+msgid "reCAPTCHA secret key (leave empty to keep the saved key)"
+msgstr "Секретный ключ reCAPTCHA (оставьте поле пустым, чтобы сохранить текущий ключ)"
+
+#: includes/class-hub-settings.php
+msgid "Delete saved reCAPTCHA secret key"
+msgstr "Удалить сохранённый секретный ключ reCAPTCHA"
+
+#: includes/class-hub-settings.php
+msgid "Minimum reCAPTCHA score (0.1–0.9)"
+msgstr "Минимальная оценка reCAPTCHA (0,1–0,9)"
+
+#: includes/class-request-form.php
+msgid "The security check could not be completed. Please try again."
+msgstr "Не удалось выполнить проверку безопасности. Попробуйте ещё раз."
+
+#: includes/class-hub-settings.php
+msgid "Google reCAPTCHA"
+msgstr "Google reCAPTCHA — защита от спама"
+
+#: includes/class-hub-settings.php
+msgid "This site uses Google reCAPTCHA v3 to assess whether public form submissions are automated. Google receives browser interaction data and the reCAPTCHA response token; the server sends the token to Google for verification without forwarding the visitor IP address."
+msgstr "Сайт использует Google reCAPTCHA v3, чтобы определять автоматические отправки публичных форм. Google получает данные о взаимодействии браузера и токен reCAPTCHA; сервер отправляет токен Google для проверки, не передавая IP-адрес посетителя."
+
+#: includes/class-hub-settings.php
+msgid "Google Privacy Policy"
+msgstr "Политика конфиденциальности Google"
+
+#: includes/class-hub-settings.php
+msgid "Google Terms of Service"
+msgstr "Условия использования Google"
+
+msgid "Not saved"
+msgstr "Не сохранён"
+
+msgid "Saved; enter a new key only to replace it"
+msgstr "Сохранён; введите новый ключ, только если хотите заменить его"
 
 msgid "Settings saved."
 msgstr "Настройки сохранены."
@@ -1249,9 +1301,3 @@ msgstr "reCAPTCHA не настроена. Введите оба ключа и �
 
 msgid "reCAPTCHA setup is incomplete. Both keys are required."
 msgstr "Настройка reCAPTCHA не завершена. Необходимо указать оба ключа."
-
-msgid "Saved; enter a new key only to replace it"
-msgstr "Ключ сохранён; введите новый, только если хотите заменить его"
-
-msgid "Not saved"
-msgstr "Не сохранён"

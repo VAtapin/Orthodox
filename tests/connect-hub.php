@@ -101,6 +101,7 @@ update_option( 'gkch_settings', array( 'enabled' => false ) );
 $check( '' === Request_Form::render( array( 'id' => $milk ) ), 'Global switch did not disable public forms.' );
 ob_start(); GeorgKlosterPrihodSocial\Request_Admin::render(); $inbox = ob_get_clean();
 $check( str_contains( $inbox, 'Milk' ), 'Messages disappeared when incoming forms were disabled.' );
+$check( str_contains( $inbox, 'wp-list-table widefat fixed striped' ) && str_contains( $inbox, 'Date received' ) && str_contains( $inbox, 'Sender' ) && str_contains( $inbox, 'confirm_delete' ), 'Messages list is missing its WordPress table layout or bulk-delete controls.' );
 update_option( 'gkch_settings', array( 'enabled' => true ) );
 $post = wp_insert_post( array( 'post_type' => 'post', 'post_status' => 'publish', 'post_title' => 'Synthetic public post', 'post_content' => 'Synthetic public text.' ) );
 $image = wp_insert_attachment( array( 'post_mime_type' => 'image/jpeg', 'post_title' => 'Synthetic image', 'guid' => 'https://93.184.216.34/fixture.jpg', 'post_status' => 'inherit' ), '', $post );
@@ -184,6 +185,15 @@ $redirect = static function ( callable $action ): string {
     finally { remove_filter( 'wp_redirect', $capture ); }
     return $url;
 };
+$bulk_fixture = wp_insert_post( array( 'post_type' => 'gkps_request', 'post_status' => 'private', 'post_title' => 'Synthetic bulk delete fixture', 'post_content' => 'Private bulk-delete fixture.' ) );
+$_POST = array( 'status' => 'new', 'form_id' => (string) $milk, 'bulk_action' => 'delete', 'request_ids' => array( (string) $bulk_fixture ), 'confirm_delete' => '0' );
+$_REQUEST = array( '_wpnonce' => wp_create_nonce( 'gkps_request_bulk_delete' ) );
+$redirect( array( GeorgKlosterPrihodSocial\Request_Admin::class, 'bulk_delete' ) );
+$check( (bool) get_post( $bulk_fixture ), 'Bulk deletion proceeded without explicit confirmation.' );
+$_POST['confirm_delete'] = '1';
+$bulk_redirect = $redirect( array( GeorgKlosterPrihodSocial\Request_Admin::class, 'bulk_delete' ) );
+$check( ! get_post( $bulk_fixture ) && str_contains( $bulk_redirect, 'status=new' ) && str_contains( $bulk_redirect, 'form_id=' . $milk ), 'Authorized bulk deletion did not remove the selected message or preserve filters.' );
+$_POST = $_REQUEST = array();
 foreach ( array( 'telegram' ) as $provider ) {
     $connector = Connector::instance( $provider ); $saved = $connector->settings();
     $_POST = array_merge( $saved, array( 'token' => '', 'application_secret' => '' ) );

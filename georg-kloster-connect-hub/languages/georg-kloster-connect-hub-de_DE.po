@@ -365,7 +365,6 @@ msgstr "Einmalig"
 msgid "Paused"
 msgstr "Pausiert"
 
-
 #: includes/class-publications.php
 msgid "Processing"
 msgstr "In Bearbeitung"
@@ -565,7 +564,6 @@ msgstr "Benutzer- oder Community-ID bei VK"
 #: includes/class-publication-rules-admin.php
 msgid "What to send"
 msgstr "Was gesendet wird"
-
 
 #: includes/class-publication-rules-admin.php
 msgid "WordPress Cron runs on site visits or the server scheduler. Late runs send once, without repeating every missed interval. Editing or pausing a rule cancels its pending deliveries."
@@ -827,7 +825,6 @@ msgstr "Gemeindeanfragen"
 msgid "Messages and replies in Telegram"
 msgstr "Anliegen und Antworten in Telegram"
 
-
 #: includes/class-requests.php
 msgid "Awaiting reply"
 msgstr "Wartet auf Antwort"
@@ -929,8 +926,6 @@ msgid "Email prepared"
 msgstr "E-Mail vorbereitet"
 
 #: includes/class-request-admin.php
-msgid "No messages match the selected status."
-msgstr "Für den ausgewählten Status wurden keine Anfragen gefunden."
 
 #: includes/class-connector.php
 msgid "Retry the last delivery after correcting the settings"
@@ -963,8 +958,6 @@ msgstr "Das Feld darf nicht nur Markup enthalten."
 #: includes/class-request-form.php
 msgid "Privacy policy"
 msgstr "Datenschutzerklärung"
-
-
 
 #: includes/class-request-form.php
 msgid "Fields marked with an asterisk are required."
@@ -1033,7 +1026,6 @@ msgstr "Prüfen Sie Token, Kennungen und API-Einstellungen. Die Verbindung wurde
 #: includes/class-requests.php
 msgid "Check the required fields and text length."
 msgstr "Prüfen Sie Pflichtfelder und Textlänge."
-
 
 #: includes/class-connector.php
 msgid "Allow sending to the external service"
@@ -1115,7 +1107,6 @@ msgstr "Transport vorbereitet"
 msgid "Notify about new messages"
 msgstr "Über neue Anliegen benachrichtigen"
 
-
 #: includes/class-connector.php
 msgid "Notify about changes to published schedules"
 msgstr "Über Änderungen am veröffentlichten Gottesdienstplan benachrichtigen"
@@ -1137,7 +1128,6 @@ msgid "Stages:"
 msgstr "Schritte:"
 
 #: includes/class-telegram-request-settings.php
-
 
 msgid "Add a Form block and select a form, or insert a Shortcode block with one of these examples. Copy the form ID from the Forms table. A form must be enabled, and incoming messages must be enabled in Settings."
 msgstr "Fügen Sie einen Formularblock hinzu und wählen Sie ein Formular oder verwenden Sie ein Beispiel in einem Shortcode-Block. Die Formular-ID steht in der Formulartabelle. Das Formular und der Nachrichteneingang in den Einstellungen müssen aktiviert sein."
@@ -1201,57 +1191,113 @@ msgstr "HTTP-Antwort: %d"
 msgid "SMTP response: %d"
 msgstr "SMTP-Antwort: %d"
 
+msgid "Bulk actions"
+msgstr "Sammelaktionen"
 
-#: includes/class-hub-settings.php
-msgid "Delete saved reCAPTCHA secret key"
-msgstr "Gespeicherten reCAPTCHA-Geheimschlüssel löschen"
-#: includes/class-hub-settings.php
-msgid "Google Privacy Policy"
-msgstr "Datenschutzerklärung von Google"
-#: includes/class-hub-settings.php
-msgid "Google Terms of Service"
-msgstr "Nutzungsbedingungen von Google"
-#: includes/class-hub-settings.php
-msgid "Google reCAPTCHA"
-msgstr "Google reCAPTCHA"
+msgid "Confirm permanent deletion"
+msgstr "Endgültiges Löschen bestätigen"
+
+msgid "Confirm permanent deletion."
+msgstr "Bitte bestätigen Sie das endgültige Löschen."
+
+msgid "Date received"
+msgstr "Eingangsdatum"
+
+msgid "Delete selected"
+msgstr "Ausgewählte löschen"
+
+msgid "Deleted messages: %d."
+msgstr "Gelöschte Nachrichten: %d."
+
+msgid "No messages match the selected filters."
+msgstr "Keine Nachrichten entsprechen den ausgewählten Filtern."
+
+msgid "Select all messages"
+msgstr "Alle Nachrichten auswählen"
+
+msgid "Select at least one message to delete."
+msgstr "Wählen Sie mindestens eine Nachricht zum Löschen aus."
+
+msgid "Select message: %s"
+msgstr "Nachricht auswählen: %s"
+
+msgid "Sender"
+msgstr "Absender"
+
+msgid "Show more details"
+msgstr "Weitere Details anzeigen"
+
+msgid "Total messages: %d"
+msgstr "Nachrichten insgesamt: %d"
+
+msgid "Choose an action for the selected messages."
+msgstr "Wählen Sie eine Aktion für die markierten Nachrichten."
+
+msgid "Messages could not be deleted. Please try again."
+msgstr "Nachrichten konnten nicht gelöscht werden. Bitte versuchen Sie es erneut."
+
+msgid "Apply"
+msgstr "Anwenden"
+
+
 #: includes/class-hub-settings.php
 msgid "Google reCAPTCHA v3 — spam protection"
 msgstr "Google reCAPTCHA v3 — Spamschutz"
-#: includes/class-hub-settings.php
-msgid "Minimum reCAPTCHA score (0.1–0.9)"
-msgstr "Mindestwert für reCAPTCHA (0,1–0,9)"
+
 #: includes/class-hub-settings.php
 msgid "Protect public forms from automated submissions. Enter the site key and secret key from your reCAPTCHA v3 registration. The secret is never displayed after saving."
 msgstr "Schützt öffentliche Formulare vor automatisierten Einsendungen. Geben Sie den Website-Schlüssel und den geheimen Schlüssel Ihrer reCAPTCHA-v3-Registrierung ein. Der geheime Schlüssel wird nach dem Speichern nicht mehr angezeigt."
-#: includes/class-hub-settings.php
-msgid "The security check could not be completed. Please try again."
-msgstr "Die Sicherheitsprüfung konnte nicht abgeschlossen werden. Bitte versuchen Sie es erneut."
-#: includes/class-hub-settings.php
-msgid "This site uses Google reCAPTCHA v3 to assess whether public form submissions are automated. Google receives browser interaction data and the reCAPTCHA response token; the server sends the token to Google for verification without forwarding the visitor IP address."
-msgstr "Diese Website verwendet Google reCAPTCHA v3, um automatisierte Einsendungen über öffentliche Formulare zu erkennen. Google erhält Browser-Interaktionsdaten und das reCAPTCHA-Antworttoken; der Server sendet das Token zur Überprüfung an Google, ohne die IP-Adresse des Besuchers weiterzuleiten."
-#: includes/class-hub-settings.php
-msgid "reCAPTCHA secret key (leave empty to keep the saved key)"
-msgstr "Geheimer reCAPTCHA-Schlüssel (leer lassen, um den gespeicherten Schlüssel beizubehalten)"
-#: includes/class-hub-settings.php
 
 #: includes/class-hub-settings.php
 msgid "reCAPTCHA site key"
 msgstr "reCAPTCHA-Website-Schlüssel"
 
+#: includes/class-hub-settings.php
+msgid "reCAPTCHA secret key (leave empty to keep the saved key)"
+msgstr "Geheimer reCAPTCHA-Schlüssel (leer lassen, um den gespeicherten Schlüssel beizubehalten)"
+
+#: includes/class-hub-settings.php
+msgid "Delete saved reCAPTCHA secret key"
+msgstr "Gespeicherten reCAPTCHA-Geheimschlüssel löschen"
+
+#: includes/class-hub-settings.php
+msgid "Minimum reCAPTCHA score (0.1–0.9)"
+msgstr "Mindestwert für reCAPTCHA (0,1–0,9)"
+
+#: includes/class-request-form.php
+msgid "The security check could not be completed. Please try again."
+msgstr "Die Sicherheitsprüfung konnte nicht abgeschlossen werden. Bitte versuchen Sie es erneut."
+
+#: includes/class-hub-settings.php
+msgid "Google reCAPTCHA"
+msgstr "Google reCAPTCHA"
+
+#: includes/class-hub-settings.php
+msgid "This site uses Google reCAPTCHA v3 to assess whether public form submissions are automated. Google receives browser interaction data and the reCAPTCHA response token; the server sends the token to Google for verification without forwarding the visitor IP address."
+msgstr "Diese Website verwendet Google reCAPTCHA v3, um automatisierte Einsendungen über öffentliche Formulare zu erkennen. Google erhält Browser-Interaktionsdaten und das reCAPTCHA-Antworttoken; der Server sendet das Token zur Überprüfung an Google, ohne die IP-Adresse des Besuchers weiterzuleiten."
+
+#: includes/class-hub-settings.php
+msgid "Google Privacy Policy"
+msgstr "Datenschutzerklärung von Google"
+
+#: includes/class-hub-settings.php
+msgid "Google Terms of Service"
+msgstr "Nutzungsbedingungen von Google"
+
+msgid "Not saved"
+msgstr "Nicht gespeichert"
+
+msgid "Saved; enter a new key only to replace it"
+msgstr "Gespeichert; nur zum Ersetzen einen neuen Schlüssel eingeben"
+
 msgid "Settings saved."
 msgstr "Einstellungen gespeichert."
 
 msgid "reCAPTCHA is configured. Both keys are saved; the secret key is hidden."
-msgstr "reCAPTCHA ist eingerichtet. Beide Schlüssel sind gespeichert; der geheime Schlüssel bleibt verborgen."
+msgstr "reCAPTCHA ist eingerichtet. Beide Schlüssel sind gespeichert; der geheime Schlüssel ist ausgeblendet."
 
 msgid "reCAPTCHA is not configured. Enter both keys and save settings."
 msgstr "reCAPTCHA ist nicht eingerichtet. Geben Sie beide Schlüssel ein und speichern Sie die Einstellungen."
 
 msgid "reCAPTCHA setup is incomplete. Both keys are required."
 msgstr "Die reCAPTCHA-Einrichtung ist unvollständig. Beide Schlüssel sind erforderlich."
-
-msgid "Saved; enter a new key only to replace it"
-msgstr "Gespeichert; geben Sie nur zum Ersetzen einen neuen Schlüssel ein"
-
-msgid "Not saved"
-msgstr "Nicht gespeichert"

@@ -101,6 +101,9 @@ msgstr ""
 msgid "Application secret (leave empty to keep)"
 msgstr ""
 
+#: includes/class-request-admin.php
+msgid "Apply"
+msgstr ""
 
 #: includes/class-publication-rules-admin.php
 msgid "Ask a communication settings administrator to manage automatic publication rules."
@@ -132,6 +135,10 @@ msgstr ""
 
 #: includes/class-requests.php
 msgid "Awaiting reply"
+msgstr ""
+
+#: includes/class-request-admin.php
+msgid "Bulk actions"
 msgstr ""
 
 #: includes/class-forms.php
@@ -210,6 +217,10 @@ msgstr ""
 msgid "Choose a valid reminder date."
 msgstr ""
 
+#: includes/class-request-admin.php
+msgid "Choose an action for the selected messages."
+msgstr ""
+
 #: includes/class-publication-rules.php
 msgid "Choose an existing category."
 msgstr ""
@@ -236,6 +247,14 @@ msgstr ""
 
 #: includes/class-request-admin.php
 msgid "Confirm deletion."
+msgstr ""
+
+#: includes/class-request-admin.php
+msgid "Confirm permanent deletion"
+msgstr ""
+
+#: includes/class-request-admin.php
+msgid "Confirm permanent deletion."
 msgstr ""
 
 #: includes/class-telegram-request-settings.php
@@ -278,6 +297,10 @@ msgstr ""
 msgid "Date (for a one-time reminder)"
 msgstr ""
 
+#: includes/class-request-admin.php
+msgid "Date received"
+msgstr ""
+
 #: includes/class-publication-rules-admin.php
 msgid "Day (for weekly messages)"
 msgstr ""
@@ -298,8 +321,20 @@ msgstr ""
 msgid "Delete application secret"
 msgstr ""
 
+#: includes/class-hub-settings.php
+msgid "Delete saved reCAPTCHA secret key"
+msgstr ""
+
+#: includes/class-request-admin.php
+msgid "Delete selected"
+msgstr ""
+
 #: includes/class-connector.php
 msgid "Delete token"
+msgstr ""
+
+#: includes/class-request-admin.php
+msgid "Deleted messages: %d."
 msgstr ""
 
 #: includes/class-request-form.php
@@ -482,6 +517,22 @@ msgstr ""
 msgid "Georg-Kloster Connect Hub"
 msgstr ""
 
+#: includes/class-hub-settings.php
+msgid "Google Privacy Policy"
+msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "Google Terms of Service"
+msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "Google reCAPTCHA"
+msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "Google reCAPTCHA v3 — spam protection"
+msgstr ""
+
 #: includes/class-outgoing-log.php
 msgid "HTTP response: %d"
 msgstr ""
@@ -642,7 +693,7 @@ msgstr ""
 msgid "Message status"
 msgstr ""
 
-#: includes/class-request-admin.php includes/class-request-privacy.php includes/class-telegram-requests.php
+#: includes/class-request-privacy.php includes/class-telegram-requests.php
 msgid "Message subject"
 msgstr ""
 
@@ -656,6 +707,14 @@ msgstr ""
 
 #: includes/class-telegram-request-settings.php
 msgid "Messages and replies in Telegram"
+msgstr ""
+
+#: includes/class-request-admin.php
+msgid "Messages could not be deleted. Please try again."
+msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "Minimum reCAPTCHA score (0.1–0.9)"
 msgstr ""
 
 #: includes/class-requests.php
@@ -683,7 +742,7 @@ msgid "Next:"
 msgstr ""
 
 #: includes/class-request-admin.php
-msgid "No messages match the selected status."
+msgid "No messages match the selected filters."
 msgstr ""
 
 #: includes/class-request-admin.php
@@ -706,6 +765,10 @@ msgstr ""
 msgid "Not queued. Check the connection, required image and WordPress Cron:"
 msgstr ""
 
+#: includes/class-hub-settings.php
+msgid "Not saved"
+msgstr ""
+
 #: includes/class-request-admin.php
 msgid "Not sent"
 msgstr ""
@@ -721,7 +784,6 @@ msgstr ""
 #: includes/class-connector.php
 msgid "Notify about new messages"
 msgstr ""
-
 
 #: includes/class-publications.php
 msgid "OK"
@@ -759,13 +821,16 @@ msgstr ""
 msgid "Paused"
 msgstr ""
 
-
 #: includes/class-request-form.php
 msgid "Privacy policy"
 msgstr ""
 
 #: includes/class-outgoing-log.php includes/class-publications.php
 msgid "Processing"
+msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "Protect public forms from automated submissions. Enter the site key and secret key from your reCAPTCHA v3 registration. The secret is never displayed after saving."
 msgstr ""
 
 #: includes/class-publications.php
@@ -800,7 +865,6 @@ msgstr ""
 msgid "Publications"
 msgstr ""
 
-
 #: includes/class-request-form.php
 msgid "Question subject"
 msgstr ""
@@ -808,7 +872,6 @@ msgstr ""
 #: includes/class-publications.php
 msgid "Queued"
 msgstr ""
-
 
 #: includes/class-publication-rules-admin.php
 msgid "Remove image"
@@ -910,6 +973,10 @@ msgstr ""
 msgid "Save the connection first."
 msgstr ""
 
+#: includes/class-hub-settings.php
+msgid "Saved; enter a new key only to replace it"
+msgstr ""
+
 #: includes/class-publication-rules-admin.php
 msgid "Schedule and status"
 msgstr ""
@@ -942,6 +1009,18 @@ msgstr ""
 msgid "Select a subject"
 msgstr ""
 
+#: includes/class-request-admin.php
+msgid "Select all messages"
+msgstr ""
+
+#: includes/class-request-admin.php
+msgid "Select at least one message to delete."
+msgstr ""
+
+#: includes/class-request-admin.php
+msgid "Select message: %s"
+msgstr ""
+
 #: includes/class-telegram-request-settings.php
 msgid "Send complete messages and receive replies in a private chat"
 msgstr ""
@@ -964,6 +1043,10 @@ msgstr ""
 
 #: includes/class-publication-rules-admin.php
 msgid "Send to channels"
+msgstr ""
+
+#: includes/class-request-admin.php
+msgid "Sender"
 msgstr ""
 
 #: includes/class-request-privacy.php includes/class-telegram-requests.php
@@ -1003,6 +1086,10 @@ msgid "Settings changed during the check. Reconnect incoming replies."
 msgstr ""
 
 #: includes/class-hub-settings.php
+msgid "Settings saved."
+msgstr ""
+
+#: includes/class-hub-settings.php
 msgid "Settings sections"
 msgstr ""
 
@@ -1016,6 +1103,10 @@ msgstr ""
 
 #: includes/class-request-admin.php
 msgid "Show"
+msgstr ""
+
+#: includes/class-request-admin.php
+msgid "Show more details"
 msgstr ""
 
 #: includes/class-outgoing-log.php
@@ -1054,7 +1145,6 @@ msgstr ""
 msgid "Suggested topics (one per line)"
 msgstr ""
 
-
 #: includes/class-outgoing-log.php includes/class-publications.php
 msgid "Telegram"
 msgstr ""
@@ -1070,7 +1160,6 @@ msgstr ""
 #: includes/class-telegram-request-settings.php
 msgid "Telegram did not confirm the connection. Check the token, Chat ID and service availability."
 msgstr ""
-
 
 #: includes/class-request-admin.php
 msgid "The assigned staff member does not have the required permissions."
@@ -1112,13 +1201,16 @@ msgstr ""
 msgid "The last delivery was accepted by the service."
 msgstr ""
 
-
 #: includes/class-social-providers.php
 msgid "The remote API did not confirm publication. Check permissions, credentials and account limits."
 msgstr ""
 
 #: includes/class-requests.php includes/class-telegram-requests.php
 msgid "The reply was not saved."
+msgstr ""
+
+#: includes/class-request-form.php
+msgid "The security check could not be completed. Please try again."
 msgstr ""
 
 #: includes/class-telegram-request-settings.php
@@ -1145,6 +1237,10 @@ msgstr ""
 msgid "This reply cannot be resent."
 msgstr ""
 
+#: includes/class-hub-settings.php
+msgid "This site uses Google reCAPTCHA v3 to assess whether public form submissions are automated. Google receives browser interaction data and the reCAPTCHA response token; the server sends the token to Google for verification without forwarding the visitor IP address."
+msgstr ""
+
 #: includes/class-publication-rules-admin.php
 msgid "Time"
 msgstr ""
@@ -1159,6 +1255,10 @@ msgstr ""
 
 #: includes/class-connector.php
 msgid "Token (leave empty to keep the existing token)"
+msgstr ""
+
+#: includes/class-request-admin.php
+msgid "Total messages: %d"
 msgstr ""
 
 #: includes/class-request-mail-log.php
@@ -1213,8 +1313,6 @@ msgstr ""
 msgid "What to send"
 msgstr ""
 
-
-
 #: includes/class-publication-rules-admin.php
 msgid "WordPress Cron runs on site visits or the server scheduler. Late runs send once, without repeating every missed interval. Editing or pausing a rule cancels its pending deliveries."
 msgstr ""
@@ -1248,55 +1346,6 @@ msgid "Your name"
 msgstr ""
 
 #: includes/class-hub-settings.php
-msgid "Delete saved reCAPTCHA secret key"
-msgstr ""
-
-#: includes/class-hub-settings.php
-msgid "Google Privacy Policy"
-msgstr ""
-
-#: includes/class-hub-settings.php
-msgid "Google Terms of Service"
-msgstr ""
-
-#: includes/class-hub-settings.php
-msgid "Google reCAPTCHA"
-msgstr ""
-
-#: includes/class-hub-settings.php
-msgid "Google reCAPTCHA v3 — spam protection"
-msgstr ""
-
-#: includes/class-hub-settings.php
-msgid "Minimum reCAPTCHA score (0.1–0.9)"
-msgstr ""
-
-#: includes/class-hub-settings.php
-msgid "Protect public forms from automated submissions. Enter the site key and secret key from your reCAPTCHA v3 registration. The secret is never displayed after saving."
-msgstr ""
-
-#: includes/class-hub-settings.php
-msgid "The security check could not be completed. Please try again."
-msgstr ""
-
-#: includes/class-hub-settings.php
-msgid "This site uses Google reCAPTCHA v3 to assess whether public form submissions are automated. Google receives browser interaction data and the reCAPTCHA response token; the server sends the token to Google for verification without forwarding the visitor IP address."
-msgstr ""
-
-#: includes/class-hub-settings.php
-msgid "reCAPTCHA secret key (leave empty to keep the saved key)"
-msgstr ""
-
-
-#: includes/class-hub-settings.php
-msgid "reCAPTCHA site key"
-msgstr ""
-
-#: includes/class-hub-settings.php
-msgid "Settings saved."
-msgstr ""
-
-#: includes/class-hub-settings.php
 msgid "reCAPTCHA is configured. Both keys are saved; the secret key is hidden."
 msgstr ""
 
@@ -1305,13 +1354,13 @@ msgid "reCAPTCHA is not configured. Enter both keys and save settings."
 msgstr ""
 
 #: includes/class-hub-settings.php
+msgid "reCAPTCHA secret key (leave empty to keep the saved key)"
+msgstr ""
+
+#: includes/class-hub-settings.php
 msgid "reCAPTCHA setup is incomplete. Both keys are required."
 msgstr ""
 
 #: includes/class-hub-settings.php
-msgid "Saved; enter a new key only to replace it"
-msgstr ""
-
-#: includes/class-hub-settings.php
-msgid "Not saved"
+msgid "reCAPTCHA site key"
 msgstr ""
