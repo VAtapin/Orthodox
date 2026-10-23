@@ -10,13 +10,29 @@
 	}
 
 	let nextIndex = rows.querySelectorAll('.gkch-telegram-command-row').length;
+	const syncRow = function (row) {
+		const type = row.querySelector('.gkch-responder-type');
+		const isText = type && type.value === 'text';
+		row.querySelectorAll('.gkch-command-field').forEach(function (cell) { cell.hidden = isText; });
+		row.querySelectorAll('.gkch-trigger-field').forEach(function (cell) { cell.hidden = !isText; });
+	};
+
+	rows.querySelectorAll('.gkch-telegram-command-row').forEach(syncRow);
 
 	addButton.addEventListener('click', function () {
 		const html = template.innerHTML.replaceAll('__index__', String(nextIndex++));
 		rows.insertAdjacentHTML('beforeend', html);
-		const command = rows.lastElementChild.querySelector('input[name$="[command]"]');
+		const row = rows.lastElementChild;
+		syncRow(row);
+		const command = row.querySelector('input[name$="[command]"]');
 		if (command) {
 			command.focus();
+		}
+	});
+
+	rows.addEventListener('change', function (event) {
+		if (event.target.matches('.gkch-responder-type')) {
+			syncRow(event.target.closest('.gkch-telegram-command-row'));
 		}
 	});
 

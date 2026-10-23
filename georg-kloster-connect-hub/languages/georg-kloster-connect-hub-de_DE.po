@@ -1,6 +1,15 @@
 msgid ""
 msgstr "Project-Id-Version: Georg-Kloster Connect Hub 0.2.0\nLanguage: de_DE\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "A bot token is required. Each form uses only its own private Chat ID for contact messages; the old global Chat ID is not used. Public posts and schedule messages go to people who pressed Start in the bot."
+msgstr "Für den Betrieb wird ein Bot-Token benötigt. Jede Formularnachricht geht nur an den privaten Chat der jeweiligen Form; die alte globale Chat-ID wird nicht verwendet. Beiträge und Planmeldungen erhalten alle, die im Bot auf Start gedrückt haben."
+
+msgid "A command is shown in Telegram’s menu. A text responder answers when a subscriber sends the exact configured phrase; its phrase is also offered as a button in /menu."
+msgstr "Ein Befehl wird im Telegram-Menü angezeigt. Eine Textantwort wird ausgelöst, wenn ein Abonnent genau die festgelegte Phrase sendet; sie erscheint außerdem als Schaltfläche in /menu."
+
+msgid "A field cannot contain markup only."
+msgstr "Das Feld darf nicht nur Markup enthalten."
+
 msgid "API version from your application"
 msgstr "API-Version Ihrer Anwendung"
 
@@ -10,11 +19,38 @@ msgstr "Nachrichten aus Formularen annehmen"
 msgid "Accept messages"
 msgstr "Nachrichten annehmen"
 
+msgid "Accepted by WordPress; the transport result is unknown."
+msgstr "Von WordPress angenommen; das Transportergebnis ist unbekannt."
+
+msgid "Accepted by service"
+msgstr "Vom Dienst angenommen"
+
+msgid "Accepted by service; inbox delivery is not confirmed."
+msgstr "Vom Dienst angenommen; die Zustellung im Postfach ist nicht bestätigt."
+
+msgid "Accepted by transport"
+msgstr "Vom Transport angenommen"
+
 msgid "Access denied."
 msgstr "Zugriff verweigert."
 
+msgid "Action"
+msgstr "Aktion"
+
 msgid "Activate Connect Hub network-wide to replace a network-active Parish Social."
 msgstr "Aktivieren Sie Connect Hub netzwerkweit, um ein netzwerkweit aktives Parish Social zu ersetzen."
+
+msgid "Active subscribers"
+msgstr "Aktive Abonnenten"
+
+msgid "Add a Form block and select a form, or insert a Shortcode block with one of these examples. Copy the form ID from the Forms table. A form must be enabled, and incoming messages must be enabled in Settings."
+msgstr "Fügen Sie einen Formularblock hinzu und wählen Sie ein Formular oder verwenden Sie ein Beispiel in einem Shortcode-Block. Die Formular-ID steht in der Formulartabelle. Das Formular und der Nachrichteneingang in den Einstellungen müssen aktiviert sein."
+
+msgid "Add both Russian and German message text before enabling this Telegram rule."
+msgstr "Fügen Sie vor dem Aktivieren dieser Telegram-Regel einen russischen und einen deutschen Nachrichtentext hinzu."
+
+msgid "Add command or responder"
+msgstr "Befehl oder automatische Antwort hinzufügen"
 
 msgid "Add form"
 msgstr "Formular hinzufügen"
@@ -22,11 +58,41 @@ msgstr "Formular hinzufügen"
 msgid "Add or edit a rule"
 msgstr "Regel hinzufügen oder bearbeiten"
 
+msgid "Additional commands and text responders"
+msgstr "Zusätzliche Befehle und Textantworten"
+
 msgid "All categories"
 msgstr "Alle Kategorien"
 
+msgid "All channels"
+msgstr "Alle Kanäle"
+
 msgid "All forms"
 msgstr "Alle Formulare"
+
+msgid "All results"
+msgstr "Alle Ergebnisse"
+
+msgid "All statuses"
+msgstr "Alle Status"
+
+msgid "Allow sending to the external service"
+msgstr "Senden an externen Dienst erlauben"
+
+msgid "An HTTPS site address is required to receive Telegram replies."
+msgstr "Zum Empfang von Telegram-Antworten benötigt die Website eine HTTPS-Adresse."
+
+msgid "Answer in German"
+msgstr "Antwort auf Deutsch"
+
+msgid "Answer in Russian"
+msgstr "Antwort auf Russisch"
+
+msgid "Answered"
+msgstr "Beantwortet"
+
+msgid "Anyone who presses Start is subscribed to news and schedule announcements. /stop removes their Chat ID from the active subscriber list. The bot sends only to users who initiated the chat."
+msgstr "Wer auf Start drückt, abonniert Nachrichten und Hinweise zum Gottesdienstplan. /stop entfernt die Chat-ID aus der aktiven Abonnentenliste. Der Bot schreibt nur Nutzern, die den Chat selbst gestartet haben."
 
 msgid "Application public key"
 msgstr "Öffentlicher Anwendungsschlüssel"
@@ -34,11 +100,50 @@ msgstr "Öffentlicher Anwendungsschlüssel"
 msgid "Application secret (leave empty to keep)"
 msgstr "Anwendungsgeheimnis (leer lassen, um es beizubehalten)"
 
+msgid "Apply"
+msgstr "Anwenden"
+
 msgid "Ask a communication settings administrator to manage automatic publication rules."
 msgstr "Automatische Veröffentlichungen können von Personen mit Berechtigung für die Kommunikationseinstellungen verwaltet werden."
 
+msgid "Assigned Message-ID"
+msgstr "Zugewiesene Message-ID"
+
+msgid "Assigned staff member"
+msgstr "Zuständige Person"
+
+msgid "Attempt #%d"
+msgstr "Versuch Nr. %d"
+
+msgid "Attempt ID"
+msgstr "Versuchs-ID"
+
+msgid "Attempt started, no result received"
+msgstr "Versuch gestartet, Ergebnis liegt nicht vor"
+
 msgid "Automatic publication rules"
 msgstr "Regeln für automatische Veröffentlichungen"
+
+msgid "Available bot commands:"
+msgstr "Verfügbare Bot-Befehle:"
+
+msgid "Awaiting reply"
+msgstr "Wartet auf Antwort"
+
+msgid "Bot commands and autoresponders were saved, and the Telegram menu was updated."
+msgstr "Befehle und automatische Antworten wurden gespeichert und das Telegram-Menü wurde aktualisiert."
+
+msgid "Bot commands were saved, but Telegram could not update the menu. Check the bot connection and save again."
+msgstr "Die Bot-Befehle wurden gespeichert, aber Telegram konnte das Menü nicht aktualisieren. Prüfen Sie die Bot-Verbindung und speichern Sie erneut."
+
+msgid "Bot commands were saved. Connect the Telegram bot to publish them in its menu."
+msgstr "Die Bot-Befehle wurden gespeichert. Verbinden Sie den Telegram-Bot, damit sie im Menü erscheinen."
+
+msgid "Built-in commands"
+msgstr "Integrierte Befehle"
+
+msgid "Bulk actions"
+msgstr "Sammelaktionen"
 
 msgid "Button label"
 msgstr "Schaltflächentext"
@@ -52,8 +157,14 @@ msgstr "Abgebrochen"
 msgid "Category"
 msgstr "Kategorie"
 
+msgid "Changes saved."
+msgstr "Änderungen gespeichert."
+
 msgid "Channel"
 msgstr "Kanal"
+
+msgid "Channel / recipient"
+msgstr "Kanal / Empfänger"
 
 msgid "Channels"
 msgstr "Kanäle"
@@ -67,6 +178,12 @@ msgstr "Prüfen Sie vor einem erneuten Versuch das Konto und bestätigen Sie, da
 msgid "Check the remote account before retrying"
 msgstr "Vor einem erneuten Versuch das Konto prüfen"
 
+msgid "Check the required fields and text length."
+msgstr "Prüfen Sie Pflichtfelder und Textlänge."
+
+msgid "Check the token, identifiers and API settings. The connection was not saved."
+msgstr "Prüfen Sie Token, Kennungen und API-Einstellungen. Die Verbindung wurde nicht gespeichert."
+
 msgid "Choose a JPEG image"
 msgstr "JPEG-Bild auswählen"
 
@@ -76,11 +193,50 @@ msgstr "Wählen Sie einen Kanal aus. Falls die Planung fehlschlägt, prüfen Sie
 msgid "Choose a future reminder date and time."
 msgstr "Wählen Sie Datum und Uhrzeit der Erinnerung in der Zukunft."
 
+msgid "Choose a staff member who can view and reply to messages."
+msgstr "Wählen Sie einen Mitarbeiter aus, der Nachrichten ansehen und beantworten darf."
+
 msgid "Choose a valid reminder date."
 msgstr "Wählen Sie ein gültiges Erinnerungsdatum."
 
+msgid "Choose an action for the selected messages."
+msgstr "Wählen Sie eine Aktion für die markierten Nachrichten."
+
+msgid "Choose an action:"
+msgstr "Wählen Sie eine Aktion:"
+
 msgid "Choose an existing category."
 msgstr "Wählen Sie eine vorhandene Kategorie."
+
+msgid "Choose message language"
+msgstr "Sprache der Nachrichten wählen"
+
+msgid "Choose the language for messages:"
+msgstr "Wählen Sie die Sprache der Nachrichten:"
+
+msgid "Church calendar data is not available right now."
+msgstr "Die Daten des Kirchenkalenders sind derzeit nicht verfügbar."
+
+msgid "Closed"
+msgstr "Geschlossen"
+
+msgid "Command"
+msgstr "Befehl"
+
+msgid "Command word"
+msgstr "Befehlswort"
+
+msgid "Commemorations of the day"
+msgstr "Gedenken des Tages"
+
+msgid "Compatible alias for the same form shortcode. Existing pages can keep using it."
+msgstr "Kompatibler Alias desselben Formular-Shortcodes. Bestehende Seiten können ihn weiterverwenden."
+
+msgid "Completed"
+msgstr "Abgeschlossen"
+
+msgid "Completed with issues"
+msgstr "Mit Problemen abgeschlossen"
 
 msgid "Configure and enable each selected channel first."
 msgstr "Konfigurieren und aktivieren Sie zuerst jeden ausgewählten Kanal."
@@ -88,11 +244,32 @@ msgstr "Konfigurieren und aktivieren Sie zuerst jeden ausgewählten Kanal."
 msgid "Configure channel"
 msgstr "Kanal einrichten"
 
+msgid "Configure the connection and explicitly enable sending."
+msgstr "Richten Sie die Verbindung ein und aktivieren Sie das Senden ausdrücklich."
+
+msgid "Confirm deletion."
+msgstr "Bestätigen Sie die Löschung."
+
+msgid "Confirm permanent deletion"
+msgstr "Endgültiges Löschen bestätigen"
+
+msgid "Confirm permanent deletion."
+msgstr "Bitte bestätigen Sie das endgültige Löschen."
+
+msgid "Connect / check Telegram bot webhook"
+msgstr "Telegram-Bot-Webhook verbinden / prüfen"
+
 msgid "Connect Hub"
 msgstr "Kommunikation"
 
 msgid "Contact us"
 msgstr "Kontaktieren Sie uns"
+
+msgid "Conversation / note"
+msgstr "Korrespondenz / Notiz"
+
+msgid "Correct the connection first."
+msgstr "Korrigieren Sie zuerst die Verbindung."
 
 msgid "Could not save the publication rule."
 msgstr "Die Veröffentlichungsregel konnte nicht gespeichert werden."
@@ -103,8 +280,14 @@ msgstr "Die Veröffentlichung konnte nicht eingeplant werden."
 msgid "Could not schedule publication. Check WordPress Cron."
 msgstr "Die Veröffentlichung konnte nicht geplant werden. Prüfen Sie WordPress Cron."
 
+msgid "Custom question subject"
+msgstr "Eigener Betreff"
+
 msgid "Date (for a one-time reminder)"
 msgstr "Datum (für eine einmalige Erinnerung)"
+
+msgid "Date received"
+msgstr "Eingangsdatum"
 
 msgid "Day (for weekly messages)"
 msgstr "Wochentag (für wöchentliche Nachrichten)"
@@ -115,8 +298,32 @@ msgstr "Deaktivieren Sie Parish Social, um Connect Hub zu verwenden. Gespeichert
 msgid "Default form"
 msgstr "Standardformular"
 
+msgid "Delete"
+msgstr "Löschen"
+
 msgid "Delete application secret"
 msgstr "Anwendungsgeheimnis löschen"
+
+msgid "Delete saved reCAPTCHA secret key"
+msgstr "Gespeicherten reCAPTCHA-Geheimschlüssel löschen"
+
+msgid "Delete selected"
+msgstr "Ausgewählte löschen"
+
+msgid "Delete token"
+msgstr "Token löschen"
+
+msgid "Deleted messages: %d."
+msgstr "Gelöschte Nachrichten: %d."
+
+msgid "Describe your question…"
+msgstr "Schreiben Sie Ihre Nachricht…"
+
+msgid "Description"
+msgstr "Beschreibung"
+
+msgid "Detailed setup: where to click and find the required details"
+msgstr "Detaillierte Anleitung: Wo Sie klicken und die benötigten Angaben finden"
 
 msgid "Disabled"
 msgstr "Deaktiviert"
@@ -124,11 +331,47 @@ msgstr "Deaktiviert"
 msgid "Each form has its own topics, text, recipient and enabled state. Channel credentials are configured in their respective sections."
 msgstr "Jedes Formular hat eigene Themen, Texte, Benachrichtigungsempfänger und einen eigenen Aktivierungsstatus. Die Zugangsdaten der Kanäle werden in den jeweiligen Bereichen verwaltet."
 
+msgid "Each form sends contact messages to its own chat; replies are recorded under the selected staff member. The bot token and webhook are shared. Enable Telegram in Settings, and enable complete-message replies there if staff need to answer in Telegram."
+msgstr "Jedes Formular sendet Anfragen an seinen eigenen Chat; Antworten werden dem ausgewählten Mitarbeiter zugeordnet. Bot-Token und Webhook sind gemeinsam. Aktivieren Sie Telegram in den Einstellungen und zusätzlich die vollständige Nachrichtenübermittlung, wenn Mitarbeiter über Telegram antworten sollen."
+
+msgid "Each form’s Telegram Chat ID determines which responsible person receives the contact message. Use Reply on the bot’s message: the site saves the reply and sends a formatted email to the visitor. Internal notes are not transmitted. Public posts and schedule broadcasts do not use these form Chat IDs."
+msgstr "Die Telegram-Chat-ID jeder Form bestimmt, wer die Anfrage erhält. Antworten Sie mit Reply auf die Bot-Nachricht: Die Website speichert die Antwort und sendet dem Besucher eine formatierte E-Mail. Interne Notizen werden nicht übertragen. Öffentliche Beiträge und Planmeldungen verwenden diese Chat-IDs nicht."
+
 msgid "Email"
 msgstr "E-Mail"
 
+msgid "Email delivery attempts"
+msgstr "E-Mail-Sendeversuche"
+
+msgid "Email prepared"
+msgstr "E-Mail vorbereitet"
+
+msgid "Email reply"
+msgstr "Antwort per E-Mail"
+
+msgid "Enable Telegram broadcasts or complete-message form replies before connecting the bot."
+msgstr "Aktivieren Sie vor dem Verbinden des Bots entweder Rundnachrichten an Abonnenten oder Antworten auf vollständige Formularnachrichten."
+
+msgid "Enable Telegram broadcasts or configure complete-message replies with a permitted staff member."
+msgstr "Aktivieren Sie Telegram-Rundnachrichten oder richten Sie Antworten auf vollständige Nachrichten mit einem berechtigten Mitarbeiter ein."
+
+msgid "Enable Telegram subscriber broadcasts before selecting Telegram."
+msgstr "Aktivieren Sie Telegram-Rundnachrichten an Abonnenten, bevor Sie Telegram auswählen."
+
+msgid "Enable Telegram subscriber broadcasts on the Telegram settings tab before selecting it for publications."
+msgstr "Aktivieren Sie auf der Registerkarte Telegram-Rundnachrichten an Abonnenten, bevor Sie Telegram für Veröffentlichungen auswählen."
+
 msgid "Enable automatic sending for this rule"
 msgstr "Automatischen Versand für diese Regel aktivieren"
+
+msgid "Enable bot subscriptions and broadcasts to people who pressed Start"
+msgstr "Bot-Abonnements und Rundnachrichten für Nutzer aktivieren, die auf Start gedrückt haben"
+
+msgid "Enable contact notifications and select a staff member with reply permissions."
+msgstr "Aktivieren Sie Benachrichtigungen über neue Anfragen und wählen Sie einen Mitarbeiter mit Antwortberechtigung aus."
+
+msgid "Enable sending and notifications about new messages."
+msgstr "Aktivieren Sie das Senden und Benachrichtigungen über neue Anliegen."
 
 msgid "Enabled"
 msgstr "Aktiviert"
@@ -139,8 +382,14 @@ msgstr "Geben Sie einen Formularnamen ein."
 msgid "Enter a message of up to 900 characters and a valid schedule."
 msgstr "Geben Sie eine Nachricht mit bis zu 900 Zeichen und einen gültigen Zeitplan ein."
 
+msgid "Enter a positive numeric Telegram Chat ID for this form."
+msgstr "Geben Sie eine positive numerische Telegram-Chat-ID für dieses Formular ein."
+
 msgid "Enter a public HTTP or HTTPS link."
 msgstr "Geben Sie einen öffentlich zugänglichen HTTP- oder HTTPS-Link ein."
+
+msgid "Enter a reply of an allowed length."
+msgstr "Geben Sie eine Antwort mit zulässiger Länge ein."
 
 msgid "Enter a rule name and choose at least one channel."
 msgstr "Geben Sie einen Regelnamen ein und wählen Sie mindestens einen Kanal."
@@ -148,11 +397,32 @@ msgstr "Geben Sie einen Regelnamen ein und wählen Sie mindestens einen Kanal."
 msgid "Enter a valid notification email."
 msgstr "Geben Sie eine gültige E-Mail-Adresse für Benachrichtigungen ein."
 
+msgid "Enter the bot token. The connection was not saved."
+msgstr "Geben Sie den Bot-Token ein. Die Verbindung wurde nicht gespeichert."
+
+msgid "Enter your name"
+msgstr "Geben Sie Ihren Namen ein"
+
+msgid "Enter your own subject."
+msgstr "Bitte geben Sie einen Betreff ein."
+
+msgid "Enter your question subject"
+msgstr "Geben Sie einen Betreff ein"
+
+msgid "Error code"
+msgstr "Fehlercode"
+
 msgid "Every day"
 msgstr "Täglich"
 
 msgid "Every week"
 msgstr "Wöchentlich"
+
+msgid "Exception code"
+msgstr "Ausnahmecode"
+
+msgid "Exception type"
+msgstr "Ausnahmetyp"
 
 msgid "Facebook"
 msgstr "Facebook"
@@ -163,8 +433,29 @@ msgstr "Facebook-Seiten-ID"
 msgid "Failed"
 msgstr "Fehlgeschlagen"
 
+msgid "Fields marked with an asterisk are required."
+msgstr "Mit einem Stern markierte Felder sind Pflichtfelder."
+
+msgid "Fill in all fields and enter a valid email address."
+msgstr "Füllen Sie alle Felder aus und geben Sie eine gültige E-Mail-Adresse an."
+
+msgid "Fill in the Russian and German versions for Telegram. A subscriber without a translation is skipped and counted in the delivery status."
+msgstr "Geben Sie für Telegram russische und deutsche Texte ein. Abonnenten ohne passende Übersetzung werden übersprungen und im Zustellstatus gezählt."
+
+msgid "Filter"
+msgstr "Filtern"
+
+msgid "Finished (UTC)"
+msgstr "Ende (UTC)"
+
+msgid "First page"
+msgstr "Erste Seite"
+
 msgid "For Instagram, each new post must have a public HTTPS JPEG featured image."
 msgstr "Für Instagram benötigt jeder neue Beitrag ein öffentlich über HTTPS zugängliches JPEG-Beitragsbild."
+
+msgid "For another subject, enter your own title in the field below."
+msgstr "Geben Sie den Betreff im folgenden Feld ein."
 
 msgid "Form"
 msgstr "Formular"
@@ -184,20 +475,65 @@ msgstr "Formulartitel"
 msgid "Forms"
 msgstr "Formulare"
 
+msgid "Full schedule"
+msgstr "Vollständiger Gottesdienstplan"
+
 msgid "General"
 msgstr "Allgemein"
 
 msgid "Georg-Kloster Connect Hub"
 msgstr "Georg-Kloster — Kommunikation"
 
+msgid "German"
+msgstr "Deutsch"
+
+msgid "German description"
+msgstr "Beschreibung auf Deutsch"
+
+msgid "German trigger"
+msgstr "Auslöser auf Deutsch"
+
+msgid "Google Privacy Policy"
+msgstr "Datenschutzerklärung von Google"
+
+msgid "Google Terms of Service"
+msgstr "Nutzungsbedingungen von Google"
+
+msgid "Google reCAPTCHA"
+msgstr "Google reCAPTCHA"
+
+msgid "Google reCAPTCHA v3 — spam protection"
+msgstr "Google reCAPTCHA v3 — Spamschutz"
+
+msgid "HTTP response: %d"
+msgstr "HTTP-Antwort: %d"
+
 msgid "I checked the account: no post was published"
 msgstr "Ich habe das Konto geprüft: Es wurde kein Beitrag veröffentlicht"
 
-msgid "Attempt ID"
-msgstr "Versuchs-ID"
+msgid "I confirm permanent deletion of the message and conversation"
+msgstr "Ich bestätige die vollständige Löschung der Anfrage und Korrespondenz"
+
+msgid "I consent to processing my data to receive a reply to this message."
+msgstr "Ich stimme der Verarbeitung meiner Daten zur Beantwortung meiner Nachricht zu."
 
 msgid "Image (required for Instagram; public HTTPS JPEG)"
 msgstr "Bild (für Instagram erforderlich; öffentliches HTTPS-JPEG)"
+
+msgid "Image from Telegram"
+msgstr "Bild aus Telegram"
+
+msgid "In progress"
+msgstr "In Bearbeitung"
+
+msgid "Incoming message"
+msgstr "Anfrage"
+
+msgid "Incoming messages"
+msgstr "Anfragen"
+
+msgid "Incoming messages are disabled."
+msgstr "Anfragen sind deaktiviert."
 
 msgid "Independent forms, messages and publications across communication channels."
 msgstr "Unabhängige Formulare, Nachrichten und Veröffentlichungen über verschiedene Kommunikationskanäle."
@@ -214,8 +550,23 @@ msgstr "Wählen Sie für Instagram ein öffentlich über HTTPS zugängliches JPE
 msgid "Instagram requires a public JPEG featured image."
 msgstr "Für Instagram ist ein öffentlich zugängliches JPEG-Beitragsbild erforderlich."
 
+msgid "Insufficient permissions to reply."
+msgstr "Keine Berechtigung zum Antworten."
+
+msgid "Insufficient permissions."
+msgstr "Keine ausreichende Berechtigung."
+
+msgid "Internal note"
+msgstr "Interne Notiz"
+
+msgid "Internal note (do not send to the visitor)"
+msgstr "Interne Notiz (nicht an Besucher senden)"
+
 msgid "Introduction"
 msgstr "Einleitung"
+
+msgid "Invalid field."
+msgstr "Ungültiges Feld."
 
 msgid "Invalid publication action."
 msgstr "Ungültige Veröffentlichungsaktion."
@@ -223,14 +574,77 @@ msgstr "Ungültige Veröffentlichungsaktion."
 msgid "Invalid publication rule."
 msgstr "Ungültige Veröffentlichungsregel."
 
+msgid "Invalid reply."
+msgstr "Ungültige Antwort."
+
+msgid "Invalid status."
+msgstr "Ungültiger Status."
+
 msgid "Keep closed messages for days"
 msgstr "Geschlossene Nachrichten aufbewahren, Tage"
+
+msgid "Language"
+msgstr "Sprache"
+
+msgid "Leave this field empty"
+msgstr "Dieses Feld leer lassen"
 
 msgid "Link (optional)"
 msgstr "Link (optional)"
 
+msgid "Mail transport"
+msgstr "Mail-Transport"
+
+msgid "Manage every built-in command and its answer here. Add a slash command for Telegram’s command menu, or a text responder that matches an exact phrase in Russian or German. The reply follows the subscriber’s selected language."
+msgstr "Verwalten Sie hier alle integrierten Befehle und ihre Antworten. Fügen Sie einen Slash-Befehl zum Telegram-Menü oder eine automatische Antwort hinzu, die auf eine genaue russische oder deutsche Phrase reagiert. Die Antwort richtet sich nach der vom Abonnenten gewählten Sprache."
+
+msgid "Message"
+msgstr "Nachricht"
+
+msgid "Message #%1$d · reply #%2$d · attempt %3$d"
+msgstr "Anfrage #%1$d · Antwort #%2$d · Versuch %3$d"
+
+msgid "Message date"
+msgstr "Datum"
+
+msgid "Message delivery log"
+msgstr "Protokoll ausgehender Nachrichten"
+
+msgid "Message log"
+msgstr "Nachrichtenprotokoll"
+
+msgid "Message not found."
+msgstr "Anfrage nicht gefunden."
+
+msgid "Message or reminder text for other selected channels"
+msgstr "Nachrichten- oder Erinnerungstext für andere ausgewählte Kanäle"
+
+msgid "Message status"
+msgstr "Status"
+
+msgid "Message subject"
+msgstr "Betreff"
+
+msgid "Message text"
+msgstr "Ihre Nachricht"
+
 msgid "Messages"
 msgstr "Nachrichten"
+
+msgid "Messages and replies in Telegram"
+msgstr "Anliegen und Antworten in Telegram"
+
+msgid "Messages could not be deleted. Please try again."
+msgstr "Nachrichten konnten nicht gelöscht werden. Bitte versuchen Sie es erneut."
+
+msgid "Minimum reCAPTCHA score (0.1–0.9)"
+msgstr "Mindestwert für reCAPTCHA (0,1–0,9)"
+
+msgid "Needs attention"
+msgstr "Erfordert Aufmerksamkeit"
+
+msgid "New"
+msgstr "Neu"
 
 msgid "New WordPress posts"
 msgstr "Neue WordPress-Beiträge"
@@ -238,8 +652,29 @@ msgstr "Neue WordPress-Beiträge"
 msgid "New contact message"
 msgstr "Neue Nachricht"
 
+msgid "New incoming message"
+msgstr "Neues Anliegen"
+
+msgid "New message. Open the private parish dashboard."
+msgstr "Neues Anliegen. Öffnen Sie den geschützten Gemeindebereich."
+
+msgid "Next"
+msgstr "Weiter"
+
 msgid "Next:"
 msgstr "Nächster Versand:"
+
+msgid "No broadcasts have been sent yet."
+msgstr "Es wurden noch keine Rundnachrichten gesendet."
+
+msgid "No messages match the selected filters."
+msgstr "Keine Nachrichten entsprechen den ausgewählten Filtern."
+
+msgid "No messages yet."
+msgstr "Noch keine Anfragen."
+
+msgid "No outgoing messages match these filters."
+msgstr "Keine ausgehenden Nachrichten für diese Filter."
 
 msgid "No rules yet. Add a rule below; automatic sending is off by default."
 msgstr "Noch keine Regeln. Fügen Sie unten eine Regel hinzu; der automatische Versand ist standardmäßig ausgeschaltet."
@@ -247,11 +682,29 @@ msgstr "Noch keine Regeln. Fügen Sie unten eine Regel hinzu; der automatische V
 msgid "No scheduled delivery"
 msgstr "Kein Versand geplant"
 
+msgid "No services are scheduled for this period."
+msgstr "Für diesen Zeitraum sind keine Gottesdienste geplant."
+
+msgid "No subscribers at send time"
+msgstr "Zum Sendezeitpunkt gab es keine Abonnenten"
+
 msgid "Not queued. Check the connection, required image and WordPress Cron:"
 msgstr "Nicht eingereiht. Prüfen Sie Verbindung, erforderliches Bild und WordPress Cron:"
 
+msgid "Not saved"
+msgstr "Nicht gespeichert"
+
+msgid "Not sent"
+msgstr "Nicht gesendet"
+
 msgid "Notification email"
 msgstr "E-Mail-Adresse für Benachrichtigungen"
+
+msgid "Notify about new messages"
+msgstr "Über neue Anliegen benachrichtigen"
+
+msgid "Notify subscribers about changes to the published schedule"
+msgstr "Abonnenten über Änderungen am veröffentlichten Gottesdienstplan informieren"
 
 msgid "OK"
 msgstr "OK"
@@ -259,14 +712,53 @@ msgstr "OK"
 msgid "OK group ID"
 msgstr "OK-Gruppen-ID"
 
+msgid "On"
+msgstr "Aktiv"
+
 msgid "Once"
 msgstr "Einmalig"
+
+msgid "Open the bot menu"
+msgstr "Bot-Menü öffnen"
+
+msgid "Optional title, intro and submit parameters override only the displayed heading, introduction and button label. They do not change saved form settings, topics or recipients."
+msgstr "Die optionalen Parameter title, intro und submit ändern nur die angezeigte Überschrift, Einleitung und Schaltflächenbeschriftung. Gespeicherte Einstellungen, Themen und Empfänger bleiben unverändert."
+
+msgid "Other subject"
+msgstr "Anderer Betreff"
+
+msgid "Outgoing delivery log"
+msgstr "Protokoll ausgehender Nachrichten"
+
+msgid "Parish messages"
+msgstr "Gemeindeanfragen"
+
+msgid "Passed to the mail system. Inbox delivery is not confirmed."
+msgstr "An das Mailsystem übergeben. Die Zustellung ins Postfach ist nicht bestätigt."
 
 msgid "Paused"
 msgstr "Pausiert"
 
+msgid "Press /start first to subscribe and use the bot commands."
+msgstr "Drücken Sie zuerst /start, um sich anzumelden und die Bot-Befehle zu nutzen."
+
+msgid "Previous"
+msgstr "Zurück"
+
+msgid "Privacy policy"
+msgstr "Datenschutzerklärung"
+
+msgid "Private numeric Telegram Chat ID (leave empty to disable Telegram notifications for this form)"
+msgstr "Numerische Telegram-Chat-ID des privaten Chats (leer lassen, um Telegram-Benachrichtigungen für dieses Formular zu deaktivieren)"
+
 msgid "Processing"
 msgstr "In Bearbeitung"
+
+msgid "Protect public forms from automated submissions. Enter the site key and secret key from your reCAPTCHA v3 registration. The secret is never displayed after saving."
+msgstr "Schützt öffentliche Formulare vor automatisierten Einsendungen. Geben Sie den Website-Schlüssel und den geheimen Schlüssel Ihrer reCAPTCHA-v3-Registrierung ein. Der geheime Schlüssel wird nach dem Speichern nicht mehr angezeigt."
+
+msgid "Public Telegram bot and subscriber broadcasts"
+msgstr "Öffentlicher Telegram-Bot und Rundnachrichten an Abonnenten"
 
 msgid "Publication history"
 msgstr "Veröffentlichungsverlauf"
@@ -292,8 +784,20 @@ msgstr "Veröffentlichung aktualisiert."
 msgid "Publications"
 msgstr "Veröffentlichungen"
 
+msgid "Question subject"
+msgstr "Betreff"
+
 msgid "Queued"
 msgstr "In der Warteschlange"
+
+msgid "Recent broadcast status"
+msgstr "Letzte Rundnachrichten und ihr Status"
+
+msgid "Recipients"
+msgstr "Empfänger"
+
+msgid "Remove"
+msgstr "Entfernen"
 
 msgid "Remove image"
 msgstr "Bild entfernen"
@@ -301,11 +805,47 @@ msgstr "Bild entfernen"
 msgid "Remove rule"
 msgstr "Regel entfernen"
 
+msgid "Remove subscriber"
+msgstr "Abonnent entfernen"
+
 msgid "Repeat"
 msgstr "Wiederholung"
 
+msgid "Reply or note"
+msgstr "Antwort oder Notiz"
+
+msgid "Reply to message:"
+msgstr "Antwort auf Anfrage:"
+
+msgid "Reply to your message"
+msgstr "Antwort auf Ihr Anliegen"
+
+msgid "Required"
+msgstr "Erforderlich"
+
+msgid "Reset filter"
+msgstr "Filter zurücksetzen"
+
+msgid "Result"
+msgstr "Ergebnis"
+
+msgid "Result uncertain"
+msgstr "Ergebnis unklar"
+
+msgid "Result uncertain; check the destination account."
+msgstr "Ergebnis unklar; bitte das Zielkonto prüfen."
+
 msgid "Retry"
 msgstr "Erneut versuchen"
+
+msgid "Retry failed recipients"
+msgstr "Fehlgeschlagene Zustellungen erneut versuchen"
+
+msgid "Retry the last delivery after correcting the settings"
+msgstr "Letzten Versand nach Korrektur der Einstellungen wiederholen"
+
+msgid "Retry this reply after correcting the mail configuration"
+msgstr "Antwort nach Behebung des E-Mail-Problems erneut senden"
 
 msgid "Rule"
 msgstr "Regel"
@@ -319,11 +859,56 @@ msgstr "Regel nicht gefunden oder maximale Regelanzahl erreicht."
 msgid "Rule paused: its owner no longer has publication and settings permissions."
 msgstr "Versand pausiert: Die Person, der die Regel gehört, hat keine Berechtigung mehr für Veröffentlichungen und Einstellungen."
 
+msgid "Russian"
+msgstr "Russisch"
+
+msgid "Russian description"
+msgstr "Beschreibung auf Russisch"
+
+msgid "Russian trigger"
+msgstr "Auslöser auf Russisch"
+
+msgid "SMTP code"
+msgstr "SMTP-Code"
+
+msgid "SMTP response: %d"
+msgstr "SMTP-Antwort: %d"
+
+msgid "Save Telegram replies on behalf of this staff member (empty uses the shared staff setting)"
+msgstr "Telegram-Antworten diesem Mitarbeiter zuordnen (leer verwendet den in den Einstellungen ausgewählten Mitarbeiter)"
+
+msgid "Save and send reply"
+msgstr "Antwort speichern und senden"
+
+msgid "Save commands and autoresponders"
+msgstr "Befehle und automatische Antworten speichern"
+
+msgid "Save replies on behalf of this staff member"
+msgstr "Unter welchem Mitarbeiter Antworten speichern"
+
 msgid "Save rule"
 msgstr "Regel speichern"
 
+msgid "Save settings first, then connect the bot. This one webhook receives both bot commands (/start, /stop, /today and /week) and replies to form messages. Connecting it moves this bot’s incoming-message webhook to this site; the previous application will stop receiving messages."
+msgstr "Speichern Sie zuerst die Einstellungen und verbinden Sie dann den Bot. Ein gemeinsamer Webhook empfängt sowohl Bot-Befehle (/start, /stop, /today und /week) als auch Antworten auf Formularnachrichten. Beim Verbinden wird der eingehende Webhook dieses Bots auf diese Website umgestellt; die vorherige Anwendung erhält dann keine Nachrichten mehr."
+
+msgid "Save the connection first."
+msgstr "Speichern Sie zuerst die Verbindung."
+
+msgid "Saved; enter a new key only to replace it"
+msgstr "Gespeichert; nur zum Ersetzen einen neuen Schlüssel eingeben"
+
 msgid "Schedule and status"
 msgstr "Zeitplan und Status"
+
+msgid "Schedule for this week"
+msgstr "Gottesdienstplan für diese Woche"
+
+msgid "Schedule for today"
+msgstr "Gottesdienste heute"
+
+msgid "Schedule updated:"
+msgstr "Gottesdienstplan geändert:"
 
 msgid "Scheduled messages and reminders"
 msgstr "Geplante Nachrichten und Erinnerungen"
@@ -334,17 +919,71 @@ msgstr "Formular auswählen"
 msgid "Select a published WordPress post."
 msgstr "Wählen Sie einen veröffentlichten WordPress-Beitrag aus."
 
+msgid "Select a staff member"
+msgstr "Mitarbeiter auswählen"
+
+msgid "Select a staff member with permission to view and reply to messages."
+msgstr "Wählen Sie einen Mitarbeiter mit Berechtigung zum Lesen und Beantworten von Anliegen."
+
+msgid "Select a subject"
+msgstr "Betreff auswählen"
+
+msgid "Select all messages"
+msgstr "Alle Nachrichten auswählen"
+
+msgid "Select at least one message to delete."
+msgstr "Wählen Sie mindestens eine Nachricht zum Löschen aus."
+
+msgid "Select message: %s"
+msgstr "Nachricht auswählen: %s"
+
+msgid "Send complete messages and receive replies in each form’s private chat"
+msgstr "Vollständige Nachrichten an den privaten Chat des jeweiligen Formulars senden und Antworten empfangen"
+
 msgid "Send message"
 msgstr "Nachricht senden"
+
+msgid "Send subscribers a daily schedule digest"
+msgstr "Abonnenten täglich eine Übersicht des Gottesdienstplans senden"
+
+msgid "Send the complete message to Telegram"
+msgstr "Vollständiges Anliegen an Telegram senden"
 
 msgid "Send the title, excerpt and link when a post is first published, including scheduled WordPress posts. Existing posts and later edits are not sent."
 msgstr "Titel, Auszug und Link bei der ersten Veröffentlichung eines Beitrags senden, auch bei zeitgesteuerten WordPress-Beiträgen. Vorhandene Beiträge und spätere Änderungen werden nicht gesendet."
 
+msgid "Send this published post to the service"
+msgstr "Diesen veröffentlichten Beitrag an den Dienst senden"
+
 msgid "Send to channels"
 msgstr "An diese Kanäle senden"
 
+msgid "Sender"
+msgstr "Absender"
+
+msgid "Sender name"
+msgstr "Name"
+
+msgid "Sending"
+msgstr "Wird gesendet"
+
+msgid "Sending error"
+msgstr "Sendefehler"
+
 msgid "Sent"
 msgstr "Gesendet"
+
+msgid "Service message ID"
+msgstr "Nachrichten-ID des Dienstes"
+
+msgid "Services"
+msgstr "Gottesdienste"
+
+msgid "Services and commemorations of the day"
+msgstr "Gottesdienste und Gedenken des Tages"
+
+msgid "Services this week"
+msgstr "Gottesdienste diese Woche"
 
 msgid "Set what to send, when and to which channels. Channel connections alone do not enable automatic publications."
 msgstr "Legen Sie fest, was wann an welche Kanäle gesendet wird. Eine Kanalverbindung allein aktiviert keine automatischen Veröffentlichungen."
@@ -352,14 +991,74 @@ msgstr "Legen Sie fest, was wann an welche Kanäle gesendet wird. Eine Kanalverb
 msgid "Settings"
 msgstr "Einstellungen"
 
+msgid "Settings are complete; a successful live delivery has not been confirmed yet."
+msgstr "Einstellungen ausgefüllt; erfolgreiches tatsächliches Senden wurde noch nicht bestätigt."
+
+msgid "Settings changed during the check. Reconnect the bot webhook."
+msgstr "Die Einstellungen wurden während der Prüfung geändert. Verbinden Sie den Bot-Webhook erneut."
+
+msgid "Settings saved."
+msgstr "Einstellungen gespeichert."
+
 msgid "Settings sections"
 msgstr "Einstellungsbereiche"
+
+msgid "Shared staff member from Telegram settings"
+msgstr "Gemeinsamer Mitarbeiter aus den Telegram-Einstellungen"
 
 msgid "Shortcode"
 msgstr "Shortcode"
 
+msgid "Shortcodes and blocks"
+msgstr "Shortcodes und Blöcke"
+
+msgid "Show"
+msgstr "Anzeigen"
+
+msgid "Show bot commands"
+msgstr "Bot-Befehle anzeigen"
+
+msgid "Show more details"
+msgstr "Weitere Details anzeigen"
+
+msgid "Show sent content"
+msgstr "Gesendeten Inhalt anzeigen"
+
+msgid "Show the selected form. Replace 123 with its ID; id=\"0\" or an omitted id uses the default form."
+msgstr "Zeigt das ausgewählte Formular. Ersetzen Sie 123 durch seine ID; id=\"0\" oder eine fehlende ID verwendet das Standardformular."
+
+msgid "Slash command"
+msgstr "Slash-Befehl"
+
+msgid "Some changes could not be applied. Check permissions and fields."
+msgstr "Nicht alle Änderungen konnten angewendet werden. Prüfen Sie Rechte und Felder."
+
+msgid "Some responder rows were skipped. Commands need a unique lowercase English word, menu descriptions and replies in both languages. Text responders need unique Russian and German trigger phrases and replies."
+msgstr "Einige Antwortzeilen wurden übersprungen. Befehle benötigen ein eindeutiges englisches Wort in Kleinbuchstaben, Menübeschreibungen und Antworten in beiden Sprachen. Textantworten benötigen eindeutige russische und deutsche Auslösephrasen sowie Antworten in beiden Sprachen."
+
+msgid "Source message #%d"
+msgstr "Ursprungsnachricht #%d"
+
+msgid "Stages:"
+msgstr "Schritte:"
+
+msgid "Started"
+msgstr "Beginn"
+
+msgid "Started (UTC)"
+msgstr "Beginn (UTC)"
+
 msgid "Status"
 msgstr "Status"
+
+msgid "Subscribe to monastery news"
+msgstr "Klosternachrichten abonnieren"
+
+msgid "Subscribed"
+msgstr "Abonniert"
+
+msgid "Subscribers can use /today, /week and /lang. Daily digests include the parish services and the calendar day’s main commemorations when the connected calendar is available."
+msgstr "Abonnenten können /today, /week und /lang verwenden. Die Tagesübersicht enthält Gottesdienste und die wichtigsten Gedenktage des Kirchenkalenders, sofern der Kalender verfügbar ist."
 
 msgid "Suggested topics (one per line)"
 msgstr "Themen (eines pro Zeile)"
@@ -367,29 +1066,176 @@ msgstr "Themen (eines pro Zeile)"
 msgid "Telegram"
 msgstr "Telegram"
 
-msgid "Telegram did not confirm the connection. Check the bot token and service availability."
-msgstr "Telegram hat die Verbindung nicht bestätigt. Prüfen Sie den Bot-Token und die Erreichbarkeit des Dienstes."
+msgid "Telegram bot"
+msgstr "Telegram-Bot"
+
+msgid "Telegram bot subscribers"
+msgstr "Abonnenten des Telegram-Bots"
+
+msgid "Telegram bot subscribers and delivery status"
+msgstr "Telegram-Bot-Abonnenten und Zustellstatus"
+
+msgid "Telegram chat and responsible person for this form"
+msgstr "Telegram-Chat und zuständige Person für dieses Formular"
+
+msgid "Telegram commands and autoresponders"
+msgstr "Telegram-Befehle und automatische Antworten"
 
 msgid "Telegram did not confirm incoming replies."
 msgstr "Telegram hat den Empfang von Antworten nicht bestätigt."
 
+msgid "Telegram did not confirm the bot identity."
+msgstr "Telegram hat die Bot-Identität nicht bestätigt."
+
+msgid "Telegram did not confirm the connection. Check the bot token and service availability."
+msgstr "Telegram hat die Verbindung nicht bestätigt. Prüfen Sie den Bot-Token und die Erreichbarkeit des Dienstes."
+
+msgid "Telegram sending is disabled or the connection is incomplete. Pending deliveries remain available."
+msgstr "Der Telegram-Versand ist deaktiviert oder die Verbindung ist unvollständig. Ausstehende Zustellungen bleiben erhalten."
+
+msgid "Telegram text by subscriber language"
+msgstr "Telegram-Text nach Sprache des Abonnenten"
+
+msgid "Text responder"
+msgstr "Textantwort"
+
+msgid "The Telegram subscription service is currently disabled. Please try again later."
+msgstr "Der Telegram-Abonnementdienst ist derzeit deaktiviert. Bitte versuchen Sie es später erneut."
+
+msgid "The assigned staff member does not have the required permissions."
+msgstr "Zuständige Person hat nicht die erforderlichen Rechte."
+
+msgid "The bot token format is invalid. Copy the token from BotFather. The connection was not saved."
+msgstr "Der Bot-Token hat ein ungültiges Format. Kopieren Sie ihn aus BotFather. Die Verbindung wurde nicht gespeichert."
+
+msgid "The check could not be queued. Try again later."
+msgstr "Die Prüfung konnte nicht in die Warteschlange gestellt werden. Versuchen Sie es später erneut."
+
+msgid "The commands /start and /stop are always available so people can subscribe and unsubscribe. /today and /week use the generated parish schedule by default. Add {schedule} to the answer to include it; without the placeholder, the saved answer is sent as written."
+msgstr "Die Befehle /start und /stop bleiben für die Anmeldung und Abmeldung immer verfügbar. /today und /week zeigen standardmäßig den erstellten Gottesdienstplan. Fügen Sie {schedule} in die Antwort ein, um ihn einzusetzen; ohne diesen Platzhalter wird der gespeicherte Text unverändert gesendet."
+
+msgid "The connection check has been queued. Refresh this page in a while."
+msgstr "Die Verbindungsprüfung wurde in die Warteschlange gestellt. Aktualisieren Sie diese Seite nach einiger Zeit."
+
+msgid "The connection check is still queued. Refresh this page later."
+msgstr "Die Verbindungsprüfung ist noch in der Warteschlange. Aktualisieren Sie die Seite später."
+
+msgid "The email was handled by a WordPress interceptor; the actual transport was not recorded."
+msgstr "Die E-Mail wurde von einem WordPress-Handler verarbeitet; der tatsächliche Transport wurde nicht erfasst."
+
+msgid "The image was not sent. Photos and static stickers up to 4 MB are supported. Videos and animated stickers are not supported."
+msgstr "Das Bild wurde nicht gesendet. Unterstützt werden Fotos und statische Sticker bis 4 MB. Videos und animierte Sticker werden nicht unterstützt."
+
+msgid "The job is unavailable or the recipient has changed. Create a new publication."
+msgstr "Auftrag nicht verfügbar oder Empfänger geändert. Erstellen Sie eine neue Veröffentlichung."
+
+msgid "The last delivery failed. HTTP code:"
+msgstr "Der letzte Versand ist fehlgeschlagen. HTTP-Code:"
+
+msgid "The last delivery was accepted by the service."
+msgstr "Der letzte Versand wurde vom Dienst angenommen."
+
+msgid "The message language has been saved."
+msgstr "Die Sprache der Nachrichten wurde gespeichert."
+
+msgid "The old global Chat ID is not used for form routing. News and schedule announcements are sent to active bot subscribers; each form uses only its own responsible person’s Chat ID. A person must open the bot and press Start first. /stop removes the subscription."
+msgstr "Die alte globale Chat-ID wird nicht für Formularnachrichten verwendet. Nachrichten und Hinweise zum Gottesdienstplan gehen an aktive Bot-Abonnenten; jedes Formular verwendet nur die Chat-ID seiner zuständigen Person. Zum Abonnieren muss man den Bot öffnen und auf Start drücken. /stop beendet das Abonnement."
+
 msgid "The remote API did not confirm publication. Check permissions, credentials and account limits."
 msgstr "Die API hat die Veröffentlichung nicht bestätigt. Prüfen Sie Berechtigungen, Zugangsdaten und Kontolimits."
+
+msgid "The reply was not saved."
+msgstr "Antwort nicht gespeichert."
+
+msgid "The request could not be queued. Please try again in a minute."
+msgstr "Die Anfrage konnte nicht vorgemerkt werden. Bitte versuchen Sie es in einer Minute erneut."
+
+msgid "The security check could not be completed. Please try again."
+msgstr "Die Sicherheitsprüfung konnte nicht abgeschlossen werden. Bitte versuchen Sie es erneut."
+
+msgid "The service schedule has changed"
+msgstr "Der Gottesdienstplan hat sich geändert"
+
+msgid "The shared bot webhook is connected."
+msgstr "Der gemeinsame Bot-Webhook ist verbunden."
+
+msgid "The shared bot webhook is connected. Subscriber commands and enabled form replies are being received here."
+msgstr "Der gemeinsame Bot-Webhook ist verbunden. Hier gehen Abonnentenbefehle und Antworten auf aktivierte Formularnachrichten ein."
+
+msgid "The shared bot webhook is not connected yet. Press the button after saving the bot settings."
+msgstr "Der gemeinsame Bot-Webhook ist noch nicht verbunden. Speichern Sie die Bot-Einstellungen und klicken Sie auf die Schaltfläche zum Verbinden."
+
+msgid "The technical log is kept for 30 days. Transport acceptance does not confirm inbox delivery."
+msgstr "Das technische Protokoll wird 30 Tage gespeichert. Die Annahme durch den Transport bestätigt keine Zustellung ins Postfach."
+
+msgid "There are no active subscribers."
+msgstr "Es gibt keine aktiven Abonnenten."
+
+msgid "There are no messages on this page."
+msgstr "Auf dieser Seite gibt es keine Anfragen."
+
+msgid "There is no technical log for this reply. Past delivery attempts cannot be reconstructed retroactively."
+msgstr "Für diese Antwort ist kein technisches Protokoll vorhanden. Frühere Sendungen werden nicht nachträglich rekonstruiert."
+
+msgid "This is the Meta Graph API version used in request URLs, not a key or plugin version. Copy a supported version from Graph API Explorer, for example vNN.N."
+msgstr "Dies ist die Meta-Graph-API-Version in den Anfrage-URLs, kein Schlüssel und keine Plugin-Version. Übernehmen Sie eine unterstützte Version aus dem Graph API Explorer, zum Beispiel vNN.N."
+
+msgid "This is the VK API method version, not a token. Copy it from the method documentation, for example 5.199, without a v prefix."
+msgstr "Dies ist die Version der VK-API-Methode, kein Token. Übernehmen Sie sie aus der Methodendokumentation, zum Beispiel 5.199, ohne v-Präfix."
 
 msgid "This publication cannot be changed."
 msgstr "Diese Veröffentlichung kann in ihrem aktuellen Zustand nicht geändert werden."
 
+msgid "This reply cannot be resent."
+msgstr "Antwort kann nicht erneut gesendet werden."
+
+msgid "This site uses Google reCAPTCHA v3 to assess whether public form submissions are automated. Google receives browser interaction data and the reCAPTCHA response token; the server sends the token to Google for verification without forwarding the visitor IP address."
+msgstr "Diese Website verwendet Google reCAPTCHA v3, um automatisierte Einsendungen über öffentliche Formulare zu erkennen. Google erhält Browser-Interaktionsdaten und das reCAPTCHA-Antworttoken; der Server sendet das Token zur Überprüfung an Google, ohne die IP-Adresse des Besuchers weiterzuleiten."
+
 msgid "Time"
 msgstr "Uhrzeit"
+
+msgid "Time (site timezone)"
+msgstr "Zeit (Zeitzone der Website)"
+
+msgid "Time in the WordPress time zone"
+msgstr "Uhrzeit in der WordPress-Zeitzone"
 
 msgid "Timezone:"
 msgstr "Zeitzone:"
 
+msgid "To find this form’s Chat ID, the responsible person opens your bot and presses Start, then opens"
+msgstr "Um die Chat-ID für dieses Formular zu finden, öffnet die zuständige Person Ihren Bot und drückt auf Start. Anschließend öffnet sie"
+
+msgid "Today’s services and commemorations"
+msgstr "Gottesdienste und Gedenken heute"
+
 msgid "Token (leave empty to keep the existing token)"
 msgstr "Token (leer lassen, um den bisherigen zu behalten)"
 
+msgid "Total messages: %d"
+msgstr "Nachrichten insgesamt: %d"
+
+msgid "Transport"
+msgstr "Transport"
+
+msgid "Transport prepared"
+msgstr "Transport vorbereitet"
+
+msgid "Try again later."
+msgstr "Versuchen Sie es später erneut."
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Unassigned"
+msgstr "Nicht zugewiesen"
+
 msgid "Unknown"
 msgstr "Unbekannt"
+
+msgid "Unsubscribe from messages"
+msgstr "Nachrichten abbestellen"
 
 msgid "Use a VK token with wall publication permission. Enter a negative community ID to publish as the community, or a positive user ID. Enter the API version from your application, for example 5.199."
 msgstr "Verwenden Sie ein VK-Benutzertoken mit Berechtigung zum Veröffentlichen an der Pinnwand. Geben Sie für eine Community eine negative ID und für einen Benutzer eine positive ID ein. Übernehmen Sie die API-Version Ihrer Anwendung, zum Beispiel 5.199."
@@ -409,173 +1255,32 @@ msgstr "VK"
 msgid "VK owner ID"
 msgstr "Benutzer- oder Community-ID bei VK"
 
+msgid "Visit the website"
+msgstr "Zur Website"
+
 msgid "What to send"
 msgstr "Was gesendet wird"
 
 msgid "WordPress Cron runs on site visits or the server scheduler. Late runs send once, without repeating every missed interval. Editing or pausing a rule cancels its pending deliveries."
 msgstr "WordPress Cron läuft bei Seitenaufrufen oder über den Server-Zeitplaner. Bei Verspätungen wird einmal gesendet, ohne alle verpassten Intervalle nachzuholen. Das Bearbeiten oder Pausieren einer Regel verhindert ihre ausstehenden Sendungen."
 
-msgid "In progress"
-msgstr "In Bearbeitung"
+msgid "WordPress could not schedule this delivery. Retry it or check that WordPress Cron is running."
+msgstr "WordPress konnte diese Zustellung nicht planen. Versuchen Sie es erneut oder prüfen Sie, ob WordPress Cron ausgeführt wird."
 
-msgid "Your email"
-msgstr "Ihre E-Mail-Adresse"
-
-msgid "Your name"
-msgstr "Ihr Name"
-
-msgid "Your message"
-msgstr "Ihr Anliegen"
-
-msgid "Enter your name"
-msgstr "Geben Sie Ihren Namen ein"
-
-msgid "Enter a reply of an allowed length."
-msgstr "Geben Sie eine Antwort mit zulässiger Länge ein."
-
-msgid "Enter your question subject"
-msgstr "Geben Sie einen Betreff ein"
-
-msgid "Enter your own subject."
-msgstr "Bitte geben Sie einen Betreff ein."
-
-msgid "Enter the bot token. The connection was not saved."
-msgstr "Geben Sie den Bot-Token ein. Die Verbindung wurde nicht gespeichert."
-
-msgid "Enable sending and notifications about new messages."
-msgstr "Aktivieren Sie das Senden und Benachrichtigungen über neue Anliegen."
-
-msgid "Internal note"
-msgstr "Interne Notiz"
-
-msgid "Internal note (do not send to the visitor)"
-msgstr "Interne Notiz (nicht an Besucher senden)"
-
-msgid "All statuses"
-msgstr "Alle Status"
-
-msgid "Select a staff member"
-msgstr "Mitarbeiter auswählen"
-
-msgid "Select a staff member with permission to view and reply to messages."
-msgstr "Wählen Sie einen Mitarbeiter mit Berechtigung zum Lesen und Beantworten von Anliegen."
-
-msgid "Select a subject"
-msgstr "Betreff auswählen"
-
-msgid "Message date"
-msgstr "Datum"
-
-msgid "For another subject, enter your own title in the field below."
-msgstr "Geben Sie den Betreff im folgenden Feld ein."
-
-msgid "An HTTPS site address is required to receive Telegram replies."
-msgstr "Zum Empfang von Telegram-Antworten benötigt die Website eine HTTPS-Adresse."
-
-msgid "There is no technical log for this reply. Past delivery attempts cannot be reconstructed retroactively."
-msgstr "Für diese Antwort ist kein technisches Protokoll vorhanden. Frühere Sendungen werden nicht nachträglich rekonstruiert."
-
-msgid "Other subject"
-msgstr "Anderer Betreff"
-
-msgid "The job is unavailable or the recipient has changed. Create a new publication."
-msgstr "Auftrag nicht verfügbar oder Empfänger geändert. Erstellen Sie eine neue Veröffentlichung."
-
-msgid "Closed"
-msgstr "Geschlossen"
-
-msgid "Fill in all fields and enter a valid email address."
-msgstr "Füllen Sie alle Felder aus und geben Sie eine gültige E-Mail-Adresse an."
-
-msgid "Configure the connection and explicitly enable sending."
-msgstr "Richten Sie die Verbindung ein und aktivieren Sie das Senden ausdrücklich."
-
-msgid "Changes saved."
-msgstr "Änderungen gespeichert."
-
-msgid "Schedule updated:"
-msgstr "Gottesdienstplan geändert:"
-
-msgid "Image from Telegram"
-msgstr "Bild aus Telegram"
-
-msgid "The image was not sent. Photos and static stickers up to 4 MB are supported. Videos and animated stickers are not supported."
-msgstr "Das Bild wurde nicht gesendet. Unterstützt werden Fotos und statische Sticker bis 4 MB. Videos und animierte Sticker werden nicht unterstützt."
-
-msgid "Sender name"
-msgstr "Name"
-
-msgid "SMTP code"
-msgstr "SMTP-Code"
-
-msgid "Exception code"
-msgstr "Ausnahmecode"
-
-msgid "Error code"
-msgstr "Fehlercode"
+msgid "You are subscribed to monastery news and announcements. New posts and schedule updates will appear here. Use /menu to open bot commands; press /stop to unsubscribe."
+msgstr "Sie haben die Klosternachrichten und Mitteilungen abonniert. Neue Beiträge und Änderungen des Gottesdienstplans erscheinen hier. Öffnen Sie mit /menu die Bot-Befehle oder melden Sie sich mit /stop ab."
 
 msgid "You can reply to a bot message multiple times: each reply is saved separately and immediately passed to PHP mail. Captioned photos and static stickers are included in the email. Visitor replies by email are not received automatically yet."
 msgstr "Sie können mehrfach auf die Nachricht des Bots antworten: Jede Antwort wird einzeln gespeichert und sofort an PHP-Mail übergeben. Fotos mit Bildunterschrift und statische Sticker werden in die E-Mail eingebettet. Antworten des Besuchers per E-Mail werden noch nicht automatisch empfangen."
 
-msgid "There are no messages on this page."
-msgstr "Auf dieser Seite gibt es keine Anfragen."
+msgid "You have unsubscribed. The bot will no longer send you broadcasts. Press /start to subscribe again."
+msgstr "Sie wurden abgemeldet. Der Bot sendet Ihnen keine Rundnachrichten mehr. Mit /start können Sie sich erneut anmelden."
 
-msgid "Assigned Message-ID"
-msgstr "Zugewiesene Message-ID"
+msgid "Your email"
+msgstr "Ihre E-Mail-Adresse"
 
-msgid "Settings are complete; a successful live delivery has not been confirmed yet."
-msgstr "Einstellungen ausgefüllt; erfolgreiches tatsächliches Senden wurde noch nicht bestätigt."
-
-msgid "Started"
-msgstr "Beginn"
-
-msgid "Started (UTC)"
-msgstr "Beginn (UTC)"
-
-msgid "Unassigned"
-msgstr "Nicht zugewiesen"
-
-msgid "Not sent"
-msgstr "Nicht gesendet"
-
-msgid "Some changes could not be applied. Check permissions and fields."
-msgstr "Nicht alle Änderungen konnten angewendet werden. Prüfen Sie Rechte und Felder."
-
-msgid "Insufficient permissions to reply."
-msgstr "Keine Berechtigung zum Antworten."
-
-msgid "Insufficient permissions."
-msgstr "Keine ausreichende Berechtigung."
-
-msgid "Invalid field."
-msgstr "Ungültiges Feld."
-
-msgid "Invalid reply."
-msgstr "Ungültige Antwort."
-
-msgid "Invalid status."
-msgstr "Ungültiger Status."
-
-msgid "New"
-msgstr "Neu"
-
-msgid "New incoming message"
-msgstr "Neues Anliegen"
-
-msgid "New message. Open the private parish dashboard."
-msgstr "Neues Anliegen. Öffnen Sie den geschützten Gemeindebereich."
-
-msgid "Incoming message"
-msgstr "Anfrage"
-
-msgid "Message #%1$d · reply #%2$d · attempt %3$d"
-msgstr "Anfrage #%1$d · Antwort #%2$d · Versuch %3$d"
-
-msgid "Message not found."
-msgstr "Anfrage nicht gefunden."
-
-msgid "Your message was not sent. Check the fields or try again later."
-msgstr "Die Nachricht konnte nicht gesendet werden. Prüfen Sie die Angaben oder versuchen Sie es später erneut."
+msgid "Your message"
+msgstr "Ihr Anliegen"
 
 msgid "Your message could not be saved. Try again later."
 msgstr "Anfrage nicht gespeichert. Versuchen Sie es später erneut."
@@ -583,425 +1288,11 @@ msgstr "Anfrage nicht gespeichert. Versuchen Sie es später erneut."
 msgid "Your message has been received. A reply will be sent by email."
 msgstr "Ihre Nachricht wurde empfangen. Sie erhalten eine Antwort per E-Mail."
 
-msgid "No messages yet."
-msgstr "Noch keine Anfragen."
-
-msgid "Incoming messages"
-msgstr "Anfragen"
-
-msgid "Parish messages"
-msgstr "Gemeindeanfragen"
-
-msgid "Messages and replies in Telegram"
-msgstr "Anliegen und Antworten in Telegram"
-
-msgid "Awaiting reply"
-msgstr "Wartet auf Antwort"
-
-msgid "Finished (UTC)"
-msgstr "Ende (UTC)"
-
-msgid "Describe your question…"
-msgstr "Schreiben Sie Ihre Nachricht…"
-
-msgid "Leave this field empty"
-msgstr "Dieses Feld leer lassen"
-
-msgid "Save replies on behalf of this staff member"
-msgstr "Unter welchem Mitarbeiter Antworten speichern"
-
-msgid "Reply or note"
-msgstr "Antwort oder Notiz"
-
-msgid "Reply to your message"
-msgstr "Antwort auf Ihr Anliegen"
-
-msgid "Reply to message:"
-msgstr "Antwort auf Anfrage:"
-
-msgid "The reply was not saved."
-msgstr "Antwort nicht gespeichert."
-
-msgid "This reply cannot be resent."
-msgstr "Antwort kann nicht erneut gesendet werden."
-
-msgid "Email reply"
-msgstr "Antwort per E-Mail"
-
-msgid "Assigned staff member"
-msgstr "Zuständige Person"
-
-msgid "The assigned staff member does not have the required permissions."
-msgstr "Zuständige Person hat nicht die erforderlichen Rechte."
-
-msgid "Answered"
-msgstr "Beantwortet"
-
-msgid "Send the complete message to Telegram"
-msgstr "Vollständiges Anliegen an Telegram senden"
-
-msgid "Send this published post to the service"
-msgstr "Diesen veröffentlichten Beitrag an den Dienst senden"
-
-msgid "Sending"
-msgstr "Wird gesendet"
-
-msgid "Sending error"
-msgstr "Sendefehler"
-
-msgid "First page"
-msgstr "Erste Seite"
-
-msgid "Passed to the mail system. Inbox delivery is not confirmed."
-msgstr "An das Mailsystem übergeben. Die Zustellung ins Postfach ist nicht bestätigt."
-
-msgid "Visit the website"
-msgstr "Zur Website"
-
-msgid "Conversation / note"
-msgstr "Korrespondenz / Notiz"
-
-msgid "The email was handled by a WordPress interceptor; the actual transport was not recorded."
-msgstr "Die E-Mail wurde von einem WordPress-Handler verarbeitet; der tatsächliche Transport wurde nicht erfasst."
-
-msgid "Email prepared"
-msgstr "E-Mail vorbereitet"
-
-msgid "Retry the last delivery after correcting the settings"
-msgstr "Letzten Versand nach Korrektur der Einstellungen wiederholen"
-
-msgid "Retry this reply after correcting the mail configuration"
-msgstr "Antwort nach Behebung des E-Mail-Problems erneut senden"
-
-msgid "Confirm deletion."
-msgstr "Bestätigen Sie die Löschung."
-
-msgid "I confirm permanent deletion of the message and conversation"
-msgstr "Ich bestätige die vollständige Löschung der Anfrage und Korrespondenz"
-
-msgid "Show"
-msgstr "Anzeigen"
-
-msgid "A field cannot contain markup only."
-msgstr "Das Feld darf nicht nur Markup enthalten."
-
-msgid "Privacy policy"
-msgstr "Datenschutzerklärung"
-
-msgid "Fields marked with an asterisk are required."
-msgstr "Mit einem Stern markierte Felder sind Pflichtfelder."
-
-msgid "Try again later."
-msgstr "Versuchen Sie es später erneut."
-
-msgid "Attempt started, no result received"
-msgstr "Versuch gestartet, Ergebnis liegt nicht vor"
-
-msgid "Email delivery attempts"
-msgstr "E-Mail-Sendeversuche"
-
-msgid "The last delivery failed. HTTP code:"
-msgstr "Der letzte Versand ist fehlgeschlagen. HTTP-Code:"
-
-msgid "The last delivery was accepted by the service."
-msgstr "Der letzte Versand wurde vom Dienst angenommen."
-
-msgid "Accepted by WordPress; the transport result is unknown."
-msgstr "Von WordPress angenommen; das Transportergebnis ist unbekannt."
-
-msgid "Accepted by transport"
-msgstr "Vom Transport angenommen"
-
-msgid "Incoming messages are disabled."
-msgstr "Anfragen sind deaktiviert."
-
-msgid "The connection check is still queued. Refresh this page later."
-msgstr "Die Verbindungsprüfung ist noch in der Warteschlange. Aktualisieren Sie die Seite später."
-
-msgid "The connection check has been queued. Refresh this page in a while."
-msgstr "Die Verbindungsprüfung wurde in die Warteschlange gestellt. Aktualisieren Sie diese Seite nach einiger Zeit."
-
-msgid "The check could not be queued. Try again later."
-msgstr "Die Prüfung konnte nicht in die Warteschlange gestellt werden. Versuchen Sie es später erneut."
-
-msgid "Check the token, identifiers and API settings. The connection was not saved."
-msgstr "Prüfen Sie Token, Kennungen und API-Einstellungen. Die Verbindung wurde nicht gespeichert."
-
-msgid "Check the required fields and text length."
-msgstr "Prüfen Sie Pflichtfelder und Textlänge."
-
-msgid "Allow sending to the external service"
-msgstr "Senden an externen Dienst erlauben"
-
-msgid "Reset filter"
-msgstr "Filter zurücksetzen"
-
-msgid "Custom question subject"
-msgstr "Eigener Betreff"
-
-msgid "Correct the connection first."
-msgstr "Korrigieren Sie zuerst die Verbindung."
-
-msgid "Save the connection first."
-msgstr "Speichern Sie zuerst die Verbindung."
-
-msgid "I consent to processing my data to receive a reply to this message."
-msgstr "Ich stimme der Verarbeitung meiner Daten zur Beantwortung meiner Nachricht zu."
-
-msgid "Message"
-msgstr "Nachricht"
-
-msgid "Save and send reply"
-msgstr "Antwort speichern und senden"
-
-msgid "Message status"
-msgstr "Status"
-
-msgid "Message text"
-msgstr "Ihre Nachricht"
-
-msgid "Message subject"
-msgstr "Betreff"
-
-msgid "Question subject"
-msgstr "Betreff"
-
-msgid "The technical log is kept for 30 days. Transport acceptance does not confirm inbox delivery."
-msgstr "Das technische Protokoll wird 30 Tage gespeichert. Die Annahme durch den Transport bestätigt keine Zustellung ins Postfach."
-
-msgid "Exception type"
-msgstr "Ausnahmetyp"
-
-msgid "The bot token format is invalid. Copy the token from BotFather. The connection was not saved."
-msgstr "Der Bot-Token hat ein ungültiges Format. Kopieren Sie ihn aus BotFather. Die Verbindung wurde nicht gespeichert."
-
-msgid "Transport"
-msgstr "Transport"
-
-msgid "Transport prepared"
-msgstr "Transport vorbereitet"
-
-msgid "Notify about new messages"
-msgstr "Über neue Anliegen benachrichtigen"
-
-msgid "Delete"
-msgstr "Löschen"
-
-msgid "Delete token"
-msgstr "Token löschen"
-
-msgid "Stages:"
-msgstr "Schritte:"
-
-msgid "Add a Form block and select a form, or insert a Shortcode block with one of these examples. Copy the form ID from the Forms table. A form must be enabled, and incoming messages must be enabled in Settings."
-msgstr "Fügen Sie einen Formularblock hinzu und wählen Sie ein Formular oder verwenden Sie ein Beispiel in einem Shortcode-Block. Die Formular-ID steht in der Formulartabelle. Das Formular und der Nachrichteneingang in den Einstellungen müssen aktiviert sein."
-
-msgid "Compatible alias for the same form shortcode. Existing pages can keep using it."
-msgstr "Kompatibler Alias desselben Formular-Shortcodes. Bestehende Seiten können ihn weiterverwenden."
-
-msgid "Description"
-msgstr "Beschreibung"
-
-msgid "Optional title, intro and submit parameters override only the displayed heading, introduction and button label. They do not change saved form settings, topics or recipients."
-msgstr "Die optionalen Parameter title, intro und submit ändern nur die angezeigte Überschrift, Einleitung und Schaltflächenbeschriftung. Gespeicherte Einstellungen, Themen und Empfänger bleiben unverändert."
-
-msgid "Shortcodes and blocks"
-msgstr "Shortcodes und Blöcke"
-
-msgid "Show the selected form. Replace 123 with its ID; id=\"0\" or an omitted id uses the default form."
-msgstr "Zeigt das ausgewählte Formular. Ersetzen Sie 123 durch seine ID; id=\"0\" oder eine fehlende ID verwendet das Standardformular."
-
-msgid "Accepted by service"
-msgstr "Vom Dienst angenommen"
-
-msgid "Accepted by service; inbox delivery is not confirmed."
-msgstr "Vom Dienst angenommen; die Zustellung im Postfach ist nicht bestätigt."
-
-msgid "All channels"
-msgstr "Alle Kanäle"
-
-msgid "All results"
-msgstr "Alle Ergebnisse"
-
-msgid "Channel / recipient"
-msgstr "Kanal / Empfänger"
-
-msgid "Filter"
-msgstr "Filtern"
-
-msgid "Mail transport"
-msgstr "Mail-Transport"
-
-msgid "Message delivery log"
-msgstr "Protokoll ausgehender Nachrichten"
-
-msgid "Message log"
-msgstr "Nachrichtenprotokoll"
-
-msgid "No outgoing messages match these filters."
-msgstr "Keine ausgehenden Nachrichten für diese Filter."
-
-msgid "Outgoing delivery log"
-msgstr "Protokoll ausgehender Nachrichten"
-
-msgid "Result"
-msgstr "Ergebnis"
-
-msgid "Result uncertain"
-msgstr "Ergebnis unklar"
-
-msgid "Result uncertain; check the destination account."
-msgstr "Ergebnis unklar; bitte das Zielkonto prüfen."
-
-msgid "Service message ID"
-msgstr "Nachrichten-ID des Dienstes"
-
-msgid "Show sent content"
-msgstr "Gesendeten Inhalt anzeigen"
-
-msgid "Source message #%d"
-msgstr "Ursprungsnachricht #%d"
-
-msgid "Time (site timezone)"
-msgstr "Zeit (Zeitzone der Website)"
-
-msgid "Attempt #%d"
-msgstr "Versuch Nr. %d"
-
-msgid "HTTP response: %d"
-msgstr "HTTP-Antwort: %d"
-
-msgid "SMTP response: %d"
-msgstr "SMTP-Antwort: %d"
-
-msgid "Bulk actions"
-msgstr "Sammelaktionen"
-
-msgid "Confirm permanent deletion"
-msgstr "Endgültiges Löschen bestätigen"
-
-msgid "Confirm permanent deletion."
-msgstr "Bitte bestätigen Sie das endgültige Löschen."
-
-msgid "Date received"
-msgstr "Eingangsdatum"
-
-msgid "Delete selected"
-msgstr "Ausgewählte löschen"
-
-msgid "Deleted messages: %d."
-msgstr "Gelöschte Nachrichten: %d."
-
-msgid "No messages match the selected filters."
-msgstr "Keine Nachrichten entsprechen den ausgewählten Filtern."
-
-msgid "Select all messages"
-msgstr "Alle Nachrichten auswählen"
-
-msgid "Select at least one message to delete."
-msgstr "Wählen Sie mindestens eine Nachricht zum Löschen aus."
-
-msgid "Select message: %s"
-msgstr "Nachricht auswählen: %s"
-
-msgid "Sender"
-msgstr "Absender"
-
-msgid "Show more details"
-msgstr "Weitere Details anzeigen"
-
-msgid "Total messages: %d"
-msgstr "Nachrichten insgesamt: %d"
-
-msgid "Choose an action for the selected messages."
-msgstr "Wählen Sie eine Aktion für die markierten Nachrichten."
-
-msgid "Messages could not be deleted. Please try again."
-msgstr "Nachrichten konnten nicht gelöscht werden. Bitte versuchen Sie es erneut."
-
-msgid "Apply"
-msgstr "Anwenden"
-
-msgid "Google reCAPTCHA v3 — spam protection"
-msgstr "Google reCAPTCHA v3 — Spamschutz"
-
-msgid "Protect public forms from automated submissions. Enter the site key and secret key from your reCAPTCHA v3 registration. The secret is never displayed after saving."
-msgstr "Schützt öffentliche Formulare vor automatisierten Einsendungen. Geben Sie den Website-Schlüssel und den geheimen Schlüssel Ihrer reCAPTCHA-v3-Registrierung ein. Der geheime Schlüssel wird nach dem Speichern nicht mehr angezeigt."
-
-msgid "reCAPTCHA site key"
-msgstr "reCAPTCHA-Website-Schlüssel"
-
-msgid "reCAPTCHA secret key (leave empty to keep the saved key)"
-msgstr "Geheimer reCAPTCHA-Schlüssel (leer lassen, um den gespeicherten Schlüssel beizubehalten)"
-
-msgid "Delete saved reCAPTCHA secret key"
-msgstr "Gespeicherten reCAPTCHA-Geheimschlüssel löschen"
-
-msgid "Minimum reCAPTCHA score (0.1–0.9)"
-msgstr "Mindestwert für reCAPTCHA (0,1–0,9)"
-
-msgid "The security check could not be completed. Please try again."
-msgstr "Die Sicherheitsprüfung konnte nicht abgeschlossen werden. Bitte versuchen Sie es erneut."
-
-msgid "Google reCAPTCHA"
-msgstr "Google reCAPTCHA"
-
-msgid "This site uses Google reCAPTCHA v3 to assess whether public form submissions are automated. Google receives browser interaction data and the reCAPTCHA response token; the server sends the token to Google for verification without forwarding the visitor IP address."
-msgstr "Diese Website verwendet Google reCAPTCHA v3, um automatisierte Einsendungen über öffentliche Formulare zu erkennen. Google erhält Browser-Interaktionsdaten und das reCAPTCHA-Antworttoken; der Server sendet das Token zur Überprüfung an Google, ohne die IP-Adresse des Besuchers weiterzuleiten."
-
-msgid "Google Privacy Policy"
-msgstr "Datenschutzerklärung von Google"
-
-msgid "Google Terms of Service"
-msgstr "Nutzungsbedingungen von Google"
-
-msgid "Not saved"
-msgstr "Nicht gespeichert"
-
-msgid "Saved; enter a new key only to replace it"
-msgstr "Gespeichert; nur zum Ersetzen einen neuen Schlüssel eingeben"
-
-msgid "Settings saved."
-msgstr "Einstellungen gespeichert."
-
-msgid "reCAPTCHA is configured. Both keys are saved; the secret key is hidden."
-msgstr "reCAPTCHA ist eingerichtet. Beide Schlüssel sind gespeichert; der geheime Schlüssel ist ausgeblendet."
-
-msgid "reCAPTCHA is not configured. Enter both keys and save settings."
-msgstr "reCAPTCHA ist nicht eingerichtet. Geben Sie beide Schlüssel ein und speichern Sie die Einstellungen."
-
-msgid "reCAPTCHA setup is incomplete. Both keys are required."
-msgstr "Die reCAPTCHA-Einrichtung ist unvollständig. Beide Schlüssel sind erforderlich."
-
-msgid "Enter a positive numeric Telegram Chat ID for this form."
-msgstr "Geben Sie eine positive numerische Telegram-Chat-ID für dieses Formular ein."
-
-msgid "Choose a staff member who can view and reply to messages."
-msgstr "Wählen Sie einen Mitarbeiter aus, der Nachrichten ansehen und beantworten darf."
-
-msgid "A bot token is required. Each form uses only its own private Chat ID for contact messages; the old global Chat ID is not used. Public posts and schedule messages go to people who pressed Start in the bot."
-msgstr "Für den Betrieb wird ein Bot-Token benötigt. Jede Formularnachricht geht nur an den privaten Chat der jeweiligen Form; die alte globale Chat-ID wird nicht verwendet. Beiträge und Planmeldungen erhalten alle, die im Bot auf Start gedrückt haben."
-
-msgid "This is the VK API method version, not a token. Copy it from the method documentation, for example 5.199, without a v prefix."
-msgstr "Dies ist die Version der VK-API-Methode, kein Token. Übernehmen Sie sie aus der Methodendokumentation, zum Beispiel 5.199, ohne v-Präfix."
-
-msgid "This is the Meta Graph API version used in request URLs, not a key or plugin version. Copy a supported version from Graph API Explorer, for example vNN.N."
-msgstr "Dies ist die Meta-Graph-API-Version in den Anfrage-URLs, kein Schlüssel und keine Plugin-Version. Übernehmen Sie eine unterstützte Version aus dem Graph API Explorer, zum Beispiel vNN.N."
-
-msgid "Notify subscribers about changes to the published schedule"
-msgstr "Abonnenten über Änderungen am veröffentlichten Gottesdienstplan informieren"
-
-msgid "Detailed setup: where to click and find the required details"
-msgstr "Detaillierte Anleitung: Wo Sie klicken und die benötigten Angaben finden"
-
-msgid "Telegram chat and responsible person for this form"
-msgstr "Telegram-Chat und zuständige Person für dieses Formular"
-
-msgid "Private numeric Telegram Chat ID (leave empty to disable Telegram notifications for this form)"
-msgstr "Numerische Telegram-Chat-ID des privaten Chats (leer lassen, um Telegram-Benachrichtigungen für dieses Formular zu deaktivieren)"
-
-msgid "To find this form’s Chat ID, the responsible person opens your bot and presses Start, then opens"
-msgstr "Um die Chat-ID für dieses Formular zu finden, öffnet die zuständige Person Ihren Bot und drückt auf Start. Anschließend öffnet sie"
+msgid "Your message was not sent. Check the fields or try again later."
+msgstr "Die Nachricht konnte nicht gesendet werden. Prüfen Sie die Angaben oder versuchen Sie es später erneut."
+
+msgid "Your name"
+msgstr "Ihr Name"
 
 msgid "and copies their numeric ID. They must start your bot first or it cannot message them. Enter a separate private Chat ID for each form. Groups and public channels do not support private replies. Find the bot token and connection instructions under"
 msgstr "und kopiert ihre numerische ID. Zuvor muss sie Ihren Bot gestartet haben, sonst kann er keine Nachrichten senden. Verwenden Sie für jedes Formular eine eigene private Chat-ID. Gruppen und öffentliche Kanäle unterstützen keine privaten Antworten. Bot-Token und Anleitung finden Sie unter"
@@ -1009,281 +1300,29 @@ msgstr "und kopiert ihre numerische ID. Zuvor muss sie Ihren Bot gestartet haben
 msgid "create a bot with"
 msgstr "erstellen Sie einen Bot bei"
 
-msgid "Save Telegram replies on behalf of this staff member (empty uses the shared staff setting)"
-msgstr "Telegram-Antworten diesem Mitarbeiter zuordnen (leer verwendet den in den Einstellungen ausgewählten Mitarbeiter)"
-
-msgid "Shared staff member from Telegram settings"
-msgstr "Gemeinsamer Mitarbeiter aus den Telegram-Einstellungen"
-
-msgid "Each form sends contact messages to its own chat; replies are recorded under the selected staff member. The bot token and webhook are shared. Enable Telegram in Settings, and enable complete-message replies there if staff need to answer in Telegram."
-msgstr "Jedes Formular sendet Anfragen an seinen eigenen Chat; Antworten werden dem ausgewählten Mitarbeiter zugeordnet. Bot-Token und Webhook sind gemeinsam. Aktivieren Sie Telegram in den Einstellungen und zusätzlich die vollständige Nachrichtenübermittlung, wenn Mitarbeiter über Telegram antworten sollen."
-
-msgid "Message or reminder text for other selected channels"
-msgstr "Nachrichten- oder Erinnerungstext für andere ausgewählte Kanäle"
-
-msgid "Telegram text by subscriber language"
-msgstr "Telegram-Text nach Sprache des Abonnenten"
-
-msgid "Fill in the Russian and German versions for Telegram. A subscriber without a translation is skipped and counted in the delivery status."
-msgstr "Geben Sie für Telegram russische und deutsche Texte ein. Abonnenten ohne passende Übersetzung werden übersprungen und im Zustellstatus gezählt."
-
-msgid "Russian"
-msgstr "Russisch"
-
-msgid "German"
-msgstr "Deutsch"
-
-msgid "Add both Russian and German message text before enabling this Telegram rule."
-msgstr "Fügen Sie vor dem Aktivieren dieser Telegram-Regel einen russischen und einen deutschen Nachrichtentext hinzu."
-
-msgid "Enable Telegram subscriber broadcasts on the Telegram settings tab before selecting it for publications."
-msgstr "Aktivieren Sie auf der Registerkarte Telegram-Rundnachrichten an Abonnenten, bevor Sie Telegram für Veröffentlichungen auswählen."
-
-msgid "Enable Telegram subscriber broadcasts before selecting Telegram."
-msgstr "Aktivieren Sie Telegram-Rundnachrichten an Abonnenten, bevor Sie Telegram auswählen."
-
-msgid "Telegram bot subscribers and delivery status"
-msgstr "Telegram-Bot-Abonnenten und Zustellstatus"
-
-msgid "Public Telegram bot and subscriber broadcasts"
-msgstr "Öffentlicher Telegram-Bot und Rundnachrichten an Abonnenten"
-
-msgid "Enable bot subscriptions and broadcasts to people who pressed Start"
-msgstr "Bot-Abonnements und Rundnachrichten für Nutzer aktivieren, die auf Start gedrückt haben"
-
-msgid "The old global Chat ID is not used for form routing. News and schedule announcements are sent to active bot subscribers; each form uses only its own responsible person’s Chat ID. A person must open the bot and press Start first. /stop removes the subscription."
-msgstr "Die alte globale Chat-ID wird nicht für Formularnachrichten verwendet. Nachrichten und Hinweise zum Gottesdienstplan gehen an aktive Bot-Abonnenten; jedes Formular verwendet nur die Chat-ID seiner zuständigen Person. Zum Abonnieren muss man den Bot öffnen und auf Start drücken. /stop beendet das Abonnement."
-
-msgid "Send subscribers a daily schedule digest"
-msgstr "Abonnenten täglich eine Übersicht des Gottesdienstplans senden"
-
-msgid "Time in the WordPress time zone"
-msgstr "Uhrzeit in der WordPress-Zeitzone"
-
-msgid "Subscribers can use /today, /week and /lang. Daily digests include the parish services and the calendar day’s main commemorations when the connected calendar is available."
-msgstr "Abonnenten können /today, /week und /lang verwenden. Die Tagesübersicht enthält Gottesdienste und die wichtigsten Gedenktage des Kirchenkalenders, sofern der Kalender verfügbar ist."
-
-msgid "Telegram bot subscribers"
-msgstr "Abonnenten des Telegram-Bots"
-
-msgid "Telegram bot"
-msgstr "Telegram-Bot"
-
-msgid "Anyone who presses Start is subscribed to news and schedule announcements. /stop removes their Chat ID from the active subscriber list. The bot sends only to users who initiated the chat."
-msgstr "Wer auf Start drückt, abonniert Nachrichten und Hinweise zum Gottesdienstplan. /stop entfernt die Chat-ID aus der aktiven Abonnentenliste. Der Bot schreibt nur Nutzern, die den Chat selbst gestartet haben."
-
-msgid "Active subscribers"
-msgstr "Aktive Abonnenten"
-
-msgid "Recent broadcast status"
-msgstr "Letzte Rundnachrichten und ihr Status"
-
-msgid "Recipients"
-msgstr "Empfänger"
-
-msgid "Action"
-msgstr "Aktion"
-
-msgid "sent"
-msgstr "Gesendet"
+msgid "e.g. prayer"
+msgstr "z. B. gebet"
 
 msgid "failed"
 msgstr "Fehlgeschlagen"
 
+msgid "reCAPTCHA is configured. Both keys are saved; the secret key is hidden."
+msgstr "reCAPTCHA ist eingerichtet. Beide Schlüssel sind gespeichert; der geheime Schlüssel ist ausgeblendet."
+
+msgid "reCAPTCHA is not configured. Enter both keys and save settings."
+msgstr "reCAPTCHA ist nicht eingerichtet. Geben Sie beide Schlüssel ein und speichern Sie die Einstellungen."
+
+msgid "reCAPTCHA secret key (leave empty to keep the saved key)"
+msgstr "Geheimer reCAPTCHA-Schlüssel (leer lassen, um den gespeicherten Schlüssel beizubehalten)"
+
+msgid "reCAPTCHA setup is incomplete. Both keys are required."
+msgstr "Die reCAPTCHA-Einrichtung ist unvollständig. Beide Schlüssel sind erforderlich."
+
+msgid "reCAPTCHA site key"
+msgstr "reCAPTCHA-Website-Schlüssel"
+
+msgid "sent"
+msgstr "Gesendet"
+
 msgid "skipped"
 msgstr "Übersprungen"
-
-msgid "Completed with issues"
-msgstr "Mit Problemen abgeschlossen"
-
-msgid "Completed"
-msgstr "Abgeschlossen"
-
-msgid "Needs attention"
-msgstr "Erfordert Aufmerksamkeit"
-
-msgid "No subscribers at send time"
-msgstr "Zum Sendezeitpunkt gab es keine Abonnenten"
-
-msgid "WordPress could not schedule this delivery. Retry it or check that WordPress Cron is running."
-msgstr "WordPress konnte diese Zustellung nicht planen. Versuchen Sie es erneut oder prüfen Sie, ob WordPress Cron ausgeführt wird."
-
-msgid "Telegram sending is disabled or the connection is incomplete. Pending deliveries remain available."
-msgstr "Der Telegram-Versand ist deaktiviert oder die Verbindung ist unvollständig. Ausstehende Zustellungen bleiben erhalten."
-
-msgid "Retry failed recipients"
-msgstr "Fehlgeschlagene Zustellungen erneut versuchen"
-
-msgid "No broadcasts have been sent yet."
-msgstr "Es wurden noch keine Rundnachrichten gesendet."
-
-msgid "Language"
-msgstr "Sprache"
-
-msgid "Subscribed"
-msgstr "Abonniert"
-
-msgid "Remove subscriber"
-msgstr "Abonnent entfernen"
-
-msgid "There are no active subscribers."
-msgstr "Es gibt keine aktiven Abonnenten."
-
-msgid "Previous"
-msgstr "Zurück"
-
-msgid "Next"
-msgstr "Weiter"
-
-msgid "Send complete messages and receive replies in each form’s private chat"
-msgstr "Vollständige Nachrichten an den privaten Chat des jeweiligen Formulars senden und Antworten empfangen"
-
-msgid "Each form’s Telegram Chat ID determines which responsible person receives the contact message. Use Reply on the bot’s message: the site saves the reply and sends a formatted email to the visitor. Internal notes are not transmitted. Public posts and schedule broadcasts do not use these form Chat IDs."
-msgstr "Die Telegram-Chat-ID jeder Form bestimmt, wer die Anfrage erhält. Antworten Sie mit Reply auf die Bot-Nachricht: Die Website speichert die Antwort und sendet dem Besucher eine formatierte E-Mail. Interne Notizen werden nicht übertragen. Öffentliche Beiträge und Planmeldungen verwenden diese Chat-IDs nicht."
-
-msgid "Save settings first, then connect the bot. This one webhook receives both bot commands (/start, /stop, /today and /week) and replies to form messages. Connecting it moves this bot’s incoming-message webhook to this site; the previous application will stop receiving messages."
-msgstr "Speichern Sie zuerst die Einstellungen und verbinden Sie dann den Bot. Ein gemeinsamer Webhook empfängt sowohl Bot-Befehle (/start, /stop, /today und /week) als auch Antworten auf Formularnachrichten. Beim Verbinden wird der eingehende Webhook dieses Bots auf diese Website umgestellt; die vorherige Anwendung erhält dann keine Nachrichten mehr."
-
-msgid "The shared bot webhook is connected. Subscriber commands and enabled form replies are being received here."
-msgstr "Der gemeinsame Bot-Webhook ist verbunden. Hier gehen Abonnentenbefehle und Antworten auf aktivierte Formularnachrichten ein."
-
-msgid "The shared bot webhook is not connected yet. Press the button after saving the bot settings."
-msgstr "Der gemeinsame Bot-Webhook ist noch nicht verbunden. Speichern Sie die Bot-Einstellungen und klicken Sie auf die Schaltfläche zum Verbinden."
-
-msgid "Connect / check Telegram bot webhook"
-msgstr "Telegram-Bot-Webhook verbinden / prüfen"
-
-msgid "Enable Telegram broadcasts or complete-message form replies before connecting the bot."
-msgstr "Aktivieren Sie vor dem Verbinden des Bots entweder Rundnachrichten an Abonnenten oder Antworten auf vollständige Formularnachrichten."
-
-msgid "Enable contact notifications and select a staff member with reply permissions."
-msgstr "Aktivieren Sie Benachrichtigungen über neue Anfragen und wählen Sie einen Mitarbeiter mit Antwortberechtigung aus."
-
-msgid "Telegram did not confirm the bot identity."
-msgstr "Telegram hat die Bot-Identität nicht bestätigt."
-
-msgid "Settings changed during the check. Reconnect the bot webhook."
-msgstr "Die Einstellungen wurden während der Prüfung geändert. Verbinden Sie den Bot-Webhook erneut."
-
-msgid "Enable Telegram broadcasts or configure complete-message replies with a permitted staff member."
-msgstr "Aktivieren Sie Telegram-Rundnachrichten oder richten Sie Antworten auf vollständige Nachrichten mit einem berechtigten Mitarbeiter ein."
-
-msgid "The shared bot webhook is connected."
-msgstr "Der gemeinsame Bot-Webhook ist verbunden."
-
-msgid "Add a command word and the answer the bot should send. Subscribers choose the command from Telegram’s menu; the bot replies in the subscriber’s selected language. Built-in bot messages and their translations are part of the plugin."
-msgstr "Fügen Sie einen Befehl und die dazugehörige Antwort hinzu. Abonnenten wählen den Befehl im Telegram-Menü; der Bot antwortet in der ausgewählten Sprache. Die Standardtexte und ihre Übersetzungen gehören zum Plugin."
-
-msgid "Add another command"
-msgstr "Weiteren Befehl hinzufügen"
-
-msgid "Additional commands"
-msgstr "Weitere Befehle"
-
-msgid "Choose message language"
-msgstr "Sprache der Nachrichten wählen"
-
-msgid "Choose the language for messages:"
-msgstr "Wählen Sie die Sprache der Nachrichten:"
-
-msgid "Church calendar data is not available right now."
-msgstr "Die Daten des Kirchenkalenders sind derzeit nicht verfügbar."
-
-msgid "Command word"
-msgstr "Befehlswort"
-
-msgid "Commands: /today — services and commemorations, /week — weekly schedule, /lang — choose message language, /stop — unsubscribe."
-msgstr "Befehle: /today — Gottesdienste und Gedenken, /week — Wochenplan, /lang — Sprache wählen, /stop — abmelden."
-
-msgid "Commemorations of the day"
-msgstr "Gedenken des Tages"
-
-msgid "Custom Telegram commands"
-msgstr "Eigene Telegram-Befehle"
-
-msgid "Custom commands were saved and the Telegram menu was updated."
-msgstr "Die Befehle wurden gespeichert und das Telegram-Menü wurde aktualisiert."
-
-msgid "Custom commands were saved, but Telegram could not update the menu. Check the bot connection and save again."
-msgstr "Die Befehle wurden gespeichert, aber Telegram konnte das Menü nicht aktualisieren. Prüfen Sie die Bot-Verbindung und speichern Sie erneut."
-
-msgid "Custom commands were saved. Connect the Telegram bot to publish them in its menu."
-msgstr "Die Befehle wurden gespeichert. Verbinden Sie den Telegram-Bot, damit sie in seinem Menü erscheinen."
-
-msgid "Full schedule"
-msgstr "Vollständiger Gottesdienstplan"
-
-msgid "German menu description"
-msgstr "Beschreibung im deutschen Menü"
-
-msgid "No services are scheduled for this period."
-msgstr "Für diesen Zeitraum sind keine Gottesdienste geplant."
-
-msgid "Press /start first to subscribe and use the bot commands."
-msgstr "Drücken Sie zuerst /start, um sich anzumelden und die Bot-Befehle zu nutzen."
-
-msgid "Remove"
-msgstr "Entfernen"
-
-msgid "Reply in German"
-msgstr "Antwort auf Deutsch"
-
-msgid "Reply in Russian"
-msgstr "Antwort auf Russisch"
-
-msgid "Russian menu description"
-msgstr "Beschreibung im russischen Menü"
-
-msgid "Save custom commands and update Telegram menu"
-msgstr "Befehle speichern und Telegram-Menü aktualisieren"
-
-msgid "Schedule for this week"
-msgstr "Gottesdienstplan für diese Woche"
-
-msgid "Schedule for today"
-msgstr "Gottesdienste heute"
-
-msgid "Services"
-msgstr "Gottesdienste"
-
-msgid "Services and commemorations of the day"
-msgstr "Gottesdienste und Gedenken des Tages"
-
-msgid "Services this week"
-msgstr "Gottesdienste diese Woche"
-
-msgid "Show bot commands"
-msgstr "Bot-Befehle anzeigen"
-
-msgid "Some command rows were skipped. Use a unique lowercase English command word without spaces, and provide a menu description and reply in both languages."
-msgstr "Einige Befehle wurden übersprungen. Verwenden Sie ein eindeutiges englisches Befehlswort in Kleinbuchstaben ohne Leerzeichen und geben Sie Beschreibung und Antwort in beiden Sprachen an."
-
-msgid "Subscribe to monastery news"
-msgstr "Klosternachrichten abonnieren"
-
-msgid "The Telegram subscription service is currently disabled. Please try again later."
-msgstr "Der Telegram-Abonnementdienst ist derzeit deaktiviert. Bitte versuchen Sie es später erneut."
-
-msgid "The message language has been saved."
-msgstr "Die Sprache der Nachrichten wurde gespeichert."
-
-msgid "The request could not be queued. Please try again in a minute."
-msgstr "Die Anfrage konnte nicht vorgemerkt werden. Bitte versuchen Sie es in einer Minute erneut."
-
-msgid "The service schedule has changed"
-msgstr "Der Gottesdienstplan hat sich geändert"
-
-msgid "Today’s services and commemorations"
-msgstr "Gottesdienste und Gedenken heute"
-
-msgid "Unsubscribe from messages"
-msgstr "Nachrichten abbestellen"
-
-msgid "You are subscribed to monastery news and announcements. New posts and schedule updates will appear here. Commands: /today — services and commemorations, /week — weekly schedule, /lang — language, /stop — unsubscribe."
-msgstr "Sie erhalten jetzt Nachrichten und Hinweise des Klosters. Hier erscheinen neue Beiträge und Änderungen am Gottesdienstplan. Befehle: /today — Gottesdienste und Gedenken, /week — Wochenplan, /lang — Sprache, /stop — abmelden."
-
-msgid "You have unsubscribed. The bot will no longer send you broadcasts. Press /start to subscribe again."
-msgstr "Sie wurden abgemeldet. Der Bot sendet Ihnen keine Rundnachrichten mehr. Mit /start können Sie sich erneut anmelden."
-
-msgid "e.g. prayer"
-msgstr "z. B. gebet"

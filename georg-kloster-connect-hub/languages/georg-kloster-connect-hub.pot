@@ -5,6 +5,10 @@ msgstr "Content-Type: text/plain; charset=UTF-8\nX-Domain: georg-kloster-connect
 msgid "A bot token is required. Each form uses only its own private Chat ID for contact messages; the old global Chat ID is not used. Public posts and schedule messages go to people who pressed Start in the bot."
 msgstr ""
 
+#: includes/class-telegram-bot.php
+msgid "A command is shown in Telegram’s menu. A text responder answers when a subscriber sends the exact configured phrase; its phrase is also offered as a button in /menu."
+msgstr ""
+
 #: includes/class-requests.php
 msgid "A field cannot contain markup only."
 msgstr ""
@@ -57,16 +61,12 @@ msgstr ""
 msgid "Add a Form block and select a form, or insert a Shortcode block with one of these examples. Copy the form ID from the Forms table. A form must be enabled, and incoming messages must be enabled in Settings."
 msgstr ""
 
-#: includes/class-telegram-bot.php
-msgid "Add a command word and the answer the bot should send. Subscribers choose the command from Telegram’s menu; the bot replies in the subscriber’s selected language. Built-in bot messages and their translations are part of the plugin."
-msgstr ""
-
-#: includes/class-telegram-bot.php
-msgid "Add another command"
-msgstr ""
-
 #: includes/class-publication-rules.php
 msgid "Add both Russian and German message text before enabling this Telegram rule."
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Add command or responder"
 msgstr ""
 
 #: includes/class-forms.php
@@ -78,7 +78,7 @@ msgid "Add or edit a rule"
 msgstr ""
 
 #: includes/class-telegram-bot.php
-msgid "Additional commands"
+msgid "Additional commands and text responders"
 msgstr ""
 
 #: includes/class-publication-rules-admin.php
@@ -107,6 +107,14 @@ msgstr ""
 
 #: includes/class-telegram-request-settings.php
 msgid "An HTTPS site address is required to receive Telegram replies."
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Answer in German"
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Answer in Russian"
 msgstr ""
 
 #: includes/class-requests.php
@@ -157,8 +165,28 @@ msgstr ""
 msgid "Automatic publication rules"
 msgstr ""
 
+#: includes/class-telegram-bot.php
+msgid "Available bot commands:"
+msgstr ""
+
 #: includes/class-requests.php
 msgid "Awaiting reply"
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Bot commands and autoresponders were saved, and the Telegram menu was updated."
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Bot commands were saved, but Telegram could not update the menu. Check the bot connection and save again."
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Bot commands were saved. Connect the Telegram bot to publish them in its menu."
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Built-in commands"
 msgstr ""
 
 #: includes/class-request-admin.php
@@ -241,6 +269,10 @@ msgstr ""
 msgid "Choose an action for the selected messages."
 msgstr ""
 
+#: includes/class-telegram-bot.php
+msgid "Choose an action:"
+msgstr ""
+
 #: includes/class-publication-rules.php
 msgid "Choose an existing category."
 msgstr ""
@@ -262,11 +294,11 @@ msgid "Closed"
 msgstr ""
 
 #: includes/class-telegram-bot.php
-msgid "Command word"
+msgid "Command"
 msgstr ""
 
 #: includes/class-telegram-bot.php
-msgid "Commands: /today — services and commemorations, /week — weekly schedule, /lang — choose message language, /stop — unsubscribe."
+msgid "Command word"
 msgstr ""
 
 #: includes/class-telegram-bot.php
@@ -339,22 +371,6 @@ msgstr ""
 
 #: includes/class-publication-rules.php
 msgid "Could not schedule publication. Check WordPress Cron."
-msgstr ""
-
-#: includes/class-telegram-bot.php
-msgid "Custom Telegram commands"
-msgstr ""
-
-#: includes/class-telegram-bot.php
-msgid "Custom commands were saved and the Telegram menu was updated."
-msgstr ""
-
-#: includes/class-telegram-bot.php
-msgid "Custom commands were saved, but Telegram could not update the menu. Check the bot connection and save again."
-msgstr ""
-
-#: includes/class-telegram-bot.php
-msgid "Custom commands were saved. Connect the Telegram bot to publish them in its menu."
 msgstr ""
 
 #: includes/class-request-form.php
@@ -481,7 +497,7 @@ msgstr ""
 msgid "Enable sending and notifications about new messages."
 msgstr ""
 
-#: includes/class-forms.php includes/class-publication-rules-admin.php
+#: includes/class-forms.php includes/class-publication-rules-admin.php includes/class-telegram-bot.php
 msgid "Enabled"
 msgstr ""
 
@@ -634,7 +650,11 @@ msgid "German"
 msgstr ""
 
 #: includes/class-telegram-bot.php
-msgid "German menu description"
+msgid "German description"
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "German trigger"
 msgstr ""
 
 #: includes/class-hub-settings.php
@@ -771,6 +791,10 @@ msgstr ""
 
 #: includes/class-outgoing-log.php
 msgid "Mail transport"
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Manage every built-in command and its answer here. Add a slash command for Telegram’s command menu, or a text responder that matches an exact phrase in Russian or German. The reply follows the subscriber’s selected language."
 msgstr ""
 
 #: includes/class-outgoing-log.php includes/class-telegram-bot.php includes/class-telegram-requests.php
@@ -925,8 +949,16 @@ msgstr ""
 msgid "OK group ID"
 msgstr ""
 
+#: includes/class-telegram-bot.php
+msgid "On"
+msgstr ""
+
 #: includes/class-publication-rules-admin.php
 msgid "Once"
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Open the bot menu"
 msgstr ""
 
 #: includes/class-blocks.php
@@ -1049,14 +1081,6 @@ msgstr ""
 msgid "Repeat"
 msgstr ""
 
-#: includes/class-telegram-bot.php
-msgid "Reply in German"
-msgstr ""
-
-#: includes/class-telegram-bot.php
-msgid "Reply in Russian"
-msgstr ""
-
 #: includes/class-request-admin.php
 msgid "Reply or note"
 msgstr ""
@@ -1067,6 +1091,10 @@ msgstr ""
 
 #: includes/class-request-mail.php
 msgid "Reply to your message"
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Required"
 msgstr ""
 
 #: includes/class-request-admin.php
@@ -1122,7 +1150,11 @@ msgid "Russian"
 msgstr ""
 
 #: includes/class-telegram-bot.php
-msgid "Russian menu description"
+msgid "Russian description"
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Russian trigger"
 msgstr ""
 
 #: includes/class-request-mail-log.php
@@ -1142,7 +1174,7 @@ msgid "Save and send reply"
 msgstr ""
 
 #: includes/class-telegram-bot.php
-msgid "Save custom commands and update Telegram menu"
+msgid "Save commands and autoresponders"
 msgstr ""
 
 #: includes/class-telegram-request-settings.php
@@ -1337,12 +1369,16 @@ msgstr ""
 msgid "Show the selected form. Replace 123 with its ID; id=\"0\" or an omitted id uses the default form."
 msgstr ""
 
+#: includes/class-telegram-bot.php
+msgid "Slash command"
+msgstr ""
+
 #: includes/class-request-admin.php
 msgid "Some changes could not be applied. Check permissions and fields."
 msgstr ""
 
 #: includes/class-telegram-bot.php
-msgid "Some command rows were skipped. Use a unique lowercase English command word without spaces, and provide a menu description and reply in both languages."
+msgid "Some responder rows were skipped. Commands need a unique lowercase English word, menu descriptions and replies in both languages. Text responders need unique Russian and German trigger phrases and replies."
 msgstr ""
 
 #: includes/class-outgoing-log.php
@@ -1401,6 +1437,10 @@ msgstr ""
 msgid "Telegram chat and responsible person for this form"
 msgstr ""
 
+#: includes/class-telegram-bot.php
+msgid "Telegram commands and autoresponders"
+msgstr ""
+
 #: includes/class-telegram-request-settings.php
 msgid "Telegram did not confirm incoming replies."
 msgstr ""
@@ -1422,6 +1462,10 @@ msgid "Telegram text by subscriber language"
 msgstr ""
 
 #: includes/class-telegram-bot.php
+msgid "Text responder"
+msgstr ""
+
+#: includes/class-telegram-bot.php
 msgid "The Telegram subscription service is currently disabled. Please try again later."
 msgstr ""
 
@@ -1435,6 +1479,10 @@ msgstr ""
 
 #: includes/class-telegram-request-settings.php
 msgid "The check could not be queued. Try again later."
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "The commands /start and /stop are always available so people can subscribe and unsubscribe. /today and /week use the generated parish schedule by default. Add {schedule} to the answer to include it; without the placeholder, the saved answer is sent as written."
 msgstr ""
 
 #: includes/class-telegram-request-settings.php
@@ -1585,6 +1633,10 @@ msgstr ""
 msgid "Try again later."
 msgstr ""
 
+#: includes/class-telegram-bot.php
+msgid "Type"
+msgstr ""
+
 #: includes/class-request-admin.php
 msgid "Unassigned"
 msgstr ""
@@ -1638,7 +1690,7 @@ msgid "WordPress could not schedule this delivery. Retry it or check that WordPr
 msgstr ""
 
 #: includes/class-telegram-bot.php
-msgid "You are subscribed to monastery news and announcements. New posts and schedule updates will appear here. Commands: /today — services and commemorations, /week — weekly schedule, /lang — language, /stop — unsubscribe."
+msgid "You are subscribed to monastery news and announcements. New posts and schedule updates will appear here. Use /menu to open bot commands; press /stop to unsubscribe."
 msgstr ""
 
 #: includes/class-telegram-request-settings.php
