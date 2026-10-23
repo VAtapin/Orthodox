@@ -21,6 +21,8 @@ For contact messages, set a separate private Chat ID on each form. The person re
 - An optional daily schedule digest at the selected time in the WordPress time zone. It includes the day's services and the main commemorations returned by the connected Bible Desktop calendar, when available.
 - `/today` for today's services and commemorations, `/week` for the current week's services, `/lang` to choose Russian or German, and `/help` for commands.
 
+Standard bot messages are part of the plugin and translated through its Russian and German `.po`/`.mo` catalogs. To add a custom command, open Connect Hub → **Telegram bot**, add a lowercase English command word (without `/`), enter the Russian and German descriptions shown in Telegram's command menu, and enter the reply in both languages. Save to publish the command in Telegram's Russian and German menus. The bot answers in each subscriber's selected language. Built-in command text is updated with plugin releases; it is not edited in the settings page.
+
 Scheduled Telegram reminders have separate Russian and German message fields. Both are required for an enabled Telegram reminder. The reminder can be sent to Telegram alone; the general-purpose message field is only needed by other selected channels.
 
 ## Delivery status and subscriber controls

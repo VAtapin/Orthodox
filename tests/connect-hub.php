@@ -19,7 +19,7 @@ $throws = static function ( callable $operation, string $message ) use ( $check 
 };
 $admin_id = get_users( array( 'role' => 'administrator', 'number' => 1 ) )[0]->ID;
 wp_set_current_user( $admin_id ); set_current_screen( 'dashboard' );
-$check( '0.4.0' === GKPS_VERSION, 'Wrong Connect Hub version.' );
+$check( '0.4.1' === GKPS_VERSION, 'Wrong Connect Hub version.' );
 $check( ! is_plugin_active( 'georg-kloster-prihod-social/georg-kloster-prihod-social.php' ), 'Old development package remains active.' );
 $check( 'Existing development form' === Admin::get()['title'], 'Development form settings were lost.' );
 $check( '12345' === Connector::instance( 'telegram' )->settings()['target'], 'Channel settings were lost.' );
@@ -117,6 +117,11 @@ foreach ( Publications::titles() as $id => $title ) {
     $check( Connector::instance( $id )->valid( $settings ), 'Valid channel configuration rejected: ' . $id );
 }
 $telegram_tables = Telegram_Bot::tables();
+$telegram_custom_command = array( array( 'command' => 'prayer', 'description_ru' => 'Молитва', 'description_de' => 'Gebet', 'response_ru' => 'Напишите нам о своей молитвенной просьбе.', 'response_de' => 'Schreiben Sie uns Ihr Gebetsanliegen.' ) );
+update_option( 'gkch_telegram_custom_commands', $telegram_custom_command, false );
+$ru_menu = Telegram_Bot::command_descriptions( 'ru' );
+$de_menu = Telegram_Bot::command_descriptions( 'de' );
+$check( in_array( array( 'command' => 'prayer', 'description' => 'Молитва' ), $ru_menu, true ) && in_array( array( 'command' => 'prayer', 'description' => 'Gebet' ), $de_menu, true ), 'Custom Telegram command descriptions were not localized in RU and DE.' );
 $telegram_translation_map = array();
 $german_post = wp_insert_post( array( 'post_type' => 'post', 'post_status' => 'publish', 'post_title' => 'Deutscher Beispielbeitrag', 'post_content' => 'Deutscher Beispieltext.' ) );
 $telegram_translation_map[$post] = array( 'language' => 'ru', 'ru' => $post, 'de' => $german_post );
@@ -155,6 +160,11 @@ wp_clear_scheduled_hook( 'gkch_telegram_command', array( '70102', 'de', 'week', 
 Telegram_Bot::command_worker( '70102', 'de', 'week', 51004 );
 $week_calls = array_values( array_filter( $http, static fn( $call ) => str_contains( $call['url'], 'api.telegram.org' ) && str_contains( (string) ( json_decode( $call['args']['body'] ?? '{}', true )['text'] ?? '' ), 'Gottesdienste diese Woche' ) ) );
 $check( $week_calls && '70102' === json_decode( end( $week_calls )['args']['body'], true )['chat_id'], '/week did not send a German private response.' );
+$prayer_ru_update = array( 'update_id' => 51007, 'message' => array( 'text' => '/prayer', 'chat' => array( 'id' => '70101', 'type' => 'private' ), 'from' => array( 'id' => '70101', 'language_code' => 'ru' ) ) );
+$prayer_de_update = array( 'update_id' => 51008, 'message' => array( 'text' => '/prayer', 'chat' => array( 'id' => '70102', 'type' => 'private' ), 'from' => array( 'id' => '70102', 'language_code' => 'de' ) ) );
+$check( Telegram_Bot::receive_update( $prayer_ru_update ) && Telegram_Bot::receive_update( $prayer_de_update ), 'Configured custom Telegram commands were not accepted.' );
+$check( (bool) array_filter( $http, static function ( $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); return str_contains( $call['url'], 'api.telegram.org' ) && '70101' === (string) ( $body['chat_id'] ?? '' ) && 'Напишите нам о своей молитвенной просьбе.' === ( $body['text'] ?? '' ); } ), 'Custom command did not send its Russian reply to the subscriber.' );
+$check( (bool) array_filter( $http, static function ( $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); return str_contains( $call['url'], 'api.telegram.org' ) && '70102' === (string) ( $body['chat_id'] ?? '' ) && 'Schreiben Sie uns Ihr Gebetsanliegen.' === ( $body['text'] ?? '' ); } ), 'Custom command did not send its German reply to the subscriber.' );
 $language_update = array( 'update_id' => 51005, 'callback_query' => array( 'id' => 'callback-1', 'data' => 'lang:de', 'message' => array( 'chat' => array( 'id' => '70101', 'type' => 'private' ) ) ) );
 $check( Telegram_Bot::receive_update( $language_update ) && 'de' === $GLOBALS['wpdb']->get_var( $GLOBALS['wpdb']->prepare( "SELECT language FROM {$telegram_tables['subscribers']} WHERE chat_id=%s", '70101' ) ), 'Bot language selection was not saved.' );
 $stop_update = array( 'update_id' => 51006, 'message' => array( 'text' => '/stop', 'chat' => array( 'id' => '70102', 'type' => 'private' ), 'from' => array( 'id' => '70102', 'language_code' => 'de' ) ) );
@@ -176,7 +186,7 @@ $check( $digest_campaign_id > 0, 'Daily digest did not create a subscriber campa
 Telegram_Bot::worker( $digest_campaign_id );
 $check( 'sent' === $GLOBALS['wpdb']->get_var( $GLOBALS['wpdb']->prepare( "SELECT status FROM {$telegram_tables['campaigns']} WHERE id=%d", $digest_campaign_id ) ), 'Daily digest campaign did not complete.' );
 ob_start(); Telegram_Bot::render(); $telegram_admin = ob_get_clean();
-$check( str_contains( $telegram_admin, '70101' ) && str_contains( $telegram_admin, 'Recent broadcast status' ) && str_contains( $telegram_admin, 'Active subscribers' ), 'Telegram bot admin page omitted subscriber or campaign information.' );
+$check( str_contains( $telegram_admin, '70101' ) && str_contains( $telegram_admin, 'Recent broadcast status' ) && str_contains( $telegram_admin, 'Active subscribers' ) && str_contains( $telegram_admin, 'bot_commands[0][command]' ) && str_contains( $telegram_admin, 'Reply in Russian' ), 'Telegram bot admin page omitted subscriber, campaign or custom command information.' );
 $message_fixture = wp_insert_post( array( 'post_type' => 'gkps_request', 'post_status' => 'private', 'post_title' => 'Synthetic outgoing log fixture', 'post_content' => 'Private message body to audit.' ) );
 foreach ( array( 'telegram' => '12345' ) as $channel => $recipient ) {
     $job_id = Connector::instance( $channel )->queue( 'Synthetic outgoing message body.', '', 'request', $message_fixture, array(), $recipient );

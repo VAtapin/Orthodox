@@ -1170,3 +1170,120 @@ msgstr "Aktivieren Sie Telegram-Rundnachrichten oder richten Sie Antworten auf v
 
 msgid "The shared bot webhook is connected."
 msgstr "Der gemeinsame Bot-Webhook ist verbunden."
+
+msgid "Add a command word and the answer the bot should send. Subscribers choose the command from Telegram’s menu; the bot replies in the subscriber’s selected language. Built-in bot messages and their translations are part of the plugin."
+msgstr "Fügen Sie einen Befehl und die dazugehörige Antwort hinzu. Abonnenten wählen den Befehl im Telegram-Menü; der Bot antwortet in der ausgewählten Sprache. Die Standardtexte und ihre Übersetzungen gehören zum Plugin."
+
+msgid "Add another command"
+msgstr "Weiteren Befehl hinzufügen"
+
+msgid "Additional commands"
+msgstr "Weitere Befehle"
+
+msgid "Choose message language"
+msgstr "Sprache der Nachrichten wählen"
+
+msgid "Choose the language for messages:"
+msgstr "Wählen Sie die Sprache der Nachrichten:"
+
+msgid "Church calendar data is not available right now."
+msgstr "Die Daten des Kirchenkalenders sind derzeit nicht verfügbar."
+
+msgid "Command word"
+msgstr "Befehlswort"
+
+msgid "Commands: /today — services and commemorations, /week — weekly schedule, /lang — choose message language, /stop — unsubscribe."
+msgstr "Befehle: /today — Gottesdienste und Gedenken, /week — Wochenplan, /lang — Sprache wählen, /stop — abmelden."
+
+msgid "Commemorations of the day"
+msgstr "Gedenken des Tages"
+
+msgid "Custom Telegram commands"
+msgstr "Eigene Telegram-Befehle"
+
+msgid "Custom commands were saved and the Telegram menu was updated."
+msgstr "Die Befehle wurden gespeichert und das Telegram-Menü wurde aktualisiert."
+
+msgid "Custom commands were saved, but Telegram could not update the menu. Check the bot connection and save again."
+msgstr "Die Befehle wurden gespeichert, aber Telegram konnte das Menü nicht aktualisieren. Prüfen Sie die Bot-Verbindung und speichern Sie erneut."
+
+msgid "Custom commands were saved. Connect the Telegram bot to publish them in its menu."
+msgstr "Die Befehle wurden gespeichert. Verbinden Sie den Telegram-Bot, damit sie in seinem Menü erscheinen."
+
+msgid "Full schedule"
+msgstr "Vollständiger Gottesdienstplan"
+
+msgid "German menu description"
+msgstr "Beschreibung im deutschen Menü"
+
+msgid "No services are scheduled for this period."
+msgstr "Für diesen Zeitraum sind keine Gottesdienste geplant."
+
+msgid "Press /start first to subscribe and use the bot commands."
+msgstr "Drücken Sie zuerst /start, um sich anzumelden und die Bot-Befehle zu nutzen."
+
+msgid "Remove"
+msgstr "Entfernen"
+
+msgid "Reply in German"
+msgstr "Antwort auf Deutsch"
+
+msgid "Reply in Russian"
+msgstr "Antwort auf Russisch"
+
+msgid "Russian menu description"
+msgstr "Beschreibung im russischen Menü"
+
+msgid "Save custom commands and update Telegram menu"
+msgstr "Befehle speichern und Telegram-Menü aktualisieren"
+
+msgid "Schedule for this week"
+msgstr "Gottesdienstplan für diese Woche"
+
+msgid "Schedule for today"
+msgstr "Gottesdienste heute"
+
+msgid "Services"
+msgstr "Gottesdienste"
+
+msgid "Services and commemorations of the day"
+msgstr "Gottesdienste und Gedenken des Tages"
+
+msgid "Services this week"
+msgstr "Gottesdienste diese Woche"
+
+msgid "Show bot commands"
+msgstr "Bot-Befehle anzeigen"
+
+msgid "Some command rows were skipped. Use a unique lowercase English command word without spaces, and provide a menu description and reply in both languages."
+msgstr "Einige Befehle wurden übersprungen. Verwenden Sie ein eindeutiges englisches Befehlswort in Kleinbuchstaben ohne Leerzeichen und geben Sie Beschreibung und Antwort in beiden Sprachen an."
+
+msgid "Subscribe to monastery news"
+msgstr "Klosternachrichten abonnieren"
+
+msgid "The Telegram subscription service is currently disabled. Please try again later."
+msgstr "Der Telegram-Abonnementdienst ist derzeit deaktiviert. Bitte versuchen Sie es später erneut."
+
+msgid "The message language has been saved."
+msgstr "Die Sprache der Nachrichten wurde gespeichert."
+
+msgid "The request could not be queued. Please try again in a minute."
+msgstr "Die Anfrage konnte nicht vorgemerkt werden. Bitte versuchen Sie es in einer Minute erneut."
+
+msgid "The service schedule has changed"
+msgstr "Der Gottesdienstplan hat sich geändert"
+
+msgid "Today’s services and commemorations"
+msgstr "Gottesdienste und Gedenken heute"
+
+msgid "Unsubscribe from messages"
+msgstr "Nachrichten abbestellen"
+
+msgid "You are subscribed to monastery news and announcements. New posts and schedule updates will appear here. Commands: /today — services and commemorations, /week — weekly schedule, /lang — language, /stop — unsubscribe."
+msgstr "Sie erhalten jetzt Nachrichten und Hinweise des Klosters. Hier erscheinen neue Beiträge und Änderungen am Gottesdienstplan. Befehle: /today — Gottesdienste und Gedenken, /week — Wochenplan, /lang — Sprache, /stop — abmelden."
+
+msgid "You have unsubscribed. The bot will no longer send you broadcasts. Press /start to subscribe again."
+msgstr "Sie wurden abgemeldet. Der Bot sendet Ihnen keine Rundnachrichten mehr. Mit /start können Sie sich erneut anmelden."
+
+msgid "e.g. prayer"
+msgstr "z. B. gebet"

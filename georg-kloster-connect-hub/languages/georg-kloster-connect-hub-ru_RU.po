@@ -1170,3 +1170,120 @@ msgstr "Включите рассылку Telegram или настройте о�
 
 msgid "The shared bot webhook is connected."
 msgstr "Общий вебхук бота подключён."
+
+msgid "Add a command word and the answer the bot should send. Subscribers choose the command from Telegram’s menu; the bot replies in the subscriber’s selected language. Built-in bot messages and their translations are part of the plugin."
+msgstr "Добавьте команду и ответ для бота. Подписчики выбирают команду в меню Telegram; бот отвечает на выбранном ими языке. Стандартные тексты и переводы входят в состав плагина."
+
+msgid "Add another command"
+msgstr "Добавить ещё одну команду"
+
+msgid "Additional commands"
+msgstr "Дополнительные команды"
+
+msgid "Choose message language"
+msgstr "Выбрать язык сообщений"
+
+msgid "Choose the language for messages:"
+msgstr "Выберите язык рассылки:"
+
+msgid "Church calendar data is not available right now."
+msgstr "Данные церковного календаря сейчас недоступны."
+
+msgid "Command word"
+msgstr "Команда"
+
+msgid "Commands: /today — services and commemorations, /week — weekly schedule, /lang — choose message language, /stop — unsubscribe."
+msgstr "Команды: /today — службы и память дня, /week — расписание на неделю, /lang — выбрать язык рассылки, /stop — отписаться."
+
+msgid "Commemorations of the day"
+msgstr "Память дня"
+
+msgid "Custom Telegram commands"
+msgstr "Пользовательские команды Telegram"
+
+msgid "Custom commands were saved and the Telegram menu was updated."
+msgstr "Команды сохранены, меню Telegram обновлено."
+
+msgid "Custom commands were saved, but Telegram could not update the menu. Check the bot connection and save again."
+msgstr "Команды сохранены, но Telegram не удалось обновить меню. Проверьте подключение бота и сохраните ещё раз."
+
+msgid "Custom commands were saved. Connect the Telegram bot to publish them in its menu."
+msgstr "Команды сохранены. Подключите Telegram-бота, чтобы добавить их в его меню."
+
+msgid "Full schedule"
+msgstr "Полное расписание"
+
+msgid "German menu description"
+msgstr "Описание команды в немецком меню"
+
+msgid "No services are scheduled for this period."
+msgstr "Запланированных богослужений нет."
+
+msgid "Press /start first to subscribe and use the bot commands."
+msgstr "Сначала нажмите /start, чтобы подписаться и пользоваться командами бота."
+
+msgid "Remove"
+msgstr "Удалить"
+
+msgid "Reply in German"
+msgstr "Ответ на немецком"
+
+msgid "Reply in Russian"
+msgstr "Ответ на русском"
+
+msgid "Russian menu description"
+msgstr "Описание команды в русском меню"
+
+msgid "Save custom commands and update Telegram menu"
+msgstr "Сохранить команды и обновить меню Telegram"
+
+msgid "Schedule for this week"
+msgstr "Расписание на эту неделю"
+
+msgid "Schedule for today"
+msgstr "Расписание на сегодня"
+
+msgid "Services"
+msgstr "Богослужения"
+
+msgid "Services and commemorations of the day"
+msgstr "Богослужения и память дня"
+
+msgid "Services this week"
+msgstr "Богослужения на этой неделе"
+
+msgid "Show bot commands"
+msgstr "Показать команды бота"
+
+msgid "Some command rows were skipped. Use a unique lowercase English command word without spaces, and provide a menu description and reply in both languages."
+msgstr "Некоторые команды пропущены. Используйте уникальное английское слово в нижнем регистре без пробелов и заполните описание и ответ на обоих языках."
+
+msgid "Subscribe to monastery news"
+msgstr "Подписаться на новости монастыря"
+
+msgid "The Telegram subscription service is currently disabled. Please try again later."
+msgstr "Подписка на новости сейчас отключена. Попробуйте позже."
+
+msgid "The message language has been saved."
+msgstr "Язык рассылки сохранён."
+
+msgid "The request could not be queued. Please try again in a minute."
+msgstr "Не удалось поставить запрос в очередь. Попробуйте ещё раз через минуту."
+
+msgid "The service schedule has changed"
+msgstr "Изменилось расписание богослужения"
+
+msgid "Today’s services and commemorations"
+msgstr "Службы и память дня"
+
+msgid "Unsubscribe from messages"
+msgstr "Отписаться от рассылки"
+
+msgid "You are subscribed to monastery news and announcements. New posts and schedule updates will appear here. Commands: /today — services and commemorations, /week — weekly schedule, /lang — language, /stop — unsubscribe."
+msgstr "Вы подписаны на новости и объявления монастыря. Здесь будут появляться новые публикации и сообщения о расписании. Команды: /today — службы и память дня, /week — расписание на неделю, /lang — язык, /stop — отписаться."
+
+msgid "You have unsubscribed. The bot will no longer send you broadcasts. Press /start to subscribe again."
+msgstr "Вы отписаны. Бот больше не будет присылать вам рассылки. Чтобы подписаться снова, нажмите /start."
+
+msgid "e.g. prayer"
+msgstr "например, prayer"
