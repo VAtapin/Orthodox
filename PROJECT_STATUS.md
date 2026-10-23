@@ -34,4 +34,4 @@ Vestment API integration: `php tests/run.php` passes 78 isolated assertions and 
 
 Upload `build/georg-kloster-connect-hub-0.3.11.zip` through WordPress Plugins > Add Plugin > Upload Plugin on `georg-kloster.ru`; then confirm the five remaining channel tabs and test a contact form. Enter both reCAPTCHA keys under Connect Hub > Settings > General, confirm the configured status, and submit a test question. On the intended site, use “Connect / check incoming replies” to move the Telegram bot webhook there; the old application will stop receiving updates. Activate and verify MailPoet sending with the configured WP Mail SMTP transport before announcing the newsletter publicly; a test email was intentionally not sent. WordPress.org manual review remains pending.
 
-Last related code commit before this task: `5129873` — “Update reCAPTCHA fix status” on `main`.
+Last related code commit: `2996b58` — “Remove WhatsApp from Connect Hub” on `main`.
