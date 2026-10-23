@@ -22,7 +22,7 @@ final class Outgoing_Log {
 
     public static function record( array $event ): void {
         $channel = $event['channel'] ?? '';
-        if ( ! in_array( $channel, array( 'email', 'telegram', 'whatsapp' ), true ) ) { return; }
+        if ( ! in_array( $channel, array( 'email', 'telegram' ), true ) ) { return; }
         $statuses = array( 'accepted', 'failed', 'processing', 'uncertain' );
         $entry = array(
             'id' => wp_generate_uuid4(), 'time_gmt' => gmdate( DATE_ATOM ), 'channel' => $channel,
@@ -74,11 +74,11 @@ final class Outgoing_Log {
 
     public static function render(): void {
         if ( ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Insufficient permissions.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); }
-        $channel = isset( $_GET['channel'] ) && is_string( $_GET['channel'] ) && in_array( $_GET['channel'], array( 'email', 'telegram', 'whatsapp' ), true ) ? sanitize_key( $_GET['channel'] ) : '';
+        $channel = isset( $_GET['channel'] ) && is_string( $_GET['channel'] ) && in_array( $_GET['channel'], array( 'email', 'telegram' ), true ) ? sanitize_key( $_GET['channel'] ) : '';
         $status = isset( $_GET['status'] ) && is_string( $_GET['status'] ) && in_array( $_GET['status'], array( 'accepted', 'failed', 'processing', 'uncertain' ), true ) ? sanitize_key( $_GET['status'] ) : '';
-        echo '<div class="wrap"><h1>' . esc_html__( 'Message delivery log', 'georg-kloster-connect-hub' ) . '</h1><p>' . esc_html__( 'Technical history of email, Telegram and WhatsApp messages. Publications remain in Publications history. Entries include message contents and are available to communication administrators for 30 days, up to 200 entries.', 'georg-kloster-connect-hub' ) . '</p>';
+        echo '<div class="wrap"><h1>' . esc_html__( 'Message delivery log', 'georg-kloster-connect-hub' ) . '</h1>';
         echo '<form method="get"><input type="hidden" name="page" value="gkch-log"><label>' . esc_html__( 'Channel', 'georg-kloster-connect-hub' ) . ' <select name="channel"><option value="">' . esc_html__( 'All channels', 'georg-kloster-connect-hub' ) . '</option>';
-        foreach ( array( 'email' => __( 'Email', 'georg-kloster-connect-hub' ), 'telegram' => __( 'Telegram', 'georg-kloster-connect-hub' ), 'whatsapp' => __( 'WhatsApp', 'georg-kloster-connect-hub' ) ) as $value => $label ) { echo '<option value="' . esc_attr( $value ) . '"' . selected( $channel, $value, false ) . '>' . esc_html( $label ) . '</option>'; }
+        foreach ( array( 'email' => __( 'Email', 'georg-kloster-connect-hub' ), 'telegram' => __( 'Telegram', 'georg-kloster-connect-hub' ) ) as $value => $label ) { echo '<option value="' . esc_attr( $value ) . '"' . selected( $channel, $value, false ) . '>' . esc_html( $label ) . '</option>'; }
         echo '</select></label> <label>' . esc_html__( 'Result', 'georg-kloster-connect-hub' ) . ' <select name="status"><option value="">' . esc_html__( 'All results', 'georg-kloster-connect-hub' ) . '</option>';
         foreach ( array( 'accepted' => __( 'Accepted by service', 'georg-kloster-connect-hub' ), 'failed' => __( 'Failed', 'georg-kloster-connect-hub' ), 'processing' => __( 'Processing', 'georg-kloster-connect-hub' ), 'uncertain' => __( 'Result uncertain', 'georg-kloster-connect-hub' ) ) as $value => $label ) { echo '<option value="' . esc_attr( $value ) . '"' . selected( $status, $value, false ) . '>' . esc_html( $label ) . '</option>'; }
         echo '</select></label> <button class="button button-primary">' . esc_html__( 'Filter', 'georg-kloster-connect-hub' ) . '</button></form><table class="widefat striped"><thead><tr><th>' . esc_html__( 'Time (site timezone)', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Channel / recipient', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Message', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Result', 'georg-kloster-connect-hub' ) . '</th></tr></thead><tbody>';

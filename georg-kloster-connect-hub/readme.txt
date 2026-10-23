@@ -4,7 +4,7 @@ Tags: contact form, messages, social, publishing, telegram
 Requires at least: 6.5
 Requires PHP: 8.0
 Tested up to: 7.1
-Stable tag: 0.3.10
+Stable tag: 0.3.11
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -17,15 +17,14 @@ topics, recipients and enabled states. Use [gkch_form id="123"] or the Form bloc
 The previous [gkps_contact_form] shortcode and gkps/contact-form block still work.
 Messages record the source form and appear in one private inbox with form and
 status filters. Staff can reply by email. Telegram supports the existing opt-in
-private-chat reply workflow. WhatsApp sends approved outbound templates only;
-WhatsApp replies are not imported.
+private-chat reply workflow.
 
 The menu has Forms, Messages, Publications, Message log and Settings. The Message log
-records time, recipient, message text and technical result for outgoing email,
-Telegram and WhatsApp request/schedule messages. It is separate from publication history, requires
+records time, recipient, message text and technical result for outgoing email and
+Telegram request/schedule messages. It is separate from publication history, requires
 communication-settings access, and keeps at most 200 entries for 30 days. Deleting a
-request or erasing its personal data also removes its message-log entries. All six channel connections
-(Telegram, WhatsApp, Facebook, Instagram, VK and OK) are tabs in Settings.
+request or erasing its personal data also removes its message-log entries. The five channel connections
+(Telegram, Facebook, Instagram, VK and OK) are tabs in Settings.
 Its title is Connect Hub in English, Kommunikation in German and
 Коммуникации in Russian. Russian and German PHP/editor catalogs are bundled.
 Forms can concern church matters, deliveries, appointments or any other topic.
@@ -57,7 +56,7 @@ Development repository: https://github.com/VAtapin/Orthodox/tree/main/georg-klos
 
 == Installation ==
 
-Upload georg-kloster-connect-hub-0.3.10.zip. Replace an existing Connect Hub version,
+Upload georg-kloster-connect-hub-0.3.11.zip. Replace an existing Connect Hub version,
 or install as a new plugin and activate it.
 Activation deactivates the previous georg-kloster-prihod-social development plugin
 without deleting its settings. Keep only Connect Hub active. Network-active old
@@ -80,10 +79,6 @@ A configured channel alone is not proof of successful live delivery.
 Telegram Bot API: selected public text/link and target chat ID. Optional full
 private messages transmit name, email, subject, body and reply photos to the
 configured private chat. https://core.telegram.org/bots/api https://telegram.org/privacy
-
-WhatsApp Cloud API: consented recipient number, approved template, language and
-text/link. https://developers.facebook.com/docs/whatsapp/cloud-api/
-https://www.whatsapp.com/legal/privacy-policy/
 
 Facebook Graph API: selected public text/link and Page ID. Requires a Page token
 with publication rights and the API version configured in the application.
@@ -139,6 +134,9 @@ Configure optional reCAPTCHA v3 site and secret keys under Connect Hub > Setting
 General reception, retention and reCAPTCHA settings use one save button. A status message confirms whether both reCAPTCHA keys are saved; the secret key is never displayed.
 
 == Changelog ==
+
+= 0.3.11 =
+Remove WhatsApp settings and sending from Connect Hub.
 
 = 0.3.10 =
 Preserve newly submitted reCAPTCHA site keys when WordPress sanitizes the settings option.

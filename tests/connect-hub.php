@@ -18,10 +18,11 @@ $throws = static function ( callable $operation, string $message ) use ( $check 
 };
 $admin_id = get_users( array( 'role' => 'administrator', 'number' => 1 ) )[0]->ID;
 wp_set_current_user( $admin_id ); set_current_screen( 'dashboard' );
-$check( '0.3.10' === GKPS_VERSION, 'Wrong Connect Hub version.' );
+$check( '0.3.11' === GKPS_VERSION, 'Wrong Connect Hub version.' );
 $check( ! is_plugin_active( 'georg-kloster-prihod-social/georg-kloster-prihod-social.php' ), 'Old development package remains active.' );
 $check( 'Existing development form' === Admin::get()['title'], 'Development form settings were lost.' );
 $check( '12345' === Connector::instance( 'telegram' )->settings()['target'], 'Channel settings were lost.' );
+$check( null === Connector::instance( 'whatsapp' ) && ! isset( Publications::titles()['whatsapp'] ), 'WhatsApp is still registered as a Connect Hub channel.' );
 $old_messages = get_posts( array( 'post_type' => 'gkps_request', 'post_status' => 'private', 'numberposts' => -1 ) );
 $check( 1 === count( $old_messages ) && 'Synthetic development content' === $old_messages[0]->post_content, 'Synthetic upgrade fixture was lost.' );
 $mail = array();
@@ -42,7 +43,6 @@ add_filter( 'pre_http_request', static function ( $pre, $args, $url ) use ( &$ht
     elseif ( str_contains( $url, '/media' ) ) { $body = array( 'id' => '77001' ); }
     elseif ( str_contains( $url, '/77001?' ) ) { $body = array( 'status_code' => $ig_status ); }
     elseif ( str_contains( $url, '/feed' ) ) { $body = array( 'id' => 'page_71' ); }
-    elseif ( str_contains( $url, '/messages' ) ) { $body = array( 'messages' => array( array( 'id' => 'wa_71' ) ) ); }
     elseif ( str_contains( $url, 'api.telegram.org' ) ) {
         $method = basename( (string) wp_parse_url( $url, PHP_URL_PATH ) ); $payload = json_decode( $args['body'] ?? '{}', true );
         if ( 'getWebhookInfo' === $method ) { $body = array( 'ok' => true, 'result' => array( 'url' => $telegram_webhook_url ) ); }
@@ -116,16 +116,16 @@ foreach ( Publications::titles() as $id => $title ) {
 }
 $before_http = count( $http );
 $jobs = Publications::enqueue( $post, array_keys( Publications::titles() ) );
-$check( 6 === count( $jobs ) && count( $http ) === $before_http, 'Publication sent synchronously or missing channels.' );
+$check( 5 === count( $jobs ) && count( $http ) === $before_http, 'Publication sent synchronously or missing channels.' );
 $check( $jobs === Publications::enqueue( $post, array_keys( Publications::titles() ) ), 'Repeated publication did not deduplicate.' );
-foreach ( array( 'telegram', 'whatsapp', 'facebook', 'vk', 'ok' ) as $id ) {
+foreach ( array( 'telegram', 'facebook', 'vk', 'ok' ) as $id ) {
     Connector::instance( $id )->worker( $jobs[$id] );
     $check( 'sent' === get_option( 'gkps_job_' . $id . '_' . $jobs[$id] )['status'], 'Channel did not accept a valid response: ' . $id );
     $calls = count( $http ); Connector::instance( $id )->worker( $jobs[$id] );
     $check( $calls === count( $http ), 'Sent publication was delivered twice: ' . $id );
 }
 $message_fixture = wp_insert_post( array( 'post_type' => 'gkps_request', 'post_status' => 'private', 'post_title' => 'Synthetic outgoing log fixture', 'post_content' => 'Private message body to audit.' ) );
-foreach ( array( 'telegram' => '12345', 'whatsapp' => '49123456789' ) as $channel => $recipient ) {
+foreach ( array( 'telegram' => '12345' ) as $channel => $recipient ) {
     $job_id = Connector::instance( $channel )->queue( 'Synthetic outgoing message body.', '', 'request', $message_fixture );
     $check( '' !== $job_id, 'Request message was not queued for the technical journal: ' . $channel );
     Connector::instance( $channel )->worker( $job_id );
@@ -172,9 +172,8 @@ foreach ( array_keys( Publications::titles() ) as $network ) {
     $_GET['network'] = $network; ob_start(); Hub_Settings::render(); $screen = ob_get_clean();
     $check( str_contains( $screen, Publications::titles()[$network] ) && ! str_contains( $screen, 'development_token' ) && ! str_contains( $screen, 'secret123' ), 'Network screen leaked secrets or omitted provider.' );
     $check( str_contains( Connector::instance( $network )->settings_url(), 'page=gkch-settings' ) && str_contains( $screen, 'name="action" value="gkps_connect_' . $network . '"' ), 'Network moved without its save handler.' );
-    $check( 7 === preg_match_all( '/<a class="nav-tab(?: nav-tab-active)?"/', $screen ), 'Settings must show General and all six channel tabs.' );
+    $check( 6 === preg_match_all( '/<a class="nav-tab(?: nav-tab-active)?"/', $screen ), 'Settings must show General and the five remaining channel tabs.' );
     if ( 'telegram' === $network ) { $check( str_contains( $screen, 'name="telegram_full_requests"' ) && str_contains( $screen, 'value="gkps_telegram_receive"' ) && str_contains( $screen, 'previous application will stop receiving messages' ), 'Telegram reply controls or webhook takeover warning missing.' ); }
-    if ( 'whatsapp' === $network ) { $check( str_contains( $screen, 'name="template"' ) && str_contains( $screen, 'name="recipient_consent"' ), 'WhatsApp template/consent controls lost in the Settings tab.' ); }
 }
 // Intercept redirects before exit so the real save/legacy handlers can be exercised.
 $redirect = static function ( callable $action ): string {
@@ -185,7 +184,7 @@ $redirect = static function ( callable $action ): string {
     finally { remove_filter( 'wp_redirect', $capture ); }
     return $url;
 };
-foreach ( array( 'telegram', 'whatsapp' ) as $provider ) {
+foreach ( array( 'telegram' ) as $provider ) {
     $connector = Connector::instance( $provider ); $saved = $connector->settings();
     $_POST = array_merge( $saved, array( 'token' => '', 'application_secret' => '' ) );
     $_REQUEST = array( '_wpnonce' => wp_create_nonce( 'gkps_connect_' . $provider ) );

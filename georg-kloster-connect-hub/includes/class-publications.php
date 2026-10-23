@@ -5,7 +5,7 @@ defined( 'ABSPATH' ) || exit;
 
 final class Publications {
     public static function titles(): array {
-        return array( 'telegram' => __( 'Telegram', 'georg-kloster-connect-hub' ), 'whatsapp' => __( 'WhatsApp', 'georg-kloster-connect-hub' ), 'facebook' => __( 'Facebook', 'georg-kloster-connect-hub' ), 'instagram' => __( 'Instagram', 'georg-kloster-connect-hub' ), 'vk' => __( 'VK', 'georg-kloster-connect-hub' ), 'ok' => __( 'OK', 'georg-kloster-connect-hub' ) );
+        return array( 'telegram' => __( 'Telegram', 'georg-kloster-connect-hub' ), 'facebook' => __( 'Facebook', 'georg-kloster-connect-hub' ), 'instagram' => __( 'Instagram', 'georg-kloster-connect-hub' ), 'vk' => __( 'VK', 'georg-kloster-connect-hub' ), 'ok' => __( 'OK', 'georg-kloster-connect-hub' ) );
     }
     public static function enqueue( int $post_id, array $channels ): array {
         // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.

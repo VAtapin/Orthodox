@@ -22,8 +22,8 @@ gkps_assert( wp_style_is( 'gkps-request-form', 'enqueued' ), 'Standalone form st
 $request = GeorgKlosterPrihodSocial\Requests::create( array( 'name' => 'Visitor', 'email' => 'visitor@example.org', 'subject' => 'Haircut', 'body' => 'Please contact me.' ) );
 gkps_assert( $request > 0 && 'gkps_request' === get_post_type( $request ), 'Message was not stored.' );
 gkps_assert( get_post_meta( $request, '_gkps_sender', true )['email'] === 'visitor@example.org', 'Sender was not stored.' );
-gkps_assert( GeorgKlosterPrihodSocial\Connector::instance( 'telegram' ) !== null && GeorgKlosterPrihodSocial\Connector::instance( 'whatsapp' ) !== null && GeorgKlosterPrihodSocial\Connector::instance( 'facebook' ) !== null, 'One channel is missing.' );
-foreach ( array( 'telegram', 'whatsapp', 'facebook' ) as $id ) {
+gkps_assert( GeorgKlosterPrihodSocial\Connector::instance( 'telegram' ) !== null && null === GeorgKlosterPrihodSocial\Connector::instance( 'whatsapp' ) && GeorgKlosterPrihodSocial\Connector::instance( 'facebook' ) !== null, 'One channel is missing.' );
+foreach ( array( 'telegram', 'facebook' ) as $id ) {
     gkps_assert( ! GeorgKlosterPrihodSocial\Connector::instance( $id )->settings()['enabled'], 'Channel enabled without consent: ' . $id );
 }
 

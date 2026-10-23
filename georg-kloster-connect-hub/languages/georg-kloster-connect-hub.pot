@@ -101,9 +101,6 @@ msgstr ""
 msgid "Application secret (leave empty to keep)"
 msgstr ""
 
-#: includes/class-connector.php
-msgid "Approved template with one text parameter in the body"
-msgstr ""
 
 #: includes/class-publication-rules-admin.php
 msgid "Ask a communication settings administrator to manage automatic publication rules."
@@ -725,9 +722,6 @@ msgstr ""
 msgid "Notify about new messages"
 msgstr ""
 
-#: includes/class-connector.php
-msgid "Notify about new messages (without name, email or message text)"
-msgstr ""
 
 #: includes/class-publications.php
 msgid "OK"
@@ -765,9 +759,6 @@ msgstr ""
 msgid "Paused"
 msgstr ""
 
-#: includes/class-connector.php
-msgid "Phone number ID"
-msgstr ""
 
 #: includes/class-request-form.php
 msgid "Privacy policy"
@@ -809,9 +800,6 @@ msgstr ""
 msgid "Publications"
 msgstr ""
 
-#: includes/class-connector.php
-msgid "Publications are sent only when explicitly selected in the post editor. WhatsApp requires recipient consent and a Meta-approved template. Sending runs through WP-Cron."
-msgstr ""
 
 #: includes/class-request-form.php
 msgid "Question subject"
@@ -821,9 +809,6 @@ msgstr ""
 msgid "Queued"
 msgstr ""
 
-#: includes/class-connector.php
-msgid "Recipient: international phone number without +"
-msgstr ""
 
 #: includes/class-publication-rules-admin.php
 msgid "Remove image"
@@ -1069,9 +1054,6 @@ msgstr ""
 msgid "Suggested topics (one per line)"
 msgstr ""
 
-#: includes/class-outgoing-log.php
-msgid "Technical history of email, Telegram and WhatsApp messages. Publications remain in Publications history. Entries include message contents and are available to communication administrators for 30 days, up to 200 entries."
-msgstr ""
 
 #: includes/class-outgoing-log.php includes/class-publications.php
 msgid "Telegram"
@@ -1089,9 +1071,6 @@ msgstr ""
 msgid "Telegram did not confirm the connection. Check the token, Chat ID and service availability."
 msgstr ""
 
-#: includes/class-connector.php
-msgid "Template language"
-msgstr ""
 
 #: includes/class-request-admin.php
 msgid "The assigned staff member does not have the required permissions."
@@ -1133,9 +1112,6 @@ msgstr ""
 msgid "The last delivery was accepted by the service."
 msgstr ""
 
-#: includes/class-connector.php
-msgid "The recipient has consented to receive these messages"
-msgstr ""
 
 #: includes/class-social-providers.php
 msgid "The remote API did not confirm publication. Check permissions, credentials and account limits."
@@ -1237,13 +1213,7 @@ msgstr ""
 msgid "What to send"
 msgstr ""
 
-#: includes/class-outgoing-log.php includes/class-publications.php
-msgid "WhatsApp"
-msgstr ""
 
-#: includes/class-connector.php
-msgid "WhatsApp template: %1$s (%2$s)"
-msgstr ""
 
 #: includes/class-publication-rules-admin.php
 msgid "WordPress Cron runs on site visits or the server scheduler. Late runs send once, without repeating every missed interval. Editing or pausing a rule cancels its pending deliveries."

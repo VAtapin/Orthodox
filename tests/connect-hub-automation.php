@@ -40,7 +40,7 @@ $check( $calls === count( $http ) && 'cancelled' === get_option( 'gkps_job_' . $
 $throws( static fn() => Publications::change_job( $pending[0]['provider'], $pending[0]['id'], 'retry' ), 'Cancelled rule job could be retried.' );
 
 update_option( 'timezone_string', 'Europe/Berlin' );
-$message_input = array( 'name' => 'Synthetic weekly reminder', 'type' => 'message', 'enabled' => true, 'channels' => array( 'telegram', 'facebook', 'vk', 'ok', 'instagram', 'whatsapp' ), 'text' => 'Synthetic reminder without a source post', 'image' => $image, 'frequency' => 'weekly', 'weekday' => 1, 'time' => '09:15' );
+$message_input = array( 'name' => 'Synthetic weekly reminder', 'type' => 'message', 'enabled' => true, 'channels' => array( 'telegram', 'facebook', 'vk', 'ok', 'instagram' ), 'text' => 'Synthetic reminder without a source post', 'image' => $image, 'frequency' => 'weekly', 'weekday' => 1, 'time' => '09:15' );
 $reminder = Publication_Rules::store( 0, $message_input );
 $rule = Publication_Rules::get( $reminder );
 $check( wp_next_scheduled( Publication_Rules::HOOK, array( $reminder, $rule['revision'], $rule['next'] ) ) === $rule['next'], 'Reminder cron event missing.' );
@@ -90,7 +90,7 @@ $due = static function ( int $id, int $slot ): array {
 $rule = $due( $reminder, time() - 3600 );
 $before = count( Publications::history() ); $calls = count( $http );
 do_action( Publication_Rules::HOOK, $reminder, $rule['revision'], $rule['next'] );
-$check( $before + 6 === count( Publications::history() ) && $calls === count( $http ), 'Reminder did not use the asynchronous queue for all six channels.' );
+$check( $before + 5 === count( Publications::history() ) && $calls === count( $http ), 'Reminder did not use the asynchronous queue for all five channels.' );
 $reminder_jobs = array_values( array_filter( Publications::history(), static fn( $j ) => 'automation' === $j['kind'] && $j['source'] === $reminder ) );
 foreach ( $reminder_jobs as $job ) {
     Connector::instance( $job['provider'] )->worker( $job['id'] );
@@ -99,7 +99,7 @@ foreach ( $reminder_jobs as $job ) {
 }
 $calls = count( $http );
 do_action( Publication_Rules::HOOK, $reminder, $rule['revision'], $rule['next'] );
-$check( $before + 6 === count( Publications::history() ) && $calls === count( $http ), 'Duplicate cron invocation replayed a reminder.' );
+$check( $before + 5 === count( Publications::history() ) && $calls === count( $http ), 'Duplicate cron invocation replayed a reminder.' );
 $check( Publication_Rules::get( $reminder )['next'] > time(), 'Late cron run failed to advance to a future slot.' );
 $ok_call = array_values( array_filter( $http, static fn( $r ) => str_contains( $r['url'], 'api.ok.ru' ) ) );
 $ok_media = json_decode( end( $ok_call )['args']['body']['attachment'], true )['media'];
@@ -118,9 +118,9 @@ $check( end( $vk_calls )['args']['body']['guid'] !== $vk_calls[count( $vk_calls 
 $old_revision = $rule2['revision'];
 Publication_Rules::store( $reminder, array_merge( Publication_Rules::get( $reminder ), array( 'text' => 'Edited reminder', 'channels' => array( 'telegram' ) ) ) );
 $calls = count( $http );
-$pending_wa = array_values( array_filter( Publications::history(), static fn( $j ) => 'whatsapp' === $j['provider'] && 'automation' === $j['kind'] && 'pending' === $j['status'] ) )[0];
-Connector::instance( 'whatsapp' )->worker( $pending_wa['id'] );
-$check( count( $http ) === $calls && 'cancelled' === get_option( 'gkps_job_whatsapp_' . $pending_wa['id'] )['status'], 'Edited rule sent its old payload.' );
+$pending_facebook = array_values( array_filter( Publications::history(), static fn( $j ) => 'facebook' === $j['provider'] && 'automation' === $j['kind'] && 'pending' === $j['status'] ) )[0];
+Connector::instance( 'facebook' )->worker( $pending_facebook['id'] );
+$check( count( $http ) === $calls && 'cancelled' === get_option( 'gkps_job_facebook_' . $pending_facebook['id'] )['status'], 'Edited rule sent its old payload.' );
 $before = count( Publications::history() );
 Publication_Rules::run( $reminder, $old_revision, $rule2['next'] );
 $check( $before === count( Publications::history() ), 'Stale cron revision executed.' );
