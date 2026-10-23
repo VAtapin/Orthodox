@@ -1261,8 +1261,25 @@ msgstr "Сайт использует Google reCAPTCHA v3, чтобы опред
 msgid "reCAPTCHA secret key (leave empty to keep the saved key)"
 msgstr "Секретный ключ reCAPTCHA (оставьте поле пустым, чтобы сохранить текущий ключ)"
 #: includes/class-hub-settings.php
-msgid "reCAPTCHA settings saved."
-msgstr "Настройки reCAPTCHA сохранены."
+
 #: includes/class-hub-settings.php
 msgid "reCAPTCHA site key"
 msgstr "Ключ сайта reCAPTCHA"
+
+msgid "Settings saved."
+msgstr "Настройки сохранены."
+
+msgid "reCAPTCHA is configured. Both keys are saved; the secret key is hidden."
+msgstr "reCAPTCHA настроена. Оба ключа сохранены; секретный ключ скрыт."
+
+msgid "reCAPTCHA is not configured. Enter both keys and save settings."
+msgstr "reCAPTCHA не настроена. Введите оба ключа и сохраните настройки."
+
+msgid "reCAPTCHA setup is incomplete. Both keys are required."
+msgstr "Настройка reCAPTCHA не завершена. Необходимо указать оба ключа."
+
+msgid "Saved; enter a new key only to replace it"
+msgstr "Ключ сохранён; введите новый, только если хотите заменить его"
+
+msgid "Not saved"
+msgstr "Не сохранён"

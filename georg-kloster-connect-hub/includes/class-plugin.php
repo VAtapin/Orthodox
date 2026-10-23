@@ -19,7 +19,7 @@ final class Plugin {
         add_action( 'admin_menu', array( Admin::class, 'menu' ), 5 );
         add_action( 'admin_init', array( Admin::class, 'settings' ) );
         add_action( 'admin_init', array( Hub_Settings::class, 'register' ) );
-        add_action( 'admin_post_gkch_recaptcha_save', array( Hub_Settings::class, 'save_recaptcha' ) );
+        add_action( 'admin_post_gkch_settings_save', array( Hub_Settings::class, 'save_general' ) );
         add_action( 'admin_menu', array( Admin::class, 'order_menu' ), 99 );
         add_action( 'admin_post_gkch_form_save', array( Forms::class, 'save' ) );
         add_action( 'admin_post_gkch_publish', array( Publications::class, 'submit' ) );

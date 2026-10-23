@@ -1317,10 +1317,31 @@ msgstr ""
 msgid "reCAPTCHA secret key (leave empty to keep the saved key)"
 msgstr ""
 
-#: includes/class-hub-settings.php
-msgid "reCAPTCHA settings saved."
-msgstr ""
 
 #: includes/class-hub-settings.php
 msgid "reCAPTCHA site key"
+msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "Settings saved."
+msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "reCAPTCHA is configured. Both keys are saved; the secret key is hidden."
+msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "reCAPTCHA is not configured. Enter both keys and save settings."
+msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "reCAPTCHA setup is incomplete. Both keys are required."
+msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "Saved; enter a new key only to replace it"
+msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "Not saved"
 msgstr ""

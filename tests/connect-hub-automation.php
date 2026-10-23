@@ -57,6 +57,9 @@ update_option( 'gkch_settings', array( 'enabled' => true, 'recaptcha_site_key' =
 update_option( 'gkch_recaptcha_secret', 'synthetic-secret', false );
 $check( ! isset( wp_load_alloptions()['gkch_recaptcha_secret'] ), 'reCAPTCHA secret was stored as an autoload option.' );
 $check( 'synthetic-site-key' === GeorgKlosterPrihodSocial\Hub_Settings::sanitize_general( array( 'enabled' => true ) )['recaptcha_site_key'], 'Saving general settings removed the reCAPTCHA configuration.' );
+ob_start(); GeorgKlosterPrihodSocial\Hub_Settings::render(); $settings_page = ob_get_clean();
+$check( 1 === substr_count( $settings_page, '<form ' ) && 1 === substr_count( $settings_page, 'type="submit"' ) && str_contains( $settings_page, 'admin-post.php' ) && ! str_contains( $settings_page, 'options.php' ), 'General settings do not use one save form that returns through the settings handler.' );
+$check( str_contains( $settings_page, 'reCAPTCHA is configured.' ) && ! str_contains( $settings_page, 'synthetic-secret' ), 'Settings page does not show the configuration status safely.' );
 $captcha_score = 0.9;
 $captcha_filter = static function ( $pre, $args, $url ) use ( &$captcha_score ) {
     if ( 'https://www.google.com/recaptcha/api/siteverify' !== $url ) { return $pre; }
