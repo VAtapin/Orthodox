@@ -1229,3 +1229,40 @@ msgstr "SMTP-Antwort: %d"
 
 msgid "WhatsApp template: %1$s (%2$s)"
 msgstr "WhatsApp-Vorlage: %1$s (%2$s)"
+
+#: includes/class-hub-settings.php
+msgid "Delete saved reCAPTCHA secret key"
+msgstr "Gespeicherten reCAPTCHA-Geheimschlüssel löschen"
+#: includes/class-hub-settings.php
+msgid "Google Privacy Policy"
+msgstr "Datenschutzerklärung von Google"
+#: includes/class-hub-settings.php
+msgid "Google Terms of Service"
+msgstr "Nutzungsbedingungen von Google"
+#: includes/class-hub-settings.php
+msgid "Google reCAPTCHA"
+msgstr "Google reCAPTCHA"
+#: includes/class-hub-settings.php
+msgid "Google reCAPTCHA v3 — spam protection"
+msgstr "Google reCAPTCHA v3 — Spamschutz"
+#: includes/class-hub-settings.php
+msgid "Minimum reCAPTCHA score (0.1–0.9)"
+msgstr "Mindestwert für reCAPTCHA (0,1–0,9)"
+#: includes/class-hub-settings.php
+msgid "Protect public forms from automated submissions. Enter the site key and secret key from your reCAPTCHA v3 registration. The secret is never displayed after saving."
+msgstr "Schützt öffentliche Formulare vor automatisierten Einsendungen. Geben Sie den Website-Schlüssel und den geheimen Schlüssel Ihrer reCAPTCHA-v3-Registrierung ein. Der geheime Schlüssel wird nach dem Speichern nicht mehr angezeigt."
+#: includes/class-hub-settings.php
+msgid "The security check could not be completed. Please try again."
+msgstr "Die Sicherheitsprüfung konnte nicht abgeschlossen werden. Bitte versuchen Sie es erneut."
+#: includes/class-hub-settings.php
+msgid "This site uses Google reCAPTCHA v3 to assess whether public form submissions are automated. Google receives browser interaction data and the reCAPTCHA response token; the server sends the token to Google for verification without forwarding the visitor IP address."
+msgstr "Diese Website verwendet Google reCAPTCHA v3, um automatisierte Einsendungen über öffentliche Formulare zu erkennen. Google erhält Browser-Interaktionsdaten und das reCAPTCHA-Antworttoken; der Server sendet das Token zur Überprüfung an Google, ohne die IP-Adresse des Besuchers weiterzuleiten."
+#: includes/class-hub-settings.php
+msgid "reCAPTCHA secret key (leave empty to keep the saved key)"
+msgstr "Geheimer reCAPTCHA-Schlüssel (leer lassen, um den gespeicherten Schlüssel beizubehalten)"
+#: includes/class-hub-settings.php
+msgid "reCAPTCHA settings saved."
+msgstr "reCAPTCHA-Einstellungen gespeichert."
+#: includes/class-hub-settings.php
+msgid "reCAPTCHA site key"
+msgstr "reCAPTCHA-Website-Schlüssel"

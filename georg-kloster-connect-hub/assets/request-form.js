@@ -2,6 +2,30 @@
     'use strict';
     document.querySelectorAll('.gkps-requests form').forEach(function (form, index) {
         var storageKey = 'gkch-request-draft:' + window.location.pathname + ':' + index;
+        if (window.GKPSRecaptcha && window.GKPSRecaptcha.siteKey) {
+            var responseField = form.elements.namedItem('g-recaptcha-response');
+            var running = false;
+            form.addEventListener('submit', function (event) {
+                if (form.dataset.recaptchaVerified === '1') return;
+                event.preventDefault();
+                if (running) return;
+                if (!window.grecaptcha) {
+                    window.alert(window.GKPSRecaptcha.error);
+                    return;
+                }
+                running = true;
+                window.grecaptcha.ready(function () {
+                    window.grecaptcha.execute(window.GKPSRecaptcha.siteKey, {action: 'gkps_request_submit'}).then(function (token) {
+                        responseField.value = token;
+                        form.dataset.recaptchaVerified = '1';
+                        form.requestSubmit();
+                    }).catch(function () {
+                        running = false;
+                        window.alert(window.GKPSRecaptcha.error);
+                    });
+                });
+            }, true);
+        }
         var notice = new URLSearchParams(window.location.search).get('gkps_request');
         function clearDraft() {
             try { window.sessionStorage.removeItem(storageKey); } catch (ignore) {}

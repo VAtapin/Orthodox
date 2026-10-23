@@ -4,7 +4,7 @@ Tags: contact form, messages, social, publishing, telegram
 Requires at least: 6.5
 Requires PHP: 8.0
 Tested up to: 7.1
-Stable tag: 0.3.7
+Stable tag: 0.3.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -57,7 +57,7 @@ Development repository: https://github.com/VAtapin/Orthodox/tree/main/georg-klos
 
 == Installation ==
 
-Upload georg-kloster-connect-hub-0.3.7.zip. Replace an existing Connect Hub version,
+Upload georg-kloster-connect-hub-0.3.8.zip. Replace an existing Connect Hub version,
 or install as a new plugin and activate it.
 Activation deactivates the previous georg-kloster-prihod-social development plugin
 without deleting its settings. Keep only Connect Hub active. Network-active old
@@ -104,6 +104,12 @@ application public key and signature calculated with the application secret.
 The application needs GROUP_CONTENT permission.
 https://apiok.ru/dev/methods/rest/mediatopic/mediatopic.post https://ok.ru/privacy
 
+Google reCAPTCHA v3: public form browser interaction data and response tokens are
+sent to Google for bot-risk scoring. The plugin sends the response token and
+secret key to Google's SiteVerify endpoint; it does not forward the visitor IP.
+Google recommends migrating classic keys to CreateAssessment.
+https://docs.cloud.google.com/recaptcha/docs/migrate-recaptcha https://policies.google.com/privacy
+
 Credentials are stored in non-autoload WordPress options and never echoed back
 in settings. Protect database backups. Service-side app approval and account
 permissions must be obtained by the site administrator.
@@ -128,8 +134,12 @@ Dashboard help appears under Connect Hub > Forms and Settings > General, in the 
 * Optional title, intro and submit attributes override only the displayed heading, introduction and button label: [gkch_form id="123" title="Contact us" intro="Send a message" submit="Send"]. They do not change saved topics, recipients or settings.
 
 Enable the selected form and incoming messages in Settings. Disabled or missing forms render no public form. Submitted messages retain their selected form's topics and recipient.
+Configure optional reCAPTCHA v3 site and secret keys under Connect Hub > Settings > General. The server rejects responses with a failed check, unexpected action or hostname, or a score below the configured threshold.
 
 == Changelog ==
+
+= 0.3.8 =
+Protect public forms with server-verified Google reCAPTCHA v3 risk scores.
 
 = 0.3.7 =
 Add a private technical journal for outgoing email and Telegram/WhatsApp request and schedule messages.

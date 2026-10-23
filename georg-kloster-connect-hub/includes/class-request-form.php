@@ -33,8 +33,16 @@ final class Request_Form {
             if ( is_string( $attributes[ $key ] ) ) { $settings[ $key ] = sanitize_text_field( $attributes[ $key ] ); }
         }
         $token = wp_generate_password( 32, false, false );
+        $recaptcha = Hub_Settings::get();
+        $recaptcha_enabled = '' !== $recaptcha['recaptcha_site_key'] && '' !== $recaptcha['recaptcha_secret_key'];
         $id = 'gkps-request-' . wp_unique_id();
-        wp_enqueue_script( 'gkps-request-form', plugins_url( 'assets/request-form.js', GKPS_FILE ), array(), GKPS_VERSION, true );
+        if ( $recaptcha_enabled ) {
+            wp_enqueue_script( 'gkps-recaptcha-v3', 'https://www.google.com/recaptcha/api.js?render=' . rawurlencode( $recaptcha['recaptcha_site_key'] ), array(), null, true );
+            wp_script_add_data( 'gkps-recaptcha-v3', 'strategy', 'defer' );
+        }
+        wp_register_script( 'gkps-request-form', plugins_url( 'assets/request-form.js', GKPS_FILE ), $recaptcha_enabled ? array( 'gkps-recaptcha-v3' ) : array(), GKPS_VERSION, true );
+        if ( $recaptcha_enabled ) { wp_localize_script( 'gkps-request-form', 'GKPSRecaptcha', array( 'siteKey' => $recaptcha['recaptcha_site_key'], 'error' => __( 'The security check could not be completed. Please try again.', 'georg-kloster-connect-hub' ) ) ); }
+        wp_enqueue_script( 'gkps-request-form' );
         set_transient( 'gkps_form_' . hash( 'sha256', $token ), array( 'form_id' => $form_id ), HOUR_IN_SECONDS );
         $html = '<section class="gkps-block gkps-requests">' . ( $settings['title'] ? '<h2>' . esc_html( $settings['title'] ) . '</h2>' : '' ) . ( $settings['intro'] ? wpautop( esc_html( $settings['intro'] ) ) : '' );
         $notice = isset( $_GET['gkps_request'] ) && is_string( $_GET['gkps_request'] ) ? sanitize_key( $_GET['gkps_request'] ) : '';
@@ -42,7 +50,7 @@ final class Request_Form {
         if ( $notice_form !== $form_id ) { $notice = ''; }
         if ( 'sent' === $notice ) { $html .= '<p role="status">' . esc_html__( 'Your message has been received. A reply will be sent by email.', 'georg-kloster-connect-hub' ) . '</p>'; }
         if ( 'error' === $notice ) { $html .= '<p role="alert">' . esc_html__( 'Your message was not sent. Check the fields or try again later.', 'georg-kloster-connect-hub' ) . '</p>'; }
-        $html .= '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="gkps_request_submit"><input type="hidden" name="token" value="' . esc_attr( $token ) . '">' . '<input type="hidden" name="form_id" value="' . esc_attr( $form_id ) . '">' . wp_nonce_field( 'gkps_request_submit_' . $form_id, '_wpnonce', true, false );
+        $html .= '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="gkps_request_submit"><input type="hidden" name="token" value="' . esc_attr( $token ) . '"><input type="hidden" name="g-recaptcha-response" value="">' . '<input type="hidden" name="form_id" value="' . esc_attr( $form_id ) . '">' . wp_nonce_field( 'gkps_request_submit_' . $form_id, '_wpnonce', true, false );
         $html .= '<p id="' . esc_attr( $id . '-required' ) . '" class="gkps-required-help">' . esc_html__( 'Fields marked with an asterisk are required.', 'georg-kloster-connect-hub' ) . '</p>';
         foreach ( array( 'name' => array( __( 'Your name', 'georg-kloster-connect-hub' ), __( 'Enter your name', 'georg-kloster-connect-hub' ) ), 'email' => array( __( 'Your email', 'georg-kloster-connect-hub' ), 'name@example.org' ) ) as $key => $field ) { $html .= '<p><label>' . esc_html( $field[0] ) . ' <span class="gkps-required" aria-hidden="true">*</span><br><input required aria-describedby="' . esc_attr( $id . '-required' ) . '" placeholder="' . esc_attr( $field[1] ) . '" autocomplete="' . ( 'email' === $key ? 'email' : 'name' ) . '" maxlength="' . ( 'name' === $key ? '100' : '254' ) . '" type="' . ( 'email' === $key ? 'email' : 'text' ) . '" name="' . esc_attr( $key ) . '"></label></p>'; }
         $html .= '<p><label>' . esc_html__( 'Question subject', 'georg-kloster-connect-hub' ) . ' <span class="gkps-required" aria-hidden="true">*</span><br><select name="subject" required data-request-topic aria-describedby="' . esc_attr( $id . '-required ' . $id . '-topic-help' ) . '" aria-controls="' . esc_attr( $id . '-custom' ) . '"><option value="">' . esc_html__( 'Select a subject', 'georg-kloster-connect-hub' ) . '</option>';
@@ -69,12 +77,23 @@ final class Request_Form {
             if ( ! $token || ( is_array( $token ) ? ( $token['form_id'] ?? -1 ) !== $form_id : 0 !== $form_id ) ) { throw new \RuntimeException( 'Expired or mismatched form.' ); }
             if ( ! Forms::active( $form_id ) ) { throw new \RuntimeException( 'Disabled form.' ); }
             self::rate_limit( 'gkps_rate_' . hash_hmac( 'sha256', $ip, wp_salt( 'auth' ) ) );
+            $recaptcha = Hub_Settings::get();
+            if ( '' !== $recaptcha['recaptcha_site_key'] || '' !== $recaptcha['recaptcha_secret_key'] ) { self::verify_recaptcha( $input, $recaptcha ); }
             if ( $form_id && '__other' !== ( $input['subject'] ?? '' ) && self::topics( $form_id ) && ! in_array( $input['subject'] ?? '', self::topics( $form_id ), true ) ) { throw new \RuntimeException( 'Invalid topic.' ); }
             $input['form_id'] = $form_id;
             $id = Requests::create( self::submission_data( $input ) );
             delete_transient( $key );
             return $id;
         } finally { Lock::release( $lock, $owner ); }
+    }
+    private static function verify_recaptcha( array $input, array $settings ): void {
+        $response_token = $input['g-recaptcha-response'] ?? '';
+        if ( '' === $settings['recaptcha_site_key'] || '' === $settings['recaptcha_secret_key'] || ! is_string( $response_token ) || '' === $response_token || strlen( $response_token ) > 4096 ) { throw new \RuntimeException( 'reCAPTCHA is not configured or token is missing.' ); }
+        $response = wp_remote_post( 'https://www.google.com/recaptcha/api/siteverify', array( 'timeout' => 8, 'redirection' => 0, 'body' => array( 'secret' => $settings['recaptcha_secret_key'], 'response' => $response_token ) ) );
+        $data = is_wp_error( $response ) ? null : json_decode( wp_remote_retrieve_body( $response ), true );
+        $host = strtolower( (string) wp_parse_url( home_url( '/' ), PHP_URL_HOST ) );
+        $hostname = strtolower( (string) ( is_array( $data ) ? ( $data['hostname'] ?? '' ) : '' ) );
+        if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) || ! is_array( $data ) || empty( $data['success'] ) || 'gkps_request_submit' !== ( $data['action'] ?? '' ) || ! isset( $data['score'] ) || ! is_numeric( $data['score'] ) || (float) $data['score'] < (float) $settings['recaptcha_threshold'] || '' === $host || $host !== $hostname ) { throw new \RuntimeException( 'reCAPTCHA verification failed.' ); }
     }
     public static function submit(): void {
         $redirect = wp_validate_redirect( wp_get_referer() ?: home_url( '/' ), home_url( '/' ) );

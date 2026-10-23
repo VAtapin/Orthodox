@@ -1276,3 +1276,51 @@ msgstr ""
 #: includes/class-request-form.php
 msgid "Your name"
 msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "Delete saved reCAPTCHA secret key"
+msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "Google Privacy Policy"
+msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "Google Terms of Service"
+msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "Google reCAPTCHA"
+msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "Google reCAPTCHA v3 — spam protection"
+msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "Minimum reCAPTCHA score (0.1–0.9)"
+msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "Protect public forms from automated submissions. Enter the site key and secret key from your reCAPTCHA v3 registration. The secret is never displayed after saving."
+msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "The security check could not be completed. Please try again."
+msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "This site uses Google reCAPTCHA v3 to assess whether public form submissions are automated. Google receives browser interaction data and the reCAPTCHA response token; the server sends the token to Google for verification without forwarding the visitor IP address."
+msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "reCAPTCHA secret key (leave empty to keep the saved key)"
+msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "reCAPTCHA settings saved."
+msgstr ""
+
+#: includes/class-hub-settings.php
+msgid "reCAPTCHA site key"
+msgstr ""

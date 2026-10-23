@@ -52,6 +52,30 @@ $check( $next === strtotime( '2026-10-25 08:00:00 UTC' ), 'Daily wall-clock time
 $gap = Publication_Rules::next_time( array_merge( $rule, array( 'frequency' => 'daily', 'time' => '02:30' ) ), strtotime( '2026-03-28 23:30:00 UTC' ) );
 $check( '2026-03-29 03:30' === wp_date( 'Y-m-d H:i', $gap ), 'Nonexistent spring time was not normalized forward.' );
 
+// reCAPTCHA v3 is verified server-side, and its secret is non-autoloaded.
+update_option( 'gkch_settings', array( 'enabled' => true, 'recaptcha_site_key' => 'synthetic-site-key', 'recaptcha_threshold' => 0.5 ), false );
+update_option( 'gkch_recaptcha_secret', 'synthetic-secret', false );
+$check( ! isset( wp_load_alloptions()['gkch_recaptcha_secret'] ), 'reCAPTCHA secret was stored as an autoload option.' );
+$check( 'synthetic-site-key' === GeorgKlosterPrihodSocial\Hub_Settings::sanitize_general( array( 'enabled' => true ) )['recaptcha_site_key'], 'Saving general settings removed the reCAPTCHA configuration.' );
+$captcha_score = 0.9;
+$captcha_filter = static function ( $pre, $args, $url ) use ( &$captcha_score ) {
+    if ( 'https://www.google.com/recaptcha/api/siteverify' !== $url ) { return $pre; }
+    return array( 'headers' => array(), 'response' => array( 'code' => 200 ), 'body' => wp_json_encode( array( 'success' => true, 'hostname' => wp_parse_url( home_url( '/' ), PHP_URL_HOST ), 'action' => 'gkps_request_submit', 'score' => $captcha_score ) ) );
+};
+add_filter( 'pre_http_request', $captcha_filter, 9, 3 );
+$captcha_form = Request_Form::render( array( 'id' => $milk ) );
+$check( str_contains( $captcha_form, 'g-recaptcha-response' ) && str_contains( wp_scripts()->get_data( 'gkps-request-form', 'data' ), 'synthetic-site-key' ) && wp_scripts()->query( 'gkps-recaptcha-v3', 'enqueued' ) && ! str_contains( $captcha_form, 'synthetic-secret' ), 'reCAPTCHA frontend was not added safely to the public form.' );
+$captcha_submission = array_merge( $input, array( '_wpnonce' => $token( $captcha_form, '_wpnonce' ), 'token' => $token( $captcha_form, 'token' ), 'g-recaptcha-response' => 'synthetic-response-token', 'body' => 'Synthetic recaptcha valid request.' ) );
+$captcha_request = Request_Form::process_submission( $captcha_submission, '192.0.2.240' );
+$check( 'private' === get_post_status( $captcha_request ), 'A valid reCAPTCHA v3 submission was rejected.' );
+$captcha_score = 0.1;
+$low_score_form = Request_Form::render( array( 'id' => $milk ) );
+$low_score_input = array_merge( $input, array( '_wpnonce' => $token( $low_score_form, '_wpnonce' ), 'token' => $token( $low_score_form, 'token' ), 'g-recaptcha-response' => 'synthetic-low-score', 'body' => 'Synthetic low score request.' ) );
+$throws( static fn() => Request_Form::process_submission( $low_score_input, '192.0.2.241' ), 'A low-score reCAPTCHA submission was accepted.' );
+remove_filter( 'pre_http_request', $captcha_filter, 9 );
+delete_option( 'gkch_recaptcha_secret' );
+update_option( 'gkch_settings', array( 'enabled' => true ) );
+
 // Move only this fixture's due slot into the past. No machine clock changes.
 $due = static function ( int $id, int $slot ): array {
     $r = Publication_Rules::get( $id );
