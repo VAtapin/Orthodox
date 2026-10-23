@@ -344,7 +344,3 @@
 .prihod-mailpoet-confirmation #prihod-main .prihod-article{padding:28px 32px;border:1px solid var(--prihod-line);border-radius:var(--prihod-radius);background:var(--wp--preset--color--white);box-shadow:var(--prihod-shadow);text-align:center}
 .prihod-mailpoet-confirmation #prihod-main .prihod-article p{max-width:680px;margin:0 auto;color:var(--prihod-ink);font-size:17px;line-height:1.65}
 @media(max-width:600px){.prihod-newsletter-area{padding-block:20px}.prihod-mailpoet-confirmation #prihod-main .prihod-inner-grid{margin-block:18px 36px!important}.prihod-mailpoet-confirmation #prihod-main .prihod-article{padding:22px 18px}.prihod-mailpoet-confirmation #prihod-main .prihod-page-heading h1{font-size:30px}}
-
-/* Fit upcoming service titles to the available sidebar card width. */
-.prihod-sidebar .prihod-service-compact{container-type:inline-size}
-.prihod-sidebar .prihod-service-compact .prihod-service-details>h3{font-size:15px;font-size:clamp(14px,7cqi,17px);line-height:1.2;overflow-wrap:anywhere}

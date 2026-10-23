@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Georg-Kloster Parish
  * Description: Parish profile, clergy, service places and service schedules for WordPress.
- * Version: 0.2.10
+ * Version: 0.2.11
  * Author: Atapin Vladimir
  * Author URI: https://georg-kloster.ru/
  * Requires at least: 6.5
@@ -14,7 +14,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'GKPC_VERSION', '0.2.10' );
+define( 'GKPC_VERSION', '0.2.11' );
 define( 'GKPC_FILE', __FILE__ );
 
 require_once __DIR__ . '/includes/class-profile.php';
