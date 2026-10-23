@@ -4,7 +4,7 @@ Tags: contact form, messages, social, publishing, telegram
 Requires at least: 6.5
 Requires PHP: 8.0
 Tested up to: 7.1
-Stable tag: 0.3.11
+Stable tag: 0.3.12
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -56,7 +56,7 @@ Development repository: https://github.com/VAtapin/Orthodox/tree/main/georg-klos
 
 == Installation ==
 
-Upload georg-kloster-connect-hub-0.3.11.zip. Replace an existing Connect Hub version,
+Upload georg-kloster-connect-hub-0.3.12.zip. Replace an existing Connect Hub version,
 or install as a new plugin and activate it.
 Activation deactivates the previous georg-kloster-prihod-social development plugin
 without deleting its settings. Keep only Connect Hub active. Network-active old
@@ -64,7 +64,11 @@ installations require network-wide activation. The internal gkps data, capabilit
 cron hooks and Telegram REST paths remain compatible; no database migration is needed.
 
 Configure forms under Forms, global reception/retention under Settings and each
-channel under its tab in Settings. Configure
+channel under its tab in Settings. Each channel tab contains a step-by-step guide
+with official links. Telegram supports a separate private Chat ID and responsible
+WordPress staff account per form; blank IDs use the shared Telegram destination.
+Read docs/CHANNEL_SETUP_RU.md in the plugin package for the full Russian setup guide.
+Configure
 automatic rules under Publications. Insert the Form block and select a saved form, or use its
 listed shortcode. Exclude pages containing forms from full-page caching: tokens
 are single-use and expire after one hour. Ensure WordPress Cron runs.
@@ -134,6 +138,10 @@ Configure optional reCAPTCHA v3 site and secret keys under Connect Hub > Setting
 General reception, retention and reCAPTCHA settings use one save button. A status message confirms whether both reCAPTCHA keys are saved; the secret key is never displayed.
 
 == Changelog ==
+
+= 0.3.12 =
+Add detailed per-channel setup guides and per-form Telegram recipient/staff routing.
+Preserve reply mapping to the responsible person and chat.
 
 = 0.3.11 =
 Remove WhatsApp settings and sending from Connect Hub.

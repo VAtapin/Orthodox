@@ -11,8 +11,30 @@ final class Telegram_Requests {
     public static function options(): array {
         return array_merge( array( 'enabled' => false, 'staff' => 0, 'registered' => false, 'configuration' => '', 'secret' => '', 'bot' => '' ), (array) get_option( self::OPTION, array() ) );
     }
-    public static function configuration( array $settings, int $staff ): string {
-        return hash( 'sha256', $settings['token'] . '|' . $settings['target'] . '|' . $staff );
+    public static function configuration( array $settings, int $staff, string $target = '' ): string {
+        return hash( 'sha256', $settings['token'] . '|' . ( '' !== $target ? $target : $settings['target'] ) . '|' . $staff );
+    }
+    public static function destination_for_request( int $id ): string {
+        $settings = self::connector() ? self::connector()->settings() : array( 'target' => '' );
+        $form_id = absint( get_post_meta( $id, '_gkch_form_id', true ) );
+        return Forms::telegram_target( $form_id, (string) $settings['target'] );
+    }
+    public static function staff_for_request( int $id ): int {
+        $default = (int) self::options()['staff'];
+        $form_id = absint( get_post_meta( $id, '_gkch_form_id', true ) );
+        return Forms::telegram_staff( $form_id, $default );
+    }
+    public static function configuration_for_request( int $id ): string {
+        $connector = self::connector();
+        return $connector ? self::configuration( $connector->settings(), self::staff_for_request( $id ), self::destination_for_request( $id ) ) : '';
+    }
+    public static function message_key( string $target, string $bot, int $message_id ): string {
+        return hash( 'sha256', $bot . '|' . $target . '|' . $message_id );
+    }
+    public static function ready_for_request( int $id ): bool {
+        $target = self::destination_for_request( $id );
+        $staff = self::staff_for_request( $id );
+        return self::ready() && preg_match( '/^[1-9][0-9]*$/D', $target ) && user_can( $staff, 'view_gkps_requests' ) && user_can( $staff, 'reply_gkps_requests' );
     }
     public static function ready(): bool {
         $connector = self::connector(); $o = self::options();
@@ -24,7 +46,8 @@ final class Telegram_Requests {
         add_filter( 'gkps_connector_text_limit', static fn( $limit, $provider, $kind ) => 'telegram' === $provider && 'request' === $kind && self::ready() ? 2000 : $limit, 10, 3 );
         add_filter( 'gkps_connector_job_allowed', static function ( $allowed, $provider, $job ) {
             if ( 'telegram' !== $provider || 'request' !== ( $job['kind'] ?? '' ) || empty( $job['reply_context'] ) ) { return $allowed; }
-            return $allowed && self::ready() && hash_equals( self::options()['configuration'], $job['reply_context']['configuration'] ?? '' );
+            $request_id = absint( $job['reply_context']['request_id'] ?? 0 );
+            return $allowed && $request_id && self::ready_for_request( $request_id ) && ( $job['telegram_target'] ?? '' ) === self::destination_for_request( $request_id ) && hash_equals( self::configuration_for_request( $request_id ), $job['reply_context']['configuration'] ?? '' );
         }, 10, 3 );
         add_action( 'gkps_request_created', array( self::class, 'notify' ) );
         add_action( 'gkps_connector_sent', array( self::class, 'sent' ), 10, 4 );
@@ -40,22 +63,27 @@ final class Telegram_Requests {
         if ( ! self::ready() || empty( self::connector()->settings()['notify_requests'] ) || get_option( 'gkps_purge_job' ) ) { return; }
         $post = get_post( $id );
         if ( ! $post || 'gkps_request' !== $post->post_type || 'private' !== $post->post_status ) { return; }
+        $destination = self::destination_for_request( $id );
+        $staff = self::staff_for_request( $id );
+        if ( ! self::ready_for_request( $id ) ) { return; }
+        $configuration = self::configuration( self::connector()->settings(), $staff, $destination );
         $sender = (array) get_post_meta( $id, '_gkps_sender', true );
         $header = '<b>' . esc_html__( 'New incoming message', 'georg-kloster-connect-hub' ) . ' #' . $id . "</b>\n\n";
         foreach ( array( __( 'Sender name', 'georg-kloster-connect-hub' ) => $sender['name'] ?? '', __( 'Email', 'georg-kloster-connect-hub' ) => $sender['email'] ?? '', __( 'Message subject', 'georg-kloster-connect-hub' ) => $post->post_title, __( 'Message date', 'georg-kloster-connect-hub' ) => get_post_time( 'd.m.Y H:i', false, $post ), __( 'Message status', 'georg-kloster-connect-hub' ) => Requests::statuses()[get_post_meta( $id, '_gkps_request_status', true )] ?? '' ) as $label => $value ) { $header .= '<b>' . esc_html( $label ) . ':</b> ' . esc_html( $value ) . "\n"; }
         $parts = self::chunks( $post->post_content ); $url = admin_url( 'admin.php?page=gkps-requests&request_id=' . $id );
         foreach ( $parts as $index => $part ) {
             $text = $header . "\n<b>" . esc_html__( 'Message', 'georg-kloster-connect-hub' ) . '</b> · ' . ( $index + 1 ) . '/' . count( $parts ) . "\n" . esc_html( $part );
-            self::connector()->queue( $text, $url, 'request', $id, array( 'request_id' => $id, 'configuration' => self::options()['configuration'], 'telegram_html' => true ) );
+            self::connector()->queue( $text, $url, 'request', $id, array( 'request_id' => $id, 'configuration' => $configuration, 'telegram_html' => true ), $destination );
         }
     }
     public static function sent( string $provider, string $job_id, array $job, array $response ): void {
-        if ( 'telegram' !== $provider || empty( $job['reply_context']['request_id'] ) || ! self::ready() ) { return; }
+        if ( 'telegram' !== $provider || empty( $job['reply_context']['request_id'] ) ) { return; }
         $context = $job['reply_context']; $message = $response['result'] ?? array(); $o = self::options();
-        if ( ! hash_equals( $o['configuration'], $context['configuration'] ?? '' ) || (string) ( $message['chat']['id'] ?? '' ) !== self::connector()->settings()['target'] || (string) ( $message['from']['id'] ?? '' ) !== $o['bot'] || ! is_int( $message['message_id'] ?? null ) || $message['message_id'] < 1 ) { return; }
+        $request_id = absint( $context['request_id'] );
+        if ( ! self::ready_for_request( $request_id ) || ! hash_equals( self::configuration_for_request( $request_id ), $context['configuration'] ?? '' ) || (string) ( $message['chat']['id'] ?? '' ) !== self::destination_for_request( $request_id ) || 'private' !== ( $message['chat']['type'] ?? '' ) || (string) ( $message['from']['id'] ?? '' ) !== $o['bot'] || ! is_int( $message['message_id'] ?? null ) || $message['message_id'] < 1 ) { return; }
         if ( 'private' !== get_post_status( (int) $context['request_id'] ) ) { return; }
-        $key = hash( 'sha256', $o['configuration'] . '|' . $message['message_id'] );
-        if ( ! in_array( $key, get_post_meta( $context['request_id'], '_gkps_telegram_message' ), true ) ) { add_post_meta( $context['request_id'], '_gkps_telegram_message', $key ); }
+        $key = self::message_key( self::destination_for_request( $request_id ), $o['bot'], $message['message_id'] );
+        if ( ! in_array( $key, get_post_meta( $request_id, '_gkps_telegram_message' ), true ) ) { add_post_meta( $request_id, '_gkps_telegram_message', $key ); }
     }
     public static function authorize( \WP_REST_Request $request ) {
         $o = self::options(); $provided = $request->get_header( 'X-Telegram-Bot-Api-Secret-Token' );
@@ -67,22 +95,29 @@ final class Telegram_Requests {
         $data = $request->get_json_params(); $message = is_array( $data ) ? ( $data['message'] ?? array() ) : array();
         $o = self::options(); $settings = self::connector()->settings();
         $ok = new \WP_REST_Response( array( 'ok' => true ), 200 );
-        if ( ! is_array( $message ) || ! is_int( $data['update_id'] ?? null ) || $data['update_id'] < 0 || 'private' !== ( $message['chat']['type'] ?? '' ) || (string) ( $message['chat']['id'] ?? '' ) !== $settings['target'] || (string) ( $message['from']['id'] ?? '' ) !== $settings['target'] || ! empty( $message['from']['is_bot'] ) || ! is_int( $message['reply_to_message']['message_id'] ?? null ) || (string) ( $message['reply_to_message']['from']['id'] ?? '' ) !== $o['bot'] ) { return $ok; }
+        if ( ! is_array( $message ) || ! is_int( $data['update_id'] ?? null ) || $data['update_id'] < 0 || 'private' !== ( $message['chat']['type'] ?? '' ) || ! is_scalar( $message['chat']['id'] ?? null ) || (string) ( $message['chat']['id'] ?? '' ) !== (string) ( $message['from']['id'] ?? '' ) || ! preg_match( '/^[1-9][0-9]*$/D', (string) ( $message['chat']['id'] ?? '' ) ) || ! empty( $message['from']['is_bot'] ) || ! is_int( $message['reply_to_message']['message_id'] ?? null ) || (string) ( $message['reply_to_message']['from']['id'] ?? '' ) !== $o['bot'] ) { return $ok; }
         $raw_body = $message['text'] ?? $message['caption'] ?? '';
         if ( ! is_string( $raw_body ) ) { return $ok; }
         $body = sanitize_textarea_field( $raw_body );
         if ( ( '' === trim( $body ) && ! isset( $message['photo'] ) && ! isset( $message['sticker'] ) && ! isset( $message['video'] ) && ! isset( $message['animation'] ) && ! isset( $message['document'] ) ) || strlen( $raw_body ) > 20000 ) { return $ok; }
-        $key = hash( 'sha256', $o['configuration'] . '|' . $message['reply_to_message']['message_id'] );
+        $sender_chat = (string) $message['chat']['id'];
+        $key = self::message_key( $sender_chat, $o['bot'], $message['reply_to_message']['message_id'] );
         $posts = get_posts( array( 'post_type' => 'gkps_request', 'post_status' => 'private', 'numberposts' => 2, 'meta_key' => '_gkps_telegram_message', 'meta_value' => $key ) );
-        if ( 1 !== count( $posts ) || 'closed' === get_post_meta( $posts[0]->ID, '_gkps_request_status', true ) || get_option( 'gkps_purge_job' ) ) { return $ok; }
-        $receipt = hash( 'sha256', $o['configuration'] . '|update|' . $data['update_id'] );
+        // Preserve replies to messages sent before per-form Chat IDs were introduced.
+        if ( ! $posts && $sender_chat === (string) $settings['target'] ) {
+            $legacy_key = hash( 'sha256', $o['configuration'] . '|' . $message['reply_to_message']['message_id'] );
+            $posts = get_posts( array( 'post_type' => 'gkps_request', 'post_status' => 'private', 'numberposts' => 2, 'meta_key' => '_gkps_telegram_message', 'meta_value' => $legacy_key ) );
+        }
+        if ( 1 !== count( $posts ) || 'closed' === get_post_meta( $posts[0]->ID, '_gkps_request_status', true ) || self::destination_for_request( (int) $posts[0]->ID ) !== $sender_chat || ! self::ready_for_request( (int) $posts[0]->ID ) || get_option( 'gkps_purge_job' ) ) { return $ok; }
+        $reply_configuration = self::configuration_for_request( (int) $posts[0]->ID );
+        $receipt = hash( 'sha256', $reply_configuration . '|update|' . $data['update_id'] );
         $lock = 'gkps_telegram_reply_' . $receipt; $owner = Lock::acquire( $lock, 60 );
         if ( ! $owner ) { return new \WP_Error( 'telegram_busy', __( 'Try again later.', 'georg-kloster-connect-hub' ), array( 'status' => 503 ) ); }
         $previous = get_current_user_id();
         try {
             $existing = get_posts( array( 'post_type' => 'gkps_message', 'post_status' => 'private', 'numberposts' => 1, 'meta_key' => '_gkps_reply_source', 'meta_value' => $receipt ) );
             if ( $existing ) { return $ok; }
-            wp_set_current_user( (int) $o['staff'] );
+            wp_set_current_user( self::staff_for_request( (int) $posts[0]->ID ) );
             try { $media = Request_Media::telegram( $message ); }
             catch ( \InvalidArgumentException $error ) {
                 Requests::message( $posts[0]->ID, Request_Media::unsupported(), true, $receipt );

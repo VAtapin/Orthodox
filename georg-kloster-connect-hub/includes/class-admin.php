@@ -20,7 +20,7 @@ final class Admin {
     }
 
     public static function defaults(): array {
-        return array( 'enabled' => false, 'title' => __( 'Contact us', 'georg-kloster-connect-hub' ), 'intro' => '', 'submit' => __( 'Send message', 'georg-kloster-connect-hub' ), 'topics' => '', 'recipient' => '' );
+        return array( 'enabled' => false, 'title' => __( 'Contact us', 'georg-kloster-connect-hub' ), 'intro' => '', 'submit' => __( 'Send message', 'georg-kloster-connect-hub' ), 'topics' => '', 'recipient' => '', 'telegram_chat_id' => '', 'telegram_staff' => 0 );
     }
 
     public static function get(): array {
@@ -39,6 +39,16 @@ final class Admin {
             elseif ( in_array( $key, array( 'intro', 'topics' ), true ) ) { $value = sanitize_textarea_field( $value ); }
             else { $value = sanitize_text_field( $value ); }
             $result[ $key ] = $value;
+        }
+        if ( isset( $input['telegram_chat_id'] ) && is_string( $input['telegram_chat_id'] ) ) {
+            $chat_id = trim( wp_unslash( $input['telegram_chat_id'] ) );
+            if ( '' !== $chat_id && ! preg_match( '/^[1-9][0-9]*$/D', $chat_id ) ) { throw new \InvalidArgumentException( 'Для личного чата отдела укажите положительный числовой Telegram Chat ID. Оставьте поле пустым, чтобы использовать общий чат.' ); }
+            $result['telegram_chat_id'] = $chat_id;
+        }
+        if ( isset( $input['telegram_staff'] ) && is_scalar( $input['telegram_staff'] ) ) {
+            $staff = absint( $input['telegram_staff'] );
+            if ( $staff && ( ! user_can( $staff, 'view_gkps_requests' ) || ! user_can( $staff, 'reply_gkps_requests' ) ) ) { throw new \InvalidArgumentException( 'Выберите сотрудника с правом просматривать обращения и отвечать на них.' ); }
+            $result['telegram_staff'] = $staff;
         }
         return $result;
     }

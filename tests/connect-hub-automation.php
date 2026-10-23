@@ -4,6 +4,24 @@ use GeorgKlosterPrihodSocial\Publication_Rules;
 use GeorgKlosterPrihodSocial\Publication_Rules_Admin;
 use GeorgKlosterPrihodSocial\Publications;
 use GeorgKlosterPrihodSocial\Connector;
+use GeorgKlosterPrihodSocial\Forms;
+
+$routing_form_one = Forms::sanitize( array( 'enabled' => true, 'telegram_chat_id' => '10101', 'telegram_staff' => $admin_id ) );
+$routing_form_two = Forms::sanitize( array( 'enabled' => true, 'telegram_chat_id' => '20202', 'telegram_staff' => $admin_id ) );
+$check( '10101' === $routing_form_one['telegram_chat_id'] && '20202' === $routing_form_two['telegram_chat_id'], 'Each form retains its independent Telegram private Chat ID.' );
+try { Forms::sanitize( array( 'telegram_chat_id' => '@department' ) ); $check( false, 'A public username or channel must not be accepted for a private-reply route.' ); }
+catch ( InvalidArgumentException $error ) { $check( true, 'Per-form Telegram routes require a numeric private Chat ID.' ); }
+$routing_settings = Connector::instance( 'telegram' )->settings();
+$routing_request = wp_insert_post( array( 'post_type' => 'gkps_request', 'post_status' => 'private', 'post_title' => 'Synthetic routing request' ) );
+$routing_one_job = Connector::instance( 'telegram' )->queue( 'Synthetic request', '', 'request', $routing_request, array(), '10101' );
+$routing_two_job = Connector::instance( 'telegram' )->queue( 'Synthetic request', '', 'request', $routing_request, array(), '20202' );
+$routing_one = get_option( 'gkps_job_telegram_' . $routing_one_job );
+$routing_two = get_option( 'gkps_job_telegram_' . $routing_two_job );
+$routing_one_body = json_decode( Connector::instance( 'telegram' )->request( $routing_one )['args']['body'], true );
+$routing_two_body = json_decode( Connector::instance( 'telegram' )->request( $routing_two )['args']['body'], true );
+$check( '10101' === $routing_one['telegram_target'] && '20202' === $routing_two['telegram_target'] && '10101' === $routing_one_body['chat_id'] && '20202' === $routing_two_body['chat_id'], 'Queued Telegram messages use the destination configured for their own form.' );
+foreach ( array( $routing_one_job, $routing_two_job ) as $routing_job ) { delete_option( 'gkps_job_telegram_' . $routing_job ); wp_clear_scheduled_hook( 'gkps_telegram_worker', array( $routing_job ) ); }
+wp_delete_post( $routing_request, true );
 
 $mode = 'success';
 $check( false === apply_filters( 'gkps_connector_job_allowed', true, 'telegram', array( 'kind' => 'request', 'reply_context' => array( 'configuration' => 'stale', 'request_id' => 1 ) ) ), 'Private Telegram context validation was bypassed.' );

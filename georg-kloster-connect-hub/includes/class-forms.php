@@ -39,7 +39,25 @@ final class Forms {
             } else { $value = in_array( $key, array( 'intro', 'topics' ), true ) ? sanitize_textarea_field( $value ) : sanitize_text_field( $value ); }
             $values[$key] = $value;
         }
+        $chat_id = isset( $input['telegram_chat_id'] ) && is_string( $input['telegram_chat_id'] ) ? trim( $input['telegram_chat_id'] ) : '';
+        if ( '' !== $chat_id && ! preg_match( '/^[1-9][0-9]*$/D', $chat_id ) ) { throw new \InvalidArgumentException( 'Для личного чата отдела укажите положительный числовой Telegram Chat ID. Оставьте поле пустым, чтобы использовать общий чат.' ); }
+        $staff = isset( $input['telegram_staff'] ) && is_scalar( $input['telegram_staff'] ) ? absint( $input['telegram_staff'] ) : 0;
+        if ( $staff && ( ! user_can( $staff, 'view_gkps_requests' ) || ! user_can( $staff, 'reply_gkps_requests' ) ) ) { throw new \InvalidArgumentException( 'Выберите сотрудника с правом просматривать обращения и отвечать на них.' ); }
+        $values['telegram_chat_id'] = $chat_id;
+        $values['telegram_staff'] = $staff;
         return $values;
+    }
+
+    public static function telegram_target( int $form_id, string $fallback ): string {
+        $form = self::get( $form_id );
+        $target = is_array( $form ) ? (string) ( $form['telegram_chat_id'] ?? '' ) : '';
+        return '' !== $target ? $target : $fallback;
+    }
+
+    public static function telegram_staff( int $form_id, int $fallback ): int {
+        $form = self::get( $form_id );
+        $staff = is_array( $form ) ? absint( $form['telegram_staff'] ?? 0 ) : 0;
+        return $staff ?: $fallback;
     }
 
     public static function store( int $id, array $input ): int {
@@ -98,6 +116,13 @@ final class Forms {
             else { echo '<input class="regular-text" type="' . ( 'recipient' === $key ? 'email' : 'text' ) . '" name="' . esc_attr( $key ) . '" value="' . esc_attr( $form[$key] ) . '">'; }
             echo '</label></p>';
         }
+        echo '<hr><h3>Telegram: чат и ответственный этого отдела</h3><p><label>Личный числовой Chat ID Telegram (оставьте пустым для общего чата)<br><input class="regular-text" inputmode="numeric" pattern="[0-9]+" name="telegram_chat_id" value="' . esc_attr( $form['telegram_chat_id'] ?? '' ) . '"></label></p>';
+        echo '<p>Как получить ID этого отдела: ответственный открывает вашего бота по ссылке, нажимает Start, затем открывает <a href="https://t.me/userinfobot" target="_blank" rel="noopener noreferrer">@userinfobot</a> и копирует свой числовой ID. Сначала сотрудник должен запустить именно вашего бота — иначе бот не сможет написать ему. Для каждого отдела укажите личный Chat ID; группы и <code>@channel</code> не поддерживают личные ответы. Токен и общая инструкция находятся в <a href="' . esc_url( admin_url( 'admin.php?page=gkch-settings&network=telegram' ) ) . '">Connect Hub → Settings → Telegram</a>; создание бота: <a href="https://t.me/BotFather" target="_blank" rel="noopener noreferrer">@BotFather</a>.</p>';
+        echo '<p><label>Сохранять ответы Telegram от имени сотрудника (пустое значение — общий сотрудник)<br><select name="telegram_staff"><option value="0">Общий сотрудник из настроек Telegram</option>';
+        foreach ( get_users( array( 'capability' => 'view_gkps_requests' ) ) as $user ) {
+            if ( user_can( $user, 'reply_gkps_requests' ) ) { echo '<option value="' . esc_attr( $user->ID ) . '"' . selected( (int) ( $form['telegram_staff'] ?? 0 ), $user->ID, false ) . '>' . esc_html( $user->display_name ) . '</option>'; }
+        }
+        echo '</select></label></p><p>Каждый отдел получает обращения и ответы в свой чат; ответ будет сохранён от имени выбранного сотрудника. Токен бота и webhook общие. Включите Telegram в настройках, а для ответов из Telegram — полный текст обращений и приём ответов.</p>';
         submit_button(); echo '</form>';
         Blocks::help();
         echo '</div>';
