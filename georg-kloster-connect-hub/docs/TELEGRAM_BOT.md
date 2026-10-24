@@ -19,10 +19,12 @@ For contact messages, set a separate private Chat ID on each form. The person re
 - A post selected for Telegram in the WordPress publication controls, or a new post matched by an enabled publication rule. The bot uses the post translation for the subscriber's language when available. If that translation is missing, that recipient is marked as skipped in the delivery status.
 - Published schedule changes when **Notify subscribers about changes to the published schedule** is enabled.
 - An optional daily schedule digest at the selected time in the WordPress time zone. It includes the day icon and caption, every service, the services remaining that week, and all commemorations returned by the connected Bible Desktop calendar, when available.
-- `/today` sends the same complete daily schedule and commemorations; `/week` groups every service by localized date and lists each service place with its address after the schedule. Service lines include a vestment-color marker when the calendar provides one.
+- `/today` sends the same complete daily schedule and commemorations; `/week` groups every service by localized date. Both show each service place once after the schedule, with its address linked to Google Maps directions. Service lines include a vestment-color marker when the calendar provides one.
 - `/lang` chooses among the active site languages, `/menu` opens interactive buttons, and `/help` lists commands.
 
-Service place addresses are edited in **Parish → Places of service**, in that place's own **Address** field. Weekly messages use the address of each place where a service is scheduled. The general address in **Parish → Parish details** is used only when a service place has no address; it is not used to replace a place's own address.
+Interactive `/today` and `/week` requests are built and answered during the Telegram webhook request; they are not placed in WP-Cron. The daily subscriber digest, publication campaigns and scheduled reminders continue to use background workers.
+
+Service place addresses are edited in **Parish → Places of service**, in that place's own **Address** field. Schedule messages use the address of each place where a service is scheduled. The general address in **Parish → Parish details** is used only when a service place has no address; it is not used to replace a place's own address.
 
 Open Connect Hub → **Bot commands** to see the WordPress-style command list. Select a row to edit one item, or choose **Add command or responder**. Built-in commands such as `/start`, `/stop`, `/today` and `/week` each have their own edit screen; `/start` and `/stop` cannot be disabled because they control subscription status.
 

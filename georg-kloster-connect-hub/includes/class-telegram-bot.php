@@ -12,7 +12,6 @@ final class Telegram_Bot {
 	private const SYSTEM_COMMANDS_OPTION = 'gkch_telegram_system_commands';
 	private const WORKER = 'gkch_telegram_broadcast_worker';
 	private const DIGEST = 'gkch_telegram_daily_digest';
-	private const COMMAND = 'gkch_telegram_command';
 	private const BATCH_SIZE = 10;
 
 	public static function hooks(): void {
@@ -25,7 +24,6 @@ final class Telegram_Bot {
 		add_action( 'admin_post_gkch_telegram_bot_commands_save', array( self::class, 'save_bot_commands' ) );
 		add_action( self::WORKER, array( self::class, 'worker' ) );
 		add_action( self::DIGEST, array( self::class, 'daily_digest' ) );
-		add_action( self::COMMAND, array( self::class, 'command_worker' ), 10, 5 );
 		add_action( 'gkps_connector_settings_fields', array( self::class, 'settings_fields' ), 20, 2 );
 		add_action( 'gkps_connector_saved', array( self::class, 'settings_saved' ), 20, 2 );
 	}
@@ -188,12 +186,7 @@ final class Telegram_Bot {
 		return true;
 	}
 
-	private static function queue_command( string $chat_id, string $language, string $command, int $update_id, string $prefix = '' ): void {
-		$queued = wp_schedule_single_event( time() + 1, self::COMMAND, array( $chat_id, $language, $command, $update_id, $prefix ), true );
-		if ( is_wp_error( $queued ) || ! $queued ) { self::send_direct( $chat_id, self::copy( 'command_busy', $language ) ); }
-	}
-
-	public static function command_worker( string $chat_id, string $language, string $command, int $update_id, string $prefix = '' ): void {
+	private static function reply_to_schedule_command( string $chat_id, string $language, string $command, string $prefix = '' ): void {
 		if ( ! preg_match( '/^[1-9][0-9]{0,19}$/D', $chat_id ) || ! self::valid_language_code( $language ) || ! in_array( $command, array( 'today', 'week' ), true ) || ! self::is_active( $chat_id ) ) { return; }
 		$date = new \DateTimeImmutable( 'today', wp_timezone() );
 		$content = 'today' === $command ? self::day_content( $date, $language ) : array( 'text' => self::week_message( $date, $language ), 'icon_url' => '' );
@@ -296,7 +289,6 @@ final class Telegram_Bot {
 			'no_service_today' => __( 'No service is scheduled for today.', 'georg-kloster-connect-hub' ),
 			'no_services' => __( 'No services are scheduled for this period.', 'georg-kloster-connect-hub' ),
 			'calendar_unavailable' => __( 'Church calendar data is not available right now.', 'georg-kloster-connect-hub' ),
-			'command_busy' => __( 'The request could not be queued. Please try again in a minute.', 'georg-kloster-connect-hub' ),
 			'feast' => __( 'Commemorations of the day', 'georg-kloster-connect-hub' ),
 			'services' => __( 'Services', 'georg-kloster-connect-hub' ),
 			'schedule_link' => __( 'Full schedule', 'georg-kloster-connect-hub' ),
@@ -627,7 +619,7 @@ final class Telegram_Bot {
 			$template = self::configured_response( $command, $language );
 			if ( '' === $template ) { $template = '{schedule}'; }
 			elseif ( ! str_contains( $template, '{schedule}' ) ) { $template .= "\n\n{schedule}"; }
-			self::queue_command( $chat_id, $language, $action, $update_id, $template );
+			self::reply_to_schedule_command( $chat_id, $language, $action, $template );
 		} else { self::send_configured_reply( $chat_id, $command, $language, $markup ); }
 	}
 
@@ -896,7 +888,10 @@ final class Telegram_Bot {
 			$from = new \DateTimeImmutable( 'today', wp_timezone() );
 			$events = array_filter( self::schedule_events( $from, $from->modify( '+366 days' ), $language ), static fn( $event ) => (int) ( $event['service_id'] ?? 0 ) === $service_id );
 			$lines = array( '<b>' . esc_html( self::copy( 'changed', $language ) ) . '</b>', '<b>' . esc_html( $title ) . '</b>' );
-			foreach ( array_slice( array_values( $events ), 0, 3 ) as $event ) { $lines[] = self::event_line( $event, $language, true ); }
+			$upcoming = array_slice( array_values( $events ), 0, 3 );
+			foreach ( $upcoming as $event ) { $lines[] = self::event_line( $event, $language, true ); }
+			$places = self::weekly_places( $upcoming, $language );
+			if ( $places ) { $lines[] = '━━━━━━━━━━━━━━━━━━'; foreach ( $places as $place ) { $lines[] = self::service_place_line( $place ); } }
 			$lines[] = '<a href="' . esc_url( self::schedule_url( $language ) ) . '">' . esc_html( self::copy( 'schedule_link', $language ) ) . '</a>';
 			return implode( "\n", $lines );
 		} finally { self::restore_language( $old ); }
@@ -946,7 +941,6 @@ final class Telegram_Bot {
 	public static function deactivate(): void {
 		wp_clear_scheduled_hook( self::WORKER );
 		wp_clear_scheduled_hook( self::DIGEST );
-		wp_clear_scheduled_hook( self::COMMAND );
 	}
 
 	public static function worker( int $campaign_id ): void {
@@ -1107,6 +1101,12 @@ final class Telegram_Bot {
 			foreach ( $week_events as $event ) { $week_lines[] = self::event_line( $event, $language, true ); }
 			$sections[] = implode( "\n", $week_lines );
 		}
+		$places = self::weekly_places( array_merge( $today_events, $week_events ), $language );
+		if ( $places ) {
+			$place_lines = array( '━━━━━━━━━━━━━━━━━━' );
+			foreach ( $places as $place ) { $place_lines[] = self::service_place_line( $place ); }
+			$sections[] = implode( "\n", $place_lines );
+		}
 		$memory_lines = array( '━━━━━━━━━━━━━━━━━━', '<b>' . esc_html( self::copy( 'feast', $language ) ) . '</b>' );
 		if ( is_array( $calendar ) && $calendar['events'] ) {
 			foreach ( $calendar['events'] as $event ) { $memory_lines[] = '• ' . esc_html( $event ); }
@@ -1134,16 +1134,16 @@ final class Telegram_Bot {
 				$day_date = $day ? new \DateTimeImmutable( $day, wp_timezone() ) : null;
 				$label = $day_date ? self::localized_weekday( $day_date, $language ) : self::copy( 'services', $language );
 				$day_lines = array( '<b>' . esc_html( $label ) . '</b>' );
-				foreach ( $day_events as $event ) { $day_lines[] = self::event_line( $event, $language, false, false ); }
+				foreach ( $day_events as $event ) { $day_lines[] = self::event_line( $event, $language, false ); }
 				$sections[] = implode( "\n", $day_lines );
 			}
 		} else {
 			$sections[] = esc_html( self::copy( 'no_services', $language ) );
 		}
-		$sections[] = '━━━━━━━━━━━━━━━━━━';
 		$places = self::weekly_places( $events, $language );
+		$sections[] = '━━━━━━━━━━━━━━━━━━';
 		foreach ( $places as $place ) {
-			$sections[] = '📍 <b>' . esc_html( $place['title'] ) . '</b>' . ( $place['address'] ? "\n" . esc_html( $place['address'] ) : '' );
+			$sections[] = self::service_place_line( $place );
 		}
 		$sections[] = '<a href="' . esc_url( self::schedule_url( $language ) ) . '">' . esc_html( self::copy( 'schedule_link', $language ) ) . '</a>';
 		return implode( "\n\n", $sections );
@@ -1188,13 +1188,21 @@ final class Telegram_Bot {
 		return array( 'events' => $result, 'icon_url' => $icon_url, 'icon_title' => $icon_title, 'color' => self::mapped_calendar_color( $data['day'] ) );
 	}
 
-	private static function event_line( array $event, string $language, bool $with_date, bool $with_location = true ): string {
+	private static function event_line( array $event, string $language, bool $with_date ): string {
 		$start = $event['start'] ?? null;
 		$when = $start instanceof \DateTimeInterface ? ( $with_date ? $start->format( 'd.m' ) . ' ' : '' ) . $start->format( 'H:i' ) : '';
 		$title = sanitize_text_field( (string) ( $event['title'] ?? '' ) );
 		$line = self::vestment_marker( $event, $language ) . ' ┃ ' . ( $when ? '<b>' . esc_html( $when ) . '</b> — ' : '' ) . esc_html( $title );
-		$location_id = absint( $event['location_id'] ?? 0 );
-		if ( $with_location && $location_id ) { $line .= ' · ' . esc_html( self::service_place_title( $location_id, $language ) ); }
+		return $line;
+	}
+
+	private static function service_place_line( array $place ): string {
+		$line = '📍 <b>' . esc_html( (string) ( $place['title'] ?? '' ) ) . '</b>';
+		$address = trim( (string) ( $place['address'] ?? '' ) );
+		if ( '' !== $address ) {
+			$maps = 'https://www.google.com/maps/dir/?api=1&destination=' . rawurlencode( $address );
+			$line .= "\n<a href=\"" . esc_url( $maps ) . '">' . esc_html( $address ) . '</a>';
+		}
 		return $line;
 	}
 

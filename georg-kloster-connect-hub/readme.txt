@@ -4,7 +4,7 @@ Tags: contact form, messages, social, publishing, telegram
 Requires at least: 6.5
 Requires PHP: 8.0
 Tested up to: 7.1
-Stable tag: 0.4.6
+Stable tag: 0.4.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -59,7 +59,7 @@ Development repository: https://github.com/VAtapin/Orthodox/tree/main/georg-klos
 
 == Installation ==
 
-Upload georg-kloster-connect-hub-0.4.6.zip. Replace an existing Connect Hub version,
+Upload georg-kloster-connect-hub-0.4.7.zip. Replace an existing Connect Hub version,
 or install as a new plugin and activate it.
 Activation deactivates the previous georg-kloster-prihod-social development plugin
 without deleting its settings. Keep only Connect Hub active. Network-active old
@@ -150,6 +150,10 @@ Configure optional reCAPTCHA v3 site and secret keys under Connect Hub > Setting
 General reception, retention and reCAPTCHA settings use one save button. A status message confirms whether both reCAPTCHA keys are saved; the secret key is never displayed.
 
 == Changelog ==
+
+= 0.4.7 =
+Reply to /today and /week directly in the webhook request instead of WP-Cron. Show each
+service place once below schedules and link its address to Google Maps directions.
 
 = 0.4.6 =
 Show every calendar commemoration in full, include a vestment-color marker for each
