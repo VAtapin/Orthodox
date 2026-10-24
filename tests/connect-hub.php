@@ -12,6 +12,19 @@ use GeorgKlosterPrihodSocial\Telegram_Bot;
 use GeorgKlosterPrihodSocial\Hub_Settings;
 use GeorgKlosterPrihodSocial\Social_Providers;
 
+if ( ! class_exists( '\\GeorgKlosterPrihodSchedule\\Calendar_Provider' ) ) {
+    $calendar_provider_fixture = new class {
+        public static function request( string $path, array $query ): array {
+            return array( 'day' => array(
+                'date' => (string) ( $query['date'] ?? '' ),
+                'events' => array( array( 'title' => 'Память святого Георгия', 'veryShortTitle' => 'Святой Георгий', 'category' => 'commemoration', 'typeCode' => 2 ) ),
+                'icons' => array( array( 'title' => 'Икона святого Георгия', 'imageUrl' => 'https://bible-desktop.com/storage/calendar-icons/' . str_repeat( 'a', 64 ) . '.jpg' ) ),
+            ) );
+        }
+    };
+    class_alias( get_class( $calendar_provider_fixture ), 'GeorgKlosterPrihodSchedule\\Calendar_Provider' );
+}
+
 $checks = 0;
 $check = static function ( bool $ok, string $message ) use ( &$checks ): void { ++$checks; if ( ! $ok ) { throw new RuntimeException( $message ); } };
 $throws = static function ( callable $operation, string $message ) use ( $check ): void {
@@ -19,7 +32,7 @@ $throws = static function ( callable $operation, string $message ) use ( $check 
 };
 $admin_id = get_users( array( 'role' => 'administrator', 'number' => 1 ) )[0]->ID;
 wp_set_current_user( $admin_id ); set_current_screen( 'dashboard' );
-$check( '0.4.4' === GKPS_VERSION, 'Wrong Connect Hub version.' );
+$check( '0.4.5' === GKPS_VERSION, 'Wrong Connect Hub version.' );
 $check( ! is_plugin_active( 'georg-kloster-prihod-social/georg-kloster-prihod-social.php' ), 'Old development package remains active.' );
 $check( 'Existing development form' === Admin::get()['title'], 'Development form settings were lost.' );
 $check( '12345' === Connector::instance( 'telegram' )->settings()['target'], 'Channel settings were lost.' );
@@ -170,8 +183,9 @@ $telegram_update = array( 'update_id' => 51003, 'message' => array( 'text' => '/
 $check( Telegram_Bot::receive_update( $telegram_update ), 'The /today command was not accepted.' );
 wp_clear_scheduled_hook( 'gkch_telegram_command', array( '70101', 'ru', 'today', 51003, '{schedule}' ) );
 Telegram_Bot::command_worker( '70101', 'ru', 'today', 51003, '{schedule}' );
-$today_calls = array_values( array_filter( $http, static fn( $call ) => str_contains( $call['url'], 'api.telegram.org' ) && str_contains( (string) ( json_decode( $call['args']['body'] ?? '{}', true )['text'] ?? '' ), 'Расписание на сегодня' ) ) );
-$check( $today_calls && '70101' === json_decode( end( $today_calls )['args']['body'], true )['chat_id'], '/today did not send a Russian private response.' );
+$today_calls = array_values( array_filter( $http, static function ( $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); return str_contains( $call['url'], 'api.telegram.org' ) && str_contains( (string) ( $body['caption'] ?? $body['text'] ?? '' ), 'Расписание на сегодня' ); } ) );
+$today_body = $today_calls ? json_decode( end( $today_calls )['args']['body'], true ) : array();
+$check( $today_body && '70101' === $today_body['chat_id'] && str_ends_with( (string) ( $today_body['photo'] ?? '' ), str_repeat( 'a', 64 ) . '.jpg' ) && 'HTML' === ( $today_body['parse_mode'] ?? '' ) && str_contains( $today_body['caption'] ?? '', '━━━━━━━━' ) && str_contains( $today_body['caption'] ?? '', 'Икона святого Георгия' ), '/today did not send one formatted icon-and-caption message.' );
 $today_template = "Рады вас видеть.\n{schedule}";
 $today_options = get_option( 'gkch_telegram_system_commands', array() );
 $today_options['today']['response_ru'] = $today_template;
@@ -180,15 +194,17 @@ $custom_today_update = array( 'update_id' => 51013, 'message' => array( 'text' =
 $check( Telegram_Bot::receive_update( $custom_today_update ), 'The customized /today command was not accepted.' );
 wp_clear_scheduled_hook( 'gkch_telegram_command', array( '70101', 'ru', 'today', 51013, $today_template ) );
 Telegram_Bot::command_worker( '70101', 'ru', 'today', 51013, $today_template );
-$custom_today_calls = array_values( array_filter( $http, static function ( $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); return str_contains( $call['url'], 'api.telegram.org' ) && str_contains( (string) ( $body['text'] ?? '' ), 'Рады вас видеть.' ); } ) );
-$custom_today_text = $custom_today_calls ? (string) ( json_decode( end( $custom_today_calls )['args']['body'], true )['text'] ?? '' ) : '';
+$custom_today_calls = array_values( array_filter( $http, static function ( $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); return str_contains( $call['url'], 'api.telegram.org' ) && str_contains( (string) ( $body['caption'] ?? $body['text'] ?? '' ), 'Рады вас видеть.' ); } ) );
+$custom_today_body = $custom_today_calls ? json_decode( end( $custom_today_calls )['args']['body'], true ) : array();
+$custom_today_text = (string) ( $custom_today_body['caption'] ?? $custom_today_body['text'] ?? '' );
 $check( str_contains( $custom_today_text, 'Расписание на сегодня' ) && ! str_contains( $custom_today_text, '{schedule}' ), '/today did not substitute its generated schedule into the configured answer template.' );
 $week_update = array( 'update_id' => 51004, 'message' => array( 'text' => '/week', 'chat' => array( 'id' => '70102', 'type' => 'private' ), 'from' => array( 'id' => '70102', 'language_code' => 'de' ) ) );
 $check( Telegram_Bot::receive_update( $week_update ), 'The /week command was not accepted.' );
 wp_clear_scheduled_hook( 'gkch_telegram_command', array( '70102', 'de', 'week', 51004, '{schedule}' ) );
 Telegram_Bot::command_worker( '70102', 'de', 'week', 51004 );
 $week_calls = array_values( array_filter( $http, static fn( $call ) => str_contains( $call['url'], 'api.telegram.org' ) && str_contains( (string) ( json_decode( $call['args']['body'] ?? '{}', true )['text'] ?? '' ), 'Gottesdienste diese Woche' ) ) );
-$check( $week_calls && '70102' === json_decode( end( $week_calls )['args']['body'], true )['chat_id'], '/week did not send a German private response.' );
+$week_body = $week_calls ? json_decode( end( $week_calls )['args']['body'], true ) : array();
+$check( $week_body && '70102' === $week_body['chat_id'] && 'HTML' === ( $week_body['parse_mode'] ?? '' ) && str_contains( $week_body['text'] ?? '', '<b>' ) && str_contains( $week_body['text'] ?? '', '━━━━━━━━' ), '/week did not send a formatted German private response.' );
 $prayer_ru_update = array( 'update_id' => 51007, 'message' => array( 'text' => '/prayer', 'chat' => array( 'id' => '70101', 'type' => 'private' ), 'from' => array( 'id' => '70101', 'language_code' => 'ru' ) ) );
 $prayer_de_update = array( 'update_id' => 51008, 'message' => array( 'text' => '/prayer', 'chat' => array( 'id' => '70102', 'type' => 'private' ), 'from' => array( 'id' => '70102', 'language_code' => 'de' ) ) );
 $check( Telegram_Bot::receive_update( $prayer_ru_update ) && Telegram_Bot::receive_update( $prayer_de_update ), 'Configured custom Telegram commands were not accepted.' );
@@ -270,6 +286,8 @@ $schedule_campaign_id = (int) $GLOBALS['wpdb']->get_var( $GLOBALS['wpdb']->prepa
 $check( $schedule_campaign_id > 0, 'A published schedule change did not create a subscriber campaign.' );
 Telegram_Bot::worker( $schedule_campaign_id );
 $check( 'sent' === $GLOBALS['wpdb']->get_var( $GLOBALS['wpdb']->prepare( "SELECT status FROM {$telegram_tables['campaigns']} WHERE id=%d", $schedule_campaign_id ) ), 'Schedule-change notification was not delivered.' );
+$schedule_message_calls = array_values( array_filter( $http, static function ( $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); return str_ends_with( (string) wp_parse_url( $call['url'], PHP_URL_PATH ), '/sendMessage' ) && str_contains( (string) ( $body['text'] ?? '' ), 'Synthetic schedule change' ); } ) );
+$check( $schedule_message_calls && 'HTML' === ( json_decode( end( $schedule_message_calls )['args']['body'], true )['parse_mode'] ?? '' ) && str_contains( json_decode( end( $schedule_message_calls )['args']['body'], true )['text'] ?? '', '<b>' ), 'Schedule-change notices were not sent as formatted HTML.' );
 $telegram_settings = Connector::instance( 'telegram' )->settings();
 $telegram_settings['daily_digest_enabled'] = true;
 update_option( 'gkps_connect_telegram', $telegram_settings, false );
@@ -278,8 +296,11 @@ $check( (bool) wp_next_scheduled( 'gkch_telegram_daily_digest' ), 'Daily digest 
 Telegram_Bot::daily_digest();
 $digest_campaign_id = (int) $GLOBALS['wpdb']->get_var( "SELECT id FROM {$telegram_tables['campaigns']} WHERE source_type='digest' ORDER BY id DESC LIMIT 1" );
 $check( $digest_campaign_id > 0, 'Daily digest did not create a subscriber campaign.' );
+$digest_http_start = count( $http );
 Telegram_Bot::worker( $digest_campaign_id );
 $check( 'sent' === $GLOBALS['wpdb']->get_var( $GLOBALS['wpdb']->prepare( "SELECT status FROM {$telegram_tables['campaigns']} WHERE id=%d", $digest_campaign_id ) ), 'Daily digest campaign did not complete.' );
+$digest_photo_calls = array_values( array_filter( array_slice( $http, $digest_http_start ), static function ( $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); return str_ends_with( (string) wp_parse_url( $call['url'], PHP_URL_PATH ), '/sendPhoto' ) && ! empty( $body['caption'] ); } ) );
+$check( 1 === count( $digest_photo_calls ) && array_reduce( $digest_photo_calls, static fn( $ok, $call ) => $ok && 'HTML' === ( json_decode( $call['args']['body'], true )['parse_mode'] ?? '' ), true ), 'Daily digest was not delivered with its day icon and formatted HTML caption to the active language subscriber.' );
 ob_start(); Telegram_Bot::render(); $telegram_admin = ob_get_clean();
 $check( str_contains( $telegram_admin, '70101' ) && str_contains( $telegram_admin, 'Recent broadcast status' ) && str_contains( $telegram_admin, 'Active subscribers' ) && str_contains( $telegram_admin, 'Manage bot commands and replies' ) && ! str_contains( $telegram_admin, 'bot_commands[0][command]' ), 'Telegram subscriber screen did not link to the separate command editor.' );
 $message_fixture = wp_insert_post( array( 'post_type' => 'gkps_request', 'post_status' => 'private', 'post_title' => 'Synthetic outgoing log fixture', 'post_content' => 'Private message body to audit.' ) );

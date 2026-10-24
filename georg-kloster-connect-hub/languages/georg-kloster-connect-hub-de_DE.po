@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Georg-Kloster Connect Hub 0.4.4\nLanguage: de_DE\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Project-Id-Version: Georg-Kloster Connect Hub 0.4.5\nLanguage: de_DE\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "A bot token is required. Each form uses only its own private Chat ID for contact messages; the old global Chat ID is not used. Public posts and schedule messages go to people who pressed Start in the bot."
 msgstr "Für den Betrieb wird ein Bot-Token benötigt. Jede Formularnachricht geht nur an den privaten Chat der jeweiligen Form; die alte globale Chat-ID wird nicht verwendet. Beiträge und Planmeldungen erhalten alle, die im Bot auf Start gedrückt haben."
@@ -1458,3 +1458,12 @@ msgstr "Sie können bis zu 10 Mediendateien auswählen."
 
 msgid "Video"
 msgstr "Video"
+
+msgid "Icon of the day"
+msgstr "Ikone des Tages"
+
+msgid "Services later this week"
+msgstr "Gottesdienste im weiteren Wochenverlauf"
+
+msgid "No service is scheduled for today."
+msgstr "Für heute sind keine Gottesdienste geplant."

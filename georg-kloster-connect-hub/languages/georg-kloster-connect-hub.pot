@@ -749,6 +749,10 @@ msgstr ""
 msgid "I consent to processing my data to receive a reply to this message."
 msgstr ""
 
+#: includes/class-telegram-bot.php
+msgid "Icon of the day"
+msgstr ""
+
 #: includes/class-publication-rules-admin.php
 msgid "Image (required for Instagram; public HTTPS JPEG)"
 msgstr ""
@@ -987,6 +991,10 @@ msgstr ""
 
 #: includes/class-publication-rules-admin.php
 msgid "No scheduled delivery"
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "No service is scheduled for today."
 msgstr ""
 
 #: includes/class-telegram-bot.php
@@ -1439,6 +1447,10 @@ msgstr ""
 
 #: includes/class-telegram-bot.php
 msgid "Services and commemorations of the day"
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Services later this week"
 msgstr ""
 
 #: includes/class-telegram-bot.php
