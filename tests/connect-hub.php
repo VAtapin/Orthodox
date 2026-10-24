@@ -15,14 +15,46 @@ use GeorgKlosterPrihodSocial\Social_Providers;
 if ( ! class_exists( '\\GeorgKlosterPrihodSchedule\\Calendar_Provider' ) ) {
     $calendar_provider_fixture = new class {
         public static function request( string $path, array $query ): array {
+            if ( 'month' === $path ) {
+                $year = absint( $query['year'] ?? gmdate( 'Y' ) ); $month = absint( $query['month'] ?? gmdate( 'n' ) );
+                $first = new DateTimeImmutable( sprintf( '%04d-%02d-01', $year, $month ) ); $days = array();
+                for ( $index = 0, $count = (int) $first->format( 't' ); $index < $count; ++$index ) { $days[] = array( 'date' => $first->modify( '+' . $index . ' days' )->format( 'Y-m-d' ), 'vestment' => array( 'color' => 'green' ) ); }
+                return array( 'days' => $days );
+            }
             return array( 'day' => array(
                 'date' => (string) ( $query['date'] ?? '' ),
-                'events' => array( array( 'title' => 'Память святого Георгия', 'veryShortTitle' => 'Святой Георгий', 'category' => 'commemoration', 'typeCode' => 2 ) ),
+                'events' => array(
+                    array( 'title' => 'Память святого Георгия, великомученика', 'veryShortTitle' => 'Святой Георгий', 'category' => 'commemoration', 'typeCode' => 2 ),
+                    array( 'title' => 'Память святого Михаила', 'veryShortTitle' => 'Святой Михаил', 'category' => 'commemoration', 'typeCode' => 2 ),
+                    array( 'title' => 'Память преподобной Марии', 'veryShortTitle' => 'Преподобная Мария', 'category' => 'commemoration', 'typeCode' => 2 ),
+                    array( 'title' => 'Память святителя Николая', 'veryShortTitle' => 'Святитель Николай', 'category' => 'commemoration', 'typeCode' => 2 ),
+                    array( 'title' => 'Память апостола Павла', 'veryShortTitle' => 'Апостол Павел', 'category' => 'commemoration', 'typeCode' => 2 ),
+                    array( 'title' => 'Память мученицы Ирины', 'veryShortTitle' => 'Мученица Ирина', 'category' => 'commemoration', 'typeCode' => 2 ),
+                    array( 'title' => 'Память праведного Иоанна', 'veryShortTitle' => 'Праведный Иоанн', 'category' => 'commemoration', 'typeCode' => 2 ),
+                ),
                 'icons' => array( array( 'title' => 'Икона святого Георгия', 'imageUrl' => 'https://bible-desktop.com/storage/calendar-icons/' . str_repeat( 'a', 64 ) . '.jpg' ) ),
+                'vestment' => array( 'color' => 'green' ),
             ) );
         }
     };
     class_alias( get_class( $calendar_provider_fixture ), 'GeorgKlosterPrihodSchedule\\Calendar_Provider' );
+}
+if ( ! class_exists( '\\GeorgKlosterPrihodSchedule\\Schedule' ) ) {
+    $schedule_fixture = new class {
+        public static function query( DateTimeImmutable $from, DateTimeImmutable $to, int $location = 0, bool $cancelled = true ): array {
+            $places = array_values( array_filter( (array) ( $GLOBALS['gkch_schedule_fixture_places'] ?? array() ) ) ); $events = array();
+            if ( ! $places ) { return $events; }
+            for ( $day = $from; $day < $to; $day = $day->modify( '+1 day' ) ) {
+                for ( $index = 1; $index <= 6; ++$index ) {
+                    $place = (int) $places[( $index - 1 ) % count( $places )];
+                    if ( $location && $location !== $place ) { continue; }
+                    $events[] = array( 'id' => $day->format( 'Y-m-d' ) . ':' . $index, 'start' => $day->setTime( 10, 0 )->modify( '+' . $index . ' minutes' ), 'title' => 'Божественная литургия ' . $index, 'location_id' => $place, 'vestment_color' => 'auto', 'cancelled' => false );
+                }
+            }
+            return $events;
+        }
+    };
+    class_alias( get_class( $schedule_fixture ), 'GeorgKlosterPrihodSchedule\\Schedule' );
 }
 
 $checks = 0;
@@ -32,7 +64,7 @@ $throws = static function ( callable $operation, string $message ) use ( $check 
 };
 $admin_id = get_users( array( 'role' => 'administrator', 'number' => 1 ) )[0]->ID;
 wp_set_current_user( $admin_id ); set_current_screen( 'dashboard' );
-$check( '0.4.5' === GKPS_VERSION, 'Wrong Connect Hub version.' );
+$check( '0.4.6' === GKPS_VERSION, 'Wrong Connect Hub version.' );
 $check( ! is_plugin_active( 'georg-kloster-prihod-social/georg-kloster-prihod-social.php' ), 'Old development package remains active.' );
 $check( 'Existing development form' === Admin::get()['title'], 'Development form settings were lost.' );
 $check( '12345' === Connector::instance( 'telegram' )->settings()['target'], 'Channel settings were lost.' );
@@ -42,6 +74,21 @@ $check( 1 === count( $old_messages ) && 'Synthetic development content' === $old
 $mail = array();
 add_filter( 'pre_wp_mail', static function ( $result, $args ) use ( &$mail ) { $mail[] = $args; return true; }, 10, 2 );
 $http = array(); $mode = 'success'; $ig_status = 'IN_PROGRESS'; $telegram_webhook_url = 'https://old-test.example/telegram-webhook'; $telegram_set_webhook = array();
+$telegram_message_valid = static function ( array $call ): bool {
+    $body = json_decode( $call['args']['body'] ?? '{}', true );
+    $text = (string) ( $body['caption'] ?? $body['text'] ?? '' );
+    $plain = wp_strip_all_tags( $text ); $encoded = function_exists( 'iconv' ) ? @iconv( 'UTF-8', 'UTF-16LE', $plain ) : false;
+    $units = $encoded ? (int) ( strlen( $encoded ) / 2 ) : preg_match_all( '/./us', $plain );
+    $limit = isset( $body['photo'] ) || isset( $body['video'] ) ? 1024 : 3900;
+    if ( $units > $limit ) { return false; }
+    if ( 'HTML' === ( $body['parse_mode'] ?? '' ) ) {
+        preg_match_all( '/<([a-z][a-z0-9]*)\b[^>]*>/i', $text, $open ); preg_match_all( '/<\/([a-z][a-z0-9]*)>/i', $text, $close );
+        $open_counts = array_count_values( array_map( 'strtolower', $open[1] ?? array() ) ); $close_counts = array_count_values( array_map( 'strtolower', $close[1] ?? array() ) );
+        ksort( $open_counts ); ksort( $close_counts );
+        if ( $open_counts !== $close_counts ) { return false; }
+    }
+    return true;
+};
 add_filter( 'pre_http_request', static function ( $pre, $args, $url ) use ( &$http, &$mode, &$ig_status, &$telegram_webhook_url, &$telegram_set_webhook ) {
     $http[] = array( 'url' => $url, 'args' => $args );
     $body = array(); $code = 200;
@@ -122,6 +169,13 @@ $check( str_contains( $inbox, 'Milk' ), 'Messages disappeared when incoming form
 $check( str_contains( $inbox, 'wp-list-table widefat fixed striped' ) && str_contains( $inbox, 'Date received' ) && str_contains( $inbox, 'Sender' ) && str_contains( $inbox, 'confirm_delete' ), 'Messages list is missing its WordPress table layout or bulk-delete controls.' );
 update_option( 'gkch_settings', array( 'enabled' => true ) );
 $post = wp_insert_post( array( 'post_type' => 'post', 'post_status' => 'publish', 'post_title' => 'Synthetic public post', 'post_content' => 'Synthetic public text.' ) );
+$test_church = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Храм тестовый' ) );
+$test_chapel = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Часовня тестовая' ) );
+$test_hall = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Зал приходской' ) );
+update_post_meta( $test_church, '_gkpc_details', array( 'address' => 'Kirchweg 12, 17268 Götschendorf, Deutschland' ) );
+update_post_meta( $test_chapel, '_gkpc_details', array( 'address' => 'Dorfstraße 4, 17268 Milmersdorf, Deutschland' ) );
+update_option( 'gkpc_profile', array( 'name' => 'Общий адрес прихода', 'address' => 'Общий адрес, который не должен заменить адрес места службы.' ) );
+$GLOBALS['gkch_schedule_fixture_places'] = array( $test_church, $test_chapel, $test_hall );
 $image = wp_insert_attachment( array( 'post_mime_type' => 'image/jpeg', 'post_title' => 'Synthetic image', 'guid' => 'https://93.184.216.34/fixture.jpg', 'post_status' => 'inherit' ), '', $post );
 set_post_thumbnail( $post, $image );
 update_post_meta( $post, '_thumbnail_id', $image );
@@ -182,10 +236,16 @@ $check( 'sent' === $GLOBALS['wpdb']->get_var( $GLOBALS['wpdb']->prepare( "SELECT
 $telegram_update = array( 'update_id' => 51003, 'message' => array( 'text' => '/today', 'chat' => array( 'id' => '70101', 'type' => 'private' ), 'from' => array( 'id' => '70101', 'language_code' => 'ru' ) ) );
 $check( Telegram_Bot::receive_update( $telegram_update ), 'The /today command was not accepted.' );
 wp_clear_scheduled_hook( 'gkch_telegram_command', array( '70101', 'ru', 'today', 51003, '{schedule}' ) );
+$today_http_start = count( $http );
 Telegram_Bot::command_worker( '70101', 'ru', 'today', 51003, '{schedule}' );
-$today_calls = array_values( array_filter( $http, static function ( $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); return str_contains( $call['url'], 'api.telegram.org' ) && str_contains( (string) ( $body['caption'] ?? $body['text'] ?? '' ), 'Расписание на сегодня' ); } ) );
-$today_body = $today_calls ? json_decode( end( $today_calls )['args']['body'], true ) : array();
-$check( $today_body && '70101' === $today_body['chat_id'] && str_ends_with( (string) ( $today_body['photo'] ?? '' ), str_repeat( 'a', 64 ) . '.jpg' ) && 'HTML' === ( $today_body['parse_mode'] ?? '' ) && str_contains( $today_body['caption'] ?? '', '━━━━━━━━' ) && str_contains( $today_body['caption'] ?? '', 'Икона святого Георгия' ), '/today did not send one formatted icon-and-caption message.' );
+$today_messages = array_values( array_filter( array_slice( $http, $today_http_start ), static fn( $call ) => str_contains( $call['url'], 'api.telegram.org' ) ) );
+$today_bodies = array_map( static fn( $call ) => json_decode( $call['args']['body'] ?? '{}', true ), $today_messages );
+$today_output = implode( "\n", array_map( static fn( $body ) => (string) ( $body['caption'] ?? $body['text'] ?? '' ), $today_bodies ) );
+$today_photo_body = array_values( array_filter( $today_bodies, static fn( $body ) => isset( $body['photo'] ) ) )[0] ?? array();
+$check( $today_photo_body && '70101' === $today_photo_body['chat_id'] && str_ends_with( (string) $today_photo_body['photo'], str_repeat( 'a', 64 ) . '.jpg' ) && 'HTML' === ( $today_photo_body['parse_mode'] ?? '' ) && str_contains( $today_output, '━━━━━━━━' ) && str_contains( $today_output, 'Икона святого Георгия' ), '/today did not send its day icon and formatted HTML message.' );
+$check( str_contains( $today_output, 'Память святого Георгия, великомученика' ) && str_contains( $today_output, 'Память праведного Иоанна' ) && ! str_contains( $today_output, 'Святой Георгий' ) && str_contains( $today_output, 'Божественная литургия 6' ), '/today shortened or omitted calendar commemorations/services.' );
+$check( str_contains( $today_output, '🟩 ┃' ), '/today omitted the automatic vestment-color marker.' );
+$check( array_reduce( $today_messages, static fn( $valid, $call ) => $valid && $telegram_message_valid( $call ), true ), '/today split a long message past Telegram’s limits or with unbalanced HTML tags.' );
 $today_template = "Рады вас видеть.\n{schedule}";
 $today_options = get_option( 'gkch_telegram_system_commands', array() );
 $today_options['today']['response_ru'] = $today_template;
@@ -201,10 +261,16 @@ $check( str_contains( $custom_today_text, 'Расписание на сегод�
 $week_update = array( 'update_id' => 51004, 'message' => array( 'text' => '/week', 'chat' => array( 'id' => '70102', 'type' => 'private' ), 'from' => array( 'id' => '70102', 'language_code' => 'de' ) ) );
 $check( Telegram_Bot::receive_update( $week_update ), 'The /week command was not accepted.' );
 wp_clear_scheduled_hook( 'gkch_telegram_command', array( '70102', 'de', 'week', 51004, '{schedule}' ) );
+$week_http_start = count( $http );
 Telegram_Bot::command_worker( '70102', 'de', 'week', 51004 );
-$week_calls = array_values( array_filter( $http, static fn( $call ) => str_contains( $call['url'], 'api.telegram.org' ) && str_contains( (string) ( json_decode( $call['args']['body'] ?? '{}', true )['text'] ?? '' ), 'Gottesdienste diese Woche' ) ) );
-$week_body = $week_calls ? json_decode( end( $week_calls )['args']['body'], true ) : array();
-$check( $week_body && '70102' === $week_body['chat_id'] && 'HTML' === ( $week_body['parse_mode'] ?? '' ) && str_contains( $week_body['text'] ?? '', '<b>' ) && str_contains( $week_body['text'] ?? '', '━━━━━━━━' ), '/week did not send a formatted German private response.' );
+$week_messages = array_values( array_filter( array_slice( $http, $week_http_start ), static fn( $call ) => str_contains( $call['url'], 'api.telegram.org' ) && str_ends_with( (string) wp_parse_url( $call['url'], PHP_URL_PATH ), '/sendMessage' ) ) );
+$week_bodies = array_map( static fn( $call ) => json_decode( $call['args']['body'] ?? '{}', true ), $week_messages );
+$week_output = implode( "\n", array_map( static fn( $body ) => (string) ( $body['text'] ?? '' ), $week_bodies ) );
+$week_body = $week_bodies[0] ?? array();
+$check( $week_body && '70102' === $week_body['chat_id'] && 'HTML' === ( $week_body['parse_mode'] ?? '' ) && str_contains( $week_output, 'Gottesdienste diese Woche' ) && str_contains( $week_output, '━━━━━━━━' ), '/week did not send a formatted German private response.' );
+$check( str_contains( $week_output, '🟩 ┃' ) && str_contains( $week_output, 'Божественная литургия 6' ), '/week omitted vestment colors or later services.' );
+$check( 1 === substr_count( $week_output, 'Храм тестовый' ) && 1 === substr_count( $week_output, 'Часовня тестовая' ) && 1 === substr_count( $week_output, 'Зал приходской' ) && 1 === substr_count( $week_output, 'Kirchweg 12, 17268 Götschendorf, Deutschland' ) && 1 === substr_count( $week_output, 'Dorfstraße 4, 17268 Milmersdorf, Deutschland' ) && 1 === substr_count( $week_output, 'Общий адрес, который не должен заменить адрес места службы.' ), '/week repeated venues, missed their own addresses, or failed to use the parish address as a fallback.' );
+$check( array_reduce( array_slice( $http, $week_http_start ), static fn( $valid, $call ) => $valid && ( ! str_contains( $call['url'], 'api.telegram.org' ) || $telegram_message_valid( $call ) ), true ), '/week split a long message past Telegram’s limits or with unbalanced HTML tags.' );
 $prayer_ru_update = array( 'update_id' => 51007, 'message' => array( 'text' => '/prayer', 'chat' => array( 'id' => '70101', 'type' => 'private' ), 'from' => array( 'id' => '70101', 'language_code' => 'ru' ) ) );
 $prayer_de_update = array( 'update_id' => 51008, 'message' => array( 'text' => '/prayer', 'chat' => array( 'id' => '70102', 'type' => 'private' ), 'from' => array( 'id' => '70102', 'language_code' => 'de' ) ) );
 $check( Telegram_Bot::receive_update( $prayer_ru_update ) && Telegram_Bot::receive_update( $prayer_de_update ), 'Configured custom Telegram commands were not accepted.' );

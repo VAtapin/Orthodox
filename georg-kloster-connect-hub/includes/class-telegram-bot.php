@@ -432,11 +432,11 @@ final class Telegram_Bot {
 	private static function send_configured_output( string $chat_id, string $text, array $command, string $language, array $markup, bool $html, string $leading_photo = '' ): void {
 		$media = self::configured_media( $command, $language );
 		if ( '' !== $leading_photo && self::valid_calendar_icon_url( $leading_photo ) ) { array_unshift( $media, array( 'type' => 'photo', 'url' => $leading_photo ) ); $media = array_slice( $media, 0, self::MAX_REPLY_MEDIA ); }
-		if ( ! $media ) { self::send_direct( $chat_id, $text, $markup, $html ); return; }
+		if ( ! $media ) { $html ? self::send_direct_long_html( $chat_id, $text, $markup ) : self::send_direct( $chat_id, $text, $markup ); return; }
 		$caption_fits = self::text_units( wp_strip_all_tags( $text ) ) <= 1024;
 		$caption = $caption_fits && ! $markup ? $text : '';
 		$sent = self::send_media( $chat_id, $media, $caption, $html );
-		if ( '' !== trim( $text ) && ( ! $sent || '' === $caption || $markup ) ) { self::send_direct( $chat_id, $text, $markup, $html ); }
+		if ( '' !== trim( $text ) && ( ! $sent || '' === $caption || $markup ) ) { $html ? self::send_direct_long_html( $chat_id, $text, $markup ) : self::send_direct( $chat_id, $text, $markup ); }
 	}
 
 	private static function send_scheduled_output( string $chat_id, string $text, string $icon_url ): void {
@@ -445,21 +445,92 @@ final class Telegram_Bot {
 	}
 
 	private static function send_direct_photo( string $chat_id, string $photo, string $text, array $markup = array() ): bool {
-		$text = self::telegram_html( $text );
-		if ( '' === $text || ! self::valid_calendar_icon_url( $photo ) ) { return self::send_direct( $chat_id, $text, $markup, true ); }
+		$text = self::telegram_html( $text, true );
+		if ( '' === $text || ! self::valid_calendar_icon_url( $photo ) ) { return self::send_direct_long_html( $chat_id, $text, $markup ); }
 		list( $caption, $continuation ) = self::photo_caption_parts( $text );
 		$body = array( 'chat_id' => $chat_id, 'photo' => $photo, 'caption' => $caption, 'parse_mode' => 'HTML' );
 		if ( $markup ) { $body['reply_markup'] = $markup; }
-		if ( is_wp_error( self::api( 'sendPhoto', $body ) ) ) { return self::send_direct( $chat_id, $text, $markup, true ); }
-		return '' === $continuation || self::send_direct( $chat_id, $continuation, $markup, true );
+		if ( is_wp_error( self::api( 'sendPhoto', $body ) ) ) { return self::send_direct_long_html( $chat_id, $text, $markup ); }
+		return '' === $continuation || self::send_direct_long_html( $chat_id, $continuation, $markup );
 	}
 
 	private static function photo_caption_parts( string $text ): array {
-		if ( self::text_units( wp_strip_all_tags( $text ) ) <= 1024 ) { return array( $text, '' ); }
-		$sections = preg_split( '/\n{2,}/', $text, -1, PREG_SPLIT_NO_EMPTY ) ?: array( $text );
-		$caption = array_shift( $sections );
-		while ( $sections && self::text_units( wp_strip_all_tags( $caption . "\n\n" . $sections[0] ) ) <= 1000 ) { $caption .= "\n\n" . array_shift( $sections ); }
-		return array( $caption, implode( "\n\n", $sections ) );
+		$parts = self::split_telegram_text( $text, 1024 );
+		$caption = array_shift( $parts ) ?? '';
+		return array( $caption, implode( "\n\n", $parts ) );
+	}
+
+	/** Send a generated calendar reply in complete Telegram-sized messages. */
+	private static function send_direct_long_html( string $chat_id, string $text, array $markup = array() ): bool {
+		$text = self::telegram_html( $text, true );
+		$parts = self::split_telegram_text( $text, 3900 );
+		if ( ! $parts ) { return false; }
+		$sent = true;
+		foreach ( $parts as $index => $part ) { $sent = self::send_direct( $chat_id, $part, $index ? array() : $markup, true ) && $sent; }
+		return $sent;
+	}
+
+	/** Split at line and word boundaries while closing and reopening Telegram HTML formatting. */
+	private static function split_telegram_text( string $text, int $limit ): array {
+		$text = trim( $text );
+		if ( '' === $text ) { return array(); }
+		$parts = array(); $current = ''; $stack = array();
+		$lines = preg_split( '/(?<=\n)/u', $text, -1, PREG_SPLIT_NO_EMPTY ) ?: array( $text );
+		foreach ( $lines as $line ) {
+			$line_units = self::text_units( wp_strip_all_tags( $line ) );
+			if ( $line_units <= $limit && self::text_units( wp_strip_all_tags( $current . $line ) ) <= $limit ) { $current .= $line; $stack = self::telegram_tag_stack( $line, $stack ); continue; }
+			if ( $line_units <= $limit ) {
+				if ( '' !== trim( $current ) ) { $parts[] = trim( $current . self::telegram_closing_tags( $stack ) ); }
+				$current = self::telegram_opening_tags( $stack ) . $line;
+				$stack = self::telegram_tag_stack( $line, $stack );
+				continue;
+			}
+			if ( '' !== trim( $current ) ) { $parts[] = trim( $current . self::telegram_closing_tags( $stack ) ); }
+			$current = '';
+			$next_stack = self::telegram_tag_stack( $line, $stack );
+			foreach ( self::split_plain_telegram_text( wp_strip_all_tags( $line ), $limit ) as $plain_part ) { $parts[] = self::telegram_opening_tags( $stack ) . $plain_part . self::telegram_closing_tags( $stack ); }
+			$stack = $next_stack;
+		}
+		if ( '' !== trim( $current ) ) { $parts[] = trim( $current . self::telegram_closing_tags( $stack ) ); }
+		return $parts;
+	}
+
+	private static function telegram_tag_stack( string $html, array $stack ): array {
+		preg_match_all( '/<\/?([a-z][a-z0-9]*)\b[^>]*>/i', $html, $matches, PREG_SET_ORDER );
+		foreach ( $matches as $match ) {
+			$name = strtolower( $match[1] );
+			if ( str_starts_with( $match[0], '</' ) ) {
+				for ( $index = count( $stack ) - 1; $index >= 0; --$index ) {
+					if ( preg_match( '/^<' . preg_quote( $name, '/' ) . '\b/i', $stack[$index] ) ) { array_splice( $stack, $index ); break; }
+				}
+			} elseif ( ! str_ends_with( trim( $match[0] ), '/>' ) ) { $stack[] = $match[0]; }
+		}
+		return $stack;
+	}
+
+	private static function telegram_opening_tags( array $stack ): string { return implode( '', $stack ); }
+
+	private static function telegram_closing_tags( array $stack ): string {
+		$closing = '';
+		foreach ( array_reverse( $stack ) as $tag ) { if ( preg_match( '/^<([a-z][a-z0-9]*)\b/i', $tag, $match ) ) { $closing .= '</' . strtolower( $match[1] ) . '>'; } }
+		return $closing;
+	}
+
+	private static function split_plain_telegram_text( string $text, int $limit ): array {
+		$parts = array(); $current = '';
+		$words = preg_split( '/(\s+)/u', trim( $text ), -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY ) ?: array( trim( $text ) );
+		foreach ( $words as $word ) {
+			if ( self::text_units( $current . $word ) <= $limit ) { $current .= $word; continue; }
+			if ( '' !== trim( $current ) ) { $parts[] = trim( $current ); }
+			$current = '';
+			$characters = preg_split( '//u', $word, -1, PREG_SPLIT_NO_EMPTY ) ?: array();
+			foreach ( $characters as $character ) {
+				if ( self::text_units( $current . $character ) > $limit && '' !== $current ) { $parts[] = trim( $current ); $current = ''; }
+				$current .= $character;
+			}
+		}
+		if ( '' !== trim( $current ) ) { $parts[] = trim( $current ); }
+		return $parts;
 	}
 
 	private static function valid_calendar_icon_url( string $url ): bool {
@@ -680,7 +751,7 @@ final class Telegram_Bot {
 		return implode( ',', $ids );
 	}
 
-	private static function sanitize_reply( string $text ): string {
+	private static function sanitize_reply( string $text, bool $allow_long = false ): string {
 		$text = preg_replace( '/<\/?p\b[^>]*>/i', "\n", $text ) ?? $text;
 		$text = preg_replace( '/<br\s*\/?\s*>/i', "\n", $text ) ?? $text;
 		$text = preg_replace( '/<li\b[^>]*>/i', '• ', $text ) ?? $text;
@@ -694,11 +765,12 @@ final class Telegram_Bot {
 			return preg_match( '/\bclass\s*=\s*(["\'])tg-spoiler\1/i', $match[1] ) ? '<span class="tg-spoiler">' . $match[2] . '</span>' : $match[2];
 		}, $text ) ?? $text;
 		$text = wp_kses( $text, $allowed );
-		return self::limit_text( preg_replace( '/\n{3,}/', "\n\n", $text ) ?? $text );
+		$text = preg_replace( '/\n{3,}/', "\n\n", $text ) ?? $text;
+		return $allow_long ? $text : self::limit_text( $text );
 	}
 
-	private static function telegram_html( string $text ): string {
-		$text = self::sanitize_reply( $text );
+	private static function telegram_html( string $text, bool $allow_long = false ): string {
+		$text = self::sanitize_reply( $text, $allow_long );
 		$text = preg_replace( '/\n{3,}/', "\n\n", $text ) ?? $text;
 		return trim( $text );
 	}
@@ -824,7 +896,7 @@ final class Telegram_Bot {
 			$from = new \DateTimeImmutable( 'today', wp_timezone() );
 			$events = array_filter( self::schedule_events( $from, $from->modify( '+366 days' ), $language ), static fn( $event ) => (int) ( $event['service_id'] ?? 0 ) === $service_id );
 			$lines = array( '<b>' . esc_html( self::copy( 'changed', $language ) ) . '</b>', '<b>' . esc_html( $title ) . '</b>' );
-			foreach ( array_slice( array_values( $events ), 0, 3 ) as $event ) { $lines[] = esc_html( self::event_line( $event, $language, true ) ); }
+			foreach ( array_slice( array_values( $events ), 0, 3 ) as $event ) { $lines[] = self::event_line( $event, $language, true ); }
 			$lines[] = '<a href="' . esc_url( self::schedule_url( $language ) ) . '">' . esc_html( self::copy( 'schedule_link', $language ) ) . '</a>';
 			return implode( "\n", $lines );
 		} finally { self::restore_language( $old ); }
@@ -924,44 +996,39 @@ final class Telegram_Bot {
 		$settings = $connector ? $connector->settings() : array();
 		if ( empty( $settings['token'] ) ) { return array( 'accepted' => false, 'retry' => false, 'error' => 'missing_token' ); }
 		if ( '' !== $url && ! str_contains( $text, $url ) ) { $text .= $html ? "\n\n<a href=\"" . esc_url( $url ) . "\">" . esc_html( self::copy( 'schedule_link', self::subscriber_language( $chat_id, self::default_language_code() ) ) ) . '</a>' : "\n" . $url; }
-		$text = trim( $text );
+		$text = $html ? self::telegram_html( $text, true ) : trim( wp_strip_all_tags( $text ) );
 		$use_photo = '' !== $photo && self::valid_calendar_icon_url( $photo ) && $html;
-		if ( $use_photo ) {
-			list( $caption, $continuation ) = self::photo_caption_parts( $text );
-			$payload = array( 'chat_id' => $chat_id, 'photo' => $photo, 'caption' => $caption, 'parse_mode' => 'HTML' );
-			$method = 'sendPhoto';
-		} else {
-			$payload = array( 'chat_id' => $chat_id, 'text' => self::limit_text( $text ), 'link_preview_options' => array( 'is_disabled' => true ) );
-			if ( $html ) { $payload['parse_mode'] = 'HTML'; }
-			$method = 'sendMessage';
-			$continuation = '';
-		}
-		$response = wp_remote_post( 'https://api.telegram.org/bot' . $settings['token'] . '/' . $method, array( 'headers' => array( 'Content-Type' => 'application/json' ), 'body' => wp_json_encode( $payload ), 'timeout' => 10, 'redirection' => 0 ) );
-		$code = is_wp_error( $response ) ? 0 : (int) wp_remote_retrieve_response_code( $response );
-		$body = is_wp_error( $response ) ? array() : json_decode( wp_remote_retrieve_body( $response ), true );
-		if ( 200 === $code && is_array( $body ) && ! empty( $body['ok'] ) ) {
-			if ( $use_photo && '' !== $continuation ) {
-				$followup = array( 'chat_id' => $chat_id, 'text' => self::limit_text( $continuation ), 'parse_mode' => 'HTML', 'link_preview_options' => array( 'is_disabled' => true ) );
-				$second = wp_remote_post( 'https://api.telegram.org/bot' . $settings['token'] . '/sendMessage', array( 'headers' => array( 'Content-Type' => 'application/json' ), 'body' => wp_json_encode( $followup ), 'timeout' => 10, 'redirection' => 0 ) );
-				$second_body = is_wp_error( $second ) ? array() : json_decode( wp_remote_retrieve_body( $second ), true );
-				if ( is_wp_error( $second ) || 200 !== (int) wp_remote_retrieve_response_code( $second ) || ! is_array( $second_body ) || empty( $second_body['ok'] ) ) {
-					$second_code = is_array( $second_body ) && is_numeric( $second_body['error_code'] ?? null ) ? (int) $second_body['error_code'] : ( is_wp_error( $second ) ? 0 : (int) wp_remote_retrieve_response_code( $second ) );
-					return array( 'accepted' => false, 'retry' => is_wp_error( $second ) || 429 === $second_code || $second_code >= 500, 'rate_limited' => 429 === $second_code, 'retry_after' => (int) ( $second_body['parameters']['retry_after'] ?? 15 ), 'error_code' => $second_code, 'error' => 'api_' . $second_code );
-				}
-			}
-			return array( 'accepted' => true, 'message_id' => $body['result']['message_id'] ?? '' );
-		}
-		if ( $use_photo && 400 === $code ) {
-			$payload = array( 'chat_id' => $chat_id, 'text' => self::limit_text( $text ), 'parse_mode' => 'HTML', 'link_preview_options' => array( 'is_disabled' => true ) );
-			$response = wp_remote_post( 'https://api.telegram.org/bot' . $settings['token'] . '/sendMessage', array( 'headers' => array( 'Content-Type' => 'application/json' ), 'body' => wp_json_encode( $payload ), 'timeout' => 10, 'redirection' => 0 ) );
+		if ( '' === $text ) { return array( 'accepted' => false, 'retry' => false, 'error' => 'empty_message' ); }
+		$parts = self::split_telegram_text( $text, $use_photo ? 1024 : 3900 );
+		$first = array_shift( $parts ) ?? '';
+		$payload = $use_photo
+			? array( 'chat_id' => $chat_id, 'photo' => $photo, 'caption' => $first, 'parse_mode' => 'HTML' )
+			: array( 'chat_id' => $chat_id, 'text' => $first, 'link_preview_options' => array( 'is_disabled' => true ) );
+		if ( $html ) { $payload['parse_mode'] = 'HTML'; }
+		$send = static function ( string $method, array $body ) use ( $settings ): array {
+			$response = wp_remote_post( 'https://api.telegram.org/bot' . $settings['token'] . '/' . $method, array( 'headers' => array( 'Content-Type' => 'application/json' ), 'body' => wp_json_encode( $body ), 'timeout' => 10, 'redirection' => 0 ) );
 			$code = is_wp_error( $response ) ? 0 : (int) wp_remote_retrieve_response_code( $response );
-			$body = is_wp_error( $response ) ? array() : json_decode( wp_remote_retrieve_body( $response ), true );
-			if ( 200 === $code && is_array( $body ) && ! empty( $body['ok'] ) ) { return array( 'accepted' => true, 'message_id' => $body['result']['message_id'] ?? '' ); }
+			$result = is_wp_error( $response ) ? array() : json_decode( wp_remote_retrieve_body( $response ), true );
+			if ( 200 === $code && is_array( $result ) && ! empty( $result['ok'] ) ) { return array( 'accepted' => true, 'message_id' => $result['result']['message_id'] ?? '' ); }
+			$api_code = is_array( $result ) && is_numeric( $result['error_code'] ?? null ) ? (int) $result['error_code'] : $code;
+			return array( 'accepted' => false, 'retry' => is_wp_error( $response ) || 429 === $api_code || $api_code >= 500, 'rate_limited' => 429 === $api_code, 'retry_after' => (int) ( $result['parameters']['retry_after'] ?? 15 ), 'error_code' => $api_code, 'error' => 'api_' . $api_code );
+		};
+		$accepted = $send( $use_photo ? 'sendPhoto' : 'sendMessage', $payload );
+		if ( empty( $accepted['accepted'] ) && $use_photo && 400 === (int) ( $accepted['error_code'] ?? 0 ) ) {
+			$parts = self::split_telegram_text( $text, 3900 );
+			$first = array_shift( $parts ) ?? '';
+			$fallback = array( 'chat_id' => $chat_id, 'text' => $first, 'parse_mode' => 'HTML', 'link_preview_options' => array( 'is_disabled' => true ) );
+			$accepted = $send( 'sendMessage', $fallback );
 		}
-		$api_code = is_array( $body ) && is_numeric( $body['error_code'] ?? null ) ? (int) $body['error_code'] : $code;
-		$retry_after = is_array( $body ) ? (int) ( $body['parameters']['retry_after'] ?? 0 ) : 0;
-		$retry = is_wp_error( $response ) || 429 === $api_code || $api_code >= 500;
-		return array( 'accepted' => false, 'retry' => $retry, 'rate_limited' => 429 === $api_code, 'retry_after' => $retry_after ?: 15, 'error_code' => $api_code, 'error' => 'api_' . $api_code );
+		if ( empty( $accepted['accepted'] ) ) { return $accepted; }
+		$message_id = $accepted['message_id'] ?? '';
+		foreach ( $parts as $part ) {
+			$followup = array( 'chat_id' => $chat_id, 'text' => $part, 'link_preview_options' => array( 'is_disabled' => true ) );
+			if ( $html ) { $followup['parse_mode'] = 'HTML'; }
+			$next = $send( 'sendMessage', $followup );
+			if ( empty( $next['accepted'] ) ) { return $next; }
+		}
+		return array( 'accepted' => true, 'message_id' => $message_id );
 	}
 
 	private static function delivery_status( array $delivery, string $status, string $error, int $attempts = 0, string $remote_id = '', int $next = 0 ): void {
@@ -1018,6 +1085,10 @@ final class Telegram_Bot {
 			$week_events = self::schedule_events( $day_end, $week_end, $language );
 		}
 		$calendar = self::calendar_day_data( $date->format( 'Y-m-d' ), $language );
+		if ( is_array( $calendar ) && '' !== ( $calendar['color'] ?? '' ) ) {
+			foreach ( $today_events as &$event ) { if ( in_array( (string) ( $event['vestment_color'] ?? '' ), array( '', 'auto' ), true ) ) { $event['calendar_color'] = $calendar['color']; } }
+			unset( $event );
+		}
 		$sections = array(
 			'<b>' . esc_html( self::copy( $digest ? 'digest' : 'today', $language ) ) . '</b>' . "\n" . '<code>' . esc_html( $date->format( 'd.m.Y' ) ) . '</code>',
 		);
@@ -1026,14 +1097,14 @@ final class Telegram_Bot {
 		}
 		$today_lines = array( '<b>' . esc_html( self::copy( 'services', $language ) ) . '</b>' );
 		if ( $today_events ) {
-			foreach ( array_slice( $today_events, 0, 4 ) as $event ) { $today_lines[] = esc_html( self::event_line( $event, $language, false ) ); }
+			foreach ( $today_events as $event ) { $today_lines[] = self::event_line( $event, $language, false ); }
 		} else {
 			$today_lines[] = esc_html( self::copy( 'no_service_today', $language ) );
 		}
 		$sections[] = implode( "\n", $today_lines );
 		if ( $week_events ) {
 			$week_lines = array( '<b>' . esc_html( self::copy( 'services_week', $language ) ) . '</b>' );
-			foreach ( array_slice( $week_events, 0, 5 ) as $event ) { $week_lines[] = esc_html( self::event_line( $event, $language, true ) ); }
+			foreach ( $week_events as $event ) { $week_lines[] = self::event_line( $event, $language, true ); }
 			$sections[] = implode( "\n", $week_lines );
 		}
 		$memory_lines = array( '━━━━━━━━━━━━━━━━━━', '<b>' . esc_html( self::copy( 'feast', $language ) ) . '</b>' );
@@ -1063,13 +1134,17 @@ final class Telegram_Bot {
 				$day_date = $day ? new \DateTimeImmutable( $day, wp_timezone() ) : null;
 				$label = $day_date ? self::localized_weekday( $day_date, $language ) : self::copy( 'services', $language );
 				$day_lines = array( '<b>' . esc_html( $label ) . '</b>' );
-				foreach ( $day_events as $event ) { $day_lines[] = esc_html( self::event_line( $event, $language, false ) ); }
+				foreach ( $day_events as $event ) { $day_lines[] = self::event_line( $event, $language, false, false ); }
 				$sections[] = implode( "\n", $day_lines );
 			}
 		} else {
 			$sections[] = esc_html( self::copy( 'no_services', $language ) );
 		}
 		$sections[] = '━━━━━━━━━━━━━━━━━━';
+		$places = self::weekly_places( $events, $language );
+		foreach ( $places as $place ) {
+			$sections[] = '📍 <b>' . esc_html( $place['title'] ) . '</b>' . ( $place['address'] ? "\n" . esc_html( $place['address'] ) : '' );
+		}
 		$sections[] = '<a href="' . esc_url( self::schedule_url( $language ) ) . '">' . esc_html( self::copy( 'schedule_link', $language ) ) . '</a>';
 		return implode( "\n\n", $sections );
 	}
@@ -1098,9 +1173,8 @@ final class Telegram_Bot {
 		$result = array(); $icon_url = ''; $icon_title = '';
 		foreach ( $data['day']['events'] as $event ) {
 			if ( ! is_array( $event ) || 'commemoration' !== ( $event['category'] ?? '' ) || ! is_numeric( $event['typeCode'] ?? null ) || (int) $event['typeCode'] < 0 || ! is_string( $event['title'] ?? null ) ) { continue; }
-			$title = sanitize_text_field( is_string( $event['veryShortTitle'] ?? null ) && '' !== trim( $event['veryShortTitle'] ) ? $event['veryShortTitle'] : $event['title'] );
+			$title = sanitize_text_field( $event['title'] );
 			if ( $title && ! in_array( $title, $result, true ) ) { $result[] = $title; }
-			if ( count( $result ) >= 4 ) { break; }
 		}
 		foreach ( $data['day']['icons'] ?? array() as $icon ) {
 			if ( ! is_array( $icon ) ) { continue; }
@@ -1111,15 +1185,92 @@ final class Telegram_Bot {
 				if ( self::valid_calendar_icon_url( $source ) ) { $icon_url = $source; $icon_title = sanitize_text_field( (string) ( $icon['title'] ?? '' ) ); break 2; }
 			}
 		}
-		return array( 'events' => $result, 'icon_url' => $icon_url, 'icon_title' => $icon_title );
+		return array( 'events' => $result, 'icon_url' => $icon_url, 'icon_title' => $icon_title, 'color' => self::mapped_calendar_color( $data['day'] ) );
 	}
 
-	private static function event_line( array $event, string $language, bool $with_date ): string {
+	private static function event_line( array $event, string $language, bool $with_date, bool $with_location = true ): string {
 		$start = $event['start'] ?? null;
 		$when = $start instanceof \DateTimeInterface ? ( $with_date ? $start->format( 'd.m' ) . ' ' : '' ) . $start->format( 'H:i' ) : '';
-		$location = get_the_title( (int) ( $event['location_id'] ?? 0 ) );
 		$title = sanitize_text_field( (string) ( $event['title'] ?? '' ) );
-		return '• ' . ( $when ? $when . ' — ' : '' ) . $title . ( $location ? ' · ' . sanitize_text_field( $location ) : '' );
+		$line = self::vestment_marker( $event, $language ) . ' ┃ ' . ( $when ? '<b>' . esc_html( $when ) . '</b> — ' : '' ) . esc_html( $title );
+		$location_id = absint( $event['location_id'] ?? 0 );
+		if ( $with_location && $location_id ) { $line .= ' · ' . esc_html( self::service_place_title( $location_id, $language ) ); }
+		return $line;
+	}
+
+	private static function vestment_marker( array $event, string $language ): string {
+		$color = sanitize_key( (string) ( $event['vestment_color'] ?? '' ) );
+		if ( 'violet' === $color ) { $color = 'purple'; }
+		if ( ! in_array( $color, array( 'white', 'red', 'gold', 'green', 'blue', 'purple', 'black' ), true ) ) { $color = sanitize_key( (string) ( $event['calendar_color'] ?? '' ) ); }
+		if ( 'violet' === $color ) { $color = 'purple'; }
+		$start = $event['start'] ?? null;
+		if ( ! in_array( $color, array( 'white', 'red', 'gold', 'green', 'blue', 'purple', 'black' ), true ) && $start instanceof \DateTimeInterface ) { $color = self::calendar_recommended_color( $start->format( 'Y-m-d' ), $language ); }
+		$markers = array( 'white' => '⬜', 'red' => '🟥', 'gold' => '🟨', 'green' => '🟩', 'blue' => '🟦', 'purple' => '🟪', 'black' => '⬛' );
+		return $markers[$color] ?? '▫️';
+	}
+
+	private static function mapped_calendar_color( array $day ): string {
+		$class = '\\GeorgKlosterPrihodSchedule\\Calendar_Colors';
+		if ( class_exists( $class ) && method_exists( $class, 'day' ) ) {
+			try { $result = $class::day( $day ); if ( is_array( $result ) && in_array( $result['color'] ?? '', array( 'white', 'red', 'gold', 'green', 'blue', 'purple', 'black' ), true ) ) { return (string) $result['color']; } }
+			catch ( \Throwable $error ) {}
+		}
+		$raw = is_array( $day['vestment'] ?? null ) ? sanitize_key( (string) ( $day['vestment']['color'] ?? '' ) ) : '';
+		$map = array( 'gold' => 'gold', 'white' => 'white', 'blue' => 'blue', 'red' => 'red', 'green' => 'green', 'violet' => 'purple', 'purple' => 'purple', 'black' => 'black' );
+		return $map[$raw] ?? '';
+	}
+
+	private static function calendar_recommended_color( string $date, string $language ): string {
+		static $cache = array();
+		if ( ! preg_match( '/^(\d{4})-(\d{2})-\d{2}$/D', $date, $match ) ) { return ''; }
+		$key = $language . ':' . $match[1] . '-' . $match[2];
+		if ( ! array_key_exists( $key, $cache ) ) {
+			$cache[$key] = array();
+			$class = '\\GeorgKlosterPrihodSchedule\\Calendar_Provider';
+			if ( class_exists( $class ) ) {
+				try {
+					$data = $class::request( 'month', array( 'year' => (int) $match[1], 'month' => (int) $match[2], 'lang' => $language ) );
+					if ( ! is_wp_error( $data ) && is_array( $data['days'] ?? null ) ) {
+						foreach ( $data['days'] as $day ) { if ( is_array( $day ) && is_string( $day['date'] ?? null ) ) { $color = self::mapped_calendar_color( $day ); if ( '' !== $color ) { $cache[$key][$day['date']] = $color; } } }
+					}
+				} catch ( \Throwable $error ) {}
+			}
+		}
+		return (string) ( $cache[$key][$date] ?? '' );
+	}
+
+	private static function service_place_title( int $place_id, string $language ): string {
+		$class = '\\GeorgKlosterPrihodSchedule\\Directory';
+		$old = self::switch_language( $language );
+		try { $title = class_exists( $class ) && method_exists( $class, 'title' ) ? $class::title( $place_id ) : get_the_title( $place_id ); return sanitize_text_field( (string) $title ); }
+		finally { self::restore_language( $old ); }
+	}
+
+	private static function weekly_places( array $events, string $language ): array {
+		$old = self::switch_language( $language );
+		try {
+			$profile = array();
+			$class = '\\GeorgKlosterPrihodCore\\Profile';
+			if ( class_exists( $class ) && method_exists( $class, 'get' ) ) { $profile = $class::get(); }
+			else { $profile = get_option( 'gkpc_profile', array() ); $profile = is_array( $profile ) ? $profile : array(); }
+			$profile_name = sanitize_text_field( (string) ( $profile['name'] ?? '' ) );
+			if ( '' === $profile_name ) { $profile_name = sanitize_text_field( (string) ( $profile['short_name'] ?? '' ) ); }
+			$profile_address = sanitize_textarea_field( (string) ( $profile['address'] ?? '' ) );
+			$places = array();
+			foreach ( $events as $event ) {
+				$id = absint( $event['location_id'] ?? 0 );
+				if ( ! $id || isset( $places[$id] ) ) { continue; }
+				$title = self::service_place_title( $id, $language );
+				$details_class = '\\GeorgKlosterPrihodCore\\Directory';
+				$details = class_exists( $details_class ) && method_exists( $details_class, 'details' ) ? $details_class::details( $id ) : get_post_meta( $id, '_gkpc_details', true );
+				if ( ! is_array( $details ) ) { $details = get_post_meta( $id, '_gkpsch_details', true ); }
+				$details = is_array( $details ) ? $details : array();
+				$address = sanitize_textarea_field( (string) ( $details['address'] ?? '' ) );
+				$places[$id] = array( 'title' => $title ?: $profile_name, 'address' => $address ?: $profile_address );
+			}
+			if ( ! $places && ( $profile_name || $profile_address ) ) { $places[] = array( 'title' => $profile_name, 'address' => $profile_address ); }
+			return array_values( array_filter( $places, static fn( $place ) => '' !== $place['title'] || '' !== $place['address'] ) );
+		} finally { self::restore_language( $old ); }
 	}
 
 	private static function switch_language( string $language ) {
