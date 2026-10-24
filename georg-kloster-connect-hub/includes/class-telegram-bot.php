@@ -38,7 +38,7 @@ final class Telegram_Bot {
 	}
 
 	public static function install(): void {
-		if ( self::SCHEMA_OPTION === get_option( self::SCHEMA_OPTION ) ) { return; }
+		if ( '2' === get_option( self::SCHEMA_OPTION ) ) { return; }
 		global $wpdb;
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 		$tables = self::tables();
@@ -46,7 +46,7 @@ final class Telegram_Bot {
 		dbDelta( "CREATE TABLE {$tables['subscribers']} (
 			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 			chat_id varchar(32) NOT NULL,
-			language varchar(2) NOT NULL DEFAULT 'ru',
+			language varchar(35) NOT NULL DEFAULT '',
 			status varchar(16) NOT NULL DEFAULT 'active',
 			created_at datetime NOT NULL,
 			updated_at datetime NOT NULL,
@@ -80,7 +80,7 @@ final class Telegram_Bot {
 			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 			campaign_id bigint(20) unsigned NOT NULL,
 			subscriber_id bigint(20) unsigned NOT NULL,
-			language varchar(2) NOT NULL,
+			language varchar(35) NOT NULL,
 			status varchar(20) NOT NULL DEFAULT 'pending',
 			attempts tinyint(3) unsigned NOT NULL DEFAULT 0,
 			next_attempt datetime NOT NULL,
@@ -90,7 +90,7 @@ final class Telegram_Bot {
 			UNIQUE KEY campaign_subscriber (campaign_id,subscriber_id),
 			KEY due (campaign_id,status,next_attempt)
 		) $charset;" );
-		update_option( self::SCHEMA_OPTION, '1', false );
+		update_option( self::SCHEMA_OPTION, '2', false );
 	}
 
 	public static function broadcasting_enabled(): bool {
@@ -175,17 +175,14 @@ final class Telegram_Bot {
 		if ( 'start' === $action ) {
 			if ( ! self::broadcasting_enabled() ) { self::send_direct( $chat_id, self::copy( 'disabled', $language ) ); return true; }
 			self::subscribe( $chat_id, $language );
-			self::send_direct( $chat_id, self::system_response( 'start', $language ), array( 'inline_keyboard' => array( array( array( 'text' => self::copy( 'russian', $language ), 'callback_data' => 'lang:ru' ), array( 'text' => self::copy( 'german', $language ), 'callback_data' => 'lang:de' ) ) ) ) );
+			self::send_system_reply( $chat_id, self::system_command( 'start' ) ?? array( 'command' => 'start', 'action' => 'start' ), $language, self::language_keyboard( $language ) );
 			return true;
 		}
-		if ( 'stop' === $action ) { $language = self::subscriber_language( $chat_id, $language ); self::unsubscribe( $chat_id ); self::send_direct( $chat_id, self::system_response( 'stop', $language ) ); return true; }
+		if ( 'stop' === $action ) { $language = self::subscriber_language( $chat_id, $language ); self::unsubscribe( $chat_id ); self::send_system_reply( $chat_id, self::system_command( 'stop' ) ?? array( 'command' => 'stop', 'action' => 'stop' ), $language ); return true; }
 		if ( ! self::is_active( $chat_id ) ) { self::send_direct( $chat_id, self::copy( 'need_start', $language ) ); return true; }
 		$language = self::subscriber_language( $chat_id, $language );
-		if ( $custom_command ) { self::send_direct( $chat_id, $custom_command['response_' . $language] ); return true; }
-		if ( in_array( $action, array( 'today', 'week' ), true ) ) { self::queue_command( $chat_id, $language, $action, $update_id, self::system_response( $action, $language, false ) ); }
-		elseif ( 'lang' === $action ) { self::send_direct( $chat_id, self::system_response( 'lang', $language ), self::language_keyboard( $language ) ); }
-		elseif ( 'menu' === $action ) { self::send_direct( $chat_id, self::system_response( 'menu', $language ), self::menu_keyboard( $language ) ); }
-		elseif ( 'help' === $action ) { self::send_direct( $chat_id, self::help_message( $language ) ); }
+		if ( $custom_command ) { self::send_configured_reply( $chat_id, $custom_command, $language ); return true; }
+		if ( $system_command ) { self::run_system_command( $chat_id, $language, $system_command, $update_id ); }
 		return true;
 	}
 
@@ -195,7 +192,7 @@ final class Telegram_Bot {
 	}
 
 	public static function command_worker( string $chat_id, string $language, string $command, int $update_id, string $prefix = '' ): void {
-		if ( ! preg_match( '/^[1-9][0-9]{0,19}$/D', $chat_id ) || ! in_array( $language, array( 'ru', 'de' ), true ) || ! in_array( $command, array( 'today', 'week' ), true ) || ! self::is_active( $chat_id ) ) { return; }
+		if ( ! preg_match( '/^[1-9][0-9]{0,19}$/D', $chat_id ) || ! self::valid_language_code( $language ) || ! in_array( $command, array( 'today', 'week' ), true ) || ! self::is_active( $chat_id ) ) { return; }
 		$date = new \DateTimeImmutable( 'today', wp_timezone() );
 		$schedule = 'today' === $command ? self::day_message( $date, $language ) : self::week_message( $date, $language );
 		$template = '' === trim( $prefix ) ? '{schedule}' : $prefix;
@@ -205,14 +202,14 @@ final class Telegram_Bot {
 
 	private static function handle_callback( array $callback, int $update_id = 0 ): bool {
 		$data = $callback['data'] ?? '';
-		if ( ! is_string( $data ) || ! preg_match( '/^(?:lang:(ru|de)|botcmd:[a-z][a-z0-9_]{0,31}|reply:[a-f0-9]{16})$/D', $data ) ) { return false; }
+		if ( ! is_string( $data ) || ! preg_match( '/^(?:lang:[a-z][a-z0-9_-]{1,30}|botcmd:[a-z][a-z0-9_]{0,31}|reply:[a-f0-9]{16})$/D', $data ) ) { return false; }
 		$message = $callback['message'] ?? array();
 		$chat = $message['chat']['id'] ?? null;
 		$from = $callback['from']['id'] ?? null;
 		if ( 'private' === ( $message['chat']['type'] ?? '' ) && is_scalar( $chat ) && (string) $chat === (string) $from && preg_match( '/^[1-9][0-9]{0,19}$/D', (string) $chat ) && self::is_active( (string) $chat ) ) {
 			$chat_id = (string) $chat;
 			$language = self::subscriber_language( $chat_id, self::language_from_telegram( $callback['from']['language_code'] ?? '' ) );
-			if ( preg_match( '/^lang:(ru|de)$/D', $data, $match ) ) {
+            if ( preg_match( '/^lang:([a-z][a-z0-9_-]{1,30})$/D', $data, $match ) && isset( self::active_languages()[$match[1]] ) ) {
 				$language = $match[1];
 				self::update_language( $chat_id, $language );
 				self::send_direct( $chat_id, self::copy( 'language_saved', $language ), self::menu_keyboard( $language ) );
@@ -220,20 +217,65 @@ final class Telegram_Bot {
 				$system = self::system_command( $match[1] );
 				$custom = self::custom_command( $match[1] );
 				if ( $system ) { self::run_system_command( $chat_id, $language, $system, $update_id ); }
-				elseif ( $custom ) { self::send_direct( $chat_id, $custom['response_' . $language] ); }
+				elseif ( $custom ) { self::send_configured_reply( $chat_id, $custom, $language ); }
 			} elseif ( preg_match( '/^reply:([a-f0-9]{16})$/D', $data, $match ) && ( $responder = self::keyword_responder_by_id( $match[1] ) ) ) {
-				self::send_direct( $chat_id, $responder['response_' . $language] );
+				self::send_configured_reply( $chat_id, $responder, $language );
 			}
 		}
 		if ( is_string( $callback['id'] ?? null ) ) { self::api( 'answerCallbackQuery', array( 'callback_query_id' => $callback['id'] ) ); }
 		return true;
 	}
 
-	public static function language_from_telegram( $language ): string { return is_string( $language ) && 0 === strpos( strtolower( $language ), 'de' ) ? 'de' : 'ru'; }
+	public static function language_from_telegram( $language ): string {
+		$code = is_string( $language ) ? strtolower( str_replace( '_', '-', trim( $language ) ) ) : '';
+		$languages = self::active_languages();
+		if ( isset( $languages[$code] ) ) { return $code; }
+		$base = explode( '-', $code )[0] ?? '';
+		if ( isset( $languages[$base] ) ) { return $base; }
+		foreach ( array_keys( $languages ) as $active_code ) { if ( str_starts_with( $active_code, $base . '-' ) ) { return $active_code; } }
+		if ( ! function_exists( 'icl_get_languages' ) && ! has_filter( 'wpml_active_languages' ) && preg_match( '/^[a-z]{2}$/D', $base ) ) { return $base; }
+		return self::default_language_code();
+	}
+
+	private static function valid_language_code( string $language ): bool { return (bool) preg_match( '/^[a-z][a-z0-9_-]{1,30}$/D', $language ); }
+
+	private static function active_languages(): array {
+		$languages = array();
+		$raw = function_exists( 'icl_get_languages' ) ? icl_get_languages( 'skip_missing=0' ) : apply_filters( 'wpml_active_languages', null, 'skip_missing=0' );
+		if ( is_array( $raw ) ) {
+			foreach ( $raw as $code => $details ) {
+				$code = strtolower( sanitize_key( (string) $code ) );
+				if ( ! self::valid_language_code( $code ) ) { continue; }
+				$details = is_array( $details ) ? $details : array();
+				$languages[$code] = array( 'name' => sanitize_text_field( (string) ( $details['native_name'] ?? $details['translated_name'] ?? $details['display_name'] ?? $code ) ), 'locale' => sanitize_text_field( (string) ( $details['default_locale'] ?? $details['locale'] ?? '' ) ) );
+			}
+		}
+		if ( ! $languages ) {
+			$locale = determine_locale();
+			$code = strtolower( substr( str_replace( '-', '_', $locale ), 0, 2 ) );
+			if ( self::valid_language_code( $code ) ) { $languages[$code] = array( 'name' => $code, 'locale' => $locale ); }
+		}
+		return $languages;
+	}
+
+	public static function menu_languages(): array { return self::active_languages(); }
+
+	private static function default_language_code(): string {
+		$default = has_filter( 'wpml_default_language' ) ? apply_filters( 'wpml_default_language', null ) : '';
+		$default = is_string( $default ) ? strtolower( sanitize_key( $default ) ) : '';
+		$languages = self::active_languages();
+		if ( self::valid_language_code( $default ) && isset( $languages[$default] ) ) { return $default; }
+		return $languages ? (string) array_key_first( $languages ) : 'en';
+	}
+
+	private static function language_locale( string $language ): string {
+		$info = self::active_languages()[$language] ?? array();
+		if ( is_string( $info['locale'] ?? null ) && '' !== $info['locale'] ) { return $info['locale']; }
+		return $language . '_' . strtoupper( $language );
+	}
 
 	private static function copy( string $key, string $language ): string {
-		$locale = 'de' === $language ? 'de_DE' : 'ru_RU';
-		$switched = switch_to_locale( $locale );
+		$switched = switch_to_locale( self::language_locale( $language ) );
 		$messages = array(
 			'disabled' => __( 'The Telegram subscription service is currently disabled. Please try again later.', 'georg-kloster-connect-hub' ),
 			'welcome' => __( 'You are subscribed to monastery news and announcements. New posts and schedule updates will appear here. Use /menu to open bot commands; press /stop to unsubscribe.', 'georg-kloster-connect-hub' ),
@@ -255,6 +297,7 @@ final class Telegram_Bot {
 			'schedule_link' => __( 'Full schedule', 'georg-kloster-connect-hub' ),
 			'digest' => __( 'Services and commemorations of the day', 'georg-kloster-connect-hub' ),
 			'changed' => __( 'The service schedule has changed', 'georg-kloster-connect-hub' ),
+			'post_unavailable' => __( 'This page or news item is no longer available.', 'georg-kloster-connect-hub' ),
 		);
 		$message = $messages[$key] ?? '';
 		if ( $switched ) { restore_previous_locale(); }
@@ -263,33 +306,30 @@ final class Telegram_Bot {
 
 	private static function system_command_defaults(): array {
 		$defaults = array();
-		foreach ( array( 'ru' => 'ru_RU', 'de' => 'de_DE', 'en' => 'en_US' ) as $language => $locale ) {
-			$switched = switch_to_locale( $locale );
+		$commands = array( 'start', 'stop', 'today', 'week', 'lang', 'help', 'menu' );
+		foreach ( self::active_languages() as $language => $details ) {
+			$switched = switch_to_locale( self::language_locale( $language ) );
 			$descriptions = array(
-				'start' => __( 'Subscribe to monastery news', 'georg-kloster-connect-hub' ),
-				'stop' => __( 'Unsubscribe from messages', 'georg-kloster-connect-hub' ),
-				'today' => __( 'Today’s services and commemorations', 'georg-kloster-connect-hub' ),
-				'week' => __( 'Services this week', 'georg-kloster-connect-hub' ),
-				'lang' => __( 'Choose message language', 'georg-kloster-connect-hub' ),
-				'help' => __( 'Show bot commands', 'georg-kloster-connect-hub' ),
-				'menu' => __( 'Open the bot menu', 'georg-kloster-connect-hub' ),
+				'start' => __( 'Subscribe to monastery news', 'georg-kloster-connect-hub' ), 'stop' => __( 'Unsubscribe from messages', 'georg-kloster-connect-hub' ),
+				'today' => __( 'Today’s services and commemorations', 'georg-kloster-connect-hub' ), 'week' => __( 'Services this week', 'georg-kloster-connect-hub' ),
+				'lang' => __( 'Choose message language', 'georg-kloster-connect-hub' ), 'help' => __( 'Show bot commands', 'georg-kloster-connect-hub' ), 'menu' => __( 'Open the bot menu', 'georg-kloster-connect-hub' ),
 			);
 			if ( $switched ) { restore_previous_locale(); }
 			foreach ( $descriptions as $key => $description ) { $defaults[$key]['description_' . $language] = $description; }
-			if ( 'en' !== $language ) {
-				$defaults['start']['response_' . $language] = self::copy( 'welcome', $language );
-				$defaults['stop']['response_' . $language] = self::copy( 'stopped', $language );
-				$defaults['today']['response_' . $language] = '{schedule}';
-				$defaults['week']['response_' . $language] = '{schedule}';
-				$defaults['lang']['response_' . $language] = self::copy( 'choose_language', $language );
-				$defaults['help']['response_' . $language] = self::copy( 'help', $language );
-				$defaults['menu']['response_' . $language] = self::copy( 'menu_intro', $language );
-			}
+			$defaults['start']['response_' . $language] = self::copy( 'welcome', $language );
+			$defaults['stop']['response_' . $language] = self::copy( 'stopped', $language );
+			$defaults['today']['response_' . $language] = '{schedule}';
+			$defaults['week']['response_' . $language] = '{schedule}';
+			$defaults['lang']['response_' . $language] = self::copy( 'choose_language', $language );
+			$defaults['help']['response_' . $language] = self::copy( 'help', $language );
+			$defaults['menu']['response_' . $language] = self::copy( 'menu_intro', $language );
 		}
-		foreach ( array( 'start', 'stop', 'today', 'week', 'lang', 'help', 'menu' ) as $key ) {
+		foreach ( $commands as $key ) {
 			$defaults[$key]['command'] = $key;
 			$defaults[$key]['action'] = $key;
 			$defaults[$key]['enabled'] = true;
+			$defaults[$key]['reply_type'] = in_array( $key, array( 'today', 'week' ), true ) ? 'schedule' : 'text';
+			$defaults[$key]['schedule_period'] = in_array( $key, array( 'week' ), true ) ? 'week' : 'today';
 		}
 		return $defaults;
 	}
@@ -301,12 +341,15 @@ final class Telegram_Bot {
 		foreach ( $commands as $key => $default ) {
 			if ( ! is_array( $saved[$key] ?? null ) ) { continue; }
 			$row = $saved[$key];
-			foreach ( array( 'description_ru', 'description_de' ) as $field ) {
-				if ( is_scalar( $row[$field] ?? null ) ) { $commands[$key][$field] = self::limit_text( sanitize_text_field( (string) $row[$field] ), 256 ); }
+			foreach ( $row as $field => $value ) {
+				if ( ! is_scalar( $value ) ) { continue; }
+				if ( preg_match( '/^(description|response)_(.+)$/', (string) $field, $match ) && self::valid_language_code( $match[2] ) ) {
+					$commands[$key][$field] = 'description' === $match[1] ? self::limit_text( sanitize_text_field( (string) $value ), 256 ) : self::sanitize_reply( (string) $value );
+				} elseif ( in_array( $field, array( 'reply_type', 'schedule_period' ), true ) ) { $commands[$key][$field] = sanitize_key( (string) $value ); }
+				elseif ( 'reply_post_id' === $field ) { $commands[$key][$field] = absint( $value ); }
 			}
-			foreach ( array( 'response_ru', 'response_de' ) as $field ) {
-				if ( is_scalar( $row[$field] ?? null ) ) { $commands[$key][$field] = self::limit_text( sanitize_textarea_field( (string) $row[$field] ) ); }
-			}
+			if ( ! in_array( $commands[$key]['reply_type'] ?? '', array( 'text', 'html', 'schedule', 'page', 'news' ), true ) ) { $commands[$key]['reply_type'] = $default['reply_type'] ?? 'text'; }
+			if ( ! in_array( $commands[$key]['schedule_period'] ?? '', array( 'today', 'week' ), true ) ) { $commands[$key]['schedule_period'] = $default['schedule_period'] ?? 'today'; }
 			$commands[$key]['enabled'] = in_array( $key, array( 'start', 'stop' ), true ) || ! empty( $row['enabled'] );
 		}
 		return $commands;
@@ -325,11 +368,63 @@ final class Telegram_Bot {
 		return '' !== $response || ! $fallback ? $response : self::copy( $fallback_keys[$key] ?? $key, $language );
 	}
 
+	private static function configured_response( array $command, string $language ): string {
+		$response = trim( (string) ( $command['response_' . $language] ?? '' ) );
+		if ( '' === $response && $language !== self::default_language_code() ) { $response = trim( (string) ( $command['response_' . self::default_language_code()] ?? '' ) ); }
+		return $response;
+	}
+
+	private static function send_system_reply( string $chat_id, array $command, string $language, array $markup = array() ): void {
+		self::send_configured_reply( $chat_id, $command, $language, $markup );
+	}
+
+	private static function send_configured_reply( string $chat_id, array $command, string $language, array $markup = array() ): void {
+		$type = in_array( $command['reply_type'] ?? 'text', array( 'text', 'html', 'schedule', 'page', 'news' ), true ) ? (string) $command['reply_type'] : 'text';
+		$response = self::configured_response( $command, $language );
+		if ( in_array( $type, array( 'page', 'news' ), true ) ) {
+			$post_id = absint( $command['reply_post_id'] ?? 0 );
+			$translated = $post_id ? self::translated_post_id( $post_id, $language ) : 0;
+			$source_language = $post_id ? self::post_language( $post_id ) : '';
+			$post = get_post( $translated ?: ( $language === $source_language ? $post_id : 0 ) );
+			$expected_type = 'page' === $type ? 'page' : 'post';
+			if ( $post && 'publish' === $post->post_status && $expected_type === $post->post_type ) {
+				$link = get_permalink( $post );
+				if ( 'page' === $type ) {
+					$old = self::switch_language( $language );
+					try { $content = apply_filters( 'the_content', $post->post_content ); }
+					finally { self::restore_language( $old ); }
+					$content = preg_replace( '/<h([1-6])\b[^>]*>(.*?)<\/h\1>/is', '<b>$2</b><br>', $content );
+					$text = '<b>' . esc_html( $post->post_title ) . "</b>\n\n" . $content . "\n\n" . esc_html( $link );
+					self::send_direct( $chat_id, $text, $markup, true );
+				} else {
+					$excerpt = $post->post_excerpt ? $post->post_excerpt : $post->post_content;
+					$text = trim( $post->post_title . "\n" . wp_html_excerpt( wp_strip_all_tags( strip_shortcodes( $excerpt ) ), 700, '…' ) . "\n" . $link );
+					self::send_direct( $chat_id, $text, $markup );
+				}
+			} else { self::send_direct( $chat_id, self::copy( 'post_unavailable', $language ), $markup ); }
+			return;
+		}
+		if ( 'schedule' === $type ) {
+			$period = 'week' === ( $command['schedule_period'] ?? '' ) ? 'week' : 'today';
+			$date = new \DateTimeImmutable( 'today', wp_timezone() );
+			$schedule = 'week' === $period ? self::week_message( $date, $language ) : self::day_message( $date, $language );
+			if ( '' === $response ) { $response = '{schedule}'; }
+			if ( str_contains( $response, '{schedule}' ) ) { $text = str_replace( '{schedule}', $schedule, $response ); }
+			else { $text = $response . "\n\n" . $schedule; }
+			self::send_direct( $chat_id, $text, $markup, 'html' === ( $command['reply_type'] ?? '' ) );
+			return;
+		}
+		if ( '' === $response && isset( $command['action'] ) ) {
+			$fallbacks = array( 'start' => 'welcome', 'stop' => 'stopped', 'lang' => 'choose_language', 'help' => 'help', 'menu' => 'menu_intro' );
+			$response = self::copy( $fallbacks[$command['action']] ?? $command['action'], $language );
+		}
+		self::send_direct( $chat_id, $response, $markup, 'html' === $type );
+	}
+
 	private static function language_keyboard( string $language ): array {
-		return array( 'inline_keyboard' => array( array(
-			array( 'text' => self::copy( 'russian', $language ), 'callback_data' => 'lang:ru' ),
-			array( 'text' => self::copy( 'german', $language ), 'callback_data' => 'lang:de' ),
-		) ) );
+		$buttons = array();
+		foreach ( self::active_languages() as $code => $details ) { $buttons[] = array( 'text' => self::limit_text( $details['name'], 60 ), 'callback_data' => 'lang:' . $code ); }
+		return array( 'inline_keyboard' => array_chunk( $buttons ?: array( array( 'text' => $language, 'callback_data' => 'lang:' . $language ) ), 2 ) );
 	}
 
 	private static function menu_keyboard( string $language ): array {
@@ -340,7 +435,7 @@ final class Telegram_Bot {
 		}
 		foreach ( self::custom_commands() as $command ) {
 			if ( 'command' === $command['type'] ) { $buttons[] = array( 'text' => '/' . $command['command'], 'callback_data' => 'botcmd:' . $command['command'] ); }
-			else { $buttons[] = array( 'text' => self::limit_text( $command['trigger_' . $language], 60 ), 'callback_data' => 'reply:' . self::responder_id( $command ) ); }
+			else { $trigger = (string) ( $command['trigger_' . $language] ?? '' ); if ( '' !== $trigger ) { $buttons[] = array( 'text' => self::limit_text( $trigger, 60 ), 'callback_data' => 'reply:' . self::responder_id( $command ) ); } }
 		}
 		$rows = array();
 		foreach ( array_chunk( $buttons, 2 ) as $row ) { $rows[] = $row; }
@@ -353,8 +448,9 @@ final class Telegram_Bot {
 		foreach ( self::command_descriptions( $language ) as $command ) { $lines[] = '/' . $command['command'] . ' — ' . $command['description']; }
 		foreach ( self::custom_commands() as $responder ) {
 			if ( 'text' === $responder['type'] ) {
-				$description = trim( $responder['description_' . $language] );
-				$lines[] = $responder['trigger_' . $language] . ( $description ? ' — ' . $description : '' );
+				$trigger = trim( (string) ( $responder['trigger_' . $language] ?? '' ) );
+				$description = trim( (string) ( $responder['description_' . $language] ?? '' ) );
+				if ( '' !== $trigger ) { $lines[] = $trigger . ( $description ? ' — ' . $description : '' ); }
 			}
 		}
 		$intro = self::system_response( 'help', $language );
@@ -363,10 +459,13 @@ final class Telegram_Bot {
 
 	private static function run_system_command( string $chat_id, string $language, array $command, int $update_id ): void {
 		$action = $command['action'];
-		if ( in_array( $action, array( 'today', 'week' ), true ) ) { self::queue_command( $chat_id, $language, $action, $update_id, self::system_response( $action, $language, false ) ); }
-		elseif ( 'lang' === $action ) { self::send_direct( $chat_id, self::system_response( 'lang', $language ), self::language_keyboard( $language ) ); }
-		elseif ( 'menu' === $action ) { self::send_direct( $chat_id, self::system_response( 'menu', $language ), self::menu_keyboard( $language ) ); }
-		elseif ( 'help' === $action ) { self::send_direct( $chat_id, self::help_message( $language ) ); }
+		$markup = 'lang' === $action ? self::language_keyboard( $language ) : ( 'menu' === $action ? self::menu_keyboard( $language ) : array() );
+		if ( in_array( $action, array( 'today', 'week' ), true ) && 'schedule' === ( $command['reply_type'] ?? 'schedule' ) ) {
+			$template = self::configured_response( $command, $language );
+			if ( '' === $template ) { $template = '{schedule}'; }
+			elseif ( ! str_contains( $template, '{schedule}' ) ) { $template .= "\n\n{schedule}"; }
+			self::queue_command( $chat_id, $language, $action, $update_id, $template );
+		} else { self::send_configured_reply( $chat_id, $command, $language, $markup ); }
 	}
 
 	public static function command_descriptions( string $language ): array {
@@ -374,18 +473,13 @@ final class Telegram_Bot {
 		foreach ( self::system_commands() as $command ) {
 			if ( ! $command['enabled'] ) { continue; }
 			$description = trim( (string) ( $command['description_' . $language] ?? '' ) );
-			if ( 'en' === $language && '' === $description ) {
-				$en = self::system_command_defaults();
-				$description = (string) ( $en[$command['command']]['description_en'] ?? '' );
-			}
+			if ( '' === $description ) { $description = trim( (string) ( $command['description_' . self::default_language_code()] ?? '' ) ); }
 			if ( '' !== $description ) { $commands[] = array( 'command' => $command['command'], 'description' => $description ); }
 		}
-		if ( in_array( $language, array( 'ru', 'de' ), true ) ) {
-			foreach ( self::custom_commands() as $custom ) {
-				if ( 'command' !== $custom['type'] ) { continue; }
-				$description = trim( (string) ( $custom['description_' . $language] ?? '' ) );
-				if ( '' !== $description ) { $commands[] = array( 'command' => $custom['command'], 'description' => $description ); }
-			}
+		foreach ( self::custom_commands() as $custom ) {
+			if ( 'command' !== $custom['type'] ) { continue; }
+			$description = trim( (string) ( $custom['description_' . $language] ?? '' ) );
+			if ( '' !== $description ) { $commands[] = array( 'command' => $custom['command'], 'description' => $description ); }
 		}
 		return $commands;
 	}
@@ -405,7 +499,15 @@ final class Telegram_Bot {
 		$normalized = self::normalize_trigger( $text );
 		foreach ( self::custom_commands() as $command ) {
 			if ( 'text' !== $command['type'] ) { continue; }
-			if ( $normalized === self::normalize_trigger( $command['trigger_ru'] ) || $normalized === self::normalize_trigger( $command['trigger_de'] ) ) { return $command; }
+			foreach ( self::active_languages() as $language => $details ) {
+				$trigger = trim( (string) ( $command['trigger_' . $language] ?? '' ) );
+				if ( '' !== $trigger && $normalized === self::normalize_trigger( $trigger ) ) { return $command; }
+			}
+			// Preserve phrases saved before the language selector became WPML-driven.
+			foreach ( array( 'ru', 'de' ) as $legacy_language ) {
+				$trigger = trim( (string) ( $command['trigger_' . $legacy_language] ?? '' ) );
+				if ( '' !== $trigger && $normalized === self::normalize_trigger( $trigger ) ) { return $command; }
+			}
 		}
 		return null;
 	}
@@ -417,7 +519,7 @@ final class Telegram_Bot {
 		return null;
 	}
 
-	private static function responder_id( array $command ): string { return substr( md5( self::normalize_trigger( $command['trigger_ru'] ) . '|' . self::normalize_trigger( $command['trigger_de'] ) ), 0, 16 ); }
+	private static function responder_id( array $command ): string { return substr( md5( serialize( $command ) ), 0, 16 ); }
 
 	private static function normalize_trigger( string $text ): string {
 		$text = trim( preg_replace( '/\s+/u', ' ', $text ) ?? $text );
@@ -452,7 +554,7 @@ final class Telegram_Bot {
 	private static function subscriber_language( string $chat_id, string $fallback ): string {
 		global $wpdb;
 		$lang = $wpdb->get_var( $wpdb->prepare( 'SELECT language FROM ' . self::tables()['subscribers'] . " WHERE chat_id=%s AND status='active'", $chat_id ) );
-		return in_array( $lang, array( 'ru', 'de' ), true ) ? $lang : $fallback;
+		return is_string( $lang ) && self::valid_language_code( $lang ) ? $lang : $fallback;
 	}
 
 	private static function update_language( string $chat_id, string $language ): void {
@@ -460,12 +562,34 @@ final class Telegram_Bot {
 		$wpdb->update( self::tables()['subscribers'], array( 'language' => $language, 'updated_at' => gmdate( 'Y-m-d H:i:s' ) ), array( 'chat_id' => $chat_id ), array( '%s', '%s' ), array( '%s' ) );
 	}
 
-	private static function send_direct( string $chat_id, string $text, array $markup = array() ): bool {
+	private static function send_direct( string $chat_id, string $text, array $markup = array(), bool $html = false ): bool {
 		if ( '' === trim( $text ) ) { return false; }
+		$text = $html ? self::telegram_html( $text ) : wp_strip_all_tags( $text );
 		$body = array( 'chat_id' => $chat_id, 'text' => self::limit_text( $text ), 'link_preview_options' => array( 'is_disabled' => true ) );
+		if ( $html ) { $body['parse_mode'] = 'HTML'; }
 		if ( $markup ) { $body['reply_markup'] = $markup; }
 		$result = self::api( 'sendMessage', $body );
 		return ! is_wp_error( $result );
+	}
+
+	private static function sanitize_reply( string $text ): string {
+		$text = preg_replace( '/<\/?p\b[^>]*>/i', "\n", $text ) ?? $text;
+		$text = preg_replace( '/<br\s*\/?\s*>/i', "\n", $text ) ?? $text;
+		$text = preg_replace( '/<li\b[^>]*>/i', '• ', $text ) ?? $text;
+		$text = preg_replace( '/<\/(?:ul|ol|li)>/i', "\n", $text ) ?? $text;
+		$allowed = array(
+			'b' => array(), 'strong' => array(), 'i' => array(), 'em' => array(), 'u' => array(), 'ins' => array(),
+			's' => array(), 'strike' => array(), 'del' => array(), 'code' => array(), 'pre' => array(),
+			'a' => array( 'href' => true ), 'blockquote' => array( 'expandable' => true ),
+		);
+		$text = wp_kses( $text, $allowed );
+		return self::limit_text( preg_replace( '/\n{3,}/', "\n\n", $text ) ?? $text );
+	}
+
+	private static function telegram_html( string $text ): string {
+		$text = self::sanitize_reply( $text );
+		$text = preg_replace( '/\n{3,}/', "\n\n", $text ) ?? $text;
+		return trim( $text );
 	}
 
 	private static function api( string $method, array $body ) {
@@ -499,61 +623,67 @@ final class Telegram_Bot {
 		if ( 'schedule' === $kind && 'publish' !== get_post_status( $source_id ) ) { return ''; }
 		$messages = self::campaign_messages( $kind, $source_id, $context, $text, $url );
 		if ( ! $messages ) { return ''; }
-		return self::create_campaign( $kind, $source_id, $context, $messages['title'], $messages['ru'], $messages['de'], $messages['url'], (string) ( $context['configuration'] ?? '' ) );
+		$translations = is_array( $messages['translations'] ?? null ) ? $messages['translations'] : array();
+		$context['translations'] = $translations;
+		return self::create_campaign( $kind, $source_id, $context, $messages['title'], (string) ( $translations['ru'] ?? $messages['ru'] ?? '' ), (string) ( $translations['de'] ?? $messages['de'] ?? '' ), $messages['url'], (string) ( $context['configuration'] ?? '' ) );
 	}
 
 	private static function campaign_messages( string $kind, int $source_id, array $context, string $text, string $url ): array {
 		if ( 'digest' === $kind ) {
 			$date = new \DateTimeImmutable( 'today', wp_timezone() );
-			return array( 'title' => self::copy( 'digest', 'ru' ), 'ru' => self::day_message( $date, 'ru', true ), 'de' => self::day_message( $date, 'de', true ), 'url' => '' );
+			$translations = array();
+			foreach ( self::campaign_languages() as $language ) { $translations[$language] = self::day_message( $date, $language, true ); }
+			$default = self::default_language_code();
+			return array( 'title' => self::copy( 'digest', $default ), 'translations' => $translations, 'url' => '' );
 		}
 		if ( 'post' === $kind ) { return self::post_messages( $source_id ); }
 		if ( 'automation' === $kind ) {
 			$rule = Publication_Rules::get( (int) ( $context['rule_id'] ?? 0 ) );
 			if ( ! $rule ) { return array(); }
-			$ru = trim( (string) ( $rule['text_ru'] ?? '' ) ); $de = trim( (string) ( $rule['text_de'] ?? '' ) );
-			if ( '' === $ru && '' === $de ) {
-				$old = trim( (string) ( $rule['text'] ?? $text ) );
-				$lang = 'de' === substr( determine_locale(), 0, 2 ) ? 'de' : 'ru';
-				if ( 'de' === $lang ) { $de = $old; } else { $ru = $old; }
-			}
-			return array( 'title' => $rule['name'], 'ru' => $ru, 'de' => $de, 'url' => $rule['url'] ?: $url );
+			$translations = is_array( $rule['translations'] ?? null ) ? $rule['translations'] : array();
+			foreach ( array( 'ru', 'de' ) as $legacy_language ) { if ( '' === trim( (string) ( $translations[$legacy_language] ?? '' ) ) && '' !== trim( (string) ( $rule['text_' . $legacy_language] ?? '' ) ) ) { $translations[$legacy_language] = $rule['text_' . $legacy_language]; } }
+			if ( ! array_filter( $translations ) ) { $translations[self::default_language_code()] = trim( (string) ( $rule['text'] ?? $text ) ); }
+			return array( 'title' => $rule['name'], 'translations' => $translations, 'url' => $rule['url'] ?: $url );
 		}
-		$title = 'schedule' === $kind ? self::copy( 'changed', 'ru' ) . ': ' . get_the_title( $source_id ) : $text;
+		$default = self::default_language_code();
+		$title = 'schedule' === $kind ? self::copy( 'changed', $default ) . ': ' . get_the_title( $source_id ) : $text;
 		if ( 'schedule' === $kind ) {
-			$ru = self::schedule_change_text( $source_id, 'ru' );
-			$de = self::schedule_change_text( $source_id, 'de' );
-			return array( 'title' => $title, 'ru' => $ru, 'de' => $de, 'url' => '' );
+			$translations = array();
+			foreach ( self::campaign_languages() as $language ) { $translations[$language] = self::schedule_change_text( $source_id, $language ); }
+			return array( 'title' => $title, 'translations' => $translations, 'url' => '' );
 		}
-		return array( 'title' => $title, 'ru' => $text, 'de' => $text, 'url' => $url );
+		return array( 'title' => $title, 'translations' => array_fill_keys( self::campaign_languages(), $text ), 'url' => $url );
 	}
 
 	private static function post_messages( int $source_id ): array {
 		$source = get_post( $source_id );
 		if ( ! $source || 'publish' !== $source->post_status ) { return array(); }
-		$messages = array();
+		$translations = array();
 		$source_language = self::post_language( $source_id );
-		foreach ( array( 'ru', 'de' ) as $language ) {
+		foreach ( self::campaign_languages() as $language ) {
 			$id = self::translated_post_id( $source_id, $language );
 			if ( ! $id && $language === $source_language ) { $id = $source_id; }
 			$post = $id ? get_post( $id ) : null;
-			if ( ! $post || 'publish' !== $post->post_status ) { $messages[$language] = ''; continue; }
+			if ( ! $post || 'publish' !== $post->post_status ) { $translations[$language] = ''; continue; }
 			$excerpt = $post->post_excerpt ? $post->post_excerpt : $post->post_content;
-			$messages[$language] = $post->post_title . "\n" . wp_html_excerpt( wp_strip_all_tags( strip_shortcodes( $excerpt ) ), 700, '…' );
-			if ( ! isset( $messages['url_' . $language] ) ) { $messages['url_' . $language] = get_permalink( $id ); }
+			$translations[$language] = $post->post_title . "\n" . wp_html_excerpt( wp_strip_all_tags( strip_shortcodes( $excerpt ) ), 700, '…' ) . "\n" . get_permalink( $id );
 		}
-		$messages['title'] = $source->post_title;
-		$messages['url'] = '';
-		// Each locale gets its own translated permalink as a final line.
-		foreach ( array( 'ru', 'de' ) as $language ) { if ( $messages[$language] ) { $messages[$language] .= "\n" . ( $messages['url_' . $language] ?? get_permalink( $source_id ) ); } }
-		return $messages;
+		return array( 'title' => $source->post_title, 'translations' => $translations, 'ru' => $translations['ru'] ?? '', 'de' => $translations['de'] ?? '', 'url' => '' );
 	}
 
 	private static function post_language( int $post_id ): string {
 		$language = has_filter( 'wpml_element_language_code' ) ? apply_filters( 'wpml_element_language_code', null, $post_id, 'post_post' ) : null;
 		if ( ! is_string( $language ) && function_exists( 'pll_get_post_language' ) ) { $language = pll_get_post_language( $post_id, 'slug' ); }
-		if ( is_string( $language ) && in_array( substr( strtolower( $language ), 0, 2 ), array( 'ru', 'de' ), true ) ) { return substr( strtolower( $language ), 0, 2 ); }
-		return 'de' === substr( determine_locale(), 0, 2 ) ? 'de' : 'ru';
+		if ( is_string( $language ) && self::valid_language_code( strtolower( $language ) ) ) { return strtolower( $language ); }
+		return self::default_language_code();
+	}
+
+	private static function campaign_languages(): array {
+		$languages = array_keys( self::active_languages() );
+		global $wpdb;
+		$stored = $wpdb->get_col( 'SELECT DISTINCT language FROM ' . self::tables()['subscribers'] . " WHERE status='active'" );
+		foreach ( (array) $stored as $language ) { if ( is_string( $language ) && self::valid_language_code( $language ) ) { $languages[] = $language; } }
+		return array_values( array_unique( $languages ) );
 	}
 
 	private static function translated_post_id( int $post_id, string $language ): int {
@@ -586,8 +716,9 @@ final class Telegram_Bot {
 	private static function create_campaign( string $kind, int $source_id, array $context, string $title, string $ru, string $de, string $url, string $dedupe = '' ): string {
 		global $wpdb;
 		$tables = self::tables();
-		if ( '' === $dedupe ) { $dedupe = hash( 'sha256', $kind . '|' . $source_id . '|' . $title . '|' . $ru . '|' . $de . '|' . $url ); }
-		$key = hash( 'sha256', $kind . '|' . $source_id . '|' . $dedupe . '|' . $ru . '|' . $de );
+		$translation_hash = hash( 'sha256', is_array( $context['translations'] ?? null ) ? wp_json_encode( $context['translations'] ) : '' );
+		if ( '' === $dedupe ) { $dedupe = hash( 'sha256', $kind . '|' . $source_id . '|' . $title . '|' . $ru . '|' . $de . '|' . $url . '|' . $translation_hash ); }
+		$key = hash( 'sha256', $kind . '|' . $source_id . '|' . $dedupe . '|' . $ru . '|' . $de . '|' . $translation_hash );
 		$now = gmdate( 'Y-m-d H:i:s' );
 		$inserted = $wpdb->insert( $tables['campaigns'], array( 'dedupe_key' => $key, 'source_type' => $kind, 'source_id' => $source_id, 'context' => wp_json_encode( $context ), 'title' => sanitize_text_field( $title ), 'payload_ru' => sanitize_textarea_field( $ru ), 'payload_de' => sanitize_textarea_field( $de ), 'url' => esc_url_raw( $url ), 'status' => 'queued', 'created_at' => $now, 'updated_at' => $now ), array( '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s' ) );
 		if ( false === $inserted ) {
@@ -648,8 +779,8 @@ final class Telegram_Bot {
 			self::set_campaign_status( $campaign_id, 'processing', '' );
 			foreach ( $batch as $index => $delivery ) {
 				if ( 'active' !== ( $delivery['subscriber_status'] ?? '' ) || empty( $delivery['chat_id'] ) ) { self::delivery_status( $delivery, 'skipped', 'unsubscribed' ); continue; }
-				$language = 'de' === $delivery['language'] ? 'de' : 'ru';
-				$text = ( 'de' === $language ? $campaign['payload_de'] : $campaign['payload_ru'] );
+				$language = (string) $delivery['language'];
+				$text = is_string( $context['translations'][$language] ?? null ) ? $context['translations'][$language] : ( 'de' === $language ? $campaign['payload_de'] : ( 'ru' === $language ? $campaign['payload_ru'] : '' ) );
 				if ( '' === trim( (string) $text ) ) { self::delivery_status( $delivery, 'skipped', 'missing_translation' ); continue; }
 				$result = self::send_campaign_message( (string) $delivery['chat_id'], (string) $text, (string) $campaign['url'] );
 				$attempt = (int) $delivery['attempts'] + 1;
@@ -732,7 +863,6 @@ final class Telegram_Bot {
 	}
 
 	private static function day_message( \DateTimeImmutable $date, string $language, bool $digest = false ): string {
-		$language = 'de' === $language ? 'de' : 'ru';
 		$events = self::schedule_events( $date, $date->modify( '+1 day' ), $language );
 		$calendar = self::calendar_events( $date->format( 'Y-m-d' ), $language );
 		$lines = array( self::copy( $digest ? 'digest' : 'today', $language ) . ' · ' . $date->format( 'd.m.Y' ) );
@@ -810,10 +940,12 @@ final class Telegram_Bot {
 
 	public static function menu(): void {
 		add_submenu_page( 'gkps', __( 'Telegram bot subscribers', 'georg-kloster-connect-hub' ), __( 'Telegram bot', 'georg-kloster-connect-hub' ), 'manage_gkps_settings', 'gkch-telegram', array( self::class, 'render' ) );
+		add_submenu_page( 'gkps', __( 'Bot commands and replies', 'georg-kloster-connect-hub' ), __( 'Bot commands', 'georg-kloster-connect-hub' ), 'manage_gkps_settings', 'gkch-telegram-commands', array( self::class, 'render_commands' ) );
+		add_submenu_page( null, __( 'Edit bot command', 'georg-kloster-connect-hub' ), __( 'Edit bot command', 'georg-kloster-connect-hub' ), 'manage_gkps_settings', 'gkch-telegram-command-edit', array( self::class, 'render_command_editor' ) );
 	}
 
 	public static function admin_assets( string $hook ): void {
-		if ( 'gkps_page_gkch-telegram' !== $hook ) { return; }
+		if ( 'admin_page_gkch-telegram-command-edit' !== $hook ) { return; }
 		wp_enqueue_script( 'gkch-telegram-bot-admin', plugins_url( 'assets/telegram-bot-admin.js', GKPS_FILE ), array(), GKPS_VERSION, true );
 	}
 
@@ -828,33 +960,45 @@ final class Telegram_Bot {
 			$type = in_array( $row['type'] ?? 'command', array( 'command', 'text' ), true ) ? (string) ( $row['type'] ?? 'command' ) : 'command';
 			$raw_command = is_scalar( $row['command'] ?? null ) ? strtolower( trim( (string) $row['command'] ) ) : '';
 			$command = 0 === strpos( $raw_command, '/' ) ? substr( $raw_command, 1 ) : $raw_command;
-			$trigger_ru = is_scalar( $row['trigger_ru'] ?? null ) ? self::limit_text( sanitize_text_field( (string) $row['trigger_ru'] ), 128 ) : '';
-			$trigger_de = is_scalar( $row['trigger_de'] ?? null ) ? self::limit_text( sanitize_text_field( (string) $row['trigger_de'] ), 128 ) : '';
-			$description_ru = is_scalar( $row['description_ru'] ?? null ) ? self::limit_text( sanitize_text_field( (string) $row['description_ru'] ), 256 ) : '';
-			$description_de = is_scalar( $row['description_de'] ?? null ) ? self::limit_text( sanitize_text_field( (string) $row['description_de'] ), 256 ) : '';
-			$response_ru = is_scalar( $row['response_ru'] ?? null ) ? self::limit_text( sanitize_textarea_field( (string) $row['response_ru'] ) ) : '';
-			$response_de = is_scalar( $row['response_de'] ?? null ) ? self::limit_text( sanitize_textarea_field( (string) $row['response_de'] ) ) : '';
-			$empty = '' === $command && '' === $trigger_ru && '' === $trigger_de && '' === $description_ru && '' === $description_de && '' === $response_ru && '' === $response_de;
+			$reply_type = is_string( $row['reply_type'] ?? null ) && in_array( $row['reply_type'], array( 'text', 'html', 'schedule', 'page', 'news' ), true ) ? $row['reply_type'] : 'text';
+			$schedule_period = 'week' === ( $row['schedule_period'] ?? '' ) ? 'week' : 'today';
+			$reply_post_id = absint( $row['reply_post_id'] ?? 0 );
+			$locales = array_keys( self::active_languages() );
+			foreach ( array_keys( $row ) as $field ) { if ( preg_match( '/^(?:trigger|description|response)_([a-z][a-z0-9_-]{1,30})$/D', (string) $field, $match ) ) { $locales[] = $match[1]; } }
+			$locales = array_values( array_unique( $locales ) );
+			$localized = array(); $has_trigger = false; $has_response = false; $has_description = false;
+			foreach ( $locales as $language ) {
+				foreach ( array( 'trigger', 'description', 'response' ) as $field ) {
+					$key = $field . '_' . $language;
+					$value = is_scalar( $row[$key] ?? null ) ? (string) $row[$key] : '';
+					if ( 'trigger' === $field ) { $value = self::limit_text( sanitize_text_field( $value ), 128 ); $has_trigger = $has_trigger || '' !== $value; }
+					elseif ( 'description' === $field ) { $value = self::limit_text( sanitize_text_field( $value ), 256 ); $has_description = $has_description || '' !== $value; }
+					else { $value = self::sanitize_reply( $value ); $has_response = $has_response || '' !== trim( wp_strip_all_tags( $value ) ); }
+					$localized[$key] = $value;
+				}
+			}
+			$empty = '' === $command && ! $has_trigger && ! $has_description && ! $has_response && ! $reply_post_id;
 			if ( $empty ) { continue; }
 			$invalid_trigger = 'command' === $type
-				? ( ! preg_match( '/^[a-z][a-z0-9_]{0,31}$/D', $command ) || in_array( $command, $reserved, true ) || isset( $seen[$command] ) || '' === $description_ru || '' === $description_de )
-				: ( '' === $trigger_ru || '' === $trigger_de || isset( $seen_triggers[self::normalize_trigger( $trigger_ru )] ) || isset( $seen_triggers[self::normalize_trigger( $trigger_de )] ) );
-			if ( $invalid_trigger || '' === $response_ru || '' === $response_de ) {
+				? ( ! preg_match( '/^[a-z][a-z0-9_]{0,31}$/D', $command ) || in_array( $command, $reserved, true ) || isset( $seen[$command] ) || ! $has_description )
+				: ! $has_trigger;
+			foreach ( $locales as $language ) {
+				$trigger = $localized['trigger_' . $language] ?? '';
+				if ( '' !== $trigger && isset( $seen_triggers[self::normalize_trigger( $trigger )] ) ) { $invalid_trigger = true; }
+			}
+			if ( $invalid_trigger || ( in_array( $reply_type, array( 'page', 'news' ), true ) ? ! self::valid_reply_post( $reply_post_id, $reply_type ) : ! $has_response ) ) {
 				$invalid = true;
 				continue;
 			}
 			if ( 'command' === $type ) { $seen[$command] = true; }
-			else { $seen_triggers[self::normalize_trigger( $trigger_ru )] = true; $seen_triggers[self::normalize_trigger( $trigger_de )] = true; }
-			$commands[] = array(
+			foreach ( $locales as $language ) { $trigger = $localized['trigger_' . $language] ?? ''; if ( '' !== $trigger ) { $seen_triggers[self::normalize_trigger( $trigger )] = true; } }
+			$commands[] = array_merge( array(
 				'type' => $type,
 				'command' => $command,
-				'trigger_ru' => $trigger_ru,
-				'trigger_de' => $trigger_de,
-				'description_ru' => $description_ru,
-				'description_de' => $description_de,
-				'response_ru' => $response_ru,
-				'response_de' => $response_de,
-			);
+				'reply_type' => $reply_type,
+				'schedule_period' => $schedule_period,
+				'reply_post_id' => $reply_post_id,
+			), $localized );
 		}
 		return $commands;
 	}
@@ -864,8 +1008,8 @@ final class Telegram_Bot {
 		if ( ! $connector ) { return null; }
 		$settings = $connector->settings();
 		if ( ! $connector->valid( $settings ) ) { return null; }
-		foreach ( array( 'en', 'ru', 'de' ) as $language ) {
-			$result = Telegram_Request_Settings::api( 'setMyCommands', array( 'commands' => self::command_descriptions( $language ), 'language_code' => $language ), $settings );
+		foreach ( self::active_languages() as $language => $details ) {
+			$result = Telegram_Request_Settings::api( 'setMyCommands', array( 'commands' => self::command_descriptions( $language ), 'language_code' => substr( $language, 0, 2 ) ), $settings );
 			if ( is_wp_error( $result ) ) { return false; }
 		}
 		return true;
@@ -873,89 +1017,158 @@ final class Telegram_Bot {
 
 	public static function save_bot_commands(): void {
 		if ( ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Insufficient permissions.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); }
-		check_admin_referer( 'gkch_telegram_bot_commands_save' );
-		$input = isset( $_POST['bot_commands'] ) && is_array( $_POST['bot_commands'] ) ? wp_unslash( $_POST['bot_commands'] ) : array();
-		$system_input = isset( $_POST['system_commands'] ) && is_array( $_POST['system_commands'] ) ? wp_unslash( $_POST['system_commands'] ) : array();
-		$invalid_commands = false;
-		$systems = self::system_command_defaults();
-		foreach ( $systems as $key => $default ) {
-			$row = is_array( $system_input[$key] ?? null ) ? $system_input[$key] : array();
-			foreach ( array( 'description_ru', 'description_de' ) as $field ) {
-				$systems[$key][$field] = isset( $row[$field] ) && is_scalar( $row[$field] ) ? self::limit_text( sanitize_text_field( (string) $row[$field] ), 256 ) : $default[$field];
-			}
-			foreach ( array( 'response_ru', 'response_de' ) as $field ) {
-				$systems[$key][$field] = isset( $row[$field] ) && is_scalar( $row[$field] ) ? self::limit_text( sanitize_textarea_field( (string) $row[$field] ) ) : $default[$field];
-			}
-			$systems[$key]['enabled'] = in_array( $key, array( 'start', 'stop' ), true ) || ! empty( $row['enabled'] );
+		check_admin_referer( 'gkch_telegram_bot_command_save' );
+		$kind = is_string( $_POST['kind'] ?? null ) ? sanitize_key( wp_unslash( $_POST['kind'] ) ) : '';
+		$key = is_string( $_POST['command_key'] ?? null ) ? sanitize_key( wp_unslash( $_POST['command_key'] ) ) : '';
+		$index = isset( $_POST['command_index'] ) && is_scalar( $_POST['command_index'] ) && is_numeric( $_POST['command_index'] ) ? (int) $_POST['command_index'] : -1;
+		$is_new_command = 'custom' === $kind && $index < 0;
+		if ( 'custom' === $kind && ! empty( $_POST['delete_command'] ) ) {
+			$commands = self::custom_commands();
+			if ( isset( $commands[$index] ) ) { array_splice( $commands, $index, 1 ); update_option( self::COMMANDS_OPTION, $commands, false ); }
+			set_transient( 'gkch_telegram_command_notice_' . get_current_user_id(), array( 'status' => 'success', 'message' => __( 'Bot command or responder deleted.', 'georg-kloster-connect-hub' ) ), 120 );
+			self::sync_menu_commands();
+			wp_safe_redirect( admin_url( 'admin.php?page=gkch-telegram-commands' ) ); exit;
 		}
-		update_option( self::SYSTEM_COMMANDS_OPTION, $systems, false );
-		update_option( self::COMMANDS_OPTION, self::sanitize_custom_commands( $input, $invalid_commands ), false );
+		$input = isset( $_POST['localized'] ) && is_array( $_POST['localized'] ) ? wp_unslash( $_POST['localized'] ) : array();
+		$base = array( 'reply_type' => 'text', 'schedule_period' => 'today', 'reply_post_id' => 0 );
+		if ( 'system' === $kind ) {
+			$commands = self::system_commands();
+			if ( ! isset( $commands[$key] ) ) { wp_die( esc_html__( 'Bot command not found.', 'georg-kloster-connect-hub' ) ); }
+			$base = $commands[$key];
+			$base['enabled'] = in_array( $key, array( 'start', 'stop' ), true ) || ! empty( $_POST['enabled'] );
+		} elseif ( 'custom' === $kind ) {
+			$commands = self::custom_commands();
+			$base = $index >= 0 && isset( $commands[$index] ) ? $commands[$index] : $base;
+			$base['type'] = in_array( $_POST['type'] ?? 'command', array( 'command', 'text' ), true ) ? sanitize_key( wp_unslash( $_POST['type'] ) ) : 'command';
+			$base['command'] = is_string( $_POST['command'] ?? null ) ? sanitize_key( wp_unslash( $_POST['command'] ) ) : '';
+		} else { wp_die( esc_html__( 'Bot command type is invalid.', 'georg-kloster-connect-hub' ) ); }
+		$base['reply_type'] = in_array( $_POST['reply_type'] ?? '', array( 'text', 'html', 'schedule', 'page', 'news' ), true ) ? sanitize_key( wp_unslash( $_POST['reply_type'] ) ) : 'text';
+		$base['schedule_period'] = 'week' === ( $_POST['schedule_period'] ?? '' ) ? 'week' : 'today';
+		$base['reply_post_id'] = isset( $_POST['reply_post_id'] ) ? absint( $_POST['reply_post_id'] ) : 0;
+		if ( in_array( $base['reply_type'], array( 'page', 'news' ), true ) && ! self::valid_reply_post( $base['reply_post_id'], $base['reply_type'] ) ) {
+			set_transient( 'gkch_telegram_command_error_' . get_current_user_id(), __( 'Select a published item that matches the selected reply type.', 'georg-kloster-connect-hub' ), 120 );
+			wp_safe_redirect( self::command_edit_url( $kind, 'system' === $kind ? $key : ( $is_new_command ? 'new' : (string) $index ) ) ); exit;
+		}
+		foreach ( $input as $language => $fields ) {
+			$language = strtolower( sanitize_key( (string) $language ) );
+			if ( ! self::valid_language_code( $language ) || ! is_array( $fields ) ) { continue; }
+			foreach ( array( 'trigger', 'description', 'response' ) as $field ) {
+				$value = is_scalar( $fields[$field] ?? null ) ? (string) $fields[$field] : '';
+				$base[$field . '_' . $language] = 'trigger' === $field ? self::limit_text( sanitize_text_field( $value ), 128 ) : ( 'description' === $field ? self::limit_text( sanitize_text_field( $value ), 256 ) : self::sanitize_reply( $value ) );
+			}
+		}
+		if ( 'system' === $kind ) {
+			$commands[$key] = $base;
+			update_option( self::SYSTEM_COMMANDS_OPTION, $commands, false );
+		} else {
+			if ( 'command' === $base['type'] && ! preg_match( '/^[a-z][a-z0-9_]{0,31}$/D', $base['command'] ) ) { $base['command'] = ''; }
+			if ( $index < 0 ) { $commands[] = $base; $index = count( $commands ) - 1; } else { $commands[$index] = $base; }
+			$invalid = false;
+			$clean = self::sanitize_custom_commands( $commands, $invalid );
+			if ( $invalid || ! isset( $clean[$index] ) ) {
+				set_transient( 'gkch_telegram_command_error_' . get_current_user_id(), __( 'Check the command name or phrase, its translation, and the reply type before saving.', 'georg-kloster-connect-hub' ), 120 );
+				wp_safe_redirect( self::command_edit_url( 'custom', $is_new_command ? 'new' : (string) $index ) ); exit;
+			}
+			update_option( self::COMMANDS_OPTION, $clean, false );
+		}
 		$synced = self::sync_menu_commands();
-		$notice = array(
-			'status' => true === $synced ? 'success' : ( false === $synced ? 'warning' : 'info' ),
-			'message' => true === $synced
-				? __( 'Bot commands and autoresponders were saved, and the Telegram menu was updated.', 'georg-kloster-connect-hub' )
-				: ( false === $synced
-					? __( 'Bot commands were saved, but Telegram could not update the menu. Check the bot connection and save again.', 'georg-kloster-connect-hub' )
-					: __( 'Bot commands were saved. Connect the Telegram bot to publish them in its menu.', 'georg-kloster-connect-hub' ) ),
-		);
-		if ( $invalid_commands ) { $notice['invalid_commands'] = __( 'Some responder rows were skipped. Commands need a unique lowercase English word, menu descriptions and replies in both languages. Text responders need unique Russian and German trigger phrases and replies.', 'georg-kloster-connect-hub' ); }
-		set_transient( 'gkch_telegram_command_notice_' . get_current_user_id(), $notice, 120 );
-		wp_safe_redirect( admin_url( 'admin.php?page=gkch-telegram#custom-commands' ) );
+		$message = true === $synced ? __( 'Command saved and the Telegram command menu was updated.', 'georg-kloster-connect-hub' ) : ( false === $synced ? __( 'Command saved, but Telegram could not update its command menu. Check the connection and try again.', 'georg-kloster-connect-hub' ) : __( 'Command saved. Connect Telegram to publish its command menu.', 'georg-kloster-connect-hub' ) );
+		set_transient( 'gkch_telegram_command_notice_' . get_current_user_id(), array( 'status' => true === $synced ? 'success' : ( false === $synced ? 'warning' : 'info' ), 'message' => $message ), 120 );
+		wp_safe_redirect( admin_url( 'admin.php?page=gkch-telegram-commands' ) );
 		exit;
 	}
 
-	private static function render_bot_command_settings(): void {
+	private static function valid_reply_post( int $post_id, string $reply_type ): bool {
+		$post = $post_id ? get_post( $post_id ) : null;
+		$expected_type = 'page' === $reply_type ? 'page' : ( 'news' === $reply_type ? 'post' : '' );
+		return $post && 'publish' === $post->post_status && $expected_type === $post->post_type;
+	}
+
+	private static function command_edit_url( string $kind, string $id ): string { return add_query_arg( array( 'page' => 'gkch-telegram-command-edit', 'kind' => $kind, 'id' => $id ), admin_url( 'admin.php' ) ); }
+
+	public static function render_commands(): void {
+		if ( ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Insufficient permissions.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); }
 		$notice_key = 'gkch_telegram_command_notice_' . get_current_user_id();
 		$notice = get_transient( $notice_key );
-		if ( is_array( $notice ) ) {
-			delete_transient( $notice_key );
-			echo '<div class="notice notice-' . esc_attr( $notice['status'] ?? 'info' ) . '"><p>' . esc_html( $notice['message'] ?? '' ) . '</p>';
-			if ( ! empty( $notice['invalid_commands'] ) ) { echo '<p>' . esc_html( $notice['invalid_commands'] ) . '</p>'; }
-			echo '</div>';
+		if ( is_array( $notice ) ) { delete_transient( $notice_key ); }
+		$error_key = 'gkch_telegram_command_error_' . get_current_user_id();
+		$error = get_transient( $error_key );
+		if ( $error ) { delete_transient( $error_key ); }
+		echo '<div class="wrap"><h1 class="wp-heading-inline">' . esc_html__( 'Bot commands and replies', 'georg-kloster-connect-hub' ) . '</h1> <a class="page-title-action" href="' . esc_url( self::command_edit_url( 'custom', 'new' ) ) . '">' . esc_html__( 'Add command or responder', 'georg-kloster-connect-hub' ) . '</a><hr class="wp-header-end">';
+		if ( is_array( $notice ) ) { echo '<div class="notice notice-' . esc_attr( $notice['status'] ?? 'info' ) . ' is-dismissible"><p>' . esc_html( $notice['message'] ?? '' ) . '</p></div>'; }
+		if ( $error ) { echo '<div class="notice notice-error"><p>' . esc_html( $error ) . '</p></div>'; }
+		echo '<p>' . esc_html__( 'Edit each command on its own WordPress screen. Available languages come from WPML; translations are entered separately for each active site language.', 'georg-kloster-connect-hub' ) . '</p>';
+		echo '<table class="wp-list-table widefat fixed striped"><thead><tr><th scope="col">' . esc_html__( 'Command or phrase', 'georg-kloster-connect-hub' ) . '</th><th scope="col">' . esc_html__( 'Kind', 'georg-kloster-connect-hub' ) . '</th><th scope="col">' . esc_html__( 'Reply type', 'georg-kloster-connect-hub' ) . '</th><th scope="col">' . esc_html__( 'Status', 'georg-kloster-connect-hub' ) . '</th></tr></thead><tbody>';
+		foreach ( self::system_commands() as $key => $command ) {
+			$url = self::command_edit_url( 'system', $key );
+			$title = '<code>/' . esc_html( $key ) . '</code>';
+			self::render_command_list_row( $url, $title, __( 'Built-in command', 'georg-kloster-connect-hub' ), $command['reply_type'] ?? 'text', ! empty( $command['enabled'] ) || in_array( $key, array( 'start', 'stop' ), true ) );
 		}
-		echo '<section id="custom-commands"><h2>' . esc_html__( 'Telegram commands and autoresponders', 'georg-kloster-connect-hub' ) . '</h2>';
-		echo '<p>' . esc_html__( 'Manage every built-in command and its answer here. Add a slash command for Telegram’s command menu, or a text responder that matches an exact phrase in Russian or German. The reply follows the subscriber’s selected language.', 'georg-kloster-connect-hub' ) . '</p>';
-		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="gkch_telegram_bot_commands_save">';
-		wp_nonce_field( 'gkch_telegram_bot_commands_save' );
-		echo '<h3>' . esc_html__( 'Built-in commands', 'georg-kloster-connect-hub' ) . '</h3><p>' . esc_html__( 'The commands /start and /stop are always available so people can subscribe and unsubscribe. /today and /week use the generated parish schedule by default. Add {schedule} to the answer to include it; without the placeholder, the saved answer is sent as written.', 'georg-kloster-connect-hub' ) . '</p>';
-		echo '<table class="widefat striped"><thead><tr><th>' . esc_html__( 'Command', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Enabled', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Russian description', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'German description', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Answer in Russian', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Answer in German', 'georg-kloster-connect-hub' ) . '</th></tr></thead><tbody>';
-		foreach ( self::system_commands() as $key => $command ) { self::render_system_command_row( $key, $command ); }
-		echo '</tbody></table>';
-		echo '<h3>' . esc_html__( 'Additional commands and text responders', 'georg-kloster-connect-hub' ) . '</h3><p>' . esc_html__( 'A command is shown in Telegram’s menu. A text responder answers when a subscriber sends the exact configured phrase; its phrase is also offered as a button in /menu.', 'georg-kloster-connect-hub' ) . '</p>';
-		echo '<table class="widefat striped"><thead><tr><th>' . esc_html__( 'Type', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Command word', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Russian trigger', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'German trigger', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Russian description', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'German description', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Answer in Russian', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Answer in German', 'georg-kloster-connect-hub' ) . '</th><th></th></tr></thead><tbody id="gkch-telegram-command-rows">';
-		$commands = self::custom_commands();
-		foreach ( $commands as $index => $command ) { self::render_command_row( $index, $command ); }
-		self::render_command_row( count( $commands ), array() );
-		echo '</tbody></table><p><button type="button" class="button" id="gkch-add-telegram-command">' . esc_html__( 'Add command or responder', 'georg-kloster-connect-hub' ) . '</button></p>';
-		echo '<template id="gkch-telegram-command-template">';
-		self::render_command_row( '__index__', array() );
-		echo '</template>';
-		submit_button( __( 'Save commands and autoresponders', 'georg-kloster-connect-hub' ) );
-		echo '</form></section><hr>';
+		foreach ( self::custom_commands() as $index => $command ) {
+			$label = 'command' === $command['type'] ? '<code>/' . esc_html( $command['command'] ) . '</code>' : esc_html( self::first_trigger( $command ) );
+			self::render_command_list_row( self::command_edit_url( 'custom', (string) $index ), $label, 'command' === $command['type'] ? __( 'Slash command', 'georg-kloster-connect-hub' ) : __( 'Text responder', 'georg-kloster-connect-hub' ), $command['reply_type'] ?? 'text', true );
+		}
+		if ( ! self::custom_commands() ) { echo '<tr class="no-items"><td colspan="4">' . esc_html__( 'No additional commands or responders yet.', 'georg-kloster-connect-hub' ) . '</td></tr>'; }
+		echo '</tbody></table></div>';
 	}
 
-	private static function render_system_command_row( string $key, array $command ): void {
-		$locked = in_array( $key, array( 'start', 'stop' ), true );
-		$enabled = $locked || ! empty( $command['enabled'] );
-		$prefix = 'system_commands[' . $key . ']';
-		echo '<tr><td><code>/' . esc_html( $key ) . '</code></td><td>';
-		if ( $locked ) { echo '<input type="hidden" name="' . esc_attr( $prefix . '[enabled]' ) . '" value="1"><span>' . esc_html__( 'Required', 'georg-kloster-connect-hub' ) . '</span>'; }
-		else { echo '<label><input type="checkbox" name="' . esc_attr( $prefix . '[enabled]' ) . '" value="1"' . checked( $enabled, true, false ) . '> ' . esc_html__( 'On', 'georg-kloster-connect-hub' ) . '</label>'; }
-		echo '</td>';
-		foreach ( array( 'description_ru', 'description_de' ) as $field ) { echo '<td><input class="large-text" maxlength="256" name="' . esc_attr( $prefix . '[' . $field . ']' ) . '" value="' . esc_attr( $command[$field] ?? '' ) . '"></td>'; }
-		foreach ( array( 'response_ru', 'response_de' ) as $field ) { echo '<td><textarea class="large-text" rows="3" name="' . esc_attr( $prefix . '[' . $field . ']' ) . '">' . esc_textarea( $command[$field] ?? '' ) . '</textarea></td>'; }
-		echo '</tr>';
+	private static function render_command_list_row( string $url, string $label, string $kind, string $reply_type, bool $enabled ): void {
+		$types = array( 'text' => __( 'Text', 'georg-kloster-connect-hub' ), 'html' => __( 'Telegram HTML', 'georg-kloster-connect-hub' ), 'schedule' => __( 'Parish schedule', 'georg-kloster-connect-hub' ), 'page' => __( 'WordPress page', 'georg-kloster-connect-hub' ), 'news' => __( 'WordPress news post', 'georg-kloster-connect-hub' ) );
+		echo '<tr><td><strong><a href="' . esc_url( $url ) . '">' . $label . '</a></strong><div class="row-actions"><span class="edit"><a href="' . esc_url( $url ) . '">' . esc_html__( 'Edit', 'georg-kloster-connect-hub' ) . '</a></span></div></td><td>' . esc_html( $kind ) . '</td><td>' . esc_html( $types[$reply_type] ?? $types['text'] ) . '</td><td>' . esc_html( $enabled ? __( 'Enabled', 'georg-kloster-connect-hub' ) : __( 'Disabled', 'georg-kloster-connect-hub' ) ) . '</td></tr>';
 	}
 
-	private static function render_command_row( $index, array $command ): void {
-		$prefix = 'bot_commands[' . $index . ']';
-		$type = $command['type'] ?? 'command';
-		echo '<tr class="gkch-telegram-command-row"><td><select class="gkch-responder-type" name="' . esc_attr( $prefix . '[type]' ) . '"><option value="command"' . selected( $type, 'command', false ) . '>' . esc_html__( 'Slash command', 'georg-kloster-connect-hub' ) . '</option><option value="text"' . selected( $type, 'text', false ) . '>' . esc_html__( 'Text responder', 'georg-kloster-connect-hub' ) . '</option></select></td><td class="gkch-command-field"><input class="regular-text" maxlength="32" pattern="[A-Za-z][A-Za-z0-9_]{0,31}" name="' . esc_attr( $prefix . '[command]' ) . '" value="' . esc_attr( $command['command'] ?? '' ) . '" placeholder="' . esc_attr__( 'e.g. prayer', 'georg-kloster-connect-hub' ) . '"></td>';
-		foreach ( array( 'trigger_ru', 'trigger_de' ) as $key ) { echo '<td class="gkch-trigger-field"><input class="large-text" maxlength="128" name="' . esc_attr( $prefix . '[' . $key . ']' ) . '" value="' . esc_attr( $command[$key] ?? '' ) . '"></td>'; }
-		foreach ( array( 'description_ru', 'description_de' ) as $key ) { echo '<td><input class="large-text" maxlength="256" name="' . esc_attr( $prefix . '[' . $key . ']' ) . '" value="' . esc_attr( $command[$key] ?? '' ) . '"></td>'; }
-		foreach ( array( 'response_ru', 'response_de' ) as $key ) { echo '<td><textarea class="large-text" rows="3" name="' . esc_attr( $prefix . '[' . $key . ']' ) . '">' . esc_textarea( $command[$key] ?? '' ) . '</textarea></td>'; }
-		echo '<td><button type="button" class="button-link-delete gkch-remove-telegram-command">' . esc_html__( 'Remove', 'georg-kloster-connect-hub' ) . '</button></td></tr>';
+	private static function first_trigger( array $command ): string {
+		foreach ( self::active_languages() as $language => $details ) { $trigger = trim( (string) ( $command['trigger_' . $language] ?? '' ) ); if ( '' !== $trigger ) { return $trigger; } }
+		return __( 'Untranslated phrase', 'georg-kloster-connect-hub' );
+	}
+
+	public static function render_command_editor(): void {
+		if ( ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Insufficient permissions.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); }
+		$kind = is_string( $_GET['kind'] ?? null ) ? sanitize_key( wp_unslash( $_GET['kind'] ) ) : '';
+		$id = is_string( $_GET['id'] ?? null ) ? sanitize_text_field( wp_unslash( $_GET['id'] ) ) : '';
+		$system = 'system' === $kind;
+		$systems = self::system_commands();
+		$custom = self::custom_commands();
+		$index = 'new' === $id ? -1 : ( ctype_digit( $id ) ? absint( $id ) : -1 );
+		if ( $system && isset( $systems[$id] ) ) { $command = $systems[$id]; $command['type'] = 'system'; $command['command'] = $id; }
+		elseif ( ! $system && ( 'new' === $id || isset( $custom[$index] ) ) ) { $command = 'new' === $id ? array( 'type' => 'command', 'command' => '', 'reply_type' => 'text', 'schedule_period' => 'today' ) : $custom[$index]; }
+		else { wp_die( esc_html__( 'Bot command not found.', 'georg-kloster-connect-hub' ), '', array( 'response' => 404 ) ); }
+		$title = $system ? '/' . $id : ( 'new' === $id ? __( 'Add command or responder', 'georg-kloster-connect-hub' ) : ( 'command' === $command['type'] ? '/' . $command['command'] : self::first_trigger( $command ) ) );
+		echo '<div class="wrap"><h1>' . esc_html( $system || 'new' !== $id ? __( 'Edit bot command', 'georg-kloster-connect-hub' ) : __( 'Add command or responder', 'georg-kloster-connect-hub' ) ) . ': ' . esc_html( $title ) . '</h1><hr class="wp-header-end"><p><a href="' . esc_url( admin_url( 'admin.php?page=gkch-telegram-commands' ) ) . '">← ' . esc_html__( 'Back to commands', 'georg-kloster-connect-hub' ) . '</a></p>';
+		$error_key = 'gkch_telegram_command_error_' . get_current_user_id(); $error = get_transient( $error_key );
+		if ( $error ) { delete_transient( $error_key ); echo '<div class="notice notice-error"><p>' . esc_html( $error ) . '</p></div>'; }
+		echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="gkch_telegram_bot_commands_save"><input type="hidden" name="kind" value="' . esc_attr( $system ? 'system' : 'custom' ) . '"><input type="hidden" name="command_key" value="' . esc_attr( $system ? $id : '' ) . '"><input type="hidden" name="command_index" value="' . esc_attr( (string) $index ) . '">';
+		wp_nonce_field( 'gkch_telegram_bot_command_save' );
+		echo '<div id="poststuff"><div id="post-body" class="metabox-holder columns-2"><div id="post-body-content"><div class="postbox"><div class="postbox-header"><h2 class="hndle">' . esc_html__( 'Command settings', 'georg-kloster-connect-hub' ) . '</h2></div><div class="inside">';
+		if ( ! $system ) {
+			echo '<p><label for="gkch-command-type"><strong>' . esc_html__( 'Command type', 'georg-kloster-connect-hub' ) . '</strong></label><br><select id="gkch-command-type" name="type"><option value="command"' . selected( $command['type'], 'command', false ) . '>' . esc_html__( 'Slash command', 'georg-kloster-connect-hub' ) . '</option><option value="text"' . selected( $command['type'], 'text', false ) . '>' . esc_html__( 'Exact text phrase', 'georg-kloster-connect-hub' ) . '</option></select></p>';
+			echo '<p><label for="gkch-command-word"><strong>' . esc_html__( 'Command word without the slash', 'georg-kloster-connect-hub' ) . '</strong></label><br><input id="gkch-command-word" class="regular-text" name="command" maxlength="32" pattern="[A-Za-z][A-Za-z0-9_]{0,31}" value="' . esc_attr( $command['command'] ?? '' ) . '"><br><span class="description">' . esc_html__( 'Use a short English command word, for example prayer. Telegram displays it as /prayer.', 'georg-kloster-connect-hub' ) . '</span></p>';
+		} else {
+			echo '<p><strong>' . esc_html__( 'Telegram command', 'georg-kloster-connect-hub' ) . ':</strong> <code>/' . esc_html( $id ) . '</code></p>';
+		}
+		$locked = $system && in_array( $id, array( 'start', 'stop' ), true );
+		if ( $system ) { echo '<p><label><input type="checkbox" name="enabled" value="1"' . checked( ! empty( $command['enabled'] ), true, false ) . disabled( $locked, true, false ) . '> ' . esc_html__( 'Enable this command', 'georg-kloster-connect-hub' ) . '</label>' . ( $locked ? ' <span class="description">' . esc_html__( 'Required for subscription controls.', 'georg-kloster-connect-hub' ) . '</span>' : '' ) . '</p>'; }
+		echo '<p><label for="gkch-reply-type"><strong>' . esc_html__( 'What should the bot send?', 'georg-kloster-connect-hub' ) . '</strong></label><br><select id="gkch-reply-type" name="reply_type">';
+		$reply_types = array( 'text' => __( 'Plain text', 'georg-kloster-connect-hub' ), 'html' => __( 'Formatted text (Telegram HTML)', 'georg-kloster-connect-hub' ), 'schedule' => __( 'Parish schedule', 'georg-kloster-connect-hub' ), 'page' => __( 'WordPress page', 'georg-kloster-connect-hub' ), 'news' => __( 'News post', 'georg-kloster-connect-hub' ) );
+		foreach ( $reply_types as $value => $label ) { echo '<option value="' . esc_attr( $value ) . '"' . selected( $command['reply_type'] ?? 'text', $value, false ) . '>' . esc_html( $label ) . '</option>'; }
+		echo '</select></p><p class="gkch-schedule-option"><label for="gkch-schedule-period">' . esc_html__( 'Schedule period', 'georg-kloster-connect-hub' ) . ' <select id="gkch-schedule-period" name="schedule_period"><option value="today"' . selected( $command['schedule_period'] ?? 'today', 'today', false ) . '>' . esc_html__( 'Today', 'georg-kloster-connect-hub' ) . '</option><option value="week"' . selected( $command['schedule_period'] ?? 'today', 'week', false ) . '>' . esc_html__( 'This week', 'georg-kloster-connect-hub' ) . '</option></select></label></p>';
+		echo '<p class="gkch-post-option"><label for="gkch-reply-post"><strong>' . esc_html__( 'Page or news post to show', 'georg-kloster-connect-hub' ) . '</strong></label><br><select id="gkch-reply-post" name="reply_post_id"><option value="0">— ' . esc_html__( 'Select a published item', 'georg-kloster-connect-hub' ) . ' —</option>';
+		foreach ( get_posts( array( 'post_type' => array( 'page', 'post' ), 'post_status' => 'publish', 'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC', 'suppress_filters' => false ) ) as $post ) { echo '<option data-post-type="' . esc_attr( $post->post_type ) . '" value="' . esc_attr( $post->ID ) . '"' . selected( absint( $command['reply_post_id'] ?? 0 ), $post->ID, false ) . '>' . esc_html( ( 'page' === $post->post_type ? __( 'Page', 'georg-kloster-connect-hub' ) : __( 'Post', 'georg-kloster-connect-hub' ) ) . ': ' . $post->post_title ) . '</option>'; }
+		echo '</select><br><span class="description">' . esc_html__( 'The bot sends the translated title, a short excerpt and a link to the selected item.', 'georg-kloster-connect-hub' ) . '</span></p></div></div>';
+		echo '<div class="postbox"><div class="postbox-header"><h2 class="hndle">' . esc_html__( 'Reply text and translations', 'georg-kloster-connect-hub' ) . '</h2></div><div class="inside"><p>' . esc_html__( 'These language options follow the active languages configured in WPML. For formatted text, use Telegram-supported tags such as <b>, <i>, <u>, <a href="…"> and <code>. The {schedule} code inserts the generated schedule into a reply.', 'georg-kloster-connect-hub' ) . '</p>';
+		foreach ( self::active_languages() as $language => $details ) {
+			$trigger = (string) ( $command['trigger_' . $language] ?? '' );
+			$description = (string) ( $command['description_' . $language] ?? '' );
+			$response = (string) ( $command['response_' . $language] ?? '' );
+			echo '<fieldset class="gkch-command-language"><legend><strong>' . esc_html( $details['name'] ) . ' <code>' . esc_html( $language ) . '</code></strong></legend>';
+			if ( ! $system && 'text' === ( $command['type'] ?? '' ) ) { echo '<p><label>' . esc_html__( 'Exact text phrase that triggers this reply', 'georg-kloster-connect-hub' ) . '<br><input class="large-text" maxlength="128" name="localized[' . esc_attr( $language ) . '][trigger]" value="' . esc_attr( $trigger ) . '"></label></p>'; }
+			if ( ! $system && 'command' === ( $command['type'] ?? '' ) || $system ) { echo '<p><label>' . esc_html__( 'Description in the Telegram command menu', 'georg-kloster-connect-hub' ) . '<br><input class="large-text" maxlength="256" name="localized[' . esc_attr( $language ) . '][description]" value="' . esc_attr( $description ) . '"></label></p>'; }
+			echo '<p><label>' . esc_html__( 'Reply text', 'georg-kloster-connect-hub' ) . '<br><textarea class="large-text" rows="6" name="localized[' . esc_attr( $language ) . '][response]">' . esc_textarea( $response ) . '</textarea></label></p></fieldset>';
+		}
+		echo '</div></div></div><div id="postbox-container-1" class="postbox-container"><div class="postbox"><div class="postbox-header"><h2 class="hndle">' . esc_html__( 'Save', 'georg-kloster-connect-hub' ) . '</h2></div><div class="inside">';
+		submit_button( __( 'Save command', 'georg-kloster-connect-hub' ), 'primary', 'submit', false );
+		if ( ! $system && 'new' !== $id ) { echo '<p><button class="button-link-delete" type="submit" name="delete_command" value="1" onclick="return confirm(' . esc_attr( wp_json_encode( __( 'Delete this command or responder?', 'georg-kloster-connect-hub' ) ) ) . ');">' . esc_html__( 'Delete', 'georg-kloster-connect-hub' ) . '</button></p>'; }
+		echo '</div></div></div></div></div></form></div>';
 	}
 
 	public static function render(): void {
@@ -963,12 +1176,13 @@ final class Telegram_Bot {
 		global $wpdb;
 		$tables = self::tables();
 		$total = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$tables['subscribers']} WHERE status='active'" );
-		$ru = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$tables['subscribers']} WHERE status='active' AND language='ru'" );
-		$de = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$tables['subscribers']} WHERE status='active' AND language='de'" );
 		echo '<div class="wrap"><h1>' . esc_html__( 'Telegram bot subscribers', 'georg-kloster-connect-hub' ) . '</h1>';
 		echo '<p>' . esc_html__( 'Anyone who presses Start is subscribed to news and schedule announcements. /stop removes their Chat ID from the active subscriber list. The bot sends only to users who initiated the chat.', 'georg-kloster-connect-hub' ) . '</p>';
-		self::render_bot_command_settings();
-		echo '<p><strong>' . esc_html__( 'Active subscribers', 'georg-kloster-connect-hub' ) . ':</strong> ' . esc_html( (string) $total ) . ' · ' . esc_html__( 'Russian', 'georg-kloster-connect-hub' ) . ': ' . esc_html( (string) $ru ) . ' · ' . esc_html__( 'German', 'georg-kloster-connect-hub' ) . ': ' . esc_html( (string) $de ) . '</p>';
+		echo '<p><a class="button" href="' . esc_url( admin_url( 'admin.php?page=gkch-telegram-commands' ) ) . '">' . esc_html__( 'Manage bot commands and replies', 'georg-kloster-connect-hub' ) . '</a></p>';
+		$counts = $wpdb->get_results( "SELECT language,COUNT(*) AS amount FROM {$tables['subscribers']} WHERE status='active' GROUP BY language", ARRAY_A );
+		$available = self::active_languages(); $language_counts = array();
+		foreach ( (array) $counts as $row ) { $name = $available[$row['language']]['name'] ?? $row['language']; $language_counts[] = $name . ': ' . (int) $row['amount']; }
+		echo '<p><strong>' . esc_html__( 'Active subscribers', 'georg-kloster-connect-hub' ) . ':</strong> ' . esc_html( (string) $total ) . ( $language_counts ? ' · ' . esc_html( implode( ' · ', $language_counts ) ) : '' ) . '</p>';
 		self::render_campaigns( $tables );
 		self::render_subscribers( $tables );
 		echo '</div>';
@@ -1002,7 +1216,8 @@ final class Telegram_Bot {
 		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT id,chat_id,language,created_at FROM {$tables['subscribers']} WHERE status='active' ORDER BY id DESC LIMIT %d OFFSET %d", $per_page, $offset ), ARRAY_A );
 		$total = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$tables['subscribers']} WHERE status='active'" );
 		echo '<h2>' . esc_html__( 'Active subscribers', 'georg-kloster-connect-hub' ) . '</h2><table class="widefat striped"><thead><tr><th>Chat ID</th><th>' . esc_html__( 'Language', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Subscribed', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Action', 'georg-kloster-connect-hub' ) . '</th></tr></thead><tbody>';
-		foreach ( (array) $rows as $row ) { echo '<tr><td>' . esc_html( $row['chat_id'] ) . '</td><td>' . esc_html( 'de' === $row['language'] ? __( 'German', 'georg-kloster-connect-hub' ) : __( 'Russian', 'georg-kloster-connect-hub' ) ) . '</td><td>' . esc_html( $row['created_at'] ) . '</td><td>'; self::action_form( 'remove_subscriber', (int) $row['id'], __( 'Remove subscriber', 'georg-kloster-connect-hub' ) ); echo '</td></tr>'; }
+		$available = self::active_languages();
+		foreach ( (array) $rows as $row ) { $name = $available[$row['language']]['name'] ?? $row['language']; echo '<tr><td>' . esc_html( $row['chat_id'] ) . '</td><td>' . esc_html( $name ) . '</td><td>' . esc_html( $row['created_at'] ) . '</td><td>'; self::action_form( 'remove_subscriber', (int) $row['id'], __( 'Remove subscriber', 'georg-kloster-connect-hub' ) ); echo '</td></tr>'; }
 		if ( ! $rows ) { echo '<tr><td colspan="4">' . esc_html__( 'There are no active subscribers.', 'georg-kloster-connect-hub' ) . '</td></tr>'; }
 		echo '</tbody></table>';
 		$total_pages = (int) ceil( $total / $per_page );

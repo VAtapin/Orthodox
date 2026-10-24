@@ -66,6 +66,13 @@ $check( $calls === count( $http ) && 'cancelled' === get_option( 'gkps_job_' . $
 $throws( static fn() => Publications::change_job( $pending[0]['provider'], $pending[0]['id'], 'retry' ), 'Cancelled rule job could be retried.' );
 
 update_option( 'timezone_string', 'Europe/Berlin' );
+$active_rule_languages_filter = static fn() => array( 'fr' => array( 'native_name' => 'Français', 'default_locale' => 'fr_FR' ), 'en' => array( 'native_name' => 'English', 'default_locale' => 'en_US' ) );
+add_filter( 'wpml_active_languages', $active_rule_languages_filter, 10, 2 );
+$_GET['page'] = 'gkch-publications'; $_GET['rule_type'] = 'message';
+ob_start(); Publication_Rules_Admin::render(); $translated_rule_editor = ob_get_clean();
+$check( str_contains( $translated_rule_editor, 'translations[fr]' ) && str_contains( $translated_rule_editor, 'translations[en]' ) && ! str_contains( $translated_rule_editor, 'text_ru' ) && ! str_contains( $translated_rule_editor, 'text_de' ), 'Reminder editor did not follow the active WPML languages.' );
+remove_filter( 'wpml_active_languages', $active_rule_languages_filter, 10 );
+unset( $_GET['page'], $_GET['rule_type'] );
 $message_input = array( 'name' => 'Synthetic weekly reminder', 'type' => 'message', 'enabled' => true, 'channels' => array( 'telegram', 'facebook', 'vk', 'ok', 'instagram' ), 'text' => 'Synthetic reminder without a source post', 'text_ru' => 'Русское напоминание', 'text_de' => 'Deutsche Erinnerung', 'image' => $image, 'frequency' => 'weekly', 'weekday' => 1, 'time' => '09:15' );
 $reminder = Publication_Rules::store( 0, $message_input );
 $rule = Publication_Rules::get( $reminder );

@@ -78,7 +78,7 @@ final class Telegram_Request_Settings {
         if ( is_wp_error( $set ) ) { return $set; }
         if ( true !== $set ) { return new \WP_Error( 'telegram_registration', __( 'Telegram did not confirm incoming replies.', 'georg-kloster-connect-hub' ) ); }
         if ( ! hash_equals( $fingerprint, Telegram_Requests::configuration( $connector->settings(), (int) Telegram_Requests::options()['staff'] ) ) || ( ! Telegram_Requests::options()['enabled'] && ! Telegram_Bot::broadcasting_enabled() ) ) { return new \WP_Error( 'telegram_changed', __( 'Settings changed during the check. Reconnect the bot webhook.', 'georg-kloster-connect-hub' ) ); }
-        foreach ( array( 'en', 'ru', 'de' ) as $language ) { self::api( 'setMyCommands', array( 'commands' => Telegram_Bot::command_descriptions( $language ), 'language_code' => $language ), $settings ); }
+        foreach ( Telegram_Bot::menu_languages() as $language => $details ) { self::api( 'setMyCommands', array( 'commands' => Telegram_Bot::command_descriptions( $language ), 'language_code' => substr( $language, 0, 2 ) ), $settings ); }
         $o['registered'] = true; $o['bot'] = (string) $me['id']; $o['configuration'] = $fingerprint;
         update_option( Telegram_Requests::OPTION, $o, false ); return true;
     }

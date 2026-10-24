@@ -25,7 +25,7 @@ final class Publication_Rules {
     public static function can_manage(): bool { return current_user_can( 'manage_gkps_settings' ) && current_user_can( 'publish_posts' ); }
 
     public static function defaults(): array {
-        return array( 'id' => 0, 'name' => '', 'enabled' => false, 'type' => 'new_posts', 'channels' => array(), 'category' => 0, 'text' => '', 'text_ru' => '', 'text_de' => '', 'url' => '', 'image' => 0, 'frequency' => 'daily', 'time' => '09:00', 'weekday' => 1, 'date' => '', 'next' => 0, 'revision' => '', 'owner' => 0 );
+        return array( 'id' => 0, 'name' => '', 'enabled' => false, 'type' => 'new_posts', 'channels' => array(), 'category' => 0, 'text' => '', 'text_ru' => '', 'text_de' => '', 'translations' => array(), 'url' => '', 'image' => 0, 'frequency' => 'daily', 'time' => '09:00', 'weekday' => 1, 'date' => '', 'next' => 0, 'revision' => '', 'owner' => 0 );
     }
 
     public static function get( int $id ): ?array {
@@ -58,15 +58,33 @@ final class Publication_Rules {
                 if ( isset( $input[$field] ) && ! is_string( $input[$field] ) ) { throw new \InvalidArgumentException( __( 'Invalid publication rule.', 'georg-kloster-connect-hub' ) ); }
                 if ( isset( $input[$field] ) ) { $rule[$field] = 'text' === $field ? sanitize_textarea_field( $input[$field] ) : sanitize_text_field( $input[$field] ); }
             }
+            $active_languages = Telegram_Bot::menu_languages();
+            $translations = is_array( $old['translations'] ?? null ) ? $old['translations'] : array();
+            foreach ( array( 'ru', 'de' ) as $legacy_language ) {
+                if ( '' === trim( (string) ( $translations[$legacy_language] ?? '' ) ) && '' !== trim( (string) ( $old['text_' . $legacy_language] ?? '' ) ) ) { $translations[$legacy_language] = $old['text_' . $legacy_language]; }
+                if ( isset( $input['text_' . $legacy_language] ) && is_string( $input['text_' . $legacy_language] ) ) { $translations[$legacy_language] = sanitize_textarea_field( $input['text_' . $legacy_language] ); }
+            }
+            if ( isset( $input['translations'] ) && is_array( $input['translations'] ) ) {
+                foreach ( $active_languages as $language => $details ) {
+                    $value = is_scalar( $input['translations'][$language] ?? null ) ? (string) $input['translations'][$language] : '';
+                    $translations[$language] = sanitize_textarea_field( $value );
+                }
+            }
+            $rule['translations'] = $translations;
+            $rule['text_ru'] = (string) ( $translations['ru'] ?? '' );
+            $rule['text_de'] = (string) ( $translations['de'] ?? '' );
             foreach ( array( 'category', 'image', 'weekday' ) as $field ) {
                 // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
                 if ( isset( $input[$field] ) && ! is_scalar( $input[$field] ) ) { throw new \InvalidArgumentException( __( 'Invalid publication rule.', 'georg-kloster-connect-hub' ) ); }
                 if ( isset( $input[$field] ) ) { $rule[$field] = absint( $input[$field] ); }
             }
             $rule['enabled'] = ! empty( $input['enabled'] );
-            if ( '' === $rule['text_ru'] && '' === $rule['text_de'] && '' !== $rule['text'] ) {
-                if ( 'de' === substr( determine_locale(), 0, 2 ) ) { $rule['text_de'] = $rule['text']; }
-                else { $rule['text_ru'] = $rule['text']; }
+            if ( ! array_filter( $rule['translations'] ) && '' !== $rule['text'] ) {
+                $default_language = has_filter( 'wpml_default_language' ) ? apply_filters( 'wpml_default_language', null ) : '';
+                $default_language = is_string( $default_language ) && isset( $active_languages[$default_language] ) ? $default_language : (string) array_key_first( $active_languages );
+                if ( '' !== $default_language ) { $rule['translations'][$default_language] = $rule['text']; }
+                $rule['text_ru'] = (string) ( $rule['translations']['ru'] ?? '' );
+                $rule['text_de'] = (string) ( $rule['translations']['de'] ?? '' );
             }
             $channels = isset( $input['channels'] ) && is_array( $input['channels'] ) ? array_filter( $input['channels'], 'is_string' ) : array();
             $rule['channels'] = array_values( array_intersect( array_keys( Publications::titles() ), $channels ) );
@@ -77,8 +95,10 @@ final class Publication_Rules {
             if ( 'message' === $rule['type'] ) {
                 $needs_general_text = (bool) array_diff( $rule['channels'], array( 'telegram' ) );
                 // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
-                if ( ( $needs_general_text && '' === $rule['text'] ) || mb_strlen( $rule['text'] ) > 900 || mb_strlen( $rule['text_ru'] ) > 900 || mb_strlen( $rule['text_de'] ) > 900 || ! in_array( $rule['frequency'], array( 'once', 'daily', 'weekly' ), true ) || ! preg_match( '/^(?:[01][0-9]|2[0-3]):[0-5][0-9]$/D', $rule['time'] ) || $rule['weekday'] > 6 ) { throw new \InvalidArgumentException( __( 'Enter a message of up to 900 characters and a valid schedule.', 'georg-kloster-connect-hub' ) ); }
-                if ( $rule['enabled'] && in_array( 'telegram', $rule['channels'], true ) && ( '' === $rule['text_ru'] || '' === $rule['text_de'] ) ) { throw new \InvalidArgumentException( __( 'Add both Russian and German message text before enabling this Telegram rule.', 'georg-kloster-connect-hub' ) ); }
+                if ( ( $needs_general_text && '' === $rule['text'] ) || mb_strlen( $rule['text'] ) > 900 || array_filter( $rule['translations'], static fn( $value ) => ! is_string( $value ) || mb_strlen( $value ) > 900 ) || ! in_array( $rule['frequency'], array( 'once', 'daily', 'weekly' ), true ) || ! preg_match( '/^(?:[01][0-9]|2[0-3]):[0-5][0-9]$/D', $rule['time'] ) || $rule['weekday'] > 6 ) { throw new \InvalidArgumentException( __( 'Enter a message of up to 900 characters and a valid schedule.', 'georg-kloster-connect-hub' ) ); }
+                if ( $rule['enabled'] && in_array( 'telegram', $rule['channels'], true ) ) {
+                    foreach ( $active_languages as $language => $details ) { if ( '' === trim( (string) ( $rule['translations'][$language] ?? '' ) ) ) { throw new \InvalidArgumentException( __( 'Enter Telegram reminder text for every active WPML language before enabling this rule.', 'georg-kloster-connect-hub' ) ); } }
+                }
                 // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
                 if ( 'once' === $rule['frequency'] && ( ! preg_match( '/^([0-9]{4})-([0-9]{2})-([0-9]{2})$/D', $rule['date'], $date ) || ! checkdate( (int) $date[2], (int) $date[3], (int) $date[1] ) ) ) { throw new \InvalidArgumentException( __( 'Choose a valid reminder date.', 'georg-kloster-connect-hub' ) ); }
                 // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.

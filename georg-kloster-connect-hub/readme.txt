@@ -4,7 +4,7 @@ Tags: contact form, messages, social, publishing, telegram
 Requires at least: 6.5
 Requires PHP: 8.0
 Tested up to: 7.1
-Stable tag: 0.4.2
+Stable tag: 0.4.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -22,7 +22,7 @@ receive public post announcements and service-schedule messages. Russian and
 German subscribers receive their matching published translations. Bot users can
 request today's or this week's schedule and select their message language.
 
-The menu has Forms, Messages, Publications, Telegram bot, Message log and Settings. The Message log
+The menu has Forms, Messages, Publications, Telegram bot, Bot commands, Message log and Settings. Forms and bot commands have separate list and edit screens. Bot reply languages follow WPML's active languages. The Message log
 records time, recipient, message text and technical result for outgoing email and
 Telegram request/schedule messages. It is separate from publication history, requires
 communication-settings access, and keeps at most 200 entries for 30 days. Deleting a
@@ -59,7 +59,7 @@ Development repository: https://github.com/VAtapin/Orthodox/tree/main/georg-klos
 
 == Installation ==
 
-Upload georg-kloster-connect-hub-0.4.2.zip. Replace an existing Connect Hub version,
+Upload georg-kloster-connect-hub-0.4.3.zip. Replace an existing Connect Hub version,
 or install as a new plugin and activate it.
 Activation deactivates the previous georg-kloster-prihod-social development plugin
 without deleting its settings. Keep only Connect Hub active. Network-active old
@@ -150,6 +150,11 @@ Configure optional reCAPTCHA v3 site and secret keys under Connect Hub > Setting
 General reception, retention and reCAPTCHA settings use one save button. A status message confirms whether both reCAPTCHA keys are saved; the secret key is never displayed.
 
 == Changelog ==
+
+= 0.4.3 =
+Separate Forms and Telegram command list screens from their individual editors.
+Build command and reminder translations from active WPML languages. Support
+Telegram HTML, schedules, full WordPress pages and news posts as bot replies.
 
 = 0.4.2 =
 Manage built-in Telegram commands and localized replies, add exact-phrase

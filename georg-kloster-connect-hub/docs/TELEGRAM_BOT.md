@@ -16,14 +16,20 @@ For contact messages, set a separate private Chat ID on each form. The person re
 
 ## What subscribers receive
 
-- A post selected for Telegram in the WordPress publication controls, or a new post matched by an enabled publication rule. The bot uses the Russian or German post translation that matches the subscriber. If that translation is missing, that recipient is marked as skipped in the delivery status.
+- A post selected for Telegram in the WordPress publication controls, or a new post matched by an enabled publication rule. The bot uses the post translation for the subscriber's language when available. If that translation is missing, that recipient is marked as skipped in the delivery status.
 - Published schedule changes when **Notify subscribers about changes to the published schedule** is enabled.
 - An optional daily schedule digest at the selected time in the WordPress time zone. It includes the day's services and the main commemorations returned by the connected Bible Desktop calendar, when available.
-- `/today` for today's services and commemorations, `/week` for the current week's services, `/lang` to choose Russian or German, `/menu` for interactive buttons, and `/help` for commands.
+- `/today` for today's services and commemorations, `/week` for the current week's services, `/lang` to choose among the active site languages, `/menu` for interactive buttons, and `/help` for commands.
 
-Open Connect Hub → **Telegram bot** to manage the built-in commands and their Russian and German descriptions and replies. `/start` and `/stop` remain available for subscription management. `/today` and `/week` use the generated schedule by default; put `{schedule}` in either reply to insert that schedule into a custom message. Without the placeholder, the saved reply is sent as written. Add slash commands with a unique lowercase English word, a menu description, and replies in both languages. Add text responders with one exact Russian phrase, one exact German phrase, and localized replies. Text triggers are case-insensitive and appear as buttons in `/menu`. Responses use the subscriber's selected language. Standard interface messages and defaults are translated through the plugin's `.po`/`.mo` catalogs.
+Open Connect Hub → **Bot commands** to see the WordPress-style command list. Select a row to edit one item, or choose **Add command or responder**. Built-in commands such as `/start`, `/stop`, `/today` and `/week` each have their own edit screen; `/start` and `/stop` cannot be disabled because they control subscription status.
 
-Scheduled Telegram reminders have separate Russian and German message fields. Both are required for an enabled Telegram reminder. The reminder can be sent to Telegram alone; the general-purpose message field is only needed by other selected channels.
+The translation fields follow the active languages in WPML. For each active language, enter the Telegram command-menu description, the exact phrase that triggers a text responder, and its reply. Existing saved language fields stay stored if that language is later removed from WPML. Standard interface labels and defaults use the plugin's `.po`/`.mo` catalogs.
+
+For the reply type, choose plain text, formatted Telegram HTML, today's or this week's parish schedule, a published WordPress page, or a published news post. Telegram HTML is a Telegram message with supported formatting tags, not a full HTML page; unsafe or unsupported tags are removed. A page reply sends the full rendered page content in Telegram-supported formatting and its link. A news-post reply sends the translated title, a short excerpt and a link. If the page or post has no translation in the subscriber's language, the bot reports that rather than sending content in another language. For schedule replies, `{schedule}` inserts the generated schedule into your own text; if you omit it, the schedule is appended after the configured text. Text triggers are case-insensitive and appear as buttons in `/menu`. Replies use the subscriber's selected WPML language.
+
+Open Connect Hub → **Forms** to see the list of forms. Use **Add form** to create one or select a row to edit it on its own screen. The form's Telegram Chat ID is only for private contact notifications from that form; public news and schedule broadcasts go to bot subscribers.
+
+Scheduled Telegram reminders have one message field for each language currently active in WPML. Every active language needs a translation before a Telegram reminder can be enabled; a subscriber with no matching translation is skipped and shown in delivery status. Languages removed from WPML remain in saved rules for compatibility. The reminder can be sent to Telegram alone; the general-purpose message field is only needed by other selected channels.
 
 ## Delivery status and subscriber controls
 
