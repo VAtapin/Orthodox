@@ -18,7 +18,7 @@ final class Connector {
         add_action( 'admin_menu', array( $this, 'menu' ), 20 );
         add_action( 'admin_post_gkps_connect_' . $id, array( $this, 'save' ) );
         add_action( 'admin_post_gkps_retry_' . $id, array( $this, 'retry' ) );
-        add_action( 'gkps_' . $id . '_worker', array( $this, 'worker' ) );
+        if ( 'telegram' !== $id ) { add_action( 'gkps_' . $id . '_worker', array( $this, 'worker' ) ); }
         add_action( 'gkps_request_created', function ( $request ) {
             $settings = $this->settings();
             if ( empty( $settings['notify_requests'] ) || ! apply_filters( 'gkps_connector_request_notification', true, $this->id ) ) { return; }
@@ -178,12 +178,16 @@ final class Connector {
         $text = $html ? wp_kses( $text, array( 'b' => array() ) ) : wp_html_excerpt( wp_strip_all_tags( $text ), $limit, '…' ); $url = esc_url_raw( $url );
         $destination = 'telegram' === $this->id && 'request' === $kind ? $telegram_target : $settings['target'];
         if ( 'telegram' === $this->id && 'request' === $kind && ! preg_match( '/^[1-9][0-9]*$/D', $destination ) ) { return ''; }
-        $id = hash( 'sha256', $this->id . $kind . $source . $text . $url . $destination . $settings['recipient'] . ( $reply_context['configuration'] ?? '' ) ); $key = 'gkps_job_' . $this->id . '_' . $id;
+        $resend_key = 'telegram' === $this->id && 'request' === $kind ? wp_generate_uuid4() : '';
+        $id = hash( 'sha256', $this->id . $kind . $source . $text . $url . $destination . $settings['recipient'] . ( $reply_context['configuration'] ?? '' ) . $resend_key ); $key = 'gkps_job_' . $this->id . '_' . $id;
         $target = hash( 'sha256', $destination . '|' . $settings['recipient'] );
         if ( add_option( $key, array( 'text' => $text, 'url' => $url, 'kind' => $kind, 'source' => $source, 'target' => $target, 'telegram_target' => 'telegram' === $this->id && 'request' === $kind ? $destination : '', 'status' => 'pending', 'attempts' => 0, 'reply_context' => $reply_context, 'image_url' => 'instagram' === $this->id ? $image : '' ), '', false ) ) {
-            $scheduled = wp_schedule_single_event( time() + 1, 'gkps_' . $this->id . '_worker', array( $id ), true );
-            if ( is_wp_error( $scheduled ) || ! $scheduled ) { delete_option( $key ); return ''; }
             if ( 'request' === $kind ) { $jobs = get_post_meta( $source, '_gkps_jobs_' . $this->id, true ) ?: array(); $jobs[] = $id; update_post_meta( $source, '_gkps_jobs_' . $this->id, $jobs ); }
+            if ( 'telegram' === $this->id ) { $this->worker( $id ); }
+            else {
+                $scheduled = wp_schedule_single_event( time() + 1, 'gkps_' . $this->id . '_worker', array( $id ), true );
+                if ( is_wp_error( $scheduled ) || ! $scheduled ) { delete_option( $key ); return ''; }
+            }
         }
         return $id;
     }
@@ -248,7 +252,7 @@ final class Connector {
             }
             update_option( $key, $job, false ); update_option( 'gkps_connect_last_' . $this->id, array( 'id' => $id, 'status' => $job['status'], 'http_code' => $code, 'time' => time() ), false );
             if ( $accepted ) { do_action( 'gkps_connector_sent', $this->id, $id, $job, $body ); }
-            if ( $pending || ( ! $accepted && ! empty( $result['retry'] ) && $job['attempts'] < 3 ) ) { wp_schedule_single_event( time() + ( $pending ? 60 : 300 * $job['attempts'] ), 'gkps_' . $this->id . '_worker', array( $id ) ); }
+            if ( 'telegram' !== $this->id && ( $pending || ( ! $accepted && ! empty( $result['retry'] ) && $job['attempts'] < 3 ) ) ) { wp_schedule_single_event( time() + ( $pending ? 60 : 300 * $job['attempts'] ), 'gkps_' . $this->id . '_worker', array( $id ) ); }
         } finally { Lock::release( $lock, $owner ); }
     }
     public function retry(): void {
@@ -265,6 +269,8 @@ final class Connector {
         if ( ! is_array( $job ) || 'failed' !== $job['status'] || ! hash_equals( $job['target'], hash( 'sha256', $destination . '|' . $settings['recipient'] ) ) ) { wp_die( esc_html__( 'The job is unavailable or the recipient has changed. Create a new publication.', 'georg-kloster-connect-hub' ) ); }
         if ( ! empty( $job['container_terminal'] ) ) { unset( $job['container_id'], $job['container_terminal'] ); }
         $job['attempts'] = 0; $job['status'] = 'pending'; update_option( $key, $job, false );
-        wp_clear_scheduled_hook( 'gkps_' . $this->id . '_worker', array( $id ) ); wp_schedule_single_event( time() + 1, 'gkps_' . $this->id . '_worker', array( $id ) );
+        wp_clear_scheduled_hook( 'gkps_' . $this->id . '_worker', array( $id ) );
+        if ( 'telegram' === $this->id ) { $this->worker( $id ); }
+        else { wp_schedule_single_event( time() + 1, 'gkps_' . $this->id . '_worker', array( $id ) ); }
     }
 }

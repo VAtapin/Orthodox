@@ -9,7 +9,6 @@ final class Telegram_Request_Settings {
         add_filter( 'gkps_connector_settings_errors', array( self::class, 'errors' ), 10, 3 );
         add_action( 'gkps_connector_saved', array( self::class, 'saved' ), 10, 2 );
         add_action( 'admin_post_gkps_telegram_receive', array( self::class, 'connect' ) );
-        add_action( 'gkps_telegram_register', array( self::class, 'register_worker' ), 10, 4 );
         add_action( 'admin_post_gkps_telegram_request', array( self::class, 'resend' ) );
         add_action( 'gkps_request_telegram_controls', array( self::class, 'request_button' ) );
     }
@@ -45,7 +44,6 @@ final class Telegram_Request_Settings {
         if ( 'telegram' !== $provider ) { return; }
         $key = 'gkps_telegram_notice_' . get_current_user_id(); $notice = get_transient( $key );
         if ( $notice ) { delete_transient( $key ); echo '<p role="status">' . esc_html( $notice ) . '</p>'; }
-        if ( ! empty( Telegram_Requests::options()['connection_job'] ) ) { echo '<p role="status">' . esc_html__( 'The connection check is still queued. Refresh this page later.', 'georg-kloster-connect-hub' ) . '</p>'; }
         $wanted = Telegram_Bot::broadcasting_enabled() || ! empty( Telegram_Requests::options()['enabled'] );
         if ( $wanted ) {
             echo '<p>' . esc_html( Telegram_Requests::webhook_ready() ? __( 'The shared bot webhook is connected. Subscriber commands and enabled form replies are being received here.', 'georg-kloster-connect-hub' ) : __( 'The shared bot webhook is not connected yet. Press the button after saving the bot settings.', 'georg-kloster-connect-hub' ) ) . '</p><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="gkps_telegram_receive">'; wp_nonce_field( 'gkps_telegram_receive' );
@@ -84,41 +82,16 @@ final class Telegram_Request_Settings {
     }
     public static function connect(): void {
         if ( ! current_user_can( 'manage_options' ) && ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Insufficient permissions.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); }
-        check_admin_referer( 'gkps_telegram_receive' ); $result = self::queue_registration( get_current_user_id() );
-        set_transient( 'gkps_telegram_notice_' . get_current_user_id(), is_wp_error( $result ) ? $result->get_error_message() : __( 'The connection check has been queued. Refresh this page in a while.', 'georg-kloster-connect-hub' ), 120 );
+        check_admin_referer( 'gkps_telegram_receive' ); $result = self::register_now( get_current_user_id() );
+        set_transient( 'gkps_telegram_notice_' . get_current_user_id(), is_wp_error( $result ) ? $result->get_error_message() : __( 'The shared bot webhook is connected.', 'georg-kloster-connect-hub' ), 120 );
         wp_safe_redirect( Connector::instance( 'telegram' )->settings_url() ); exit;
     }
-    public static function queue_registration( int $user ) {
+    public static function register_now( int $user ) {
         $connector = Telegram_Requests::connector(); $o = Telegram_Requests::options();
         if ( ! user_can( $user, 'manage_options' ) && ! user_can( $user, 'manage_gkps_settings' ) ) { return new \WP_Error( 'telegram_permission', __( 'Insufficient permissions.', 'georg-kloster-connect-hub' ) ); }
         if ( ! $connector || ! $connector->valid( $connector->settings() ) || ( ! $o['enabled'] && ! Telegram_Bot::broadcasting_enabled() ) || ( $o['enabled'] && ( ! user_can( $o['staff'], 'view_gkps_requests' ) || ! user_can( $o['staff'], 'reply_gkps_requests' ) || empty( $connector->settings()['notify_requests'] ) ) ) ) { return new \WP_Error( 'telegram_settings', __( 'Enable Telegram broadcasts or configure complete-message replies with a permitted staff member.', 'georg-kloster-connect-hub' ) ); }
-        $generation = wp_generate_password( 24, false, false );
         wp_clear_scheduled_hook( 'gkps_telegram_register' );
-        $queued = wp_schedule_single_event( time() + 1, 'gkps_telegram_register', array( $user, $generation, Telegram_Requests::configuration( $connector->settings(), (int) $o['staff'] ), 0 ), true );
-        if ( is_wp_error( $queued ) || ! $queued ) { return new \WP_Error( 'telegram_queue', __( 'The check could not be queued. Try again later.', 'georg-kloster-connect-hub' ) ); }
-        $o['connection_job'] = $generation; update_option( Telegram_Requests::OPTION, $o, false ); return true;
-    }
-    public static function register_worker( int $user, string $generation, string $fingerprint, int $attempt = 0 ): void {
-        $connector = Telegram_Requests::connector(); $o = Telegram_Requests::options();
-        if ( $generation !== ( $o['connection_job'] ?? '' ) ) { return; }
-        if ( ! $connector || ( ! $o['enabled'] && ! Telegram_Bot::broadcasting_enabled() ) || ! hash_equals( $fingerprint, Telegram_Requests::configuration( $connector->settings(), (int) $o['staff'] ) ) || ( ! user_can( $user, 'manage_options' ) && ! user_can( $user, 'manage_gkps_settings' ) ) ) { self::finish_registration( $user, $generation, __( 'Settings changed during the check. Reconnect the bot webhook.', 'georg-kloster-connect-hub' ) ); return; }
-        $lock = 'gkps_telegram_registration'; $owner = Lock::acquire( $lock, 120 );
-        if ( ! $owner ) {
-            $retry = $attempt < 3 && wp_schedule_single_event( time() + 30, 'gkps_telegram_register', array( $user, $generation, $fingerprint, $attempt + 1 ) );
-            if ( ! $retry ) { self::finish_registration( $user, $generation, __( 'The check could not be queued. Try again later.', 'georg-kloster-connect-hub' ) ); }
-            return;
-        }
-        $previous = get_current_user_id();
-        try {
-            wp_set_current_user( $user ); $result = self::configure();
-            self::finish_registration( $user, $generation, is_wp_error( $result ) ? $result->get_error_message() : __( 'The shared bot webhook is connected.', 'georg-kloster-connect-hub' ) );
-        } finally { wp_set_current_user( $previous ); Lock::release( $lock, $owner ); }
-    }
-    private static function finish_registration( int $user, string $generation, string $notice ): void {
-        $current = Telegram_Requests::options();
-        if ( $generation !== ( $current['connection_job'] ?? '' ) ) { return; }
-        unset( $current['connection_job'] ); update_option( Telegram_Requests::OPTION, $current, false );
-        set_transient( 'gkps_telegram_notice_' . $user, $notice, 300 );
+        return self::configure();
     }
     public static function request_button( int $id ): void {
         if ( ! Telegram_Requests::ready() || ! current_user_can( 'reply_gkps_requests' ) ) { return; }

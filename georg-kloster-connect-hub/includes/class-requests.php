@@ -4,9 +4,8 @@ defined( 'ABSPATH' ) || exit;
 
 final class Requests {
     public static function hooks(): void {
-        // Retention and previously queued delivery continue when the public module is disabled.
+        // Retention continues when the public module is disabled.
         add_action( 'init', array( self::class, 'register' ) );
-        add_action( 'gkps_request_mail', array( self::class, 'deliver' ), 10, 2 );
         add_action( 'gkps_requests_retention', array( self::class, 'retention' ) );
         add_filter( 'wp_privacy_personal_data_exporters', array( Request_Privacy::class, 'exporters' ) );
         add_filter( 'wp_privacy_personal_data_erasers', array( Request_Privacy::class, 'erasers' ) );
@@ -126,7 +125,7 @@ final class Requests {
             update_post_meta( $message_id, '_gkps_delivery', $success ? 'sent' : 'failed' );
             if ( $success ) {
                 if ( 'closed' !== get_post_meta( $id, '_gkps_request_status', true ) ) { update_post_meta( $id, '_gkps_request_status', 'answered' ); }
-            } elseif ( $attempt < 3 ) { wp_schedule_single_event( time() + 300 * $attempt, 'gkps_request_mail', array( $id, $message_id ) ); }
+            }
         } finally { Lock::release( $lock, $token ); }
     }
     public static function retry( int $id, int $message_id ): void {

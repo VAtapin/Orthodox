@@ -64,15 +64,15 @@ $throws = static function ( callable $operation, string $message ) use ( $check 
 };
 $admin_id = get_users( array( 'role' => 'administrator', 'number' => 1 ) )[0]->ID;
 wp_set_current_user( $admin_id ); set_current_screen( 'dashboard' );
-$check( '0.4.7' === GKPS_VERSION, 'Wrong Connect Hub version.' );
+$check( '0.4.8' === GKPS_VERSION, 'Wrong Connect Hub version.' );
 $check( ! is_plugin_active( 'georg-kloster-prihod-social/georg-kloster-prihod-social.php' ), 'Old development package remains active.' );
 $check( 'Existing development form' === Admin::get()['title'], 'Development form settings were lost.' );
 $check( '12345' === Connector::instance( 'telegram' )->settings()['target'], 'Channel settings were lost.' );
 $check( null === Connector::instance( 'whatsapp' ) && ! isset( Publications::titles()['whatsapp'] ), 'WhatsApp is still registered as a Connect Hub channel.' );
 $old_messages = get_posts( array( 'post_type' => 'gkps_request', 'post_status' => 'private', 'numberposts' => -1 ) );
 $check( 1 === count( $old_messages ) && 'Synthetic development content' === $old_messages[0]->post_content, 'Synthetic upgrade fixture was lost.' );
-$mail = array();
-add_filter( 'pre_wp_mail', static function ( $result, $args ) use ( &$mail ) { $mail[] = $args; return true; }, 10, 2 );
+$mail = array(); $mail_accept = true;
+add_filter( 'pre_wp_mail', static function ( $result, $args ) use ( &$mail, &$mail_accept ) { $mail[] = $args; return $mail_accept; }, 10, 2 );
 $http = array(); $mode = 'success'; $ig_status = 'IN_PROGRESS'; $telegram_webhook_url = 'https://old-test.example/telegram-webhook'; $telegram_set_webhook = array();
 $telegram_message_valid = static function ( array $call ): bool {
     $body = json_decode( $call['args']['body'] ?? '{}', true );
@@ -110,6 +110,7 @@ add_filter( 'pre_http_request', static function ( $pre, $args, $url ) use ( &$ht
         elseif ( 'getMe' === $method ) { $body = array( 'ok' => true, 'result' => array( 'id' => 123456, 'is_bot' => true ) ); }
         elseif ( 'getChat' === $method ) { $body = array( 'ok' => true, 'result' => array( 'id' => 12345, 'type' => 'private' ) ); }
         elseif ( 'setWebhook' === $method ) { $telegram_set_webhook = $payload; $telegram_webhook_url = $payload['url'] ?? ''; $body = array( 'ok' => true, 'result' => true ); }
+        elseif ( 'telegram_failure' === $mode && in_array( $method, array( 'sendMessage', 'sendPhoto', 'sendVideo', 'sendMediaGroup' ), true ) ) { $code = 500; $body = array( 'ok' => false, 'error_code' => 500, 'description' => 'Synthetic Telegram failure.' ); }
         else { $body = array( 'ok' => true, 'result' => array( 'message_id' => 71 ) ); }
     }
     else { return new WP_Error( 'fixture', 'External request blocked by disposable test.' ); }
@@ -168,6 +169,12 @@ ob_start(); GeorgKlosterPrihodSocial\Request_Admin::render(); $inbox = ob_get_cl
 $check( str_contains( $inbox, 'Milk' ), 'Messages disappeared when incoming forms were disabled.' );
 $check( str_contains( $inbox, 'wp-list-table widefat fixed striped' ) && str_contains( $inbox, 'Date received' ) && str_contains( $inbox, 'Sender' ) && str_contains( $inbox, 'confirm_delete' ), 'Messages list is missing its WordPress table layout or bulk-delete controls.' );
 update_option( 'gkch_settings', array( 'enabled' => true ) );
+$mail_accept = false;
+$failed_reply = Requests::message( $request, 'Synthetic reply with immediate mail failure.', false );
+$check( 'failed' === get_post_meta( $failed_reply, '_gkps_delivery', true ) && ! wp_next_scheduled( 'gkps_request_mail' ), 'A failed email reply was deferred for an automatic retry.' );
+$mail_accept = true;
+Requests::retry( $request, $failed_reply );
+$check( 'sent' === get_post_meta( $failed_reply, '_gkps_delivery', true ) && ! wp_next_scheduled( 'gkps_request_mail' ), 'A manually retried email reply was not sent during the retry request.' );
 $post = wp_insert_post( array( 'post_type' => 'post', 'post_status' => 'publish', 'post_title' => 'Synthetic public post', 'post_content' => 'Synthetic public text.' ) );
 $test_church = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Храм тестовый' ) );
 $test_chapel = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Часовня тестовая' ) );
@@ -188,6 +195,7 @@ foreach ( Publications::titles() as $id => $title ) {
     $check( Connector::instance( $id )->valid( $settings ), 'Valid channel configuration rejected: ' . $id );
 }
 $telegram_tables = Telegram_Bot::tables();
+$check( false === has_action( 'gkch_telegram_broadcast_worker' ) && false === has_action( 'gkps_telegram_worker' ) && false === has_action( 'gkps_request_mail' ), 'Telegram or reply-email delivery still has a WP-Cron worker hook.' );
 $telegram_custom_command = array(
     array( 'type' => 'command', 'command' => 'prayer', 'description_ru' => 'Молитва', 'description_de' => 'Gebet', 'response_ru' => 'Напишите нам о своей молитвенной просьбе.', 'response_de' => 'Schreiben Sie uns Ihr Gebetsanliegen.' ),
     array( 'type' => 'text', 'trigger_ru' => 'расписание', 'trigger_de' => 'Gottesdienstplan', 'description_ru' => 'Открыть расписание', 'description_de' => 'Gottesdienstplan öffnen', 'response_ru' => 'Расписание монастыря.', 'response_de' => 'Gottesdienstplan des Klosters.' ),
@@ -218,7 +226,7 @@ $check( Telegram_Bot::receive_update( $telegram_start( 51001, '70101', 'ru' ) ) 
 $check( 2 === (int) $GLOBALS['wpdb']->get_var( "SELECT COUNT(*) FROM {$telegram_tables['subscribers']} WHERE status='active'" ), 'Started bot users were not stored as active subscribers.' );
 $before_http = count( $http );
 $jobs = Publications::enqueue( $post, array_keys( Publications::titles() ) );
-$check( 5 === count( $jobs ) && count( $http ) === $before_http, 'Publication sent synchronously or missing channels.' );
+$check( 5 === count( $jobs ) && count( $http ) === $before_http + 2, 'Telegram publication did not send immediately to each subscriber, or a channel was missing.' );
 $check( $jobs === Publications::enqueue( $post, array_keys( Publications::titles() ) ), 'Repeated publication did not deduplicate.' );
 foreach ( array( 'facebook', 'vk', 'ok' ) as $id ) {
     Connector::instance( $id )->worker( $jobs[$id] );
@@ -229,7 +237,6 @@ foreach ( array( 'facebook', 'vk', 'ok' ) as $id ) {
 $telegram_campaign_id = (int) str_replace( 'tg-broadcast-', '', $jobs['telegram'] );
 $telegram_campaign = $GLOBALS['wpdb']->get_row( $GLOBALS['wpdb']->prepare( "SELECT * FROM {$telegram_tables['campaigns']} WHERE id=%d", $telegram_campaign_id ), ARRAY_A );
 $check( 2 === (int) $telegram_campaign['total'] && str_contains( $telegram_campaign['payload_ru'], 'Synthetic public post' ) && str_contains( $telegram_campaign['payload_de'], 'Deutscher Beispielbeitrag' ), 'Telegram post broadcast did not select the matching Russian/German translations.' );
-Telegram_Bot::worker( $telegram_campaign_id );
 $telegram_deliveries = $GLOBALS['wpdb']->get_results( $GLOBALS['wpdb']->prepare( "SELECT d.status,s.chat_id,d.language FROM {$telegram_tables['deliveries']} d JOIN {$telegram_tables['subscribers']} s ON s.id=d.subscriber_id WHERE d.campaign_id=%d ORDER BY d.language", $telegram_campaign_id ), ARRAY_A );
 $check( array( 'de', 'ru' ) === array_column( $telegram_deliveries, 'language' ) && array( '70102', '70101' ) === array_column( $telegram_deliveries, 'chat_id' ) && array( 'sent', 'sent' ) === array_column( $telegram_deliveries, 'status' ), 'Telegram publication did not reach each active subscriber with their language.' );
 $check( 'sent' === $GLOBALS['wpdb']->get_var( $GLOBALS['wpdb']->prepare( "SELECT status FROM {$telegram_tables['campaigns']} WHERE id=%d", $telegram_campaign_id ) ), 'Telegram campaign did not record completion.' );
@@ -348,7 +355,6 @@ $service_notice = wp_insert_post( array( 'post_type' => 'post', 'post_status' =>
 do_action( 'gkpsch_schedule_changed', $service_notice );
 $schedule_campaign_id = (int) $GLOBALS['wpdb']->get_var( $GLOBALS['wpdb']->prepare( "SELECT id FROM {$telegram_tables['campaigns']} WHERE source_type='schedule' AND source_id=%d", $service_notice ) );
 $check( $schedule_campaign_id > 0, 'A published schedule change did not create a subscriber campaign.' );
-Telegram_Bot::worker( $schedule_campaign_id );
 $check( 'sent' === $GLOBALS['wpdb']->get_var( $GLOBALS['wpdb']->prepare( "SELECT status FROM {$telegram_tables['campaigns']} WHERE id=%d", $schedule_campaign_id ) ), 'Schedule-change notification was not delivered.' );
 $schedule_message_calls = array_values( array_filter( $http, static function ( $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); return str_ends_with( (string) wp_parse_url( $call['url'], PHP_URL_PATH ), '/sendMessage' ) && str_contains( (string) ( $body['text'] ?? '' ), 'Synthetic schedule change' ); } ) );
 $check( $schedule_message_calls && 'HTML' === ( json_decode( end( $schedule_message_calls )['args']['body'], true )['parse_mode'] ?? '' ) && str_contains( json_decode( end( $schedule_message_calls )['args']['body'], true )['text'] ?? '', '<b>' ), 'Schedule-change notices were not sent as formatted HTML.' );
@@ -357,11 +363,10 @@ $telegram_settings['daily_digest_enabled'] = true;
 update_option( 'gkps_connect_telegram', $telegram_settings, false );
 Telegram_Bot::ensure_digest();
 $check( (bool) wp_next_scheduled( 'gkch_telegram_daily_digest' ), 'Daily digest was not scheduled in the WordPress time zone.' );
+$digest_http_start = count( $http );
 Telegram_Bot::daily_digest();
 $digest_campaign_id = (int) $GLOBALS['wpdb']->get_var( "SELECT id FROM {$telegram_tables['campaigns']} WHERE source_type='digest' ORDER BY id DESC LIMIT 1" );
 $check( $digest_campaign_id > 0, 'Daily digest did not create a subscriber campaign.' );
-$digest_http_start = count( $http );
-Telegram_Bot::worker( $digest_campaign_id );
 $check( 'sent' === $GLOBALS['wpdb']->get_var( $GLOBALS['wpdb']->prepare( "SELECT status FROM {$telegram_tables['campaigns']} WHERE id=%d", $digest_campaign_id ) ), 'Daily digest campaign did not complete.' );
 $digest_photo_calls = array_values( array_filter( array_slice( $http, $digest_http_start ), static function ( $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); return str_ends_with( (string) wp_parse_url( $call['url'], PHP_URL_PATH ), '/sendPhoto' ) && ! empty( $body['caption'] ); } ) );
 $check( 1 === count( $digest_photo_calls ) && array_reduce( $digest_photo_calls, static fn( $ok, $call ) => $ok && 'HTML' === ( json_decode( $call['args']['body'], true )['parse_mode'] ?? '' ), true ), 'Daily digest was not delivered with its day icon and formatted HTML caption to the active language subscriber.' );
@@ -370,12 +375,18 @@ $check( str_contains( $telegram_admin, '70101' ) && str_contains( $telegram_admi
 $message_fixture = wp_insert_post( array( 'post_type' => 'gkps_request', 'post_status' => 'private', 'post_title' => 'Synthetic outgoing log fixture', 'post_content' => 'Private message body to audit.' ) );
 foreach ( array( 'telegram' => '12345' ) as $channel => $recipient ) {
     $job_id = Connector::instance( $channel )->queue( 'Synthetic outgoing message body.', '', 'request', $message_fixture, array(), $recipient );
-    $check( '' !== $job_id, 'Request message was not queued for the technical journal: ' . $channel );
-    Connector::instance( $channel )->worker( $job_id );
+    $check( '' !== $job_id && 'sent' === get_option( 'gkps_job_' . $channel . '_' . $job_id )['status'], 'Request message was not sent immediately for the technical journal: ' . $channel );
     $events = GeorgKlosterPrihodSocial\Outgoing_Log::rows( array( 'channel' => $channel ) );
     $event = array_values( array_filter( $events, static fn( $row ) => $message_fixture === (int) $row['source_id'] ) )[0] ?? array();
     $check( 'accepted' === ( $event['status'] ?? '' ) && $recipient === ( $event['recipient'] ?? '' ) && str_contains( $event['content'] ?? '', 'Synthetic outgoing message body.' ), 'Request-message journal missed actual destination, content or accepted status: ' . $channel );
 }
+$mode = 'telegram_failure';
+$failed_post = wp_insert_post( array( 'post_type' => 'post', 'post_status' => 'publish', 'post_title' => 'Synthetic immediate failure', 'post_content' => 'A single direct send attempt.' ) );
+$failed_broadcast = Telegram_Bot::queue( 'post', $failed_post );
+$failed_campaign_id = (int) str_replace( 'tg-broadcast-', '', $failed_broadcast );
+$failed_delivery_status = $GLOBALS['wpdb']->get_var( $GLOBALS['wpdb']->prepare( "SELECT status FROM {$telegram_tables['deliveries']} WHERE campaign_id=%d LIMIT 1", $failed_campaign_id ) );
+$check( 'failed' === $failed_delivery_status && 'partial' === $GLOBALS['wpdb']->get_var( $GLOBALS['wpdb']->prepare( "SELECT status FROM {$telegram_tables['campaigns']} WHERE id=%d", $failed_campaign_id ) ) && ! wp_next_scheduled( 'gkch_telegram_broadcast_worker' ), 'A failed Telegram send was deferred for automatic retry.' );
+$mode = 'success';
 ob_start(); GeorgKlosterPrihodSocial\Outgoing_Log::render(); $log_html = ob_get_clean();
 $check( str_contains( $log_html, 'Synthetic outgoing message body.' ) && str_contains( $log_html, '49123456789' ) && ! str_contains( $log_html, 'inbox delivery is not confirmed' ) && ! str_contains( $log_html, 'почтовый ящик не подтверждена' ), 'The authorized message journal is missing sent details or still shows the removed inbox-delivery sentence.' );
 GeorgKlosterPrihodSocial\Requests::delete( $message_fixture );

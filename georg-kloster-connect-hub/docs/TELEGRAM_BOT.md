@@ -22,7 +22,7 @@ For contact messages, set a separate private Chat ID on each form. The person re
 - `/today` sends the same complete daily schedule and commemorations; `/week` groups every service by localized date. Both show each service place once after the schedule, with its address linked to Google Maps directions. Service lines include a vestment-color marker when the calendar provides one.
 - `/lang` chooses among the active site languages, `/menu` opens interactive buttons, and `/help` lists commands.
 
-Interactive `/today` and `/week` requests are built and answered during the Telegram webhook request; they are not placed in WP-Cron. The daily subscriber digest, publication campaigns and scheduled reminders continue to use background workers.
+Incoming commands and replies, form notifications, email replies, publication sends and subscriber broadcasts run directly in the request that triggers them. Each `/start` subscriber receives a separate private Telegram API call; failed deliveries are recorded for an administrator to retry manually. No Telegram or reply-email delivery is deferred to WP-Cron. Only calendar timing uses WP-Cron: the daily digest and scheduled publication rules fire at their configured time, then send immediately.
 
 Service place addresses are edited in **Parish → Places of service**, in that place's own **Address** field. Schedule messages use the address of each place where a service is scheduled. The general address in **Parish → Parish details** is used only when a service place has no address; it is not used to replace a place's own address.
 
@@ -40,6 +40,6 @@ Scheduled Telegram reminders have one message field for each language currently 
 
 ## Delivery status and subscriber controls
 
-Connect Hub → **Telegram bot** shows active subscribers by language and recent campaign status. The page can remove one subscriber, retry failed recipients, or cancel an in-progress campaign. Deliveries run in WordPress Cron batches; transient API failures are retried, while blocked users are removed from active delivery.
+Connect Hub → **Telegram bot** shows active subscribers by language and recent campaign status. The page can remove one subscriber, retry failed recipients immediately, or cancel an in-progress campaign. A Telegram error is recorded without an automatic retry; blocked users are removed from active delivery. Since Telegram sends a separate message to each private chat, a large subscriber list can take time in the request and may meet Telegram's rate limit.
 
 The bot can send only to people who started a private chat with it. An active subscriber can opt out with `/stop`. Removing a subscriber in WordPress also deletes the Chat ID from the active subscriber table. Delivery history contains campaign and delivery statuses, not names or email addresses.

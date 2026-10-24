@@ -3,26 +3,22 @@ namespace GeorgKlosterPrihodSocial;
 
 defined( 'ABSPATH' ) || exit;
 
-/** Subscriber commands, schedule replies and queued Telegram broadcasts. */
+/** Subscriber commands, schedule replies and immediate Telegram broadcasts. */
 final class Telegram_Bot {
 	private const MAX_REPLY_MEDIA = 10;
 
 	private const SCHEMA_OPTION = 'gkch_telegram_schema';
 	private const COMMANDS_OPTION = 'gkch_telegram_custom_commands';
 	private const SYSTEM_COMMANDS_OPTION = 'gkch_telegram_system_commands';
-	private const WORKER = 'gkch_telegram_broadcast_worker';
 	private const DIGEST = 'gkch_telegram_daily_digest';
-	private const BATCH_SIZE = 10;
 
 	public static function hooks(): void {
 		add_action( 'init', array( self::class, 'install' ), 1 );
 		add_action( 'init', array( self::class, 'ensure_digest' ), 2 );
-		add_action( 'init', array( self::class, 'ensure_workers' ), 3 );
 		add_action( 'admin_menu', array( self::class, 'menu' ), 30 );
 		add_action( 'admin_enqueue_scripts', array( self::class, 'admin_assets' ) );
 		add_action( 'admin_post_gkch_telegram_action', array( self::class, 'admin_action' ) );
 		add_action( 'admin_post_gkch_telegram_bot_commands_save', array( self::class, 'save_bot_commands' ) );
-		add_action( self::WORKER, array( self::class, 'worker' ) );
 		add_action( self::DIGEST, array( self::class, 'daily_digest' ) );
 		add_action( 'gkps_connector_settings_fields', array( self::class, 'settings_fields' ), 20, 2 );
 		add_action( 'gkps_connector_saved', array( self::class, 'settings_saved' ), 20, 2 );
@@ -913,33 +909,12 @@ final class Telegram_Bot {
 		$wpdb->query( $wpdb->prepare( "INSERT IGNORE INTO {$tables['deliveries']} (campaign_id,subscriber_id,language,status,attempts,next_attempt) SELECT %d,id,language,'pending',0,%s FROM {$tables['subscribers']} WHERE status='active'", $id, $now ) );
 		$total = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$tables['deliveries']} WHERE campaign_id=%d", $id ) );
 		$wpdb->update( $tables['campaigns'], array( 'total' => $total, 'status' => $total ? 'queued' : 'no_subscribers', 'updated_at' => $now ), array( 'id' => $id ), array( '%d', '%s', '%s' ), array( '%d' ) );
-		if ( $total ) {
-			if ( ! self::schedule_worker( $id, time() + 5 ) ) { $wpdb->update( $tables['campaigns'], array( 'status' => 'failed', 'error' => 'cron_schedule_failed', 'updated_at' => $now ), array( 'id' => $id ) ); }
-		}
+		if ( $total ) { self::worker( $id ); }
 		return 'tg-broadcast-' . $id;
 	}
 
-	private static function schedule_worker( int $campaign_id, int $timestamp ): bool {
-		if ( wp_next_scheduled( self::WORKER, array( $campaign_id ) ) ) { return true; }
-		$scheduled = wp_schedule_single_event( max( time() + 1, $timestamp ), self::WORKER, array( $campaign_id ), true );
-		return ! is_wp_error( $scheduled ) && (bool) $scheduled;
-	}
-
-	public static function ensure_workers(): void {
-		if ( ! self::broadcasting_enabled() ) { return; }
-		global $wpdb;
-		$table = self::tables()['campaigns'];
-		$deliveries = self::tables()['deliveries'];
-		$ids = $wpdb->get_col( "SELECT c.id FROM $table c WHERE (c.status IN ('queued','processing','partial') OR (c.status='failed' AND c.error IN ('cron_schedule_failed','telegram_disabled'))) AND EXISTS (SELECT 1 FROM $deliveries d WHERE d.campaign_id=c.id AND d.status='pending') ORDER BY c.id ASC LIMIT 100" );
-		foreach ( (array) $ids as $id ) {
-			$campaign_id = absint( $id );
-			if ( ! $campaign_id ) { continue; }
-			self::schedule_worker( $campaign_id, time() + 5 );
-		}
-	}
-
 	public static function deactivate(): void {
-		wp_clear_scheduled_hook( self::WORKER );
+		wp_clear_scheduled_hook( 'gkch_telegram_broadcast_worker' );
 		wp_clear_scheduled_hook( self::DIGEST );
 	}
 
@@ -951,14 +926,18 @@ final class Telegram_Bot {
 		try {
 			$campaign = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$tables['campaigns']} WHERE id=%d", $campaign_id ), ARRAY_A );
 			if ( ! is_array( $campaign ) || ! in_array( $campaign['status'], array( 'queued', 'processing', 'partial' ), true ) ) { return; }
-			if ( ! self::broadcasting_enabled() ) { self::set_campaign_status( $campaign_id, 'failed', 'telegram_disabled' ); return; }
+			if ( ! self::broadcasting_enabled() ) {
+				$wpdb->update( $tables['deliveries'], array( 'status' => 'failed', 'error' => 'telegram_disabled' ), array( 'campaign_id' => $campaign_id, 'status' => 'pending' ), array( '%s', '%s' ), array( '%d', '%s' ) );
+				self::finish_campaign( $campaign_id );
+				return;
+			}
 			$context = json_decode( (string) $campaign['context'], true );
 			$context = is_array( $context ) ? $context : array();
 			$kind = $campaign['source_type'];
 			if ( 'automation' === $kind && ! Publication_Rules::allows( array( 'kind' => 'automation', 'source' => (int) $campaign['source_id'], 'reply_context' => $context ) ) ) { self::set_campaign_status( $campaign_id, 'cancelled', 'The publication rule is no longer active.' ); self::skip_pending( $campaign_id, 'rule_inactive' ); return; }
 			if ( 'post' === $kind && ( 'publish' !== get_post_status( (int) $campaign['source_id'] ) || ! Publication_Rules::allows( array( 'kind' => 'post', 'source' => (int) $campaign['source_id'], 'reply_context' => $context ) ) ) ) { self::set_campaign_status( $campaign_id, 'cancelled', 'The post is no longer available for publication.' ); self::skip_pending( $campaign_id, 'post_unavailable' ); return; }
-			$batch = $wpdb->get_results( $wpdb->prepare( "SELECT d.*,s.chat_id,s.status AS subscriber_status FROM {$tables['deliveries']} d LEFT JOIN {$tables['subscribers']} s ON s.id=d.subscriber_id WHERE d.campaign_id=%d AND d.status='pending' AND d.next_attempt<=%s ORDER BY d.id ASC LIMIT %d", $campaign_id, gmdate( 'Y-m-d H:i:s' ), self::BATCH_SIZE ), ARRAY_A );
-			if ( ! $batch ) { self::finish_or_reschedule( $campaign_id ); return; }
+			$batch = $wpdb->get_results( $wpdb->prepare( "SELECT d.*,s.chat_id,s.status AS subscriber_status FROM {$tables['deliveries']} d LEFT JOIN {$tables['subscribers']} s ON s.id=d.subscriber_id WHERE d.campaign_id=%d AND d.status='pending' ORDER BY d.id ASC", $campaign_id ), ARRAY_A );
+			if ( ! $batch ) { self::finish_campaign( $campaign_id ); return; }
 			self::set_campaign_status( $campaign_id, 'processing', '' );
 			foreach ( $batch as $index => $delivery ) {
 				if ( 'active' !== ( $delivery['subscriber_status'] ?? '' ) || empty( $delivery['chat_id'] ) ) { self::delivery_status( $delivery, 'skipped', 'unsubscribed' ); continue; }
@@ -969,19 +948,16 @@ final class Telegram_Bot {
 				$attempt = (int) $delivery['attempts'] + 1;
 				if ( ! empty( $result['accepted'] ) ) {
 					self::delivery_status( $delivery, 'sent', '', $attempt, (string) ( $result['message_id'] ?? '' ) );
-				} elseif ( ! empty( $result['retry'] ) && $attempt < 5 ) {
-					$delay = max( 5, min( 3600, (int) ( $result['retry_after'] ?? 15 ) ) );
-					self::delivery_status( $delivery, 'pending', sanitize_key( $result['error'] ?? 'temporary_error' ), $attempt, '', time() + $delay );
-					if ( ! empty( $result['rate_limited'] ) ) {
-						foreach ( array_slice( $batch, $index + 1 ) as $remaining ) { self::delivery_status( $remaining, 'pending', '', (int) $remaining['attempts'], '', time() + $delay ); }
-						break;
-					}
 				} else {
 					self::delivery_status( $delivery, 'failed', sanitize_key( $result['error'] ?? 'telegram_rejected' ), $attempt );
 					if ( 403 === (int) ( $result['error_code'] ?? 0 ) ) { self::block_subscriber( (int) $delivery['subscriber_id'] ); }
+					if ( ! empty( $result['rate_limited'] ) ) {
+						foreach ( array_slice( $batch, $index + 1 ) as $remaining ) { self::delivery_status( $remaining, 'failed', 'not_sent_rate_limited', (int) $remaining['attempts'] ); }
+						break;
+					}
 				}
 			}
-			self::finish_or_reschedule( $campaign_id );
+			self::finish_campaign( $campaign_id );
 		} finally { Lock::release( 'gkch_telegram_campaign_' . $campaign_id, $lock ); }
 	}
 
@@ -1045,23 +1021,20 @@ final class Telegram_Bot {
 		$wpdb->update( self::tables()['campaigns'], array( 'status' => $status, 'error' => $error, 'updated_at' => gmdate( 'Y-m-d H:i:s' ) ), array( 'id' => $id ), array( '%s', '%s', '%s' ), array( '%d' ) );
 	}
 
-	private static function finish_or_reschedule( int $campaign_id ): void {
+	private static function finish_campaign( int $campaign_id ): void {
 		global $wpdb;
 		$tables = self::tables();
 		$counts = $wpdb->get_results( $wpdb->prepare( "SELECT status,COUNT(*) AS amount,MIN(next_attempt) AS next_at FROM {$tables['deliveries']} WHERE campaign_id=%d GROUP BY status", $campaign_id ), ARRAY_A );
-		$pending = 0; $sent = 0; $failed = 0; $skipped = 0; $next = '';
+		$pending = 0; $sent = 0; $failed = 0; $skipped = 0;
 		foreach ( (array) $counts as $row ) {
-			if ( 'pending' === $row['status'] ) { $pending = (int) $row['amount']; $next = $row['next_at']; }
+			if ( 'pending' === $row['status'] ) { $pending = (int) $row['amount']; }
 			if ( 'sent' === $row['status'] ) { $sent = (int) $row['amount']; }
 			if ( 'failed' === $row['status'] ) { $failed = (int) $row['amount']; }
 			if ( 'skipped' === $row['status'] ) { $skipped = (int) $row['amount']; }
 		}
-		$status = $pending ? 'processing' : ( $failed || $skipped ? 'partial' : 'sent' );
-		$wpdb->update( $tables['campaigns'], array( 'status' => $status, 'sent' => $sent, 'failed' => $failed, 'skipped' => $skipped, 'updated_at' => gmdate( 'Y-m-d H:i:s' ) ), array( 'id' => $campaign_id ), array( '%s', '%d', '%d', '%d', '%s' ), array( '%d' ) );
-		if ( $pending ) {
-			$next_time = $next ? strtotime( $next . ' UTC' ) : time() + 5;
-			if ( ! self::schedule_worker( $campaign_id, max( time() + 2, $next_time ) ) ) { self::set_campaign_status( $campaign_id, 'failed', 'cron_schedule_failed' ); }
-		}
+		$status = $pending || $failed || $skipped ? 'partial' : 'sent';
+		$error = $pending ? 'manual_retry_required' : '';
+		$wpdb->update( $tables['campaigns'], array( 'status' => $status, 'error' => $error, 'sent' => $sent, 'failed' => $failed, 'skipped' => $skipped, 'updated_at' => gmdate( 'Y-m-d H:i:s' ) ), array( 'id' => $campaign_id ), array( '%s', '%s', '%d', '%d', '%d', '%s' ), array( '%d' ) );
 	}
 
 	public static function daily_digest(): void {
@@ -1587,14 +1560,16 @@ final class Telegram_Bot {
 		echo '<h2>' . esc_html__( 'Recent broadcast status', 'georg-kloster-connect-hub' ) . '</h2><table class="widefat striped"><thead><tr><th>' . esc_html__( 'Message', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Status', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Recipients', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Action', 'georg-kloster-connect-hub' ) . '</th></tr></thead><tbody>';
 		foreach ( (array) $rows as $row ) {
 			$summary = $row['sent'] . '/' . $row['total'] . ' ' . __( 'sent', 'georg-kloster-connect-hub' ) . ( (int) $row['failed'] ? '; ' . $row['failed'] . ' ' . __( 'failed', 'georg-kloster-connect-hub' ) : '' ) . ( (int) $row['skipped'] ? '; ' . $row['skipped'] . ' ' . __( 'skipped', 'georg-kloster-connect-hub' ) : '' );
-			$statuses = array( 'queued' => __( 'Queued', 'georg-kloster-connect-hub' ), 'processing' => __( 'Sending', 'georg-kloster-connect-hub' ), 'partial' => __( 'Completed with issues', 'georg-kloster-connect-hub' ), 'sent' => __( 'Completed', 'georg-kloster-connect-hub' ), 'failed' => __( 'Needs attention', 'georg-kloster-connect-hub' ), 'cancelled' => __( 'Cancelled', 'georg-kloster-connect-hub' ), 'no_subscribers' => __( 'No subscribers at send time', 'georg-kloster-connect-hub' ) );
+			$statuses = array( 'queued' => __( 'Needs attention', 'georg-kloster-connect-hub' ), 'processing' => __( 'Sending', 'georg-kloster-connect-hub' ), 'partial' => __( 'Completed with issues', 'georg-kloster-connect-hub' ), 'sent' => __( 'Completed', 'georg-kloster-connect-hub' ), 'failed' => __( 'Needs attention', 'georg-kloster-connect-hub' ), 'cancelled' => __( 'Cancelled', 'georg-kloster-connect-hub' ), 'no_subscribers' => __( 'No subscribers at send time', 'georg-kloster-connect-hub' ) );
 			$pending = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$tables['deliveries']} WHERE campaign_id=%d AND status='pending'", $row['id'] ) );
 			$reason = '';
 			if ( 'cron_schedule_failed' === $row['error'] ) { $reason = __( 'WordPress could not schedule this delivery. Retry it or check that WordPress Cron is running.', 'georg-kloster-connect-hub' ); }
-			elseif ( 'telegram_disabled' === $row['error'] ) { $reason = __( 'Telegram sending is disabled or the connection is incomplete. Pending deliveries remain available.', 'georg-kloster-connect-hub' ); }
+			elseif ( 'telegram_disabled' === $row['error'] ) { $reason = __( 'Telegram sending is disabled or the connection is incomplete. Retry after correcting the settings.', 'georg-kloster-connect-hub' ); }
+			elseif ( 'manual_retry_required' === $row['error'] ) { $reason = __( 'Some recipients still need attention. Retry them here; deliveries are not scheduled in the background.', 'georg-kloster-connect-hub' ); }
+			elseif ( $pending && in_array( $row['status'], array( 'queued', 'processing' ), true ) ) { $reason = __( 'Some recipients still need attention. Retry them here; deliveries are not scheduled in the background.', 'georg-kloster-connect-hub' ); }
 			elseif ( $row['error'] ) { $reason = $row['error']; }
 			echo '<tr><td>' . esc_html( $row['title'] ) . '<br><small>' . esc_html( $row['created_at'] ) . '</small>' . ( $reason ? '<br>' . esc_html( $reason ) : '' ) . '</td><td>' . esc_html( $statuses[ $row['status'] ] ?? $row['status'] ) . '</td><td>' . esc_html( $summary ) . '</td><td>';
-			if ( ( (int) $row['failed'] > 0 || ( 'failed' === $row['status'] && $pending > 0 ) ) && in_array( $row['status'], array( 'partial', 'failed' ), true ) ) { self::action_form( 'retry', (int) $row['id'], __( 'Retry failed recipients', 'georg-kloster-connect-hub' ) ); }
+			if ( ( (int) $row['failed'] > 0 || $pending > 0 ) && in_array( $row['status'], array( 'partial', 'failed', 'processing', 'queued' ), true ) ) { self::action_form( 'retry', (int) $row['id'], __( 'Retry failed recipients', 'georg-kloster-connect-hub' ) ); }
 			if ( in_array( $row['status'], array( 'queued', 'processing' ), true ) ) { self::action_form( 'cancel', (int) $row['id'], __( 'Cancel', 'georg-kloster-connect-hub' ) ); }
 			echo '</td></tr>';
 		}
@@ -1634,15 +1609,14 @@ final class Telegram_Bot {
 			if ( $chat ) { self::unsubscribe( (string) $chat ); }
 		} elseif ( 'retry' === $action && $id ) {
 			$campaign_status = $wpdb->get_var( $wpdb->prepare( "SELECT status FROM {$tables['campaigns']} WHERE id=%d", $id ) );
-			if ( in_array( $campaign_status, array( 'partial', 'failed' ), true ) ) {
+			if ( in_array( $campaign_status, array( 'partial', 'failed', 'processing', 'queued' ), true ) ) {
 				$now = gmdate( 'Y-m-d H:i:s' );
-				$wpdb->query( $wpdb->prepare( "UPDATE {$tables['deliveries']} SET status='pending',attempts=0,error='',next_attempt=%s WHERE campaign_id=%d AND status='failed'", $now, $id ) );
-				$wpdb->query( $wpdb->prepare( "UPDATE {$tables['deliveries']} SET next_attempt=%s WHERE campaign_id=%d AND status='pending'", $now, $id ) );
+				$wpdb->query( $wpdb->prepare( "UPDATE {$tables['deliveries']} SET status='pending',attempts=0,error='',next_attempt=%s WHERE campaign_id=%d AND status IN ('failed','pending')", $now, $id ) );
 				$wpdb->update( $tables['campaigns'], array( 'status' => 'queued', 'error' => '', 'updated_at' => $now ), array( 'id' => $id ), array( '%s', '%s', '%s' ), array( '%d' ) );
-				if ( ! self::schedule_worker( $id, time() + 1 ) ) { self::set_campaign_status( $id, 'failed', 'cron_schedule_failed' ); }
+				self::worker( $id );
 			}
 		} elseif ( 'cancel' === $action && $id ) {
-			self::set_campaign_status( $id, 'cancelled', '' ); self::skip_pending( $id, 'cancelled' ); wp_clear_scheduled_hook( self::WORKER, array( $id ) );
+			self::set_campaign_status( $id, 'cancelled', '' ); self::skip_pending( $id, 'cancelled' ); wp_clear_scheduled_hook( 'gkch_telegram_broadcast_worker', array( $id ) );
 		}
 		wp_safe_redirect( admin_url( 'admin.php?page=gkch-telegram' ) ); exit;
 	}

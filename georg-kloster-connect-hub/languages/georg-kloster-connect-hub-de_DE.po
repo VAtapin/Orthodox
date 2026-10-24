@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Georg-Kloster Connect Hub 0.4.7\nLanguage: de_DE\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Project-Id-Version: Georg-Kloster Connect Hub 0.4.8\nLanguage: de_DE\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "A bot token is required. Each form uses only its own private Chat ID for contact messages; the old global Chat ID is not used. Public posts and schedule messages go to people who pressed Start in the bot."
 msgstr "Für den Betrieb wird ein Bot-Token benötigt. Jede Formularnachricht geht nur an den privaten Chat der jeweiligen Form; die alte globale Chat-ID wird nicht verwendet. Beiträge und Planmeldungen erhalten alle, die im Bot auf Start gedrückt haben."
@@ -835,8 +835,8 @@ msgstr "Die Veröffentlichung wird gerade verarbeitet. Versuchen Sie es später 
 msgid "Publication or reminder"
 msgstr "Veröffentlichung oder Erinnerung"
 
-msgid "Publication queued. Delivery status appears below."
-msgstr "Die Veröffentlichung wurde eingeplant. Der Sendestatus erscheint unten."
+msgid "Publication submitted. Delivery status appears below."
+msgstr "Die Veröffentlichung wurde abgesendet. Der Sendestatus erscheint unten."
 
 msgid "Publication rule removed. History was retained."
 msgstr "Regel entfernt. Der Verlauf wurde beibehalten."
@@ -1168,8 +1168,11 @@ msgstr "Telegram hat die Bot-Identität nicht bestätigt."
 msgid "Telegram did not confirm the connection. Check the bot token and service availability."
 msgstr "Telegram hat die Verbindung nicht bestätigt. Prüfen Sie den Bot-Token und die Erreichbarkeit des Dienstes."
 
-msgid "Telegram sending is disabled or the connection is incomplete. Pending deliveries remain available."
-msgstr "Der Telegram-Versand ist deaktiviert oder die Verbindung ist unvollständig. Ausstehende Zustellungen bleiben erhalten."
+msgid "Telegram sending is disabled or the connection is incomplete. Retry after correcting the settings."
+msgstr "Der Telegram-Versand ist deaktiviert oder die Verbindung ist unvollständig. Korrigieren Sie die Einstellungen und versuchen Sie es erneut."
+
+msgid "Some recipients still need attention. Retry them here; deliveries are not scheduled in the background."
+msgstr "Einige Empfänger benötigen noch Aufmerksamkeit. Wiederholen Sie den Versand hier; Nachrichten werden nicht im Hintergrund eingeplant."
 
 msgid "Telegram text by subscriber language"
 msgstr "Telegram-Text nach Sprache des Abonnenten"
@@ -1191,15 +1194,6 @@ msgstr "Der Bot sendet den übersetzten Titel, einen kurzen Auszug und einen Lin
 
 msgid "The bot token format is invalid. Copy the token from BotFather. The connection was not saved."
 msgstr "Der Bot-Token hat ein ungültiges Format. Kopieren Sie ihn aus BotFather. Die Verbindung wurde nicht gespeichert."
-
-msgid "The check could not be queued. Try again later."
-msgstr "Die Prüfung konnte nicht in die Warteschlange gestellt werden. Versuchen Sie es später erneut."
-
-msgid "The connection check has been queued. Refresh this page in a while."
-msgstr "Die Verbindungsprüfung wurde in die Warteschlange gestellt. Aktualisieren Sie diese Seite nach einiger Zeit."
-
-msgid "The connection check is still queued. Refresh this page later."
-msgstr "Die Verbindungsprüfung ist noch in der Warteschlange. Aktualisieren Sie die Seite später."
 
 msgid "The email was handled by a WordPress interceptor; the actual transport was not recorded."
 msgstr "Die E-Mail wurde von einem WordPress-Handler verarbeitet; der tatsächliche Transport wurde nicht erfasst."

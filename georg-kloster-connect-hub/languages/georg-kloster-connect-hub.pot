@@ -1137,16 +1137,16 @@ msgstr ""
 msgid "Publication or reminder"
 msgstr ""
 
-#: includes/class-publications.php
-msgid "Publication queued. Delivery status appears below."
-msgstr ""
-
 #: includes/class-publication-rules-admin.php
 msgid "Publication rule removed. History was retained."
 msgstr ""
 
 #: includes/class-publication-rules-admin.php
 msgid "Publication rule saved."
+msgstr ""
+
+#: includes/class-publications.php
+msgid "Publication submitted. Delivery status appears below."
 msgstr ""
 
 #: includes/class-publications.php
@@ -1161,7 +1161,7 @@ msgstr ""
 msgid "Question subject"
 msgstr ""
 
-#: includes/class-publications.php includes/class-telegram-bot.php
+#: includes/class-publications.php
 msgid "Queued"
 msgstr ""
 
@@ -1521,6 +1521,10 @@ msgstr ""
 msgid "Some changes could not be applied. Check permissions and fields."
 msgstr ""
 
+#: includes/class-telegram-bot.php
+msgid "Some recipients still need attention. Retry them here; deliveries are not scheduled in the background."
+msgstr ""
+
 #: includes/class-outgoing-log.php
 msgid "Source message #%d"
 msgstr ""
@@ -1598,7 +1602,7 @@ msgid "Telegram did not confirm the connection. Check the bot token and service 
 msgstr ""
 
 #: includes/class-telegram-bot.php
-msgid "Telegram sending is disabled or the connection is incomplete. Pending deliveries remain available."
+msgid "Telegram sending is disabled or the connection is incomplete. Retry after correcting the settings."
 msgstr ""
 
 #: includes/class-publication-rules-admin.php
@@ -1627,18 +1631,6 @@ msgstr ""
 
 #: includes/class-connector.php
 msgid "The bot token format is invalid. Copy the token from BotFather. The connection was not saved."
-msgstr ""
-
-#: includes/class-telegram-request-settings.php
-msgid "The check could not be queued. Try again later."
-msgstr ""
-
-#: includes/class-telegram-request-settings.php
-msgid "The connection check has been queued. Refresh this page in a while."
-msgstr ""
-
-#: includes/class-telegram-request-settings.php
-msgid "The connection check is still queued. Refresh this page later."
 msgstr ""
 
 #: includes/class-request-mail-log.php

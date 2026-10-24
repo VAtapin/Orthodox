@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Georg-Kloster Connect Hub 0.4.7\nLanguage: ru_RU\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+msgstr "Project-Id-Version: Georg-Kloster Connect Hub 0.4.8\nLanguage: ru_RU\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 
 msgid "A bot token is required. Each form uses only its own private Chat ID for contact messages; the old global Chat ID is not used. Public posts and schedule messages go to people who pressed Start in the bot."
 msgstr "Для работы нужен токен бота. Каждая форма отправляет уведомления только в свой личный чат; общий старый Chat ID не используется. Публикации и сообщения о расписании получают те, кто нажал Start в боте."
@@ -835,8 +835,8 @@ msgstr "Публикация сейчас обрабатывается. Повт
 msgid "Publication or reminder"
 msgstr "Публикация или напоминание"
 
-msgid "Publication queued. Delivery status appears below."
-msgstr "Публикация поставлена в очередь. Состояние отправки появится ниже."
+msgid "Publication submitted. Delivery status appears below."
+msgstr "Публикация отправлена. Состояние отправки появится ниже."
 
 msgid "Publication rule removed. History was retained."
 msgstr "Правило удалено. История сохранена."
@@ -1168,8 +1168,11 @@ msgstr "Telegram не подтвердил имя бота."
 msgid "Telegram did not confirm the connection. Check the bot token and service availability."
 msgstr "Telegram не подтвердил подключение. Проверьте токен бота и доступность сервиса."
 
-msgid "Telegram sending is disabled or the connection is incomplete. Pending deliveries remain available."
-msgstr "Отправка Telegram отключена или соединение настроено не полностью. Ожидающие сообщения сохранены."
+msgid "Telegram sending is disabled or the connection is incomplete. Retry after correcting the settings."
+msgstr "Отправка Telegram отключена или соединение настроено не полностью. Исправьте настройки и повторите отправку."
+
+msgid "Some recipients still need attention. Retry them here; deliveries are not scheduled in the background."
+msgstr "Некоторые получатели требуют внимания. Повторите отправку здесь; сообщения не ставятся в фоновую очередь."
 
 msgid "Telegram text by subscriber language"
 msgstr "Текст для Telegram на языке подписчика"
@@ -1191,15 +1194,6 @@ msgstr "Бот отправит перевод заголовка, кратки�
 
 msgid "The bot token format is invalid. Copy the token from BotFather. The connection was not saved."
 msgstr "Токен бота имеет неверный формат. Скопируйте токен из BotFather. Подключение не сохранено."
-
-msgid "The check could not be queued. Try again later."
-msgstr "Проверку не удалось поставить в очередь. Попробуйте позже."
-
-msgid "The connection check has been queued. Refresh this page in a while."
-msgstr "Проверка подключения поставлена в очередь. Обновите эту страницу через некоторое время."
-
-msgid "The connection check is still queued. Refresh this page later."
-msgstr "Проверка подключения ещё в очереди. Обновите страницу позже."
 
 msgid "The email was handled by a WordPress interceptor; the actual transport was not recorded."
 msgstr "Письмо обработано перехватчиком WordPress; фактический транспорт не зафиксирован."

@@ -38,7 +38,7 @@ wp_insert_post( array( 'post_type' => 'post', 'post_status' => 'publish', 'post_
 $check( $before === count( Publications::history() ), 'Category filter ignored.' );
 $calls = count( $http );
 $new_post = wp_insert_post( array( 'post_type' => 'post', 'post_status' => 'publish', 'post_title' => 'New synthetic news', 'post_content' => 'News excerpt', 'post_category' => array( $category ) ) );
-$check( $before + 1 === count( Publications::history() ) && $calls === count( $http ), 'First publication did not queue selected channels asynchronously.' );
+$check( $before + 1 === count( Publications::history() ) && $calls + 1 === count( $http ), 'First publication did not send the Telegram recipient immediately while recording the other selected channel.' );
 $new_jobs = array_values( array_filter( Publications::history(), static fn( $j ) => ( $j['reply_context']['rule_id'] ?? 0 ) === $news ) );
 $check( 1 === count( $new_jobs ) && array( 'vk' ) === array_column( $new_jobs, 'provider' ), 'Non-Telegram rule channel routing.' );
 foreach ( $new_jobs as $job ) { Connector::instance( $job['provider'] )->worker( $job['id'] ); }
@@ -123,7 +123,7 @@ $due = static function ( int $id, int $slot ): array {
 $rule = $due( $reminder, time() - 3600 );
 $before = count( Publications::history() ); $calls = count( $http );
 do_action( Publication_Rules::HOOK, $reminder, $rule['revision'], $rule['next'] );
-$check( $before + 4 === count( Publications::history() ) && $calls === count( $http ), 'Reminder did not use asynchronous queues for the selected channels.' );
+$check( $before + 4 === count( Publications::history() ) && $calls + 1 === count( $http ), 'Scheduled reminder did not send Telegram immediately while retaining other channel jobs.' );
 $reminder_jobs = array_values( array_filter( Publications::history(), static fn( $j ) => 'automation' === $j['kind'] && $j['source'] === $reminder ) );
 $check( 4 === count( $reminder_jobs ), 'Social reminder jobs were not queued.' );
 foreach ( $reminder_jobs as $job ) {
@@ -133,7 +133,6 @@ foreach ( $reminder_jobs as $job ) {
 }
 $reminder_campaign_id = (int) $GLOBALS['wpdb']->get_var( $GLOBALS['wpdb']->prepare( "SELECT id FROM {$telegram_tables['campaigns']} WHERE source_type='automation' AND source_id=%d ORDER BY id DESC LIMIT 1", $reminder ) );
 $check( $reminder_campaign_id > 0, 'Scheduled reminder did not queue a Telegram subscriber campaign.' );
-Telegram_Bot::worker( $reminder_campaign_id );
 $check( 'sent' === $GLOBALS['wpdb']->get_var( $GLOBALS['wpdb']->prepare( "SELECT status FROM {$telegram_tables['campaigns']} WHERE id=%d", $reminder_campaign_id ) ), 'Bilingual Telegram reminder campaign did not complete.' );
 $calls = count( $http );
 do_action( Publication_Rules::HOOK, $reminder, $rule['revision'], $rule['next'] );

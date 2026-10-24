@@ -4,11 +4,11 @@ Tags: contact form, messages, social, publishing, telegram
 Requires at least: 6.5
 Requires PHP: 8.0
 Tested up to: 7.1
-Stable tag: 0.4.7
+Stable tag: 0.4.8
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
-Independent forms, private messages and queued publications for any organisation.
+Independent forms, private messages and scheduled publications for any organisation.
 
 == Description ==
 
@@ -41,8 +41,10 @@ or weekly schedule in the WordPress timezone. Instagram reminders use a JPEG
 selected from the media library. Late Cron runs send once, without a missed-slot
 backlog. Editing, pausing or removing a rule prevents its pending deliveries.
 Rules require communication-settings and publication capabilities; the stored
-owner's permissions are checked again at execution. Sending stays asynchronous,
-with a private status history, cancellation and retry.
+owner's permissions are checked again at execution. Telegram commands, form
+notifications, email replies and subscriber broadcasts are sent in the triggering
+request. Telegram campaign outcomes are recorded per subscriber for manual retry.
+Other social-channel jobs keep their background processing and status history.
 Facebook, VK and OK publish text/link posts. Instagram publishes a JPEG featured
 image with a caption via container creation, background status polling and publish.
 This release does not implement carousels, videos or reels. An ambiguous OK
@@ -59,7 +61,7 @@ Development repository: https://github.com/VAtapin/Orthodox/tree/main/georg-klos
 
 == Installation ==
 
-Upload georg-kloster-connect-hub-0.4.7.zip. Replace an existing Connect Hub version,
+Upload georg-kloster-connect-hub-0.4.8.zip. Replace an existing Connect Hub version,
 or install as a new plugin and activate it.
 Activation deactivates the previous georg-kloster-prihod-social development plugin
 without deleting its settings. Keep only Connect Hub active. Network-active old
@@ -150,6 +152,11 @@ Configure optional reCAPTCHA v3 site and secret keys under Connect Hub > Setting
 General reception, retention and reCAPTCHA settings use one save button. A status message confirms whether both reCAPTCHA keys are saved; the secret key is never displayed.
 
 == Changelog ==
+
+= 0.4.8 =
+Send Telegram publications, form notifications, webhook registration and email replies
+immediately. Remove automatic Telegram and reply-email retries; retain calendar-based
+digest and reminder schedules.
 
 = 0.4.7 =
 Reply to /today and /week directly in the webhook request instead of WP-Cron. Show each

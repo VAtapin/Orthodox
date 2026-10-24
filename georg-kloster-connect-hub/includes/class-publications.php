@@ -35,7 +35,7 @@ final class Publications {
         check_admin_referer( 'gkch_publish' );
         $post_id = isset( $_POST['post_id'] ) && is_scalar( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
         $channels = isset( $_POST['channels'] ) && is_array( $_POST['channels'] ) ? array_values( array_filter( wp_unslash( $_POST['channels'] ), 'is_string' ) ) : array();
-        try { self::enqueue( $post_id, $channels ); $notice = __( 'Publication queued. Delivery status appears below.', 'georg-kloster-connect-hub' ); }
+        try { self::enqueue( $post_id, $channels ); $notice = __( 'Publication submitted. Delivery status appears below.', 'georg-kloster-connect-hub' ); }
         catch ( \Throwable $error ) { $notice = $error->getMessage(); }
         set_transient( 'gkch_publication_notice_' . get_current_user_id(), $notice, 120 );
         wp_safe_redirect( admin_url( 'admin.php?page=gkch-publications' ) ); exit;
@@ -76,11 +76,14 @@ final class Publications {
                 if ( ! empty( $job['container_terminal'] ) ) { unset( $job['container_id'], $job['container_terminal'] ); }
                 $job['attempts'] = 0; $job['status'] = 'pending'; $job['error'] = '';
                 wp_clear_scheduled_hook( 'gkps_' . $provider . '_worker', array( $id ) );
-                $scheduled = wp_schedule_single_event( time() + 1, 'gkps_' . $provider . '_worker', array( $id ), true );
-                // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
-                if ( is_wp_error( $scheduled ) || ! $scheduled ) { throw new \RuntimeException( __( 'Could not schedule publication.', 'georg-kloster-connect-hub' ) ); }
-            } else { $job['status'] = 'cancelled'; wp_clear_scheduled_hook( 'gkps_' . $provider . '_worker', array( $id ) ); }
-            update_option( $key, $job, false );
+                update_option( $key, $job, false );
+                if ( 'telegram' === $provider ) { Connector::instance( $provider )->worker( $id ); }
+                else {
+                    $scheduled = wp_schedule_single_event( time() + 1, 'gkps_' . $provider . '_worker', array( $id ), true );
+                    // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
+                    if ( is_wp_error( $scheduled ) || ! $scheduled ) { throw new \RuntimeException( __( 'Could not schedule publication.', 'georg-kloster-connect-hub' ) ); }
+                }
+            } else { $job['status'] = 'cancelled'; wp_clear_scheduled_hook( 'gkps_' . $provider . '_worker', array( $id ) ); update_option( $key, $job, false ); }
         } finally { Lock::release( $key . '_lock', $owner ); }
     }
 
