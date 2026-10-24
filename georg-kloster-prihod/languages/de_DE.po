@@ -10,12 +10,6 @@ msgstr "Der Google-Schlüssel wird nur bei ausgewähltem Google Maps verwendet. 
 msgid "About"
 msgstr "Geschichte und Gemeinschaft"
 
-msgid "About the monastery"
-msgstr "Über das Kloster"
-
-msgid "About the parish"
-msgstr "Über die Gemeinde"
-
 msgid "About the parish / monastery"
 msgstr "Über die Gemeinde / das Kloster"
 
@@ -830,3 +824,6 @@ msgstr "Willkommen in unserer Gemeinde"
 
 msgid "Translate text into Church Slavonic and search its dictionary through Bible Desktop."
 msgstr "Texte ins Kirchenslawische übersetzen und das Wörterbuch über Bible Desktop durchsuchen."
+
+msgid "Footer menu"
+msgstr "Footer-Menü"

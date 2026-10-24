@@ -10,12 +10,6 @@ msgstr "Klucz Google jest używany tylko po wybraniu Google Maps. Jest przekazyw
 msgid "About"
 msgstr "Historia i wspólnota"
 
-msgid "About the monastery"
-msgstr "O klasztorze"
-
-msgid "About the parish"
-msgstr "O parafii"
-
 msgid "About the parish / monastery"
 msgstr "O parafii / klasztorze"
 
@@ -830,3 +824,6 @@ msgstr "Witamy w naszej parafii"
 
 msgid "Translate text into Church Slavonic and search its dictionary through Bible Desktop."
 msgstr "Tłumaczenie tekstu na cerkiewnosłowiański i wyszukiwanie w słowniku przez Bible Desktop."
+
+msgid "Footer menu"
+msgstr "Menu stopki"

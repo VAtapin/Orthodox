@@ -10,12 +10,6 @@ msgstr "Ключ Google используется только при выбор�
 msgid "About"
 msgstr "История и община"
 
-msgid "About the monastery"
-msgstr "О монастыре"
-
-msgid "About the parish"
-msgstr "О приходе"
-
 msgid "About the parish / monastery"
 msgstr "О приходе / монастыре"
 
@@ -830,3 +824,6 @@ msgstr "Добро пожаловать в наш приход"
 
 msgid "Translate text into Church Slavonic and search its dictionary through Bible Desktop."
 msgstr "Перевод текста на церковнославянский язык и поиск по словарю через Bible Desktop."
+
+msgid "Footer menu"
+msgstr "Меню подвала"

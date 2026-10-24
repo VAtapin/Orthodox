@@ -12,7 +12,7 @@ A parish theme with five visual styles for standard WordPress pages and posts.
 
 Georg-Kloster Prihod provides five visual styles: Classic, Hospitality, Editorial, Tradition, and Blue. The theme works on a standard WordPress installation without a companion plugin. Choose a style and your own images under Appearance > Parish Appearance. Standard pages and posts remain editable in WordPress.
 
-The theme does not create pages. Set your own name, description, community type and contacts under Appearance > Parish Appearance > Site Details. Choose ordinary WordPress pages for links throughout the theme under Homepage. Optional Parish supplies profile, clergy, places and schedules; Connect Hub supplies forms and communications. Schedule is bundled in Parish rather than installed separately. No bundled photographs appear on the public site.
+The theme does not create pages. Set your own name, description, community type and contacts under Appearance > Parish Appearance > Site Details. Choose ordinary WordPress pages for homepage cards and related theme sections under Homepage. Optional Parish supplies profile, clergy, places and schedules; Connect Hub supplies forms and communications. Schedule is bundled in Parish rather than installed separately. No bundled photographs appear on the public site.
 
 The Optional Plugins section shows compact screenshot cards for the five Georg-Kloster plugins: Parish, Connect Hub, Calendar Workshop, Orthodox Donations and Slavonic Translator. Cards show whether a plugin is installed and link to settings when available. Public plugins link to the standard WordPress installer search and their WordPress.org details. The theme makes no plugin-directory API requests and does not install plugins.
 
@@ -22,7 +22,7 @@ Author: Atapin Vladimir. Website: https://georg-kloster.ru/. Email: atapin@gmail
 
 == Installation ==
 
-Upload the theme ZIP under Appearance > Themes, activate it, then choose a visual style under Appearance > Parish Appearance. Add your own pages, navigation, logo, photographs and contact details in WordPress. Under Homepage > Contacts, choose whether to show the address, phone, email and map. The homepage contact area can show an OpenStreetMap embed when coordinates are configured; Google Maps is also available with an API key. Map embeds are loaded from the selected provider only after coordinates are entered.
+Upload the theme ZIP under Appearance > Themes, activate it, then choose a visual style under Appearance > Parish Appearance. Add your own pages, navigation, logo, photographs and contact details in WordPress. Create a standard WordPress menu and assign it to the Footer menu location to control footer links. Under Homepage > Contacts, choose whether to show the address, phone, email and map. The homepage contact area can show an OpenStreetMap embed when coordinates are configured; Google Maps is also available with an API key. Map embeds are loaded from the selected provider only after coordinates are entered.
 
 == External services ==
 
@@ -45,6 +45,10 @@ The theme uses images selected from your WordPress media library. It does not do
 = How do I add images to the menu? =
 
 Create and assign a menu under Appearance > Menus. Open a menu item and choose its image from the media library; without a chosen image, the linked page or post featured image is used. The theme's Appearance > Parish Appearance > Header and Footer section enables an image menu alongside the standard desktop link row and sets the number of visual columns. The link-row-only option remains available. Menu item descriptions can be enabled under Screen Options on the Menus screen.
+
+= How do I edit the footer links? =
+
+Create or edit a standard WordPress menu under Appearance > Menus and assign it to the Footer menu location. With WPML, create a translated menu for each language and assign it to the same location.
 
 == Changelog ==
 

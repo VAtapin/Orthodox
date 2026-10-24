@@ -117,10 +117,18 @@ function prihod_theme_header(): string {
     return '<div class="prihod-header' . ( $classic_menu ? ' prihod-has-classic-menu' : '' ) . ( $visual_menu ? ' prihod-has-visual-menu' : '' ) . '" id="prihod-header"><div class="prihod-container prihod-header-top">' . prihod_theme_brand() . '<div class="prihod-header-right"><div class="prihod-contact-strip">' . $contacts . prihod_theme_languages() . '</div>' . $navigation_html . '</div></div></div>';
 }
 function prihod_theme_footer(): string {
-    $policy = get_privacy_policy_url(); $links = '';
-    $about_label = 'monastery' === ( prihod_theme_profile()['type'] ?? '' ) ? __( 'About the monastery', 'georg-kloster-prihod' ) : __( 'About the parish', 'georg-kloster-prihod' );
-    foreach ( array( 'home' => __( 'Home', 'georg-kloster-prihod' ), 'schedule' => __( 'Schedule', 'georg-kloster-prihod' ), 'about' => $about_label, 'first-visit' => '', 'news' => __( 'News', 'georg-kloster-prihod' ), 'sermons' => '', 'requests' => __( 'Ask a priest', 'georg-kloster-prihod' ), 'contacts' => __( 'Contacts', 'georg-kloster-prihod' ) ) as $key => $label ) { $url = prihod_theme_url( $key ); if ( $url ) { $links .= '<a href="' . esc_url( $url ) . '">' . esc_html( $label ?: get_the_title( prihod_theme_resource_id( $key ) ) ) . '</a>'; } }
-    return '<div class="prihod-footer"><div class="prihod-container">' . prihod_theme_brand() . '<nav class="prihod-footer-links" aria-label="' . esc_attr__( 'Site sections', 'georg-kloster-prihod' ) . '">' . $links . '</nav><div>' . ( $policy ? '<a href="' . esc_url( $policy ) . '">' . esc_html__( 'Privacy policy', 'georg-kloster-prihod' ) . '</a>' : '' ) . '<p>© ' . esc_html( wp_date( 'Y' ) ) . ' ' . esc_html( prihod_theme_profile()['name'] ) . '</p><p>' . nl2br( esc_html( georg_kloster_prihod_options()['footer_text'] ) ) . '</p></div><a class="prihod-top" href="#prihod-header" aria-label="' . esc_attr__( 'Back to top', 'georg-kloster-prihod' ) . '">↑</a></div></div>';
+    $policy = get_privacy_policy_url();
+    $menu = wp_nav_menu( array(
+        'theme_location'       => 'footer',
+        'container'            => 'nav',
+        'container_class'      => 'prihod-footer-links',
+        'container_aria_label' => __( 'Footer menu', 'georg-kloster-prihod' ),
+        'menu_id'              => 'prihod-footer-menu',
+        'menu_class'           => 'prihod-footer-menu',
+        'fallback_cb'          => false,
+        'echo'                 => false,
+    ) );
+    return '<div class="prihod-footer"><div class="prihod-container">' . prihod_theme_brand() . ( $menu ?: '' ) . '<div>' . ( $policy ? '<a href="' . esc_url( $policy ) . '">' . esc_html__( 'Privacy policy', 'georg-kloster-prihod' ) . '</a>' : '' ) . '<p>© ' . esc_html( wp_date( 'Y' ) ) . ' ' . esc_html( prihod_theme_profile()['name'] ) . '</p><p>' . nl2br( esc_html( georg_kloster_prihod_options()['footer_text'] ) ) . '</p></div><a class="prihod-top" href="#prihod-header" aria-label="' . esc_attr__( 'Back to top', 'georg-kloster-prihod' ) . '">↑</a></div></div>';
 }
 function prihod_theme_newsletter_area(): string {
     if ( ! is_active_sidebar( 'prihod-newsletter' ) ) { return ''; }

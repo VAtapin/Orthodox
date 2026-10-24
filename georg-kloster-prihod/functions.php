@@ -51,7 +51,10 @@ add_action( 'after_setup_theme', function () {
     add_theme_support( 'align-wide' );
     add_theme_support( 'responsive-embeds' );
     add_theme_support( 'wp-block-styles' );
-    register_nav_menus( array( 'primary' => __( 'Primary menu', 'georg-kloster-prihod' ) ) );
+    register_nav_menus( array(
+        'primary' => __( 'Primary menu', 'georg-kloster-prihod' ),
+        'footer'  => __( 'Footer menu', 'georg-kloster-prihod' ),
+    ) );
 } );
 
 add_action( 'widgets_init', function () {

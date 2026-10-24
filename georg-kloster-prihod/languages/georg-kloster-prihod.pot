@@ -17,14 +17,6 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: includes/render.php
-msgid "About the monastery"
-msgstr ""
-
-#: includes/render.php
-msgid "About the parish"
-msgstr ""
-
 #: includes/home-settings.php
 msgid "About the parish / monastery"
 msgstr ""
@@ -200,7 +192,7 @@ msgstr ""
 msgid "Contact us"
 msgstr ""
 
-#: contacts.php includes/contacts.php includes/home-settings.php includes/render.php
+#: contacts.php includes/contacts.php includes/home-settings.php
 msgid "Contacts"
 msgstr ""
 
@@ -328,6 +320,10 @@ msgstr ""
 #: theme.json
 msgctxt "Font size name"
 msgid "Small"
+msgstr ""
+
+#: functions.php includes/render.php
+msgid "Footer menu"
 msgstr ""
 
 #: includes/home-settings.php
@@ -554,7 +550,7 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: archive.php includes/home-settings.php includes/render.php index.php
+#: archive.php includes/home-settings.php index.php
 msgid "News"
 msgstr ""
 
@@ -762,7 +758,7 @@ msgstr ""
 msgid "Save changes"
 msgstr ""
 
-#: includes/about.php includes/home-settings.php includes/render.php
+#: includes/about.php includes/home-settings.php
 msgid "Schedule"
 msgstr ""
 
