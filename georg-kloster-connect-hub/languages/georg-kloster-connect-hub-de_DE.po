@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Georg-Kloster Connect Hub 0.4.3\nLanguage: de_DE\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
+msgstr "Project-Id-Version: Georg-Kloster Connect Hub 0.4.4\nLanguage: de_DE\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "A bot token is required. Each form uses only its own private Chat ID for contact messages; the old global Chat ID is not used. Public posts and schedule messages go to people who pressed Start in the bot."
 msgstr "Für den Betrieb wird ein Bot-Token benötigt. Jede Formularnachricht geht nur an den privaten Chat der jeweiligen Form; die alte globale Chat-ID wird nicht verwendet. Beiträge und Planmeldungen erhalten alle, die im Bot auf Start gedrückt haben."
@@ -21,9 +21,6 @@ msgstr "Von WordPress angenommen; das Transportergebnis ist unbekannt."
 
 msgid "Accepted by service"
 msgstr "Vom Dienst angenommen"
-
-msgid "Accepted by service; inbox delivery is not confirmed."
-msgstr "Vom Dienst angenommen; die Zustellung im Postfach ist nicht bestätigt."
 
 msgid "Accepted by transport"
 msgstr "Vom Transport angenommen"
@@ -1261,9 +1258,6 @@ msgstr "Auf dieser Seite gibt es keine Anfragen."
 msgid "There is no technical log for this reply. Past delivery attempts cannot be reconstructed retroactively."
 msgstr "Für diese Antwort ist kein technisches Protokoll vorhanden. Frühere Sendungen werden nicht nachträglich rekonstruiert."
 
-msgid "These language options follow the active languages configured in WPML. For formatted text, use Telegram-supported tags such as <b>, <i>, <u>, <a href=\"…\"> and <code>. The {schedule} code inserts the generated schedule into a reply."
-msgstr "Die Sprachoptionen entsprechen den aktiven WPML-Sprachen. Für formatierten Text verwenden Sie von Telegram unterstützte Tags wie <b>, <i>, <u>, <a href=\"…\"> und <code>. Der Platzhalter {schedule} fügt den Gottesdienstplan in die Antwort ein."
-
 msgid "This is the Meta Graph API version used in request URLs, not a key or plugin version. Copy a supported version from Graph API Explorer, for example vNN.N."
 msgstr "Dies ist die Meta-Graph-API-Version in den Anfrage-URLs, kein Schlüssel und keine Plugin-Version. Übernehmen Sie eine unterstützte Version aus dem Graph API Explorer, zum Beispiel vNN.N."
 
@@ -1431,3 +1425,36 @@ msgstr "Gesendet"
 
 msgid "skipped"
 msgstr "Übersprungen"
+
+msgid "Choose images or videos"
+msgstr "Bilder oder Videos auswählen"
+
+msgid "Images and videos"
+msgstr "Bilder und Videos"
+
+msgid "Only JPEG or PNG images and MP4 videos can be sent."
+msgstr "Es können nur JPEG- oder PNG-Bilder und MP4-Videos gesendet werden."
+
+msgid "Photo"
+msgstr "Foto"
+
+msgid "Remove"
+msgstr "Entfernen"
+
+msgid "Select images and videos"
+msgstr "Bilder und Videos auswählen"
+
+msgid "Select up to 10 JPEG or PNG photos and MP4 videos from the Media Library. Telegram fetches them from their public URLs; URL limits are 5 MB per photo and 20 MB per video."
+msgstr "Wählen Sie bis zu 10 JPEG- oder PNG-Fotos und MP4-Videos aus der Mediathek aus. Telegram ruft sie über die öffentlichen URLs ab; maximal 5 MB pro Foto und 20 MB pro Video."
+
+msgid "These language options follow the active languages configured in WPML. Use the WordPress visual editor for Telegram formatting; unsupported HTML is removed, and lists are converted to bullet lines. The {schedule} code inserts the generated schedule into a reply."
+msgstr "Diese Sprachfelder folgen den aktiven WPML-Sprachen. Verwenden Sie den WordPress-Editor für die Telegram-Formatierung; nicht unterstütztes HTML wird entfernt und Listen werden in Aufzählungszeilen umgewandelt. Der Code {schedule} fügt den Gottesdienstplan in eine Antwort ein."
+
+msgid "Use selected media"
+msgstr "Ausgewählte Medien verwenden"
+
+msgid "You can select up to 10 media files."
+msgstr "Sie können bis zu 10 Mediendateien auswählen."
+
+msgid "Video"
+msgstr "Video"

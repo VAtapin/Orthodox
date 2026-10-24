@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Georg-Kloster Connect Hub 0.4.3\nLanguage: ru_RU\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+msgstr "Project-Id-Version: Georg-Kloster Connect Hub 0.4.4\nLanguage: ru_RU\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 
 msgid "A bot token is required. Each form uses only its own private Chat ID for contact messages; the old global Chat ID is not used. Public posts and schedule messages go to people who pressed Start in the bot."
 msgstr "Для работы нужен токен бота. Каждая форма отправляет уведомления только в свой личный чат; общий старый Chat ID не используется. Публикации и сообщения о расписании получают те, кто нажал Start в боте."
@@ -21,9 +21,6 @@ msgstr "Принято WordPress; результат транспорта неи
 
 msgid "Accepted by service"
 msgstr "Принято сервисом"
-
-msgid "Accepted by service; inbox delivery is not confirmed."
-msgstr "Сервис принял сообщение; доставка в почтовый ящик не подтверждена."
 
 msgid "Accepted by transport"
 msgstr "Принято транспортом"
@@ -1261,9 +1258,6 @@ msgstr "На этой странице обращений нет."
 msgid "There is no technical log for this reply. Past delivery attempts cannot be reconstructed retroactively."
 msgstr "Для этого ответа технический журнал отсутствует. Старые отправки не восстанавливаются задним числом."
 
-msgid "These language options follow the active languages configured in WPML. For formatted text, use Telegram-supported tags such as <b>, <i>, <u>, <a href=\"…\"> and <code>. The {schedule} code inserts the generated schedule into a reply."
-msgstr "Поля языков соответствуют активным языкам WPML. В форматированном тексте используйте поддерживаемые Telegram теги, например <b>, <i>, <u>, <a href=\"…\"> и <code>. Код {schedule} вставляет расписание в ответ."
-
 msgid "This is the Meta Graph API version used in request URLs, not a key or plugin version. Copy a supported version from Graph API Explorer, for example vNN.N."
 msgstr "Это версия Meta Graph API, используемая в адресах запросов, а не ключ и не версия плагина. Скопируйте поддерживаемую версию из Graph API Explorer, например vNN.N."
 
@@ -1431,3 +1425,36 @@ msgstr "отправлено"
 
 msgid "skipped"
 msgstr "пропущено"
+
+msgid "Choose images or videos"
+msgstr "Выбрать изображения или видео"
+
+msgid "Images and videos"
+msgstr "Изображения и видео"
+
+msgid "Only JPEG or PNG images and MP4 videos can be sent."
+msgstr "Можно отправлять только изображения JPEG или PNG и видео MP4."
+
+msgid "Photo"
+msgstr "Фото"
+
+msgid "Remove"
+msgstr "Удалить"
+
+msgid "Select images and videos"
+msgstr "Выберите изображения и видео"
+
+msgid "Select up to 10 JPEG or PNG photos and MP4 videos from the Media Library. Telegram fetches them from their public URLs; URL limits are 5 MB per photo and 20 MB per video."
+msgstr "Выберите в медиатеке до 10 фотографий JPEG или PNG и видео MP4. Telegram загрузит файлы по их общедоступным ссылкам: до 5 МБ на фотографию и до 20 МБ на видео."
+
+msgid "These language options follow the active languages configured in WPML. Use the WordPress visual editor for Telegram formatting; unsupported HTML is removed, and lists are converted to bullet lines. The {schedule} code inserts the generated schedule into a reply."
+msgstr "Языковые поля соответствуют активным языкам WPML. Используйте визуальный редактор WordPress для форматирования Telegram; неподдерживаемый HTML удаляется, а списки превращаются в строки с маркерами. Код {schedule} вставляет расписание в ответ."
+
+msgid "Use selected media"
+msgstr "Использовать выбранные медиафайлы"
+
+msgid "You can select up to 10 media files."
+msgstr "Можно выбрать не более 10 медиафайлов."
+
+msgid "Video"
+msgstr "Видео"

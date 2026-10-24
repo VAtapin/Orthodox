@@ -60,7 +60,7 @@ npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloste
 карточек имеют высоту 200 px. На новом сайте проверяется только кнопка и
 предпросмотр; импорт не запускался, поля темы и текст главной до/после совпали.
 
-## Connect Hub 0.4.3
+## Connect Hub 0.4.4
 
 `connect-hub-blueprint.json` и `connect-hub-automation.php` запускают Connect Hub
 на временном WordPress и проверяют формы, права и nonce, несколько раздельных

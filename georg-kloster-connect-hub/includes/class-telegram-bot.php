@@ -5,6 +5,8 @@ defined( 'ABSPATH' ) || exit;
 
 /** Subscriber commands, schedule replies and queued Telegram broadcasts. */
 final class Telegram_Bot {
+	private const MAX_REPLY_MEDIA = 10;
+
 	private const SCHEMA_OPTION = 'gkch_telegram_schema';
 	private const COMMANDS_OPTION = 'gkch_telegram_custom_commands';
 	private const SYSTEM_COMMANDS_OPTION = 'gkch_telegram_system_commands';
@@ -343,8 +345,8 @@ final class Telegram_Bot {
 			$row = $saved[$key];
 			foreach ( $row as $field => $value ) {
 				if ( ! is_scalar( $value ) ) { continue; }
-				if ( preg_match( '/^(description|response)_(.+)$/', (string) $field, $match ) && self::valid_language_code( $match[2] ) ) {
-					$commands[$key][$field] = 'description' === $match[1] ? self::limit_text( sanitize_text_field( (string) $value ), 256 ) : self::sanitize_reply( (string) $value );
+				if ( preg_match( '/^(description|response|media_ids)_(.+)$/', (string) $field, $match ) && self::valid_language_code( $match[2] ) ) {
+					$commands[$key][$field] = 'description' === $match[1] ? self::limit_text( sanitize_text_field( (string) $value ), 256 ) : ( 'response' === $match[1] ? self::sanitize_reply( (string) $value ) : self::sanitize_media_ids( (string) $value ) );
 				} elseif ( in_array( $field, array( 'reply_type', 'schedule_period' ), true ) ) { $commands[$key][$field] = sanitize_key( (string) $value ); }
 				elseif ( 'reply_post_id' === $field ) { $commands[$key][$field] = absint( $value ); }
 			}
@@ -408,17 +410,76 @@ final class Telegram_Bot {
 			$period = 'week' === ( $command['schedule_period'] ?? '' ) ? 'week' : 'today';
 			$date = new \DateTimeImmutable( 'today', wp_timezone() );
 			$schedule = 'week' === $period ? self::week_message( $date, $language ) : self::day_message( $date, $language );
+			$html = 'html' === ( $command['reply_type'] ?? '' ) || self::has_telegram_formatting( $response );
+			if ( $html ) { $schedule = esc_html( $schedule ); }
 			if ( '' === $response ) { $response = '{schedule}'; }
 			if ( str_contains( $response, '{schedule}' ) ) { $text = str_replace( '{schedule}', $schedule, $response ); }
 			else { $text = $response . "\n\n" . $schedule; }
-			self::send_direct( $chat_id, $text, $markup, 'html' === ( $command['reply_type'] ?? '' ) );
+			self::send_configured_output( $chat_id, $text, $command, $language, $markup, $html );
 			return;
 		}
 		if ( '' === $response && isset( $command['action'] ) ) {
 			$fallbacks = array( 'start' => 'welcome', 'stop' => 'stopped', 'lang' => 'choose_language', 'help' => 'help', 'menu' => 'menu_intro' );
 			$response = self::copy( $fallbacks[$command['action']] ?? $command['action'], $language );
 		}
-		self::send_direct( $chat_id, $response, $markup, 'html' === $type );
+		$html = 'html' === $type || self::has_telegram_formatting( $response );
+		self::send_configured_output( $chat_id, $response, $command, $language, $markup, $html );
+	}
+
+	private static function send_configured_output( string $chat_id, string $text, array $command, string $language, array $markup, bool $html ): void {
+		$media = self::configured_media( $command, $language );
+		if ( ! $media ) { self::send_direct( $chat_id, $text, $markup, $html ); return; }
+		$caption_fits = self::text_units( wp_strip_all_tags( $text ) ) <= 1024;
+		$caption = $caption_fits && ! $markup ? $text : '';
+		$sent = self::send_media( $chat_id, $media, $caption, $html );
+		if ( '' !== trim( $text ) && ( ! $sent || '' === $caption || $markup ) ) { self::send_direct( $chat_id, $text, $markup, $html ); }
+	}
+
+	private static function configured_media( array $command, string $language ): array {
+		$ids = trim( (string) ( $command['media_ids_' . $language] ?? '' ) );
+		if ( '' === $ids && $language !== self::default_language_code() ) { $ids = trim( (string) ( $command['media_ids_' . self::default_language_code()] ?? '' ) ); }
+		$media = array();
+		foreach ( array_slice( array_unique( array_filter( array_map( 'absint', explode( ',', $ids ) ) ) ), 0, self::MAX_REPLY_MEDIA ) as $id ) {
+			$type = self::telegram_media_type( $id );
+			$url = wp_get_attachment_url( $id );
+			if ( ! $type || ! is_string( $url ) || ! wp_http_validate_url( $url ) ) { continue; }
+			$media[] = array( 'type' => $type, 'url' => esc_url_raw( $url ) );
+		}
+		return $media;
+	}
+
+	private static function send_media( string $chat_id, array $media, string $caption, bool $html ): bool {
+		if ( ! $media ) { return false; }
+		$caption = trim( $caption );
+		$caption_is_html = $html && '' !== $caption;
+		if ( 1 === count( $media ) ) {
+			$item = $media[0];
+			$method = 'photo' === $item['type'] ? 'sendPhoto' : 'sendVideo';
+			$body = array( 'chat_id' => $chat_id, $item['type'] => $item['url'] );
+			if ( '' !== $caption ) { $body['caption'] = $caption; if ( $caption_is_html ) { $body['parse_mode'] = 'HTML'; } }
+			return ! is_wp_error( self::api( $method, $body ) );
+		}
+		$items = array();
+		foreach ( $media as $index => $item ) {
+			$entry = array( 'type' => $item['type'], 'media' => $item['url'] );
+			if ( 0 === $index && '' !== $caption ) { $entry['caption'] = $caption; if ( $caption_is_html ) { $entry['parse_mode'] = 'HTML'; } }
+			$items[] = $entry;
+		}
+		return ! is_wp_error( self::api( 'sendMediaGroup', array( 'chat_id' => $chat_id, 'media' => $items ) ) );
+	}
+
+	private static function text_units( string $text ): int {
+		$characters = preg_split( '//u', $text, -1, PREG_SPLIT_NO_EMPTY );
+		$units = 0;
+		foreach ( $characters ?: array() as $character ) {
+			$encoded = function_exists( 'iconv' ) ? @iconv( 'UTF-8', 'UTF-16LE', $character ) : false;
+			$units += $encoded ? (int) ( strlen( $encoded ) / 2 ) : 1;
+		}
+		return $units;
+	}
+
+	private static function has_telegram_formatting( string $text ): bool {
+		return (bool) preg_match( '/<(?:b|strong|i|em|u|ins|s|strike|del|a|code|pre|blockquote|span)\b/i', $text );
 	}
 
 	private static function language_keyboard( string $language ): array {
@@ -572,6 +633,22 @@ final class Telegram_Bot {
 		return ! is_wp_error( $result );
 	}
 
+	private static function telegram_media_type( int $attachment_id ): string {
+		$mime = get_post_mime_type( $attachment_id );
+		if ( in_array( $mime, array( 'image/jpeg', 'image/png' ), true ) ) { return 'photo'; }
+		return 'video/mp4' === $mime ? 'video' : '';
+	}
+
+	private static function sanitize_media_ids( string $value ): string {
+		$ids = array();
+		foreach ( preg_split( '/[\s,]+/', trim( $value ), -1, PREG_SPLIT_NO_EMPTY ) ?: array() as $raw_id ) {
+			$id = absint( $raw_id );
+			if ( $id && self::telegram_media_type( $id ) && ! in_array( $id, $ids, true ) ) { $ids[] = $id; }
+			if ( count( $ids ) >= self::MAX_REPLY_MEDIA ) { break; }
+		}
+		return implode( ',', $ids );
+	}
+
 	private static function sanitize_reply( string $text ): string {
 		$text = preg_replace( '/<\/?p\b[^>]*>/i', "\n", $text ) ?? $text;
 		$text = preg_replace( '/<br\s*\/?\s*>/i', "\n", $text ) ?? $text;
@@ -580,8 +657,11 @@ final class Telegram_Bot {
 		$allowed = array(
 			'b' => array(), 'strong' => array(), 'i' => array(), 'em' => array(), 'u' => array(), 'ins' => array(),
 			's' => array(), 'strike' => array(), 'del' => array(), 'code' => array(), 'pre' => array(),
-			'a' => array( 'href' => true ), 'blockquote' => array( 'expandable' => true ),
+			'a' => array( 'href' => true ), 'blockquote' => array( 'expandable' => true ), 'span' => array( 'class' => true ),
 		);
+		$text = preg_replace_callback( '/<span\b([^>]*)>(.*?)<\/span>/is', static function ( array $match ): string {
+			return preg_match( '/\bclass\s*=\s*(["\'])tg-spoiler\1/i', $match[1] ) ? '<span class="tg-spoiler">' . $match[2] . '</span>' : $match[2];
+		}, $text ) ?? $text;
 		$text = wp_kses( $text, $allowed );
 		return self::limit_text( preg_replace( '/\n{3,}/', "\n\n", $text ) ?? $text );
 	}
@@ -595,7 +675,7 @@ final class Telegram_Bot {
 	private static function api( string $method, array $body ) {
 		$connector = Connector::instance( 'telegram' );
 		$settings = $connector ? $connector->settings() : array();
-		if ( ! $connector || empty( $settings['enabled'] ) || ! preg_match( '/^[0-9]+:[A-Za-z0-9_-]{10,}$/D', (string) ( $settings['token'] ?? '' ) ) || ! in_array( $method, array( 'sendMessage', 'answerCallbackQuery' ), true ) ) { return new \WP_Error( 'telegram_unavailable', 'Telegram is not configured.' ); }
+		if ( ! $connector || empty( $settings['enabled'] ) || ! preg_match( '/^[0-9]+:[A-Za-z0-9_-]{10,}$/D', (string) ( $settings['token'] ?? '' ) ) || ! in_array( $method, array( 'sendMessage', 'sendPhoto', 'sendVideo', 'sendMediaGroup', 'answerCallbackQuery' ), true ) ) { return new \WP_Error( 'telegram_unavailable', 'Telegram is not configured.' ); }
 		$response = wp_remote_post( 'https://api.telegram.org/bot' . $settings['token'] . '/' . $method, array( 'headers' => array( 'Content-Type' => 'application/json' ), 'body' => wp_json_encode( $body ), 'timeout' => 10, 'redirection' => 0 ) );
 		$data = is_wp_error( $response ) ? array() : json_decode( wp_remote_retrieve_body( $response ), true );
 		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) || ! is_array( $data ) || empty( $data['ok'] ) ) { return new \WP_Error( 'telegram_api', 'Telegram did not accept the request.' ); }
@@ -945,8 +1025,18 @@ final class Telegram_Bot {
 	}
 
 	public static function admin_assets( string $hook ): void {
-		if ( 'admin_page_gkch-telegram-command-edit' !== $hook ) { return; }
-		wp_enqueue_script( 'gkch-telegram-bot-admin', plugins_url( 'assets/telegram-bot-admin.js', GKPS_FILE ), array(), GKPS_VERSION, true );
+		if ( 'gkch-telegram-command-edit' !== sanitize_key( (string) ( $_GET['page'] ?? '' ) ) ) { return; }
+		wp_enqueue_media();
+		wp_enqueue_script( 'gkch-telegram-bot-admin', plugins_url( 'assets/telegram-bot-admin.js', GKPS_FILE ), array( 'jquery', 'media-editor' ), GKPS_VERSION, true );
+		wp_localize_script( 'gkch-telegram-bot-admin', 'gkchTelegramMedia', array(
+			'title' => __( 'Select images and videos', 'georg-kloster-connect-hub' ),
+			'button' => __( 'Use selected media', 'georg-kloster-connect-hub' ),
+			'invalid' => __( 'Only JPEG or PNG images and MP4 videos can be sent.', 'georg-kloster-connect-hub' ),
+			'limit' => __( 'You can select up to 10 media files.', 'georg-kloster-connect-hub' ),
+			'remove' => __( 'Remove', 'georg-kloster-connect-hub' ),
+			'photo' => __( 'Photo', 'georg-kloster-connect-hub' ),
+			'video' => __( 'Video', 'georg-kloster-connect-hub' ),
+		) );
 	}
 
 	private static function sanitize_custom_commands( $rows, &$invalid = false ): array {
@@ -964,20 +1054,21 @@ final class Telegram_Bot {
 			$schedule_period = 'week' === ( $row['schedule_period'] ?? '' ) ? 'week' : 'today';
 			$reply_post_id = absint( $row['reply_post_id'] ?? 0 );
 			$locales = array_keys( self::active_languages() );
-			foreach ( array_keys( $row ) as $field ) { if ( preg_match( '/^(?:trigger|description|response)_([a-z][a-z0-9_-]{1,30})$/D', (string) $field, $match ) ) { $locales[] = $match[1]; } }
+			foreach ( array_keys( $row ) as $field ) { if ( preg_match( '/^(?:trigger|description|response|media_ids)_([a-z][a-z0-9_-]{1,30})$/D', (string) $field, $match ) ) { $locales[] = $match[1]; } }
 			$locales = array_values( array_unique( $locales ) );
-			$localized = array(); $has_trigger = false; $has_response = false; $has_description = false;
+			$localized = array(); $has_trigger = false; $has_response = false; $has_description = false; $has_media = false;
 			foreach ( $locales as $language ) {
-				foreach ( array( 'trigger', 'description', 'response' ) as $field ) {
+				foreach ( array( 'trigger', 'description', 'response', 'media_ids' ) as $field ) {
 					$key = $field . '_' . $language;
 					$value = is_scalar( $row[$key] ?? null ) ? (string) $row[$key] : '';
 					if ( 'trigger' === $field ) { $value = self::limit_text( sanitize_text_field( $value ), 128 ); $has_trigger = $has_trigger || '' !== $value; }
 					elseif ( 'description' === $field ) { $value = self::limit_text( sanitize_text_field( $value ), 256 ); $has_description = $has_description || '' !== $value; }
-					else { $value = self::sanitize_reply( $value ); $has_response = $has_response || '' !== trim( wp_strip_all_tags( $value ) ); }
+					elseif ( 'response' === $field ) { $value = self::sanitize_reply( $value ); $has_response = $has_response || '' !== trim( wp_strip_all_tags( $value ) ); }
+					else { $value = self::sanitize_media_ids( $value ); $has_media = $has_media || '' !== $value; }
 					$localized[$key] = $value;
 				}
 			}
-			$empty = '' === $command && ! $has_trigger && ! $has_description && ! $has_response && ! $reply_post_id;
+			$empty = '' === $command && ! $has_trigger && ! $has_description && ! $has_response && ! $has_media && ! $reply_post_id;
 			if ( $empty ) { continue; }
 			$invalid_trigger = 'command' === $type
 				? ( ! preg_match( '/^[a-z][a-z0-9_]{0,31}$/D', $command ) || in_array( $command, $reserved, true ) || isset( $seen[$command] ) || ! $has_description )
@@ -986,7 +1077,7 @@ final class Telegram_Bot {
 				$trigger = $localized['trigger_' . $language] ?? '';
 				if ( '' !== $trigger && isset( $seen_triggers[self::normalize_trigger( $trigger )] ) ) { $invalid_trigger = true; }
 			}
-			if ( $invalid_trigger || ( in_array( $reply_type, array( 'page', 'news' ), true ) ? ! self::valid_reply_post( $reply_post_id, $reply_type ) : ! $has_response ) ) {
+			if ( $invalid_trigger || ( in_array( $reply_type, array( 'page', 'news' ), true ) ? ! self::valid_reply_post( $reply_post_id, $reply_type ) : ( ! $has_response && ! $has_media ) ) ) {
 				$invalid = true;
 				continue;
 			}
@@ -1052,9 +1143,9 @@ final class Telegram_Bot {
 		foreach ( $input as $language => $fields ) {
 			$language = strtolower( sanitize_key( (string) $language ) );
 			if ( ! self::valid_language_code( $language ) || ! is_array( $fields ) ) { continue; }
-			foreach ( array( 'trigger', 'description', 'response' ) as $field ) {
+			foreach ( array( 'trigger', 'description', 'response', 'media_ids' ) as $field ) {
 				$value = is_scalar( $fields[$field] ?? null ) ? (string) $fields[$field] : '';
-				$base[$field . '_' . $language] = 'trigger' === $field ? self::limit_text( sanitize_text_field( $value ), 128 ) : ( 'description' === $field ? self::limit_text( sanitize_text_field( $value ), 256 ) : self::sanitize_reply( $value ) );
+				$base[$field . '_' . $language] = 'trigger' === $field ? self::limit_text( sanitize_text_field( $value ), 128 ) : ( 'description' === $field ? self::limit_text( sanitize_text_field( $value ), 256 ) : ( 'response' === $field ? self::sanitize_reply( $value ) : self::sanitize_media_ids( $value ) ) );
 			}
 		}
 		if ( 'system' === $kind ) {
@@ -1155,15 +1246,36 @@ final class Telegram_Bot {
 		echo '<p class="gkch-post-option"><label for="gkch-reply-post"><strong>' . esc_html__( 'Page or news post to show', 'georg-kloster-connect-hub' ) . '</strong></label><br><select id="gkch-reply-post" name="reply_post_id"><option value="0">— ' . esc_html__( 'Select a published item', 'georg-kloster-connect-hub' ) . ' —</option>';
 		foreach ( get_posts( array( 'post_type' => array( 'page', 'post' ), 'post_status' => 'publish', 'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC', 'suppress_filters' => false ) ) as $post ) { echo '<option data-post-type="' . esc_attr( $post->post_type ) . '" value="' . esc_attr( $post->ID ) . '"' . selected( absint( $command['reply_post_id'] ?? 0 ), $post->ID, false ) . '>' . esc_html( ( 'page' === $post->post_type ? __( 'Page', 'georg-kloster-connect-hub' ) : __( 'Post', 'georg-kloster-connect-hub' ) ) . ': ' . $post->post_title ) . '</option>'; }
 		echo '</select><br><span class="description">' . esc_html__( 'The bot sends the translated title, a short excerpt and a link to the selected item.', 'georg-kloster-connect-hub' ) . '</span></p></div></div>';
-		echo '<div class="postbox"><div class="postbox-header"><h2 class="hndle">' . esc_html__( 'Reply text and translations', 'georg-kloster-connect-hub' ) . '</h2></div><div class="inside"><p>' . esc_html__( 'These language options follow the active languages configured in WPML. For formatted text, use Telegram-supported tags such as <b>, <i>, <u>, <a href="…"> and <code>. The {schedule} code inserts the generated schedule into a reply.', 'georg-kloster-connect-hub' ) . '</p>';
+		echo '<div class="postbox"><div class="postbox-header"><h2 class="hndle">' . esc_html__( 'Reply text and translations', 'georg-kloster-connect-hub' ) . '</h2></div><div class="inside"><p>' . esc_html__( 'These language options follow the active languages configured in WPML. Use the WordPress visual editor for Telegram formatting; unsupported HTML is removed, and lists are converted to bullet lines. The {schedule} code inserts the generated schedule into a reply.', 'georg-kloster-connect-hub' ) . '</p>';
 		foreach ( self::active_languages() as $language => $details ) {
 			$trigger = (string) ( $command['trigger_' . $language] ?? '' );
 			$description = (string) ( $command['description_' . $language] ?? '' );
 			$response = (string) ( $command['response_' . $language] ?? '' );
+			$media_ids = self::sanitize_media_ids( (string) ( $command['media_ids_' . $language] ?? '' ) );
 			echo '<fieldset class="gkch-command-language"><legend><strong>' . esc_html( $details['name'] ) . ' <code>' . esc_html( $language ) . '</code></strong></legend>';
 			if ( ! $system && 'text' === ( $command['type'] ?? '' ) ) { echo '<p><label>' . esc_html__( 'Exact text phrase that triggers this reply', 'georg-kloster-connect-hub' ) . '<br><input class="large-text" maxlength="128" name="localized[' . esc_attr( $language ) . '][trigger]" value="' . esc_attr( $trigger ) . '"></label></p>'; }
 			if ( ! $system && 'command' === ( $command['type'] ?? '' ) || $system ) { echo '<p><label>' . esc_html__( 'Description in the Telegram command menu', 'georg-kloster-connect-hub' ) . '<br><input class="large-text" maxlength="256" name="localized[' . esc_attr( $language ) . '][description]" value="' . esc_attr( $description ) . '"></label></p>'; }
-			echo '<p><label>' . esc_html__( 'Reply text', 'georg-kloster-connect-hub' ) . '<br><textarea class="large-text" rows="6" name="localized[' . esc_attr( $language ) . '][response]">' . esc_textarea( $response ) . '</textarea></label></p></fieldset>';
+			echo '<div class="gkch-response-option"><p><strong>' . esc_html__( 'Reply text', 'georg-kloster-connect-hub' ) . '</strong></p>';
+			wp_editor( $response, 'gkch-telegram-reply-' . sanitize_key( $language ), array(
+				'textarea_name' => 'localized[' . $language . '][response]',
+				'textarea_rows' => 8,
+				'media_buttons' => false,
+				'tinymce' => array(
+					'toolbar1' => 'bold,italic,underline,strikethrough,bullist,numlist,blockquote,link,unlink,undo,redo,removeformat',
+					'toolbar2' => '',
+					'menubar' => false,
+					'valid_elements' => 'p,br,b,strong,i,em,u,ins,s,strike,del,blockquote[expandable],a[href],code,pre,ul,ol,li,span[class]',
+				),
+				'quicktags' => array( 'buttons' => 'strong,em,link,ul,ol,li,code,close' ),
+			) );
+			echo '</div><div class="gkch-media-option"><p><strong>' . esc_html__( 'Images and videos', 'georg-kloster-connect-hub' ) . '</strong></p><input class="gkch-telegram-media-ids" type="hidden" name="localized[' . esc_attr( $language ) . '][media_ids]" value="' . esc_attr( $media_ids ) . '"><button type="button" class="button gkch-telegram-media-select">' . esc_html__( 'Choose images or videos', 'georg-kloster-connect-hub' ) . '</button><ul class="gkch-telegram-media-preview">';
+			foreach ( array_filter( array_map( 'absint', explode( ',', $media_ids ) ) ) as $media_id ) {
+				$attachment = get_post( $media_id );
+				if ( ! $attachment ) { continue; }
+				$media_label = 'photo' === self::telegram_media_type( $media_id ) ? __( 'Photo', 'georg-kloster-connect-hub' ) : __( 'Video', 'georg-kloster-connect-hub' );
+				echo '<li data-attachment-id="' . esc_attr( (string) $media_id ) . '"><span>' . esc_html( $media_label . ': ' . $attachment->post_title ) . '</span> <button type="button" class="button-link-delete gkch-telegram-media-remove">' . esc_html__( 'Remove', 'georg-kloster-connect-hub' ) . '</button></li>';
+			}
+			echo '</ul><p class="description">' . esc_html__( 'Select up to 10 JPEG or PNG photos and MP4 videos from the Media Library. Telegram fetches them from their public URLs; URL limits are 5 MB per photo and 20 MB per video.', 'georg-kloster-connect-hub' ) . '</p></div></fieldset>';
 		}
 		echo '</div></div></div><div id="postbox-container-1" class="postbox-container"><div class="postbox"><div class="postbox-header"><h2 class="hndle">' . esc_html__( 'Save', 'georg-kloster-connect-hub' ) . '</h2></div><div class="inside">';
 		submit_button( __( 'Save command', 'georg-kloster-connect-hub' ), 'primary', 'submit', false );

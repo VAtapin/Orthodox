@@ -29,10 +29,6 @@ msgstr ""
 msgid "Accepted by service"
 msgstr ""
 
-#: includes/class-outgoing-log.php
-msgid "Accepted by service; inbox delivery is not confirmed."
-msgstr ""
-
 #: includes/class-request-mail-log.php
 msgid "Accepted by transport"
 msgstr ""
@@ -275,6 +271,10 @@ msgstr ""
 
 #: includes/class-publication-rules.php
 msgid "Choose an existing category."
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Choose images or videos"
 msgstr ""
 
 #: includes/class-telegram-bot.php
@@ -757,6 +757,10 @@ msgstr ""
 msgid "Image from Telegram"
 msgstr ""
 
+#: includes/class-telegram-bot.php
+msgid "Images and videos"
+msgstr ""
+
 #: includes/class-requests.php
 msgid "In progress"
 msgstr ""
@@ -1030,6 +1034,10 @@ msgid "Once"
 msgstr ""
 
 #: includes/class-telegram-bot.php
+msgid "Only JPEG or PNG images and MP4 videos can be sent."
+msgstr ""
+
+#: includes/class-telegram-bot.php
 msgid "Open the bot menu"
 msgstr ""
 
@@ -1067,6 +1075,10 @@ msgstr ""
 
 #: includes/class-publication-rules-admin.php
 msgid "Paused"
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Photo"
 msgstr ""
 
 #: includes/class-telegram-bot.php
@@ -1151,6 +1163,10 @@ msgstr ""
 
 #: includes/class-telegram-bot.php
 msgid "Recipients"
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Remove"
 msgstr ""
 
 #: includes/class-publication-rules-admin.php
@@ -1353,8 +1369,16 @@ msgstr ""
 msgid "Select at least one message to delete."
 msgstr ""
 
+#: includes/class-telegram-bot.php
+msgid "Select images and videos"
+msgstr ""
+
 #: includes/class-request-admin.php
 msgid "Select message: %s"
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Select up to 10 JPEG or PNG photos and MP4 videos from the Media Library. Telegram fetches them from their public URLs; URL limits are 5 MB per photo and 20 MB per video."
 msgstr ""
 
 #: includes/class-telegram-request-settings.php
@@ -1682,7 +1706,7 @@ msgid "There is no technical log for this reply. Past delivery attempts cannot b
 msgstr ""
 
 #: includes/class-telegram-bot.php
-msgid "These language options follow the active languages configured in WPML. For formatted text, use Telegram-supported tags such as <b>, <i>, <u>, <a href=\"…\"> and <code>. The {schedule} code inserts the generated schedule into a reply."
+msgid "These language options follow the active languages configured in WPML. Use the WordPress visual editor for Telegram formatting; unsupported HTML is removed, and lists are converted to bullet lines. The {schedule} code inserts the generated schedule into a reply."
 msgstr ""
 
 #: includes/class-connector.php
@@ -1793,6 +1817,10 @@ msgstr ""
 msgid "Use an OK application with GROUP_CONTENT permission, an access token, application public key and application secret. Only publication to the configured group is enabled."
 msgstr ""
 
+#: includes/class-telegram-bot.php
+msgid "Use selected media"
+msgstr ""
+
 #: includes/class-publication-rules-admin.php
 msgid "Use this image"
 msgstr ""
@@ -1803,6 +1831,10 @@ msgstr ""
 
 #: includes/class-connector.php
 msgid "VK owner ID"
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Video"
 msgstr ""
 
 #: includes/class-request-mail.php
@@ -1839,6 +1871,10 @@ msgstr ""
 
 #: includes/class-telegram-request-settings.php
 msgid "You can reply to a bot message multiple times: each reply is saved separately and immediately passed to PHP mail. Captioned photos and static stickers are included in the email. Visitor replies by email are not received automatically yet."
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "You can select up to 10 media files."
 msgstr ""
 
 #: includes/class-telegram-bot.php
