@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Georg-Kloster Connect Hub 0.4.8\nLanguage: ru_RU\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+msgstr "Project-Id-Version: Georg-Kloster Connect Hub 0.4.9\nLanguage: ru_RU\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 
 msgid "A bot token is required. Each form uses only its own private Chat ID for contact messages; the old global Chat ID is not used. Public posts and schedule messages go to people who pressed Start in the bot."
 msgstr "Для работы нужен токен бота. Каждая форма отправляет уведомления только в свой личный чат; общий старый Chat ID не используется. Публикации и сообщения о расписании получают те, кто нажал Start в боте."
@@ -1458,3 +1458,6 @@ msgstr "Богослужения до конца недели"
 
 msgid "No service is scheduled for today."
 msgstr "Сегодня богослужений нет."
+
+msgid "Read the news"
+msgstr "Читать новость"

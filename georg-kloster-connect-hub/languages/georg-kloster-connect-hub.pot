@@ -1166,6 +1166,10 @@ msgid "Queued"
 msgstr ""
 
 #: includes/class-telegram-bot.php
+msgid "Read the news"
+msgstr ""
+
+#: includes/class-telegram-bot.php
 msgid "Recent broadcast status"
 msgstr ""
 

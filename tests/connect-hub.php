@@ -64,7 +64,7 @@ $throws = static function ( callable $operation, string $message ) use ( $check 
 };
 $admin_id = get_users( array( 'role' => 'administrator', 'number' => 1 ) )[0]->ID;
 wp_set_current_user( $admin_id ); set_current_screen( 'dashboard' );
-$check( '0.4.8' === GKPS_VERSION, 'Wrong Connect Hub version.' );
+$check( '0.4.9' === GKPS_VERSION, 'Wrong Connect Hub version.' );
 $check( ! is_plugin_active( 'georg-kloster-prihod-social/georg-kloster-prihod-social.php' ), 'Old development package remains active.' );
 $check( 'Existing development form' === Admin::get()['title'], 'Development form settings were lost.' );
 $check( '12345' === Connector::instance( 'telegram' )->settings()['target'], 'Channel settings were lost.' );
@@ -175,7 +175,7 @@ $check( 'failed' === get_post_meta( $failed_reply, '_gkps_delivery', true ) && !
 $mail_accept = true;
 Requests::retry( $request, $failed_reply );
 $check( 'sent' === get_post_meta( $failed_reply, '_gkps_delivery', true ) && ! wp_next_scheduled( 'gkps_request_mail' ), 'A manually retried email reply was not sent during the retry request.' );
-$post = wp_insert_post( array( 'post_type' => 'post', 'post_status' => 'publish', 'post_title' => 'Synthetic public post', 'post_content' => 'Synthetic public text.' ) );
+$post = wp_insert_post( array( 'post_type' => 'post', 'post_status' => 'publish', 'post_title' => 'Synthetic public post', 'post_content' => str_repeat( 'Synthetic public text. ', 40 ) ) );
 $test_church = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Храм тестовый' ) );
 $test_chapel = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Часовня тестовая' ) );
 $test_hall = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Зал приходской' ) );
@@ -239,6 +239,12 @@ $telegram_campaign = $GLOBALS['wpdb']->get_row( $GLOBALS['wpdb']->prepare( "SELE
 $check( 2 === (int) $telegram_campaign['total'] && str_contains( $telegram_campaign['payload_ru'], 'Synthetic public post' ) && str_contains( $telegram_campaign['payload_de'], 'Deutscher Beispielbeitrag' ), 'Telegram post broadcast did not select the matching Russian/German translations.' );
 $telegram_deliveries = $GLOBALS['wpdb']->get_results( $GLOBALS['wpdb']->prepare( "SELECT d.status,s.chat_id,d.language FROM {$telegram_tables['deliveries']} d JOIN {$telegram_tables['subscribers']} s ON s.id=d.subscriber_id WHERE d.campaign_id=%d ORDER BY d.language", $telegram_campaign_id ), ARRAY_A );
 $check( array( 'de', 'ru' ) === array_column( $telegram_deliveries, 'language' ) && array( '70102', '70101' ) === array_column( $telegram_deliveries, 'chat_id' ) && array( 'sent', 'sent' ) === array_column( $telegram_deliveries, 'status' ), 'Telegram publication did not reach each active subscriber with their language.' );
+$telegram_post_calls = array_values( array_filter( array_slice( $http, $before_http ), static function ( $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); return str_ends_with( (string) wp_parse_url( $call['url'], PHP_URL_PATH ), '/sendPhoto' ) && in_array( (string) ( $body['chat_id'] ?? '' ), array( '70101', '70102' ), true ); } ) );
+$telegram_post_bodies = array(); foreach ( $telegram_post_calls as $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); $telegram_post_bodies[(string) ( $body['chat_id'] ?? '' )] = $body; }
+$ru_post_body = $telegram_post_bodies['70101'] ?? array(); $de_post_body = $telegram_post_bodies['70102'] ?? array();
+$check( 2 === count( $telegram_post_calls ) && str_ends_with( (string) ( $ru_post_body['photo'] ?? '' ), '/fixture.jpg' ) && str_ends_with( (string) ( $de_post_body['photo'] ?? '' ), '/fixture.jpg' ), 'Telegram news did not send the post featured image to each subscriber.' );
+$check( 'HTML' === ( $ru_post_body['parse_mode'] ?? '' ) && str_starts_with( (string) ( $ru_post_body['caption'] ?? '' ), '<b>Synthetic public post</b>' ) && str_starts_with( (string) ( $de_post_body['caption'] ?? '' ), '<b>Deutscher Beispielbeitrag</b>' ) && ! str_contains( (string) $ru_post_body['caption'], get_permalink( $post ) ) && strlen( (string) $ru_post_body['caption'] ) < 540, 'Telegram news did not use a concise localized HTML teaser without a visible URL.' );
+$check( get_permalink( $post ) === ( $ru_post_body['reply_markup']['inline_keyboard'][0][0]['url'] ?? '' ) && get_permalink( $german_post ) === ( $de_post_body['reply_markup']['inline_keyboard'][0][0]['url'] ?? '' ) && 'Читать новость' === ( $ru_post_body['reply_markup']['inline_keyboard'][0][0]['text'] ?? '' ) && 'Artikel lesen' === ( $de_post_body['reply_markup']['inline_keyboard'][0][0]['text'] ?? '' ), 'Telegram news did not hide the localized article link behind the translated button.' );
 $check( 'sent' === $GLOBALS['wpdb']->get_var( $GLOBALS['wpdb']->prepare( "SELECT status FROM {$telegram_tables['campaigns']} WHERE id=%d", $telegram_campaign_id ) ), 'Telegram campaign did not record completion.' );
 $telegram_update = array( 'update_id' => 51003, 'message' => array( 'text' => '/today', 'chat' => array( 'id' => '70101', 'type' => 'private' ), 'from' => array( 'id' => '70101', 'language_code' => 'ru' ) ) );
 $today_http_start = count( $http );
@@ -325,8 +331,10 @@ $untranslated_page_update = array( 'update_id' => 51018, 'message' => array( 'te
 $check( Telegram_Bot::receive_update( $untranslated_page_update ) && ! array_filter( $http, static function ( $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); return str_contains( $call['url'], 'api.telegram.org' ) && '70102' === (string) ( $body['chat_id'] ?? '' ) && str_contains( (string) ( $body['text'] ?? '' ), 'Legal details for visitors.' ); } ), 'A page in another language was sent when its translation was unavailable.' );
 $news_reply_update = array( 'update_id' => 51016, 'message' => array( 'text' => '/latest', 'chat' => array( 'id' => '70101', 'type' => 'private' ), 'from' => array( 'id' => '70101', 'language_code' => 'ru' ) ) );
 $check( Telegram_Bot::receive_update( $news_reply_update ), 'A configured published news post reply was not accepted.' );
-$latest_reply = array_values( array_filter( $http, static function ( $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); return str_contains( $call['url'], 'api.telegram.org' ) && '70101' === (string) ( $body['chat_id'] ?? '' ) && str_contains( (string) ( $body['text'] ?? '' ), 'Synthetic public post' ); } ) );
+$latest_reply = array_values( array_filter( $http, static function ( $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); return str_contains( $call['url'], 'api.telegram.org' ) && '70101' === (string) ( $body['chat_id'] ?? '' ) && str_contains( (string) ( $body['caption'] ?? $body['text'] ?? '' ), 'Synthetic public post' ); } ) );
 $check( $latest_reply, 'The news reply did not send the selected published post.' );
+$latest_reply_body = $latest_reply ? json_decode( end( $latest_reply )['args']['body'], true ) : array();
+$check( str_ends_with( (string) ( $latest_reply_body['photo'] ?? '' ), '/fixture.jpg' ) && get_permalink( $post ) === ( $latest_reply_body['reply_markup']['inline_keyboard'][0][0]['url'] ?? '' ) && ! str_contains( (string) ( $latest_reply_body['caption'] ?? '' ), get_permalink( $post ) ), 'A /news command reply did not send the featured image and hidden article link.' );
 $wrong_news_update = array( 'update_id' => 51017, 'message' => array( 'text' => '/badnews', 'chat' => array( 'id' => '70101', 'type' => 'private' ), 'from' => array( 'id' => '70101', 'language_code' => 'ru' ) ) );
 $check( ! Telegram_Bot::receive_update( $wrong_news_update ), 'A page was incorrectly accepted as a news post reply.' );
 $html_reply_update = array( 'update_id' => 51015, 'message' => array( 'text' => '/format', 'chat' => array( 'id' => '70101', 'type' => 'private' ), 'from' => array( 'id' => '70101', 'language_code' => 'ru' ) ) );

@@ -291,6 +291,7 @@ final class Telegram_Bot {
 			'digest' => __( 'Services and commemorations of the day', 'georg-kloster-connect-hub' ),
 			'changed' => __( 'The service schedule has changed', 'georg-kloster-connect-hub' ),
 			'post_unavailable' => __( 'This page or news item is no longer available.', 'georg-kloster-connect-hub' ),
+			'open_article' => __( 'Read the news', 'georg-kloster-connect-hub' ),
 		);
 		$message = $messages[$key] ?? '';
 		if ( $switched ) { restore_previous_locale(); }
@@ -390,9 +391,11 @@ final class Telegram_Bot {
 					$text = '<b>' . esc_html( $post->post_title ) . "</b>\n\n" . $content . "\n\n" . esc_html( $link );
 					self::send_direct( $chat_id, $text, $markup, true );
 				} else {
-					$excerpt = $post->post_excerpt ? $post->post_excerpt : $post->post_content;
-					$text = trim( $post->post_title . "\n" . wp_html_excerpt( wp_strip_all_tags( strip_shortcodes( $excerpt ) ), 700, '…' ) . "\n" . $link );
-					self::send_direct( $chat_id, $text, $markup );
+					$text = self::post_teaser( $post );
+					$markup = self::article_button_markup( $link, $language, $markup );
+					$image = self::post_featured_image_url( (int) $post->ID );
+					if ( '' !== $image ) { self::send_direct_photo( $chat_id, $image, $text, $markup ); }
+					else { self::send_direct_long_html( $chat_id, $text, $markup ); }
 				}
 			} else { self::send_direct( $chat_id, self::copy( 'post_unavailable', $language ), $markup ); }
 			return;
@@ -434,7 +437,7 @@ final class Telegram_Bot {
 
 	private static function send_direct_photo( string $chat_id, string $photo, string $text, array $markup = array() ): bool {
 		$text = self::telegram_html( $text, true );
-		if ( '' === $text || ! self::valid_calendar_icon_url( $photo ) ) { return self::send_direct_long_html( $chat_id, $text, $markup ); }
+		if ( '' === $text || ! self::valid_telegram_photo_url( $photo ) ) { return self::send_direct_long_html( $chat_id, $text, $markup ); }
 		list( $caption, $continuation ) = self::photo_caption_parts( $text );
 		$body = array( 'chat_id' => $chat_id, 'photo' => $photo, 'caption' => $caption, 'parse_mode' => 'HTML' );
 		if ( $markup ) { $body['reply_markup'] = $markup; }
@@ -523,6 +526,10 @@ final class Telegram_Bot {
 
 	private static function valid_calendar_icon_url( string $url ): bool {
 		return (bool) preg_match( '~^https://bible-desktop\.com/storage/calendar-icons/[a-f0-9]{64}\.(?:png|jpe?g)$~D', $url );
+	}
+
+	private static function valid_telegram_photo_url( string $url ): bool {
+		return self::valid_calendar_icon_url( $url ) || ( 'https' === strtolower( (string) wp_parse_url( $url, PHP_URL_SCHEME ) ) && wp_http_validate_url( $url ) );
 	}
 
 	private static function configured_media( array $command, string $language ): array {
@@ -796,6 +803,10 @@ final class Telegram_Bot {
 		if ( ! $messages ) { return ''; }
 		$translations = is_array( $messages['translations'] ?? null ) ? $messages['translations'] : array();
 		$context['translations'] = $translations;
+		if ( 'post' === $kind ) {
+			$context['links'] = is_array( $messages['links'] ?? null ) ? $messages['links'] : array();
+			$context['images'] = is_array( $messages['images'] ?? null ) ? $messages['images'] : array();
+		}
 		if ( self::valid_calendar_icon_url( (string) ( $messages['icon_url'] ?? '' ) ) ) { $context['icon_url'] = $messages['icon_url']; }
 		return self::create_campaign( $kind, $source_id, $context, $messages['title'], (string) ( $translations['ru'] ?? $messages['ru'] ?? '' ), (string) ( $translations['de'] ?? $messages['de'] ?? '' ), $messages['url'], (string) ( $context['configuration'] ?? '' ) );
 	}
@@ -835,17 +846,44 @@ final class Telegram_Bot {
 	private static function post_messages( int $source_id ): array {
 		$source = get_post( $source_id );
 		if ( ! $source || 'publish' !== $source->post_status ) { return array(); }
-		$translations = array();
+		$translations = array(); $links = array(); $images = array();
 		$source_language = self::post_language( $source_id );
 		foreach ( self::campaign_languages() as $language ) {
 			$id = self::translated_post_id( $source_id, $language );
 			if ( ! $id && $language === $source_language ) { $id = $source_id; }
 			$post = $id ? get_post( $id ) : null;
 			if ( ! $post || 'publish' !== $post->post_status ) { $translations[$language] = ''; continue; }
-			$excerpt = $post->post_excerpt ? $post->post_excerpt : $post->post_content;
-			$translations[$language] = $post->post_title . "\n" . wp_html_excerpt( wp_strip_all_tags( strip_shortcodes( $excerpt ) ), 700, '…' ) . "\n" . get_permalink( $id );
+			$translations[$language] = self::post_teaser( $post );
+			$links[$language] = esc_url_raw( get_permalink( $id ) );
+			$images[$language] = self::post_featured_image_url( $id ) ?: self::post_featured_image_url( $source_id );
 		}
-		return array( 'title' => $source->post_title, 'translations' => $translations, 'ru' => $translations['ru'] ?? '', 'de' => $translations['de'] ?? '', 'url' => '' );
+		return array( 'title' => $source->post_title, 'translations' => $translations, 'links' => $links, 'images' => $images, 'ru' => $translations['ru'] ?? '', 'de' => $translations['de'] ?? '', 'url' => '' );
+	}
+
+	private static function post_teaser( \WP_Post $post ): string {
+		$excerpt = $post->post_excerpt ? $post->post_excerpt : $post->post_content;
+		$excerpt = html_entity_decode( wp_strip_all_tags( strip_shortcodes( $excerpt ) ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+		$excerpt = wp_html_excerpt( $excerpt, 360, '…' );
+		$title = html_entity_decode( wp_strip_all_tags( $post->post_title ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+		$title = wp_html_excerpt( $title, 160, '…' );
+		return '<b>' . esc_html( $title ) . '</b>' . ( '' !== trim( $excerpt ) ? "\n\n" . esc_html( $excerpt ) : '' );
+	}
+
+	private static function post_featured_image_url( int $post_id ): string {
+		$attachment_id = get_post_thumbnail_id( $post_id );
+		if ( ! $attachment_id || ! in_array( get_post_mime_type( $attachment_id ), array( 'image/jpeg', 'image/png' ), true ) ) { return ''; }
+		$url = wp_get_attachment_image_url( $attachment_id, 'large' ) ?: wp_get_attachment_url( $attachment_id );
+		if ( ! is_string( $url ) || 'https' !== strtolower( (string) wp_parse_url( $url, PHP_URL_SCHEME ) ) || ! wp_http_validate_url( $url ) ) { return ''; }
+		return esc_url_raw( $url );
+	}
+
+	private static function article_button_markup( string $url, string $language, array $markup = array() ): array {
+		$url = esc_url_raw( $url );
+		if ( '' === $url || ! in_array( strtolower( (string) wp_parse_url( $url, PHP_URL_SCHEME ) ), array( 'http', 'https' ), true ) || '' === (string) wp_parse_url( $url, PHP_URL_HOST ) ) { return $markup; }
+		$rows = is_array( $markup['inline_keyboard'] ?? null ) ? $markup['inline_keyboard'] : array();
+		$rows[] = array( array( 'text' => self::copy( 'open_article', $language ), 'url' => $url ) );
+		$markup['inline_keyboard'] = $rows;
+		return $markup;
 	}
 
 	private static function post_language( int $post_id ): string {
@@ -944,7 +982,11 @@ final class Telegram_Bot {
 				$language = (string) $delivery['language'];
 				$text = is_string( $context['translations'][$language] ?? null ) ? $context['translations'][$language] : ( 'de' === $language ? $campaign['payload_de'] : ( 'ru' === $language ? $campaign['payload_ru'] : '' ) );
 				if ( '' === trim( (string) $text ) ) { self::delivery_status( $delivery, 'skipped', 'missing_translation' ); continue; }
-				$result = self::send_campaign_message( (string) $delivery['chat_id'], (string) $text, (string) $campaign['url'], (string) ( $context['icon_url'] ?? '' ), in_array( $kind, array( 'digest', 'schedule' ), true ) );
+				$is_post = 'post' === $kind;
+				$article_url = is_string( $context['links'][$language] ?? null ) ? $context['links'][$language] : '';
+				$photo = $is_post && is_string( $context['images'][$language] ?? null ) ? $context['images'][$language] : (string) ( $context['icon_url'] ?? '' );
+				$markup = $is_post ? self::article_button_markup( $article_url, $language ) : array();
+				$result = self::send_campaign_message( (string) $delivery['chat_id'], (string) $text, (string) $campaign['url'], $photo, $is_post || in_array( $kind, array( 'digest', 'schedule' ), true ), $markup );
 				$attempt = (int) $delivery['attempts'] + 1;
 				if ( ! empty( $result['accepted'] ) ) {
 					self::delivery_status( $delivery, 'sent', '', $attempt, (string) ( $result['message_id'] ?? '' ) );
@@ -961,13 +1003,13 @@ final class Telegram_Bot {
 		} finally { Lock::release( 'gkch_telegram_campaign_' . $campaign_id, $lock ); }
 	}
 
-	private static function send_campaign_message( string $chat_id, string $text, string $url, string $photo = '', bool $html = false ): array {
+	private static function send_campaign_message( string $chat_id, string $text, string $url, string $photo = '', bool $html = false, array $reply_markup = array() ): array {
 		$connector = Connector::instance( 'telegram' );
 		$settings = $connector ? $connector->settings() : array();
 		if ( empty( $settings['token'] ) ) { return array( 'accepted' => false, 'retry' => false, 'error' => 'missing_token' ); }
 		if ( '' !== $url && ! str_contains( $text, $url ) ) { $text .= $html ? "\n\n<a href=\"" . esc_url( $url ) . "\">" . esc_html( self::copy( 'schedule_link', self::subscriber_language( $chat_id, self::default_language_code() ) ) ) . '</a>' : "\n" . $url; }
 		$text = $html ? self::telegram_html( $text, true ) : trim( wp_strip_all_tags( $text ) );
-		$use_photo = '' !== $photo && self::valid_calendar_icon_url( $photo ) && $html;
+		$use_photo = '' !== $photo && self::valid_telegram_photo_url( $photo ) && $html;
 		if ( '' === $text ) { return array( 'accepted' => false, 'retry' => false, 'error' => 'empty_message' ); }
 		$parts = self::split_telegram_text( $text, $use_photo ? 1024 : 3900 );
 		$first = array_shift( $parts ) ?? '';
@@ -975,6 +1017,7 @@ final class Telegram_Bot {
 			? array( 'chat_id' => $chat_id, 'photo' => $photo, 'caption' => $first, 'parse_mode' => 'HTML' )
 			: array( 'chat_id' => $chat_id, 'text' => $first, 'link_preview_options' => array( 'is_disabled' => true ) );
 		if ( $html ) { $payload['parse_mode'] = 'HTML'; }
+		if ( $reply_markup ) { $payload['reply_markup'] = $reply_markup; }
 		$send = static function ( string $method, array $body ) use ( $settings ): array {
 			$response = wp_remote_post( 'https://api.telegram.org/bot' . $settings['token'] . '/' . $method, array( 'headers' => array( 'Content-Type' => 'application/json' ), 'body' => wp_json_encode( $body ), 'timeout' => 10, 'redirection' => 0 ) );
 			$code = is_wp_error( $response ) ? 0 : (int) wp_remote_retrieve_response_code( $response );
@@ -988,6 +1031,7 @@ final class Telegram_Bot {
 			$parts = self::split_telegram_text( $text, 3900 );
 			$first = array_shift( $parts ) ?? '';
 			$fallback = array( 'chat_id' => $chat_id, 'text' => $first, 'parse_mode' => 'HTML', 'link_preview_options' => array( 'is_disabled' => true ) );
+			if ( $reply_markup ) { $fallback['reply_markup'] = $reply_markup; }
 			$accepted = $send( 'sendMessage', $fallback );
 		}
 		if ( empty( $accepted['accepted'] ) ) { return $accepted; }
