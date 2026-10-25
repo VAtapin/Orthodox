@@ -164,4 +164,18 @@ check( array( 'title' => 'Вмч. Артемия (362)', 'short' => 'Вмч. А�
 check( array( 'Вмч. Артемия (362)', 'Прав. отрока Артемия' ) === GeorgKlosterPrihodSchedule\Calendar_Adapter::commemorations( array( 'events' => array( array( 'category' => 'commemoration', 'typeCode' => -20, 'title' => 'Generated weekday' ), array( 'category' => 'commemoration', 'typeCode' => 6, 'title' => 'Вмч. Артемия (362)' ), array( 'category' => 'commemoration', 'typeCode' => 18, 'title' => 'Прав. отрока Артемия' ), array( 'category' => 'scripture-reading', 'typeCode' => 204, 'title' => 'Reading' ) ) ) ), 'Month day details include genuine commemorations, not liturgical texts.' );
 check( array( 'Краткое имя', 'Второе' ) === GeorgKlosterPrihodSchedule\Calendar_Adapter::commemorations( array( 'events' => array( array( 'category' => 'commemoration', 'typeCode' => 6, 'title' => 'Очень длинное название памятования', 'veryShortTitle' => 'Краткое имя' ), array( 'category' => 'commemoration', 'typeCode' => 7, 'title' => 'Второе' ) ) ) ), 'Month details prefer concise calendar titles.' );
 
+require dirname( __DIR__ ) . '/georg-kloster-prihod/includes/article-image-layout.php';
+$GLOBALS['caps']['edit_post'] = true;
+$save_image_layout = $GLOBALS['hooks']['save_post_post'][0];
+check( ! prihod_theme_wrap_featured_image( 99 ), 'Featured image wrapping is off by default.' );
+$_POST = array( 'prihod_featured_image_layout_nonce' => 'valid-prihod_featured_image_layout_99', 'prihod_wrap_featured_image' => '1' );
+$save_image_layout( 99 );
+check( prihod_theme_wrap_featured_image( 99 ), 'Authorized post save enables featured image text wrapping.' );
+$_POST['prihod_featured_image_layout_nonce'] = 'invalid';
+$save_image_layout( 99 );
+check( prihod_theme_wrap_featured_image( 99 ), 'Invalid nonce cannot change featured image layout.' );
+$_POST = array( 'prihod_featured_image_layout_nonce' => 'valid-prihod_featured_image_layout_99' );
+$save_image_layout( 99 );
+check( ! prihod_theme_wrap_featured_image( 99 ), 'Unchecking the option restores the standalone image layout.' );
+
 echo "Passed {$count} assertions (isolated unit tests).\n";

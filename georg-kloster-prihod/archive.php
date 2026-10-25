@@ -4,7 +4,7 @@ $queried = get_queried_object();
 $archive_title = $queried instanceof WP_Term ? $queried->name : wp_strip_all_tags( get_the_archive_title() );
 $archive_description = get_the_archive_description();
 ?>
-<main id="prihod-main" class="prihod-category-archive">
+<main id="prihod-main" class="prihod-category-archive<?php echo prihod_theme_is_icons_category() ? ' prihod-icons-archive' : ''; ?>">
 <div class="prihod-page-heading"><div class="prihod-container">
 <a class="prihod-breadcrumb" href="<?php echo esc_url( prihod_theme_preview_url( home_url( '/' ) ) ); ?>"><?php esc_html_e( 'Home', 'georg-kloster-prihod' ); ?></a>
 <h1><?php echo esc_html( $archive_title ); ?></h1>

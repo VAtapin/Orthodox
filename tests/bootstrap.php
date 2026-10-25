@@ -30,6 +30,7 @@ function get_post_type( $id ) { return get_post( $id )->post_type ?? false; }
 function get_post_status( $id ) { return get_post( $id )->post_status ?? false; }
 function get_post_meta( $id, $key, $single ) { return $GLOBALS['meta'][ $id ][ $key ] ?? ''; }
 function update_post_meta( $id, $key, $value ) { $GLOBALS['meta'][ $id ][ $key ] = $value; }
+function delete_post_meta( $id, $key ) { unset( $GLOBALS['meta'][ $id ][ $key ] ); }
 function current_user_can( $capability, ...$args ) { return $GLOBALS['caps'][ $capability ] ?? false; }
 function wp_is_post_revision( $id ) { return $GLOBALS['revision'] ?? false; }
 function wp_is_post_autosave( $id ) { return $GLOBALS['autosave'] ?? false; }

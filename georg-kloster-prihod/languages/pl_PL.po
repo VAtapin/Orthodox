@@ -827,3 +827,12 @@ msgstr "Tłumaczenie tekstu na cerkiewnosłowiański i wyszukiwanie w słowniku 
 
 msgid "Footer menu"
 msgstr "Menu stopki"
+
+msgid "Featured image layout"
+msgstr "Układ obrazka wyróżniającego"
+
+msgid "Wrap text around the featured image"
+msgstr "Oblej tekst obrazem wyróżniającym"
+
+msgid "Place the featured image beside the text and let text flow around it."
+msgstr "Umieść obraz wyróżniający obok tekstu i pozwól tekstowi go opływać."

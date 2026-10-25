@@ -827,3 +827,12 @@ msgstr "Texte ins Kirchenslawische übersetzen und das Wörterbuch über Bible D
 
 msgid "Footer menu"
 msgstr "Footer-Menü"
+
+msgid "Featured image layout"
+msgstr "Layout des Beitragsbildes"
+
+msgid "Wrap text around the featured image"
+msgstr "Text um das Beitragsbild fließen lassen"
+
+msgid "Place the featured image beside the text and let text flow around it."
+msgstr "Das Beitragsbild neben dem Text anzeigen und den Text darum fließen lassen."

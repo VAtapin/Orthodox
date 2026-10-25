@@ -12,6 +12,8 @@ The theme has compact optional-plugin cards for Parish, Connect Hub, Calendar Wo
 
 The active theme on the test site `new.georg-kloster.ru` was updated from the current Git package (version 1.0.0). News and category archives use responsive card grids. The homepage service strip has a place logo, date calendar, and time clock with separate columns for date, time, and service title; the time column is widened and its stylesheet uses a file modification cache key so updates reach visitors. Narrow screens stack the strip without clipping. The classic hero motto stays in the text column. The live page retained its existing theme settings.
 
+The monastery icon category archive has a dedicated class and centered 16:9 featured-image crop. Post editing includes an optional featured-image text-wrapping setting; wrapping is disabled by default and becomes a stacked image on narrow screens. The theme catalogs include the setting in Russian, German, Polish, and Ukrainian. This theme change is committed in the repository but has not been deployed to any site.
+
 The native `/news/` Posts page and “News” category archive share the catalog’s category chips and search controls. Filter terms are limited to categories used by published posts, and selected search/category filters are applied to the correct main query. Translated page/category URLs are resolved through WPML or Polylang.
 
 The newsletter widget area is present on the homepage and news/archive views. It uses MailPoet form 2 (“Новости монастыря”), linked to “Рассылка новостей”; the theme now constrains the form to a 600px maximum width and uses tighter spacing and shorter controls. The old stock demo form remains in MailPoet but is no longer displayed publicly. The confirmation email uses Russian text and the theme palette, and the confirmation page layout is compact with its sidebar hidden. Double opt-in and MailPoet’s built-in CAPTCHA are enabled. MailPoet sending is still inactive (“Other” method awaits activation); WP Mail SMTP has an SMTP transport configured, but delivery has not been tested. No campaign or test email has been sent.
@@ -34,8 +36,10 @@ Vestment API integration: `php tests/run.php` passes 78 isolated assertions and 
 
 Footer menu change: `php tests/run.php`, `php tests/lint.php`, and `python scripts/compile-translations.py --only theme` passed. The WordPress Playground integration test is unavailable in this environment. Composer's wrapper could not start because the local Composer runtime lacks OpenSSL; the PHP checks were run directly. Production has not been updated.
 
+Icon archive and featured-image wrapping: `python scripts/compile-translations.py --only theme`, `php tests/lint.php`, and `php tests/run.php` passed (82 isolated assertions). No live WordPress or visual browser check was available. No site has been updated.
+
 ## Next steps
 
 Upload `build/georg-kloster-connect-hub-0.4.8.zip` through WordPress Plugins → Add Plugin → Upload Plugin. Configure the Telegram token, enable subscriber broadcasts, connect the webhook, and share the bot link so readers can press Start and select an active WPML language. Manage commands and replies under Connect Hub → Bot commands; set each form's private Chat ID separately for incoming inquiries. Verify real Telegram delivery after installation. Production has not been updated.
 
-Last related code commit: Send Telegram communications immediately and retain calendar schedule.
+Last related code commit: Add icon archive styling and featured-image text wrapping.

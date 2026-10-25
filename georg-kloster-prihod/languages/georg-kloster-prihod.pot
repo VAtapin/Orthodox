@@ -272,6 +272,10 @@ msgstr ""
 msgid "Eyebrow"
 msgstr ""
 
+#: includes/article-image-layout.php
+msgid "Featured image layout"
+msgstr ""
+
 #: includes/catalog.php
 msgid "Find"
 msgstr ""
@@ -656,6 +660,10 @@ msgstr ""
 
 #: pilgrim.php
 msgid "Pilgrim"
+msgstr ""
+
+#: includes/article-image-layout.php
+msgid "Place the featured image beside the text and let text flow around it."
 msgstr ""
 
 #: includes/pilgrim.php
@@ -1094,4 +1102,8 @@ msgstr ""
 
 #: functions.php
 msgid "Widgets shown in the right column of pages and posts."
+msgstr ""
+
+#: includes/article-image-layout.php
+msgid "Wrap text around the featured image"
 msgstr ""

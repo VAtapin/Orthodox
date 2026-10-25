@@ -827,3 +827,12 @@ msgstr "Переклад тексту церковнослов’янською 
 
 msgid "Footer menu"
 msgstr "Меню підвалу"
+
+msgid "Featured image layout"
+msgstr "Макет головного зображення"
+
+msgid "Wrap text around the featured image"
+msgstr "Обтікати головне зображення текстом"
+
+msgid "Place the featured image beside the text and let text flow around it."
+msgstr "Розмістити головне зображення поруч із текстом і дозволити тексту обтікати його."
