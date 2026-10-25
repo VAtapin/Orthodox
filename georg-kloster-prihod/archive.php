@@ -3,8 +3,10 @@ get_header();
 $queried = get_queried_object();
 $archive_title = $queried instanceof WP_Term ? $queried->name : wp_strip_all_tags( get_the_archive_title() );
 $archive_description = get_the_archive_description();
+$archive_classes = 'prihod-category-archive prihod-category-image-' . prihod_theme_category_image_position();
+if ( prihod_theme_is_icons_category() ) { $archive_classes .= ' prihod-icons-archive'; }
 ?>
-<main id="prihod-main" class="prihod-category-archive<?php echo prihod_theme_is_icons_category() ? ' prihod-icons-archive' : ''; ?>">
+<main id="prihod-main" class="<?php echo esc_attr( $archive_classes ); ?>">
 <div class="prihod-page-heading"><div class="prihod-container">
 <a class="prihod-breadcrumb" href="<?php echo esc_url( prihod_theme_preview_url( home_url( '/' ) ) ); ?>"><?php esc_html_e( 'Home', 'georg-kloster-prihod' ); ?></a>
 <h1><?php echo esc_html( $archive_title ); ?></h1>

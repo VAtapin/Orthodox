@@ -828,6 +828,21 @@ msgstr "Перевод текста на церковнославянский я
 msgid "Footer menu"
 msgstr "Меню подвала"
 
+msgid "Archive card image position"
+msgstr "Положение изображения в карточках рубрики"
+
+msgid "Center"
+msgstr "По центру"
+
+msgid "Top"
+msgstr "Верх"
+
+msgid "Bottom"
+msgstr "Низ"
+
+msgid "Choose which part of featured images appears in this category’s archive cards. Other categories keep their own setting."
+msgstr "Выберите, какая часть главного изображения видна в карточках этой рубрики. У других рубрик свои настройки."
+
 msgid "Featured image layout"
 msgstr "Расположение изображения записи"
 

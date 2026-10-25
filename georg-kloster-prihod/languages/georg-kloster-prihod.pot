@@ -65,6 +65,10 @@ msgstr ""
 msgid "Any questions?"
 msgstr ""
 
+#: includes/category-card-image.php
+msgid "Archive card image position"
+msgstr ""
+
 #: includes/pilgrim.php
 msgid "Arrange a visit"
 msgstr ""
@@ -97,6 +101,10 @@ msgstr ""
 msgid "Blue style quotation source"
 msgstr ""
 
+#: includes/category-card-image.php
+msgid "Bottom"
+msgstr ""
+
 #: includes/pilgrim.php
 msgid "Call the monastery"
 msgstr ""
@@ -121,8 +129,16 @@ msgstr ""
 msgid "Catalog"
 msgstr ""
 
+#: includes/category-card-image.php
+msgid "Center"
+msgstr ""
+
 #: includes/menu.php
 msgid "Choose image"
+msgstr ""
+
+#: includes/category-card-image.php
+msgid "Choose which part of featured images appears in this category’s archive cards. Other categories keep their own setting."
 msgstr ""
 
 #: includes/settings.php
@@ -1042,6 +1058,10 @@ msgstr ""
 
 #: includes/home-settings.php
 msgid "This section appears when a schedule plugin supplies upcoming services."
+msgstr ""
+
+#: includes/category-card-image.php
+msgid "Top"
 msgstr ""
 
 #: includes/settings.php

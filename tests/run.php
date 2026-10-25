@@ -178,4 +178,8 @@ $_POST = array( 'prihod_featured_image_layout_nonce' => 'valid-prihod_featured_i
 $save_image_layout( 99 );
 check( ! prihod_theme_wrap_featured_image( 99 ), 'Unchecking the option restores the standalone image layout.' );
 
+require dirname( __DIR__ ) . '/georg-kloster-prihod/includes/category-card-image.php';
+check( 'center' === prihod_theme_category_image_position_value( 'invalid' ), 'Unknown category image positions safely fall back to centered cropping.' );
+check( 'top' === prihod_theme_category_image_position_value( 'top' ) && 'bottom' === prihod_theme_category_image_position_value( 'bottom' ), 'Category image crop supports top and bottom alignment.' );
+
 echo "Passed {$count} assertions (isolated unit tests).\n";

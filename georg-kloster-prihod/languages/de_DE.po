@@ -828,6 +828,21 @@ msgstr "Texte ins Kirchenslawische übersetzen und das Wörterbuch über Bible D
 msgid "Footer menu"
 msgstr "Footer-Menü"
 
+msgid "Archive card image position"
+msgstr "Bildposition in Kategorie-Karten"
+
+msgid "Center"
+msgstr "Mitte"
+
+msgid "Top"
+msgstr "Oben"
+
+msgid "Bottom"
+msgstr "Unten"
+
+msgid "Choose which part of featured images appears in this category’s archive cards. Other categories keep their own setting."
+msgstr "Wählen Sie, welcher Teil der Beitragsbilder in den Archivkarten dieser Kategorie erscheint. Andere Kategorien behalten ihre eigene Einstellung."
+
 msgid "Featured image layout"
 msgstr "Layout des Beitragsbildes"
 

@@ -828,6 +828,21 @@ msgstr "Tłumaczenie tekstu na cerkiewnosłowiański i wyszukiwanie w słowniku 
 msgid "Footer menu"
 msgstr "Menu stopki"
 
+msgid "Archive card image position"
+msgstr "Położenie obrazu na kartach kategorii"
+
+msgid "Center"
+msgstr "Środek"
+
+msgid "Top"
+msgstr "Góra"
+
+msgid "Bottom"
+msgstr "Dół"
+
+msgid "Choose which part of featured images appears in this category’s archive cards. Other categories keep their own setting."
+msgstr "Wybierz, która część obrazów wyróżniających pojawia się na kartach tej kategorii. Inne kategorie zachowują własne ustawienia."
+
 msgid "Featured image layout"
 msgstr "Układ obrazka wyróżniającego"
 

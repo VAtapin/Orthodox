@@ -16,6 +16,7 @@ require_once __DIR__ . '/includes/calendar-markup.php';
 require_once __DIR__ . '/includes/home.php';
 require_once __DIR__ . '/includes/article.php';
 require_once __DIR__ . '/includes/article-image-layout.php';
+require_once __DIR__ . '/includes/category-card-image.php';
 require_once __DIR__ . '/includes/about.php';
 require_once __DIR__ . '/includes/catalog.php';
 require_once __DIR__ . '/includes/clergy.php';

@@ -347,5 +347,6 @@
 
 /* Icon archive image cards and optional text wrapping for tall featured images. */
 .prihod-icons-archive .prihod-category-grid{gap:20px}.prihod-icons-archive .prihod-category-card{box-shadow:var(--prihod-shadow)}.prihod-icons-archive .prihod-category-card-image{aspect-ratio:16/9}.prihod-icons-archive .prihod-category-card-image img{object-position:50% 50%}
+.prihod-category-image-top .prihod-category-card-image img{object-position:center top}.prihod-category-image-bottom .prihod-category-card-image img{object-position:center bottom}
 .prihod-article-featured-image{max-width:100%;margin:0 0 24px}.prihod-article-featured-image img{display:block;width:auto;max-width:100%;height:auto;border-radius:var(--prihod-radius)}.prihod-article-wrap-featured-image:after{display:block;clear:both;content:""}.prihod-article-wrap-featured-image .prihod-article-featured-image{float:left;width:min(40%,380px);margin:0 28px 18px 0}
 @media(max-width:600px){.prihod-article-wrap-featured-image .prihod-article-featured-image{float:none;width:auto;margin:0 0 22px}}
