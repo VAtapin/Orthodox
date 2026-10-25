@@ -2,11 +2,11 @@
 
 ## Current state
 
-The repository contains the Georg-Kloster Prihod theme (1.0.0), Parish Core (0.2.11), and Connect Hub (0.4.8). The theme has five visual styles, native Customizer controls, standard WordPress widget and primary/footer menu locations, English gettext source strings, and Russian, German, Polish, and Ukrainian catalogs. Footer links are managed by assigning a standard menu to the Footer menu location. Author: Atapin Vladimir (`atapin`); site: https://georg-kloster.ru/; email: atapin@gmail.com.
+The repository contains the Georg-Kloster Prihod theme (1.0.0), Parish Core (0.2.12), and Connect Hub (0.4.9). The theme has five visual styles, native Customizer controls, standard WordPress widget and primary/footer menu locations, English gettext source strings, and Russian, German, Polish, and Ukrainian catalogs. Footer links are managed by assigning a standard menu to the Footer menu location. Author: Atapin Vladimir (`atapin`); site: https://georg-kloster.ru/; email: atapin@gmail.com.
 
 The footer no longer generates a fixed list of site links. It renders the standard WordPress menu assigned to the Footer menu location; per-language menus can be assigned through the normal WordPress/WPML menu workflow. The theme package has not been installed on production.
 
-The merged Parish Schedule reads vestment recommendations from Bible Desktop `day.vestment.color`; API `violet` maps to the existing `purple` palette key. Existing manual service colors and date overrides remain available. Vestment stripes use a silver frosted pattern; mobile upcoming-service cards and weekly/list event content have extra spacing after the stripe. Parish Core 0.2.11 also fits compact titles to their sidebar card width and separates the overview heading from its calendar badge. Production has not been updated.
+The merged Parish Schedule reads vestment recommendations from Bible Desktop `day.vestment.color`; API `violet` maps to the existing `purple` palette key. Existing manual service colors and date overrides remain available. Vestment stripes use a silver frosted pattern; mobile upcoming-service cards and weekly/list event content have extra spacing after the stripe. Parish Core 0.2.12 keeps compact titles within their sidebar cards, shows all provider commemorations in full schedule service cards alongside typikon marks, and clears the overview heading from its calendar badge. Production has not been updated.
 
 The theme has compact optional-plugin cards for Parish, Connect Hub, Calendar Workshop, Orthodox Donations, and Slavonic Translator. Language switching is delegated to WPML or Polylang. The shared homepage map uses a full-width iframe.
 
@@ -38,8 +38,10 @@ Footer menu change: `php tests/run.php`, `php tests/lint.php`, and `python scrip
 
 Icon archive crop and featured-image wrapping: `python scripts/compile-translations.py --only theme`, `php tests/lint.php`, and `php tests/run.php` passed (84 isolated assertions). No live WordPress or visual browser check was available. No site has been updated.
 
+Schedule commemorations and overview heading: `php tests/run.php` passed 85 isolated assertions; `php tests/lint.php` passed. The Parish Core 0.2.12 ZIP was built and its version, calendar adapter, and CSS were inspected. The WordPress Playground integration test could not start because this environment cannot resolve `registry.npmjs.org` (`ENOTFOUND`); no live site or browser visual check was performed. Production has not been updated.
+
 ## Next steps
 
-Upload `build/georg-kloster-connect-hub-0.4.9.zip` through WordPress Plugins → Add Plugin → Upload Plugin. Configure the Telegram token, enable subscriber broadcasts, connect the webhook, and share the bot link so readers can press Start and select an active WPML language. Manage commands and replies under Connect Hub → Bot commands; set each form's private Chat ID separately for incoming inquiries. Verify real Telegram delivery after installation. Production has not been updated.
+Upload `build/georg-kloster-prihod-core-0.2.12.zip` through WordPress Plugins → Add Plugin → Upload Plugin, replacing the installed Parish Core. Verify that the upcoming-service heading clears the calendar icon and that full week/list cards show the calendar commemorations with available typikon marks. The compact month view remains compact. Production has not been updated.
 
-Last related code commit: Add per-category archive image alignment.
+Last related code commit: Show schedule commemorations and fix the upcoming-service heading overlap.

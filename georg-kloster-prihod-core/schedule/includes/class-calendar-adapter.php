@@ -79,9 +79,9 @@ final class Calendar_Adapter {
         foreach ( $day['events'] ?? array() as $event ) {
             if ( ! is_array( $event ) || 'commemoration' !== ( $event['category'] ?? '' ) || ! isset( $event['typeCode'] ) || ! is_numeric( $event['typeCode'] ) ) { continue; }
             $code = (int) $event['typeCode'];
-            if ( $code < 0 || $code > 6 || (float) $event['typeCode'] !== (float) $code || ! is_string( $event['title'] ?? null ) ) { continue; }
+            if ( $code < 0 || (float) $event['typeCode'] !== (float) $code || ! is_string( $event['title'] ?? null ) ) { continue; }
             $title = sanitize_text_field( $event['title'] ?? '' );
-            if ( $code <= 3 && $title ) { $memories[] = $title; }
+            if ( $title ) { $memories[] = $title; }
             $mark = $event['typikonMark'] ?? null;
             if ( ! is_array( $mark ) || ! is_string( $mark['label'] ?? null ) || ! is_string( $mark['svgSource'] ?? null ) ) { continue; }
             $source = $mark['svgSource'];

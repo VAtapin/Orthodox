@@ -80,11 +80,13 @@ if ( file_exists( WP_PLUGIN_DIR . '/orthocal/orthocal.php' ) ) {
         array( 'category' => 'commemoration', 'typeCode' => 5, 'title' => 'Doxology', 'typikonMark' => array( 'label' => 'Doxology mark', 'svgSource' => '/assets/typikon/doxology.svg' ) ),
         array( 'category' => 'commemoration', 'typeCode' => 3, 'title' => 'Vigil', 'typikonMark' => array( 'label' => 'Vigil mark', 'svgSource' => '/assets/typikon/vigil.svg' ) ),
         array( 'category' => 'commemoration', 'typeCode' => 2, 'title' => 'Great', 'typikonMark' => array( 'label' => 'Great mark', 'svgSource' => '/assets/typikon/great.svg' ) ),
-        array( 'category' => 'commemoration', 'typeCode' => 7, 'title' => 'Ordinary' ),
+        array( 'category' => 'commemoration', 'typeCode' => 6, 'title' => 'Ordinary memory' ),
+        array( 'category' => 'commemoration', 'typeCode' => 7, 'title' => 'Another memory' ),
+        array( 'category' => 'commemoration', 'typeCode' => 18, 'title' => 'Later-ranked memory' ),
     ) ) );
-    prihod_assert( array( 'Vigil', 'Great' ) === $ranked['memories'] && 'Great mark' === $ranked['typikon']['label'] && str_contains( $ranked['typikon']['media'], 'source=' ), 'Only great/vigil names are shown; the highest explicit API mark wins regardless of order and uses signed provider media.' );
+    prihod_assert( array( 'Doxology', 'Vigil', 'Great', 'Ordinary memory', 'Another memory', 'Later-ranked memory' ) === $ranked['memories'] && 'Great mark' === $ranked['typikon']['label'] && str_contains( $ranked['typikon']['media'], 'source=' ), 'All ranked commemorations are shown; the highest explicit API mark wins regardless of order and uses signed provider media.' );
     $unknown = Prihod\Calendar_Adapter::liturgical( array( 'events' => array( array( 'category' => 'commemoration', 'typeCode' => 7, 'title' => 'Преподобный' ), array( 'category' => 'commemoration', 'typeCode' => 3, 'title' => 'Vigil without mark' ) ) ) );
-    prihod_assert( null === $unknown['typikon'] && array( 'Vigil without mark' ) === $unknown['memories'], 'Missing API mark never becomes a guessed cross even for a high-rank title.' );
+    prihod_assert( null === $unknown['typikon'] && array( 'Преподобный', 'Vigil without mark' ) === $unknown['memories'], 'All commemorations remain visible without guessing a missing typikon mark.' );
     $unsafe = Prihod\Calendar_Adapter::liturgical( array( 'events' => array( array( 'category' => 'commemoration', 'typeCode' => 2, 'title' => 'Great', 'typikonMark' => array( 'label' => 'Invalid', 'svgSource' => 'https://untrusted.example/great.svg' ) ) ) ) );
     prihod_assert( null === $unsafe['typikon'], 'Marker sources are restricted to the calendar provider typikon asset catalog.' );
     prihod_assert( is_wp_error( Prihod\Calendar_Adapter::month( '2026-10-14' ) ) && is_wp_error( Prihod\Calendar_Adapter::month( '2027-10-01' ) ), 'Month summary rejects non-anchor dates and preserves provider errors.' );
@@ -202,6 +204,6 @@ $extra_place = wp_insert_post( array( 'post_type' => 'prihod_location', 'post_ti
 $many_places = $event_renderer->invoke( null, $expanded_colors[0] );
 prihod_assert( str_contains( $many_places, 'prihod-event-place' ) && str_contains( $many_places, esc_html( get_the_title( $expanded_colors[0]['location_id'] ) ) ), 'Multiple configured public places retain each service place even when the displayed period uses one place.' );
 $compact_place = $event_renderer->invoke( null, $expanded_colors[0], false, true );
-prihod_assert( str_contains( $compact_place, 'data-compact="1"' ) && str_contains( $many_places, 'data-compact="0"' ), 'Month service cards request only marks, while week/list cards request high-rank memories.' );
+prihod_assert( str_contains( $compact_place, 'data-compact="1"' ) && str_contains( $many_places, 'data-compact="0"' ), 'Compact month and full week/list cards request calendar memory details alongside typikon marks.' );
 wp_delete_post( $extra_place, true );
 foreach ( $published_places as $place_id ) { if ( $place_id !== $location ) { wp_update_post( array( 'ID' => $place_id, 'post_status' => 'publish' ) ); } }
