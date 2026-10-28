@@ -889,8 +889,8 @@ msgstr "Ответ на ваше обращение"
 msgid "Reply type"
 msgstr "Тип ответа"
 
-msgid "Required for subscription controls."
-msgstr "Обязательна для управления подпиской."
+msgid "When hidden from Telegram command lists, /start and /stop still work when entered directly so subscribers can manage their subscription."
+msgstr "Если скрыть /start и /stop из списка команд Telegram, они всё равно будут работать при ручном вводе, чтобы подписчики могли управлять подпиской."
 
 msgid "Reset filter"
 msgstr "Сбросить фильтр"

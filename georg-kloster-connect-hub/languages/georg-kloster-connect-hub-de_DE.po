@@ -889,8 +889,8 @@ msgstr "Antwort auf dein Anliegen"
 msgid "Reply type"
 msgstr "Antworttyp"
 
-msgid "Required for subscription controls."
-msgstr "Für die Abonnementverwaltung erforderlich."
+msgid "When hidden from Telegram command lists, /start and /stop still work when entered directly so subscribers can manage their subscription."
+msgstr "Wenn /start und /stop in den Telegram-Befehlslisten ausgeblendet sind, funktionieren sie weiterhin bei direkter Eingabe, damit Abonnenten ihr Abonnement verwalten können."
 
 msgid "Reset filter"
 msgstr "Filter zurücksetzen"

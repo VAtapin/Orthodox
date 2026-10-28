@@ -352,7 +352,7 @@ final class Telegram_Bot {
 			}
 			if ( ! in_array( $commands[$key]['reply_type'] ?? '', array( 'text', 'html', 'schedule', 'page', 'news' ), true ) ) { $commands[$key]['reply_type'] = $default['reply_type'] ?? 'text'; }
 			if ( ! in_array( $commands[$key]['schedule_period'] ?? '', array( 'today', 'week' ), true ) ) { $commands[$key]['schedule_period'] = $default['schedule_period'] ?? 'today'; }
-			$commands[$key]['enabled'] = in_array( $key, array( 'start', 'stop' ), true ) || ! empty( $row['enabled'] );
+			$commands[$key]['enabled'] = ! empty( $row['enabled'] );
 		}
 		return $commands;
 	}
@@ -360,7 +360,8 @@ final class Telegram_Bot {
 	private static function system_command( string $name ): ?array {
 		$name = 'language' === $name ? 'lang' : $name;
 		$commands = self::system_commands();
-		return isset( $commands[$name] ) && ! empty( $commands[$name]['enabled'] ) ? $commands[$name] : null;
+		$subscription_command = in_array( $name, array( 'start', 'stop' ), true );
+		return isset( $commands[$name] ) && ( ! empty( $commands[$name]['enabled'] ) || $subscription_command ) ? $commands[$name] : null;
 	}
 
 	private static function system_response( string $key, string $language, bool $fallback = true ): string {
@@ -1540,7 +1541,7 @@ final class Telegram_Bot {
 			$commands = self::system_commands();
 			if ( ! isset( $commands[$key] ) ) { wp_die( esc_html__( 'Bot command not found.', 'georg-kloster-connect-hub' ) ); }
 			$base = $commands[$key];
-			$base['enabled'] = in_array( $key, array( 'start', 'stop' ), true ) || ! empty( $_POST['enabled'] );
+			$base['enabled'] = ! empty( $_POST['enabled'] );
 		} elseif ( 'custom' === $kind ) {
 			$commands = self::custom_commands();
 			$base = $index >= 0 && isset( $commands[$index] ) ? $commands[$index] : $base;
@@ -1615,7 +1616,7 @@ final class Telegram_Bot {
 		foreach ( self::system_commands() as $key => $command ) {
 			$url = self::command_edit_url( 'system', $key );
 			$title = '<code>/' . esc_html( $key ) . '</code>';
-			self::render_command_list_row( $url, $title, __( 'Built-in command', 'georg-kloster-connect-hub' ), $command['reply_type'] ?? 'text', ! empty( $command['enabled'] ) || in_array( $key, array( 'start', 'stop' ), true ) );
+			self::render_command_list_row( $url, $title, __( 'Built-in command', 'georg-kloster-connect-hub' ), $command['reply_type'] ?? 'text', ! empty( $command['enabled'] ) );
 		}
 		foreach ( self::custom_commands() as $index => $command ) {
 			$label = 'command' === $command['type'] ? '<code>/' . esc_html( $command['command'] ) . '</code>' : esc_html( self::first_trigger( $command ) );
@@ -1675,8 +1676,8 @@ final class Telegram_Bot {
 		} else {
 			echo '<p><strong>' . esc_html__( 'Telegram command', 'georg-kloster-connect-hub' ) . ':</strong> <code>/' . esc_html( $id ) . '</code></p>';
 		}
-		$locked = $system && in_array( $id, array( 'start', 'stop' ), true );
-		if ( $system ) { echo '<p><label><input type="checkbox" name="enabled" value="1"' . checked( ! empty( $command['enabled'] ), true, false ) . disabled( $locked, true, false ) . '> ' . esc_html__( 'Enable this command', 'georg-kloster-connect-hub' ) . '</label>' . ( $locked ? ' <span class="description">' . esc_html__( 'Required for subscription controls.', 'georg-kloster-connect-hub' ) . '</span>' : '' ) . '</p>'; }
+		$subscription_command = $system && in_array( $id, array( 'start', 'stop' ), true );
+		if ( $system ) { echo '<p><label><input type="checkbox" name="enabled" value="1"' . checked( ! empty( $command['enabled'] ), true, false ) . '> ' . esc_html__( 'Enable this command', 'georg-kloster-connect-hub' ) . '</label>' . ( $subscription_command ? ' <span class="description">' . esc_html__( 'When hidden from Telegram command lists, /start and /stop still work when entered directly so subscribers can manage their subscription.', 'georg-kloster-connect-hub' ) . '</span>' : '' ) . '</p>'; }
 		echo '<p><label for="gkch-reply-type"><strong>' . esc_html__( 'What should the bot send?', 'georg-kloster-connect-hub' ) . '</strong></label><br><select id="gkch-reply-type" name="reply_type">';
 		$reply_types = array( 'text' => __( 'Plain text', 'georg-kloster-connect-hub' ), 'html' => __( 'Formatted text (Telegram HTML)', 'georg-kloster-connect-hub' ), 'schedule' => __( 'Parish schedule', 'georg-kloster-connect-hub' ), 'page' => __( 'WordPress page', 'georg-kloster-connect-hub' ), 'news' => __( 'News post', 'georg-kloster-connect-hub' ) );
 		foreach ( $reply_types as $value => $label ) { echo '<option value="' . esc_attr( $value ) . '"' . selected( $command['reply_type'] ?? 'text', $value, false ) . '>' . esc_html( $label ) . '</option>'; }
