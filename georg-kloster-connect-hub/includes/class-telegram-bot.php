@@ -1516,6 +1516,7 @@ final class Telegram_Bot {
 		check_admin_referer( 'gkch_telegram_bot_command_save' );
 		$kind = is_string( $_POST['kind'] ?? null ) ? sanitize_key( wp_unslash( $_POST['kind'] ) ) : '';
 		$key = is_string( $_POST['command_key'] ?? null ) ? sanitize_key( wp_unslash( $_POST['command_key'] ) ) : '';
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- The index is unslashed, checked as numeric and cast to an integer before indexing the command list.
 		$raw_index = isset( $_POST['command_index'] ) && is_scalar( $_POST['command_index'] ) ? wp_unslash( $_POST['command_index'] ) : null;
 		$index = is_numeric( $raw_index ) ? (int) $raw_index : -1;
 		$is_new_command = 'custom' === $kind && $index < 0;
@@ -1765,8 +1766,9 @@ final class Telegram_Bot {
 
 	private static function render_subscribers( array $tables ): void {
 		global $wpdb;
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- This GET value only selects a page of read-only subscriber data.
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- This GET value only selects a page of read-only subscriber data.
 		$page = max( 1, absint( wp_unslash( $_GET['subscriber_page'] ?? 1 ) ) );
+		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 		$per_page = 50; $offset = ( $page - 1 ) * $per_page;
 		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT id,chat_id,language,created_at FROM %i WHERE status='active' ORDER BY id DESC LIMIT %d OFFSET %d", $tables['subscribers'], $per_page, $offset ), ARRAY_A );
 		$total = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM %i WHERE status='active'", $tables['subscribers'] ) );

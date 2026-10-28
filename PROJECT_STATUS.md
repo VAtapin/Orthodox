@@ -28,7 +28,7 @@ Connect Hub 0.4.10 sends Telegram updates synchronously to each subscriber's pri
 
 Version 1.0.0 is submitted in WordPress.org Themes Trac ticket [#296403](https://themes.trac.wordpress.org/ticket/296403); the SVN submission remains separate from the newer Git changes deployed to the test site. The ticket is awaiting manual review. Do not treat the test-site package as a new SVN submission.
 
-Connect Hub 0.4.10 is a prepared candidate, not yet submitted. The complete Plugin Check report generated 2026-10-28 at 15:08 (1 error, 230 warnings) has been addressed in source: output escaping, prepared table identifiers, request input handling, read-only nonce recommendations, bounded metadata queries, external WPML/core hooks, discouraged translation loading, debug logging, and script versioning. Direct SQL needed for the custom Telegram ledger, atomic lock release, and bounded queue-option lookup is documented with scoped PHPCS rationale. The package was rebuilt for the owner to run Plugin Check manually; this report has not been rescanned and no clean Plugin Check result is claimed. Before submission, confirm the `Georg-Kloster` brand/name rights and final slug with WordPress.org; the catalog decides slug availability.
+Connect Hub 0.4.10 is a prepared candidate, not yet submitted. The owner's Plugin Check report generated 2026-10-28 at 15:36 found one escaping error and 25 remaining warnings after the earlier source update. Those findings have now been corrected in source: table headings are escaped at output, validated input paths are annotated with the validation performed, the contact form reads only its result state from GET, and the retention metadata query is marked as bounded. After these corrections, PHP lint, 85 isolated assertions, Connect Hub translation checks, and ZIP rebuild passed. Plugin Check has not been rerun at the owner's request, so no clean result is claimed. Before submission, confirm the `Georg-Kloster` brand/name rights and final slug with WordPress.org; the catalog decides slug availability.
 
 ## Checks completed
 
@@ -48,8 +48,8 @@ Schedule commemorations and overview heading: `php tests/run.php` passed 85 isol
 
 ## Next steps
 
-The owner will run Plugin Check on the rebuilt Connect Hub ZIP and report any new findings for follow-up. Confirm the brand/name documentation and final slug, then submit the Connect Hub ZIP through the WordPress.org plugin portal. Do not claim it is approved until the directory review completes.
+The owner will run Plugin Check on the latest rebuilt Connect Hub ZIP and report any remaining findings for follow-up. Confirm the brand/name documentation and final slug, then submit the Connect Hub ZIP through the WordPress.org plugin portal. Do not claim it is approved until the directory review completes.
 
 Upload `build/georg-kloster-prihod-core-0.2.12.zip` through WordPress Plugins → Add Plugin → Upload Plugin, replacing the installed Parish Core. Verify that the upcoming-service heading clears the calendar icon and that full week/list cards show the calendar commemorations with available typikon marks. The compact month view remains compact. Production has not been updated.
 
-Last related code commit: Correct the complete Connect Hub Plugin Check report.
+Last related code commit: Fix remaining Connect Hub Plugin Check findings.

@@ -53,6 +53,7 @@ final class Connector {
         $this->authorize();
         $url = $this->settings_url();
         // phpcs:disable WordPress.Security.NonceVerification.Recommended -- The legacy page only reads an error-code list and redirects to the current settings screen.
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- The redirect value is unslashed, text-sanitized and restricted to known error codes below.
         $raw_error_codes = isset( $_GET['gkps_connect_error'] ) && is_string( $_GET['gkps_connect_error'] ) ? wp_unslash( $_GET['gkps_connect_error'] ) : '';
         if ( 'telegram' === $this->id && '' !== $raw_error_codes ) {
             $raw_codes = sanitize_text_field( $raw_error_codes );
@@ -82,6 +83,7 @@ final class Connector {
         delete_transient( $error_key);
         // phpcs:disable WordPress.Security.NonceVerification.Recommended -- The error codes are read-only display state from the Telegram connection redirect.
         if ( 'telegram' === $this->id ) {
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- The redirect value is unslashed, text-sanitized and matched against known error codes before output.
             $raw_error_codes = isset( $_GET['gkps_connect_error'] ) && is_string( $_GET['gkps_connect_error'] ) ? wp_unslash( $_GET['gkps_connect_error'] ) : '';
             $raw_error_codes = sanitize_text_field( $raw_error_codes );
             $error_codes = array_map( 'sanitize_key', explode( ',', $raw_error_codes ) );
@@ -169,6 +171,7 @@ final class Connector {
     }
     public function publish_post( int $id ): void {
         $nonce_key = 'gkps_publish_nonce_' . $this->id;
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- The nonce is unslashed, text-sanitized and then verified against the action-specific nonce.
         $raw_nonce = isset( $_POST[$nonce_key] ) && is_string( $_POST[$nonce_key] ) ? wp_unslash( $_POST[$nonce_key] ) : '';
         $nonce = sanitize_text_field( $raw_nonce );
         if ( ! current_user_can( 'edit_post', $id ) || ! wp_verify_nonce( $nonce, 'gkps_publish_' . $this->id ) || empty( $_POST['gkps_publish'][ $this->id ] ) || 'publish' !== get_post_status( $id ) || wp_is_post_autosave( $id ) || wp_is_post_revision( $id ) ) { return; }

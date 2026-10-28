@@ -71,6 +71,7 @@ final class Request_Media {
     public static function serve(): void {
         // phpcs:disable WordPress.Security.NonceVerification.Recommended -- The private media URL includes an action-specific nonce checked below with the current user's capability.
         $id = is_scalar( $_GET['message_id'] ?? null ) ? absint( wp_unslash( $_GET['message_id'] ) ) : 0;
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- The URL nonce is unslashed, text-sanitized and verified for this message before media is served.
         $raw_nonce = is_string( $_GET['_wpnonce'] ?? null ) ? wp_unslash( $_GET['_wpnonce'] ) : '';
         $nonce = sanitize_text_field( $raw_nonce );
         if ( ! self::can_view( $id, $nonce ) ) { wp_die( esc_html__( 'Insufficient permissions.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); }

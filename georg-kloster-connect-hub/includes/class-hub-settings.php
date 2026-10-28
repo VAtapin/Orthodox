@@ -32,10 +32,13 @@ final class Hub_Settings {
         $settings = self::get();
         $enabled = ! empty( $_POST['enabled'] );
         $retention = isset( $_POST['retention_days'] ) && is_scalar( $_POST['retention_days'] ) ? max( 30, min( 3650, absint( wp_unslash( $_POST['retention_days'] ) ) ) ) : 365;
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- The site key is unslashed and text-sanitized before it is stored.
         $raw_site_key = isset( $_POST['site_key'] ) && is_string( $_POST['site_key'] ) ? wp_unslash( $_POST['site_key'] ) : '';
         $site_key = sanitize_text_field( trim( $raw_site_key ) );
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- The threshold is unslashed, checked numeric and clamped to 0.1–0.9 before saving.
         $raw_threshold = isset( $_POST['threshold'] ) && is_scalar( $_POST['threshold'] ) ? wp_unslash( $_POST['threshold'] ) : '';
         $threshold = is_numeric( $raw_threshold ) ? max( 0.1, min( 0.9, round( (float) $raw_threshold, 1 ) ) ) : 0.5;
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- The secret is unslashed and text-sanitized before it is stored.
         $raw_secret = isset( $_POST['secret_key'] ) && is_string( $_POST['secret_key'] ) ? wp_unslash( $_POST['secret_key'] ) : '';
         $secret = sanitize_text_field( trim( $raw_secret ) );
         update_option( 'gkps_retention_days', $retention, false );

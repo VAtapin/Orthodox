@@ -34,6 +34,7 @@ final class Publications {
     public static function submit(): void {
         check_admin_referer( 'gkch_publish' );
         $post_id = isset( $_POST['post_id'] ) && is_scalar( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Submitted channel IDs are unslashed, sanitized as keys and intersected with the fixed supported-channel allowlist.
         $submitted_channels = isset( $_POST['channels'] ) && is_array( $_POST['channels'] ) ? wp_unslash( $_POST['channels'] ) : array();
         $channels = array_values( array_intersect( array_keys( self::titles() ), array_map( 'sanitize_key', array_filter( $submitted_channels, 'is_string' ) ) ) );
         try { self::enqueue( $post_id, $channels ); $notice = __( 'Publication submitted. Delivery status appears below.', 'georg-kloster-connect-hub' ); }

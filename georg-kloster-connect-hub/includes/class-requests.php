@@ -152,9 +152,13 @@ final class Requests {
     public static function retention(): void {
         Request_Mail_Log::retention();
         $days = max( 30, min( 3650, (int) get_option( 'gkps_retention_days', 365 ) ) );
-        // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- This scheduled cleanup scans only 100 private requests per run and uses the dedicated status metadata key.
-        $posts = get_posts( array( 'post_type' => 'gkps_request', 'post_status' => 'private', 'numberposts' => 100,
-            'meta_key' => '_gkps_request_status', 'meta_value' => 'closed', 'date_query' => array( array( 'before' => gmdate( 'Y-m-d H:i:s', time() - $days * DAY_IN_SECONDS ), 'column' => 'post_modified_gmt' ) ) ) );
+        $query = array( 'post_type' => 'gkps_request', 'post_status' => 'private', 'numberposts' => 100,
+            'date_query' => array( array( 'before' => gmdate( 'Y-m-d H:i:s', time() - $days * DAY_IN_SECONDS ), 'column' => 'post_modified_gmt' ) ) );
+        // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- This scheduled cleanup scans only 100 private requests per run using the dedicated status metadata key.
+        $query['meta_key'] = '_gkps_request_status';
+        // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- This fixed status value belongs to the same bounded scheduled cleanup query.
+        $query['meta_value'] = 'closed';
+        $posts = get_posts( $query );
         foreach ( $posts as $post ) { self::delete( $post->ID ); }
     }
 }

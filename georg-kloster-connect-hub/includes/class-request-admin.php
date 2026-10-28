@@ -53,6 +53,7 @@ final class Request_Admin {
             $page = max( 1, isset( $_GET['paged'] ) && is_scalar( $_GET['paged'] ) ? absint( wp_unslash( $_GET['paged'] ) ) : 1 );
             $filter = isset( $_GET['status'] ) && is_string( $_GET['status'] ) ? sanitize_key( wp_unslash( $_GET['status'] ) ) : '';
             if ( ! isset( Requests::statuses()[$filter] ) ) { $filter = ''; }
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- The read-only filter is unslashed, checked as decimal digits and converted to an integer below.
             $raw_form_filter = isset( $_GET['form_id'] ) && is_scalar( $_GET['form_id'] ) ? wp_unslash( $_GET['form_id'] ) : null;
             $form_filter = is_scalar( $raw_form_filter ) && preg_match( '/^\d+$/D', (string) $raw_form_filter ) ? (int) $raw_form_filter : null;
             $can_delete = current_user_can( 'delete_gkps_requests' );
@@ -85,7 +86,7 @@ final class Request_Admin {
 
             echo '<table class="wp-list-table widefat fixed striped"><thead><tr>';
             if ( $can_delete ) { echo '<td class="manage-column column-cb check-column"><input type="checkbox" aria-label="' . esc_attr__( 'Select all messages', 'georg-kloster-connect-hub' ) . '"></td>'; }
-            foreach ( array( esc_html__( 'Message subject', 'georg-kloster-connect-hub' ), esc_html__( 'Sender', 'georg-kloster-connect-hub' ), esc_html__( 'Form', 'georg-kloster-connect-hub' ), esc_html__( 'Date received', 'georg-kloster-connect-hub' ), esc_html__( 'Message status', 'georg-kloster-connect-hub' ), esc_html__( 'Assigned staff member', 'georg-kloster-connect-hub' ) ) as $heading ) { echo '<th scope="col" class="manage-column">' . $heading . '</th>'; }
+            foreach ( array( __( 'Message subject', 'georg-kloster-connect-hub' ), __( 'Sender', 'georg-kloster-connect-hub' ), __( 'Form', 'georg-kloster-connect-hub' ), __( 'Date received', 'georg-kloster-connect-hub' ), __( 'Message status', 'georg-kloster-connect-hub' ), __( 'Assigned staff member', 'georg-kloster-connect-hub' ) ) as $heading ) { echo '<th scope="col" class="manage-column">' . esc_html( $heading ) . '</th>'; }
             echo '</tr></thead><tbody>';
             if ( ! $query->posts ) {
                 $has_previous = false;
@@ -134,6 +135,7 @@ final class Request_Admin {
         check_admin_referer( 'gkps_request_bulk_delete' );
         $status = isset( $_POST['status'] ) && is_string( $_POST['status'] ) ? sanitize_key( wp_unslash( $_POST['status'] ) ) : '';
         if ( ! isset( Requests::statuses()[$status] ) ) { $status = ''; }
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- The submitted filter is unslashed, checked as decimal digits and converted to an integer below.
         $raw_form_id = isset( $_POST['form_id'] ) && is_scalar( $_POST['form_id'] ) ? wp_unslash( $_POST['form_id'] ) : null;
         $form_id = is_scalar( $raw_form_id ) && preg_match( '/^\d+$/D', (string) $raw_form_id ) ? (int) $raw_form_id : null;
         $redirect = add_query_arg( array( 'page' => 'gkps-requests', 'status' => $status, 'form_id' => null !== $form_id ? $form_id : '' ), admin_url( 'admin.php' ) );
@@ -143,6 +145,7 @@ final class Request_Admin {
             if ( 'delete' !== $bulk_action ) { throw new \InvalidArgumentException( __( 'Choose an action for the selected messages.', 'georg-kloster-connect-hub' ) ); }
             $confirmed = isset( $_POST['confirm_delete'] ) && is_scalar( $_POST['confirm_delete'] ) ? sanitize_text_field( wp_unslash( $_POST['confirm_delete'] ) ) : '';
             if ( '1' !== $confirmed ) { throw new \InvalidArgumentException( __( 'Confirm permanent deletion.', 'georg-kloster-connect-hub' ) ); }
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Each submitted ID is unslashed, converted with absint, deduplicated and capped before use.
             $submitted_ids = isset( $_POST['request_ids'] ) && is_array( $_POST['request_ids'] ) ? wp_unslash( $_POST['request_ids'] ) : array();
             $ids = array_slice( array_unique( array_filter( array_map( 'absint', $submitted_ids ) ) ), 0, 100 );
             if ( ! $ids ) { throw new \InvalidArgumentException( __( 'Select at least one message to delete.', 'georg-kloster-connect-hub' ) ); }
@@ -182,6 +185,7 @@ final class Request_Admin {
                     update_post_meta( $id, '_gkps_request_status', $status );
                 }
                 if ( isset( $_POST['body'] ) && ! is_string( $_POST['body'] ) ) { throw new \InvalidArgumentException( __( 'Invalid reply.', 'georg-kloster-connect-hub' ) ); }
+                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Reply content is unslashed here and sanitized as textarea text before it is stored.
                 $raw_body = isset( $_POST['body'] ) ? wp_unslash( $_POST['body'] ) : '';
                 if ( '' !== $raw_body ) {
                     self::authorize( 'reply_gkps_requests' );
