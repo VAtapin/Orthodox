@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: Georg-Kloster Connect Hub 0.4.9\nLanguage: ru_RU\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+msgstr "Project-Id-Version: Georg-Kloster Connect Hub 0.4.10\nLanguage: ru_RU\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 
 msgid "A bot token is required. Each form uses only its own private Chat ID for contact messages; the old global Chat ID is not used. Public posts and schedule messages go to people who pressed Start in the bot."
 msgstr "Для работы нужен токен бота. Каждая форма отправляет уведомления только в свой личный чат; общий старый Chat ID не используется. Публикации и сообщения о расписании получают те, кто нажал Start в боте."
@@ -30,9 +30,6 @@ msgstr "Доступ запрещён."
 
 msgid "Action"
 msgstr "Действие"
-
-msgid "Activate Connect Hub network-wide to replace a network-active Parish Social."
-msgstr "Чтобы заменить сетевой Parish Social, активируйте Connect Hub для всей сети."
 
 msgid "Active subscribers"
 msgstr "Активные подписчики"
@@ -1461,3 +1458,45 @@ msgstr "Сегодня богослужений нет."
 
 msgid "Read the news"
 msgstr "Читать новость"
+
+msgid "A reply can have up to 10 buttons."
+msgstr "В одном ответе можно добавить до 10 кнопок."
+
+msgid "Add buttons below this reply. Each button can run another bot command or reply, or open a website link. Enter its label in the active WPML languages. Telegram displays up to 10 buttons, two per row."
+msgstr "Добавьте кнопки под этим ответом. Кнопка может запускать другую команду или ответ бота либо открывать ссылку. Укажите подпись на активных языках WPML. Telegram покажет до 10 кнопок, по две в строке."
+
+msgid "Add a button"
+msgstr "Добавить кнопку"
+
+msgid "A command button returns its configured answer in the subscriber’s selected language. A link button opens the URL directly in Telegram."
+msgstr "Кнопка команды показывает настроенный ответ на выбранном подписчиком языке. Кнопка ссылки сразу открывает адрес в Telegram."
+
+msgid "Command or reply"
+msgstr "Команда или ответ"
+
+msgid "Menu button"
+msgstr "Кнопка меню"
+
+msgid "Menu buttons for this reply"
+msgstr "Кнопки меню для этого ответа"
+
+msgid "Open a bot command or reply"
+msgstr "Открыть команду или ответ бота"
+
+msgid "Open a website link"
+msgstr "Открыть ссылку на сайт"
+
+msgid "Remove button"
+msgstr "Удалить кнопку"
+
+msgid "Select a command or reply"
+msgstr "Выберите команду или ответ"
+
+msgid "Text reply"
+msgstr "Текстовый автоответ"
+
+msgid "When pressed"
+msgstr "При нажатии"
+
+msgid "Website URL"
+msgstr "Адрес сайта"

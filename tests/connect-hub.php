@@ -64,7 +64,10 @@ $throws = static function ( callable $operation, string $message ) use ( $check 
 };
 $admin_id = get_users( array( 'role' => 'administrator', 'number' => 1 ) )[0]->ID;
 wp_set_current_user( $admin_id ); set_current_screen( 'dashboard' );
-$check( '0.4.9' === GKPS_VERSION, 'Wrong Connect Hub version.' );
+$check( '0.4.10' === GKPS_VERSION, 'Wrong Connect Hub version.' );
+$plugin_source = file_get_contents( dirname( __DIR__ ) . '/georg-kloster-connect-hub/georg-kloster-connect-hub.php' );
+$check( is_string( $plugin_source ) && ! str_contains( $plugin_source, 'deactivate_plugins(' ), 'Connect Hub must not deactivate another plugin.' );
+$check( is_string( $plugin_source ) && ! str_contains( $plugin_source, 'is_plugin_active_for_network(' ), 'Connect Hub must not block activation based on another plugin activation state.' );
 $check( ! is_plugin_active( 'georg-kloster-prihod-social/georg-kloster-prihod-social.php' ), 'Old development package remains active.' );
 $check( 'Existing development form' === Admin::get()['title'], 'Development form settings were lost.' );
 $check( '12345' === Connector::instance( 'telegram' )->settings()['target'], 'Channel settings were lost.' );
@@ -197,7 +200,10 @@ foreach ( Publications::titles() as $id => $title ) {
 $telegram_tables = Telegram_Bot::tables();
 $check( false === has_action( 'gkch_telegram_broadcast_worker' ) && false === has_action( 'gkps_telegram_worker' ) && false === has_action( 'gkps_request_mail' ), 'Telegram or reply-email delivery still has a WP-Cron worker hook.' );
 $telegram_custom_command = array(
-    array( 'type' => 'command', 'command' => 'prayer', 'description_ru' => 'Молитва', 'description_de' => 'Gebet', 'response_ru' => 'Напишите нам о своей молитвенной просьбе.', 'response_de' => 'Schreiben Sie uns Ihr Gebetsanliegen.' ),
+    array( 'type' => 'command', 'command' => 'prayer', 'description_ru' => 'Молитва', 'description_de' => 'Gebet', 'response_ru' => 'Напишите нам о своей молитвенной просьбе.', 'response_de' => 'Schreiben Sie uns Ihr Gebetsanliegen.', 'menu_buttons' => array(
+        array( 'action' => 'command', 'target' => 'botcmd:today', 'labels' => array( 'ru' => 'Расписание на сегодня', 'de' => 'Plan für heute' ) ),
+        array( 'action' => 'link', 'url' => 'https://93.184.216.34/kontakt', 'labels' => array( 'ru' => 'Контакты', 'de' => 'Kontakt' ) ),
+    ) ),
     array( 'type' => 'text', 'trigger_ru' => 'расписание', 'trigger_de' => 'Gottesdienstplan', 'description_ru' => 'Открыть расписание', 'description_de' => 'Gottesdienstplan öffnen', 'response_ru' => 'Расписание монастыря.', 'response_de' => 'Gottesdienstplan des Klosters.' ),
 );
 update_option( 'gkch_telegram_custom_commands', $telegram_custom_command, false );
@@ -206,7 +212,7 @@ add_filter( 'wpml_active_languages', $active_languages_filter, 10, 2 );
 $saved_get = $_GET; $_GET = array( 'kind' => 'custom', 'id' => '0' ); ob_start(); Telegram_Bot::render_command_editor(); $bot_command_editor = ob_get_clean(); $_GET = $saved_get;
 ob_start(); Telegram_Bot::render_commands(); $bot_command_list = ob_get_clean();
 $check( str_contains( $bot_command_list, 'wp-list-table widefat fixed striped' ) && str_contains( $bot_command_list, 'page-title-action' ) && ! str_contains( $bot_command_list, 'localized[' ), 'Bot commands were not separated into a WordPress-style list screen.' );
-$check( str_contains( $bot_command_editor, 'localized[fr]' ) && str_contains( $bot_command_editor, 'localized[en]' ) && ! str_contains( $bot_command_editor, 'localized[ru]' ) && ! str_contains( $bot_command_editor, 'localized[de]' ) && str_contains( $bot_command_editor, 'What should the bot send?' ) && str_contains( $bot_command_editor, 'Telegram HTML' ) && str_contains( $bot_command_editor, 'WordPress page' ) && str_contains( $bot_command_editor, 'gkch-schedule-option' ) && str_contains( $bot_command_editor, 'wp-editor-area' ) && str_contains( $bot_command_editor, 'localized[fr][response]' ) && str_contains( $bot_command_editor, 'gkch-telegram-media-select' ) && str_contains( $bot_command_editor, 'localized[fr][media_ids]' ), 'Command editor missed the WordPress editor, Telegram media picker, or active WPML fields.' );
+$check( str_contains( $bot_command_editor, 'localized[fr]' ) && str_contains( $bot_command_editor, 'localized[en]' ) && ! str_contains( $bot_command_editor, 'localized[ru]' ) && ! str_contains( $bot_command_editor, 'localized[de]' ) && str_contains( $bot_command_editor, 'What should the bot send?' ) && str_contains( $bot_command_editor, 'Telegram HTML' ) && str_contains( $bot_command_editor, 'WordPress page' ) && str_contains( $bot_command_editor, 'gkch-schedule-option' ) && str_contains( $bot_command_editor, 'wp-editor-area' ) && str_contains( $bot_command_editor, 'localized[fr][response]' ) && str_contains( $bot_command_editor, 'gkch-telegram-media-select' ) && str_contains( $bot_command_editor, 'localized[fr][media_ids]' ) && str_contains( $bot_command_editor, 'Menu buttons for this reply' ) && str_contains( $bot_command_editor, 'menu_buttons[__INDEX__][labels][fr]' ) && str_contains( $bot_command_editor, 'Open a website link' ), 'Command editor missed the WordPress editor, Telegram media picker, WPML labels, or reply menu controls.' );
 $saved_get = $_GET; $_GET = array( 'page' => 'gkch-telegram-command-edit' ); Telegram_Bot::admin_assets( 'toplevel_page_gkch-telegram-command-edit' ); $_GET = $saved_get;
 $check( wp_script_is( 'gkch-telegram-bot-admin', 'enqueued' ) && wp_script_is( 'media-editor', 'enqueued' ), 'The command editor did not enqueue its editor and WordPress media scripts on the hidden admin page.' );
 $check( 'fr' === Telegram_Bot::language_from_telegram( 'fr-FR' ) && isset( Telegram_Bot::menu_languages()['fr'] ), 'Bot languages did not follow active WPML language codes.' );
@@ -260,8 +266,11 @@ $check( str_contains( $today_output, '🟩 ┃' ), '/today omitted the automatic
 $check( 1 === substr_count( $today_output, 'Храм тестовый' ) && 1 === substr_count( $today_output, 'Часовня тестовая' ) && 1 === substr_count( $today_output, 'Зал приходской' ) && str_contains( $today_output, 'https://www.google.com/maps/dir/' ) && str_contains( $today_output, 'Kirchweg%2012' ), '/today repeated service place names or omitted clickable Google Maps directions.' );
 $check( array_reduce( $today_messages, static fn( $valid, $call ) => $valid && $telegram_message_valid( $call ), true ), '/today split a long message past Telegram’s limits or with unbalanced HTML tags.' );
 $today_template = "Рады вас видеть.\n{schedule}";
+$today_menu_languages = static fn() => array( 'ru' => array( 'native_name' => 'Русский', 'default_locale' => 'ru_RU' ), 'de' => array( 'native_name' => 'Deutsch', 'default_locale' => 'de_DE' ) );
+add_filter( 'wpml_active_languages', $today_menu_languages, 10, 2 );
 $today_options = get_option( 'gkch_telegram_system_commands', array() );
 $today_options['today']['response_ru'] = $today_template;
+$today_options['today']['menu_buttons'] = array( array( 'action' => 'link', 'url' => 'https://93.184.216.34/gottesdienste', 'labels' => array( 'ru' => 'Полное расписание', 'de' => 'Vollständiger Plan' ) ) );
 update_option( 'gkch_telegram_system_commands', $today_options, false );
 $custom_today_update = array( 'update_id' => 51013, 'message' => array( 'text' => '/today', 'chat' => array( 'id' => '70101', 'type' => 'private' ), 'from' => array( 'id' => '70101', 'language_code' => 'ru' ) ) );
 $custom_today_http_start = count( $http );
@@ -269,7 +278,8 @@ $check( Telegram_Bot::receive_update( $custom_today_update ), 'The customized /t
 $custom_today_calls = array_values( array_filter( array_slice( $http, $custom_today_http_start ), static function ( $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); return str_contains( $call['url'], 'api.telegram.org' ) && str_contains( (string) ( $body['caption'] ?? $body['text'] ?? '' ), 'Рады вас видеть.' ); } ) );
 $custom_today_body = $custom_today_calls ? json_decode( end( $custom_today_calls )['args']['body'], true ) : array();
 $custom_today_text = (string) ( $custom_today_body['caption'] ?? $custom_today_body['text'] ?? '' );
-$check( str_contains( $custom_today_text, 'Расписание на сегодня' ) && ! str_contains( $custom_today_text, '{schedule}' ), '/today did not substitute its generated schedule into the configured answer template.' );
+$check( str_contains( $custom_today_text, 'Расписание на сегодня' ) && ! str_contains( $custom_today_text, '{schedule}' ) && 'Полное расписание' === ( $custom_today_body['reply_markup']['inline_keyboard'][0][0]['text'] ?? '' ) && 'https://93.184.216.34/gottesdienste' === ( $custom_today_body['reply_markup']['inline_keyboard'][0][0]['url'] ?? '' ), '/today did not substitute its generated schedule or attach its configured buttons.' );
+remove_filter( 'wpml_active_languages', $today_menu_languages, 10 );
 $week_update = array( 'update_id' => 51004, 'message' => array( 'text' => '/week', 'chat' => array( 'id' => '70102', 'type' => 'private' ), 'from' => array( 'id' => '70102', 'language_code' => 'de' ) ) );
 $week_http_start = count( $http );
 $check( Telegram_Bot::receive_update( $week_update ), 'The /week command was not accepted.' );
@@ -282,11 +292,20 @@ $check( $week_body && '70102' === $week_body['chat_id'] && 'HTML' === ( $week_bo
 $check( str_contains( $week_output, '🟩 ┃' ) && str_contains( $week_output, 'Божественная литургия 6' ), '/week omitted vestment colors or later services.' );
 $check( 1 === substr_count( $week_output, 'Храм тестовый' ) && 1 === substr_count( $week_output, 'Часовня тестовая' ) && 1 === substr_count( $week_output, 'Зал приходской' ) && 1 === substr_count( $week_output, 'Kirchweg 12, 17268 Götschendorf, Deutschland' ) && 1 === substr_count( $week_output, 'Dorfstraße 4, 17268 Milmersdorf, Deutschland' ) && 1 === substr_count( $week_output, 'Общий адрес, который не должен заменить адрес места службы.' ) && str_contains( $week_output, 'https://www.google.com/maps/dir/' ) && str_contains( $week_output, 'Kirchweg%2012' ), '/week repeated venues, missed their own addresses, or omitted clickable Google Maps directions.' );
 $check( array_reduce( array_slice( $http, $week_http_start ), static fn( $valid, $call ) => $valid && ( ! str_contains( $call['url'], 'api.telegram.org' ) || $telegram_message_valid( $call ) ), true ), '/week split a long message past Telegram’s limits or with unbalanced HTML tags.' );
+$active_reply_languages = static fn() => array( 'ru' => array( 'native_name' => 'Русский', 'default_locale' => 'ru_RU' ), 'de' => array( 'native_name' => 'Deutsch', 'default_locale' => 'de_DE' ) );
+add_filter( 'wpml_active_languages', $active_reply_languages, 10, 2 );
 $prayer_ru_update = array( 'update_id' => 51007, 'message' => array( 'text' => '/prayer', 'chat' => array( 'id' => '70101', 'type' => 'private' ), 'from' => array( 'id' => '70101', 'language_code' => 'ru' ) ) );
 $prayer_de_update = array( 'update_id' => 51008, 'message' => array( 'text' => '/prayer', 'chat' => array( 'id' => '70102', 'type' => 'private' ), 'from' => array( 'id' => '70102', 'language_code' => 'de' ) ) );
+$prayer_http_start = count( $http );
 $check( Telegram_Bot::receive_update( $prayer_ru_update ) && Telegram_Bot::receive_update( $prayer_de_update ), 'Configured custom Telegram commands were not accepted.' );
 $check( (bool) array_filter( $http, static function ( $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); return str_contains( $call['url'], 'api.telegram.org' ) && '70101' === (string) ( $body['chat_id'] ?? '' ) && 'Напишите нам о своей молитвенной просьбе.' === ( $body['text'] ?? '' ); } ), 'Custom command did not send its Russian reply to the subscriber.' );
 $check( (bool) array_filter( $http, static function ( $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); return str_contains( $call['url'], 'api.telegram.org' ) && '70102' === (string) ( $body['chat_id'] ?? '' ) && 'Schreiben Sie uns Ihr Gebetsanliegen.' === ( $body['text'] ?? '' ); } ), 'Custom command did not send its German reply to the subscriber.' );
+$prayer_replies = array();
+foreach ( array_slice( $http, $prayer_http_start ) as $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); if ( str_contains( $call['url'], 'api.telegram.org' ) && in_array( (string) ( $body['chat_id'] ?? '' ), array( '70101', '70102' ), true ) && 'sendMessage' === basename( (string) wp_parse_url( $call['url'], PHP_URL_PATH ) ) && in_array( (string) ( $body['text'] ?? '' ), array( 'Напишите нам о своей молитвенной просьбе.', 'Schreiben Sie uns Ihr Gebetsanliegen.' ), true ) ) { $prayer_replies[(string) $body['chat_id']] = $body; } }
+$check( 'Расписание на сегодня' === ( $prayer_replies['70101']['reply_markup']['inline_keyboard'][0][0]['text'] ?? '' ) && 'botcmd:today' === ( $prayer_replies['70101']['reply_markup']['inline_keyboard'][0][0]['callback_data'] ?? '' ) && 'Plan für heute' === ( $prayer_replies['70102']['reply_markup']['inline_keyboard'][0][0]['text'] ?? '' ) && 'https://93.184.216.34/kontakt' === ( $prayer_replies['70102']['reply_markup']['inline_keyboard'][0][1]['url'] ?? '' ), 'Reply buttons were not attached with their WPML label, command action and direct URL.' );
+$menu_callback_update = array( 'update_id' => 51022, 'callback_query' => array( 'id' => 'callback-menu-today', 'from' => array( 'id' => '70101', 'language_code' => 'ru' ), 'data' => 'botcmd:today', 'message' => array( 'chat' => array( 'id' => '70101', 'type' => 'private' ) ) ) );
+$menu_callback_start = count( $http );
+$check( Telegram_Bot::receive_update( $menu_callback_update ) && (bool) array_filter( array_slice( $http, $menu_callback_start ), static function ( $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); return str_contains( $call['url'], 'api.telegram.org' ) && '70101' === (string) ( $body['chat_id'] ?? '' ) && str_contains( (string) ( $body['caption'] ?? $body['text'] ?? '' ), 'Расписание на сегодня' ); } ), 'Pressing a configured command button did not return that bot answer.' );
 $text_reply_update = array( 'update_id' => 51009, 'message' => array( 'text' => '  РАСПИСАНИЕ  ', 'chat' => array( 'id' => '70101', 'type' => 'private' ), 'from' => array( 'id' => '70101', 'language_code' => 'ru' ) ) );
 $check( Telegram_Bot::receive_update( $text_reply_update ), 'A case-insensitive exact text responder did not accept a Russian trigger.' );
 $check( (bool) array_filter( $http, static function ( $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); return str_contains( $call['url'], 'api.telegram.org' ) && '70101' === (string) ( $body['chat_id'] ?? '' ) && 'Расписание монастыря.' === ( $body['text'] ?? '' ); } ), 'Text autoresponder did not send the configured Russian answer.' );
@@ -319,8 +338,8 @@ $media_unsupported = wp_insert_attachment( array( 'post_mime_type' => 'image/svg
 update_post_meta( $media_photo, '_wp_attached_file', '2026/10/bot-test.jpg' );
 update_post_meta( $media_video, '_wp_attached_file', '2026/10/bot-test.mp4' );
 update_post_meta( $media_unsupported, '_wp_attached_file', '2026/10/bot-test.svg' );
-$custom_reply_rows[] = array( 'type' => 'command', 'command' => 'media', 'description_ru' => 'Фото и видео', 'reply_type' => 'html', 'response_ru' => '<strong>Описание</strong>', 'media_ids_ru' => implode( ',', array( $media_photo, $media_video, $media_unsupported ) ) );
-$custom_reply_rows[] = array( 'type' => 'command', 'command' => 'photo', 'description_ru' => 'Фото', 'reply_type' => 'text', 'media_ids_ru' => (string) $media_photo );
+$custom_reply_rows[] = array( 'type' => 'command', 'command' => 'media', 'description_ru' => 'Фото и видео', 'reply_type' => 'html', 'response_ru' => '<strong>Описание</strong>', 'media_ids_ru' => implode( ',', array( $media_photo, $media_video, $media_unsupported ) ), 'menu_buttons' => array( array( 'action' => 'link', 'url' => 'https://93.184.216.34/gallery', 'labels' => array( 'ru' => 'Галерея', 'de' => 'Galerie' ) ) ) );
+$custom_reply_rows[] = array( 'type' => 'command', 'command' => 'photo', 'description_ru' => 'Фото', 'reply_type' => 'text', 'media_ids_ru' => (string) $media_photo, 'menu_buttons' => array( array( 'action' => 'link', 'url' => 'https://93.184.216.34/gallery', 'labels' => array( 'ru' => 'Галерея', 'de' => 'Galerie' ) ) ) );
 update_option( 'gkch_telegram_custom_commands', $custom_reply_rows, false );
 $page_reply_update = array( 'update_id' => 51014, 'message' => array( 'text' => '/impressum', 'chat' => array( 'id' => '70101', 'type' => 'private' ), 'from' => array( 'id' => '70101', 'language_code' => 'ru' ) ) );
 $check( Telegram_Bot::receive_update( $page_reply_update ), 'A configured WordPress page reply was not accepted.' );
@@ -342,16 +361,20 @@ $check( Telegram_Bot::receive_update( $html_reply_update ), 'A configured HTML r
 $html_reply = array_values( array_filter( $http, static function ( $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); return str_contains( $call['url'], 'api.telegram.org' ) && '70101' === (string) ( $body['chat_id'] ?? '' ) && 'HTML' === ( $body['parse_mode'] ?? '' ); } ) );
 $html_body = $html_reply ? json_decode( end( $html_reply )['args']['body'], true ) : array();
 $check( str_contains( $html_body['text'] ?? '', '<b>Bold answer</b>' ) && str_contains( $html_body['text'] ?? '', 'safe text' ) && ! str_contains( $html_body['text'] ?? '', '<script>' ) && ! str_contains( $html_body['text'] ?? '', '<div>' ), 'Telegram HTML output did not preserve supported formatting or strip unsupported tags.' );
+$media_reply_start = count( $http );
 $media_reply_update = array( 'update_id' => 51020, 'message' => array( 'text' => '/media', 'chat' => array( 'id' => '70101', 'type' => 'private' ), 'from' => array( 'id' => '70101', 'language_code' => 'ru' ) ) );
 $check( Telegram_Bot::receive_update( $media_reply_update ), 'A command with selected image and video attachments was rejected.' );
 $media_calls = array_values( array_filter( $http, static function ( $call ) { return str_ends_with( (string) wp_parse_url( $call['url'], PHP_URL_PATH ), '/sendMediaGroup' ); } ) );
 $media_body = $media_calls ? json_decode( end( $media_calls )['args']['body'], true ) : array();
 $check( '70101' === (string) ( $media_body['chat_id'] ?? '' ) && 2 === count( $media_body['media'] ?? array() ) && array( 'photo', 'video' ) === array_column( $media_body['media'], 'type' ) && 'HTML' === ( $media_body['media'][0]['parse_mode'] ?? '' ) && str_contains( $media_body['media'][0]['caption'] ?? '', '<strong>Описание</strong>' ), 'The Telegram media group did not contain supported, translated attachments and its formatted caption.' );
+$media_menu_calls = array_values( array_filter( array_slice( $http, $media_reply_start ), static function ( $call ) { $body = json_decode( $call['args']['body'] ?? '{}', true ); return str_ends_with( (string) wp_parse_url( $call['url'], PHP_URL_PATH ), '/sendMessage' ) && '70101' === (string) ( $body['chat_id'] ?? '' ) && ! empty( $body['text'] ) && 'https://93.184.216.34/gallery' === ( $body['reply_markup']['inline_keyboard'][0][0]['url'] ?? '' ); } ) );
+$check( $media_menu_calls, 'The media-group reply did not show its configured menu buttons.' );
 $photo_reply_update = array( 'update_id' => 51021, 'message' => array( 'text' => '/photo', 'chat' => array( 'id' => '70101', 'type' => 'private' ), 'from' => array( 'id' => '70101', 'language_code' => 'ru' ) ) );
 $check( Telegram_Bot::receive_update( $photo_reply_update ), 'A media-only command was rejected.' );
 $photo_calls = array_values( array_filter( $http, static function ( $call ) { return str_ends_with( (string) wp_parse_url( $call['url'], PHP_URL_PATH ), '/sendPhoto' ); } ) );
 $photo_body = $photo_calls ? json_decode( end( $photo_calls )['args']['body'], true ) : array();
-$check( '70101' === (string) ( $photo_body['chat_id'] ?? '' ) && str_ends_with( (string) ( $photo_body['photo'] ?? '' ), '/2026/10/bot-test.jpg' ), 'The media-only Telegram command did not send its selected photo.' );
+$check( '70101' === (string) ( $photo_body['chat_id'] ?? '' ) && str_ends_with( (string) ( $photo_body['photo'] ?? '' ), '/2026/10/bot-test.jpg' ) && 'Галерея' === ( $photo_body['reply_markup']['inline_keyboard'][0][0]['text'] ?? '' ) && 'https://93.184.216.34/gallery' === ( $photo_body['reply_markup']['inline_keyboard'][0][0]['url'] ?? '' ), 'The media-only Telegram command did not send its selected photo with its reply button.' );
+remove_filter( 'wpml_active_languages', $active_reply_languages, 10 );
 $subscriber_languages_filter = static fn() => array( 'ru' => array( 'native_name' => 'Русский', 'default_locale' => 'ru_RU' ), 'de' => array( 'native_name' => 'Deutsch', 'default_locale' => 'de_DE' ) );
 add_filter( 'wpml_active_languages', $subscriber_languages_filter, 10, 2 );
 $language_update = array( 'update_id' => 51005, 'callback_query' => array( 'id' => 'callback-1', 'from' => array( 'id' => '70101' ), 'data' => 'lang:de', 'message' => array( 'chat' => array( 'id' => '70101', 'type' => 'private' ) ) ) );

@@ -4,7 +4,7 @@ Tags: contact form, messages, social, publishing, telegram
 Requires at least: 6.5
 Requires PHP: 8.0
 Tested up to: 7.1
-Stable tag: 0.4.9
+Stable tag: 0.4.10
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -61,14 +61,15 @@ Development repository: https://github.com/VAtapin/Orthodox/tree/main/georg-klos
 
 == Installation ==
 
-Upload georg-kloster-connect-hub-0.4.9.zip. Replace an existing Connect Hub version,
-or install as a new plugin and activate it.
-Activation deactivates the previous georg-kloster-prihod-social development plugin
-without deleting its settings. Keep only Connect Hub active. Network-active old
-installations require network-wide activation. Existing messages, forms, capabilities,
-cron hooks and Telegram REST paths remain compatible. On the first WordPress request
-after activation or upgrade, Connect Hub creates the subscriber, campaign and delivery
-tables; existing plugin data is retained.
+Upload georg-kloster-connect-hub-0.4.10.zip. Replace an existing Connect Hub version,
+or install as a new plugin and activate it. When upgrading from the private
+georg-kloster-prihod-social development plugin, deactivate that plugin yourself in
+Plugins before activating Connect Hub. Its saved data is retained; Connect Hub never
+changes another plugin's activation state. On multisite, deactivate the old plugin
+at the same site or network scope at which it was activated. Existing messages,
+forms, capabilities, cron hooks and Telegram REST paths remain compatible. On the
+first WordPress request after activation or upgrade, Connect Hub creates the
+subscriber, campaign and delivery tables; existing plugin data is retained.
 
 Configure forms under Forms, global reception/retention under Settings and each
 channel under its tab in Settings. Each channel tab contains a step-by-step guide
@@ -76,8 +77,7 @@ with official links. Telegram contact notifications use only the private Chat ID
 set on each form; a blank ID disables Telegram notification for that form. Public
 posts and schedule messages go to the bot's active subscribers, not to a form's
 private Chat ID. Read docs/TELEGRAM_BOT.md and docs/CHANNEL_SETUP_RU.md for setup.
-Configure
-automatic rules under Publications. Insert the Form block and select a saved form, or use its
+Configure automatic rules under Publications. Insert the Form block and select a saved form, or use its
 listed shortcode. Exclude pages containing forms from full-page caching: tokens
 are single-use and expire after one hour. Ensure WordPress Cron runs.
 
@@ -87,39 +87,63 @@ All sending is opt-in. Configure an account and enable a channel explicitly.
 WordPress Cron sends selected publications in the background. Missing permissions,
 expired credentials and rejected API responses are recorded as failures.
 A configured channel alone is not proof of successful live delivery.
+Server-side providers receive the WordPress server IP address and ordinary HTTP
+request headers. WordPress's default user-agent may include the site URL and WordPress
+version. Google reCAPTCHA browser requests are described separately below.
 
 Telegram Bot API: selected post or schedule announcements are sent to private
-Chat IDs of readers who explicitly started the bot; the subscriber table stores
-Chat ID, language and subscription timestamps. `/stop` or admin removal deletes
-the active subscriber record. Optional contact notifications transmit request
-name, email, subject and body only to that form's configured private chat. The
-bot does not receive email addresses or names from public subscribers.
-https://core.telegram.org/bots/api https://telegram.org/privacy
+Chat IDs of readers who explicitly started the bot. Configured post announcements
+include the translated title, short excerpt, featured image and a button to the
+translated post. Schedule replies include calendar and service information. The
+subscriber table stores Chat ID, language and subscription timestamps. Telegram
+webhooks send bot commands, chat IDs and language codes to the configured WordPress
+site; when full-message replies are enabled, request text and reply content also
+pass through the bot. `/stop` or admin removal deletes the active subscriber record.
+Optional contact notifications transmit request name, email, subject and body only
+to that form's configured private chat. The bot does not receive email addresses or
+names from public subscribers. Bot requests are authenticated using the configured
+bot token.
+https://core.telegram.org/bots/api https://telegram.org/tos/bot-developers https://telegram.org/privacy
+
+Bible Desktop Calendar API: when the optional Parish Schedule module is active,
+Connect Hub requests calendar data in response to /today or /week and for configured
+scheduled Telegram calendar messages. The WordPress server sends the relevant date
+or period, language and selected calendar profile, plus the
+`X-Calendar-Client: georg-kloster-prihod-schedule` header. Bible Desktop receives
+the WordPress server IP and ordinary HTTP request headers. No visitor name, email,
+message or original visitor IP is sent. When a calendar icon is included in a
+Telegram message, Telegram may fetch its public image URL. No Bible Desktop request
+is made merely by installing or activating Connect Hub. API terms:
+https://bible-desktop.com/pages/api-terms . API privacy policy:
+https://bible-desktop.com/pages/api-privacy .
 
 Facebook Graph API: selected public text/link and Page ID. Requires a Page token
 with publication rights and the API version configured in the application.
-https://developers.facebook.com/docs/pages-api/posts/ https://www.facebook.com/privacy/policy/
+https://developers.facebook.com/docs/pages-api/posts/ https://developers.facebook.com/terms/ https://www.facebook.com/privacy/policy/
 
 Instagram API with Facebook Login: professional account linked to a Facebook Page,
 a token with instagram_basic/instagram_content_publish permissions, account ID,
 public HTTPS JPEG URL and caption. Images are fetched by Meta from that public URL.
 https://developers.facebook.com/docs/instagram-platform/content-publishing/
-https://privacycenter.instagram.com/policy/
+https://developers.facebook.com/terms/ https://privacycenter.instagram.com/policy/
 
 VK API wall.post: selected public text/link, user access token with wall permission,
 user/community owner ID and stable publication GUID. Negative owner IDs identify
-communities. https://dev.vk.com/ru/method/wall.post https://vk.com/privacy
+communities. https://dev.vk.com/ru/method/wall.post https://dev.vk.com/rules https://vk.com/privacy
 
 OK API mediatopic.post: selected public text/link, group ID, access token,
 application public key and signature calculated with the application secret.
 The application needs GROUP_CONTENT permission.
-https://apiok.ru/dev/methods/rest/mediatopic/mediatopic.post https://ok.ru/privacy
+https://apiok.ru/dev/methods/rest/mediatopic/mediatopic.post https://apiok.ru/en/apps/launch/documents/contract/rules/ https://ok.ru/privacy
 
-Google reCAPTCHA v3: public form browser interaction data and response tokens are
-sent to Google for bot-risk scoring. The plugin sends the response token and
-secret key to Google's SiteVerify endpoint; it does not forward the visitor IP.
-Google recommends migrating classic keys to CreateAssessment.
-https://docs.cloud.google.com/recaptcha/docs/migrate-recaptcha https://policies.google.com/privacy
+Google reCAPTCHA v3: when an administrator configures both keys, a public form
+loads Google's browser script. The visitor's browser sends interaction data and
+ordinary request data, including its IP address, to Google for bot-risk scoring;
+Google may set the _GRECAPTCHA cookie. The WordPress server separately sends the
+response token and secret key to Google's SiteVerify endpoint. The plugin does not
+add the visitor IP to that server verification request. Google recommends migrating
+classic keys to CreateAssessment.
+https://docs.cloud.google.com/recaptcha/docs/migrate-recaptcha https://policies.google.com/privacy https://policies.google.com/terms
 
 Credentials are stored in non-autoload WordPress options and never echoed back
 in settings. Protect database backups. Service-side app approval and account
@@ -138,6 +162,35 @@ delivery results by subscriber ID but does not store subscriber names or emails.
 Ordinary uninstall retains
 saved messages/settings and does not delete posts in external services.
 
+When the optional Parish Schedule module is active, Telegram schedule commands may
+retrieve calendar dates, language and calendar-profile data from Bible Desktop.
+Public forms load Google reCAPTCHA only after both keys have been configured.
+
+== Frequently Asked Questions ==
+
+= Does Connect Hub require another Georg-Kloster plugin or theme? =
+
+No. Forms, messages, Telegram and social publishing work with any WordPress theme.
+Parish Schedule is optional and is used only to add calendar data to Telegram
+schedule commands.
+
+= How do I upgrade from the private Parish Social plugin? =
+
+Deactivate the old plugin yourself before activating Connect Hub. Its saved data is
+retained. Connect Hub keeps existing settings, messages, capabilities, scheduled
+hooks and Telegram REST paths compatible.
+
+= Why is a form missing from a cached page? =
+
+Exclude pages containing Connect Hub forms from full-page caching. Form tokens are
+single-use and expire after one hour.
+
+= Is reCAPTCHA required? =
+
+No. It is optional. It runs only after an administrator saves both a site key and
+secret key in Connect Hub settings. Google receives browser interaction data and
+the server verifies the response token as described in External Services.
+
 == Shortcodes ==
 
 Dashboard help appears under Connect Hub > Forms and Settings > General, in the Shortcodes and blocks section. Insert a Form block and select a form, or paste an example into a Shortcode block.
@@ -152,6 +205,10 @@ Configure optional reCAPTCHA v3 site and secret keys under Connect Hub > Setting
 General reception, retention and reCAPTCHA settings use one save button. A status message confirms whether both reCAPTCHA keys are saved; the secret key is never displayed.
 
 == Changelog ==
+
+= 0.4.10 =
+Leave changes to other plugins' activation state to the administrator. Document
+calendar API data and reCAPTCHA browser requests before installation.
 
 = 0.4.9 =
 Send Telegram news with a featured image, a short localized HTML teaser and an inline

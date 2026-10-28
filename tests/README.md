@@ -60,14 +60,14 @@ npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloste
 карточек имеют высоту 200 px. На новом сайте проверяется только кнопка и
 предпросмотр; импорт не запускался, поля темы и текст главной до/после совпали.
 
-## Connect Hub 0.4.9
+## Connect Hub 0.4.10
 
 `connect-hub-blueprint.json` и `connect-hub-automation.php` запускают Connect Hub
 на временном WordPress и проверяют формы, права и nonce, несколько раздельных
 получателей Telegram для личных обращений, подключение общего webhook, подписку
 бота через `/start`, отписку `/stop`, выбор языка из активных WPML языков,
 настраиваемые системные команды, пользовательские команды и автоответы по точным фразам на активных языках WPML,
-интерактивное меню `/menu`, языковые Telegram-публикации с миниатюрой, коротким HTML-анонсом и скрытой ссылкой-кнопкой,
+интерактивное меню `/menu`, переводимые кнопки меню к ответам Telegram с переходом на команду, ответ или ссылку, публикации с миниатюрой, коротким HTML-анонсом и скрытой ссылкой-кнопкой,
 немедленную поадресную доставку Telegram с ручным повтором после ошибки,
 автоматические публикационные правила,
 напоминания с отдельными текстами на активных языках WPML, HTML-оформление
@@ -82,7 +82,6 @@ npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloste
 
 ```powershell
 python scripts/compile-translations.py --only connect-hub
-python tests/plugin-i18n-check.py --only georg-kloster-connect-hub
 python scripts/package.py --only connect-hub
 npx.cmd --yes @wp-playground/cli@3.1.57 run-blueprint --mount-dir ./georg-kloster-connect-hub /wordpress/wp-content/plugins/georg-kloster-connect-hub --mount-dir ./tests /wordpress/wp-content/plugins/prihod-tests --blueprint tests/connect-hub-blueprint.json
 ```

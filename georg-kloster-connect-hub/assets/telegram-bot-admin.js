@@ -135,4 +135,60 @@
 				.join(',');
 		});
 	});
+
+	const menuButtons = document.querySelector('.gkch-menu-buttons');
+	const addMenuButton = document.querySelector('.gkch-menu-button-add');
+	const menuButtonTemplate = document.getElementById('gkch-menu-button-template');
+	if (menuButtons && addMenuButton && menuButtonTemplate) {
+		const syncMenuButton = function (row) {
+			const action = row.querySelector('.gkch-menu-action');
+			const targetField = row.querySelector('.gkch-menu-target-field');
+			const target = row.querySelector('.gkch-menu-target');
+			const urlField = row.querySelector('.gkch-menu-url-field');
+			const url = row.querySelector('.gkch-menu-url');
+			const isLink = action && 'link' === action.value;
+			if (targetField) { targetField.hidden = isLink; }
+			if (target) { target.disabled = isLink; }
+			if (urlField) { urlField.hidden = !isLink; }
+			if (url) { url.disabled = !isLink; }
+		};
+		const syncMenuButtonCount = function () {
+			addMenuButton.disabled = menuButtons.querySelectorAll('[data-menu-button]').length >= 10;
+		};
+		menuButtons.querySelectorAll('[data-menu-button]').forEach(syncMenuButton);
+		menuButtons.addEventListener('change', function (event) {
+			if (event.target.matches('.gkch-menu-action')) {
+				syncMenuButton(event.target.closest('[data-menu-button]'));
+			}
+		});
+		menuButtons.addEventListener('click', function (event) {
+			const remove = event.target.closest('.gkch-menu-button-remove');
+			if (!remove) {
+				return;
+			}
+			const row = remove.closest('[data-menu-button]');
+			if (row) {
+				row.remove();
+				syncMenuButtonCount();
+			}
+		});
+		addMenuButton.addEventListener('click', function () {
+			if (menuButtons.querySelectorAll('[data-menu-button]').length >= 10) {
+				window.alert(mediaLabels.menuLimit || '');
+				return;
+			}
+			const index = parseInt(menuButtons.dataset.nextIndex || '0', 10);
+			menuButtons.dataset.nextIndex = String(index + 1);
+			const html = menuButtonTemplate.innerHTML.replace(/__INDEX__/g, String(index));
+			const holder = document.createElement('div');
+			holder.innerHTML = html.trim();
+			const row = holder.firstElementChild;
+			if (row) {
+				menuButtons.append(row);
+				syncMenuButton(row);
+				syncMenuButtonCount();
+			}
+		});
+		syncMenuButtonCount();
+	}
 })();

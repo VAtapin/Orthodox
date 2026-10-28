@@ -188,7 +188,8 @@ final class Telegram_Bot {
 		$content = 'today' === $command ? self::day_content( $date, $language ) : array( 'text' => self::week_message( $date, $language ), 'icon_url' => '' );
 		$template = '' === trim( $prefix ) ? '{schedule}' : $prefix;
 		$text = str_contains( $template, '{schedule}' ) ? str_replace( '{schedule}', $content['text'], $template ) : $template;
-		self::send_scheduled_output( $chat_id, $text, (string) $content['icon_url'] );
+		$system_command = self::system_command( $command ) ?? array();
+		self::send_scheduled_output( $chat_id, $text, (string) $content['icon_url'], self::reply_menu_markup( $system_command, $language ) );
 	}
 
 	private static function handle_callback( array $callback, int $update_id = 0 ): bool {
@@ -336,6 +337,7 @@ final class Telegram_Bot {
 			if ( ! is_array( $saved[$key] ?? null ) ) { continue; }
 			$row = $saved[$key];
 			foreach ( $row as $field => $value ) {
+				if ( 'menu_buttons' === $field ) { $commands[$key]['menu_buttons'] = self::sanitize_menu_buttons( $value ); continue; }
 				if ( ! is_scalar( $value ) ) { continue; }
 				if ( preg_match( '/^(description|response|media_ids)_(.+)$/', (string) $field, $match ) && self::valid_language_code( $match[2] ) ) {
 					$commands[$key][$field] = 'description' === $match[1] ? self::limit_text( sanitize_text_field( (string) $value ), 256 ) : ( 'response' === $match[1] ? self::sanitize_reply( (string) $value ) : self::sanitize_media_ids( (string) $value ) );
@@ -373,6 +375,7 @@ final class Telegram_Bot {
 	}
 
 	private static function send_configured_reply( string $chat_id, array $command, string $language, array $markup = array() ): void {
+		$markup = self::reply_menu_markup( $command, $language, $markup );
 		$type = in_array( $command['reply_type'] ?? 'text', array( 'text', 'html', 'schedule', 'page', 'news' ), true ) ? (string) $command['reply_type'] : 'text';
 		$response = self::configured_response( $command, $language );
 		if ( in_array( $type, array( 'page', 'news' ), true ) ) {
@@ -425,14 +428,16 @@ final class Telegram_Bot {
 		if ( '' !== $leading_photo && self::valid_calendar_icon_url( $leading_photo ) ) { array_unshift( $media, array( 'type' => 'photo', 'url' => $leading_photo ) ); $media = array_slice( $media, 0, self::MAX_REPLY_MEDIA ); }
 		if ( ! $media ) { $html ? self::send_direct_long_html( $chat_id, $text, $markup ) : self::send_direct( $chat_id, $text, $markup ); return; }
 		$caption_fits = self::text_units( wp_strip_all_tags( $text ) ) <= 1024;
-		$caption = $caption_fits && ! $markup ? $text : '';
-		$sent = self::send_media( $chat_id, $media, $caption, $html );
-		if ( '' !== trim( $text ) && ( ! $sent || '' === $caption || $markup ) ) { $html ? self::send_direct_long_html( $chat_id, $text, $markup ) : self::send_direct( $chat_id, $text, $markup ); }
+		$single_media_with_markup = 1 === count( $media ) && $caption_fits && $markup;
+		$caption = $caption_fits ? $text : '';
+		$sent = self::send_media( $chat_id, $media, $caption, $html, $single_media_with_markup ? $markup : array() );
+		if ( '' !== trim( $text ) && ( ! $sent || '' === $caption ) ) { $html ? self::send_direct_long_html( $chat_id, $text, $markup ) : self::send_direct( $chat_id, $text, $markup ); }
+		elseif ( $sent && $markup && ! $single_media_with_markup ) { self::send_direct( $chat_id, self::copy( 'menu_intro', $language ), $markup ); }
 	}
 
-	private static function send_scheduled_output( string $chat_id, string $text, string $icon_url ): void {
-		if ( '' !== $icon_url && self::valid_calendar_icon_url( $icon_url ) ) { self::send_direct_photo( $chat_id, $icon_url, $text ); return; }
-		self::send_direct( $chat_id, $text, array(), true );
+	private static function send_scheduled_output( string $chat_id, string $text, string $icon_url, array $markup = array() ): void {
+		if ( '' !== $icon_url && self::valid_calendar_icon_url( $icon_url ) ) { self::send_direct_photo( $chat_id, $icon_url, $text, $markup ); return; }
+		self::send_direct_long_html( $chat_id, $text, $markup );
 	}
 
 	private static function send_direct_photo( string $chat_id, string $photo, string $text, array $markup = array() ): bool {
@@ -442,7 +447,7 @@ final class Telegram_Bot {
 		$body = array( 'chat_id' => $chat_id, 'photo' => $photo, 'caption' => $caption, 'parse_mode' => 'HTML' );
 		if ( $markup ) { $body['reply_markup'] = $markup; }
 		if ( is_wp_error( self::api( 'sendPhoto', $body ) ) ) { return self::send_direct_long_html( $chat_id, $text, $markup ); }
-		return '' === $continuation || self::send_direct_long_html( $chat_id, $continuation, $markup );
+		return '' === $continuation || self::send_direct_long_html( $chat_id, $continuation );
 	}
 
 	private static function photo_caption_parts( string $text ): array {
@@ -545,7 +550,7 @@ final class Telegram_Bot {
 		return $media;
 	}
 
-	private static function send_media( string $chat_id, array $media, string $caption, bool $html ): bool {
+	private static function send_media( string $chat_id, array $media, string $caption, bool $html, array $markup = array() ): bool {
 		if ( ! $media ) { return false; }
 		$caption = trim( $caption );
 		$caption_is_html = $html && '' !== $caption;
@@ -554,6 +559,7 @@ final class Telegram_Bot {
 			$method = 'photo' === $item['type'] ? 'sendPhoto' : 'sendVideo';
 			$body = array( 'chat_id' => $chat_id, $item['type'] => $item['url'] );
 			if ( '' !== $caption ) { $body['caption'] = $caption; if ( $caption_is_html ) { $body['parse_mode'] = 'HTML'; } }
+			if ( $markup ) { $body['reply_markup'] = $markup; }
 			return ! is_wp_error( self::api( $method, $body ) );
 		}
 		$items = array();
@@ -599,6 +605,81 @@ final class Telegram_Bot {
 		foreach ( array_chunk( $buttons, 2 ) as $row ) { $rows[] = $row; }
 		if ( ! $rows ) { return self::language_keyboard( $language ); }
 		return array( 'inline_keyboard' => $rows );
+	}
+
+	/** Add the configured reply buttons after buttons already required by the reply. */
+	private static function reply_menu_markup( array $command, string $language, array $markup = array() ): array {
+		$buttons = array();
+		$default_language = self::default_language_code();
+		$valid_targets = array_fill_keys( array_keys( self::menu_target_options() ), true );
+		foreach ( self::sanitize_menu_buttons( $command['menu_buttons'] ?? array() ) as $definition ) {
+			$label = trim( (string) ( $definition['labels'][$language] ?? '' ) );
+			if ( '' === $label ) { $label = trim( (string) ( $definition['labels'][$default_language] ?? '' ) ); }
+			if ( '' === $label ) { foreach ( $definition['labels'] as $translated_label ) { if ( '' !== trim( (string) $translated_label ) ) { $label = trim( (string) $translated_label ); break; } } }
+			if ( '' === $label ) { continue; }
+			if ( 'link' === $definition['action'] ) {
+				$buttons[] = array( 'text' => $label, 'url' => $definition['url'] );
+			} elseif ( isset( $valid_targets[$definition['target']] ) ) {
+				$buttons[] = array( 'text' => $label, 'callback_data' => $definition['target'] );
+			}
+		}
+		$rows = array_merge( is_array( $markup['inline_keyboard'] ?? null ) ? $markup['inline_keyboard'] : array(), array_chunk( $buttons, 2 ) );
+		return $rows ? array_merge( $markup, array( 'inline_keyboard' => $rows ) ) : $markup;
+	}
+
+	private static function sanitize_menu_buttons( $raw ): array {
+		if ( ! is_array( $raw ) ) { return array(); }
+		$buttons = array();
+		foreach ( array_slice( $raw, 0, 10 ) as $row ) {
+			if ( ! is_array( $row ) ) { continue; }
+			$action = in_array( $row['action'] ?? 'command', array( 'command', 'link' ), true ) ? (string) ( $row['action'] ?? 'command' ) : 'command';
+			$button = array( 'action' => $action, 'labels' => array() );
+			foreach ( self::active_languages() as $language => $details ) {
+				$label = is_scalar( $row['labels'][$language] ?? null ) ? (string) $row['labels'][$language] : '';
+				$button['labels'][$language] = self::limit_text( sanitize_text_field( $label ), 60 );
+			}
+			if ( ! array_filter( $button['labels'], static fn( $label ) => '' !== trim( (string) $label ) ) ) { continue; }
+			if ( 'link' === $action ) {
+				$url = is_scalar( $row['url'] ?? null ) ? esc_url_raw( trim( (string) $row['url'] ), array( 'http', 'https' ) ) : '';
+				$parts = $url ? wp_parse_url( $url ) : false;
+				$scheme = is_array( $parts ) ? strtolower( (string) ( $parts['scheme'] ?? '' ) ) : '';
+				/* Links are opened by Telegram, not fetched by this webhook; avoid DNS/network checks here. */
+				if ( ! $url || ! in_array( $scheme, array( 'http', 'https' ), true ) || empty( $parts['host'] ) || isset( $parts['user'] ) || isset( $parts['pass'] ) ) { continue; }
+				$button['url'] = $url;
+			} else {
+				$target = is_scalar( $row['target'] ?? null ) ? sanitize_text_field( (string) $row['target'] ) : '';
+				if ( ! preg_match( '/^(?:botcmd:[a-z][a-z0-9_]{0,31}|reply:[a-f0-9]{16})$/D', $target ) ) { continue; }
+				$button['target'] = $target;
+			}
+			$buttons[] = $button;
+		}
+		return $buttons;
+	}
+
+	private static function menu_target_options(): array {
+		$options = array();
+		$language = self::default_language_code();
+		foreach ( self::system_commands() as $key => $command ) {
+			if ( empty( $command['enabled'] ) || in_array( $key, array( 'start', 'stop' ), true ) ) { continue; }
+			$description = trim( (string) ( $command['description_' . $language] ?? '' ) );
+			$options['botcmd:' . $key] = '/' . $key . ( '' !== $description ? ' — ' . $description : '' );
+		}
+		foreach ( self::custom_commands() as $command ) {
+			if ( 'command' === $command['type'] ) {
+				$description = trim( (string) ( $command['description_' . $language] ?? '' ) );
+				$options['botcmd:' . $command['command']] = '/' . $command['command'] . ( '' !== $description ? ' — ' . $description : '' );
+			} else {
+				$trigger = trim( (string) ( $command['trigger_' . $language] ?? '' ) );
+				if ( '' === $trigger ) { $trigger = self::first_localized_trigger( $command ); }
+				$options['reply:' . self::responder_id( $command )] = $trigger;
+			}
+		}
+		return $options;
+	}
+
+	private static function first_localized_trigger( array $command ): string {
+		foreach ( self::active_languages() as $language => $details ) { $trigger = trim( (string) ( $command['trigger_' . $language] ?? '' ) ); if ( '' !== $trigger ) { return $trigger; } }
+		return __( 'Text reply', 'georg-kloster-connect-hub' );
 	}
 
 	private static function help_message( string $language ): string {
@@ -677,7 +758,11 @@ final class Telegram_Bot {
 		return null;
 	}
 
-	private static function responder_id( array $command ): string { return substr( md5( serialize( $command ) ), 0, 16 ); }
+	private static function responder_id( array $command ): string {
+		if ( preg_match( '/^[a-f0-9]{16}$/D', (string) ( $command['id'] ?? '' ) ) ) { return (string) $command['id']; }
+		unset( $command['id'], $command['menu_buttons'] );
+		return substr( md5( serialize( $command ) ), 0, 16 );
+	}
 
 	private static function normalize_trigger( string $text ): string {
 		$text = trim( preg_replace( '/\s+/u', ' ', $text ) ?? $text );
@@ -1334,6 +1419,7 @@ final class Telegram_Bot {
 			'remove' => __( 'Remove', 'georg-kloster-connect-hub' ),
 			'photo' => __( 'Photo', 'georg-kloster-connect-hub' ),
 			'video' => __( 'Video', 'georg-kloster-connect-hub' ),
+			'menuLimit' => __( 'A reply can have up to 10 buttons.', 'georg-kloster-connect-hub' ),
 		) );
 	}
 
@@ -1366,7 +1452,8 @@ final class Telegram_Bot {
 					$localized[$key] = $value;
 				}
 			}
-			$empty = '' === $command && ! $has_trigger && ! $has_description && ! $has_response && ! $has_media && ! $reply_post_id;
+			$menu_buttons = self::sanitize_menu_buttons( $row['menu_buttons'] ?? array() );
+			$empty = '' === $command && ! $has_trigger && ! $has_description && ! $has_response && ! $has_media && ! $reply_post_id && ! $menu_buttons;
 			if ( $empty ) { continue; }
 			$invalid_trigger = 'command' === $type
 				? ( ! preg_match( '/^[a-z][a-z0-9_]{0,31}$/D', $command ) || in_array( $command, $reserved, true ) || isset( $seen[$command] ) || ! $has_description )
@@ -1381,13 +1468,15 @@ final class Telegram_Bot {
 			}
 			if ( 'command' === $type ) { $seen[$command] = true; }
 			foreach ( $locales as $language ) { $trigger = $localized['trigger_' . $language] ?? ''; if ( '' !== $trigger ) { $seen_triggers[self::normalize_trigger( $trigger )] = true; } }
-			$commands[] = array_merge( array(
+			$normalized = array_merge( array(
 				'type' => $type,
 				'command' => $command,
 				'reply_type' => $reply_type,
 				'schedule_period' => $schedule_period,
 				'reply_post_id' => $reply_post_id,
 			), $localized );
+			$id = preg_match( '/^[a-f0-9]{16}$/D', (string) ( $row['id'] ?? '' ) ) ? (string) $row['id'] : substr( md5( serialize( $normalized ) ), 0, 16 );
+			$commands[] = array_merge( $normalized, array( 'id' => $id, 'menu_buttons' => $menu_buttons ) );
 		}
 		return $commands;
 	}
@@ -1434,6 +1523,10 @@ final class Telegram_Bot {
 		$base['reply_type'] = in_array( $_POST['reply_type'] ?? '', array( 'text', 'html', 'schedule', 'page', 'news' ), true ) ? sanitize_key( wp_unslash( $_POST['reply_type'] ) ) : 'text';
 		$base['schedule_period'] = 'week' === ( $_POST['schedule_period'] ?? '' ) ? 'week' : 'today';
 		$base['reply_post_id'] = isset( $_POST['reply_post_id'] ) ? absint( $_POST['reply_post_id'] ) : 0;
+		$menu_input = isset( $_POST['menu_buttons'] ) && is_array( $_POST['menu_buttons'] ) ? wp_unslash( $_POST['menu_buttons'] ) : array();
+		$base['menu_buttons'] = self::sanitize_menu_buttons( $menu_input );
+		$valid_targets = array_keys( self::menu_target_options() );
+		$base['menu_buttons'] = array_values( array_filter( $base['menu_buttons'], static function ( $button ) use ( $valid_targets ) { return 'link' === $button['action'] || in_array( $button['target'] ?? '', $valid_targets, true ); } ) );
 		if ( in_array( $base['reply_type'], array( 'page', 'news' ), true ) && ! self::valid_reply_post( $base['reply_post_id'], $base['reply_type'] ) ) {
 			set_transient( 'gkch_telegram_command_error_' . get_current_user_id(), __( 'Select a published item that matches the selected reply type.', 'georg-kloster-connect-hub' ), 120 );
 			wp_safe_redirect( self::command_edit_url( $kind, 'system' === $kind ? $key : ( $is_new_command ? 'new' : (string) $index ) ) ); exit;
@@ -1511,6 +1604,21 @@ final class Telegram_Bot {
 		return __( 'Untranslated phrase', 'georg-kloster-connect-hub' );
 	}
 
+	private static function render_menu_button_editor_row( array $button, string $index, array $languages, array $targets ): void {
+		$action = in_array( $button['action'] ?? 'command', array( 'command', 'link' ), true ) ? (string) $button['action'] : 'command';
+		echo '<fieldset class="gkch-menu-button" data-menu-button><legend><strong>' . esc_html__( 'Menu button', 'georg-kloster-connect-hub' ) . '</strong></legend><div class="gkch-menu-button-labels">';
+		foreach ( $languages as $language => $details ) {
+			$value = (string) ( $button['labels'][$language] ?? '' );
+			echo '<p><label><strong>' . esc_html( $details['name'] ) . '</strong><br><input class="regular-text" maxlength="60" name="menu_buttons[' . esc_attr( $index ) . '][labels][' . esc_attr( $language ) . ']" value="' . esc_attr( $value ) . '"></label></p>';
+		}
+		echo '</div><p><label>' . esc_html__( 'When pressed', 'georg-kloster-connect-hub' ) . ' <select class="gkch-menu-action" name="menu_buttons[' . esc_attr( $index ) . '][action]">';
+		echo '<option value="command"' . selected( $action, 'command', false ) . '>' . esc_html__( 'Open a bot command or reply', 'georg-kloster-connect-hub' ) . '</option><option value="link"' . selected( $action, 'link', false ) . '>' . esc_html__( 'Open a website link', 'georg-kloster-connect-hub' ) . '</option></select></label> ';
+		echo '<label class="gkch-menu-target-field">' . esc_html__( 'Command or reply', 'georg-kloster-connect-hub' ) . ' <select class="gkch-menu-target" name="menu_buttons[' . esc_attr( $index ) . '][target]" required><option value=""' . selected( empty( $button['target'] ), true, false ) . '>— ' . esc_html__( 'Select a command or reply', 'georg-kloster-connect-hub' ) . ' —</option>';
+		foreach ( $targets as $target => $label ) { echo '<option value="' . esc_attr( $target ) . '"' . selected( $button['target'] ?? '', $target, false ) . '>' . esc_html( $label ) . '</option>'; }
+		echo '</select></label> <label class="gkch-menu-url-field">' . esc_html__( 'Website URL', 'georg-kloster-connect-hub' ) . ' <input class="large-text gkch-menu-url" type="url" name="menu_buttons[' . esc_attr( $index ) . '][url]" value="' . esc_attr( $button['url'] ?? '' ) . '" placeholder="https://example.org/" required /></label> ';
+		echo '<button type="button" class="button-link-delete gkch-menu-button-remove">' . esc_html__( 'Remove button', 'georg-kloster-connect-hub' ) . '</button></p></fieldset>';
+	}
+
 	public static function render_command_editor(): void {
 		if ( ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Insufficient permissions.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); }
 		$kind = is_string( $_GET['kind'] ?? null ) ? sanitize_key( wp_unslash( $_GET['kind'] ) ) : '';
@@ -1575,7 +1683,15 @@ final class Telegram_Bot {
 			}
 			echo '</ul><p class="description">' . esc_html__( 'Select up to 10 JPEG or PNG photos and MP4 videos from the Media Library. Telegram fetches them from their public URLs; URL limits are 5 MB per photo and 20 MB per video.', 'georg-kloster-connect-hub' ) . '</p></div></fieldset>';
 		}
-		echo '</div></div></div><div id="postbox-container-1" class="postbox-container"><div class="postbox"><div class="postbox-header"><h2 class="hndle">' . esc_html__( 'Save', 'georg-kloster-connect-hub' ) . '</h2></div><div class="inside">';
+		echo '</div></div><div class="postbox gkch-reply-menu-postbox"><div class="postbox-header"><h2 class="hndle">' . esc_html__( 'Menu buttons for this reply', 'georg-kloster-connect-hub' ) . '</h2></div><div class="inside"><p>' . esc_html__( 'Add buttons below this reply. Each button can run another bot command or reply, or open a website link. Enter its label in the active WPML languages. Telegram displays up to 10 buttons, two per row.', 'georg-kloster-connect-hub' ) . '</p>';
+		$menu_buttons = self::sanitize_menu_buttons( $command['menu_buttons'] ?? array() );
+		$menu_targets = self::menu_target_options();
+		echo '<div class="gkch-menu-buttons" data-next-index="' . esc_attr( (string) count( $menu_buttons ) ) . '">';
+		foreach ( $menu_buttons as $button_index => $button ) { self::render_menu_button_editor_row( $button, (string) $button_index, self::active_languages(), $menu_targets ); }
+		echo '</div><button type="button" class="button gkch-menu-button-add">' . esc_html__( 'Add a button', 'georg-kloster-connect-hub' ) . '</button><p class="description">' . esc_html__( 'A command button returns its configured answer in the subscriber’s selected language. A link button opens the URL directly in Telegram.', 'georg-kloster-connect-hub' ) . '</p>';
+		echo '<template id="gkch-menu-button-template">';
+		self::render_menu_button_editor_row( array(), '__INDEX__', self::active_languages(), $menu_targets );
+		echo '</template></div></div></div><div id="postbox-container-1" class="postbox-container"><div class="postbox"><div class="postbox-header"><h2 class="hndle">' . esc_html__( 'Save', 'georg-kloster-connect-hub' ) . '</h2></div><div class="inside">';
 		submit_button( __( 'Save command', 'georg-kloster-connect-hub' ), 'primary', 'submit', false );
 		if ( ! $system && 'new' !== $id ) { echo '<p><button class="button-link-delete" type="submit" name="delete_command" value="1" onclick="return confirm(' . esc_attr( wp_json_encode( __( 'Delete this command or responder?', 'georg-kloster-connect-hub' ) ) ) . ');">' . esc_html__( 'Delete', 'georg-kloster-connect-hub' ) . '</button></p>'; }
 		echo '</div></div></div></div></div></form></div>';

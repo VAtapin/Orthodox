@@ -5,8 +5,16 @@ msgstr "Content-Type: text/plain; charset=UTF-8\nX-Domain: georg-kloster-connect
 msgid "A bot token is required. Each form uses only its own private Chat ID for contact messages; the old global Chat ID is not used. Public posts and schedule messages go to people who pressed Start in the bot."
 msgstr ""
 
+#: includes/class-telegram-bot.php
+msgid "A command button returns its configured answer in the subscriber’s selected language. A link button opens the URL directly in Telegram."
+msgstr ""
+
 #: includes/class-requests.php
 msgid "A field cannot contain markup only."
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "A reply can have up to 10 buttons."
 msgstr ""
 
 #: includes/class-connector.php
@@ -41,16 +49,20 @@ msgstr ""
 msgid "Action"
 msgstr ""
 
-#: georg-kloster-connect-hub.php
-msgid "Activate Connect Hub network-wide to replace a network-active Parish Social."
-msgstr ""
-
 #: includes/class-telegram-bot.php
 msgid "Active subscribers"
 msgstr ""
 
 #: includes/class-blocks.php
 msgid "Add a Form block and select a form, or insert a Shortcode block with one of these examples. Copy the form ID from the Forms table. A form must be enabled, and incoming messages must be enabled in Settings."
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Add a button"
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Add buttons below this reply. Each button can run another bot command or reply, or open a website link. Enter its label in the active WPML languages. Telegram displays up to 10 buttons, two per row."
 msgstr ""
 
 #: includes/class-telegram-bot.php
@@ -295,6 +307,10 @@ msgstr ""
 
 #: includes/class-telegram-bot.php
 msgid "Command or phrase"
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Command or reply"
 msgstr ""
 
 #: includes/class-telegram-bot.php
@@ -869,6 +885,14 @@ msgstr ""
 msgid "Manage bot commands and replies"
 msgstr ""
 
+#: includes/class-telegram-bot.php
+msgid "Menu button"
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Menu buttons for this reply"
+msgstr ""
+
 #: includes/class-outgoing-log.php includes/class-telegram-bot.php includes/class-telegram-requests.php
 msgid "Message"
 msgstr ""
@@ -1046,6 +1070,14 @@ msgid "Only JPEG or PNG images and MP4 videos can be sent."
 msgstr ""
 
 #: includes/class-telegram-bot.php
+msgid "Open a bot command or reply"
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Open a website link"
+msgstr ""
+
+#: includes/class-telegram-bot.php
 msgid "Open the bot menu"
 msgstr ""
 
@@ -1179,6 +1211,10 @@ msgstr ""
 
 #: includes/class-telegram-bot.php
 msgid "Remove"
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Remove button"
 msgstr ""
 
 #: includes/class-publication-rules-admin.php
@@ -1343,6 +1379,10 @@ msgstr ""
 
 #: includes/class-publication-rules-admin.php
 msgid "Scheduled messages and reminders"
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "Select a command or reply"
 msgstr ""
 
 #: assets/blocks.js
@@ -1618,6 +1658,10 @@ msgid "Text"
 msgstr ""
 
 #: includes/class-telegram-bot.php
+msgid "Text reply"
+msgstr ""
+
+#: includes/class-telegram-bot.php
 msgid "Text responder"
 msgstr ""
 
@@ -1846,11 +1890,19 @@ msgid "Visit the website"
 msgstr ""
 
 #: includes/class-telegram-bot.php
+msgid "Website URL"
+msgstr ""
+
+#: includes/class-telegram-bot.php
 msgid "What should the bot send?"
 msgstr ""
 
 #: includes/class-publication-rules-admin.php
 msgid "What to send"
+msgstr ""
+
+#: includes/class-telegram-bot.php
+msgid "When pressed"
 msgstr ""
 
 #: includes/class-publication-rules-admin.php

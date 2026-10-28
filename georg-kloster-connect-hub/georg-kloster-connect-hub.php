@@ -3,7 +3,7 @@
  * Plugin Name: Georg-Kloster Connect Hub
  * Plugin URI: https://github.com/VAtapin/Orthodox/tree/main/georg-kloster-connect-hub
  * Description: Independent forms, messages and publications across communication channels.
- * Version: 0.4.9
+ * Version: 0.4.10
  * Author: Atapin Vladimir
  * Author URI: https://atapin.de/
  * Requires at least: 6.5
@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit;
 // Telegram callbacks must survive a change of the public package name.
 $gkch_load = static function (): bool {
     if ( class_exists( 'GeorgKlosterPrihodSocial\\Plugin', false ) ) { return false; }
-    define( 'GKPS_VERSION', '0.4.9' );
+    define( 'GKPS_VERSION', '0.4.10' );
     define( 'GKPS_FILE', __FILE__ );
     foreach ( array(
     'class-plugin', 'class-profile', 'class-modules', 'class-capabilities', 'class-admin',
@@ -33,15 +33,13 @@ $gkch_load = static function (): bool {
     return true;
 };
 
-register_activation_hook( __FILE__, static function ( $network_wide ) use ( $gkch_load ) {
+register_activation_hook( __FILE__, static function () use ( $gkch_load ) {
     load_plugin_textdomain( 'georg-kloster-connect-hub', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-    if ( is_plugin_active_for_network( 'georg-kloster-prihod-social/georg-kloster-prihod-social.php' ) && ! $network_wide ) {
-        wp_die( esc_html__( 'Activate Connect Hub network-wide to replace a network-active Parish Social.', 'georg-kloster-connect-hub' ) );
+    // If the legacy plugin is still active, it already loaded the shared classes.
+    // Activation must never change another plugin's activation state.
+    if ( $gkch_load() ) {
+        \GeorgKlosterPrihodSocial\Capabilities::install();
     }
-    // Activation runs with the old plugin already loaded. Do not redeclare it.
-    $gkch_load();
-    \GeorgKlosterPrihodSocial\Capabilities::install();
-    deactivate_plugins( 'georg-kloster-prihod-social/georg-kloster-prihod-social.php', true );
 } );
 register_deactivation_hook( __FILE__, static function () {
     wp_clear_scheduled_hook( 'gkps_requests_retention' );
