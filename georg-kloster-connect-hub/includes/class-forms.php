@@ -43,9 +43,9 @@ final class Forms {
             $values[$key] = $value;
         }
         $chat_id = isset( $input['telegram_chat_id'] ) && is_string( $input['telegram_chat_id'] ) ? trim( $input['telegram_chat_id'] ) : '';
-        if ( '' !== $chat_id && ! preg_match( '/^[1-9][0-9]*$/D', $chat_id ) ) { throw new \InvalidArgumentException( __( 'Enter a positive numeric Telegram Chat ID for this form.', 'georg-kloster-connect-hub' ) ); }
+        if ( '' !== $chat_id && ! preg_match( '/^[1-9][0-9]*$/D', $chat_id ) ) { throw new \InvalidArgumentException( esc_html__( 'Enter a positive numeric Telegram Chat ID for this form.', 'georg-kloster-connect-hub' ) ); }
         $staff = isset( $input['telegram_staff'] ) && is_scalar( $input['telegram_staff'] ) ? absint( $input['telegram_staff'] ) : 0;
-        if ( $staff && ( ! user_can( $staff, 'view_gkps_requests' ) || ! user_can( $staff, 'reply_gkps_requests' ) ) ) { throw new \InvalidArgumentException( __( 'Choose a staff member who can view and reply to messages.', 'georg-kloster-connect-hub' ) ); }
+        if ( $staff && ( ! user_can( $staff, 'view_gkps_requests' ) || ! user_can( $staff, 'reply_gkps_requests' ) ) ) { throw new \InvalidArgumentException( esc_html__( 'Choose a staff member who can view and reply to messages.', 'georg-kloster-connect-hub' ) ); }
         $values['telegram_chat_id'] = $chat_id;
         $values['telegram_staff'] = $staff;
         return $values;
@@ -104,7 +104,7 @@ final class Forms {
         if ( ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Access denied.', 'georg-kloster-connect-hub' ) ); }
         echo '<div class="wrap"><h1 class="wp-heading-inline">' . esc_html__( 'Forms', 'georg-kloster-connect-hub' ) . '</h1> <a class="page-title-action" href="' . esc_url( self::edit_url( 0, true ) ) . '">' . esc_html__( 'Add form', 'georg-kloster-connect-hub' ) . '</a><hr class="wp-header-end">';
         $error_key = 'gkch_form_error_' . get_current_user_id();
-        if ( $error = get_transient( $error_key ) ) { echo '<div class="notice notice-error"><p>' . esc_html( $error ) . '</p></div>'; delete_transient( $error_key ); }
+        if ( $error = get_transient( $error_key ) ) { echo '<div class="notice notice-error"><p>' . wp_kses_post( $error ) . '</p></div>'; delete_transient( $error_key ); }
         echo '<table class="wp-list-table widefat fixed striped"><thead><tr><th scope="col">' . esc_html__( 'Form name', 'georg-kloster-connect-hub' ) . '</th><th scope="col">' . esc_html__( 'Status', 'georg-kloster-connect-hub' ) . '</th><th scope="col">' . esc_html__( 'Shortcode', 'georg-kloster-connect-hub' ) . '</th></tr></thead><tbody>';
         $forms = self::all();
         foreach ( $forms as $form ) {
@@ -137,7 +137,7 @@ final class Forms {
         echo '<div class="wrap"><h1>' . esc_html( $new ? __( 'Add form', 'georg-kloster-connect-hub' ) : __( 'Edit form', 'georg-kloster-connect-hub' ) ) . '</h1><hr class="wp-header-end">';
         echo '<p><a href="' . esc_url( admin_url( 'admin.php?page=gkps' ) ) . '">← ' . esc_html__( 'Back to forms', 'georg-kloster-connect-hub' ) . '</a></p>';
         $error_key = 'gkch_form_error_' . get_current_user_id();
-        if ( $error = get_transient( $error_key ) ) { echo '<div class="notice notice-error"><p>' . esc_html( $error ) . '</p></div>'; delete_transient( $error_key ); }
+        if ( $error = get_transient( $error_key ) ) { echo '<div class="notice notice-error"><p>' . wp_kses_post( $error ) . '</p></div>'; delete_transient( $error_key ); }
         if ( ! empty( $_GET['updated'] ) ) { echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Form saved.', 'georg-kloster-connect-hub' ) . '</p></div>'; }
         if ( ! $form ) { echo '<p>' . esc_html__( 'Form not found.', 'georg-kloster-connect-hub' ) . '</p></div>'; return; }
         echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="gkch_form_save"><input type="hidden" name="form_id" value="' . esc_attr( $id ) . '">';

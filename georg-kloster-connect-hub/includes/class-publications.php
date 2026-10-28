@@ -8,7 +8,7 @@ final class Publications {
         return array( 'telegram' => __( 'Telegram', 'georg-kloster-connect-hub' ), 'facebook' => __( 'Facebook', 'georg-kloster-connect-hub' ), 'instagram' => __( 'Instagram', 'georg-kloster-connect-hub' ), 'vk' => __( 'VK', 'georg-kloster-connect-hub' ), 'ok' => __( 'OK', 'georg-kloster-connect-hub' ) );
     }
     public static function enqueue( int $post_id, array $channels ): array {
-        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
+        // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- The validation message is data and the publication UI escapes it before display.
         if ( ! current_user_can( 'publish_posts' ) || ! current_user_can( 'edit_post', $post_id ) ) { throw new \RuntimeException( __( 'Access denied.', 'georg-kloster-connect-hub' ) ); }
         $post = get_post( $post_id );
         // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
@@ -20,7 +20,7 @@ final class Publications {
             $connector = Connector::instance( $id );
             // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
             if ( ! $connector || ! $connector->valid( $connector->settings() ) ) { throw new \InvalidArgumentException( __( 'Configure and enable each selected channel first.', 'georg-kloster-connect-hub' ) ); }
-            if ( 'telegram' === $id && ! Telegram_Bot::broadcasting_enabled() ) { throw new \InvalidArgumentException( __( 'Enable Telegram subscriber broadcasts before selecting Telegram.', 'georg-kloster-connect-hub' ) ); }
+            if ( 'telegram' === $id && ! Telegram_Bot::broadcasting_enabled() ) { throw new \InvalidArgumentException( esc_html__( 'Enable Telegram subscriber broadcasts before selecting Telegram.', 'georg-kloster-connect-hub' ) ); }
             // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception message is data and is escaped by the UI before display.
             if ( 'instagram' === $id && ! Social_Providers::image( $post_id ) ) { throw new \InvalidArgumentException( __( 'Instagram requires a public JPEG featured image.', 'georg-kloster-connect-hub' ) ); }
         }
@@ -103,7 +103,7 @@ final class Publications {
         if ( ! current_user_can( 'publish_posts' ) ) { wp_die( esc_html__( 'Access denied.', 'georg-kloster-connect-hub' ) ); }
         echo '<div class="wrap"><h1>' . esc_html__( 'Publications', 'georg-kloster-connect-hub' ) . '</h1>';
         $key = 'gkch_publication_notice_' . get_current_user_id();
-        if ( $notice = get_transient( $key ) ) { echo '<p role="status">' . esc_html( $notice ) . '</p>'; delete_transient( $key ); }
+        if ( $notice = get_transient( $key ) ) { echo '<p role="status">' . wp_kses_post( $notice ) . '</p>'; delete_transient( $key ); }
         Publication_Rules_Admin::render();
         echo '<p><a class="button" href="' . esc_url( admin_url( 'admin.php?page=gkch-telegram' ) ) . '">' . esc_html__( 'Telegram bot subscribers and delivery status', 'georg-kloster-connect-hub' ) . '</a></p>';
         $statuses = array( 'pending' => __( 'Queued', 'georg-kloster-connect-hub' ), 'processing' => __( 'Processing', 'georg-kloster-connect-hub' ), 'sent' => __( 'Sent', 'georg-kloster-connect-hub' ), 'failed' => __( 'Failed', 'georg-kloster-connect-hub' ), 'cancelled' => __( 'Cancelled', 'georg-kloster-connect-hub' ), 'uncertain' => __( 'Check the remote account before retrying', 'georg-kloster-connect-hub' ) );

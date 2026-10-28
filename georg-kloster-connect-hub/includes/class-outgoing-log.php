@@ -88,10 +88,19 @@ final class Outgoing_Log {
             $time = get_date_from_gmt( gmdate( 'Y-m-d H:i:s', strtotime( $row['time_gmt'] ) ), 'Y-m-d H:i:s' );
             $label = array( 'failed' => __( 'Failed', 'georg-kloster-connect-hub' ), 'processing' => __( 'Processing', 'georg-kloster-connect-hub' ), 'uncertain' => __( 'Result uncertain; check the destination account.', 'georg-kloster-connect-hub' ) )[$row['status']] ?? '';
             echo '<tr><td>' . esc_html( $time ) . '</td><td><strong>' . esc_html( ucfirst( $row['channel'] ) ) . '</strong><br>' . esc_html( $row['recipient'] ) . '</td><td><strong>' . esc_html( $row['subject'] ?: ( __( 'Message', 'georg-kloster-connect-hub' ) . ' · ' . $row['kind'] ) ) . '</strong><br><details><summary>' . esc_html__( 'Show sent content', 'georg-kloster-connect-hub' ) . '</summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere;max-width:50em">' . esc_html( $row['content'] ) . '</pre></details>';
-            if ( $row['source_id'] ) { echo '<small>' . esc_html( sprintf( __( 'Source message #%d', 'georg-kloster-connect-hub' ), $row['source_id'] ) ) . '</small>'; }
+            if ( $row['source_id'] ) {
+                /* translators: %d: ID of the source message. */
+                echo '<small>' . esc_html( sprintf( __( 'Source message #%d', 'georg-kloster-connect-hub' ), $row['source_id'] ) ) . '</small>';
+            }
+            /* translators: %d: number of the delivery attempt. */
             echo '</td><td>' . ( '' !== $label ? esc_html( $label ) . '<br>' : '' ) . esc_html( sprintf( __( 'Attempt #%d', 'georg-kloster-connect-hub' ), $row['attempt'] ) );
-            if ( $row['http_code'] && 'email' === $row['channel'] ) { echo '<br>' . esc_html( sprintf( __( 'SMTP response: %d', 'georg-kloster-connect-hub' ), $row['http_code'] ) ); }
-            elseif ( $row['http_code'] ) { echo '<br>' . esc_html( sprintf( __( 'HTTP response: %d', 'georg-kloster-connect-hub' ), $row['http_code'] ) ); }
+            if ( $row['http_code'] && 'email' === $row['channel'] ) {
+                /* translators: %d: SMTP response code. */
+                echo '<br>' . esc_html( sprintf( __( 'SMTP response: %d', 'georg-kloster-connect-hub' ), $row['http_code'] ) );
+            } elseif ( $row['http_code'] ) {
+                /* translators: %d: HTTP response code. */
+                echo '<br>' . esc_html( sprintf( __( 'HTTP response: %d', 'georg-kloster-connect-hub' ), $row['http_code'] ) );
+            }
             foreach ( array( 'remote_id' => __( 'Service message ID', 'georg-kloster-connect-hub' ), 'transport' => __( 'Mail transport', 'georg-kloster-connect-hub' ), 'error_code' => __( 'Error code', 'georg-kloster-connect-hub' ) ) as $key => $title ) { if ( $row[$key] ) { echo '<br>' . esc_html( $title . ': ' . $row[$key] ); } }
             echo '</td></tr>';
         }

@@ -28,13 +28,15 @@ Connect Hub 0.4.10 sends Telegram updates synchronously to each subscriber's pri
 
 Version 1.0.0 is submitted in WordPress.org Themes Trac ticket [#296403](https://themes.trac.wordpress.org/ticket/296403); the SVN submission remains separate from the newer Git changes deployed to the test site. The ticket is awaiting manual review. Do not treat the test-site package as a new SVN submission.
 
-Connect Hub 0.4.10 is a prepared candidate, not yet submitted. The official Plugin Check and WordPress Playground integration checks remain pending because no local WordPress/Plugin Check installation is available and this environment cannot resolve `registry.npmjs.org`. Before submission, confirm the `Georg-Kloster` brand/name rights and final slug with WordPress.org; the catalog decides slug availability.
+Connect Hub 0.4.10 is a prepared candidate, not yet submitted. The WordPress.org automated scan returned findings for literal gettext strings, prepared subscriber queries, escaping, and translator comments. Those findings have been addressed in the current source and rebuilt package; a fresh official Plugin Check scan is still required. No local WordPress, Plugin Check, WP-CLI, or Node.js runtime is available here, so the official scanner and Playground integration Blueprint cannot be rerun locally. Before submission, confirm the `Georg-Kloster` brand/name rights and final slug with WordPress.org; the catalog decides slug availability.
 
 ## Checks completed
 
 `php tests/lint.php` passed; `php tests/run.php` passed 82 isolated assertions; Connect Hub catalogs passed translation checks. Added WordPress integration assertions for localized news images, short HTML captions and hidden article buttons. The WordPress Playground integration test could not run because this environment cannot resolve `registry.npmjs.org` (`ENOTFOUND`). No live Telegram send was performed.
 
 Connect Hub 0.4.10 candidate checks: PHP lint and unit tests passed (85 assertions); RU/DE gettext catalogs compiled and validated. The package contains plugin runtime files, docs, languages and license without test files or detected credentials. WordPress Playground integration could not run (`registry.npmjs.org` DNS `ENOTFOUND`); official Plugin Check was unavailable without a WordPress instance. The German `de_DE` catalog uses informal du. No live Telegram request was sent.
+
+WordPress.org automated scan follow-up: replaced dynamic gettext headings with literal translated strings; prepared the three subscriber-table queries with `%i`; escaped the Telegram command label; documented all placeholder meanings for translators; and escaped validation exceptions at creation and output. PHP lint, 85 isolated assertions, plugin catalog checks (1,000 PHP/editor messages), and catalog compilation passed. The updated `build/georg-kloster-connect-hub-0.4.10.zip` was rebuilt and inspected (47 files, expected root, no tests). A fresh official Plugin Check result remains pending because this environment has no WordPress/Plugin Check/WP-CLI or Node.js installation.
 
 Vestment API integration: `php tests/run.php` passes 82 isolated assertions and `php tests/lint.php` passes. The Parish merge Blueprint could not run because `registry.npmjs.org` DNS was unavailable. A direct live Bible Desktop API check from this environment also failed at DNS resolution, so January 2027 production responses were not confirmed. All vestment colors share one patterned stripe style; non-white colors have brighter, more saturated fills and borders.
 
@@ -50,4 +52,4 @@ Run the official Plugin Check and the WordPress integration blueprint when a Wor
 
 Upload `build/georg-kloster-prihod-core-0.2.12.zip` through WordPress Plugins → Add Plugin → Upload Plugin, replacing the installed Parish Core. Verify that the upcoming-service heading clears the calendar icon and that full week/list cards show the calendar commemorations with available typikon marks. The compact month view remains compact. Production has not been updated.
 
-Last related code commit: Prepare Connect Hub 0.4.10 for WordPress.org review.
+Last related code commit: Correct WordPress.org scan findings in Connect Hub.

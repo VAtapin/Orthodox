@@ -72,14 +72,16 @@ final class Request_Admin {
             if ( $can_delete ) {
                 echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="gkps-request-list"><input type="hidden" name="action" value="gkps_request_bulk_delete"><input type="hidden" name="status" value="' . esc_attr( $filter ) . '"><input type="hidden" name="form_id" value="' . esc_attr( null !== $form_filter ? (string) $form_filter : '' ) . '">';
                 wp_nonce_field( 'gkps_request_bulk_delete' );
+                /* translators: %d: number of messages matching the current filters. */
                 echo '<div class="tablenav top"><div class="alignleft actions bulkactions"><label class="screen-reader-text" for="gkps-bulk-action">' . esc_html__( 'Bulk actions', 'georg-kloster-connect-hub' ) . '</label><select id="gkps-bulk-action" name="bulk_action"><option value="">' . esc_html__( 'Bulk actions', 'georg-kloster-connect-hub' ) . '</option><option value="delete">' . esc_html__( 'Delete selected', 'georg-kloster-connect-hub' ) . '</option></select><button type="submit" class="button action">' . esc_html__( 'Apply', 'georg-kloster-connect-hub' ) . '</button><label><input type="checkbox" name="confirm_delete" value="1"> ' . esc_html__( 'Confirm permanent deletion', 'georg-kloster-connect-hub' ) . '</label></div><div class="tablenav-pages"><span class="displaying-num">' . esc_html( sprintf( __( 'Total messages: %d', 'georg-kloster-connect-hub' ), (int) $query->found_posts ) ) . '</span></div></div>';
             } else {
+                /* translators: %d: number of messages matching the current filters. */
                 echo '<div class="tablenav top"><div class="tablenav-pages"><span class="displaying-num">' . esc_html( sprintf( __( 'Total messages: %d', 'georg-kloster-connect-hub' ), (int) $query->found_posts ) ) . '</span></div></div>';
             }
 
             echo '<table class="wp-list-table widefat fixed striped"><thead><tr>';
             if ( $can_delete ) { echo '<td class="manage-column column-cb check-column"><input type="checkbox" aria-label="' . esc_attr__( 'Select all messages', 'georg-kloster-connect-hub' ) . '"></td>'; }
-            foreach ( array( 'Message subject', 'Sender', 'Form', 'Date received', 'Message status', 'Assigned staff member' ) as $heading ) { echo '<th scope="col" class="manage-column">' . esc_html__( $heading, 'georg-kloster-connect-hub' ) . '</th>'; }
+            foreach ( array( esc_html__( 'Message subject', 'georg-kloster-connect-hub' ), esc_html__( 'Sender', 'georg-kloster-connect-hub' ), esc_html__( 'Form', 'georg-kloster-connect-hub' ), esc_html__( 'Date received', 'georg-kloster-connect-hub' ), esc_html__( 'Message status', 'georg-kloster-connect-hub' ), esc_html__( 'Assigned staff member', 'georg-kloster-connect-hub' ) ) as $heading ) { echo '<th scope="col" class="manage-column">' . $heading . '</th>'; }
             echo '</tr></thead><tbody>';
             if ( ! $query->posts ) {
                 $has_previous = false;
@@ -96,7 +98,10 @@ final class Request_Admin {
                 $form_name = get_post_meta( $post->ID, '_gkch_form_name', true ) ?: __( 'Default form', 'georg-kloster-connect-hub' );
                 $date = mysql2date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $post->post_date );
                 echo '<tr>';
-                if ( $can_delete ) { echo '<th scope="row" class="check-column"><input type="checkbox" name="request_ids[]" value="' . esc_attr( $post->ID ) . '" aria-label="' . esc_attr( sprintf( __( 'Select message: %s', 'georg-kloster-connect-hub' ), $post->post_title ) ) . '"></th>'; }
+                if ( $can_delete ) {
+                    /* translators: %s: subject of the message being selected. */
+                    echo '<th scope="row" class="check-column"><input type="checkbox" name="request_ids[]" value="' . esc_attr( $post->ID ) . '" aria-label="' . esc_attr( sprintf( __( 'Select message: %s', 'georg-kloster-connect-hub' ), $post->post_title ) ) . '"></th>';
+                }
                 echo '<td class="column-primary"><strong><a class="row-title" href="' . esc_url( add_query_arg( array( 'page' => 'gkps-requests', 'request_id' => $post->ID ), admin_url( 'admin.php' ) ) ) . '">' . esc_html( $post->post_title ) . '</a></strong><button type="button" class="toggle-row"><span class="screen-reader-text">' . esc_html__( 'Show more details', 'georg-kloster-connect-hub' ) . '</span></button></td>';
                 echo '<td data-colname="' . esc_attr__( 'Sender', 'georg-kloster-connect-hub' ) . '">' . esc_html( is_array( $sender ) ? ( $sender['name'] ?? '' ) : '' ) . ( is_array( $sender ) && ! empty( $sender['email'] ) ? '<br><a href="mailto:' . esc_attr( $sender['email'] ) . '">' . esc_html( $sender['email'] ) . '</a>' : '' ) . '</td>';
                 echo '<td data-colname="' . esc_attr__( 'Form', 'georg-kloster-connect-hub' ) . '">' . esc_html( $form_name ) . '</td>';
@@ -134,6 +139,7 @@ final class Request_Admin {
             if ( ! $ids ) { throw new \InvalidArgumentException( __( 'Select at least one message to delete.', 'georg-kloster-connect-hub' ) ); }
             foreach ( $ids as $id ) { Requests::assert_request( $id ); }
             foreach ( $ids as $id ) { Requests::delete( $id ); ++$deleted; }
+            /* translators: %d: number of messages deleted. */
             $notice = sprintf( __( 'Deleted messages: %d.', 'georg-kloster-connect-hub' ), $deleted );
         } catch ( \Throwable $error ) {
             $notice = $error instanceof \InvalidArgumentException ? $error->getMessage() : __( 'Messages could not be deleted. Please try again.', 'georg-kloster-connect-hub' );

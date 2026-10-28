@@ -791,12 +791,12 @@ final class Telegram_Bot {
 
 	private static function is_active( string $chat_id ): bool {
 		global $wpdb;
-		return (bool) $wpdb->get_var( $wpdb->prepare( 'SELECT id FROM ' . self::tables()['subscribers'] . " WHERE chat_id=%s AND status='active'", $chat_id ) );
+		return (bool) $wpdb->get_var( $wpdb->prepare( "SELECT id FROM %i WHERE chat_id=%s AND status='active'", self::tables()['subscribers'], $chat_id ) );
 	}
 
 	private static function subscriber_language( string $chat_id, string $fallback ): string {
 		global $wpdb;
-		$lang = $wpdb->get_var( $wpdb->prepare( 'SELECT language FROM ' . self::tables()['subscribers'] . " WHERE chat_id=%s AND status='active'", $chat_id ) );
+		$lang = $wpdb->get_var( $wpdb->prepare( "SELECT language FROM %i WHERE chat_id=%s AND status='active'", self::tables()['subscribers'], $chat_id ) );
 		return is_string( $lang ) && self::valid_language_code( $lang ) ? $lang : $fallback;
 	}
 
@@ -981,7 +981,7 @@ final class Telegram_Bot {
 	private static function campaign_languages(): array {
 		$languages = array_keys( self::active_languages() );
 		global $wpdb;
-		$stored = $wpdb->get_col( 'SELECT DISTINCT language FROM ' . self::tables()['subscribers'] . " WHERE status='active'" );
+		$stored = $wpdb->get_col( $wpdb->prepare( "SELECT DISTINCT language FROM %i WHERE status='active'", self::tables()['subscribers'] ) );
 		foreach ( (array) $stored as $language ) { if ( is_string( $language ) && self::valid_language_code( $language ) ) { $languages[] = $language; } }
 		return array_values( array_unique( $languages ) );
 	}
@@ -1596,7 +1596,7 @@ final class Telegram_Bot {
 
 	private static function render_command_list_row( string $url, string $label, string $kind, string $reply_type, bool $enabled ): void {
 		$types = array( 'text' => __( 'Text', 'georg-kloster-connect-hub' ), 'html' => __( 'Telegram HTML', 'georg-kloster-connect-hub' ), 'schedule' => __( 'Parish schedule', 'georg-kloster-connect-hub' ), 'page' => __( 'WordPress page', 'georg-kloster-connect-hub' ), 'news' => __( 'WordPress news post', 'georg-kloster-connect-hub' ) );
-		echo '<tr><td><strong><a href="' . esc_url( $url ) . '">' . $label . '</a></strong><div class="row-actions"><span class="edit"><a href="' . esc_url( $url ) . '">' . esc_html__( 'Edit', 'georg-kloster-connect-hub' ) . '</a></span></div></td><td>' . esc_html( $kind ) . '</td><td>' . esc_html( $types[$reply_type] ?? $types['text'] ) . '</td><td>' . esc_html( $enabled ? __( 'Enabled', 'georg-kloster-connect-hub' ) : __( 'Disabled', 'georg-kloster-connect-hub' ) ) . '</td></tr>';
+		echo '<tr><td><strong><a href="' . esc_url( $url ) . '">' . wp_kses( $label, array( 'code' => array() ) ) . '</a></strong><div class="row-actions"><span class="edit"><a href="' . esc_url( $url ) . '">' . esc_html__( 'Edit', 'georg-kloster-connect-hub' ) . '</a></span></div></td><td>' . esc_html( $kind ) . '</td><td>' . esc_html( $types[$reply_type] ?? $types['text'] ) . '</td><td>' . esc_html( $enabled ? __( 'Enabled', 'georg-kloster-connect-hub' ) : __( 'Disabled', 'georg-kloster-connect-hub' ) ) . '</td></tr>';
 	}
 
 	private static function first_trigger( array $command ): string {
