@@ -13,7 +13,8 @@ final class Telegram_Request_Settings {
         add_action( 'gkps_request_telegram_controls', array( self::class, 'request_button' ) );
     }
     private static function input(): array {
-        return array( 'enabled' => ! empty( $_POST['telegram_full_requests'] ), 'staff' => is_scalar( $_POST['telegram_reply_staff'] ?? null ) ? absint( $_POST['telegram_reply_staff'] ) : 0 );
+        // phpcs:ignore WordPress.Security.NonceVerification.Missing -- This reader is only called by connector save hooks after Connector::save() verifies its settings nonce.
+        return array( 'enabled' => ! empty( $_POST['telegram_full_requests'] ), 'staff' => is_scalar( $_POST['telegram_reply_staff'] ?? null ) ? absint( wp_unslash( $_POST['telegram_reply_staff'] ) ) : 0 );
     }
     public static function errors( array $errors, string $provider, array $settings ): array {
         if ( 'telegram' !== $provider ) { return $errors; }
@@ -99,7 +100,7 @@ final class Telegram_Request_Settings {
         submit_button( __( 'Send the complete message to Telegram', 'georg-kloster-connect-hub' ), 'secondary' ); echo '</form>';
     }
     public static function resend(): void {
-        $id = is_scalar( $_POST['request_id'] ?? null ) ? absint( $_POST['request_id'] ) : 0;
+        $id = is_scalar( $_POST['request_id'] ?? null ) ? absint( wp_unslash( $_POST['request_id'] ) ) : 0;
         if ( ! current_user_can( 'view_gkps_requests' ) || ! current_user_can( 'reply_gkps_requests' ) || ! Telegram_Requests::ready() ) { wp_die( esc_html__( 'Insufficient permissions.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); }
         check_admin_referer( 'gkps_telegram_request_' . $id ); Requests::assert_request( $id ); Telegram_Requests::notify( $id );
         wp_safe_redirect( admin_url( 'admin.php?page=gkps-requests&request_id=' . $id ) ); exit;

@@ -10,6 +10,7 @@ final class Request_Privacy {
         $items['georg-kloster-connect-hub'] = array( 'eraser_friendly_name' => __( 'Parish messages', 'georg-kloster-connect-hub' ), 'callback' => array( self::class, 'erase' ) ); return $items;
     }
     private static function find( string $email, int $page = 1 ): array {
+        // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- Privacy export searches private requests in pages of at most 50 records for one validated email address.
         return get_posts( array( 'post_type' => 'gkps_request', 'post_status' => 'private', 'numberposts' => 50, 'offset' => ( max( 1, $page ) - 1 ) * 50, 'orderby' => 'ID', 'order' => 'ASC', 'meta_key' => '_gkps_email', 'meta_value' => $email ) );
     }
     public static function export( string $email, int $page = 1 ): array {

@@ -5,6 +5,7 @@ defined( 'ABSPATH' ) || exit;
 
 /** Subscriber commands, schedule replies and immediate Telegram broadcasts. */
 final class Telegram_Bot {
+    // phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- The subscriber/campaign ledger uses plugin-owned relational tables, joined reads and atomic status transitions; uncached reads must see delivery state written in the same request.
 	private const MAX_REPLY_MEDIA = 10;
 
 	private const SCHEMA_OPTION = 'gkch_telegram_schema';
@@ -233,7 +234,11 @@ final class Telegram_Bot {
 
 	private static function active_languages(): array {
 		$languages = array();
-		$raw = function_exists( 'icl_get_languages' ) ? icl_get_languages( 'skip_missing=0' ) : apply_filters( 'wpml_active_languages', null, 'skip_missing=0' );
+		if ( function_exists( 'icl_get_languages' ) ) { $raw = icl_get_languages( 'skip_missing=0' ); }
+		else {
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- This is the exact public WPML filter name.
+			$raw = apply_filters( 'wpml_active_languages', null, 'skip_missing=0' );
+		}
 		if ( is_array( $raw ) ) {
 			foreach ( $raw as $code => $details ) {
 				$code = strtolower( sanitize_key( (string) $code ) );
@@ -253,6 +258,7 @@ final class Telegram_Bot {
 	public static function menu_languages(): array { return self::active_languages(); }
 
 	private static function default_language_code(): string {
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- This is the exact public WPML filter name.
 		$default = has_filter( 'wpml_default_language' ) ? apply_filters( 'wpml_default_language', null ) : '';
 		$default = is_string( $default ) ? strtolower( sanitize_key( $default ) ) : '';
 		$languages = self::active_languages();
@@ -388,6 +394,7 @@ final class Telegram_Bot {
 				$link = get_permalink( $post );
 				if ( 'page' === $type ) {
 					$old = self::switch_language( $language );
+					// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- This is the core WordPress content filter.
 					try { $content = apply_filters( 'the_content', $post->post_content ); }
 					finally { self::restore_language( $old ); }
 					$content = preg_replace( '/<h([1-6])\b[^>]*>(.*?)<\/h\1>/is', '<b>$2</b><br>', $content );
@@ -778,14 +785,14 @@ final class Telegram_Bot {
 		global $wpdb;
 		$table = self::tables()['subscribers'];
 		$now = gmdate( 'Y-m-d H:i:s' );
-		$wpdb->query( $wpdb->prepare( "INSERT INTO $table (chat_id,language,status,created_at,updated_at) VALUES (%s,%s,'active',%s,%s) ON DUPLICATE KEY UPDATE language=VALUES(language),status='active',updated_at=VALUES(updated_at)", $chat_id, $language, $now, $now ) );
+		$wpdb->query( $wpdb->prepare( "INSERT INTO %i (chat_id,language,status,created_at,updated_at) VALUES (%s,%s,'active',%s,%s) ON DUPLICATE KEY UPDATE language=VALUES(language),status='active',updated_at=VALUES(updated_at)", $table, $chat_id, $language, $now, $now ) );
 	}
 
 	private static function unsubscribe( string $chat_id ): void {
 		global $wpdb;
 		$tables = self::tables();
-		$id = (int) $wpdb->get_var( $wpdb->prepare( "SELECT id FROM {$tables['subscribers']} WHERE chat_id = %s", $chat_id ) );
-		if ( $id ) { $wpdb->query( $wpdb->prepare( "UPDATE {$tables['deliveries']} SET status='skipped',error='unsubscribed' WHERE subscriber_id=%d AND status='pending'", $id ) ); }
+		$id = (int) $wpdb->get_var( $wpdb->prepare( "SELECT id FROM %i WHERE chat_id = %s", $tables['subscribers'], $chat_id ) );
+		if ( $id ) { $wpdb->query( $wpdb->prepare( "UPDATE %i SET status='skipped',error='unsubscribed' WHERE subscriber_id=%d AND status='pending'", $tables['deliveries'], $id ) ); }
 		$wpdb->delete( $tables['subscribers'], array( 'chat_id' => $chat_id ), array( '%s' ) );
 	}
 
@@ -972,6 +979,7 @@ final class Telegram_Bot {
 	}
 
 	private static function post_language( int $post_id ): string {
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- This is the exact public WPML filter name.
 		$language = has_filter( 'wpml_element_language_code' ) ? apply_filters( 'wpml_element_language_code', null, $post_id, 'post_post' ) : null;
 		if ( ! is_string( $language ) && function_exists( 'pll_get_post_language' ) ) { $language = pll_get_post_language( $post_id, 'slug' ); }
 		if ( is_string( $language ) && self::valid_language_code( strtolower( $language ) ) ) { return strtolower( $language ); }
@@ -988,6 +996,7 @@ final class Telegram_Bot {
 
 	private static function translated_post_id( int $post_id, string $language ): int {
 		if ( has_filter( 'wpml_object_id' ) ) {
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- This is the exact public WPML filter name.
 			$id = apply_filters( 'wpml_object_id', $post_id, get_post_type( $post_id ), false, $language );
 			if ( $id ) { return absint( $id ); }
 		}
@@ -1025,12 +1034,12 @@ final class Telegram_Bot {
 		$now = gmdate( 'Y-m-d H:i:s' );
 		$inserted = $wpdb->insert( $tables['campaigns'], array( 'dedupe_key' => $key, 'source_type' => $kind, 'source_id' => $source_id, 'context' => wp_json_encode( $context ), 'title' => sanitize_text_field( $title ), 'payload_ru' => sanitize_textarea_field( $ru ), 'payload_de' => sanitize_textarea_field( $de ), 'url' => esc_url_raw( $url ), 'status' => 'queued', 'created_at' => $now, 'updated_at' => $now ), array( '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s' ) );
 		if ( false === $inserted ) {
-			$existing = (int) $wpdb->get_var( $wpdb->prepare( "SELECT id FROM {$tables['campaigns']} WHERE dedupe_key=%s", $key ) );
+			$existing = (int) $wpdb->get_var( $wpdb->prepare( "SELECT id FROM %i WHERE dedupe_key=%s", $tables['campaigns'], $key ) );
 			return $existing ? 'tg-broadcast-' . $existing : '';
 		}
 		$id = (int) $wpdb->insert_id;
-		$wpdb->query( $wpdb->prepare( "INSERT IGNORE INTO {$tables['deliveries']} (campaign_id,subscriber_id,language,status,attempts,next_attempt) SELECT %d,id,language,'pending',0,%s FROM {$tables['subscribers']} WHERE status='active'", $id, $now ) );
-		$total = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$tables['deliveries']} WHERE campaign_id=%d", $id ) );
+		$wpdb->query( $wpdb->prepare( "INSERT IGNORE INTO %i (campaign_id,subscriber_id,language,status,attempts,next_attempt) SELECT %d,id,language,'pending',0,%s FROM %i WHERE status='active'", $tables['deliveries'], $id, $now, $tables['subscribers'] ) );
+		$total = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM %i WHERE campaign_id=%d", $tables['deliveries'], $id ) );
 		$wpdb->update( $tables['campaigns'], array( 'total' => $total, 'status' => $total ? 'queued' : 'no_subscribers', 'updated_at' => $now ), array( 'id' => $id ), array( '%d', '%s', '%s' ), array( '%d' ) );
 		if ( $total ) { self::worker( $id ); }
 		return 'tg-broadcast-' . $id;
@@ -1047,7 +1056,7 @@ final class Telegram_Bot {
 		$lock = Lock::acquire( 'gkch_telegram_campaign_' . $campaign_id, 120 );
 		if ( ! $lock ) { return; }
 		try {
-			$campaign = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$tables['campaigns']} WHERE id=%d", $campaign_id ), ARRAY_A );
+			$campaign = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM %i WHERE id=%d", $tables['campaigns'], $campaign_id ), ARRAY_A );
 			if ( ! is_array( $campaign ) || ! in_array( $campaign['status'], array( 'queued', 'processing', 'partial' ), true ) ) { return; }
 			if ( ! self::broadcasting_enabled() ) {
 				$wpdb->update( $tables['deliveries'], array( 'status' => 'failed', 'error' => 'telegram_disabled' ), array( 'campaign_id' => $campaign_id, 'status' => 'pending' ), array( '%s', '%s' ), array( '%d', '%s' ) );
@@ -1059,7 +1068,7 @@ final class Telegram_Bot {
 			$kind = $campaign['source_type'];
 			if ( 'automation' === $kind && ! Publication_Rules::allows( array( 'kind' => 'automation', 'source' => (int) $campaign['source_id'], 'reply_context' => $context ) ) ) { self::set_campaign_status( $campaign_id, 'cancelled', 'The publication rule is no longer active.' ); self::skip_pending( $campaign_id, 'rule_inactive' ); return; }
 			if ( 'post' === $kind && ( 'publish' !== get_post_status( (int) $campaign['source_id'] ) || ! Publication_Rules::allows( array( 'kind' => 'post', 'source' => (int) $campaign['source_id'], 'reply_context' => $context ) ) ) ) { self::set_campaign_status( $campaign_id, 'cancelled', 'The post is no longer available for publication.' ); self::skip_pending( $campaign_id, 'post_unavailable' ); return; }
-			$batch = $wpdb->get_results( $wpdb->prepare( "SELECT d.*,s.chat_id,s.status AS subscriber_status FROM {$tables['deliveries']} d LEFT JOIN {$tables['subscribers']} s ON s.id=d.subscriber_id WHERE d.campaign_id=%d AND d.status='pending' ORDER BY d.id ASC", $campaign_id ), ARRAY_A );
+			$batch = $wpdb->get_results( $wpdb->prepare( "SELECT d.*,s.chat_id,s.status AS subscriber_status FROM %i d LEFT JOIN %i s ON s.id=d.subscriber_id WHERE d.campaign_id=%d AND d.status='pending' ORDER BY d.id ASC", $tables['deliveries'], $tables['subscribers'], $campaign_id ), ARRAY_A );
 			if ( ! $batch ) { self::finish_campaign( $campaign_id ); return; }
 			self::set_campaign_status( $campaign_id, 'processing', '' );
 			foreach ( $batch as $index => $delivery ) {
@@ -1153,7 +1162,7 @@ final class Telegram_Bot {
 	private static function finish_campaign( int $campaign_id ): void {
 		global $wpdb;
 		$tables = self::tables();
-		$counts = $wpdb->get_results( $wpdb->prepare( "SELECT status,COUNT(*) AS amount,MIN(next_attempt) AS next_at FROM {$tables['deliveries']} WHERE campaign_id=%d GROUP BY status", $campaign_id ), ARRAY_A );
+		$counts = $wpdb->get_results( $wpdb->prepare( "SELECT status,COUNT(*) AS amount,MIN(next_attempt) AS next_at FROM %i WHERE campaign_id=%d GROUP BY status", $tables['deliveries'], $campaign_id ), ARRAY_A );
 		$pending = 0; $sent = 0; $failed = 0; $skipped = 0;
 		foreach ( (array) $counts as $row ) {
 			if ( 'pending' === $row['status'] ) { $pending = (int) $row['amount']; }
@@ -1385,13 +1394,19 @@ final class Telegram_Bot {
 
 	private static function switch_language( string $language ) {
 		$old = null;
-		if ( has_filter( 'wpml_current_language' ) ) { $old = apply_filters( 'wpml_current_language', null ); do_action( 'wpml_switch_language', $language ); }
+		if ( has_filter( 'wpml_current_language' ) ) {
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- These are the exact public WPML hook names.
+			$old = apply_filters( 'wpml_current_language', null ); do_action( 'wpml_switch_language', $language );
+		}
 		elseif ( function_exists( 'pll_current_language' ) && function_exists( 'pll_switch_language' ) ) { $old = pll_current_language( 'slug' ); pll_switch_language( $language ); }
 		return $old;
 	}
 
 	private static function restore_language( $old ): void {
-		if ( is_string( $old ) && has_filter( 'wpml_current_language' ) ) { do_action( 'wpml_switch_language', $old ); }
+		if ( is_string( $old ) && has_filter( 'wpml_current_language' ) ) {
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- This is the exact public WPML action name.
+			do_action( 'wpml_switch_language', $old );
+		}
 		elseif ( is_string( $old ) && function_exists( 'pll_switch_language' ) ) { pll_switch_language( $old ); }
 	}
 
@@ -1408,7 +1423,10 @@ final class Telegram_Bot {
 	}
 
 	public static function admin_assets( string $hook ): void {
-		if ( 'gkch-telegram-command-edit' !== sanitize_key( (string) ( $_GET['page'] ?? '' ) ) ) { return; }
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- The page query only decides whether to enqueue editor assets.
+		$page = is_string( $_GET['page'] ?? null ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '';
+		// phpcs:enable WordPress.Security.NonceVerification.Recommended
+		if ( 'gkch-telegram-command-edit' !== $page ) { return; }
 		wp_enqueue_media();
 		wp_enqueue_script( 'gkch-telegram-bot-admin', plugins_url( 'assets/telegram-bot-admin.js', GKPS_FILE ), array( 'jquery', 'media-editor' ), GKPS_VERSION, true );
 		wp_localize_script( 'gkch-telegram-bot-admin', 'gkchTelegramMedia', array(
@@ -1498,7 +1516,8 @@ final class Telegram_Bot {
 		check_admin_referer( 'gkch_telegram_bot_command_save' );
 		$kind = is_string( $_POST['kind'] ?? null ) ? sanitize_key( wp_unslash( $_POST['kind'] ) ) : '';
 		$key = is_string( $_POST['command_key'] ?? null ) ? sanitize_key( wp_unslash( $_POST['command_key'] ) ) : '';
-		$index = isset( $_POST['command_index'] ) && is_scalar( $_POST['command_index'] ) && is_numeric( $_POST['command_index'] ) ? (int) $_POST['command_index'] : -1;
+		$raw_index = isset( $_POST['command_index'] ) && is_scalar( $_POST['command_index'] ) ? wp_unslash( $_POST['command_index'] ) : null;
+		$index = is_numeric( $raw_index ) ? (int) $raw_index : -1;
 		$is_new_command = 'custom' === $kind && $index < 0;
 		if ( 'custom' === $kind && ! empty( $_POST['delete_command'] ) ) {
 			$commands = self::custom_commands();
@@ -1507,6 +1526,7 @@ final class Telegram_Bot {
 			self::sync_menu_commands();
 			wp_safe_redirect( admin_url( 'admin.php?page=gkch-telegram-commands' ) ); exit;
 		}
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Locale fields are validated individually by sanitize_text_field(), sanitize_reply(), and sanitize_media_ids() before saving.
 		$input = isset( $_POST['localized'] ) && is_array( $_POST['localized'] ) ? wp_unslash( $_POST['localized'] ) : array();
 		$base = array( 'reply_type' => 'text', 'schedule_period' => 'today', 'reply_post_id' => 0 );
 		if ( 'system' === $kind ) {
@@ -1517,12 +1537,16 @@ final class Telegram_Bot {
 		} elseif ( 'custom' === $kind ) {
 			$commands = self::custom_commands();
 			$base = $index >= 0 && isset( $commands[$index] ) ? $commands[$index] : $base;
-			$base['type'] = in_array( $_POST['type'] ?? 'command', array( 'command', 'text' ), true ) ? sanitize_key( wp_unslash( $_POST['type'] ) ) : 'command';
+			$type = is_string( $_POST['type'] ?? null ) ? sanitize_key( wp_unslash( $_POST['type'] ) ) : 'command';
+			$base['type'] = in_array( $type, array( 'command', 'text' ), true ) ? $type : 'command';
 			$base['command'] = is_string( $_POST['command'] ?? null ) ? sanitize_key( wp_unslash( $_POST['command'] ) ) : '';
 		} else { wp_die( esc_html__( 'Bot command type is invalid.', 'georg-kloster-connect-hub' ) ); }
-		$base['reply_type'] = in_array( $_POST['reply_type'] ?? '', array( 'text', 'html', 'schedule', 'page', 'news' ), true ) ? sanitize_key( wp_unslash( $_POST['reply_type'] ) ) : 'text';
-		$base['schedule_period'] = 'week' === ( $_POST['schedule_period'] ?? '' ) ? 'week' : 'today';
-		$base['reply_post_id'] = isset( $_POST['reply_post_id'] ) ? absint( $_POST['reply_post_id'] ) : 0;
+		$reply_type = is_string( $_POST['reply_type'] ?? null ) ? sanitize_key( wp_unslash( $_POST['reply_type'] ) ) : '';
+		$base['reply_type'] = in_array( $reply_type, array( 'text', 'html', 'schedule', 'page', 'news' ), true ) ? $reply_type : 'text';
+		$schedule_period = is_string( $_POST['schedule_period'] ?? null ) ? sanitize_key( wp_unslash( $_POST['schedule_period'] ) ) : '';
+		$base['schedule_period'] = 'week' === $schedule_period ? 'week' : 'today';
+		$base['reply_post_id'] = isset( $_POST['reply_post_id'] ) ? absint( wp_unslash( $_POST['reply_post_id'] ) ) : 0;
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Each menu-button field and URL is validated by sanitize_menu_buttons() before persistence.
 		$menu_input = isset( $_POST['menu_buttons'] ) && is_array( $_POST['menu_buttons'] ) ? wp_unslash( $_POST['menu_buttons'] ) : array();
 		$base['menu_buttons'] = self::sanitize_menu_buttons( $menu_input );
 		$valid_targets = array_keys( self::menu_target_options() );
@@ -1621,6 +1645,7 @@ final class Telegram_Bot {
 
 	public static function render_command_editor(): void {
 		if ( ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Insufficient permissions.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); }
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- GET values only choose which editor item to display; saving and deletion use nonce-verified POST forms.
 		$kind = is_string( $_GET['kind'] ?? null ) ? sanitize_key( wp_unslash( $_GET['kind'] ) ) : '';
 		$id = is_string( $_GET['id'] ?? null ) ? sanitize_text_field( wp_unslash( $_GET['id'] ) ) : '';
 		$system = 'system' === $kind;
@@ -1695,17 +1720,18 @@ final class Telegram_Bot {
 		submit_button( __( 'Save command', 'georg-kloster-connect-hub' ), 'primary', 'submit', false );
 		if ( ! $system && 'new' !== $id ) { echo '<p><button class="button-link-delete" type="submit" name="delete_command" value="1" onclick="return confirm(' . esc_attr( wp_json_encode( __( 'Delete this command or responder?', 'georg-kloster-connect-hub' ) ) ) . ');">' . esc_html__( 'Delete', 'georg-kloster-connect-hub' ) . '</button></p>'; }
 		echo '</div></div></div></div></div></form></div>';
+		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 	}
 
 	public static function render(): void {
 		if ( ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Insufficient permissions.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); }
 		global $wpdb;
 		$tables = self::tables();
-		$total = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$tables['subscribers']} WHERE status='active'" );
+		$total = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM %i WHERE status='active'", $tables['subscribers'] ) );
 		echo '<div class="wrap"><h1>' . esc_html__( 'Telegram bot subscribers', 'georg-kloster-connect-hub' ) . '</h1>';
 		echo '<p>' . esc_html__( 'Anyone who presses Start is subscribed to news and schedule announcements. /stop removes their Chat ID from the active subscriber list. The bot sends only to users who initiated the chat.', 'georg-kloster-connect-hub' ) . '</p>';
 		echo '<p><a class="button" href="' . esc_url( admin_url( 'admin.php?page=gkch-telegram-commands' ) ) . '">' . esc_html__( 'Manage bot commands and replies', 'georg-kloster-connect-hub' ) . '</a></p>';
-		$counts = $wpdb->get_results( "SELECT language,COUNT(*) AS amount FROM {$tables['subscribers']} WHERE status='active' GROUP BY language", ARRAY_A );
+		$counts = $wpdb->get_results( $wpdb->prepare( "SELECT language,COUNT(*) AS amount FROM %i WHERE status='active' GROUP BY language", $tables['subscribers'] ), ARRAY_A );
 		$available = self::active_languages(); $language_counts = array();
 		foreach ( (array) $counts as $row ) { $name = $available[$row['language']]['name'] ?? $row['language']; $language_counts[] = $name . ': ' . (int) $row['amount']; }
 		echo '<p><strong>' . esc_html__( 'Active subscribers', 'georg-kloster-connect-hub' ) . ':</strong> ' . esc_html( (string) $total ) . ( $language_counts ? ' · ' . esc_html( implode( ' · ', $language_counts ) ) : '' ) . '</p>';
@@ -1716,12 +1742,12 @@ final class Telegram_Bot {
 
 	private static function render_campaigns( array $tables ): void {
 		global $wpdb;
-		$rows = $wpdb->get_results( "SELECT * FROM {$tables['campaigns']} ORDER BY id DESC LIMIT 25", ARRAY_A );
+		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM %i ORDER BY id DESC LIMIT 25", $tables['campaigns'] ), ARRAY_A );
 		echo '<h2>' . esc_html__( 'Recent broadcast status', 'georg-kloster-connect-hub' ) . '</h2><table class="widefat striped"><thead><tr><th>' . esc_html__( 'Message', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Status', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Recipients', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Action', 'georg-kloster-connect-hub' ) . '</th></tr></thead><tbody>';
 		foreach ( (array) $rows as $row ) {
 			$summary = $row['sent'] . '/' . $row['total'] . ' ' . __( 'sent', 'georg-kloster-connect-hub' ) . ( (int) $row['failed'] ? '; ' . $row['failed'] . ' ' . __( 'failed', 'georg-kloster-connect-hub' ) : '' ) . ( (int) $row['skipped'] ? '; ' . $row['skipped'] . ' ' . __( 'skipped', 'georg-kloster-connect-hub' ) : '' );
 			$statuses = array( 'queued' => __( 'Needs attention', 'georg-kloster-connect-hub' ), 'processing' => __( 'Sending', 'georg-kloster-connect-hub' ), 'partial' => __( 'Completed with issues', 'georg-kloster-connect-hub' ), 'sent' => __( 'Completed', 'georg-kloster-connect-hub' ), 'failed' => __( 'Needs attention', 'georg-kloster-connect-hub' ), 'cancelled' => __( 'Cancelled', 'georg-kloster-connect-hub' ), 'no_subscribers' => __( 'No subscribers at send time', 'georg-kloster-connect-hub' ) );
-			$pending = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$tables['deliveries']} WHERE campaign_id=%d AND status='pending'", $row['id'] ) );
+			$pending = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM %i WHERE campaign_id=%d AND status='pending'", $tables['deliveries'], $row['id'] ) );
 			$reason = '';
 			if ( 'cron_schedule_failed' === $row['error'] ) { $reason = __( 'WordPress could not schedule this delivery. Retry it or check that WordPress Cron is running.', 'georg-kloster-connect-hub' ); }
 			elseif ( 'telegram_disabled' === $row['error'] ) { $reason = __( 'Telegram sending is disabled or the connection is incomplete. Retry after correcting the settings.', 'georg-kloster-connect-hub' ); }
@@ -1739,10 +1765,11 @@ final class Telegram_Bot {
 
 	private static function render_subscribers( array $tables ): void {
 		global $wpdb;
-		$page = max( 1, absint( $_GET['subscriber_page'] ?? 1 ) );
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- This GET value only selects a page of read-only subscriber data.
+		$page = max( 1, absint( wp_unslash( $_GET['subscriber_page'] ?? 1 ) ) );
 		$per_page = 50; $offset = ( $page - 1 ) * $per_page;
-		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT id,chat_id,language,created_at FROM {$tables['subscribers']} WHERE status='active' ORDER BY id DESC LIMIT %d OFFSET %d", $per_page, $offset ), ARRAY_A );
-		$total = (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$tables['subscribers']} WHERE status='active'" );
+		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT id,chat_id,language,created_at FROM %i WHERE status='active' ORDER BY id DESC LIMIT %d OFFSET %d", $tables['subscribers'], $per_page, $offset ), ARRAY_A );
+		$total = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM %i WHERE status='active'", $tables['subscribers'] ) );
 		echo '<h2>' . esc_html__( 'Active subscribers', 'georg-kloster-connect-hub' ) . '</h2><table class="widefat striped"><thead><tr><th>Chat ID</th><th>' . esc_html__( 'Language', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Subscribed', 'georg-kloster-connect-hub' ) . '</th><th>' . esc_html__( 'Action', 'georg-kloster-connect-hub' ) . '</th></tr></thead><tbody>';
 		$available = self::active_languages();
 		foreach ( (array) $rows as $row ) { $name = $available[$row['language']]['name'] ?? $row['language']; echo '<tr><td>' . esc_html( $row['chat_id'] ) . '</td><td>' . esc_html( $name ) . '</td><td>' . esc_html( $row['created_at'] ) . '</td><td>'; self::action_form( 'remove_subscriber', (int) $row['id'], __( 'Remove subscriber', 'georg-kloster-connect-hub' ) ); echo '</td></tr>'; }
@@ -1761,17 +1788,17 @@ final class Telegram_Bot {
 	public static function admin_action(): void {
 		if ( ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Insufficient permissions.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); }
 		$action = is_string( $_POST['item_action'] ?? null ) ? sanitize_key( wp_unslash( $_POST['item_action'] ) ) : '';
-		$id = is_scalar( $_POST['item_id'] ?? null ) ? absint( $_POST['item_id'] ) : 0;
+		$id = is_scalar( $_POST['item_id'] ?? null ) ? absint( wp_unslash( $_POST['item_id'] ) ) : 0;
 		check_admin_referer( 'gkch_telegram_action_' . $action . '_' . $id );
 		global $wpdb; $tables = self::tables();
 		if ( 'remove_subscriber' === $action && $id ) {
-			$chat = $wpdb->get_var( $wpdb->prepare( "SELECT chat_id FROM {$tables['subscribers']} WHERE id=%d", $id ) );
+			$chat = $wpdb->get_var( $wpdb->prepare( "SELECT chat_id FROM %i WHERE id=%d", $tables['subscribers'], $id ) );
 			if ( $chat ) { self::unsubscribe( (string) $chat ); }
 		} elseif ( 'retry' === $action && $id ) {
-			$campaign_status = $wpdb->get_var( $wpdb->prepare( "SELECT status FROM {$tables['campaigns']} WHERE id=%d", $id ) );
+			$campaign_status = $wpdb->get_var( $wpdb->prepare( "SELECT status FROM %i WHERE id=%d", $tables['campaigns'], $id ) );
 			if ( in_array( $campaign_status, array( 'partial', 'failed', 'processing', 'queued' ), true ) ) {
 				$now = gmdate( 'Y-m-d H:i:s' );
-				$wpdb->query( $wpdb->prepare( "UPDATE {$tables['deliveries']} SET status='pending',attempts=0,error='',next_attempt=%s WHERE campaign_id=%d AND status IN ('failed','pending')", $now, $id ) );
+				$wpdb->query( $wpdb->prepare( "UPDATE %i SET status='pending',attempts=0,error='',next_attempt=%s WHERE campaign_id=%d AND status IN ('failed','pending')", $tables['deliveries'], $now, $id ) );
 				$wpdb->update( $tables['campaigns'], array( 'status' => 'queued', 'error' => '', 'updated_at' => $now ), array( 'id' => $id ), array( '%s', '%s', '%s' ), array( '%d' ) );
 				self::worker( $id );
 			}
@@ -1780,4 +1807,5 @@ final class Telegram_Bot {
 		}
 		wp_safe_redirect( admin_url( 'admin.php?page=gkch-telegram' ) ); exit;
 	}
+    // phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 }

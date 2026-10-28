@@ -110,10 +110,12 @@ final class Telegram_Requests {
         if ( ( '' === trim( $body ) && ! isset( $message['photo'] ) && ! isset( $message['sticker'] ) && ! isset( $message['video'] ) && ! isset( $message['animation'] ) && ! isset( $message['document'] ) ) || strlen( $raw_body ) > 20000 ) { return $ok; }
         $sender_chat = (string) $message['chat']['id'];
         $key = self::message_key( $sender_chat, $o['bot'], $message['reply_to_message']['message_id'] );
+        // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- Telegram reply lookup is bounded to two private request matches by a generated message key.
         $posts = get_posts( array( 'post_type' => 'gkps_request', 'post_status' => 'private', 'numberposts' => 2, 'meta_key' => '_gkps_telegram_message', 'meta_value' => $key ) );
         // Preserve replies to messages sent before per-form Chat IDs were introduced.
         if ( ! $posts && $sender_chat === (string) $settings['target'] ) {
             $legacy_key = hash( 'sha256', $o['configuration'] . '|' . $message['reply_to_message']['message_id'] );
+            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- Legacy Telegram reply lookup is bounded to two private request matches by a generated message key.
             $posts = get_posts( array( 'post_type' => 'gkps_request', 'post_status' => 'private', 'numberposts' => 2, 'meta_key' => '_gkps_telegram_message', 'meta_value' => $legacy_key ) );
         }
         if ( 1 !== count( $posts ) || 'closed' === get_post_meta( $posts[0]->ID, '_gkps_request_status', true ) || self::destination_for_request( (int) $posts[0]->ID ) !== $sender_chat || ! self::ready_for_request( (int) $posts[0]->ID ) || get_option( 'gkps_purge_job' ) ) { return $ok; }
@@ -123,6 +125,7 @@ final class Telegram_Requests {
         if ( ! $owner ) { return new \WP_Error( 'telegram_busy', __( 'Try again later.', 'georg-kloster-connect-hub' ), array( 'status' => 503 ) ); }
         $previous = get_current_user_id();
         try {
+            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- Idempotency checks inspect at most one private reply record by a fixed key.
             $existing = get_posts( array( 'post_type' => 'gkps_message', 'post_status' => 'private', 'numberposts' => 1, 'meta_key' => '_gkps_reply_source', 'meta_value' => $receipt ) );
             if ( $existing ) { return $ok; }
             wp_set_current_user( self::staff_for_request( (int) $posts[0]->ID ) );

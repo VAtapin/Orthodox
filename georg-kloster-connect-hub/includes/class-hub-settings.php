@@ -32,9 +32,12 @@ final class Hub_Settings {
         $settings = self::get();
         $enabled = ! empty( $_POST['enabled'] );
         $retention = isset( $_POST['retention_days'] ) && is_scalar( $_POST['retention_days'] ) ? max( 30, min( 3650, absint( wp_unslash( $_POST['retention_days'] ) ) ) ) : 365;
-        $site_key = isset( $_POST['site_key'] ) && is_string( $_POST['site_key'] ) ? sanitize_text_field( trim( wp_unslash( $_POST['site_key'] ) ) ) : '';
-        $threshold = isset( $_POST['threshold'] ) && is_numeric( $_POST['threshold'] ) ? max( 0.1, min( 0.9, round( (float) wp_unslash( $_POST['threshold'] ), 1 ) ) ) : 0.5;
-        $secret = isset( $_POST['secret_key'] ) && is_string( $_POST['secret_key'] ) ? sanitize_text_field( trim( wp_unslash( $_POST['secret_key'] ) ) ) : '';
+        $raw_site_key = isset( $_POST['site_key'] ) && is_string( $_POST['site_key'] ) ? wp_unslash( $_POST['site_key'] ) : '';
+        $site_key = sanitize_text_field( trim( $raw_site_key ) );
+        $raw_threshold = isset( $_POST['threshold'] ) && is_scalar( $_POST['threshold'] ) ? wp_unslash( $_POST['threshold'] ) : '';
+        $threshold = is_numeric( $raw_threshold ) ? max( 0.1, min( 0.9, round( (float) $raw_threshold, 1 ) ) ) : 0.5;
+        $raw_secret = isset( $_POST['secret_key'] ) && is_string( $_POST['secret_key'] ) ? wp_unslash( $_POST['secret_key'] ) : '';
+        $secret = sanitize_text_field( trim( $raw_secret ) );
         update_option( 'gkps_retention_days', $retention, false );
         update_option( 'gkch_settings', array( 'enabled' => $enabled, 'recaptcha_site_key' => $site_key, 'recaptcha_threshold' => $threshold ), false );
         if ( ! empty( $_POST['clear_secret'] ) ) { delete_option( 'gkch_recaptcha_secret' ); }
@@ -44,7 +47,8 @@ final class Hub_Settings {
     }
     public static function render(): void {
         if ( ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Access denied.', 'georg-kloster-connect-hub' ) ); }
-        $network = isset( $_GET['network'] ) && is_string( $_GET['network'] ) ? sanitize_key( $_GET['network'] ) : '';
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended -- These GET parameters only select a settings tab and show a success notice.
+        $network = isset( $_GET['network'] ) && is_string( $_GET['network'] ) ? sanitize_key( wp_unslash( $_GET['network'] ) ) : '';
         $networks = Publications::titles();
         if ( ! isset( $networks[$network] ) ) { $network = ''; }
         echo '<div class="wrap"><h1>' . esc_html__( 'Settings', 'georg-kloster-connect-hub' ) . '</h1><nav class="nav-tab-wrapper" aria-label="' . esc_attr__( 'Settings sections', 'georg-kloster-connect-hub' ) . '">';
@@ -70,6 +74,7 @@ final class Hub_Settings {
         submit_button();
         echo '</form><p>' . esc_html__( 'Each form has its own topics, text, recipient and enabled state. Channel credentials are configured in their respective sections.', 'georg-kloster-connect-hub' ) . '</p>';
         Blocks::help();
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
         echo '</div>';
     }
 }

@@ -80,6 +80,7 @@ final class Publication_Rules {
             }
             $rule['enabled'] = ! empty( $input['enabled'] );
             if ( ! array_filter( $rule['translations'] ) && '' !== $rule['text'] ) {
+                // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- This is the exact public WPML filter name.
                 $default_language = has_filter( 'wpml_default_language' ) ? apply_filters( 'wpml_default_language', null ) : '';
                 $default_language = is_string( $default_language ) && isset( $active_languages[$default_language] ) ? $default_language : (string) array_key_first( $active_languages );
                 if ( '' !== $default_language ) { $rule['translations'][$default_language] = $rule['text']; }

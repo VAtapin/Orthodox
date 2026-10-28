@@ -52,10 +52,14 @@ final class Connector {
     public function legacy_settings(): void {
         $this->authorize();
         $url = $this->settings_url();
-        if ( 'telegram' === $this->id && isset( $_GET['gkps_connect_error'] ) && is_string( $_GET['gkps_connect_error'] ) ) {
-            $codes = array_intersect( explode( ',', $_GET['gkps_connect_error'] ), array_keys( self::telegram_error_messages() ) );
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended -- The legacy page only reads an error-code list and redirects to the current settings screen.
+        $raw_error_codes = isset( $_GET['gkps_connect_error'] ) && is_string( $_GET['gkps_connect_error'] ) ? wp_unslash( $_GET['gkps_connect_error'] ) : '';
+        if ( 'telegram' === $this->id && '' !== $raw_error_codes ) {
+            $raw_codes = sanitize_text_field( $raw_error_codes );
+            $codes = array_intersect( array_map( 'sanitize_key', explode( ',', $raw_codes ) ), array_keys( self::telegram_error_messages() ) );
             if ( $codes ) { $url = add_query_arg( 'gkps_connect_error', implode( ',', $codes ), $url ); }
         }
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
         wp_safe_redirect( $url ); exit;
     }
     public function health(): array {
@@ -76,8 +80,11 @@ final class Connector {
         $error_key = 'gkps_connector_error_' . $this->id . '_' . get_current_user_id();
         foreach ( (array) get_transient( $error_key ) as $error ) { echo '<div class="notice notice-error"><p>' . esc_html( $error ) . '</p></div>'; }
         delete_transient( $error_key);
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended -- The error codes are read-only display state from the Telegram connection redirect.
         if ( 'telegram' === $this->id ) {
-            $error_codes = isset( $_GET['gkps_connect_error'] ) && is_string( $_GET['gkps_connect_error'] ) ? explode( ',', $_GET['gkps_connect_error'] ) : array();
+            $raw_error_codes = isset( $_GET['gkps_connect_error'] ) && is_string( $_GET['gkps_connect_error'] ) ? wp_unslash( $_GET['gkps_connect_error'] ) : '';
+            $raw_error_codes = sanitize_text_field( $raw_error_codes );
+            $error_codes = array_map( 'sanitize_key', explode( ',', $raw_error_codes ) );
             foreach ( self::telegram_error_messages() as $code => $message ) { if ( in_array( $code, $error_codes, true ) ) { echo '<div class="notice notice-error"><p>' . esc_html( $message ) . '</p></div>'; } }
         echo '<p>' . esc_html__( 'A bot token is required. Each form uses only its own private Chat ID for contact messages; the old global Chat ID is not used. Public posts and schedule messages go to people who pressed Start in the bot.', 'georg-kloster-connect-hub' ) . '</p>';
         }
@@ -110,6 +117,7 @@ final class Connector {
             echo '<button class="button">' . esc_html__( 'Retry the last delivery after correcting the settings', 'georg-kloster-connect-hub' ) . '</button></form>';
         }
         do_action( 'gkps_connector_settings_after', $this->id );
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
         echo '</div>';
     }
     private function documentation(): void {
@@ -160,8 +168,10 @@ final class Connector {
         }, 'post', 'side' );
     }
     public function publish_post( int $id ): void {
-        $nonce = $_POST[ 'gkps_publish_nonce_' . $this->id ] ?? '';
-        if ( ! current_user_can( 'edit_post', $id ) || ! is_string( $nonce ) || ! wp_verify_nonce( $nonce, 'gkps_publish_' . $this->id ) || empty( $_POST['gkps_publish'][ $this->id ] ) || 'publish' !== get_post_status( $id ) || wp_is_post_autosave( $id ) || wp_is_post_revision( $id ) ) { return; }
+        $nonce_key = 'gkps_publish_nonce_' . $this->id;
+        $raw_nonce = isset( $_POST[$nonce_key] ) && is_string( $_POST[$nonce_key] ) ? wp_unslash( $_POST[$nonce_key] ) : '';
+        $nonce = sanitize_text_field( $raw_nonce );
+        if ( ! current_user_can( 'edit_post', $id ) || ! wp_verify_nonce( $nonce, 'gkps_publish_' . $this->id ) || empty( $_POST['gkps_publish'][ $this->id ] ) || 'publish' !== get_post_status( $id ) || wp_is_post_autosave( $id ) || wp_is_post_revision( $id ) ) { return; }
         $post = get_post( $id ); $text = $post->post_title . "\n" . wp_html_excerpt( wp_strip_all_tags( strip_shortcodes( $post->post_content ) ), 700, '…' );
         $this->queue( $text, get_permalink( $id ), 'post', $id );
     }

@@ -7,7 +7,6 @@ final class Plugin {
     public const REST_NAMESPACE = 'gkps/v1';
 
     public static function boot(): void {
-        load_plugin_textdomain( 'georg-kloster-connect-hub', false, dirname( plugin_basename( GKPS_FILE ) ) . '/languages' );
         Capabilities::maybe_upgrade();
         Forms::register();
         Requests::hooks();

@@ -13,6 +13,7 @@ final class Requests {
         add_action( 'template_redirect', function () {
             $post = get_post();
             if ( $post && ( has_block( 'gkps/contact-form', $post ) || has_block( 'gkch/form', $post ) || str_contains( $post->post_content, '[gkch_form' ) || str_contains( $post->post_content, '[gkps_contact_form' ) || has_block( 'gkps/requests', $post ) || str_contains( $post->post_content, '[gkps_requests' ) ) ) {
+                // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound -- WordPress cache plugins require this exact core constant name.
                 if ( ! defined( 'DONOTCACHEPAGE' ) ) { define( 'DONOTCACHEPAGE', true ); } nocache_headers();
             }
         } );
@@ -72,7 +73,7 @@ final class Requests {
             do_action( 'gkps_request_created', $id );
         } catch ( \Throwable $error ) {
             // The request is already persisted; a failing notification must not tell the sender to submit it again.
-            error_log( sprintf( 'Georg-Kloster Connect Hub: a post-create notification failed for request #%d (%s).', $id, get_class( $error ) ) );
+            do_action( 'gkch_request_notification_failed', $id, get_class( $error ) );
         }
         return $id;
     }
@@ -151,6 +152,7 @@ final class Requests {
     public static function retention(): void {
         Request_Mail_Log::retention();
         $days = max( 30, min( 3650, (int) get_option( 'gkps_retention_days', 365 ) ) );
+        // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- This scheduled cleanup scans only 100 private requests per run and uses the dedicated status metadata key.
         $posts = get_posts( array( 'post_type' => 'gkps_request', 'post_status' => 'private', 'numberposts' => 100,
             'meta_key' => '_gkps_request_status', 'meta_value' => 'closed', 'date_query' => array( array( 'before' => gmdate( 'Y-m-d H:i:s', time() - $days * DAY_IN_SECONDS ), 'column' => 'post_modified_gmt' ) ) ) );
         foreach ( $posts as $post ) { self::delete( $post->ID ); }

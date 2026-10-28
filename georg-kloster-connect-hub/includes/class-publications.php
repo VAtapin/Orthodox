@@ -34,7 +34,8 @@ final class Publications {
     public static function submit(): void {
         check_admin_referer( 'gkch_publish' );
         $post_id = isset( $_POST['post_id'] ) && is_scalar( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
-        $channels = isset( $_POST['channels'] ) && is_array( $_POST['channels'] ) ? array_values( array_filter( wp_unslash( $_POST['channels'] ), 'is_string' ) ) : array();
+        $submitted_channels = isset( $_POST['channels'] ) && is_array( $_POST['channels'] ) ? wp_unslash( $_POST['channels'] ) : array();
+        $channels = array_values( array_intersect( array_keys( self::titles() ), array_map( 'sanitize_key', array_filter( $submitted_channels, 'is_string' ) ) ) );
         try { self::enqueue( $post_id, $channels ); $notice = __( 'Publication submitted. Delivery status appears below.', 'georg-kloster-connect-hub' ); }
         catch ( \Throwable $error ) { $notice = $error->getMessage(); }
         set_transient( 'gkch_publication_notice_' . get_current_user_id(), $notice, 120 );
@@ -42,6 +43,7 @@ final class Publications {
     }
     public static function history(): array {
         global $wpdb;
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- This bounded query lists at most 200 non-autoloaded queue options by prefix; the Options API has no prefix-query equivalent.
         $rows = $wpdb->get_results( $wpdb->prepare( "SELECT option_name, option_value FROM {$wpdb->options} WHERE option_name LIKE %s ORDER BY option_id DESC LIMIT 200", $wpdb->esc_like( 'gkps_job_' ) . '%' ), ARRAY_A );
         $jobs = array();
         foreach ( $rows as $row ) {

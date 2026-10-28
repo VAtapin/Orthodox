@@ -69,8 +69,12 @@ final class Request_Media {
         return current_user_can( 'view_gkps_requests' ) && $message && 'gkps_message' === $message->post_type && 'private' === $message->post_status && 'gkps_request' === get_post_type( $message->post_parent ) && 'private' === get_post_status( $message->post_parent ) && is_string( $nonce ) && (bool) wp_verify_nonce( $nonce, 'gkps_reply_image_' . $id );
     }
     public static function serve(): void {
-        $id = is_scalar( $_GET['message_id'] ?? null ) ? absint( $_GET['message_id'] ) : 0;
-        if ( ! self::can_view( $id, $_GET['_wpnonce'] ?? '' ) ) { wp_die( esc_html__( 'Insufficient permissions.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); }
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended -- The private media URL includes an action-specific nonce checked below with the current user's capability.
+        $id = is_scalar( $_GET['message_id'] ?? null ) ? absint( wp_unslash( $_GET['message_id'] ) ) : 0;
+        $raw_nonce = is_string( $_GET['_wpnonce'] ?? null ) ? wp_unslash( $_GET['_wpnonce'] ) : '';
+        $nonce = sanitize_text_field( $raw_nonce );
+        if ( ! self::can_view( $id, $nonce ) ) { wp_die( esc_html__( 'Insufficient permissions.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); }
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
         try { $media = self::validated( (array) get_post_meta( $id, '_gkps_reply_media', true ) ); } catch ( \Throwable $error ) { $media = array(); }
         if ( ! $media ) { status_header( 404 ); exit; }
         nocache_headers(); header( 'Content-Type: ' . $media['mime'] ); header( 'X-Content-Type-Options: nosniff' ); header( 'Content-Disposition: inline; filename="reply-image.' . ( 'image/png' === $media['mime'] ? 'png' : 'jpg' ) . '"' );

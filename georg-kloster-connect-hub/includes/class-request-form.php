@@ -37,7 +37,7 @@ final class Request_Form {
         $recaptcha_enabled = '' !== $recaptcha['recaptcha_site_key'] && '' !== $recaptcha['recaptcha_secret_key'];
         $id = 'gkps-request-' . wp_unique_id();
         if ( $recaptcha_enabled ) {
-            wp_enqueue_script( 'gkps-recaptcha-v3', 'https://www.google.com/recaptcha/api.js?render=' . rawurlencode( $recaptcha['recaptcha_site_key'] ), array(), null, true );
+            wp_enqueue_script( 'gkps-recaptcha-v3', 'https://www.google.com/recaptcha/api.js?render=' . rawurlencode( $recaptcha['recaptcha_site_key'] ), array(), '3.0', true );
             wp_script_add_data( 'gkps-recaptcha-v3', 'strategy', 'defer' );
         }
         wp_register_script( 'gkps-request-form', plugins_url( 'assets/request-form.js', GKPS_FILE ), $recaptcha_enabled ? array( 'gkps-recaptcha-v3' ) : array(), GKPS_VERSION, true );
@@ -45,8 +45,8 @@ final class Request_Form {
         wp_enqueue_script( 'gkps-request-form' );
         set_transient( 'gkps_form_' . hash( 'sha256', $token ), array( 'form_id' => $form_id ), HOUR_IN_SECONDS );
         $html = '<section class="gkps-block gkps-requests">' . ( $settings['title'] ? '<h2>' . esc_html( $settings['title'] ) . '</h2>' : '' ) . ( $settings['intro'] ? wpautop( esc_html( $settings['intro'] ) ) : '' );
-        $notice = isset( $_GET['gkps_request'] ) && is_string( $_GET['gkps_request'] ) ? sanitize_key( $_GET['gkps_request'] ) : '';
-        $notice_form = isset( $_GET['gkch_form'] ) && is_scalar( $_GET['gkch_form'] ) ? (int) $_GET['gkch_form'] : 0;
+        $notice = isset( $_GET['gkps_request'] ) && is_string( $_GET['gkps_request'] ) ? sanitize_key( wp_unslash( $_GET['gkps_request'] ) ) : '';
+        $notice_form = isset( $_GET['gkch_form'] ) && is_scalar( $_GET['gkch_form'] ) ? absint( wp_unslash( $_GET['gkch_form'] ) ) : 0;
         if ( $notice_form !== $form_id ) { $notice = ''; }
         if ( 'sent' === $notice ) { $html .= '<p role="status">' . esc_html__( 'Your message has been received. A reply will be sent by email.', 'georg-kloster-connect-hub' ) . '</p>'; }
         if ( 'error' === $notice ) { $html .= '<p role="alert">' . esc_html__( 'Your message was not sent. Check the fields or try again later.', 'georg-kloster-connect-hub' ) . '</p>'; }
@@ -102,7 +102,7 @@ final class Request_Form {
             self::process_submission( wp_unslash( $_POST ), isset( $_SERVER['REMOTE_ADDR'] ) && is_string( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : 'unknown' );
             $status = 'sent';
         } catch ( \Throwable $error ) { $status = 'error'; }
-        wp_safe_redirect( add_query_arg( array( 'gkps_request' => $status, 'gkch_form' => isset( $_POST['form_id'] ) && is_scalar( $_POST['form_id'] ) ? absint( $_POST['form_id'] ) : 0 ), $redirect ) ); exit;
+        wp_safe_redirect( add_query_arg( array( 'gkps_request' => $status, 'gkch_form' => isset( $_POST['form_id'] ) && is_scalar( $_POST['form_id'] ) ? absint( wp_unslash( $_POST['form_id'] ) ) : 0 ), $redirect ) ); exit;
     }
     public static function rate_limit( string $key ): void {
         $lock = $key . '_lock';

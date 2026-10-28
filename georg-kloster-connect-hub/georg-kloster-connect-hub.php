@@ -34,7 +34,6 @@ $gkch_load = static function (): bool {
 };
 
 register_activation_hook( __FILE__, static function () use ( $gkch_load ) {
-    load_plugin_textdomain( 'georg-kloster-connect-hub', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
     // If the legacy plugin is still active, it already loaded the shared classes.
     // Activation must never change another plugin's activation state.
     if ( $gkch_load() ) {
@@ -52,7 +51,6 @@ add_action( 'plugins_loaded', static function () use ( $gkch_load ) {
     if ( $gkch_load() ) {
         add_action( 'init', array( 'GeorgKlosterPrihodSocial\\Plugin', 'boot' ), 0 );
     } else {
-        add_action( 'init', static function () { load_plugin_textdomain( 'georg-kloster-connect-hub', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); }, 0 );
         add_action( 'admin_notices', static function () {
             echo '<div class="notice notice-error"><p>' . esc_html__( 'Deactivate Parish Social to use Connect Hub. Your saved data will be retained.', 'georg-kloster-connect-hub' ) . '</p></div>';
         } );

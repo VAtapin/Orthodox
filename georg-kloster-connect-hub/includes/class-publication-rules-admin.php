@@ -6,7 +6,10 @@ defined( 'ABSPATH' ) || exit;
 /** Rule editor, separate from scheduling and the publication transport history. */
 final class Publication_Rules_Admin {
     public static function assets(): void {
-        if ( ! Publication_Rules::can_manage() || ! isset( $_GET['page'] ) || 'gkch-publications' !== $_GET['page'] ) { return; }
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended -- This GET value only selects whether editor assets are needed.
+        $page = isset( $_GET['page'] ) && is_string( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '';
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
+        if ( ! Publication_Rules::can_manage() || 'gkch-publications' !== $page ) { return; }
         wp_enqueue_media();
         wp_enqueue_script( 'gkch-publications', plugins_url( 'assets/publications.js', GKPS_FILE ), array( 'media-editor' ), GKPS_VERSION, true );
         wp_localize_script( 'gkch-publications', 'gkchPublicationsMedia', array( 'title' => __( 'Choose a JPEG image', 'georg-kloster-connect-hub' ), 'button' => __( 'Use this image', 'georg-kloster-connect-hub' ) ) );
@@ -59,10 +62,12 @@ final class Publication_Rules_Admin {
         }
         if ( ! $rules ) { echo '<tr><td colspan="4">' . esc_html__( 'No rules yet. Add a rule below; automatic sending is off by default.', 'georg-kloster-connect-hub' ) . '</td></tr>'; }
         echo '</tbody></table><h2>' . esc_html__( 'Add or edit a rule', 'georg-kloster-connect-hub' ) . '</h2>';
-        $id = isset( $_GET['rule'] ) && is_scalar( $_GET['rule'] ) ? absint( $_GET['rule'] ) : 0;
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended -- These GET values select a read-only editor state; writes use nonce-verified POST forms.
+        $id = isset( $_GET['rule'] ) && is_scalar( $_GET['rule'] ) ? absint( wp_unslash( $_GET['rule'] ) ) : 0;
         $rule = $id ? Publication_Rules::get( $id ) : Publication_Rules::defaults();
         if ( ! $rule ) { echo '<p>' . esc_html__( 'Invalid publication rule.', 'georg-kloster-connect-hub' ) . '</p>'; return; }
-        if ( ! $id && isset( $_GET['rule_type'] ) && 'message' === $_GET['rule_type'] ) { $rule['type'] = 'message'; }
+        $rule_type = isset( $_GET['rule_type'] ) && is_string( $_GET['rule_type'] ) ? sanitize_key( wp_unslash( $_GET['rule_type'] ) ) : '';
+        if ( ! $id && 'message' === $rule_type ) { $rule['type'] = 'message'; }
         echo '<p>';
         foreach ( self::types() as $type => $label ) { echo '<a class="button" href="' . esc_url( add_query_arg( array( 'page' => 'gkch-publications', 'rule_type' => $type ), admin_url( 'admin.php' ) ) ) . '">' . esc_html( $label ) . '</a> '; }
         echo '</p><h3>' . esc_html( self::types()[$rule['type']] ) . '</h3><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="gkch_rule_save"><input type="hidden" name="rule_id" value="' . esc_attr( $id ) . '"><input type="hidden" name="type" value="' . esc_attr( $rule['type'] ) . '">';
@@ -106,5 +111,6 @@ final class Publication_Rules_Admin {
             submit_button( __( 'Remove rule', 'georg-kloster-connect-hub' ), 'delete' ); echo '</form>';
         }
         echo '<p>' . esc_html__( 'Timezone:', 'georg-kloster-connect-hub' ) . ' ' . esc_html( wp_timezone_string() ) . '. ' . esc_html__( 'WordPress Cron runs on site visits or the server scheduler. Late runs send once, without repeating every missed interval. Editing or pausing a rule cancels its pending deliveries.', 'georg-kloster-connect-hub' ) . '</p>';
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
     }
 }

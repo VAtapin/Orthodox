@@ -43,6 +43,7 @@ final class Request_Mail_Log {
         update_post_meta( $reply, '_gkps_mail_log_expires', strtotime( $rows[0]['started_gmt'] ) + self::DAYS * DAY_IN_SECONDS );
     }
     public static function retention(): void {
+        // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key, WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- Retention scans at most 100 private reply records per scheduled run.
         $posts = get_posts( array( 'post_type' => 'gkps_message', 'post_status' => 'private', 'numberposts' => 100, 'meta_key' => '_gkps_mail_log_expires', 'meta_value' => time(), 'meta_compare' => '<=', 'meta_type' => 'NUMERIC', 'orderby' => 'meta_value_num', 'order' => 'ASC' ) );
         foreach ( $posts as $post ) { self::store( $post->ID, self::rows( $post->ID ) ); }
     }

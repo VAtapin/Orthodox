@@ -16,6 +16,7 @@ final class Lock {
     }
     public static function release( string $name, string $token ): void {
         global $wpdb;
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Lock release must compare and delete atomically to avoid removing another request's lock.
         $wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->options} WHERE option_name = %s AND option_value = %s", $name, $token ) );
         wp_cache_delete( $name, 'options' );
         wp_cache_delete( 'notoptions', 'options' );

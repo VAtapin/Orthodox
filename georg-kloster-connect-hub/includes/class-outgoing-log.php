@@ -74,8 +74,9 @@ final class Outgoing_Log {
 
     public static function render(): void {
         if ( ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Insufficient permissions.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); }
-        $channel = isset( $_GET['channel'] ) && is_string( $_GET['channel'] ) && in_array( $_GET['channel'], array( 'email', 'telegram' ), true ) ? sanitize_key( $_GET['channel'] ) : '';
-        $status = isset( $_GET['status'] ) && is_string( $_GET['status'] ) && in_array( $_GET['status'], array( 'accepted', 'failed', 'processing', 'uncertain' ), true ) ? sanitize_key( $_GET['status'] ) : '';
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended -- The GET values only filter this read-only delivery log.
+        $channel = isset( $_GET['channel'] ) && is_string( $_GET['channel'] ) && in_array( wp_unslash( $_GET['channel'] ), array( 'email', 'telegram' ), true ) ? sanitize_key( wp_unslash( $_GET['channel'] ) ) : '';
+        $status = isset( $_GET['status'] ) && is_string( $_GET['status'] ) && in_array( wp_unslash( $_GET['status'] ), array( 'accepted', 'failed', 'processing', 'uncertain' ), true ) ? sanitize_key( wp_unslash( $_GET['status'] ) ) : '';
         echo '<div class="wrap"><h1>' . esc_html__( 'Message delivery log', 'georg-kloster-connect-hub' ) . '</h1>';
         echo '<form method="get"><input type="hidden" name="page" value="gkch-log"><label>' . esc_html__( 'Channel', 'georg-kloster-connect-hub' ) . ' <select name="channel"><option value="">' . esc_html__( 'All channels', 'georg-kloster-connect-hub' ) . '</option>';
         foreach ( array( 'email' => __( 'Email', 'georg-kloster-connect-hub' ), 'telegram' => __( 'Telegram', 'georg-kloster-connect-hub' ) ) as $value => $label ) { echo '<option value="' . esc_attr( $value ) . '"' . selected( $channel, $value, false ) . '>' . esc_html( $label ) . '</option>'; }
@@ -105,5 +106,6 @@ final class Outgoing_Log {
             echo '</td></tr>';
         }
         echo '</tbody></table></div>';
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
     }
 }

@@ -82,12 +82,12 @@ final class Forms {
     public static function save(): void {
         if ( ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Access denied.', 'georg-kloster-connect-hub' ) ); }
         check_admin_referer( 'gkch_form_save' );
-        $id = isset( $_POST['form_id'] ) && is_scalar( $_POST['form_id'] ) ? absint( $_POST['form_id'] ) : 0;
+        $id = isset( $_POST['form_id'] ) && is_scalar( $_POST['form_id'] ) ? absint( wp_unslash( $_POST['form_id'] ) ) : 0;
         $adding = isset( $_POST['form_action'] ) && 'add' === sanitize_key( wp_unslash( $_POST['form_action'] ) );
         $saved = false;
         try {
             $input = wp_unslash( $_POST );
-            if ( isset( $_POST['default_form'] ) && '1' === $_POST['default_form'] ) { update_option( 'gkps_form', self::sanitize( $input ) ); }
+            if ( isset( $_POST['default_form'] ) && '1' === sanitize_text_field( wp_unslash( $_POST['default_form'] ) ) ) { update_option( 'gkps_form', self::sanitize( $input ) ); }
             else { $id = self::store( $id, $input ); }
             $saved = true;
         } catch ( \Throwable $error ) {
@@ -131,8 +131,9 @@ final class Forms {
 
     public static function render_editor(): void {
         if ( ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Access denied.', 'georg-kloster-connect-hub' ) ); }
+        // phpcs:disable WordPress.Security.NonceVerification.Recommended -- The editor query selects a read-only screen; form changes use nonce-verified POST actions.
         $new = 'add' === ( isset( $_GET['action'] ) && is_scalar( $_GET['action'] ) ? sanitize_key( wp_unslash( $_GET['action'] ) ) : '' );
-        $id = isset( $_GET['form_id'] ) && is_scalar( $_GET['form_id'] ) ? absint( $_GET['form_id'] ) : 0;
+        $id = isset( $_GET['form_id'] ) && is_scalar( $_GET['form_id'] ) ? absint( wp_unslash( $_GET['form_id'] ) ) : 0;
         $form = $new ? array_merge( Admin::defaults(), array( 'id' => 0, 'name' => '' ) ) : self::get( $id );
         echo '<div class="wrap"><h1>' . esc_html( $new ? __( 'Add form', 'georg-kloster-connect-hub' ) : __( 'Edit form', 'georg-kloster-connect-hub' ) ) . '</h1><hr class="wp-header-end">';
         echo '<p><a href="' . esc_url( admin_url( 'admin.php?page=gkps' ) ) . '">← ' . esc_html__( 'Back to forms', 'georg-kloster-connect-hub' ) . '</a></p>';
@@ -160,6 +161,7 @@ final class Forms {
         }
         echo '</select></label></p><p>' . esc_html__( 'Each form sends contact messages to its own chat; replies are recorded under the selected staff member. The bot token and webhook are shared. Enable Telegram in Settings, and enable complete-message replies there if staff need to answer in Telegram.', 'georg-kloster-connect-hub' ) . '</p>';
         submit_button(); echo '</form>';
+        // phpcs:enable WordPress.Security.NonceVerification.Recommended
         echo '</div>';
     }
 }
