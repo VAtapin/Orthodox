@@ -62,7 +62,7 @@ msgid "Add a button"
 msgstr ""
 
 #: includes/class-telegram-bot.php
-msgid "Add buttons below this reply. Each button can run another bot command or reply, or open a website link. Enter its label in the active WPML languages. Telegram displays up to 10 buttons, two per row."
+msgid "Add buttons below this reply. Each button can run another bot command or reply, open a website link, or launch a Mini App inside Telegram. Mini App buttons require an HTTPS URL and work in private chats. Enter labels in the active WPML languages. Telegram displays up to 10 buttons, two per row."
 msgstr ""
 
 #: includes/class-telegram-bot.php
@@ -1070,6 +1070,10 @@ msgid "Only JPEG or PNG images and MP4 videos can be sent."
 msgstr ""
 
 #: includes/class-telegram-bot.php
+msgid "Open a Mini App inside Telegram"
+msgstr ""
+
+#: includes/class-telegram-bot.php
 msgid "Open a bot command or reply"
 msgstr ""
 
@@ -1890,7 +1894,7 @@ msgid "Visit the website"
 msgstr ""
 
 #: includes/class-telegram-bot.php
-msgid "Website URL"
+msgid "Website URL or Mini App HTTPS URL"
 msgstr ""
 
 #: includes/class-telegram-bot.php

@@ -1462,9 +1462,6 @@ msgstr "Читать новость"
 msgid "A reply can have up to 10 buttons."
 msgstr "В одном ответе можно добавить до 10 кнопок."
 
-msgid "Add buttons below this reply. Each button can run another bot command or reply, or open a website link. Enter its label in the active WPML languages. Telegram displays up to 10 buttons, two per row."
-msgstr "Добавьте кнопки под этим ответом. Кнопка может запускать другую команду или ответ бота либо открывать ссылку. Укажите подпись на активных языках WPML. Telegram покажет до 10 кнопок, по две в строке."
-
 msgid "Add a button"
 msgstr "Добавить кнопку"
 
@@ -1498,5 +1495,11 @@ msgstr "Текстовый автоответ"
 msgid "When pressed"
 msgstr "При нажатии"
 
-msgid "Website URL"
-msgstr "Адрес сайта"
+msgid "Open a Mini App inside Telegram"
+msgstr "Открыть Mini App в Telegram"
+
+msgid "Website URL or Mini App HTTPS URL"
+msgstr "Адрес сайта или HTTPS-адрес Mini App"
+
+msgid "Add buttons below this reply. Each button can run another bot command or reply, open a website link, or launch a Mini App inside Telegram. Mini App buttons require an HTTPS URL and work in private chats. Enter labels in the active WPML languages. Telegram displays up to 10 buttons, two per row."
+msgstr "Добавьте кнопки под этим ответом. Кнопка может вызвать другую команду или ответ бота, открыть ссылку на сайт или запустить Mini App в Telegram. Для Mini App нужен HTTPS-адрес; кнопка работает только в личном чате. Укажите подписи для активных языков WPML. Telegram показывает до 10 кнопок, по две в ряду."

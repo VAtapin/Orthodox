@@ -146,11 +146,11 @@
 			const target = row.querySelector('.gkch-menu-target');
 			const urlField = row.querySelector('.gkch-menu-url-field');
 			const url = row.querySelector('.gkch-menu-url');
-			const isLink = action && 'link' === action.value;
-			if (targetField) { targetField.hidden = isLink; }
-			if (target) { target.disabled = isLink; }
-			if (urlField) { urlField.hidden = !isLink; }
-			if (url) { url.disabled = !isLink; }
+			const needsUrl = action && ['link', 'web_app'].includes(action.value);
+			if (targetField) { targetField.hidden = needsUrl; }
+			if (target) { target.disabled = needsUrl; }
+			if (urlField) { urlField.hidden = !needsUrl; }
+			if (url) { url.disabled = !needsUrl; }
 		};
 		const syncMenuButtonCount = function () {
 			addMenuButton.disabled = menuButtons.querySelectorAll('[data-menu-button]').length >= 10;

@@ -1462,9 +1462,6 @@ msgstr "Artikel lesen"
 msgid "A reply can have up to 10 buttons."
 msgstr "Eine Antwort kann bis zu 10 Schaltflächen enthalten."
 
-msgid "Add buttons below this reply. Each button can run another bot command or reply, or open a website link. Enter its label in the active WPML languages. Telegram displays up to 10 buttons, two per row."
-msgstr "Füge unter dieser Antwort Schaltflächen hinzu. Eine Schaltfläche kann einen anderen Bot-Befehl oder eine Antwort ausführen oder einen Website-Link öffnen. Gib die Beschriftung in den aktiven WPML-Sprachen ein. Telegram zeigt bis zu 10 Schaltflächen mit je zwei pro Zeile an."
-
 msgid "Add a button"
 msgstr "Schaltfläche hinzufügen"
 
@@ -1498,5 +1495,11 @@ msgstr "Textantwort"
 msgid "When pressed"
 msgstr "Beim Drücken"
 
-msgid "Website URL"
-msgstr "Website-URL"
+msgid "Open a Mini App inside Telegram"
+msgstr "Eine Mini App in Telegram öffnen"
+
+msgid "Website URL or Mini App HTTPS URL"
+msgstr "Website-URL oder HTTPS-URL der Mini App"
+
+msgid "Add buttons below this reply. Each button can run another bot command or reply, open a website link, or launch a Mini App inside Telegram. Mini App buttons require an HTTPS URL and work in private chats. Enter labels in the active WPML languages. Telegram displays up to 10 buttons, two per row."
+msgstr "Fügen Sie unter dieser Antwort Schaltflächen hinzu. Eine Schaltfläche kann einen anderen Bot-Befehl oder eine Antwort ausführen, einen Website-Link öffnen oder eine Mini App in Telegram starten. Mini-App-Schaltflächen benötigen eine HTTPS-URL und funktionieren nur in privaten Chats. Geben Sie Beschriftungen für die aktiven WPML-Sprachen ein. Telegram zeigt bis zu 10 Schaltflächen mit zwei pro Zeile an."

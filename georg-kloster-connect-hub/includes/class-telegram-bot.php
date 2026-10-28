@@ -381,7 +381,7 @@ final class Telegram_Bot {
 	}
 
 	private static function send_configured_reply( string $chat_id, array $command, string $language, array $markup = array() ): void {
-		$markup = self::reply_menu_markup( $command, $language, $markup );
+		$markup = self::reply_menu_markup( $command, $language, $markup, ! str_starts_with( $chat_id, '-' ) );
 		$type = in_array( $command['reply_type'] ?? 'text', array( 'text', 'html', 'schedule', 'page', 'news' ), true ) ? (string) $command['reply_type'] : 'text';
 		$response = self::configured_response( $command, $language );
 		if ( in_array( $type, array( 'page', 'news' ), true ) ) {
@@ -615,16 +615,19 @@ final class Telegram_Bot {
 	}
 
 	/** Add the configured reply buttons after buttons already required by the reply. */
-	private static function reply_menu_markup( array $command, string $language, array $markup = array() ): array {
+	private static function reply_menu_markup( array $command, string $language, array $markup = array(), bool $private_chat = true ): array {
 		$buttons = array();
 		$default_language = self::default_language_code();
 		$valid_targets = array_fill_keys( array_keys( self::menu_target_options() ), true );
 		foreach ( self::sanitize_menu_buttons( $command['menu_buttons'] ?? array() ) as $definition ) {
+			if ( 'web_app' === $definition['action'] && ! $private_chat ) { continue; }
 			$label = trim( (string) ( $definition['labels'][$language] ?? '' ) );
 			if ( '' === $label ) { $label = trim( (string) ( $definition['labels'][$default_language] ?? '' ) ); }
 			if ( '' === $label ) { foreach ( $definition['labels'] as $translated_label ) { if ( '' !== trim( (string) $translated_label ) ) { $label = trim( (string) $translated_label ); break; } } }
 			if ( '' === $label ) { continue; }
-			if ( 'link' === $definition['action'] ) {
+			if ( 'web_app' === $definition['action'] ) {
+				$buttons[] = array( 'text' => $label, 'web_app' => array( 'url' => $definition['url'] ) );
+			} elseif ( 'link' === $definition['action'] ) {
 				$buttons[] = array( 'text' => $label, 'url' => $definition['url'] );
 			} elseif ( isset( $valid_targets[$definition['target']] ) ) {
 				$buttons[] = array( 'text' => $label, 'callback_data' => $definition['target'] );
@@ -639,19 +642,20 @@ final class Telegram_Bot {
 		$buttons = array();
 		foreach ( array_slice( $raw, 0, 10 ) as $row ) {
 			if ( ! is_array( $row ) ) { continue; }
-			$action = in_array( $row['action'] ?? 'command', array( 'command', 'link' ), true ) ? (string) ( $row['action'] ?? 'command' ) : 'command';
+			$action = in_array( $row['action'] ?? 'command', array( 'command', 'link', 'web_app' ), true ) ? (string) ( $row['action'] ?? 'command' ) : 'command';
 			$button = array( 'action' => $action, 'labels' => array() );
 			foreach ( self::active_languages() as $language => $details ) {
 				$label = is_scalar( $row['labels'][$language] ?? null ) ? (string) $row['labels'][$language] : '';
 				$button['labels'][$language] = self::limit_text( sanitize_text_field( $label ), 60 );
 			}
 			if ( ! array_filter( $button['labels'], static fn( $label ) => '' !== trim( (string) $label ) ) ) { continue; }
-			if ( 'link' === $action ) {
-				$url = is_scalar( $row['url'] ?? null ) ? esc_url_raw( trim( (string) $row['url'] ), array( 'http', 'https' ) ) : '';
+			if ( in_array( $action, array( 'link', 'web_app' ), true ) ) {
+				$allowed_schemes = 'web_app' === $action ? array( 'https' ) : array( 'http', 'https' );
+				$url = is_scalar( $row['url'] ?? null ) ? esc_url_raw( trim( (string) $row['url'] ), $allowed_schemes ) : '';
 				$parts = $url ? wp_parse_url( $url ) : false;
 				$scheme = is_array( $parts ) ? strtolower( (string) ( $parts['scheme'] ?? '' ) ) : '';
 				/* Links are opened by Telegram, not fetched by this webhook; avoid DNS/network checks here. */
-				if ( ! $url || ! in_array( $scheme, array( 'http', 'https' ), true ) || empty( $parts['host'] ) || isset( $parts['user'] ) || isset( $parts['pass'] ) ) { continue; }
+				if ( ! $url || ! in_array( $scheme, $allowed_schemes, true ) || empty( $parts['host'] ) || isset( $parts['user'] ) || isset( $parts['pass'] ) ) { continue; }
 				$button['url'] = $url;
 			} else {
 				$target = is_scalar( $row['target'] ?? null ) ? sanitize_text_field( (string) $row['target'] ) : '';
@@ -1551,7 +1555,7 @@ final class Telegram_Bot {
 		$menu_input = isset( $_POST['menu_buttons'] ) && is_array( $_POST['menu_buttons'] ) ? wp_unslash( $_POST['menu_buttons'] ) : array();
 		$base['menu_buttons'] = self::sanitize_menu_buttons( $menu_input );
 		$valid_targets = array_keys( self::menu_target_options() );
-		$base['menu_buttons'] = array_values( array_filter( $base['menu_buttons'], static function ( $button ) use ( $valid_targets ) { return 'link' === $button['action'] || in_array( $button['target'] ?? '', $valid_targets, true ); } ) );
+		$base['menu_buttons'] = array_values( array_filter( $base['menu_buttons'], static function ( $button ) use ( $valid_targets ) { return in_array( $button['action'], array( 'link', 'web_app' ), true ) || in_array( $button['target'] ?? '', $valid_targets, true ); } ) );
 		if ( in_array( $base['reply_type'], array( 'page', 'news' ), true ) && ! self::valid_reply_post( $base['reply_post_id'], $base['reply_type'] ) ) {
 			set_transient( 'gkch_telegram_command_error_' . get_current_user_id(), __( 'Select a published item that matches the selected reply type.', 'georg-kloster-connect-hub' ), 120 );
 			wp_safe_redirect( self::command_edit_url( $kind, 'system' === $kind ? $key : ( $is_new_command ? 'new' : (string) $index ) ) ); exit;
@@ -1630,17 +1634,17 @@ final class Telegram_Bot {
 	}
 
 	private static function render_menu_button_editor_row( array $button, string $index, array $languages, array $targets ): void {
-		$action = in_array( $button['action'] ?? 'command', array( 'command', 'link' ), true ) ? (string) $button['action'] : 'command';
+		$action = in_array( $button['action'] ?? 'command', array( 'command', 'link', 'web_app' ), true ) ? (string) $button['action'] : 'command';
 		echo '<fieldset class="gkch-menu-button" data-menu-button><legend><strong>' . esc_html__( 'Menu button', 'georg-kloster-connect-hub' ) . '</strong></legend><div class="gkch-menu-button-labels">';
 		foreach ( $languages as $language => $details ) {
 			$value = (string) ( $button['labels'][$language] ?? '' );
 			echo '<p><label><strong>' . esc_html( $details['name'] ) . '</strong><br><input class="regular-text" maxlength="60" name="menu_buttons[' . esc_attr( $index ) . '][labels][' . esc_attr( $language ) . ']" value="' . esc_attr( $value ) . '"></label></p>';
 		}
 		echo '</div><p><label>' . esc_html__( 'When pressed', 'georg-kloster-connect-hub' ) . ' <select class="gkch-menu-action" name="menu_buttons[' . esc_attr( $index ) . '][action]">';
-		echo '<option value="command"' . selected( $action, 'command', false ) . '>' . esc_html__( 'Open a bot command or reply', 'georg-kloster-connect-hub' ) . '</option><option value="link"' . selected( $action, 'link', false ) . '>' . esc_html__( 'Open a website link', 'georg-kloster-connect-hub' ) . '</option></select></label> ';
+		echo '<option value="command"' . selected( $action, 'command', false ) . '>' . esc_html__( 'Open a bot command or reply', 'georg-kloster-connect-hub' ) . '</option><option value="link"' . selected( $action, 'link', false ) . '>' . esc_html__( 'Open a website link', 'georg-kloster-connect-hub' ) . '</option><option value="web_app"' . selected( $action, 'web_app', false ) . '>' . esc_html__( 'Open a Mini App inside Telegram', 'georg-kloster-connect-hub' ) . '</option></select></label> ';
 		echo '<label class="gkch-menu-target-field">' . esc_html__( 'Command or reply', 'georg-kloster-connect-hub' ) . ' <select class="gkch-menu-target" name="menu_buttons[' . esc_attr( $index ) . '][target]" required><option value=""' . selected( empty( $button['target'] ), true, false ) . '>— ' . esc_html__( 'Select a command or reply', 'georg-kloster-connect-hub' ) . ' —</option>';
 		foreach ( $targets as $target => $label ) { echo '<option value="' . esc_attr( $target ) . '"' . selected( $button['target'] ?? '', $target, false ) . '>' . esc_html( $label ) . '</option>'; }
-		echo '</select></label> <label class="gkch-menu-url-field">' . esc_html__( 'Website URL', 'georg-kloster-connect-hub' ) . ' <input class="large-text gkch-menu-url" type="url" name="menu_buttons[' . esc_attr( $index ) . '][url]" value="' . esc_attr( $button['url'] ?? '' ) . '" placeholder="https://example.org/" required /></label> ';
+		echo '</select></label> <label class="gkch-menu-url-field">' . esc_html__( 'Website URL or Mini App HTTPS URL', 'georg-kloster-connect-hub' ) . ' <input class="large-text gkch-menu-url" type="url" name="menu_buttons[' . esc_attr( $index ) . '][url]" value="' . esc_attr( $button['url'] ?? '' ) . '" placeholder="https://example.org/" required /></label> ';
 		echo '<button type="button" class="button-link-delete gkch-menu-button-remove">' . esc_html__( 'Remove button', 'georg-kloster-connect-hub' ) . '</button></p></fieldset>';
 	}
 
@@ -1709,7 +1713,7 @@ final class Telegram_Bot {
 			}
 			echo '</ul><p class="description">' . esc_html__( 'Select up to 10 JPEG or PNG photos and MP4 videos from the Media Library. Telegram fetches them from their public URLs; URL limits are 5 MB per photo and 20 MB per video.', 'georg-kloster-connect-hub' ) . '</p></div></fieldset>';
 		}
-		echo '</div></div><div class="postbox gkch-reply-menu-postbox"><div class="postbox-header"><h2 class="hndle">' . esc_html__( 'Menu buttons for this reply', 'georg-kloster-connect-hub' ) . '</h2></div><div class="inside"><p>' . esc_html__( 'Add buttons below this reply. Each button can run another bot command or reply, or open a website link. Enter its label in the active WPML languages. Telegram displays up to 10 buttons, two per row.', 'georg-kloster-connect-hub' ) . '</p>';
+		echo '</div></div><div class="postbox gkch-reply-menu-postbox"><div class="postbox-header"><h2 class="hndle">' . esc_html__( 'Menu buttons for this reply', 'georg-kloster-connect-hub' ) . '</h2></div><div class="inside"><p>' . esc_html__( 'Add buttons below this reply. Each button can run another bot command or reply, open a website link, or launch a Mini App inside Telegram. Mini App buttons require an HTTPS URL and work in private chats. Enter labels in the active WPML languages. Telegram displays up to 10 buttons, two per row.', 'georg-kloster-connect-hub' ) . '</p>';
 		$menu_buttons = self::sanitize_menu_buttons( $command['menu_buttons'] ?? array() );
 		$menu_targets = self::menu_target_options();
 		echo '<div class="gkch-menu-buttons" data-next-index="' . esc_attr( (string) count( $menu_buttons ) ) . '">';
