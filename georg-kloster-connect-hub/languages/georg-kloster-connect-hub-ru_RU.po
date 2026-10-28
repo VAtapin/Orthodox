@@ -1465,8 +1465,8 @@ msgstr "В одном ответе можно добавить до 10 кноп�
 msgid "Add a button"
 msgstr "Добавить кнопку"
 
-msgid "A command button returns its configured answer in the subscriber’s selected language. A link button opens the URL directly in Telegram."
-msgstr "Кнопка команды показывает настроенный ответ на выбранном подписчиком языке. Кнопка ссылки сразу открывает адрес в Telegram."
+msgid "A command button returns its configured answer in the subscriber’s selected language. A website link opens the URL directly in Telegram. A Mini App button needs an HTTPS URL and opens the app inside Telegram in private chats."
+msgstr "Кнопка команды показывает настроенный ответ на выбранном подписчиком языке. Ссылка на сайт сразу открывается в Telegram. Для кнопки Mini App нужен HTTPS-адрес; приложение откроется внутри Telegram в личном чате."
 
 msgid "Command or reply"
 msgstr "Команда или ответ"

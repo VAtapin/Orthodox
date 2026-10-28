@@ -6,7 +6,7 @@ msgid "A bot token is required. Each form uses only its own private Chat ID for 
 msgstr ""
 
 #: includes/class-telegram-bot.php
-msgid "A command button returns its configured answer in the subscriber’s selected language. A link button opens the URL directly in Telegram."
+msgid "A command button returns its configured answer in the subscriber’s selected language. A website link opens the URL directly in Telegram. A Mini App button needs an HTTPS URL and opens the app inside Telegram in private chats."
 msgstr ""
 
 #: includes/class-requests.php

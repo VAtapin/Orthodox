@@ -1465,8 +1465,8 @@ msgstr "Eine Antwort kann bis zu 10 Schaltflächen enthalten."
 msgid "Add a button"
 msgstr "Schaltfläche hinzufügen"
 
-msgid "A command button returns its configured answer in the subscriber’s selected language. A link button opens the URL directly in Telegram."
-msgstr "Eine Befehls-Schaltfläche sendet die konfigurierte Antwort in der ausgewählten Sprache des Abonnenten. Eine Link-Schaltfläche öffnet die URL direkt in Telegram."
+msgid "A command button returns its configured answer in the subscriber’s selected language. A website link opens the URL directly in Telegram. A Mini App button needs an HTTPS URL and opens the app inside Telegram in private chats."
+msgstr "Eine Befehls-Schaltfläche sendet die konfigurierte Antwort in der ausgewählten Sprache des Abonnenten. Ein Website-Link öffnet die URL direkt in Telegram. Eine Mini-App-Schaltfläche benötigt eine HTTPS-URL und öffnet die App in privaten Chats innerhalb von Telegram."
 
 msgid "Command or reply"
 msgstr "Befehl oder Antwort"

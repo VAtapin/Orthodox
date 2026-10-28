@@ -1432,7 +1432,9 @@ final class Telegram_Bot {
 		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 		if ( 'gkch-telegram-command-edit' !== $page ) { return; }
 		wp_enqueue_media();
-		wp_enqueue_script( 'gkch-telegram-bot-admin', plugins_url( 'assets/telegram-bot-admin.js', GKPS_FILE ), array( 'jquery', 'media-editor' ), GKPS_VERSION, true );
+		$script_path = plugin_dir_path( GKPS_FILE ) . 'assets/telegram-bot-admin.js';
+		$script_version = file_exists( $script_path ) ? (string) filemtime( $script_path ) : GKPS_VERSION;
+		wp_enqueue_script( 'gkch-telegram-bot-admin', plugins_url( 'assets/telegram-bot-admin.js', GKPS_FILE ), array( 'jquery', 'media-editor' ), $script_version, true );
 		wp_localize_script( 'gkch-telegram-bot-admin', 'gkchTelegramMedia', array(
 			'title' => __( 'Select images and videos', 'georg-kloster-connect-hub' ),
 			'button' => __( 'Use selected media', 'georg-kloster-connect-hub' ),
@@ -1718,7 +1720,7 @@ final class Telegram_Bot {
 		$menu_targets = self::menu_target_options();
 		echo '<div class="gkch-menu-buttons" data-next-index="' . esc_attr( (string) count( $menu_buttons ) ) . '">';
 		foreach ( $menu_buttons as $button_index => $button ) { self::render_menu_button_editor_row( $button, (string) $button_index, self::active_languages(), $menu_targets ); }
-		echo '</div><button type="button" class="button gkch-menu-button-add">' . esc_html__( 'Add a button', 'georg-kloster-connect-hub' ) . '</button><p class="description">' . esc_html__( 'A command button returns its configured answer in the subscriber’s selected language. A link button opens the URL directly in Telegram.', 'georg-kloster-connect-hub' ) . '</p>';
+		echo '</div><button type="button" class="button gkch-menu-button-add">' . esc_html__( 'Add a button', 'georg-kloster-connect-hub' ) . '</button><p class="description">' . esc_html__( 'A command button returns its configured answer in the subscriber’s selected language. A website link opens the URL directly in Telegram. A Mini App button needs an HTTPS URL and opens the app inside Telegram in private chats.', 'georg-kloster-connect-hub' ) . '</p>';
 		echo '<template id="gkch-menu-button-template">';
 		self::render_menu_button_editor_row( array(), '__INDEX__', self::active_languages(), $menu_targets );
 		echo '</template></div></div></div><div id="postbox-container-1" class="postbox-container"><div class="postbox"><div class="postbox-header"><h2 class="hndle">' . esc_html__( 'Save', 'georg-kloster-connect-hub' ) . '</h2></div><div class="inside">';
