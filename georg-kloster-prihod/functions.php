@@ -27,6 +27,9 @@ require_once __DIR__ . '/includes/theme-check-compat.php';
 add_action( 'after_setup_theme', function () {
     load_theme_textdomain( 'georg-kloster-prihod', get_template_directory() . '/languages' );
     add_theme_support( 'title-tag' );
+    add_theme_support( 'align-wide' );
+    add_theme_support( 'editor-styles' );
+    add_editor_style( 'style.css' );
     add_theme_support( 'post-thumbnails' );
     add_theme_support( 'custom-header', array(
         'width'              => 1920,

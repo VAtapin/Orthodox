@@ -2,7 +2,7 @@
 
 ## Current state
 
-The repository contains the Georg-Kloster Prihod theme (1.0.1), Parish Core (0.2.12), and Connect Hub (0.4.10, local test build). The theme has five visual styles, native Customizer controls, standard WordPress widget and primary/footer menu locations, English gettext source strings, and Russian, German, Polish, and Ukrainian catalogs. Footer links are managed by assigning a standard menu to the Footer menu location. Author: Atapin Vladimir (`atapin`); site: https://georg-kloster.ru/; email: atapin@gmail.com.
+The repository contains the Georg-Kloster Prihod theme (1.1.0), Parish Core (0.2.12), and Connect Hub (0.4.10, local test build). The theme has five visual styles, native Customizer controls, standard WordPress widget and primary/footer menu locations, English gettext source strings, and Russian, German, Polish, and Ukrainian catalogs. Footer links are managed by assigning a standard menu to the Footer menu location. Author: Atapin Vladimir (`atapin`); site: https://georg-kloster.ru/; email: atapin@gmail.com.
 
 The footer no longer generates a fixed list of site links. It renders the standard WordPress menu assigned to the Footer menu location; per-language menus can be assigned through the normal WordPress/WPML menu workflow. The theme package has not been installed on production.
 
@@ -60,10 +60,12 @@ Upload `build/georg-kloster-prihod-core-0.2.12.zip` through WordPress Plugins â†
 
 Last related code commit: Fix remaining Connect Hub Plugin Check findings.
 
-## Theme review follow-up (1.0.1)
+## Theme review and native homepage (1.1.0)
 
-Implemented float containment for content/comments/widgets, wrapping of long headings and grid minimum-width fixes. Customizer has seven multiline controls; short labels, mottos and sources use text inputs. Stylesheets use the release version instead of filemtime. Preview propagation accepts only same-origin homepage and canonical publicly viewable posts without query strings or credentials. Existing saved options are retained.
+The five reported theme findings are addressed: float containment, long heading wrapping, excessive Customizer textareas, filesystem timestamp versions and preview propagation. Styles use release versions. Preview links accept only same-origin homepage/canonical public posts without query strings or credentials. Homepage composition now comes from native page blocks; duplicate homepage controls are removed from Customizer and Parish Appearance. Four remaining multiline controls serve profile description/address, shared quotation and footer. All five palettes remain; old automatic layouts are replaced by author-controlled block composition, not pixel-identical replicas.
 
-PHP lint, 85 existing isolated assertions and 14 dedicated preview URL boundary assertions passed. Theme ZIP built: build/georg-kloster-prihod-1.0.1.zip. Diff checks passed. No live WordPress integration, visual browser QA or official Theme Check was run. Next: verify float-only content and long headings on mobile, run official checks and resubmit. No deployment performed; documented server installs ZIPs, without Git in webroot.
+The separate scripts/migrate_home_blocks.php creates a review draft from enabled legacy sections, reuses it on repeat runs, and applies reviewed blocks to the original page without changing its ID, URL or language metadata. Original content is backed up in protected post metadata/revisions, options remain intact, and rollback is available. Migration is manual and excluded from the theme ZIP. It handles the selected static homepage; translated pages require their own review. Maps use a standard Custom HTML block and services use the existing plugin block when registered. See docs/THEME_BLOCK_MIGRATION.md. Package: build/georg-kloster-prihod-1.1.0.zip.
 
-Last related commit: Fix theme review findings for version 1.0.1 (this task).
+Checks passed: PHP lint; 85 isolated assertions; 14 preview URL checks; 2,875 translation/placeholder checks; theme ZIP build; diff checks. Disposable WordPress migration integration passed 14 checks on WP 7.1.4/PHP 8.4.25 and WP 6.5.14/PHP 8.0.30, including all five palettes, preserved source data and rollback. No visual browser QA or official Theme Check was run. No production deployment or WordPress.org resubmission performed. Next: review the migration draft and mobile presentation, run official theme checks and resubmit. The documented server uses ZIP installation rather than a Git webroot.
+
+Last related commits: dae0232 (five reported findings); Move homepage content to native WordPress blocks (this follow-up).

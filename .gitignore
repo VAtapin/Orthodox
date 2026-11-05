@@ -28,3 +28,5 @@ Thumbs.db
 /tests/.demo-import-result.json
 
 /tests/.parish-merge-result.json
+
+/tests/.native-home-result.json

@@ -15,17 +15,16 @@ description, community type, address, phone and email. Filled theme fields take
 priority; optional Core data may supply empty fields. Without Core, WordPress
 provides the site name and description.
 
-The same complete controls remain available under **Appearance → Parish Appearance**. Homepage settings control section visibility and order, headings, eyebrows,
-descriptions, button labels, cards and linked pages. Featured images from those
-pages provide card images. News controls include category, count, columns,
-excerpt length, date and image visibility. A zero numeric setting uses the
-selected style's default. Upcoming services use the optional Parish plugin's bundled Schedule module; a link
-to an ordinary schedule page works without it.
+Homepage content is edited in **Pages**, using standard WordPress blocks: headings,
+paragraphs, images, buttons, columns, galleries and Query Loop. Select a static
+homepage under **Settings → Reading**. The Homepage pattern provides a starting
+point; insert, move or remove sections in the page editor. All five visual style
+palettes remain available. The previous automatic hero/card composition is no
+longer rendered; block layout is controlled by the page author.
 
-The hero and section layouts remain theme templates. Editorial text is stored
-in WordPress options; blank fields do not insert preset homepage copy. Card
-titles may use the linked WordPress page title. Custom labels are registered
-with WPML String Translation.
+Existing sites must migrate their option-based content before installing 1.1.0.
+See `docs/THEME_BLOCK_MIGRATION.md` in the repository. The separate migration tool
+is excluded from the theme ZIP and never runs automatically on activation.
 
 Menu items, nesting and images are managed under **Appearance → Menus**.
 The image menu is optional; the standard link row remains available.
@@ -52,11 +51,6 @@ plugin-directory API requests and does not install plugins. It is fully usable
 without these integrations. WPML or Polylang supplies language switching; the
 theme does not maintain a second set of language URLs.
 
-When Parish Core provides its optional demo importer, the Homepage settings
-include the plugin's import link. Core owns the preview, consent form, content
-pack and import; the theme adds no demo data or import implementation. Without
-Core, this extra entry is absent and the theme continues to work independently.
-
 ## Translation and packaging
 
 Source interface strings are English and use WordPress gettext. Russian,
@@ -74,23 +68,10 @@ The theme screenshot is the Classic style preview from
 `assets/schemes/classic.jpg`, converted to PNG. Preview photographs are never
 inserted into public page content. Resource credits are in `readme.txt`.
 
-## Style layouts
+## Block layouts
 
-The five styles share the same saved content and homepage controls. Their
-card grids use the number of visible cards (up to four in Classic, five in
-the other styles). Hiding the schedule card or disabling a section does not
-reserve empty columns. Upcoming services occupy a hero sidebar only when
-available and placed directly after the hero; otherwise sections keep their
-chosen order. Optional service headings and links do not reserve empty slots.
-
-Traditional uses the saved quotation and motto with the theme's cross icon.
-Its request/support tiles and the Editorial support tile use large symbols.
-Turning card images off retains compact icon cards. Displayed homepage card
-photographs are 200px high and remain inside their columns. Empty text fields
-stay empty; no reference-site content is inserted.
-
-Authored homepage gallery groups use full-width native WordPress galleries.
-Their photographs have 200px frames with five, three or two columns according
-to the viewport; the native image viewer remains available. Gallery blocks
-are not placed in the narrow navigation column of the blue style. The theme
-does not rewrite their text, image selection or page content.
+The page stores the same blocks for all five styles. Change the theme palette
+without rebuilding page content. Use the editor's standard Columns, Group and
+Query Loop settings for layout and responsive composition. Schedule content
+belongs to the optional Parish plugin's existing blocks; no theme block is
+registered. Gallery blocks retain WordPress's native image viewer.
