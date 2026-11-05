@@ -89,10 +89,7 @@ function prihod_theme_settings_page(): void {
         echo '<a class="button" href="' . esc_url( add_query_arg( 'prihod_preview', $id, home_url( '/' ) ) ) . '" target="_blank" rel="noopener" aria-label="' . esc_attr( sprintf( __( 'Preview: %s (new tab)', 'georg-kloster-prihod' ), $title ) ) . '">' . esc_html__( 'Preview', 'georg-kloster-prihod' ) . '</a></div></article>';
     }
     echo '</div></section>';
-    $front_page = absint( get_option( 'page_on_front' ) );
-    echo '<section id="prihod-option-home" class="prihod-option-section"><h2>' . esc_html__( 'Homepage', 'georg-kloster-prihod' ) . '</h2>';
-    if ( $front_page ) { echo '<a class="button" href="' . esc_url( get_edit_post_link( $front_page ) ) . '">' . esc_html__( 'Homepage', 'georg-kloster-prihod' ) . '</a>'; }
-    echo '</section>';
+    prihod_theme_home_settings_panel( $options );
     prihod_theme_profile_settings_panel( $options );
     prihod_theme_map_settings_panel( $options );
     echo '<section id="prihod-option-layout" class="prihod-option-section"><h2>' . esc_html( $sections['layout'] ) . '</h2>';
@@ -107,7 +104,7 @@ function prihod_theme_settings_page(): void {
     foreach ( array( 2, 3, 4 ) as $columns ) { echo '<option value="' . $columns . '"' . selected( $options['menu_columns'], $columns, false ) . '>' . $columns . '</option>'; }
     echo '</select></label></p><p class="description">' . esc_html__( 'Edit menu items and their order under Appearance → Menus. You can also choose an image for each item there. Without a chosen image, the linked page or post featured image is used.', 'georg-kloster-prihod' ) . '</p>';
     echo '<p><label>' . esc_html__( 'Quotation text', 'georg-kloster-prihod' ) . '<br><textarea class="large-text" rows="3" name="georg_kloster_prihod_options[quote_text]">' . esc_textarea( $options['quote_text'] ) . '</textarea></label></p><p><label>' . esc_html__( 'Quotation source', 'georg-kloster-prihod' ) . '<br><input class="regular-text" name="georg_kloster_prihod_options[quote_source]" value="' . esc_attr( $options['quote_source'] ) . '"></label></p>';
-    echo '<p><label>' . esc_html__( 'Classic header motto', 'georg-kloster-prihod' ) . '<br><input class="regular-text" name="georg_kloster_prihod_options[header_motto]" value="' . esc_attr( $options['header_motto'] ) . '"></label></p>';
+    foreach ( array( 'header_motto' => __( 'Classic header motto', 'georg-kloster-prihod' ), 'hero_motto' => __( 'Classic hero motto', 'georg-kloster-prihod' ), 'hero_quote_text' => __( 'Quotation below the buttons in the blue style', 'georg-kloster-prihod' ), 'hero_quote_source' => __( 'Blue style quotation source', 'georg-kloster-prihod' ) ) as $key => $label ) { echo '<p><label>' . esc_html( $label ) . '<br><textarea class="large-text" rows="2" name="georg_kloster_prihod_options[' . esc_attr( $key ) . ']">' . esc_textarea( $options[$key] ) . '</textarea></label></p>'; }
     echo '<p><label>' . esc_html__( 'Additional footer text', 'georg-kloster-prihod' ) . '<br><textarea class="large-text" rows="3" name="georg_kloster_prihod_options[footer_text]">' . esc_textarea( $options['footer_text'] ) . '</textarea></label></p></section></form>';
     prihod_theme_plugins_panel();
     echo '</div></div></div>';

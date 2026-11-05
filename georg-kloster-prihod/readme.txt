@@ -12,7 +12,7 @@ A parish theme with five visual styles for standard WordPress pages and posts.
 
 Georg-Kloster Prihod provides five visual styles: Classic, Hospitality, Editorial, Tradition, and Blue. The theme works on a standard WordPress installation without a companion plugin. Choose a style and your own images under Appearance > Parish Appearance. Standard pages and posts remain editable in WordPress.
 
-The theme does not create pages. Set your own name, description, community type and contacts under Appearance > Parish Appearance > Site Details. Edit the homepage in Pages with standard WordPress blocks. Set the homepage under Settings > Reading. Optional Parish supplies profile, clergy, places and schedules; Connect Hub supplies forms and communications. Schedule is bundled in Parish rather than installed separately. No bundled photographs appear on the public site.
+The theme does not create pages. Set your own name, description, community type and contacts under Appearance > Parish Appearance > Site Details. Choose ordinary WordPress pages for homepage cards and related theme sections under Homepage. Optional Parish supplies profile, clergy, places and schedules; Connect Hub supplies forms and communications. Schedule is bundled in Parish rather than installed separately. No bundled photographs appear on the public site.
 
 The Optional Plugins section shows compact screenshot cards for the five Georg-Kloster plugins: Parish, Connect Hub, Calendar Workshop, Orthodox Donations and Slavonic Translator. Cards show whether a plugin is installed and link to settings when available. Public plugins link to the standard WordPress installer search and their WordPress.org details. The theme makes no plugin-directory API requests and does not install plugins.
 
@@ -22,7 +22,7 @@ Author: Atapin Vladimir. Website: https://georg-kloster.ru/. Email: atapin@gmail
 
 == Installation ==
 
-Upload the theme ZIP under Appearance > Themes, activate it, then choose a visual style under Appearance > Parish Appearance. Add your own pages, navigation, logo, photographs and contact details in WordPress. Create a standard WordPress menu and assign it to the Footer menu location to control footer links. Add contact information and optional map embeds as page blocks. Existing sites must migrate legacy homepage content before updating to 1.1.0; see the repository migration guide.
+Upload the theme ZIP under Appearance > Themes, activate it, then choose a visual style under Appearance > Parish Appearance. Add your own pages, navigation, logo, photographs and contact details in WordPress. Create a standard WordPress menu and assign it to the Footer menu location to control footer links. Under Homepage > Contacts, choose whether to show the address, phone, email and map. The homepage contact area can show an OpenStreetMap embed when coordinates are configured; Google Maps is also available with an API key. Map embeds are loaded from the selected provider only after coordinates are entered.
 
 == External services ==
 
@@ -52,8 +52,8 @@ Create or edit a standard WordPress menu under Appearance > Menus and assign it 
 
 == Changelog ==
 
-= 1.1.0 =
-Homepage content is edited with standard WordPress blocks. Removed duplicate homepage controls. Five color schemes remain available.
+= 1.1.1 =
+Restore the original homepage composition and settings while retaining all five theme review fixes. No content migration is required.
 
 = 1.0.1 =
 Fix float containment, long headings, Customizer field types and preview URL scope. Use release versions for stylesheet caching.

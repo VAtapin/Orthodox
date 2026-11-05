@@ -19,6 +19,7 @@ function prihod_theme_customize_register( WP_Customize_Manager $customize ): voi
 		'prihod_profile' => __( 'Site details', 'georg-kloster-prihod' ),
 		'prihod_header' => __( 'Header and footer', 'georg-kloster-prihod' ),
 		'prihod_map' => __( 'Map', 'georg-kloster-prihod' ),
+		'prihod_home' => __( 'Homepage sections and content', 'georg-kloster-prihod' ),
 	);
 	foreach ( $sections as $id => $title ) {
 		$customize->add_section( $id, array( 'title' => $title, 'panel' => 'prihod_theme_panel' ) );
@@ -73,8 +74,40 @@ function prihod_theme_customize_register( WP_Customize_Manager $customize ): voi
 	foreach ( array( 'sticky_header' => __( 'Keep the header visible while scrolling', 'georg-kloster-prihod' ), 'header_contacts' => __( 'Show contact details in the header', 'georg-kloster-prihod' ) ) as $key => $label ) { $add( $key, $label, 'prihod_header', 'checkbox' ); }
 	$add_select( 'menu_style', __( 'Menu style', 'georg-kloster-prihod' ), 'prihod_header', array( 'visual' => __( 'Menu with cards and images', 'georg-kloster-prihod' ), 'classic' => __( 'Link row', 'georg-kloster-prihod' ) ) );
 	$add_select( 'menu_columns', __( 'Cards per row', 'georg-kloster-prihod' ), 'prihod_header', array( '2' => '2', '3' => '3', '4' => '4' ) );
-	foreach ( array( 'header_motto' => __( 'Classic header motto', 'georg-kloster-prihod' ), 'quote_text' => __( 'Quotation text', 'georg-kloster-prihod' ), 'quote_source' => __( 'Quotation source', 'georg-kloster-prihod' ), 'footer_text' => __( 'Additional footer text', 'georg-kloster-prihod' ) ) as $key => $label ) { $add( $key, $label, 'prihod_header', in_array( $key, array( 'quote_text', 'footer_text' ), true ) ? 'textarea' : 'text' ); }
+	foreach ( array( 'header_motto' => __( 'Classic header motto', 'georg-kloster-prihod' ), 'hero_motto' => __( 'Classic hero motto', 'georg-kloster-prihod' ), 'quote_text' => __( 'Quotation text', 'georg-kloster-prihod' ), 'quote_source' => __( 'Quotation source', 'georg-kloster-prihod' ), 'hero_quote_text' => __( 'Quotation below the buttons in the blue style', 'georg-kloster-prihod' ), 'hero_quote_source' => __( 'Blue style quotation source', 'georg-kloster-prihod' ), 'footer_text' => __( 'Additional footer text', 'georg-kloster-prihod' ) ) as $key => $label ) { $add( $key, $label, 'prihod_header', in_array( $key, array( 'quote_text', 'hero_quote_text', 'footer_text' ), true ) ? 'textarea' : 'text' ); }
 
+	$home = prihod_theme_home_options();
+	foreach ( prihod_theme_home_sections() as $key => $label ) {
+		$add( 'home][sections][' . $key . '][enabled', sprintf( __( 'Show section: %s', 'georg-kloster-prihod' ), $label ), 'prihod_home', 'checkbox' );
+		$add( 'home][sections][' . $key . '][title', sprintf( __( 'Section heading: %s', 'georg-kloster-prihod' ), $label ), 'prihod_home' );
+		$add( 'home][sections][' . $key . '][eyebrow', sprintf( __( 'Section link or subtitle: %s', 'georg-kloster-prihod' ), $label ), 'prihod_home' );
+	}
+	foreach ( array( 'address' => __( 'Show address', 'georg-kloster-prihod' ), 'phone' => __( 'Show phone', 'georg-kloster-prihod' ), 'email' => __( 'Show email', 'georg-kloster-prihod' ), 'map' => __( 'Show map and directions link', 'georg-kloster-prihod' ), 'description' => __( 'Show site description in contacts', 'georg-kloster-prihod' ), 'image' => __( 'Show hero image in contacts', 'georg-kloster-prihod' ) ) as $item => $label ) {
+		$add( 'home][contact_items][' . $item, $label, 'prihod_home', 'checkbox' );
+	}
+	$section_choices = array();
+	foreach ( prihod_theme_home_sections() as $key => $label ) { $section_choices[$key] = $label; }
+	foreach ( $home['order'] as $index => $key ) { $add( 'home][order][' . $index, sprintf( __( 'Section position %d', 'georg-kloster-prihod' ), $index + 1 ), 'prihod_home', 'select', array( 'choices' => $section_choices ) ); }
+	$text_labels = array( 'hero_description' => __( 'Description', 'georg-kloster-prihod' ), 'about_description' => __( 'Description', 'georg-kloster-prihod' ), 'hero_schedule_button' => __( 'Schedule button label', 'georg-kloster-prihod' ), 'hero_secondary_button' => __( 'Secondary button label', 'georg-kloster-prihod' ), 'about_button' => __( 'Link label', 'georg-kloster-prihod' ), 'news_button' => __( 'Link label', 'georg-kloster-prihod' ), 'news_read_button' => __( 'Post link label', 'georg-kloster-prihod' ), 'services_button' => __( 'Link label', 'georg-kloster-prihod' ), 'contacts_button' => __( 'Link label', 'georg-kloster-prihod' ) );
+	foreach ( prihod_theme_home_text_fields() as $key ) { $add( 'home][' . $key, $text_labels[$key] ?? __( 'Description', 'georg-kloster-prihod' ), 'prihod_home', in_array( $key, array( 'hero_description', 'about_description' ), true ) ? 'textarea' : 'text' ); }
+	foreach ( array( 'services_count' => array( __( 'Number of services', 'georg-kloster-prihod' ), 6 ), 'news_count' => array( __( 'Number of posts', 'georg-kloster-prihod' ), 12 ), 'news_excerpt_words' => array( __( 'Excerpt length in words', 'georg-kloster-prihod' ), 80 ), 'news_columns' => array( __( 'Desktop columns', 'georg-kloster-prihod' ), 4 ) ) as $key => $field ) { $add( 'home][' . $key, $field[0], 'prihod_home', 'number', array( 'input_attrs' => array( 'min' => 0, 'max' => $field[1] ) ) ); }
+	$add_select( 'home][news_category', __( 'Post category', 'georg-kloster-prihod' ), 'prihod_home', prihod_theme_customize_categories() );
+	foreach ( array( 'news_show_date' => __( 'Show date', 'georg-kloster-prihod' ), 'news_show_excerpt' => __( 'Show excerpt', 'georg-kloster-prihod' ), 'news_show_images' => __( 'Show images', 'georg-kloster-prihod' ), 'cards_show_images' => __( 'Show card images', 'georg-kloster-prihod' ), 'hide_schedule_card' => __( 'Hide the schedule card when upcoming services are displayed', 'georg-kloster-prihod' ) ) as $key => $label ) { $add( 'home][' . $key, $label, 'prihod_home', 'checkbox' ); }
+	foreach ( prihod_theme_home_pages() as $key => $label ) {
+		$choices = array( 0 => __( 'Automatic', 'georg-kloster-prihod' ) );
+		foreach ( get_pages( array( 'post_status' => 'publish', 'sort_column' => 'post_title' ) ) as $page ) { $choices[$page->ID] = $page->post_title; }
+		$add_select( 'home][pages][' . $key, sprintf( __( 'Link to page: %s', 'georg-kloster-prihod' ), $label ), 'prihod_home', $choices );
+	}
+	foreach ( $home['card_order'] as $index => $key ) {
+		$card_choices = array();
+		foreach ( prihod_theme_home_pages() as $card_key => $label ) { if ( isset( $home['cards'][$card_key] ) ) { $card_choices[$card_key] = $label; } }
+		$add( 'home][card_order][' . $index, sprintf( __( 'Card position %d', 'georg-kloster-prihod' ), $index + 1 ), 'prihod_home', 'select', array( 'choices' => $card_choices ) );
+	}
+	foreach ( $home['cards'] as $key => $card ) {
+		$label = prihod_theme_home_pages()[$key] ?? $key;
+		$add( 'home][cards][' . $key . '][enabled', sprintf( __( 'Show card: %s', 'georg-kloster-prihod' ), $label ), 'prihod_home', 'checkbox' );
+		foreach ( array( 'title' => __( 'Card title', 'georg-kloster-prihod' ), 'description' => __( 'Card description', 'georg-kloster-prihod' ), 'button' => __( 'Link label', 'georg-kloster-prihod' ) ) as $field => $title ) { $add( 'home][cards][' . $key . '][' . $field, sprintf( __( '%1$s: %2$s', 'georg-kloster-prihod' ), $title, $label ), 'prihod_home', 'text' ); }
+	}
 
 }
 add_action( 'customize_register', 'prihod_theme_customize_register' );

@@ -19,6 +19,11 @@ georg_theme_release_assert( isset( $GLOBALS['wp_registered_sidebars']['prihod-si
 require_once ABSPATH . 'wp-includes/class-wp-customize-manager.php';
 $customizer = new WP_Customize_Manager();
 do_action( 'customize_register', $customizer );
+$theme_textareas = array_filter( $customizer->controls(), static fn( $control ) => 'textarea' === $control->type && str_starts_with( $control->id, 'georg_kloster_prihod_options[' ) );
+georg_theme_release_assert( 7 === count( $theme_textareas ), 'Only long descriptions, address, quotations and footer use textareas.' );
+foreach ( array( 'header_motto', 'quote_source', 'home][hero_schedule_button', 'home][about_button' ) as $short_field ) {
+    georg_theme_release_assert( 'text' === $customizer->get_control( 'georg_kloster_prihod_options[' . $short_field . ']' )->type, 'Short labels must use standard text controls.' );
+}
 georg_theme_release_assert( $customizer->get_panel( 'prihod_theme_panel' ) instanceof WP_Customize_Panel, 'Theme options are available in the native Customizer.' );
 georg_theme_release_assert( ! $customizer->get_section( 'prihod_languages' ), 'Language switching is delegated to WPML or Polylang rather than theme URL fields.' );
 $plugin_catalog = prihod_theme_plugin_catalog();
@@ -69,6 +74,8 @@ georg_theme_release_assert( str_contains( $plugin_markup, 'Plugin block content'
 georg_theme_release_assert( str_contains( $plugin_markup, 'Plugin shortcode content' ), 'Theme does not display plugin supplied shortcode.' );
 wp_register_sidebar_widget( 'theme-release-widget', 'Theme release widget', static function (): void { echo '<p>Theme widget marker</p>'; } );
 update_option( 'sidebars_widgets', array( 'wp_inactive_widgets' => array(), 'prihod-sidebar' => array( 'theme-release-widget' ) ) );
+// The page rendered above populated WordPress's request-local widget cache.
+$GLOBALS['_wp_sidebars_widgets'] = null;
 georg_theme_release_assert( str_contains( prihod_theme_sidebar(), 'Theme widget marker' ), 'A standard WordPress sidebar widget is rendered in the right column.' );
 wp_update_post( array( 'ID' => $home_page_id, 'post_content' => '<!-- wp:georg-test/contact /-->' ) );
 georg_theme_release_assert( str_contains( prihod_theme_home_content(), 'Plugin block content' ), 'Plugin content on front page is hidden.' );

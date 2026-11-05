@@ -1,6 +1,9 @@
 msgid ""
 msgstr "Project-Id-Version: Georg-Kloster Prihod 1.0.0\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nX-Domain: georg-kloster-prihod\nLanguage: ru_RU\n"
 
+msgid "%1$s: %2$s"
+msgstr "%1$s: %2$s"
+
 msgid "A Google key is only used when Google Maps is selected. The key is sent to visitors’ browsers and should be restricted to this site in Google Cloud."
 msgstr "Ключ Google используется только при выборе Google Карт. Он передаётся браузерам посетителей; ограничьте его использование этим сайтом в Google Cloud."
 
@@ -64,11 +67,17 @@ msgstr "Основной шрифт"
 msgid "Base text size in px"
 msgstr "Размер основного текста, px"
 
+msgid "Blue style quotation source"
+msgstr "Источник цитаты синей схемы"
+
 msgid "Call the monastery"
 msgstr "Позвонить в обитель"
 
 msgid "Card description"
 msgstr "Подпись карточки"
+
+msgid "Card position %d"
+msgstr "Позиция карточки %d"
 
 msgid "Card title"
 msgstr "Название карточки"
@@ -87,6 +96,9 @@ msgstr "Классическая золотая"
 
 msgid "Classic header motto"
 msgstr "Девиз в шапке классической схемы"
+
+msgid "Classic hero motto"
+msgstr "Надпись первого экрана классической схемы"
 
 msgid "Clergy"
 msgstr "Духовенство"
@@ -288,6 +300,9 @@ msgstr "Содержимое страницы «Главная»"
 msgid "Homepage hero image"
 msgstr "Фоновое изображение главной страницы"
 
+msgid "Homepage sections and content"
+msgstr "Разделы и содержимое главной страницы"
+
 msgid "Icon of the day"
 msgstr "Икона дня"
 
@@ -468,6 +483,9 @@ msgstr "Основное меню"
 msgid "Privacy policy"
 msgstr "Политика конфиденциальности"
 
+msgid "Quotation below the buttons in the blue style"
+msgstr "Цитата под кнопками синей схемы"
+
 msgid "Quotation source"
 msgstr "Источник цитаты"
 
@@ -531,6 +549,15 @@ msgstr "Текст второй кнопки"
 msgid "Section cards"
 msgstr "Карточки разделов"
 
+msgid "Section heading: %s"
+msgstr "Заголовок раздела: %s"
+
+msgid "Section link or subtitle: %s"
+msgstr "Ссылка или подзаголовок раздела: %s"
+
+msgid "Section position %d"
+msgstr "Позиция раздела %d"
+
 msgid "Section settings"
 msgstr "Настройки секции"
 
@@ -557,6 +584,9 @@ msgstr "Показывать адрес"
 
 msgid "Show card images"
 msgstr "Показывать фотографии карточек"
+
+msgid "Show card: %s"
+msgstr "Показывать карточку: %s"
 
 msgid "Show contact details in the header"
 msgstr "Показывать контакты в шапке"
@@ -587,6 +617,9 @@ msgstr "Показывать название"
 
 msgid "Show phone"
 msgstr "Показывать телефон"
+
+msgid "Show section: %s"
+msgstr "Показывать раздел: %s"
 
 msgid "Show site description in contacts"
 msgstr "Показывать описание сайта в контактах"

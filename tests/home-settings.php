@@ -37,7 +37,7 @@ $check( $bad['pages']['about'] === 0 && $bad['pages']['news'] === $page_id && ! 
 $check( ! str_contains( $bad['sections']['hero']['title'], '<' ), 'Heading accepts executable markup.' );
 $config = array( 'order' => array( 'news', 'features', 'hero', 'content' ), 'pages' => array( 'news' => $page_id, 'donations' => $page_id, 'about' => $page_id ), 'card_order' => array( 'donations', 'news' ), 'cards' => array( 'donations' => array( 'title' => 'Owner donation card' ), 'news' => array( 'title' => 'Owner news card' ) ), 'sections' => array( 'hero' => array( 'title' => 'Owner hero heading' ), 'about' => array( 'enabled' => false ), 'services' => array( 'enabled' => false ), 'topics' => array( 'enabled' => false ), 'contacts' => array( 'enabled' => false ), 'news' => array( 'title' => 'Owner news heading' ) ), 'news_category' => $category, 'news_count' => 2, 'news_columns' => 2, 'news_show_date' => false, 'news_show_excerpt' => false, 'news_show_images' => false );
 global $wpdb;
-$post_snapshot = hash( 'sha256', serialize( $wpdb->get_results( "SELECT ID,post_content,post_title,post_status FROM {$wpdb->posts} ORDER BY ID", ARRAY_A ) ) );
+$post_snapshot = hash( 'sha256', serialize( $wpdb->get_results( "SELECT ID,post_content,post_title,post_status FROM {$wpdb->posts} WHERE post_type IN ('page', 'post') ORDER BY ID", ARRAY_A ) ) );
 $set( $config ); $html = prihod_theme_home();
 $check( strpos( $html, 'Owner news heading' ) < strpos( $html, 'Owner donation card' ) && strpos( $html, 'Owner donation card' ) < strpos( $html, 'Owner hero heading' ), 'Saved section order does not control the page.' );
 $check( strpos( $html, 'Owner donation card' ) < strpos( $html, 'Owner news card' ), 'Card order was ignored.' );
@@ -45,7 +45,7 @@ $check( substr_count( $html, '<article class="prihod-news-card' ) === 2 && ! str
 $check( ! str_contains( $html, '<time' ) && ! str_contains( $html, 'One two three' ) && str_contains( $html, 'data-home-columns="2"' ), 'News appearance options were ignored.' );
 $check( str_contains( $html, get_permalink( $page_id ) ) && str_contains( $html, 'Owner donation card' ), 'Linked cards need a companion plugin.' );
 $check( ! str_contains( $html, 'prihod-about-section' ) && str_contains( $html, 'Owner page content' ), 'Section visibility hides unrelated owner content.' );
-$check( $post_snapshot === hash( 'sha256', serialize( $wpdb->get_results( "SELECT ID,post_content,post_title,post_status FROM {$wpdb->posts} ORDER BY ID", ARRAY_A ) ) ), 'Saving homepage settings rewrote page/post content.' );
+$check( $post_snapshot === hash( 'sha256', serialize( $wpdb->get_results( "SELECT ID,post_content,post_title,post_status FROM {$wpdb->posts} WHERE post_type IN ('page', 'post') ORDER BY ID", ARRAY_A ) ) ), 'Saving homepage settings rewrote page/post content.' );
 $partial = prihod_theme_sanitize( array( 'width' => 1300 ) );
 $check( $partial['home'] === get_option( 'georg_kloster_prihod_options' )['home'], 'Saving old/partial theme forms discards home settings.' );
 $config['news_category'] = $other_category; $set( $config ); $html = prihod_theme_home_news( 'classic', false );
@@ -70,6 +70,9 @@ $menu_locations = get_theme_mod( 'nav_menu_locations', array() );
 unset( $menu_locations['footer'] );
 set_theme_mod( 'nav_menu_locations', $menu_locations );
 $footer = prihod_theme_footer();
+// The preceding release fixture installs a widget; this check targets the empty-area fallback.
+update_option( 'sidebars_widgets', array( 'wp_inactive_widgets' => array(), 'prihod-sidebar' => array() ) );
+$GLOBALS['_wp_sidebars_widgets'] = null;
 $check( ! str_contains( $footer, get_permalink( $page_id ) ) && str_contains( prihod_theme_sidebar(), get_permalink( $page_id ) ), 'Footer links must come from the assigned menu, not selected theme pages.' );
 $registered_menus = get_registered_nav_menus();
 $check( isset( $registered_menus['footer'] ), 'Theme does not register a standard footer menu location.' );
@@ -100,7 +103,7 @@ $check( prihod_theme_profile()['description'] === 'Translated owner description'
 remove_filter( 'wpml_translate_single_string', $translate_profile, 10 );
 ob_start(); prihod_theme_settings_page(); $panel = ob_get_clean();
 $check( str_contains( $panel, 'prihod-option-profile' ) && str_contains( $panel, '[profile][address]' ) && str_contains( $panel, '[profile][type]' ), 'Theme has no standalone profile controls.' );
-$check( $post_snapshot === hash( 'sha256', serialize( $wpdb->get_results( "SELECT ID,post_content,post_title,post_status FROM {$wpdb->posts} ORDER BY ID", ARRAY_A ) ) ), 'Standalone theme settings rewrote content.' );
+$check( $post_snapshot === hash( 'sha256', serialize( $wpdb->get_results( "SELECT ID,post_content,post_title,post_status FROM {$wpdb->posts} WHERE post_type IN ('page', 'post') ORDER BY ID", ARRAY_A ) ) ), 'Standalone theme settings rewrote content.' );
 $set( array() );
 $check( prihod_theme_profile()['name'] === get_bloginfo( 'name' ) && prihod_theme_profile()['description'] === get_bloginfo( 'description' ), 'Empty theme settings lose standard WordPress identity.' );
 

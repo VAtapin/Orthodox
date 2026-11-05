@@ -47,9 +47,42 @@ function prihod_theme_home_news( string $scheme, bool $monastery ): string {
     }
     return $html . '</div>' . ( ! $posts ? '<p>' . esc_html__( 'There are no posts yet.', 'georg-kloster-prihod' ) . '</p>' : '' ) . '</section>';
 }
-/** Homepage composition belongs to the native page editor. */
 function prihod_theme_home(): string {
-    return '<div class="prihod-container prihod-native-home wp-block-post-content">' . prihod_theme_home_content() . '</div>';
+    $profile = prihod_theme_profile(); $options = georg_kloster_prihod_options(); $scheme = prihod_theme_scheme(); $home = prihod_theme_home_options();
+    $monastery = 'monastery' === ( $profile['type'] ?? '' );
+    $about_label = prihod_theme_home_title( 'about' );
+    $schedule_class = prihod_theme_schedule_class();
+    $has_schedule = $home['sections']['services']['enabled'] && $schedule_class && $schedule_class::next( 0, 1 );
+    $visible = array_values( array_filter( $home['order'], static fn( $key ) => $home['sections'][$key]['enabled'] ) );
+    $hero_index = array_search( 'hero', $visible, true );
+    $embedded = $has_schedule && false !== $hero_index && 'services' === ( $visible[$hero_index + 1] ?? '' ) && in_array( $scheme, array( 'hospitality', 'blue', 'editorial' ), true );
+    $html = ''; $container_open = false;
+    foreach ( $visible as $key ) {
+        if ( 'hero' === $key ) {
+            if ( $container_open ) { $html .= '</div>'; $container_open = false; }
+            $html .= prihod_theme_home_hero( $scheme, $profile, $options, $monastery, $about_label, $embedded );
+            continue;
+        }
+        if ( ! $container_open ) { $html .= '<div class="prihod-container">'; $container_open = true; }
+        switch ( $key ) {
+            case 'services':
+                if ( $has_schedule && ! $embedded ) { $html .= prihod_theme_home_service_panel( $scheme, prihod_theme_home_url( 'schedule' ) ); }
+                break;
+            case 'features': $html .= prihod_theme_home_features( $scheme, $about_label, $monastery, (bool) $has_schedule ); break;
+            case 'topics': $html .= prihod_theme_home_topic_links(); break;
+            case 'about': $html .= prihod_theme_home_about( $scheme, $profile, $options, $monastery, $about_label ); break;
+            case 'news':
+                $news = prihod_theme_home_news( $scheme, $monastery );
+                $html .= 'editorial' === $scheme ? '<div class="prihod-editorial-news">' . $news . prihod_theme_verse() . '</div>' : ( 'tradition' === $scheme ? '<div class="prihod-tradition-stories">' . $news . '</div>' : $news );
+                break;
+            case 'content':
+                $content = prihod_theme_home_content(); $title = prihod_theme_home_title( 'content' );
+                $html .= $content ? prihod_theme_section_title( $title, '', '', prihod_theme_home_eyebrow( 'content' ) ) . $content : '';
+                break;
+            case 'contacts': $html .= prihod_theme_contact_panel( prihod_theme_home_title( 'contacts' ) ); break;
+        }
+    }
+    return $html . ( $container_open ? '</div>' : '' );
 }
 function prihod_theme_home_hero( string $scheme, array $profile, array $options, bool $monastery, string $about_label, bool $embedded ): string {
     $home = prihod_theme_home_options();

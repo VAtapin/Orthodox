@@ -1,6 +1,9 @@
 msgid ""
 msgstr "Project-Id-Version: Georg-Kloster Prihod 1.0.0\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nX-Domain: georg-kloster-prihod\nLanguage: pl_PL\n"
 
+msgid "%1$s: %2$s"
+msgstr "%1$s: %2$s"
+
 msgid "A Google key is only used when Google Maps is selected. The key is sent to visitors’ browsers and should be restricted to this site in Google Cloud."
 msgstr "Klucz Google jest używany tylko po wybraniu Google Maps. Jest przekazywany do przeglądarek odwiedzających; ogranicz go w Google Cloud do tej witryny."
 
@@ -64,11 +67,17 @@ msgstr "Czcionka podstawowa"
 msgid "Base text size in px"
 msgstr "Rozmiar tekstu podstawowego, px"
 
+msgid "Blue style quotation source"
+msgstr "Źródło cytatu niebieskiego stylu"
+
 msgid "Call the monastery"
 msgstr "Zadzwoń do monasteru"
 
 msgid "Card description"
 msgstr "Opis karty"
+
+msgid "Card position %d"
+msgstr "Pozycja karty %d"
 
 msgid "Card title"
 msgstr "Tytuł karty"
@@ -87,6 +96,9 @@ msgstr "Klasyczny złoty"
 
 msgid "Classic header motto"
 msgstr "Motto w nagłówku klasycznego stylu"
+
+msgid "Classic hero motto"
+msgstr "Napis w pierwszej sekcji klasycznego stylu"
 
 msgid "Clergy"
 msgstr "Duchowieństwo"
@@ -288,6 +300,9 @@ msgstr "Treść strony głównej"
 msgid "Homepage hero image"
 msgstr "Obraz główny strony startowej"
 
+msgid "Homepage sections and content"
+msgstr "Sekcje i treść strony głównej"
+
 msgid "Icon of the day"
 msgstr "Ikona dnia"
 
@@ -468,6 +483,9 @@ msgstr "Menu główne"
 msgid "Privacy policy"
 msgstr "Polityka prywatności"
 
+msgid "Quotation below the buttons in the blue style"
+msgstr "Cytat pod przyciskami niebieskiego stylu"
+
 msgid "Quotation source"
 msgstr "Źródło cytatu"
 
@@ -531,6 +549,15 @@ msgstr "Tekst drugiego przycisku"
 msgid "Section cards"
 msgstr "Karty działów"
 
+msgid "Section heading: %s"
+msgstr "Nagłówek sekcji: %s"
+
+msgid "Section link or subtitle: %s"
+msgstr "Odnośnik lub podtytuł sekcji: %s"
+
+msgid "Section position %d"
+msgstr "Pozycja sekcji %d"
+
 msgid "Section settings"
 msgstr "Ustawienia sekcji"
 
@@ -557,6 +584,9 @@ msgstr "Pokaż adres"
 
 msgid "Show card images"
 msgstr "Pokazuj zdjęcia kart"
+
+msgid "Show card: %s"
+msgstr "Pokaż kartę: %s"
 
 msgid "Show contact details in the header"
 msgstr "Pokaż dane kontaktowe w nagłówku"
@@ -587,6 +617,9 @@ msgstr "Pokaż nazwę"
 
 msgid "Show phone"
 msgstr "Pokaż telefon"
+
+msgid "Show section: %s"
+msgstr "Pokaż sekcję: %s"
 
 msgid "Show site description in contacts"
 msgstr "Pokaż opis strony w sekcji kontaktów"

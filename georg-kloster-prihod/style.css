@@ -5,7 +5,7 @@ Theme URI: https://georg-kloster.ru/
 Author: Atapin Vladimir
 Author URI: https://atapin.de/
 Description: A parish theme with five visual styles for standard WordPress pages and posts.
-Version: 1.1.0
+Version: 1.1.1
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.0
@@ -51,7 +51,3 @@ h1, h2, h3, h4, h5, h6, .wp-block-post-title, .site-title {
     overflow-wrap: anywhere;
 }
 .prihod-inner-grid > *, .prihod-section-title > * {min-width: 0;}
-
-.prihod-native-home {padding-block: 2rem;}
-.prihod-native-home .wp-block-group {min-width: 0;}
-.prihod-native-home .wp-block-post-template {padding: 0;}

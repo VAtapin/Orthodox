@@ -2,7 +2,7 @@
 
 ## Current state
 
-The repository contains the Georg-Kloster Prihod theme (1.1.0), Parish Core (0.2.12), and Connect Hub (0.4.10, local test build). The theme has five visual styles, native Customizer controls, standard WordPress widget and primary/footer menu locations, English gettext source strings, and Russian, German, Polish, and Ukrainian catalogs. Footer links are managed by assigning a standard menu to the Footer menu location. Author: Atapin Vladimir (`atapin`); site: https://georg-kloster.ru/; email: atapin@gmail.com.
+The repository contains the Georg-Kloster Prihod theme (1.1.1), Parish Core (0.2.12), and Connect Hub (0.4.10, local test build). The theme has five visual styles, native Customizer controls, standard WordPress widget and primary/footer menu locations, English gettext source strings, and Russian, German, Polish, and Ukrainian catalogs. Footer links are managed by assigning a standard menu to the Footer menu location. Author: Atapin Vladimir (`atapin`); site: https://georg-kloster.ru/; email: atapin@gmail.com.
 
 The footer no longer generates a fixed list of site links. It renders the standard WordPress menu assigned to the Footer menu location; per-language menus can be assigned through the normal WordPress/WPML menu workflow. The theme package has not been installed on production.
 
@@ -26,7 +26,7 @@ Connect Hub 0.4.10 sends Telegram updates synchronously to each subscriber's pri
 
 ## WordPress.org release status
 
-Version 1.0.0 is submitted in WordPress.org Themes Trac ticket [#296403](https://themes.trac.wordpress.org/ticket/296403); the SVN submission remains separate from the newer Git changes deployed to the test site. The ticket was closed as not-approved; 1.0.1 addresses the five reported findings and has not been resubmitted. Do not treat the test-site package as a new SVN submission.
+Version 1.0.0 is submitted in WordPress.org Themes Trac ticket [#296403](https://themes.trac.wordpress.org/ticket/296403); the SVN submission remains separate from the newer Git changes deployed to the test site. The ticket was closed as not-approved; 1.1.1 addresses the five reported findings and has not been resubmitted. Do not treat the test-site package as a new SVN submission.
 
 Connect Hub 0.4.10 is a prepared candidate, not yet submitted. The owner's Plugin Check report generated 2026-10-28 at 15:36 found one escaping error and 25 remaining warnings after the earlier source update. Those findings have now been corrected in source: table headings are escaped at output, validated input paths are annotated with the validation performed, the contact form reads only its result state from GET, and the retention metadata query is marked as bounded. After these corrections, PHP lint, 85 isolated assertions, Connect Hub translation checks, and ZIP rebuild passed. Plugin Check has not been rerun at the owner's request, so no clean result is claimed. Before submission, confirm the `Georg-Kloster` brand/name rights and final slug with WordPress.org; the catalog decides slug availability.
 
@@ -60,12 +60,12 @@ Upload `build/georg-kloster-prihod-core-0.2.12.zip` through WordPress Plugins â†
 
 Last related code commit: Fix remaining Connect Hub Plugin Check findings.
 
-## Theme review and native homepage (1.1.0)
+## Theme review follow-up (1.1.1)
 
-The five reported theme findings are addressed: float containment, long heading wrapping, excessive Customizer textareas, filesystem timestamp versions and preview propagation. Styles use release versions. Preview links accept only same-origin homepage/canonical public posts without query strings or credentials. Homepage composition now comes from native page blocks; duplicate homepage controls are removed from Customizer and Parish Appearance. Four remaining multiline controls serve profile description/address, shared quotation and footer. All five palettes remain; old automatic layouts are replaced by author-controlled block composition, not pixel-identical replicas.
+The original five homepage compositions and their Customizer/Parish Appearance controls are restored at the owner's request. Native-block replacement and its migration tool are withdrawn. The owner generated draft 1178 from page 16 but did not apply it; no production content rollback or migration is needed. Existing saved theme options continue to drive the homepage.
 
-The separate scripts/migrate_home_blocks.php creates a review draft from enabled legacy sections, reuses it on repeat runs, and applies reviewed blocks to the original page without changing its ID, URL or language metadata. Original content is backed up in protected post metadata/revisions, options remain intact, and rollback is available. Migration is manual and excluded from the theme ZIP. It handles the selected static homepage; translated pages require their own review. Maps use a standard Custom HTML block and services use the existing plugin block when registered. See docs/THEME_BLOCK_MIGRATION.md. Package: build/georg-kloster-prihod-1.1.0.zip.
+All five review fixes remain: float containment, wrapping for long headings, seven multiline Customizer controls with ordinary text controls for short labels, release-version CSS caching without filemtime, and preview propagation limited to same-origin homepage/canonical publicly viewable posts without query strings or credentials. Existing options and translations are retained. Installable package: build/georg-kloster-prihod-1.1.1.zip. Update through WordPress Appearance â†’ Themes, replacing the existing theme; no Composer, Node build, migrations or content transfer is required.
 
-Checks passed: PHP lint; 85 isolated assertions; 14 preview URL checks; 2,875 translation/placeholder checks; theme ZIP build; diff checks. Disposable WordPress migration integration passed 14 checks on WP 7.1.4/PHP 8.4.25 and WP 6.5.14/PHP 8.0.30, including all five palettes, preserved source data and rollback. No visual browser QA or official Theme Check was run. No production deployment or WordPress.org resubmission performed. Next: review the migration draft and mobile presentation, run official theme checks and resubmit. The documented server uses ZIP installation rather than a Git webroot.
+Checks: PHP lint, 85 isolated assertions, 14 preview URL assertions, 2,919 translation/placeholder checks and theme ZIP build passed. Disposable WordPress 7.1.4/PHP 8.4.25 passed the release/Customizer scenario, homepage settings scenario and the layout/i18n scenarios; exact counts are in the test result files. Test fixtures now reset request-local widget state and compare page/post snapshots separately from menu items. No visual browser QA or official Theme Check is claimed. No site update or WordPress.org resubmission performed. Next: visually verify the original layouts and long titles, run official theme checks, then resubmit.
 
-Last related commits: dae0232 (five reported findings); Move homepage content to native WordPress blocks (this follow-up).
+Last related code baseline: dae0232 (five theme review findings). Current task commit: Restore original homepage while retaining theme review fixes.

@@ -1,6 +1,10 @@
 msgid ""
 msgstr "Project-Id-Version: Georg-Kloster Prihod\nContent-Type: text/plain; charset=UTF-8\nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nX-Domain: georg-kloster-prihod\n"
 
+#: includes/customizer.php
+msgid "%1$s: %2$s"
+msgstr ""
+
 #: includes/settings.php
 msgid "A Google key is only used when Google Maps is selected. The key is sent to visitors’ browsers and should be restricted to this site in Google Cloud."
 msgstr ""
@@ -93,6 +97,10 @@ msgstr ""
 msgid "Base text size in px"
 msgstr ""
 
+#: includes/customizer.php includes/settings.php
+msgid "Blue style quotation source"
+msgstr ""
+
 #: includes/category-card-image.php
 msgid "Bottom"
 msgstr ""
@@ -101,11 +109,15 @@ msgstr ""
 msgid "Call the monastery"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Card description"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php
+msgid "Card position %d"
+msgstr ""
+
+#: includes/customizer.php includes/home-settings.php
 msgid "Card title"
 msgstr ""
 
@@ -135,6 +147,10 @@ msgstr ""
 
 #: includes/customizer.php includes/settings.php
 msgid "Classic header motto"
+msgstr ""
+
+#: includes/customizer.php includes/settings.php
+msgid "Classic hero motto"
 msgstr ""
 
 #: includes/about.php
@@ -232,7 +248,7 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: includes/home-settings.php includes/site-settings.php
+#: includes/customizer.php includes/home-settings.php includes/site-settings.php
 msgid "Description"
 msgstr ""
 
@@ -240,7 +256,7 @@ msgstr ""
 msgid "Design and layout"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Desktop columns"
 msgstr ""
 
@@ -264,7 +280,7 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Excerpt length in words"
 msgstr ""
 
@@ -390,7 +406,7 @@ msgstr ""
 msgid "Hero image"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Hide the schedule card when upcoming services are displayed"
 msgstr ""
 
@@ -416,6 +432,10 @@ msgstr ""
 
 #: includes/customizer.php
 msgid "Homepage hero image"
+msgstr ""
+
+#: includes/customizer.php
+msgid "Homepage sections and content"
 msgstr ""
 
 #: includes/photos.php
@@ -462,7 +482,7 @@ msgstr ""
 msgid "Light hospitality"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Link label"
 msgstr ""
 
@@ -470,7 +490,7 @@ msgstr ""
 msgid "Link row"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Link to page: %s"
 msgstr ""
 
@@ -550,7 +570,7 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: archive.php includes/home-settings.php index.php patterns/homepage.php
+#: archive.php includes/home-settings.php index.php
 msgid "News"
 msgstr ""
 
@@ -570,11 +590,11 @@ msgstr ""
 msgid "Not installed"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Number of posts"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Number of services"
 msgstr ""
 
@@ -678,11 +698,11 @@ msgstr ""
 msgid "Post categories"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Post category"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Post link label"
 msgstr ""
 
@@ -708,6 +728,10 @@ msgstr ""
 
 #: includes/render.php
 msgid "Privacy policy"
+msgstr ""
+
+#: includes/customizer.php includes/settings.php
+msgid "Quotation below the buttons in the blue style"
 msgstr ""
 
 #: includes/customizer.php includes/settings.php
@@ -762,7 +786,7 @@ msgstr ""
 msgid "Schedule"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Schedule button label"
 msgstr ""
 
@@ -786,12 +810,24 @@ msgstr ""
 msgid "Search posts…"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Secondary button label"
 msgstr ""
 
 #: includes/home-settings.php
 msgid "Section cards"
+msgstr ""
+
+#: includes/customizer.php
+msgid "Section heading: %s"
+msgstr ""
+
+#: includes/customizer.php
+msgid "Section link or subtitle: %s"
+msgstr ""
+
+#: includes/customizer.php
+msgid "Section position %d"
 msgstr ""
 
 #: includes/home-settings.php
@@ -822,35 +858,39 @@ msgstr ""
 msgid "Short name"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Show address"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Show card images"
+msgstr ""
+
+#: includes/customizer.php
+msgid "Show card: %s"
 msgstr ""
 
 #: includes/customizer.php includes/settings.php
 msgid "Show contact details in the header"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Show date"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Show email"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Show excerpt"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Show hero image in contacts"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Show images"
 msgstr ""
 
@@ -858,7 +898,7 @@ msgstr ""
 msgid "Show logo"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Show map and directions link"
 msgstr ""
 
@@ -866,11 +906,15 @@ msgstr ""
 msgid "Show name"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php includes/home-settings.php
 msgid "Show phone"
 msgstr ""
 
-#: includes/home-settings.php
+#: includes/customizer.php
+msgid "Show section: %s"
+msgstr ""
+
+#: includes/customizer.php includes/home-settings.php
 msgid "Show site description in contacts"
 msgstr ""
 
