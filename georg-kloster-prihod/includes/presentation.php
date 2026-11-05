@@ -27,7 +27,21 @@ function prihod_theme_scheme(): string {
 }
 function prihod_theme_preview_url( string $url ): string {
     $preview = prihod_theme_preview_scheme();
-    return $preview && wp_parse_url( $url, PHP_URL_HOST ) === wp_parse_url( home_url(), PHP_URL_HOST ) ? add_query_arg( 'prihod_preview', $preview, $url ) : $url;
+    if ( ! $preview ) { return $url; }
+    $target = wp_parse_url( $url );
+    $home = wp_parse_url( home_url( '/' ) );
+    // Carry the visual preview only to public content, never arbitrary same-host endpoints.
+    if ( ! is_array( $target ) || ! is_array( $home ) ||
+        ( $target['scheme'] ?? '' ) !== ( $home['scheme'] ?? '' ) ||
+        ( $target['host'] ?? '' ) !== ( $home['host'] ?? '' ) ||
+        ( $target['port'] ?? null ) !== ( $home['port'] ?? null ) ||
+        isset( $target['user'] ) || isset( $target['pass'] ) || isset( $target['query'] ) ) { return $url; }
+    $path = $target['path'] ?? '/';
+    if ( $path !== ( $home['path'] ?? '/' ) ) {
+        $post = get_post( url_to_postid( $url ) );
+        if ( ! $post || ! is_post_publicly_viewable( $post ) || $url !== get_permalink( $post ) ) { return $url; }
+    }
+    return add_query_arg( 'prihod_preview', $preview, $url );
 }
 function prihod_theme_schedule_class(): string {
     if ( class_exists( '\GeorgKlosterPrihodSchedule\Schedule' ) ) {

@@ -5,7 +5,7 @@ Theme URI: https://georg-kloster.ru/
 Author: Atapin Vladimir
 Author URI: https://atapin.de/
 Description: A parish theme with five visual styles for standard WordPress pages and posts.
-Version: 1.0.0
+Version: 1.0.1
 Requires at least: 6.5
 Tested up to: 7.1
 Requires PHP: 8.0
@@ -40,3 +40,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .bypostauthor {font-weight:inherit}
 .screen-reader-text {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .screen-reader-text:focus {position:static;width:auto;height:auto;margin:0;overflow:visible;clip:auto;white-space:normal}
+
+/* Contain classic editor floats without clipping images or focus outlines. */
+.wp-block-post-content::after, .prihod-article::after, .comment-body::after, .widget::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+h1, h2, h3, h4, h5, h6, .wp-block-post-title, .site-title {
+    overflow-wrap: anywhere;
+}
+.prihod-inner-grid > *, .prihod-section-title > * {min-width: 0;}

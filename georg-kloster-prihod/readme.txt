@@ -52,6 +52,9 @@ Create or edit a standard WordPress menu under Appearance > Menus and assign it 
 
 == Changelog ==
 
+= 1.0.1 =
+Fix float containment, long headings, Customizer field types and preview URL scope. Use release versions for stylesheet caching.
+
 = 1.0.0 =
 * First public release. Includes five visual styles, native WordPress settings and widgets, multilingual plugin compatibility, optional plugin guidance, and responsive homepage layouts.
 
