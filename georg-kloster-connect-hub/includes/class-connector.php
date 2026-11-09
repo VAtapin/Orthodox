@@ -112,7 +112,7 @@ final class Connector {
         echo '<div class="wrap"><h1>' . esc_html( $this->title ) . '</h1><p>' . esc_html( $this->health()['message'] ) . '</p><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="gkps_connect_' . esc_attr( $this->id ) . '">'; wp_nonce_field( 'gkps_connect_' . $this->id );
         echo '<p><label><input type="checkbox" name="enabled" value="1"' . checked( $settings['enabled'], true, false ) . '> ' . esc_html__( 'Allow sending to the external service', 'georg-kloster-connect-hub' ) . '</label></p><p><label>' . esc_html__( 'Token (leave empty to keep the existing token)', 'georg-kloster-connect-hub' ) . ' <input type="password" name="token" autocomplete="new-password" value=""></label> <label><input type="checkbox" name="clear_token" value="1"> ' . esc_html__( 'Delete token', 'georg-kloster-connect-hub' ) . '</label></p>';
         $fields = 'telegram' === $this->id ? array() : array( 'target' => __( 'Facebook Page ID', 'georg-kloster-connect-hub' ) );
-        if ( in_array( $this->id, array( 'instagram', 'vk', 'ok' ), true ) ) { $fields['target'] = 'vk' === $this->id ? __( 'VK community ID (include the minus sign)', 'georg-kloster-connect-hub' ) : ( 'ok' === $this->id ? __( 'OK group ID', 'georg-kloster-connect-hub' ) : __( 'Instagram account ID', 'georg-kloster-connect-hub' ) ); }
+        if ( in_array( $this->id, array( 'instagram', 'vk', 'ok' ), true ) ) { $fields['target'] = 'vk' === $this->id ? __( 'VK', 'georg-kloster-connect-hub' ) . ' ID (club123456 / 123456)' : ( 'ok' === $this->id ? __( 'OK group ID', 'georg-kloster-connect-hub' ) : __( 'Instagram account ID', 'georg-kloster-connect-hub' ) ); }
         if ( 'telegram' !== $this->id && 'ok' !== $this->id && ! in_array( $this->id, array( 'vk', 'facebook' ), true ) ) { $fields['api_version'] = __( 'API version from your application', 'georg-kloster-connect-hub' ); }
         foreach ( $fields as $key => $label ) {
             echo '<p><label>' . esc_html( $label ) . '<br><input class="regular-text" name="' . esc_attr( $key ) . '" value="' . esc_attr( $settings[ $key ] ) . '"></label>';
@@ -167,11 +167,9 @@ final class Connector {
             $settings['enabled'] = false;
             update_option( 'gkps_connect_' . $this->id, $settings, false );
             do_action( 'gkps_connector_saved', $this->id, $settings );
-            $message = 'vk' === $this->id
-                ? __( 'VK settings were saved, but sending remains off. Check the community access token and enter the community ID with a minus sign. A blank token field keeps the saved token.', 'georg-kloster-connect-hub' )
-                : ( 'facebook' === $this->id
+            $message = 'facebook' === $this->id
                     ? __( 'Facebook settings were saved, but sending remains off. Check the Page access token and enter the numeric Facebook Page ID. A blank token field keeps the saved token.', 'georg-kloster-connect-hub' )
-                    : __( 'Settings were saved, but sending remains off. Check the token, destination ID and required settings. A blank token field keeps the saved token.', 'georg-kloster-connect-hub' ) );
+                    : __( 'Settings were saved, but sending remains off. Check the token, destination ID and required settings. A blank token field keeps the saved token.', 'georg-kloster-connect-hub' );
             set_transient( 'gkps_connector_error_' . $this->id . '_' . get_current_user_id(), array( $message ), 120 );
             wp_safe_redirect( $this->settings_url() ); exit;
         }

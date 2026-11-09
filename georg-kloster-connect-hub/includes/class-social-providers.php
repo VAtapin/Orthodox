@@ -9,10 +9,15 @@ final class Social_Providers {
     public const META_GRAPH_API_VERSION = 'v27.0';
     public static function supports( string $id ): bool { return in_array( $id, array( 'instagram', 'vk', 'ok' ), true ); }
 
+    public static function vk_community_target( string $value ): string {
+        if ( ! preg_match( '/^-?(?:club)?([1-9][0-9]*)$/iD', trim( $value ), $match ) ) { return $value; }
+        return '-' . $match[1];
+    }
+
     public static function valid( string $id, array $settings ): bool {
         foreach ( array( 'token', 'target', 'api_version', 'application_key', 'application_secret' ) as $field ) { if ( isset( $settings[$field] ) && ! is_string( $settings[$field] ) ) { return false; } }
         if ( empty( $settings['enabled'] ) || ! is_string( $settings['token'] ) || ! preg_match( '/^[A-Za-z0-9._~-]+$/D', $settings['token'] ) ) { return false; }
-        if ( 'vk' === $id ) { return (bool) preg_match( '/^-[1-9][0-9]*$/D', $settings['target'] ) && (bool) preg_match( '/^[0-9]+\.[0-9]+$/D', $settings['api_version'] ); }
+        if ( 'vk' === $id ) { return (bool) preg_match( '/^-[1-9][0-9]*$/D', self::vk_community_target( $settings['target'] ) ) && (bool) preg_match( '/^[0-9]+\.[0-9]+$/D', $settings['api_version'] ); }
         if ( ! preg_match( '/^[1-9][0-9]*$/D', $settings['target'] ) ) { return false; }
         if ( 'instagram' === $id ) { return (bool) preg_match( '/^v[0-9]+\.[0-9]+$/D', $settings['api_version'] ); }
         return 'ok' === $id && (bool) preg_match( '/^[A-Za-z0-9]+$/D', $settings['application_key'] ?? '' ) && (bool) preg_match( '/^[A-Za-z0-9._-]+$/D', $settings['application_secret'] ?? '' );
@@ -63,7 +68,8 @@ final class Social_Providers {
         if ( 'instagram' === $id ) { return self::instagram( $settings, $job ); }
         $text = $job['text'] . "\n" . $job['url'];
         if ( 'vk' === $id ) {
-            $body = array( 'access_token' => $settings['token'], 'v' => $settings['api_version'], 'owner_id' => $settings['target'], 'from_group' => str_starts_with( $settings['target'], '-' ) ? 1 : 0, 'message' => $text, 'guid' => substr( hash( 'sha256', $settings['target'] . $job['source'] . $text . ( $job['reply_context']['configuration'] ?? '' ) ), 0, 32 ) );
+            $target = self::vk_community_target( $settings['target'] );
+            $body = array( 'access_token' => $settings['token'], 'v' => $settings['api_version'], 'owner_id' => $target, 'from_group' => 1, 'message' => $text, 'guid' => substr( hash( 'sha256', $target . $job['source'] . $text . ( $job['reply_context']['configuration'] ?? '' ) ), 0, 32 ) );
             list( $code, $data ) = self::call( 'POST', 'https://api.vk.com/method/wall.post', $body );
             $remote_id = is_array( $data ) ? ( $data['response']['post_id'] ?? null ) : null;
             $accepted = 200 === $code && is_array( $data ) && ! isset( $data['error'] ) && is_scalar( $remote_id ) && preg_match( '/^[1-9][0-9]*$/D', (string) $remote_id );
