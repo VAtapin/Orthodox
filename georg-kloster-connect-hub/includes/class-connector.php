@@ -16,6 +16,8 @@ final class Connector {
     private function __construct( string $id, string $title, string $file ) {
         $this->id = $id; $this->title = $title; $this->file = $file;
         add_action( 'admin_menu', array( $this, 'menu' ), 20 );
+        add_action( 'add_meta_boxes_post', array( $this, 'meta_box' ) );
+        add_action( 'save_post_post', array( $this, 'publish_post' ), 10, 1 );
         add_action( 'admin_post_gkps_connect_' . $id, array( $this, 'save' ) );
         add_action( 'admin_post_gkps_retry_' . $id, array( $this, 'retry' ) );
         if ( 'telegram' !== $id ) { add_action( 'gkps_' . $id . '_worker', array( $this, 'worker' ) ); }

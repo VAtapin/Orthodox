@@ -58,7 +58,7 @@ Upload the prepared Connect Hub 0.4.10 review package in the WordPress.org plugi
 
 Upload `build/georg-kloster-prihod-core-0.2.12.zip` through WordPress Plugins → Add Plugin → Upload Plugin, replacing the installed Parish Core. Verify that the upcoming-service heading clears the calendar icon and that full week/list cards show the calendar commemorations with available typikon marks. The compact month view remains compact. Production has not been updated.
 
-Last related code commit: Remove retry control from channel settings.
+Last related code commit: Wire post editor publishing controls.
 
 ## Theme review follow-up (1.1.1)
 
