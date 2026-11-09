@@ -46,4 +46,3 @@ $GLOBALS['calls'] = array(); $GLOBALS['deny'] = false;
 $result = Social_Providers::send( 'vk', $settings, $job );
 if ( $result['accepted'] || count( $GLOBALS['calls'] ) !== 0 || empty( $result['api_error']['error_msg'] ) ) { throw new Exception( 'Missing image must fail before publication.' ); }
 echo "VK photo upload checks passed.\n";
-
