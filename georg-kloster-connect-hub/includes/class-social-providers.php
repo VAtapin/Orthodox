@@ -41,8 +41,20 @@ final class Social_Providers {
         return array( $code, $data );
     }
 
-    private static function result( int $code, bool $accepted, bool $pending = false, array $response = array(), bool $retry = false ): array {
-        return array( 'http_code' => $code, 'accepted' => $accepted, 'pending' => $pending, 'response' => $response, 'retry' => $retry || 0 === $code || 429 === $code || $code >= 500, 'error' => $accepted || $pending ? '' : __( 'The remote API did not confirm publication. Check permissions, credentials and account limits.', 'georg-kloster-connect-hub' ) );
+    private static function api_error_details( $data ): array {
+        if ( ! is_array( $data ) ) { return array(); }
+        $error = isset( $data['error'] ) && is_array( $data['error'] ) ? $data['error'] : $data;
+        $details = array();
+        foreach ( array( 'message', 'type', 'code', 'error_subcode', 'fbtrace_id', 'error_user_title', 'error_user_msg', 'error_msg', 'error_code', 'is_transient' ) as $key ) {
+            if ( ! isset( $error[ $key ] ) || ! is_scalar( $error[ $key ] ) ) { continue; }
+            $value = is_bool( $error[ $key ] ) ? ( $error[ $key ] ? 'true' : 'false' ) : sanitize_text_field( (string) $error[ $key ] );
+            if ( '' !== $value ) { $details[ $key ] = function_exists( 'mb_substr' ) ? mb_substr( $value, 0, 500 ) : substr( $value, 0, 500 ); }
+        }
+        return $details;
+    }
+
+    private static function result( int $code, bool $accepted, bool $pending = false, array $response = array(), bool $retry = false, $api_response = array() ): array {
+        return array( 'http_code' => $code, 'accepted' => $accepted, 'pending' => $pending, 'response' => $response, 'api_error' => self::api_error_details( $api_response ), 'retry' => $retry || 0 === $code || 429 === $code || $code >= 500, 'error' => $accepted || $pending ? '' : __( 'The remote API did not confirm publication. Check permissions, credentials and account limits.', 'georg-kloster-connect-hub' ) );
     }
 
     public static function send( string $id, array $settings, array &$job ): array {
@@ -54,7 +66,7 @@ final class Social_Providers {
             $remote_id = is_array( $data ) ? ( $data['response']['post_id'] ?? null ) : null;
             $accepted = 200 === $code && is_array( $data ) && ! isset( $data['error'] ) && is_scalar( $remote_id ) && preg_match( '/^[1-9][0-9]*$/D', (string) $remote_id );
             $retry = is_array( $data ) && in_array( $data['error']['error_code'] ?? null, array( 6, 10, 29 ), true );
-            return self::result( $code, $accepted, false, $accepted ? array( 'id' => (string) $data['response']['post_id'] ) : array(), $retry );
+            return self::result( $code, $accepted, false, $accepted ? array( 'id' => (string) $data['response']['post_id'] ) : array(), $retry, $accepted ? array() : $data );
         }
         if ( 'ok' !== $id ) { return self::result( 0, false ); }
         $media = array( array( 'type' => 'text', 'text' => $job['text'] ) );
@@ -66,7 +78,7 @@ final class Social_Providers {
         $body['access_token'] = $settings['token'];
         list( $code, $data ) = self::call( 'POST', 'https://api.ok.ru/fb.do', $body );
         $accepted = 200 === $code && ( is_string( $data ) || is_int( $data ) ) && preg_match( '/^[1-9][0-9]*$/D', (string) $data );
-        $result = self::result( $code, (bool) $accepted, false, $accepted ? array( 'id' => (string) $data ) : array() );
+        $result = self::result( $code, (bool) $accepted, false, $accepted ? array( 'id' => (string) $data ) : array(), false, $accepted ? array() : $data );
         // OK has no publication idempotency key. A timeout needs a human check.
         if ( 0 === $code || $code >= 500 ) { $result['uncertain'] = true; $result['retry'] = false; }
         return $result;
@@ -83,18 +95,18 @@ final class Social_Providers {
                 $job['container_id'] = (string) $data['id'];
                 return self::result( $code, false, true );
             }
-            return self::result( $code, false, false, array(), ! empty( $data['error']['is_transient'] ) );
+            return self::result( $code, false, false, array(), ! empty( $data['error']['is_transient'] ), $data );
         }
         if ( ! preg_match( '/^[0-9]+$/D', (string) $job['container_id'] ) ) { return self::result( 400, false ); }
         list( $code, $data ) = self::call( 'GET', add_query_arg( 'fields', 'status_code', $base . $job['container_id'] ), array(), $headers );
         $status = is_array( $data ) ? ( $data['status_code'] ?? '' ) : '';
-        if ( 200 !== $code || ! is_string( $status ) || '' === $status ) { return self::result( $code, false ); }
+        if ( 200 !== $code || ! is_string( $status ) || '' === $status ) { return self::result( $code, false, false, array(), false, $data ); }
         if ( 'PUBLISHED' === $status ) { return self::result( $code, true, false, array( 'container_id' => $job['container_id'] ) ); }
         if ( 'IN_PROGRESS' === $status ) { return self::result( $code, false, true ); }
-        if ( 'FINISHED' !== $status ) { $job['container_terminal'] = true; return self::result( 400, false ); }
+        if ( 'FINISHED' !== $status ) { $job['container_terminal'] = true; return self::result( 400, false, false, array(), false, $data ); }
         list( $code, $data ) = self::call( 'POST', $base . $settings['target'] . '/media_publish', array( 'creation_id' => $job['container_id'] ), $headers );
         $accepted = $code >= 200 && $code < 300 && is_array( $data ) && ! empty( $data['id'] ) && is_scalar( $data['id'] );
         // Reuse this same container after transient failures; never create another post.
-        return self::result( $code, $accepted, false, $accepted ? array( 'id' => (string) $data['id'] ) : array(), ! empty( $data['error']['is_transient'] ) );
+        return self::result( $code, $accepted, false, $accepted ? array( 'id' => (string) $data['id'] ) : array(), ! empty( $data['error']['is_transient'] ), $accepted ? array() : $data );
     }
 }

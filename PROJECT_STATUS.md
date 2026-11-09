@@ -2,7 +2,7 @@
 
 ## Current state
 
-The repository contains the Georg-Kloster Prihod theme (1.1.1), Parish Core (0.2.12), and Connect Hub (0.4.10, local test build). The theme has five visual styles, native Customizer controls, standard WordPress widget and primary/footer menu locations, English gettext source strings, and Russian, German, Polish, and Ukrainian catalogs. Footer links are managed by assigning a standard menu to the Footer menu location. Author: Atapin Vladimir (`atapin`); site: https://georg-kloster.ru/; email: atapin@gmail.com.
+The repository contains the Georg-Kloster Prihod theme (1.1.1), Parish Core (0.2.12), and Connect Hub (0.4.10 submitted to WordPress.org; local source may include unreleased changes). The theme has five visual styles, native Customizer controls, standard WordPress widget and primary/footer menu locations, English gettext source strings, and Russian, German, Polish, and Ukrainian catalogs. Footer links are managed by assigning a standard menu to the Footer menu location. Author: Atapin Vladimir (`atapin`); site: https://georg-kloster.ru/; email: atapin@gmail.com.
 
 The footer no longer generates a fixed list of site links. It renders the standard WordPress menu assigned to the Footer menu location; per-language menus can be assigned through the normal WordPress/WPML menu workflow. The theme package has not been installed on production.
 
@@ -22,13 +22,13 @@ Connect Hub 0.4.10 keeps form notifications separate from public Telegram broadc
 
 ## Connect Hub delivery
 
-Connect Hub 0.4.10 sends Telegram updates synchronously to each subscriber's private chat, records individual outcomes, and permits manual retries after failure. Incoming bot commands, form notifications, replies by Telegram/email, webhook registration, and publications do not use delayed workers or automatic retries. WP-Cron remains only for calendar timing (daily digest and scheduled publication rules) and record retention. Non-Telegram social-channel processing is unchanged. Old queued items and stale scheduled hook records have not been migrated or deleted; legacy worker hooks are no longer registered. Installable package: `build/georg-kloster-connect-hub-0.4.10-test.zip`. It has not been installed on production or submitted to WordPress.org.
+Connect Hub 0.4.10 sends Telegram updates synchronously to each subscriber's private chat, records individual outcomes, and permits manual retries after failure. Incoming bot commands, form notifications, replies by Telegram/email, webhook registration, and publications do not use delayed workers or automatic retries. WP-Cron remains only for calendar timing (daily digest and scheduled publication rules) and record retention. Social publication history now keeps up to ten attempts per job, including HTTP status, endpoint, API version, destination ID, and whitelisted API error fields; credentials and request bodies are excluded. Old queued items and stale scheduled hook records have not been migrated or deleted; legacy worker hooks are no longer registered. Installable package: `build/georg-kloster-connect-hub-0.4.10-test.zip`. Production has not been updated.
 
 ## WordPress.org release status
 
 Version 1.0.0 is submitted in WordPress.org Themes Trac ticket [#296403](https://themes.trac.wordpress.org/ticket/296403); the SVN submission remains separate from the newer Git changes deployed to the test site. The ticket was closed as not-approved; 1.1.1 addresses the five reported findings and has not been resubmitted. Do not treat the test-site package as a new SVN submission.
 
-Connect Hub 0.4.10 is a prepared candidate, not yet submitted. The owner's Plugin Check report generated 2026-10-28 at 15:36 found one escaping error and 25 remaining warnings after the earlier source update. Those findings have now been corrected in source: table headings are escaped at output, validated input paths are annotated with the validation performed, the contact form reads only its result state from GET, and the retention metadata query is marked as bounded. After these corrections, PHP lint, 85 isolated assertions, Connect Hub translation checks, and ZIP rebuild passed. Plugin Check has not been rerun at the owner's request, so no clean result is claimed. Before submission, confirm the `Georg-Kloster` brand/name rights and final slug with WordPress.org; the catalog decides slug availability.
+Connect Hub 0.4.10 has been submitted to WordPress.org and is awaiting review. Keep the version unchanged while the review is pending. The owner's Plugin Check report generated 2026-10-28 at 15:36 found one escaping error and 25 remaining warnings after the earlier source update. Those findings have now been corrected in source: table headings are escaped at output, validated input paths are annotated with the validation performed, the contact form reads only its result state from GET, and the retention metadata query is marked as bounded. After these corrections, PHP lint, 85 isolated assertions, Connect Hub translation checks, and ZIP rebuild passed. Plugin Check has not been rerun at the owner's request, so no clean result is claimed.
 
 ## Local Telegram editor test build
 
@@ -54,11 +54,11 @@ Schedule commemorations and overview heading: `php tests/run.php` passed 85 isol
 
 ## Next steps
 
-The owner will run Plugin Check on the latest rebuilt Connect Hub ZIP and report any remaining findings for follow-up. Confirm the brand/name documentation and final slug, then submit the Connect Hub ZIP through the WordPress.org plugin portal. Do not claim it is approved until the directory review completes.
+Wait for the WordPress.org review response for Connect Hub 0.4.10. Keep the version unchanged while the review is pending. Address any reviewer findings in the submitted version without claiming approval before the directory review completes.
 
 Upload `build/georg-kloster-prihod-core-0.2.12.zip` through WordPress Plugins → Add Plugin → Upload Plugin, replacing the installed Parish Core. Verify that the upcoming-service heading clears the calendar icon and that full week/list cards show the calendar commemorations with available typikon marks. The compact month view remains compact. Production has not been updated.
 
-Last related code commit: Fix remaining Connect Hub Plugin Check findings.
+Last related code commit: Add detailed publication delivery history.
 
 ## Theme review follow-up (1.1.1)
 

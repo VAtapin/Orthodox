@@ -43,6 +43,17 @@ final class Connector {
     public function settings(): array { $saved = get_option( 'gkps_connect_' . $this->id, array() ); return array_merge( array( 'enabled' => false, 'token' => '', 'target' => '', 'api_version' => '', 'recipient' => '', 'application_key' => '', 'application_secret' => '', 'notify_requests' => false, 'notify_schedule' => false, 'telegram_broadcasts' => false, 'daily_digest_enabled' => false, 'daily_digest_time' => '08:00' ), is_array( $saved ) ? $saved : array() ); }
     public function settings_url(): string { return add_query_arg( array( 'page' => 'gkch-settings', 'network' => $this->id ), admin_url( 'admin.php' ) ); }
     private function authorize(): void { if ( ! current_user_can( 'manage_options' ) && ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Insufficient permissions.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); } }
+    private static function api_error_details( $body ): array {
+        if ( ! is_array( $body ) ) { return array(); }
+        $error = isset( $body['error'] ) && is_array( $body['error'] ) ? $body['error'] : $body;
+        $details = array();
+        foreach ( array( 'message', 'type', 'code', 'error_subcode', 'fbtrace_id', 'error_user_title', 'error_user_msg', 'error_msg', 'error_code', 'is_transient' ) as $key ) {
+            if ( ! isset( $error[ $key ] ) || ! is_scalar( $error[ $key ] ) ) { continue; }
+            $value = is_bool( $error[ $key ] ) ? ( $error[ $key ] ? 'true' : 'false' ) : sanitize_text_field( (string) $error[ $key ] );
+            if ( '' !== $value ) { $details[ $key ] = function_exists( 'mb_substr' ) ? mb_substr( $value, 0, 500 ) : substr( $value, 0, 500 ); }
+        }
+        return $details;
+    }
     public function menu(): void {
         if ( 'telegram' !== $this->id ) { return; }
         $capability = current_user_can( 'manage_options' ) ? 'manage_options' : 'manage_gkps_settings';
@@ -239,17 +250,25 @@ final class Connector {
                 try { $result = Social_Providers::send( $this->id, $settings, $job ); }
                 catch ( \Throwable $error ) { $result = array( 'http_code' => 0, 'accepted' => false, 'pending' => false, 'retry' => false, 'response' => array(), 'uncertain' => 'ok' === $this->id ); }
                 $code = $result['http_code']; $body = $result['response']; $accepted = $result['accepted'];
+                $endpoint = $result['endpoint'] ?? ( 'instagram' === $this->id ? 'https://graph.facebook.com/' . $settings['api_version'] . '/' . $settings['target'] : ( 'vk' === $this->id ? 'https://api.vk.com/method/wall.post' : ( 'ok' === $this->id ? 'https://api.ok.ru/fb.do' : '' ) ) );
+                $api_error = $result['api_error'] ?? self::api_error_details( $body );
             } else {
                 $request = $this->request( $job );
                 try { $response = wp_remote_post( $request['url'], $request['args'] ); } catch ( \Throwable $error ) { $response = new \WP_Error( 'gkps_transport', 'Transport failed.' ); }
                 $code = is_wp_error( $response ) ? 0 : wp_remote_retrieve_response_code( $response ); $body = is_wp_error( $response ) ? array() : json_decode( wp_remote_retrieve_body( $response ), true );
                 $accepted = $code >= 200 && $code < 300 && is_array( $body ) && empty( $body['error'] ) && ( 'telegram' === $this->id ? true === ( $body['ok'] ?? null ) : ! empty( $body['id'] ) );
                 $result = array( 'pending' => false, 'retry' => 0 === $code || 429 === $code || $code >= 500 );
+                $endpoint = $request['url']; $api_error = self::api_error_details( $body );
             }
             ++$job['attempts'];
             $pending = ! empty( $result['pending'] ) && $job['attempts'] < 16;
             $job['status'] = $accepted ? 'sent' : ( ! empty( $result['uncertain'] ) ? 'uncertain' : ( $pending ? 'processing' : 'failed' ) );
             $job['http_code'] = $code; $job['error'] = $result['error'] ?? '';
+            $job['delivery_attempt_count'] = (int) ( $job['delivery_attempt_count'] ?? 0 ) + 1;
+            $details = array( 'time_gmt' => gmdate( DATE_ATOM ), 'attempt' => $job['delivery_attempt_count'], 'status' => $job['status'], 'http_code' => (int) $code, 'endpoint' => esc_url_raw( (string) $endpoint ), 'api_version' => sanitize_text_field( (string) ( $settings['api_version'] ?? '' ) ), 'target' => sanitize_text_field( (string) $settings['target'] ), 'api_error' => is_array( $api_error ) ? $api_error : array() );
+            $job['delivery_log'] = isset( $job['delivery_log'] ) && is_array( $job['delivery_log'] ) ? $job['delivery_log'] : array();
+            $job['delivery_log'][] = $details;
+            $job['delivery_log'] = array_slice( $job['delivery_log'], -10 );
             if ( $accepted && ! empty( $body['id'] ) ) { $job['remote_id'] = sanitize_text_field( (string) $body['id'] ); }
             if ( in_array( $job['kind'] ?? '', array( 'request', 'schedule' ), true ) && 'telegram' === $this->id ) {
                 $payload = isset( $request['args']['body'] ) ? json_decode( $request['args']['body'], true ) : array();

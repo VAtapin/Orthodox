@@ -115,6 +115,20 @@ final class Publications {
             if ( ! self::can_edit_job( $job ) ) { continue; }
             $title = 'automation' === $job['kind'] ? ( $job['reply_context']['rule_name'] ?? $job['text'] ) : get_the_title( $job['source'] );
             echo '<tr><td>' . esc_html( $title ) . '</td><td>' . esc_html( $job['channel'] ) . '</td><td>' . esc_html( $statuses[$job['status']] ?? __( 'Unknown', 'georg-kloster-connect-hub' ) ) . ( ! empty( $job['error'] ) ? '<br>' . esc_html( $job['error'] ) : '' );
+            if ( ! empty( $job['delivery_log'] ) && is_array( $job['delivery_log'] ) ) {
+                echo '<details><summary>' . esc_html__( 'Publication history', 'georg-kloster-connect-hub' ) . '</summary><ol>';
+                foreach ( array_reverse( array_slice( $job['delivery_log'], -10 ) ) as $attempt ) {
+                    if ( ! is_array( $attempt ) ) { continue; }
+                    $attempt_time = isset( $attempt['time_gmt'] ) ? get_date_from_gmt( gmdate( 'Y-m-d H:i:s', strtotime( $attempt['time_gmt'] ) ), 'Y-m-d H:i:s' ) : '';
+                    echo '<li><strong>HTTP ' . esc_html( (string) ( $attempt['http_code'] ?? 0 ) ) . ' · #' . esc_html( (string) ( $attempt['attempt'] ?? '' ) ) . '</strong>';
+                    if ( $attempt_time ) { echo '<br>' . esc_html( $attempt_time ); }
+                    if ( ! empty( $attempt['endpoint'] ) ) { echo '<br><code style="overflow-wrap:anywhere">' . esc_html( $attempt['endpoint'] ) . '</code>'; }
+                    echo '<br><code>' . esc_html( (string) ( $attempt['api_version'] ?? '' ) ) . ' · ' . esc_html( (string) ( $attempt['target'] ?? '' ) ) . '</code>';
+                    if ( ! empty( $attempt['api_error'] ) && is_array( $attempt['api_error'] ) ) { echo '<pre style="white-space:pre-wrap;overflow-wrap:anywhere;max-width:50em">' . esc_html( wp_json_encode( $attempt['api_error'], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) ) . '</pre>'; }
+                    echo '</li>';
+                }
+                echo '</ol></details>';
+            }
             if ( in_array( $job['status'], array( 'pending', 'processing', 'failed', 'uncertain' ), true ) ) {
                 echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="gkch_publication_action"><input type="hidden" name="provider" value="' . esc_attr( $job['provider'] ) . '"><input type="hidden" name="job" value="' . esc_attr( $job['id'] ) . '">';
                 wp_nonce_field( 'gkch_publication_action' );
