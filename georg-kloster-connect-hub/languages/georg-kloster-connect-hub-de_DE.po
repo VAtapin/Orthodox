@@ -1512,3 +1512,42 @@ msgstr "Die Einstellungen wurden gespeichert, aber der Versand bleibt ausgeschal
 
 msgid "VK settings were saved, but sending remains off. Check the community access token and enter the community ID with a minus sign. A blank token field keeps the saved token."
 msgstr "Die VK-Einstellungen wurden gespeichert, aber der Versand bleibt ausgeschaltet. Prüfe das Community-Token und gib die Community-ID mit Minuszeichen ein. Ein leeres Tokenfeld behält das gespeicherte Token bei."
+
+msgid "Facebook Page connected. Its Page token was saved."
+msgstr "Die Facebook-Seite ist verbunden. Ihr Seiten-Token wurde gespeichert."
+
+msgid "Check the Meta App ID, App Secret and Facebook Page ID, then try again."
+msgstr "Prüfe Meta App ID, App Secret und Facebook-Seiten-ID und versuche es erneut."
+
+msgid "Facebook authorization was cancelled or expired. Start the connection again."
+msgstr "Die Facebook-Anmeldung wurde abgebrochen oder ist abgelaufen. Starte die Verbindung erneut."
+
+msgid "Meta could not complete authorization. Check the app settings and try again."
+msgstr "Meta konnte die Anmeldung nicht abschließen. Prüfe die App-Einstellungen und versuche es erneut."
+
+msgid "Meta did not return a token for this Page. Check its ID and the permissions granted to the app."
+msgstr "Meta hat kein Token für diese Seite zurückgegeben. Prüfe ihre ID und die App-Berechtigungen."
+
+msgid "Meta did not confirm a long-lived Page token. Check the app and Page permissions, then connect again."
+msgstr "Meta hat kein langlebiges Seiten-Token bestätigt. Prüfe App- und Seitenberechtigungen und verbinde erneut."
+
+msgid "Connect Facebook Page"
+msgstr "Facebook-Seite verbinden"
+
+msgid "Sign in to Facebook to obtain a long-lived Page token. Meta may require app review and can revoke access later."
+msgstr "Melde dich bei Facebook an, um ein langlebiges Seiten-Token zu erhalten. Meta kann eine App-Prüfung verlangen und den Zugriff später widerrufen."
+
+msgid "In Facebook Login settings, add this exact OAuth redirect URL:"
+msgstr "Füge in den Facebook-Login-Einstellungen diese genaue OAuth-Weiterleitungs-URL hinzu:"
+
+msgid "Meta App ID"
+msgstr "Meta App ID"
+
+msgid "Meta App Secret"
+msgstr "Meta App Secret"
+
+msgid "Connect with Facebook"
+msgstr "Mit Facebook verbinden"
+
+msgid "Facebook connection requires HTTPS for the WordPress admin."
+msgstr "Für die Facebook-Verbindung benötigt die WordPress-Verwaltung HTTPS."

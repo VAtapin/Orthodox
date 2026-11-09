@@ -27,7 +27,7 @@ $gkch_load = static function (): bool {
     'class-request-mail-log', 'class-outgoing-log', 'class-request-mail', 'class-request-media',
     'class-request-privacy', 'class-connector', 'class-telegram-requests',
     'class-telegram-request-settings', 'class-telegram-bot', 'class-blocks', 'class-forms',
-    'class-hub-settings', 'class-publications', 'class-social-providers',
+    'class-hub-settings', 'class-publications', 'class-social-providers', 'class-facebook-connect',
     'class-publication-rules', 'class-publication-rules-admin',
     ) as $part ) { require_once __DIR__ . '/includes/' . $part . '.php'; }
     return true;

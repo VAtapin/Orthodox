@@ -34,11 +34,11 @@
 
 Этот раздел публикует выбранный текст и ссылку в Facebook Page; он не распределяет обращения из форм.
 
-1. Откройте [Meta for Developers — Apps](https://developers.facebook.com/apps/) и создайте/выберите приложение. У аккаунта должны быть права на целевую Facebook Page.
-2. В приложении добавьте нужный сценарий Pages API. Откройте [Graph API Explorer](https://developers.facebook.com/tools/explorer/), выберите своё приложение и запросите **Page Access Token** нужной страницы. Для публикации используются разрешения `pages_manage_posts` и `pages_read_engagement`. В зависимости от режима приложения, аккаунта и использования вне его ролей Meta может потребовать App Review/Advanced Access.
-3. Вставьте Page Access Token в поле **Token**. В поле **Facebook Page ID** укажите числовой ID страницы. Не вводите пароль Facebook, App Secret или ID личного профиля.
-4. Версию Graph API `v27.0` Connect Hub подставляет автоматически. Вручную выбирать или вводить её не нужно.
-5. Сохраните настройки, включите отправку и проверьте канал на тестовой опубликованной записи.
+1. В [Meta for Developers — Apps](https://developers.facebook.com/apps/) выберите своё приложение и настройте Facebook Login. Для работы за пределами ролей приложения Meta может потребовать App Review и Advanced Access.
+2. В настройках входа Facebook приложения добавьте точный OAuth redirect URL, указанный в разделе «Подключить страницу Facebook» плагина.
+3. В этом разделе введите App ID, App Secret и числовой ID страницы. Нажмите «Подключить через Facebook», войдите и разрешите приложению доступ к нужной странице и публикациям.
+4. Плагин обменяет пользовательский токен, получит и проверит длительный Page Access Token и сохранит его. При отказе Meta текущий токен не заменяется. Доступ может быть отозван позднее.
+5. Проверьте публикацию на тестовой записи. Ручной ввод Page Access Token остаётся доступен. Версию Graph API плагин подставляет сам.
 
 Ссылки: [Meta for Developers](https://developers.facebook.com/apps/) · [Pages API: начало работы](https://developers.facebook.com/docs/pages-api/getting-started/) · [публикация постов](https://developers.facebook.com/docs/pages-api/posts/).
 

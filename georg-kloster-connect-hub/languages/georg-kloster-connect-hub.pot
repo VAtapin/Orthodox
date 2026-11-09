@@ -2013,3 +2013,55 @@ msgstr ""
 
 msgid "VK settings were saved, but sending remains off. Check the community access token and enter the community ID with a minus sign. A blank token field keeps the saved token."
 msgstr ""
+
+#: includes/class-facebook-connect.php
+msgid "Facebook Page connected. Its Page token was saved."
+msgstr ""
+
+#: includes/class-facebook-connect.php
+msgid "Check the Meta App ID, App Secret and Facebook Page ID, then try again."
+msgstr ""
+
+#: includes/class-facebook-connect.php
+msgid "Facebook authorization was cancelled or expired. Start the connection again."
+msgstr ""
+
+#: includes/class-facebook-connect.php
+msgid "Meta could not complete authorization. Check the app settings and try again."
+msgstr ""
+
+#: includes/class-facebook-connect.php
+msgid "Meta did not return a token for this Page. Check its ID and the permissions granted to the app."
+msgstr ""
+
+#: includes/class-facebook-connect.php
+msgid "Meta did not confirm a long-lived Page token. Check the app and Page permissions, then connect again."
+msgstr ""
+
+#: includes/class-facebook-connect.php
+msgid "Connect Facebook Page"
+msgstr ""
+
+#: includes/class-facebook-connect.php
+msgid "Sign in to Facebook to obtain a long-lived Page token. Meta may require app review and can revoke access later."
+msgstr ""
+
+#: includes/class-facebook-connect.php
+msgid "In Facebook Login settings, add this exact OAuth redirect URL:"
+msgstr ""
+
+#: includes/class-facebook-connect.php
+msgid "Meta App ID"
+msgstr ""
+
+#: includes/class-facebook-connect.php
+msgid "Meta App Secret"
+msgstr ""
+
+#: includes/class-facebook-connect.php
+msgid "Connect with Facebook"
+msgstr ""
+
+#: includes/class-facebook-connect.php
+msgid "Facebook connection requires HTTPS for the WordPress admin."
+msgstr ""

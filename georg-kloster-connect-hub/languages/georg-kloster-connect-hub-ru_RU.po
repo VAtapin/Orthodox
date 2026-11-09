@@ -1512,3 +1512,42 @@ msgstr "Настройки сохранены, но отправка отклю�
 
 msgid "VK settings were saved, but sending remains off. Check the community access token and enter the community ID with a minus sign. A blank token field keeps the saved token."
 msgstr "Настройки VK сохранены, но отправка отключена. Проверьте ключ доступа сообщества и укажите ID сообщества со знаком минус. Если токен уже сохранён, поле можно оставить пустым."
+
+msgid "Facebook Page connected. Its Page token was saved."
+msgstr "Страница Facebook подключена. Токен страницы сохранён."
+
+msgid "Check the Meta App ID, App Secret and Facebook Page ID, then try again."
+msgstr "Проверьте ID и секрет приложения Meta и ID страницы Facebook, затем повторите."
+
+msgid "Facebook authorization was cancelled or expired. Start the connection again."
+msgstr "Подключение Facebook отменено или его время истекло. Начните подключение заново."
+
+msgid "Meta could not complete authorization. Check the app settings and try again."
+msgstr "Meta не завершила авторизацию. Проверьте настройки приложения и повторите."
+
+msgid "Meta did not return a token for this Page. Check its ID and the permissions granted to the app."
+msgstr "Meta не вернула токен этой страницы. Проверьте её ID и права приложения."
+
+msgid "Meta did not confirm a long-lived Page token. Check the app and Page permissions, then connect again."
+msgstr "Meta не подтвердила длительный токен страницы. Проверьте права приложения и страницы, затем подключите снова."
+
+msgid "Connect Facebook Page"
+msgstr "Подключить страницу Facebook"
+
+msgid "Sign in to Facebook to obtain a long-lived Page token. Meta may require app review and can revoke access later."
+msgstr "Войдите в Facebook, чтобы получить длительный токен страницы. Meta может потребовать проверку приложения или позднее отозвать доступ."
+
+msgid "In Facebook Login settings, add this exact OAuth redirect URL:"
+msgstr "В настройках входа Facebook добавьте этот точный адрес перенаправления OAuth:"
+
+msgid "Meta App ID"
+msgstr "ID приложения Meta"
+
+msgid "Meta App Secret"
+msgstr "Секрет приложения Meta"
+
+msgid "Connect with Facebook"
+msgstr "Подключить через Facebook"
+
+msgid "Facebook connection requires HTTPS for the WordPress admin."
+msgstr "Для подключения Facebook в панели WordPress требуется HTTPS."

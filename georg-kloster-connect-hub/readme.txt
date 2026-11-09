@@ -117,8 +117,10 @@ is made merely by installing or activating Connect Hub. API terms:
 https://bible-desktop.com/pages/api-terms . API privacy policy:
 https://bible-desktop.com/pages/api-privacy .
 
-Facebook Graph API: selected public text/link and Page ID. Requires a Page token
-with publication rights and the API version configured in the application.
+Facebook Graph API: selected public text/link and Page ID. Optional Facebook Login
+sends the app ID, app secret, authorization code and selected Page ID to Meta to
+obtain a Page token; the app secret is stored temporarily during authorization.
+Requires a Meta app, Page access and permissions to publish.
 https://developers.facebook.com/docs/pages-api/posts/ https://developers.facebook.com/terms/ https://www.facebook.com/privacy/policy/
 
 Instagram API with Facebook Login: professional account linked to a Facebook Page,

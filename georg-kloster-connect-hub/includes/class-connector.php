@@ -148,12 +148,12 @@ final class Connector {
         $this->authorize(); check_admin_referer( 'gkps_connect_' . $this->id ); $settings = $this->settings();
         foreach ( array( 'token', 'target', 'api_version', 'application_key', 'application_secret' ) as $key ) {
             if ( ! isset( $_POST[ $key ] ) ) { continue; } if ( ! is_string( $_POST[ $key ] ) ) { wp_die( esc_html__( 'Invalid field.', 'georg-kloster-connect-hub' ) ); }
-            $value = sanitize_text_field( wp_unslash( $_POST[ $key ] ) ); if ( ! in_array( $key, array( 'token', 'application_secret' ), true ) || '' !== $value ) { $settings[ $key ] = $value; }
+            $value = sanitize_text_field( wp_unslash( $_POST[ $key ] ) ); if ( 'facebook' === $this->id && 'token' === $key && '' !== $value && $value !== $settings['token'] ) { unset( $settings['appsecret_proof'] ); } if ( ! in_array( $key, array( 'token', 'application_secret' ), true ) || '' !== $value ) { $settings[ $key ] = $value; }
         }
         if ( 'vk' === $this->id ) { $settings['api_version'] = Social_Providers::VK_API_VERSION; }
         if ( 'facebook' === $this->id ) { $settings['api_version'] = Social_Providers::META_GRAPH_API_VERSION; }
         if ( ! empty( $_POST['clear_application_secret'] ) ) { $settings['application_secret'] = ''; }
-        if ( ! empty( $_POST['clear_token'] ) ) { $settings['token'] = ''; }
+        if ( ! empty( $_POST['clear_token'] ) ) { $settings['token'] = ''; if ( 'facebook' === $this->id ) { unset( $settings['appsecret_proof'] ); } }
         foreach ( array( 'enabled', 'notify_requests', 'notify_schedule', 'telegram_broadcasts', 'daily_digest_enabled' ) as $key ) { $settings[ $key ] = ! empty( $_POST[ $key ] ) && ( 'telegram' === $this->id || 'enabled' === $key ); }
         if ( 'telegram' === $this->id && isset( $_POST['daily_digest_time'] ) && is_string( $_POST['daily_digest_time'] ) ) {
             $time = sanitize_text_field( wp_unslash( $_POST['daily_digest_time'] ) );
@@ -239,6 +239,7 @@ final class Connector {
             $headers['Authorization'] = 'Bearer ' . $settings['token'];
             $url = 'https://graph.facebook.com/' . $settings['api_version'] . '/' . $settings['target'] . '/feed';
             $body = array( 'message' => $job['text'], 'link' => $job['url'] );
+            if ( ! empty( $settings['appsecret_proof'] ) && is_string( $settings['appsecret_proof'] ) && preg_match( '/^[a-f0-9]{64}$/D', $settings['appsecret_proof'] ) ) { $body['appsecret_proof'] = $settings['appsecret_proof']; }
         }
         if ( $html ) { $body['parse_mode'] = 'HTML'; }
         if ( 'facebook' === $this->id && '' === $job['url'] ) { unset( $body['link'] ); }
