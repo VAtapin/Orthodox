@@ -35,7 +35,7 @@ if ( ! $result['accepted'] || count( $GLOBALS['calls'] ) !== 4 ) { throw new Exc
 if ( '123' !== $GLOBALS['calls'][0][1]['body']['group_id'] || '123' !== $GLOBALS['calls'][2][1]['body']['group_id'] ) { throw new Exception( 'Photo must be uploaded to the selected community.' ); }
 $body = $GLOBALS['calls'][3][1]['body'];
 if ( 'photo-123_456,https://example.org/news' !== $body['attachments'] || "News\n\nText." !== $body['message'] ) { throw new Exception( 'Photo, link and text must be published together.' ); }
-if ( ! str_contains( $GLOBALS['calls'][1][1]['body'], 'name="photo"' ) ) { throw new Exception( 'Photo upload was not multipart.' ); }
+if ( ! str_contains( $GLOBALS['calls'][1][1]['body'], 'name="photo"; filename="image.jpg"' ) ) { throw new Exception( 'Photo upload was not multipart.' ); }
 $GLOBALS['calls'] = array(); Social_Providers::send( 'vk', $settings, $job );
 if ( count( $GLOBALS['calls'] ) !== 1 ) { throw new Exception( 'Retry should reuse saved photo.' ); }
 $GLOBALS['calls'] = array(); $GLOBALS['deny'] = true; unset( $job['vk_photo'] );

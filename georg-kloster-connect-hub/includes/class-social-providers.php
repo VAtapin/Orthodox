@@ -86,7 +86,8 @@ final class Social_Providers {
         $file = file_get_contents( $path );
         if ( ! is_string( $file ) || '' === $file ) { return array( '', self::result( 400, false ) ); }
         $boundary = 'gkch' . str_replace( '-', '', wp_generate_uuid4() );
-        $multipart = '--' . $boundary . "\r\nContent-Disposition: form-data; name=\"photo\"; filename=\"image\"\r\nContent-Type: " . $mime . "\r\n\r\n" . $file . "\r\n--" . $boundary . "--\r\n";
+        $extension = array( 'image/jpeg' => 'jpg', 'image/png' => 'png', 'image/gif' => 'gif' )[ $mime ];
+        $multipart = '--' . $boundary . "\r\nContent-Disposition: form-data; name=\"photo\"; filename=\"image." . $extension . "\"\r\nContent-Type: " . $mime . "\r\n\r\n" . $file . "\r\n--" . $boundary . "--\r\n";
         try { $response = wp_safe_remote_request( $upload_url, array( 'method' => 'POST', 'timeout' => 30, 'redirection' => 0, 'headers' => array( 'Content-Type' => 'multipart/form-data; boundary=' . $boundary ), 'body' => $multipart ) ); }
         catch ( \Throwable $error ) { $response = new \WP_Error( 'transport', 'Transport failed.' ); }
         $code = is_wp_error( $response ) ? 0 : (int) wp_remote_retrieve_response_code( $response );
