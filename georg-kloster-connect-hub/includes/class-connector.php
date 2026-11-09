@@ -124,11 +124,6 @@ final class Connector {
         do_action( 'gkps_connector_settings_fields', $this->id, $settings );
         submit_button(); echo '</form>';
         if ( 'telegram' === $this->id ) { wp_enqueue_script( 'gkps-telegram-settings', plugins_url( 'assets/settings.js', $this->file ), array(), '0.1.3', true ); wp_localize_script( 'gkps-telegram-settings', 'prihodTelegramSettings', array( 'hasToken' => '' !== $settings['token'] ) ); }
-        $last = get_option( 'gkps_connect_last_' . $this->id, array() );
-        if ( 'failed' === ( $last['status'] ?? '' ) ) {
-            echo '<p>' . esc_html__( 'The last delivery failed. HTTP code:', 'georg-kloster-connect-hub' ) . ' ' . esc_html( $last['http_code'] ) . '</p><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="gkps_retry_' . esc_attr( $this->id ) . '">'; wp_nonce_field( 'gkps_retry_' . $this->id );
-            echo '<button class="button">' . esc_html__( 'Retry the last delivery after correcting the settings', 'georg-kloster-connect-hub' ) . '</button></form>';
-        }
         do_action( 'gkps_connector_settings_after', $this->id );
         // phpcs:enable WordPress.Security.NonceVerification.Recommended
         echo '</div>';

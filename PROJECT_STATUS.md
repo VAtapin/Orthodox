@@ -22,7 +22,7 @@ Connect Hub 0.4.10 keeps form notifications separate from public Telegram broadc
 
 ## Connect Hub delivery
 
-Connect Hub 0.4.10 sends Telegram updates synchronously to each subscriber's private chat, records individual outcomes, and permits manual retries after failure. Incoming bot commands, form notifications, replies by Telegram/email, webhook registration, and publications do not use delayed workers or automatic retries. WP-Cron remains only for calendar timing (daily digest and scheduled publication rules) and record retention. Social publication history now keeps up to ten attempts per job, including HTTP status, endpoint, API version, destination ID, and whitelisted API error fields; credentials and request bodies are excluded. Old queued items and stale scheduled hook records have not been migrated or deleted; legacy worker hooks are no longer registered. Installable package: `build/georg-kloster-connect-hub-0.4.10-test.zip`. Production has not been updated.
+Connect Hub 0.4.10 sends Telegram updates synchronously to each subscriber's private chat, records individual outcomes, and permits manual retries after failure. Incoming bot commands, form notifications, replies by Telegram/email, webhook registration, and publications do not use delayed workers or automatic retries. WP-Cron remains only for calendar timing (daily digest and scheduled publication rules) and record retention. Social publication history now keeps up to ten attempts per job, including HTTP status, endpoint, API version, destination ID, and whitelisted API error fields; credentials and request bodies are excluded. Retry controls are removed from channel settings; failed posts are retried from Publication History, and existing posts can be sent again from their editor. Old queued items and stale scheduled hook records have not been migrated or deleted; legacy worker hooks are no longer registered. Production has not been updated.
 
 ## WordPress.org release status
 
@@ -58,7 +58,7 @@ Upload the prepared Connect Hub 0.4.10 review package in the WordPress.org plugi
 
 Upload `build/georg-kloster-prihod-core-0.2.12.zip` through WordPress Plugins → Add Plugin → Upload Plugin, replacing the installed Parish Core. Verify that the upcoming-service heading clears the calendar icon and that full week/list cards show the calendar commemorations with available typikon marks. The compact month view remains compact. Production has not been updated.
 
-Last related code commit: Sanitize public form nonce for review.
+Last related code commit: Remove retry control from channel settings.
 
 ## Theme review follow-up (1.1.1)
 
