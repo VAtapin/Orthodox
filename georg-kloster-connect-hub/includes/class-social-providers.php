@@ -69,7 +69,18 @@ final class Social_Providers {
         $text = $job['text'] . "\n" . $job['url'];
         if ( 'vk' === $id ) {
             $target = self::vk_community_target( $settings['target'] );
-            $body = array( 'access_token' => $settings['token'], 'v' => $settings['api_version'], 'owner_id' => $target, 'from_group' => 1, 'message' => $text, 'guid' => substr( hash( 'sha256', $target . $job['source'] . $text . ( $job['reply_context']['configuration'] ?? '' ) ), 0, 32 ) );
+            $message = $job['text'];
+            if ( 'post' === ( $job['kind'] ?? '' ) && ! empty( $job['source'] ) ) {
+                $title = trim( wp_strip_all_tags( get_the_title( (int) $job['source'] ) ) );
+                $prefix = $title . "\n";
+                if ( '' !== $title && str_starts_with( $message, $prefix ) ) {
+                    $excerpt = ltrim( substr( $message, strlen( $prefix ) ) );
+                    if ( str_starts_with( $excerpt, $title ) ) { $excerpt = ltrim( substr( $excerpt, strlen( $title ) ) ); }
+                    $message = $title . ( '' !== $excerpt ? "\n\n" . $excerpt : '' );
+                }
+            }
+            $body = array( 'access_token' => $settings['token'], 'v' => $settings['api_version'], 'owner_id' => $target, 'from_group' => 1, 'message' => $message, 'guid' => substr( hash( 'sha256', $target . $job['source'] . $text . ( $job['reply_context']['configuration'] ?? '' ) ), 0, 32 ) );
+            if ( '' !== $job['url'] ) { $body['attachments'] = $job['url']; }
             list( $code, $data ) = self::call( 'POST', 'https://api.vk.com/method/wall.post', $body );
             $remote_id = is_array( $data ) ? ( $data['response']['post_id'] ?? null ) : null;
             $accepted = 200 === $code && is_array( $data ) && ! isset( $data['error'] ) && is_scalar( $remote_id ) && preg_match( '/^[1-9][0-9]*$/D', (string) $remote_id );
