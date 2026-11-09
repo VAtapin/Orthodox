@@ -5,12 +5,14 @@ defined( 'ABSPATH' ) || exit;
 
 /** Official publishing transports. Network calls run only in the existing queue. */
 final class Social_Providers {
+    public const VK_API_VERSION = '5.199';
+    public const META_GRAPH_API_VERSION = 'v27.0';
     public static function supports( string $id ): bool { return in_array( $id, array( 'instagram', 'vk', 'ok' ), true ); }
 
     public static function valid( string $id, array $settings ): bool {
         foreach ( array( 'token', 'target', 'api_version', 'application_key', 'application_secret' ) as $field ) { if ( isset( $settings[$field] ) && ! is_string( $settings[$field] ) ) { return false; } }
         if ( empty( $settings['enabled'] ) || ! is_string( $settings['token'] ) || ! preg_match( '/^[A-Za-z0-9._~-]+$/D', $settings['token'] ) ) { return false; }
-        if ( 'vk' === $id ) { return (bool) preg_match( '/^-?[1-9][0-9]*$/D', $settings['target'] ) && (bool) preg_match( '/^[0-9]+\.[0-9]+$/D', $settings['api_version'] ); }
+        if ( 'vk' === $id ) { return (bool) preg_match( '/^-[1-9][0-9]*$/D', $settings['target'] ) && (bool) preg_match( '/^[0-9]+\.[0-9]+$/D', $settings['api_version'] ); }
         if ( ! preg_match( '/^[1-9][0-9]*$/D', $settings['target'] ) ) { return false; }
         if ( 'instagram' === $id ) { return (bool) preg_match( '/^v[0-9]+\.[0-9]+$/D', $settings['api_version'] ); }
         return 'ok' === $id && (bool) preg_match( '/^[A-Za-z0-9]+$/D', $settings['application_key'] ?? '' ) && (bool) preg_match( '/^[A-Za-z0-9._-]+$/D', $settings['application_secret'] ?? '' );
@@ -27,7 +29,7 @@ final class Social_Providers {
 
     public static function help( string $id ): string {
         if ( 'instagram' === $id ) { return __( 'Use a professional Instagram account linked to a Facebook Page and a token with instagram_basic and instagram_content_publish permissions. A public HTTPS JPEG featured image is required. The container is processed in the background before publication.', 'georg-kloster-connect-hub' ); }
-        if ( 'vk' === $id ) { return __( 'Use a VK token with wall publication permission. Enter a negative community ID to publish as the community, or a positive user ID. Enter the API version from your application, for example 5.199.', 'georg-kloster-connect-hub' ); }
+        if ( 'vk' === $id ) { return ''; }
         return __( 'Use an OK application with GROUP_CONTENT permission, an access token, application public key and application secret. Only publication to the configured group is enabled.', 'georg-kloster-connect-hub' );
     }
 

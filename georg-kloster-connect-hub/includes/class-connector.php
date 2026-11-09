@@ -42,7 +42,13 @@ final class Connector {
         } );
     }
     public function __get( string $key ) { return in_array( $key, array( 'id', 'title' ), true ) ? $this->$key : null; }
-    public function settings(): array { $saved = get_option( 'gkps_connect_' . $this->id, array() ); return array_merge( array( 'enabled' => false, 'token' => '', 'target' => '', 'api_version' => '', 'recipient' => '', 'application_key' => '', 'application_secret' => '', 'notify_requests' => false, 'notify_schedule' => false, 'telegram_broadcasts' => false, 'daily_digest_enabled' => false, 'daily_digest_time' => '08:00' ), is_array( $saved ) ? $saved : array() ); }
+    public function settings(): array {
+        $saved = get_option( 'gkps_connect_' . $this->id, array() );
+        $api_version = 'vk' === $this->id ? Social_Providers::VK_API_VERSION : ( 'facebook' === $this->id ? Social_Providers::META_GRAPH_API_VERSION : '' );
+        $settings = array_merge( array( 'enabled' => false, 'token' => '', 'target' => '', 'api_version' => $api_version, 'recipient' => '', 'application_key' => '', 'application_secret' => '', 'notify_requests' => false, 'notify_schedule' => false, 'telegram_broadcasts' => false, 'daily_digest_enabled' => false, 'daily_digest_time' => '08:00' ), is_array( $saved ) ? $saved : array() );
+        if ( in_array( $this->id, array( 'vk', 'facebook' ), true ) ) { $settings['api_version'] = $api_version; }
+        return $settings;
+    }
     public function settings_url(): string { return add_query_arg( array( 'page' => 'gkch-settings', 'network' => $this->id ), admin_url( 'admin.php' ) ); }
     private function authorize(): void { if ( ! current_user_can( 'manage_options' ) && ! current_user_can( 'manage_gkps_settings' ) ) { wp_die( esc_html__( 'Insufficient permissions.', 'georg-kloster-connect-hub' ), '', array( 'response' => 403 ) ); } }
     private static function api_error_details( $body ): array {
@@ -106,8 +112,8 @@ final class Connector {
         echo '<div class="wrap"><h1>' . esc_html( $this->title ) . '</h1><p>' . esc_html( $this->health()['message'] ) . '</p><form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '"><input type="hidden" name="action" value="gkps_connect_' . esc_attr( $this->id ) . '">'; wp_nonce_field( 'gkps_connect_' . $this->id );
         echo '<p><label><input type="checkbox" name="enabled" value="1"' . checked( $settings['enabled'], true, false ) . '> ' . esc_html__( 'Allow sending to the external service', 'georg-kloster-connect-hub' ) . '</label></p><p><label>' . esc_html__( 'Token (leave empty to keep the existing token)', 'georg-kloster-connect-hub' ) . ' <input type="password" name="token" autocomplete="new-password" value=""></label> <label><input type="checkbox" name="clear_token" value="1"> ' . esc_html__( 'Delete token', 'georg-kloster-connect-hub' ) . '</label></p>';
         $fields = 'telegram' === $this->id ? array() : array( 'target' => __( 'Facebook Page ID', 'georg-kloster-connect-hub' ) );
-        if ( in_array( $this->id, array( 'instagram', 'vk', 'ok' ), true ) ) { $fields['target'] = 'vk' === $this->id ? __( 'VK owner ID', 'georg-kloster-connect-hub' ) : ( 'ok' === $this->id ? __( 'OK group ID', 'georg-kloster-connect-hub' ) : __( 'Instagram account ID', 'georg-kloster-connect-hub' ) ); }
-        if ( 'telegram' !== $this->id && 'ok' !== $this->id ) { $fields['api_version'] = __( 'API version from your application', 'georg-kloster-connect-hub' ); }
+        if ( in_array( $this->id, array( 'instagram', 'vk', 'ok' ), true ) ) { $fields['target'] = 'vk' === $this->id ? __( 'VK community ID (include the minus sign)', 'georg-kloster-connect-hub' ) : ( 'ok' === $this->id ? __( 'OK group ID', 'georg-kloster-connect-hub' ) : __( 'Instagram account ID', 'georg-kloster-connect-hub' ) ); }
+        if ( 'telegram' !== $this->id && 'ok' !== $this->id && ! in_array( $this->id, array( 'vk', 'facebook' ), true ) ) { $fields['api_version'] = __( 'API version from your application', 'georg-kloster-connect-hub' ); }
         foreach ( $fields as $key => $label ) {
             echo '<p><label>' . esc_html( $label ) . '<br><input class="regular-text" name="' . esc_attr( $key ) . '" value="' . esc_attr( $settings[ $key ] ) . '"></label>';
             if ( 'api_version' === $key ) {
@@ -118,7 +124,7 @@ final class Connector {
         if ( 'telegram' === $this->id ) {
             foreach ( array( 'notify_requests' => __( 'Notify about new messages', 'georg-kloster-connect-hub' ), 'notify_schedule' => __( 'Notify subscribers about changes to the published schedule', 'georg-kloster-connect-hub' ) ) as $key => $label ) { echo '<p><label><input type="checkbox" name="' . esc_attr( $key ) . '" value="1"' . checked( $settings[ $key ], true, false ) . '> ' . esc_html( $label ) . '</label></p>'; }
         }
-        if ( Social_Providers::supports( $this->id ) ) { echo '<p>' . esc_html( Social_Providers::help( $this->id ) ) . '</p>'; }
+        if ( Social_Providers::supports( $this->id ) && '' !== Social_Providers::help( $this->id ) ) { echo '<p>' . esc_html( Social_Providers::help( $this->id ) ) . '</p>'; }
         if ( 'ok' === $this->id ) {
             echo '<p><label>' . esc_html__( 'Application public key', 'georg-kloster-connect-hub' ) . '<br><input name="application_key" value="' . esc_attr( $settings['application_key'] ) . '"></label></p><p><label>' . esc_html__( 'Application secret (leave empty to keep)', 'georg-kloster-connect-hub' ) . '<br><input type="password" name="application_secret" autocomplete="new-password" value=""></label><label><input type="checkbox" name="clear_application_secret" value="1"> ' . esc_html__( 'Delete application secret', 'georg-kloster-connect-hub' ) . '</label></p>';
         }
@@ -136,7 +142,7 @@ final class Connector {
         $guide_data = is_string( $guide_json ) ? json_decode( $guide_json, true ) : array();
         $locale = substr( determine_locale(), 0, 2 );
         $guides = is_array( $guide_data[$locale] ?? null ) ? $guide_data[$locale] : ( is_array( $guide_data['ru'] ?? null ) ? $guide_data['ru'] : array() );
-        if ( isset( $guides[$this->id] ) ) { echo '<details class="gkch-channel-guide"><summary>' . esc_html__( 'Detailed setup: where to click and find the required details', 'georg-kloster-connect-hub' ) . '</summary><div class="gkch-channel-guide__content">' . wp_kses_post( $guides[$this->id] ) . '</div></details>'; }
+        if ( isset( $guides[$this->id] ) ) { echo '<details class="gkch-channel-guide"' . ( in_array( $this->id, array( 'vk', 'facebook' ), true ) ? ' open' : '' ) . '><summary>' . esc_html__( 'Detailed setup: where to click and find the required details', 'georg-kloster-connect-hub' ) . '</summary><div class="gkch-channel-guide__content">' . wp_kses_post( $guides[$this->id] ) . '</div></details>'; }
     }
     public function save(): void {
         $this->authorize(); check_admin_referer( 'gkps_connect_' . $this->id ); $settings = $this->settings();
@@ -144,6 +150,8 @@ final class Connector {
             if ( ! isset( $_POST[ $key ] ) ) { continue; } if ( ! is_string( $_POST[ $key ] ) ) { wp_die( esc_html__( 'Invalid field.', 'georg-kloster-connect-hub' ) ); }
             $value = sanitize_text_field( wp_unslash( $_POST[ $key ] ) ); if ( ! in_array( $key, array( 'token', 'application_secret' ), true ) || '' !== $value ) { $settings[ $key ] = $value; }
         }
+        if ( 'vk' === $this->id ) { $settings['api_version'] = Social_Providers::VK_API_VERSION; }
+        if ( 'facebook' === $this->id ) { $settings['api_version'] = Social_Providers::META_GRAPH_API_VERSION; }
         if ( ! empty( $_POST['clear_application_secret'] ) ) { $settings['application_secret'] = ''; }
         if ( ! empty( $_POST['clear_token'] ) ) { $settings['token'] = ''; }
         foreach ( array( 'enabled', 'notify_requests', 'notify_schedule', 'telegram_broadcasts', 'daily_digest_enabled' ) as $key ) { $settings[ $key ] = ! empty( $_POST[ $key ] ) && ( 'telegram' === $this->id || 'enabled' === $key ); }
@@ -155,7 +163,18 @@ final class Connector {
             $errors = $this->telegram_errors( $settings );
             if ( $errors ) { wp_safe_redirect( add_query_arg( 'gkps_connect_error', implode( ',', $errors ), $this->settings_url() ) ); exit; }
         }
-        if ( $settings['enabled'] && ! $this->valid( $settings ) ) { wp_die( esc_html__( 'Check the token, identifiers and API settings. The connection was not saved.', 'georg-kloster-connect-hub' ) ); }
+        if ( $settings['enabled'] && ! $this->valid( $settings ) ) {
+            $settings['enabled'] = false;
+            update_option( 'gkps_connect_' . $this->id, $settings, false );
+            do_action( 'gkps_connector_saved', $this->id, $settings );
+            $message = 'vk' === $this->id
+                ? __( 'VK settings were saved, but sending remains off. Check the community access token and enter the community ID with a minus sign. A blank token field keeps the saved token.', 'georg-kloster-connect-hub' )
+                : ( 'facebook' === $this->id
+                    ? __( 'Facebook settings were saved, but sending remains off. Check the Page access token and enter the numeric Facebook Page ID. A blank token field keeps the saved token.', 'georg-kloster-connect-hub' )
+                    : __( 'Settings were saved, but sending remains off. Check the token, destination ID and required settings. A blank token field keeps the saved token.', 'georg-kloster-connect-hub' ) );
+            set_transient( 'gkps_connector_error_' . $this->id . '_' . get_current_user_id(), array( $message ), 120 );
+            wp_safe_redirect( $this->settings_url() ); exit;
+        }
         $extra_errors = apply_filters( 'gkps_connector_settings_errors', array(), $this->id, $settings );
         if ( $extra_errors ) { set_transient( 'gkps_connector_error_' . $this->id . '_' . get_current_user_id(), $extra_errors, 120 ); wp_safe_redirect( $this->settings_url() ); exit; }
         update_option( 'gkps_connect_' . $this->id, $settings, false ); do_action( 'gkps_connector_saved', $this->id, $settings ); wp_safe_redirect( $this->settings_url() ); exit;

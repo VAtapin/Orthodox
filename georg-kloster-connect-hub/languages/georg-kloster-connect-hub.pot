@@ -1878,7 +1878,7 @@ msgid "VK"
 msgstr ""
 
 #: includes/class-connector.php
-msgid "VK owner ID"
+msgid "VK community ID (include the minus sign)"
 msgstr ""
 
 #: includes/class-telegram-bot.php
@@ -2003,4 +2003,13 @@ msgstr ""
 
 #: includes/class-telegram-bot.php
 msgid "skipped"
+msgstr ""
+
+msgid "Facebook settings were saved, but sending remains off. Check the Page access token and enter the numeric Facebook Page ID. A blank token field keeps the saved token."
+msgstr ""
+
+msgid "Settings were saved, but sending remains off. Check the token, destination ID and required settings. A blank token field keeps the saved token."
+msgstr ""
+
+msgid "VK settings were saved, but sending remains off. Check the community access token and enter the community ID with a minus sign. A blank token field keeps the saved token."
 msgstr ""

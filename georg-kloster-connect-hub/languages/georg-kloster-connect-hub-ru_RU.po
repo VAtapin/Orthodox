@@ -1333,8 +1333,8 @@ msgstr "Использовать изображение"
 msgid "VK"
 msgstr "VK"
 
-msgid "VK owner ID"
-msgstr "Идентификатор пользователя или сообщества VK"
+msgid "VK community ID (include the minus sign)"
+msgstr "ID сообщества VK (укажите со знаком минус)"
 
 msgid "Visit the website"
 msgstr "Перейти на сайт"
@@ -1503,3 +1503,12 @@ msgstr "Адрес сайта или HTTPS-адрес Mini App"
 
 msgid "Add buttons below this reply. Each button can run another bot command or reply, open a website link, or launch a Mini App inside Telegram. Mini App buttons require an HTTPS URL and work in private chats. Enter labels in the active WPML languages. Telegram displays up to 10 buttons, two per row."
 msgstr "Добавьте кнопки под этим ответом. Кнопка может вызвать другую команду или ответ бота, открыть ссылку на сайт или запустить Mini App в Telegram. Для Mini App нужен HTTPS-адрес; кнопка работает только в личном чате. Укажите подписи для активных языков WPML. Telegram показывает до 10 кнопок, по две в ряду."
+
+msgid "Facebook settings were saved, but sending remains off. Check the Page access token and enter the numeric Facebook Page ID. A blank token field keeps the saved token."
+msgstr "Настройки Facebook сохранены, но отправка отключена. Проверьте ключ доступа страницы и укажите её числовой ID. Если токен уже сохранён, поле можно оставить пустым."
+
+msgid "Settings were saved, but sending remains off. Check the token, destination ID and required settings. A blank token field keeps the saved token."
+msgstr "Настройки сохранены, но отправка отключена. Проверьте токен, ID получателя и обязательные параметры. Если токен уже сохранён, поле можно оставить пустым."
+
+msgid "VK settings were saved, but sending remains off. Check the community access token and enter the community ID with a minus sign. A blank token field keeps the saved token."
+msgstr "Настройки VK сохранены, но отправка отключена. Проверьте ключ доступа сообщества и укажите ID сообщества со знаком минус. Если токен уже сохранён, поле можно оставить пустым."
