@@ -129,9 +129,9 @@ public HTTPS JPEG URL and caption. Images are fetched by Meta from that public U
 https://developers.facebook.com/docs/instagram-platform/content-publishing/
 https://developers.facebook.com/terms/ https://privacycenter.instagram.com/policy/
 
-VK API wall.post: selected public text/link, user access token with wall permission,
-user/community owner ID and stable publication GUID. Negative owner IDs identify
-communities. https://dev.vk.com/ru/method/wall.post https://dev.vk.com/rules https://vk.com/privacy
+VK API wall.post: selected public text and link, community access token with wall
+permission, community owner ID and stable publication GUID. VK may fetch the linked
+page and its public preview image. https://dev.vk.com/ru/method/wall.post https://dev.vk.com/rules https://vk.com/privacy
 
 OK API mediatopic.post: selected public text/link, group ID, access token,
 application public key and signature calculated with the application secret.

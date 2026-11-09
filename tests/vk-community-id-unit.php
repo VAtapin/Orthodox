@@ -21,10 +21,10 @@ $settings = array( 'enabled' => true, 'token' => 'vk1.a.example', 'target' => 'c
 $job = array( 'kind' => 'post', 'text' => "A news title\nA news title The beginning.", 'url' => 'https://example.org', 'source' => 1, 'reply_context' => array(), 'vk_photo' => 'photo-123_456' );
 Social_Providers::send( 'vk', $settings, $job );
 if ( "A news title\n\nThe beginning." !== $GLOBALS['vk_test_body']['message'] ) { throw new Exception( 'Repeated title was not removed.' ); }
-if ( 'photo-123_456,https://example.org' !== $GLOBALS['vk_test_body']['attachments'] ) { throw new Exception( 'Post must include its photo and link.' ); }
+if ( 'https://example.org' !== $GLOBALS['vk_test_body']['attachments'] ) { throw new Exception( 'Post must attach the news link for VK preview.' ); }
 $job['url'] = '';
 Social_Providers::send( 'vk', $settings, $job );
-if ( 'photo-123_456' !== $GLOBALS['vk_test_body']['attachments'] ) { throw new Exception( 'Photo must remain attached without a link.' ); }
+if ( isset( $GLOBALS['vk_test_body']['attachments'] ) ) { throw new Exception( 'An empty link must not create an attachment.' ); }
 foreach ( array( 'club', 'club0', '-club', 'club12oops', '--123', 'https://vk.ru/club123' ) as $id ) {
     $settings = array( 'enabled' => true, 'token' => 'vk1.a.example', 'target' => $id, 'api_version' => '5.199' );
     if ( Social_Providers::valid( 'vk', $settings ) ) { throw new Exception( 'Invalid ID accepted: ' . $id ); }
