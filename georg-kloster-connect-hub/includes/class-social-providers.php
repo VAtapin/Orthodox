@@ -64,11 +64,59 @@ final class Social_Providers {
         return array( 'http_code' => $code, 'accepted' => $accepted, 'pending' => $pending, 'response' => $response, 'api_error' => self::api_error_details( $api_response ), 'retry' => $retry || 0 === $code || 429 === $code || $code >= 500, 'error' => $accepted || $pending ? '' : __( 'The remote API did not confirm publication. Check permissions, credentials and account limits.', 'georg-kloster-connect-hub' ) );
     }
 
+    private static function vk_wall_photo( array $settings, array &$job ): array {
+        if ( ! empty( $job['vk_photo'] ) && is_string( $job['vk_photo'] ) && preg_match( '/^photo-?[1-9][0-9]*_[1-9][0-9]*$/D', $job['vk_photo'] ) ) { return array( $job['vk_photo'], array() ); }
+        $attachment = (int) get_post_thumbnail_id( (int) $job['source'] );
+        $path = $attachment ? get_attached_file( $attachment ) : false;
+        $mime = $attachment ? get_post_mime_type( $attachment ) : '';
+        if ( ! is_string( $path ) || ! is_readable( $path ) || ! in_array( $mime, array( 'image/jpeg', 'image/png', 'image/gif' ), true ) || ! is_file( $path ) || filesize( $path ) > 20 * 1024 * 1024 ) {
+            $failure = self::result( 400, false, false, array(), false, array( 'error_msg' => 'VK requires a readable featured image (JPEG, PNG or GIF, at most 20 MB).' ) );
+            $failure['endpoint'] = '';
+            return array( '', $failure );
+        }
+        $group_id = substr( self::vk_community_target( $settings['target'] ), 1 );
+        $endpoint = 'https://api.vk.com/method/photos.getWallUploadServer';
+        list( $code, $data ) = self::call( 'POST', $endpoint, array( 'access_token' => $settings['token'], 'v' => $settings['api_version'], 'group_id' => $group_id ) );
+        $upload_url = $data['response']['upload_url'] ?? '';
+        if ( 200 !== $code || ! is_string( $upload_url ) || ! wp_http_validate_url( $upload_url ) || 'https' !== wp_parse_url( $upload_url, PHP_URL_SCHEME ) ) {
+            $failure = self::result( $code, false, false, array(), false, $data ); $failure['endpoint'] = $endpoint;
+            return array( '', $failure );
+        }
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- A bounded local WordPress media file is sent to VK.
+        $file = file_get_contents( $path );
+        if ( ! is_string( $file ) || '' === $file ) { return array( '', self::result( 400, false ) ); }
+        $boundary = 'gkch' . str_replace( '-', '', wp_generate_uuid4() );
+        $multipart = '--' . $boundary . "\r\nContent-Disposition: form-data; name=\"photo\"; filename=\"image\"\r\nContent-Type: " . $mime . "\r\n\r\n" . $file . "\r\n--" . $boundary . "--\r\n";
+        try { $response = wp_safe_remote_request( $upload_url, array( 'method' => 'POST', 'timeout' => 30, 'redirection' => 0, 'headers' => array( 'Content-Type' => 'multipart/form-data; boundary=' . $boundary ), 'body' => $multipart ) ); }
+        catch ( \Throwable $error ) { $response = new \WP_Error( 'transport', 'Transport failed.' ); }
+        $code = is_wp_error( $response ) ? 0 : (int) wp_remote_retrieve_response_code( $response );
+        $data = is_wp_error( $response ) ? null : json_decode( wp_remote_retrieve_body( $response ), true );
+        if ( 200 !== $code || ! is_array( $data ) || ! isset( $data['server'], $data['photo'], $data['hash'] ) || ! is_scalar( $data['server'] ) || ! is_string( $data['photo'] ) || ! is_string( $data['hash'] ) ) {
+            $failure = self::result( $code, false, false, array(), false, $data ); $failure['endpoint'] = 'https://api.vk.com/method/photos.getWallUploadServer';
+            return array( '', $failure );
+        }
+        $endpoint = 'https://api.vk.com/method/photos.saveWallPhoto';
+        list( $code, $data ) = self::call( 'POST', $endpoint, array( 'access_token' => $settings['token'], 'v' => $settings['api_version'], 'group_id' => $group_id, 'server' => $data['server'], 'photo' => $data['photo'], 'hash' => $data['hash'] ) );
+        $photo = $data['response'][0] ?? array();
+        $owner = $photo['owner_id'] ?? ''; $id = $photo['id'] ?? '';
+        if ( 200 !== $code || ! is_scalar( $owner ) || ! is_scalar( $id ) || ! preg_match( '/^-?[1-9][0-9]*$/D', (string) $owner ) || ! preg_match( '/^[1-9][0-9]*$/D', (string) $id ) ) {
+            $failure = self::result( $code, false, false, array(), false, $data ); $failure['endpoint'] = $endpoint;
+            return array( '', $failure );
+        }
+        $job['vk_photo'] = 'photo' . $owner . '_' . $id;
+        return array( $job['vk_photo'], array() );
+    }
+
     public static function send( string $id, array $settings, array &$job ): array {
         if ( 'instagram' === $id ) { return self::instagram( $settings, $job ); }
         $text = $job['text'] . "\n" . $job['url'];
         if ( 'vk' === $id ) {
             $target = self::vk_community_target( $settings['target'] );
+            $photo = '';
+            if ( 'post' === ( $job['kind'] ?? '' ) ) {
+                list( $photo, $failure ) = self::vk_wall_photo( $settings, $job );
+                if ( '' === $photo ) { return $failure; }
+            }
             $message = $job['text'];
             if ( 'post' === ( $job['kind'] ?? '' ) && ! empty( $job['source'] ) ) {
                 $title = trim( wp_strip_all_tags( get_the_title( (int) $job['source'] ) ) );
@@ -80,7 +128,8 @@ final class Social_Providers {
                 }
             }
             $body = array( 'access_token' => $settings['token'], 'v' => $settings['api_version'], 'owner_id' => $target, 'from_group' => 1, 'message' => $message, 'guid' => substr( hash( 'sha256', $target . $job['source'] . $text . ( $job['reply_context']['configuration'] ?? '' ) ), 0, 32 ) );
-            if ( '' !== $job['url'] ) { $body['attachments'] = $job['url']; }
+            $attachments = array_filter( array( $photo, $job['url'] ), 'strlen' );
+            if ( $attachments ) { $body['attachments'] = implode( ',', $attachments ); }
             list( $code, $data ) = self::call( 'POST', 'https://api.vk.com/method/wall.post', $body );
             $remote_id = is_array( $data ) ? ( $data['response']['post_id'] ?? null ) : null;
             $accepted = 200 === $code && is_array( $data ) && ! isset( $data['error'] ) && is_scalar( $remote_id ) && preg_match( '/^[1-9][0-9]*$/D', (string) $remote_id );
