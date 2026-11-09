@@ -67,7 +67,7 @@ final class Request_Form {
         $form_id = $input['form_id'] ?? 0;
         if ( ! is_scalar( $form_id ) || ! preg_match( '/^\d+$/D', (string) $form_id ) ) { throw new \RuntimeException( 'Invalid form.' ); }
         $form_id = (int) $form_id;
-        $nonce = $input['_wpnonce'] ?? null;
+        $nonce = isset( $input['_wpnonce'] ) && is_string( $input['_wpnonce'] ) ? sanitize_text_field( $input['_wpnonce'] ) : null;
         if ( ! is_string( $nonce ) || ( ! wp_verify_nonce( $nonce, 'gkps_request_submit_' . $form_id ) && ( 0 !== $form_id || ! wp_verify_nonce( $nonce, 'gkps_request_submit' ) ) ) || '1' !== ( $input['consent'] ?? '' ) || ! empty( $input['website_check'] ) || ! is_string( $input['token'] ?? null ) ) { throw new \RuntimeException( 'Invalid form.' ); }
         $hash = hash( 'sha256', $input['token'] );
         $key = 'gkps_form_' . $hash;

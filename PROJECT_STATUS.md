@@ -28,7 +28,7 @@ Connect Hub 0.4.10 sends Telegram updates synchronously to each subscriber's pri
 
 Version 1.0.0 is submitted in WordPress.org Themes Trac ticket [#296403](https://themes.trac.wordpress.org/ticket/296403); the SVN submission remains separate from the newer Git changes deployed to the test site. The ticket was closed as not-approved; 1.1.1 addresses the five reported findings and has not been resubmitted. Do not treat the test-site package as a new SVN submission.
 
-Connect Hub 0.4.10 has been submitted to WordPress.org and is awaiting review. Keep the version unchanged while the review is pending. The owner's Plugin Check report generated 2026-10-28 at 15:36 found one escaping error and 25 remaining warnings after the earlier source update. Those findings have now been corrected in source: table headings are escaped at output, validated input paths are annotated with the validation performed, the contact form reads only its result state from GET, and the retention metadata query is marked as bounded. After these corrections, PHP lint, 85 isolated assertions, Connect Hub translation checks, and ZIP rebuild passed. Plugin Check has not been rerun at the owner's request, so no clean result is claimed.
+Connect Hub 0.4.10 has been submitted to WordPress.org. Keep the version unchanged during review. The owner's Plugin Check report generated 2026-10-28 at 15:36 found one escaping error and 25 remaining warnings after the earlier source update. Those findings were corrected in source: table headings are escaped at output, validated input paths are annotated with the validation performed, the contact form reads only its result state from GET, and the retention metadata query is marked as bounded. A subsequent review email identified an unsanitized public-form nonce; the nonce is now sanitized before verification. Admin mutation handlers use WordPress nonce and capability checks; the public form remains available to visitors and uses its form nonce, one-time token, consent, and rate limit. The review also recommended removing bundled `.po`/`.mo` files from the WordPress.org package; a same-version submission ZIP is being prepared without those files while source catalogs remain in Git. The updated package has not been uploaded and Plugin Check has not been rerun at the owner's request, so no new clean result is claimed.
 
 ## Local Telegram editor test build
 
@@ -54,11 +54,11 @@ Schedule commemorations and overview heading: `php tests/run.php` passed 85 isol
 
 ## Next steps
 
-Wait for the WordPress.org review response for Connect Hub 0.4.10. Keep the version unchanged while the review is pending. Address any reviewer findings in the submitted version without claiming approval before the directory review completes.
+Upload the prepared Connect Hub 0.4.10 review package in the WordPress.org plugin portal and reply to the review email as requested. Keep the version unchanged. Wait for the directory decision; no approval is claimed.
 
 Upload `build/georg-kloster-prihod-core-0.2.12.zip` through WordPress Plugins → Add Plugin → Upload Plugin, replacing the installed Parish Core. Verify that the upcoming-service heading clears the calendar icon and that full week/list cards show the calendar commemorations with available typikon marks. The compact month view remains compact. Production has not been updated.
 
-Last related code commit: Add detailed publication delivery history.
+Last related code commit: Sanitize public form nonce for review.
 
 ## Theme review follow-up (1.1.1)
 
